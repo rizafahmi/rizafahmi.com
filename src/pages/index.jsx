@@ -138,7 +138,7 @@ const Footer = styled.footer`
   }
 `;
 
-const Index = ({ data: { p1, p2, p3, p4 } }) => (
+const Index = ({ data: { p1, p2, p3, p4, p5, p6 } }) => (
   <React.Fragment>
     <SEO />
     <Parallax pages={5}>
@@ -301,8 +301,9 @@ const Index = ({ data: { p1, p2, p3, p4 } }) => (
             Hello, <br /> I'm Riza.
           </BigTitle>
           <Subtitle>
-            I love to learn, sharing and give some guidance for fellow
-            developers.
+            I love to learn bleeding edge and new technology and enjoy to share
+            with fellow developers that need a guidance and upgrade their skill
+            so they can have a better career or do their own business.
           </Subtitle>
         </Hero>
       </Content>
@@ -331,21 +332,33 @@ const Index = ({ data: { p1, p2, p3, p4 } }) => (
             />
             <ProjectCard
               fluid={p2.childImageSharp.fluid}
-              title="Tomb Raider"
-              alt="Tomb Raider - Wallpaper"
-              link="https://www.behance.net/gallery/43907099/Tomb-Raider"
+              title="Random Screencast"
+              alt="Random Screencast - Logo"
+              link="https://randomscreencast.com"
             />
             <ProjectCard
               fluid={p3.childImageSharp.fluid}
-              title="Harry Potter"
-              alt="Harry Potter Fanart"
-              link="https://www.behance.net/gallery/52915793/Harry-Potter"
+              title="Hacktiv8"
+              alt="Hacktiv8 Logo"
+              link="https://hacktiv8.com/"
             />
             <ProjectCard
               fluid={p4.childImageSharp.fluid}
-              title="PROPRIUS"
-              alt="Instagram 366 Day Challenge"
-              link="https://www.behance.net/gallery/61747105/Best-of-PROPRIUS-2016"
+              title="ElixirDose"
+              alt="ElixirDose Logo"
+              link="http://elixir.career"
+            />
+            <ProjectCard
+              fluid={p5.childImageSharp.fluid}
+              title="AppsCoast Podcast"
+              alt="Indonesian Tech Startup Podcast"
+              link="http://amp.asia"
+            />
+            <ProjectCard
+              fluid={p6.childImageSharp.fluid}
+              title="BdB Audio News"
+              alt="Audio News"
+              link="http://amp.asia"
             />
           </ProjectsWrapper>
         </Inner>
@@ -538,19 +551,54 @@ const Index = ({ data: { p1, p2, p3, p4 } }) => (
           <AboutHero>
             <Avatar src={avatar} alt="John Doe" />
             <AboutSub>
-              The English language can not fully capture the depth and
-              complexity of my thoughts. So I'm incorporating Emoji into my
-              speech to better express myself. Winky face.
+              Technology is the core to solving the next generation of problems
+              and by teaching people the foundations of programming, I believe
+              we can solve Indonesia’s future problems together.
             </AboutSub>
           </AboutHero>
           <AboutDesc>
-            You know the way you feel when you see a picture of two otters
-            holding hands? That's how you're gonna feel every day. My mother
-            cried the day I was born because she knew she’d never be prettier
-            than me. You should make me your campaign manager. I was born for
-            politics. I have great hair and I love lying. Captain? The kids want
-            to know where Paulie the Pigeon is. I told them he got sucked up
-            into an airplane engine, is that all right?
+            Knowledge sharing is deeply engrained with my passion and is evident
+            through involvement in many initiatives such as becoming a lecturer
+            at Universitas Budi Luhur; becoming an organizer for{" "}
+            <a href="https://meetup.com/jakartajs" target="_blank">
+              JakartaJS
+            </a>{" "}
+            ,{" "}
+            <a href="https://www.meetup.com/Meteor-Jakarta/" target="_blank">
+              Meteor Jakarta
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://www.facebook.com/groups/DevCJakarta/"
+              target="_blank"
+            >
+              Facebook DeveloperCircles Jakarta
+            </a>; a speaker at{" "}
+            <a
+              href="https://www.meetup.com/Singapore-Elixir-Meetup/events/229685862/"
+              target="_blank"
+            >
+              Singapore Elixir Meetup
+            </a>,{" "}
+            <a
+              href="https://randomscreencast.com/07-js-frameworks/"
+              target="_blank"
+            >
+              GeekCamp
+            </a>,{" "}
+            <a
+              href="https://randomscreencast.com/01-phoenix-elixir/"
+              target="_blank"
+            >
+              Lambda Jakarta
+            </a>{" "}
+            and much more to come! One more thing, I recently appointed as{" "}
+            <a
+              href="https://developers.google.com/experts/people/riza-fahmi"
+              target="_blank"
+            >
+              Google Developers Experts in Web Technology
+            </a>.
           </AboutDesc>
         </Inner>
       </Content>
@@ -578,10 +626,13 @@ const Index = ({ data: { p1, p2, p3, p4 } }) => (
         <Inner>
           <Title>Get in touch</Title>
           <ContactText>
-            Say <a href="mailto:plizNoSp4m@domain.tld">Hi</a> or find me on
-            other platforms:{" "}
-            <a href="https://dribbble.com/LekoArts">Dribbble</a> &{" "}
-            <a href="https://www.instagram.com/lekoarts.de/">Instagram</a>
+            Say <a href="mailto:rizafahmi@gmail.com">hi</a> or find me on other
+            platforms: <a href="https://facebook.com/rizafahmi">Facebook</a> ,{" "}
+            <a href="https://instagram.com/rizafahmi">Instagram</a> ,{" "}
+            <a href="https://twitter.com/rizafahmi22">Twitter</a> ,{" "}
+            <a href="https://youtube.com/rizafahmi">Youtube</a> ,{" "}
+            <a href="https://medium.com/@rizafahmi22">Medium</a> or{" "}
+            <a href="https://linkedin.com/in/rizafahmi">LinkedIn</a>.
           </ContactText>
         </Inner>
         <Footer>
@@ -675,21 +726,35 @@ export const query = graphql`
         }
       }
     }
-    p2: file(relativePath: { regex: "/project_2.jpg/" }) {
+    p2: file(relativePath: { regex: "/random-logo.png/" }) {
       childImageSharp {
         fluid(maxWidth: 800, maxHeight: 800, quality: 90) {
           ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }
-    p3: file(relativePath: { regex: "/project_3.jpg/" }) {
+    p3: file(relativePath: { regex: "/Hacktiv8-logo.png/" }) {
       childImageSharp {
         fluid(maxWidth: 800, maxHeight: 800, quality: 90) {
           ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }
-    p4: file(relativePath: { regex: "/project_4.jpg/" }) {
+    p4: file(relativePath: { regex: "/ElixirDose-wallpaper.png/" }) {
+      childImageSharp {
+        fluid(maxWidth: 800, maxHeight: 800, quality: 90) {
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        }
+      }
+    }
+    p5: file(relativePath: { regex: "/appscoast.png/" }) {
+      childImageSharp {
+        fluid(maxWidth: 800, maxHeight: 800, quality: 90) {
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        }
+      }
+    }
+    p6: file(relativePath: { regex: "/bdb.png/" }) {
       childImageSharp {
         fluid(maxWidth: 800, maxHeight: 800, quality: 90) {
           ...GatsbyImageSharpFluid_withWebp_tracedSVG

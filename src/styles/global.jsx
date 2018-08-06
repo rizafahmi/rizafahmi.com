@@ -1,5 +1,5 @@
 /* eslint no-unused-expressions: 0 */
-import { injectGlobal } from 'emotion';
+import { injectGlobal } from "emotion";
 
 injectGlobal`
   *, *:before, *:after {
@@ -20,5 +20,9 @@ injectGlobal`
     height: 100%;
     margin: 0;
     padding: 0;
+  }
+  a {
+    color: #EF5753;
+    text-decoration: none;
   }
 `;
