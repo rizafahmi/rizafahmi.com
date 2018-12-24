@@ -1,0 +1,44 @@
+{
+  "name": "gatsby-starter-tailwind-seo-social",
+  "version": "1.0.0",
+  "description": "Gatsby starter project styled with Tailwind and configured for social sharing and SEO.",
+  "author": "Kyle Galbraith",
+  "dependencies": {
+    "gatsby": "next",
+    "gatsby-image": "next",
+    "gatsby-link": "next",
+    "gatsby-plugin-feed": "next",
+    "gatsby-plugin-google-analytics": "next",
+    "gatsby-plugin-react-helmet": "next",
+    "gatsby-plugin-sharp": "next",
+    "gatsby-remark-copy-linked-files": "next",
+    "gatsby-remark-images": "next",
+    "gatsby-remark-prismjs": "next",
+    "gatsby-remark-responsive-iframe": "next",
+    "gatsby-remark-smartypants": "next",
+    "gatsby-source-filesystem": "next",
+    "gatsby-transformer-remark": "next",
+    "gatsby-transformer-sharp": "next",
+    "lodash": "^4.17.10",
+    "prismjs": "^1.15.0",
+    "react-helmet": "^5.2.0",
+    "react-share": "^2.2.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "keywords": [
+    "gatsby",
+    "tailwind",
+    "tailwindcss",
+    "social"
+  ],
+  "license": "ISC",
+  "scripts": {
+    "build:css": "tailwind build ./src/components/index.tailwind.css -c ./tailwind.config.js -o ./src/components/index.css",
+    "build": "npm run build:css && gatsby build",
+    "develop": "npm run build:css && gatsby develop"
+  },
+  "devDependencies": {
+    "tailwindcss": "^0.6.4"
+  }
+}
