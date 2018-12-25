@@ -123,3 +123,13 @@ blockquote {
 blockquote > a {
   @apply underline;
 }
+
+blockquote > p > a {
+  @apply underline;
+}
+
+#subscription-box {
+  @apply bg-black;
+  @apply text-white;
+  transform: rotate(-3deg);
+}

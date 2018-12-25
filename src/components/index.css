@@ -6352,6 +6352,16 @@ blockquote > a {
   text-decoration: underline;
 }
 
+blockquote > p > a {
+  text-decoration: underline;
+}
+
+#subscription-box {
+  background-color: #22292f;
+  color: #fff;
+  transform: rotate(-3deg);
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
