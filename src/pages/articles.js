@@ -18,7 +18,7 @@ class BlogIndexPage extends React.Component {
           <p className="leading-loose py-3">
             Hi, I{"'"}m Riza. These are my articles.
           </p>
-          <ul>
+          <ul className="leading-loose">
             {posts.map(({ node }) => {
               const title = get(node, 'frontmatter.title') || node.fields.slug;
               return (
