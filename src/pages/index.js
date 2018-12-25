@@ -308,6 +308,7 @@ const IndexPage = () => (
               <a
                 href="https://medium.com/@rizafahmi22/jadilah-developer-dengan-faktor-x-73e12262aa43"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 Jadilah Developer Dengan Faktor X
               </a>{' '}
@@ -315,12 +316,14 @@ const IndexPage = () => (
               <a
                 href="https://id.techinasia.com/talk/tip-menjadi-developer-sukses"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 TechInAsia
               </a>
               , and{' '}
               <a
                 href="https://blog.hacktiv8.com/jadilah-developer-dengan-faktor-x/"
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 blog Hacktiv8
@@ -330,6 +333,7 @@ const IndexPage = () => (
             <li>
               <a
                 href="https://id.techinasia.com/podcast-tech-in-asia-23-oktober-2015"
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 AppsCoast Special Episode with TechInAsia Podcast
@@ -364,6 +368,7 @@ const IndexPage = () => (
               <a
                 href="https://medium.com/@rizafahmi22/indonesia-butuh-lebih-banyak-developer-kan-c44fbb19cfe6"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 Indonesia Butuh Lebih Banyak Developer Kan?!
               </a>{' '}

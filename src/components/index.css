@@ -6323,13 +6323,33 @@ a:hover {
 
 .blog-content > .gatsby-highlight > pre[class^='language'] {
   padding: 1.5rem;
-  background-color: #191e38;
-  color: #f8fafc;
+  background-color: #f1f5f8;
 }
 
 .blog-content > ol > li,
 .blog-content > ul > li {
   margin-bottom: .5rem;
+}
+
+code {
+  background-color: #f1f5f8;
+}
+
+blockquote {
+  border-width: 2px;
+  border-color: #2779bd;
+  padding: 1rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  color: #2779bd;
+  font-family: Constantia, Lucida Bright, Lucidabright, Lucida Serif, Lucida, DejaVu Serif, Bitstream Vera Serif, Liberation Serif, Georgia, serif;
+  font-size: 1.5rem;
+  /* padding: 18px; *//* color: #2779BD; */
+  transform: rotate(-3deg);
+}
+
+blockquote > a {
+  text-decoration: underline;
 }
 
 @media (min-width: 576px) {

@@ -96,10 +96,30 @@ a:hover {
 }
 
 .blog-content > .gatsby-highlight > pre[class^='language'] {
-  @apply p-6 bg-indigo-darkest text-grey-lightest;
+  @apply p-6 bg-grey-lighter;
 }
 
 .blog-content > ol > li,
 .blog-content > ul > li {
   @apply mb-2;
+}
+code {
+  @apply bg-grey-lighter;
+}
+
+blockquote {
+  @apply border-2;
+  @apply border-blue-dark;
+  @apply p-4;
+  @apply my-10;
+  @apply text-blue-dark;
+  @apply font-serif;
+  @apply text-2xl;
+  /* padding: 18px; */
+  /* color: #2779BD; */
+  transform: rotate(-3deg);
+}
+
+blockquote > a {
+  @apply underline;
 }
