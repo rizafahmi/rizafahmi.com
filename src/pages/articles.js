@@ -1,7 +1,7 @@
-import React from "react";
-import Seo from "../components/Seo";
-import get from 'lodash/get'
-import Link from "gatsby-link";
+import React from 'react';
+import Seo from '../components/Seo';
+import get from 'lodash/get';
+import { Link } from 'gatsby';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
 
@@ -10,24 +10,24 @@ class BlogIndexPage extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     return (
       <Layout>
-        <div className="text-left p-4 bg-grey-lightest">
+        <div className="align-top text-center">
+          <h1 className="inline-block pt-3 pb-3">ARTICLES</h1>
+        </div>
+        <div className="align-top">
           <Seo data="" />
-          {posts.map(({ node }) => {
-            const title = get(node, 'frontmatter.title') || node.fields.slug
-            return (
-              <div key={node.fields.slug} className="text-grey-darkest pb-4 pt-4">
-                <p className="inline-block bg-purple-darker text-purple-lightest mb-2 font-normal p-2 text-xs rounded">
-                  {node.frontmatter.date}
-                </p>
-                <h3 className="mb-2 font-normal">
-                  <Link className="text-2xl text-indigo-darker hover:text-indigo-lighter" to={node.fields.slug}>
-                    {title}
-                  </Link>
-                </h3>
-                <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-              </div>
-            )
-          })}
+          <p className="leading-loose py-3">
+            Hi, I{"'"}m Riza. These are my articles.
+          </p>
+          <ul>
+            {posts.map(({ node }) => {
+              const title = get(node, 'frontmatter.title') || node.fields.slug;
+              return (
+                <li>
+                  <Link to={node.fields.slug}>{title}</Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </Layout>
     );
@@ -54,9 +54,9 @@ export const pageQuery = graphql`
             date(formatString: "DD MMMM, YYYY")
             title
             cover {
-              childImageSharp{
+              childImageSharp {
                 sizes(maxWidth: 630) {
-                    ...GatsbyImageSharpSizes
+                  ...GatsbyImageSharpSizes
                 }
               }
             }
@@ -65,4 +65,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
