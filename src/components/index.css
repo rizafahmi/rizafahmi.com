@@ -3058,7 +3058,7 @@ table {
 }
 
 .font-sans {
-  font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Roboto Mono, Roboto, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 .font-serif {
@@ -6281,17 +6281,15 @@ table {
   */
 
 body {
-  /*background-image: url('../images/magnus-2050.png');*/
-  background: #382b5f; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom right, #2c3540, #382b5f, #654eab); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom right, #2c3540, #382b5f, #654eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.bg-cover-image {
-  /*background-image: url('../images/magnus-2050.png');*/
-  background: #382b5f; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom right, #2c3540, #382b5f, #654eab); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom right, #2c3540, #382b5f, #654eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+a {
+  color: #2779bd;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #fff382;
 }
 
 .blog-content > p > a {
@@ -8707,7 +8705,7 @@ body {
   }
 
   .sm\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: Roboto Mono, Roboto, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
   .sm\:font-serif {
@@ -14272,7 +14270,7 @@ body {
   }
 
   .md\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: Roboto Mono, Roboto, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
   .md\:font-serif {
@@ -19837,7 +19835,7 @@ body {
   }
 
   .lg\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: Roboto Mono, Roboto, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
   .lg\:font-serif {
@@ -25402,7 +25400,7 @@ body {
   }
 
   .xl\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: Roboto Mono, Roboto, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
   .xl\:font-serif {

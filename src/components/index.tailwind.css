@@ -64,6 +64,15 @@
 body {
 }
 
+a {
+  @apply text-blue-dark;
+  @apply no-underline;
+}
+
+a:hover {
+  @apply bg-yellow-light;
+}
+
 .blog-content > p > a {
   @apply text-purple;
 }
