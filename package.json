@@ -36,7 +36,7 @@
   "license": "ISC",
   "scripts": {
     "build:css": "tailwind build ./src/components/index.tailwind.css -c ./tailwind.config.js -o ./src/components/index.css",
-    "build": "npm run build:css && gatsby build",
+    "buildup": "npm run build:css && gatsby build",
     "develop": "npm run build:css && gatsby develop"
   },
   "devDependencies": {
