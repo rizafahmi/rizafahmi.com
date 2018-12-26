@@ -1,11 +1,12 @@
 import React from 'react';
-import Seo from '../components/Seo';
+// import Seo from '../components/Seo';
 import Layout from '../components/layout';
 
 import riza from '../images/riza.jpg';
 
 const IndexPage = () => (
   <Layout>
+    {/*<Seo data="" /> */}
     <div className="flex mb-4">
       <div className="w-2/5 pt-3">
         <div className="">
@@ -20,30 +21,27 @@ const IndexPage = () => (
           <ul className="leading-loose list-reset">
             <li className="py-3">
               <a
-                href="https://medium.com/wwwid/pengalaman-pertama-menghadiri-chrome-dev-summit-f2db2d7a17ae"
+                href="/2018/12/22/pengalaman-pertama-cds/"
                 rel="noopener noreferrer"
                 className="no-underline"
-                target="_blank"
               >
                 Pengalaman Pertama Menghadiri Chrome Dev Summit
               </a>
             </li>
             <li className="py-3">
               <a
-                href="https://medium.com/@rizafahmi22/perkenalan-reasonml-sintaks-baru-untuk-ocaml-22e53d2fa710"
+                href="/2018/12/10/perkenalan-reasonml/"
                 rel="noopener noreferrer"
                 className="no-underline"
-                target="_blank"
               >
                 Perkenalan ReasonML, Sintaks Baru untuk OCaml
               </a>
             </li>
             <li className="py-3">
               <a
-                href="https://medium.com/@rizafahmi22/cara-belajar-pemrograman-yang-cepat-dan-efisien-1e113ebe6973"
+                href="/2018/09/17/cara-belajar-pemrograman/"
                 rel="noopener noreferrer"
                 className="no-underline"
-                target="_blank"
               >
                 Cara Belajar Pemrograman Yang Cepat dan Efisien
               </a>
@@ -205,7 +203,6 @@ const IndexPage = () => (
           </ul>
         </div>
       </div>
-      {/*<Seo data="" /> */}
       <div className="w-3/5 align-top">
         <h2 className="inline-block pt-3 pb-3">Hi, I'm Riza.</h2>
         <p className="leading-loose py-3">
@@ -240,7 +237,11 @@ const IndexPage = () => (
           </a>
           , a community for JavaScript Ninja nearby Jakarta area. We held meetup
           every single month. I also run{' '}
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.facebook.com/groups/DevCJakarta/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Facebook
             {"'"}s Developer Circles Jakarta
           </a>
@@ -260,6 +261,29 @@ const IndexPage = () => (
           technology person from Indonesia. To motivate, inspire and encourage
           young developers to become a great one.
         </p>
+        <p
+          id="subscription-box"
+          className="leading-loose py-3 my-6 px-3 border border-grey-darker border-solid"
+        >
+          Ocassionally, I send an email to my list. I talk about all
+          tech-related, making stuff, tips and tricks for developers, and
+          interesting events.{' '}
+          <form method="POST" className="">
+            <input
+              className="mr-6 shadow appearence-none border rounded py-3 px-3 my-2 leading-tight focus:outline-none focus:shadow-outline"
+              type="email"
+              name="email"
+              id="email"
+              required="true"
+              placeholder="me@email.com"
+            />
+            <input
+              type="submit"
+              value="Subscribe Now!"
+              className="bg-yellow-light hover:bg-grey-darker text-yellow-darker font-bold py-3 px-3 rounded focus:outline-none focus:shadow-outline"
+            />
+          </form>
+        </p>
         <p className="leading-loose py-3">
           Also, I do a screencast for{' '}
           <a
@@ -270,7 +294,7 @@ const IndexPage = () => (
             Random Screencast
           </a>{' '}
           on random technology and random time. I also experiment with{' '}
-          <a href="/live" target="_blank" rel="noopener noreferrer">
+          <a href="/live" rel="noopener noreferrer">
             live streaming
           </a>{' '}
           format recently.
@@ -287,17 +311,6 @@ const IndexPage = () => (
           to produce technology related, awesome quality, written content in
           Bahasa Indonesia, weekly basis.
         </p>
-        <p
-          id="subscription-box"
-          className="leading-loose py-3 my-6 px-3 border border-black border-solid"
-        >
-          Ocassionally, I send an email to my list. I talk about all
-          tech-related, making stuff, tips and tricks for developers.{' '}
-          <a href="/subscribe" target="_blank" rel="noopener noreferrer">
-            Subscribe now
-          </a>
-          .
-        </p>
         <div className="leading-loose py-3">
           <h2>
             The Best Things I{"'"}
@@ -306,9 +319,8 @@ const IndexPage = () => (
           <ul>
             <li>
               <a
-                href="https://medium.com/@rizafahmi22/jadilah-developer-dengan-faktor-x-73e12262aa43"
+                href="/2016/09/02/jadilah-developer-dengan-faktor-x/"
                 rel="noopener noreferrer"
-                target="_blank"
               >
                 Jadilah Developer Dengan Faktor X
               </a>{' '}
@@ -366,9 +378,8 @@ const IndexPage = () => (
             </li>
             <li>
               <a
-                href="https://medium.com/@rizafahmi22/indonesia-butuh-lebih-banyak-developer-kan-c44fbb19cfe6"
+                href="2016/07/20/indonesia-butuh-lebih-banyak-developer/"
                 rel="noopener noreferrer"
-                target="_blank"
               >
                 Indonesia Butuh Lebih Banyak Developer Kan?!
               </a>{' '}

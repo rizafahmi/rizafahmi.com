@@ -10,11 +10,15 @@ class BlogIndexPage extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     return (
       <Layout>
+        <Seo
+          data={{
+            frontmatter: { title: "Hi, I'm Riza. These are my articles" }
+          }}
+        />
         <div className="align-top text-center">
           <h1 className="inline-block pt-3 pb-3">ARTICLES</h1>
         </div>
         <div className="align-top">
-          <Seo data="" />
           <p className="leading-loose py-3">
             Hi, I{"'"}m Riza. These are my articles.
           </p>
