@@ -1,16 +1,63 @@
 import React from 'react';
 import Img from 'gatsby-image';
-import { Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Seo from '../components/Seo';
 import Social from '../components/Social';
-import config from '../config/config';
+// import config from '../config/config';
 import Layout from '../components/layout';
-import { graphql } from 'gatsby';
+
+import { database } from '../firebase.js';
 
 class BlogPostTemplate extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null
+    };
+  }
+
+  componentDidMount() {
+    document.addEventListener('scroll', this.trackScroll);
+    console.dir(this.props.pageContext.slug);
+
+    database
+      .ref()
+      .child(this.props.pageContext.slug)
+      .on('value', (snapshot) => {
+        this.setState({
+          data: snapshot.val()
+        });
+      });
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.trackScroll);
+  }
+
+  updateData = () => {
+    const newData = this.state.data + 1;
+    console.log(newData);
+    database
+      .ref()
+      .child(this.props.pageContext.slug)
+      .set(newData);
+  };
+
+  isBottom(el) {
+    return el.getBoundingClientRect().bottom <= window.innerHeight + 600;
+  }
+
+  trackScroll = () => {
+    const wrappedElement = document.getElementById('___gatsby');
+    if (this.isBottom(wrappedElement)) {
+      this.updateData();
+      document.removeEventListener('scroll', this.trackScroll);
+    }
+  };
+
   render() {
     const post = this.props.data.markdownRemark;
-    const { previous, next } = this.props.pathContext;
+    const { previous, next } = this.props.pageContext;
     const url = 'https://rizafahmi.com' + this.props.location.pathname;
 
     return (
@@ -32,7 +79,7 @@ class BlogPostTemplate extends React.Component {
             <span role="img" aria-label="blog post date">
               📅
             </span>{' '}
-            {post.frontmatter.date} – {config.authorName}
+            {post.frontmatter.date} - {this.state.data} 👀
           </p>
           <div
             className="blog-content leading-loose"

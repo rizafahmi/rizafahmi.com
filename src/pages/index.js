@@ -261,7 +261,7 @@ const IndexPage = () => (
           technology person from Indonesia. To motivate, inspire and encourage
           young developers to become a great one.
         </p>
-        <p
+        <div
           id="subscription-box"
           className="leading-loose py-3 my-6 px-3 border border-grey-darker border-solid"
         >
@@ -274,7 +274,7 @@ const IndexPage = () => (
               type="email"
               name="email"
               id="email"
-              required="true"
+              required={true}
               placeholder="me@email.com"
             />
             <a
@@ -284,7 +284,7 @@ const IndexPage = () => (
               Subscribe
             </a>
           </form>
-        </p>
+        </div>
         <p className="leading-loose py-3">
           Also, I do a screencast for{' '}
           <a

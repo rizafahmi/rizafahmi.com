@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 import Seo from '../components/Seo';
 import Layout from '../components/layout';
@@ -23,31 +22,6 @@ class SubscribePage extends React.Component {
   submitEmail = (e) => {
     e.preventDefault();
     const { email } = this.state;
-    console.log(process.env.EMAILOCTOPUS_KEY);
-    const axiosConfig = {
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*'
-      },
-      crossdomain: true
-    };
-    axios
-      .post(
-        'https://emailoctopus.com/api/1.5/lists/c26e1c25-0833-11e9-a3c9-06b79b628af2/contacts',
-        {
-          api_key: process.env.EMAILOCTOPUS_KEY,
-          email
-        },
-        axiosConfig
-      )
-      .then((response) => {
-        console.log(response);
-        this.setState({
-          email: ''
-        }).catch((error) => {
-          console.error(error);
-        });
-      });
     this.setState({
       submitted: true
     });
@@ -75,7 +49,7 @@ class SubscribePage extends React.Component {
                   type="email"
                   name="email"
                   id="email"
-                  required
+                  required={true}
                   placeholder="me@email.com"
                   onChange={this.changeEmail}
                 />

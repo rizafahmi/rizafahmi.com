@@ -4,7 +4,7 @@
   "description": "Gatsby starter project styled with Tailwind and configured for social sharing and SEO.",
   "author": "Kyle Galbraith",
   "dependencies": {
-    "axios": "^0.18.0",
+    "firebase": "^5.7.1",
     "gatsby": "next",
     "gatsby-image": "next",
     "gatsby-link": "next",
