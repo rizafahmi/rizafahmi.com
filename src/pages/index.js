@@ -175,7 +175,7 @@ const IndexPage = () => (
             </li>
             <li className="py-3 inline-block">
               <a
-                href="/subscribe"
+                href="https://emailoctopus.com/lists/c26e1c25-0833-11e9-a3c9-06b79b628af2/forms/subscribe"
                 rel="noopener noreferrer"
                 className="inline-block no-underline"
               >
@@ -277,11 +277,12 @@ const IndexPage = () => (
               required="true"
               placeholder="me@email.com"
             />
-            <input
-              type="submit"
-              value="Subscribe Now!"
+            <a
+              href="https://emailoctopus.com/lists/c26e1c25-0833-11e9-a3c9-06b79b628af2/forms/subscribe"
               className="bg-yellow-light hover:bg-grey-darker text-yellow-darker font-bold py-3 px-3 rounded focus:outline-none focus:shadow-outline"
-            />
+            >
+              Subscribe
+            </a>
           </form>
         </p>
         <p className="leading-loose py-3">
