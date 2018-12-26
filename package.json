@@ -4,6 +4,7 @@
   "description": "Gatsby starter project styled with Tailwind and configured for social sharing and SEO.",
   "author": "Kyle Galbraith",
   "dependencies": {
+    "firebase": "^5.7.1",
     "gatsby": "next",
     "gatsby-image": "next",
     "gatsby-link": "next",
@@ -21,10 +22,10 @@
     "gatsby-transformer-sharp": "next",
     "lodash": "^4.17.10",
     "prismjs": "^1.15.0",
-    "react-helmet": "^5.2.0",
-    "react-share": "^2.2.0",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "react-helmet": "^5.2.0",
+    "react-share": "^2.2.0"
   },
   "keywords": [
     "gatsby",
