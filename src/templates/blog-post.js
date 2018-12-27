@@ -36,7 +36,6 @@ class BlogPostTemplate extends React.Component {
 
   updateData = () => {
     const newData = this.state.data + 1;
-    console.log(newData);
     database
       .ref()
       .child(this.props.pageContext.slug)
@@ -79,7 +78,8 @@ class BlogPostTemplate extends React.Component {
             <span role="img" aria-label="blog post date">
               📅
             </span>{' '}
-            {post.frontmatter.date} - {this.state.data} 👀
+            {post.frontmatter.date} 📗 {post.timeToRead} minutes read,{' '}
+            {this.state.data} 👀
           </p>
           <div
             className="blog-content leading-loose"
@@ -148,6 +148,7 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
+      timeToRead
       excerpt(pruneLength: 280)
       frontmatter {
         title
