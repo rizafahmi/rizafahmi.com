@@ -35,8 +35,9 @@
   "license": "ISC",
   "scripts": {
     "build:css": "tailwind build ./src/components/index.tailwind.css -c ./tailwind.config.js -o ./src/components/index.css",
-    "buildup": "npm run build:css && gatsby build",
-    "develop": "npm run build:css && gatsby develop"
+    "build": "npm run build:css && gatsby build",
+    "develop": "npm run build:css && gatsby develop",
+    "deploy": "npm run build && netlify deploy --prod"
   },
   "devDependencies": {
     "firebase": "^5.7.1",
