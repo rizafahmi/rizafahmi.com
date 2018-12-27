@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import config from '../../config/config';
-import favicon from '../../images/favicon.png';
+import favicon from '../../images/favicon.ico';
 import facebookCover from '../../images/facebook-cover.jpg';
 
 const Seo = (props) => {

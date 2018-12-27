@@ -1,12 +1,14 @@
 import React from 'react';
-// import Seo from '../components/Seo';
+import Seo from '../components/Seo';
 import Layout from '../components/layout';
 
 import riza from '../images/riza.jpg';
 
 const IndexPage = () => (
   <Layout>
-    {/*<Seo data="" /> */}
+    <Seo
+      data={{ frontmatter: { title: "Hi, I'm Riza!" }, fields: { slug: '/' } }}
+    />
     <div className="flex mb-4">
       <div className="w-2/5 pt-3">
         <div className="">
