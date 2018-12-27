@@ -12,7 +12,8 @@ class BlogIndexPage extends React.Component {
       <Layout>
         <Seo
           data={{
-            frontmatter: { title: "Hi, I'm Riza. These are my articles" }
+            frontmatter: { title: "Hi, I'm Riza. These are my articles" },
+            fields: { slug: '/' }
           }}
         />
         <div className="align-top text-center">
