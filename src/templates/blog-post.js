@@ -10,6 +10,9 @@ import { database } from '../firebase.js';
 
 require('../../node_modules/prismjs/themes/prism-tomorrow.css');
 
+const GITHUB_USERNAME = 'rizafahmi';
+const GITHUB_REPO = 'rizafahmi.com-v2';
+
 class BlogPostTemplate extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +23,6 @@ class BlogPostTemplate extends React.Component {
 
   componentDidMount() {
     document.addEventListener('scroll', this.trackScroll);
-    console.dir(this.props.pageContext.slug);
 
     database
       .ref()
@@ -60,6 +62,8 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark;
     const { previous, next } = this.props.pageContext;
     const url = 'https://rizafahmi.com' + this.props.location.pathname;
+    const { slug } = this.props.pageContext;
+    const editUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/edit/master/src/pages${slug}index.md`;
 
     return (
       <Layout>
@@ -81,12 +85,20 @@ class BlogPostTemplate extends React.Component {
               📅
             </span>{' '}
             {post.frontmatter.date} 📗 {post.timeToRead} minutes read,{' '}
-            {this.state.data} 👀
+            {this.state.data} 👀 |{' '}
+            <a href={editUrl} target="_blank" rel="noopener noreferrer">
+              Edit on GitHub
+            </a>
           </p>
           <div
             className="blog-content leading-loose"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
+          <div>
+            <a href={editUrl} target="_blank" rel="noopener noreferrer">
+              Find a typo? Edit on GitHub
+            </a>
+          </div>
           <div className="mt-16 pt-8 social-content text-center border-t">
             <p className="font-light">
               Did you enjoy this post? Share the{' '}
