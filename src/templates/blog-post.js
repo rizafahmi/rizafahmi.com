@@ -8,6 +8,8 @@ import Layout from '../components/layout';
 
 import { database } from '../firebase.js';
 
+require('../../node_modules/prismjs/themes/prism-tomorrow.css');
+
 class BlogPostTemplate extends React.Component {
   constructor(props) {
     super(props);
