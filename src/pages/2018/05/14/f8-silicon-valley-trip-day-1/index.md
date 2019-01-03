@@ -44,7 +44,7 @@ Berikut beberapa catatan dari keynote Mark Zuckerberg terkati Facebook:
 
 Untuk instagram sendiri ada beberapa fitur yang akan ditambahkan:
 
-* Instagram akan memperbarui halaman* explore.*
+* Instagram akan memperbarui halaman *explore.*
 
 * Akan ada juga fitur video chat.
 
