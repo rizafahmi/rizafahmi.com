@@ -166,7 +166,7 @@ Beberapa bahasa yang sudah bisa dikompilasi ke wasm diantaranya ada C, C++, Rust
 
 ## Kesimpulan
 
-Perhelatan yang diselenggarakan oleh Google ini sangat seru. Sesi *networking*-nya dengan bertemu developer tingkat dewa yang beberapa adalah idola saya merupakan hal yang buat saya membangkitkan semangat untuk bekerja lebih giat mengerjar ketertinggalan dan lebih semangat lagi untuk berbagi ilmu dengan developer di Indonesia. Sesi *talks*-nya pun tidak kalah seru yang tentunya bisa kita nikmati bersama-sama melalui video.
+Perhelatan yang diselenggarakan oleh Google ini sangat seru. Sesi *networking*-nya dengan bertemu developer tingkat dewa yang beberapa adalah idola saya merupakan hal yang buat saya membangkitkan semangat untuk bekerja lebih giat mengejar ketertinggalan dan lebih semangat lagi untuk berbagi ilmu dengan developer di Indonesia. Sesi *talks*-nya pun tidak kalah seru yang tentunya bisa kita nikmati bersama-sama melalui video.
 
 ![Bonus: Swaaaagggg!!](https://cdn-images-1.medium.com/max/3888/1*ldJrzjIXQ5OoJfDz1fbRgw.png)*Bonus: Swaaaagggg!!*
 
