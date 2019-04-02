@@ -22,6 +22,14 @@ const Footer = () => (
             Newsletter
           </a>
         </li>
+        <li className="mx-4">
+          <a
+            className="bg-yellow-light hover:bg-grey-light p-1"
+            href="/bukuexpress"
+          >
+            Book
+          </a>
+        </li>
       </ul>
     </div>
   </div>
