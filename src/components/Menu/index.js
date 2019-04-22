@@ -1,9 +1,8 @@
 import React from 'react';
-// import config from '../../config/config';
 
-const Footer = () => (
+const Menu = () => (
   <div className="bg-grey-lightest">
-    <div className="text-center max-w-xl mx-auto p-4 md:p-8 text-sm">
+    <div className={`text-center max-w-xl mx-auto p-4 md:p-8 text-sm`}>
       <ul className="list-reset inline-flex">
         <li className="mx-4">
           <a href="/">Home</a>
@@ -32,4 +31,4 @@ const Footer = () => (
   </div>
 );
 
-export default Footer;
+export default Menu;
