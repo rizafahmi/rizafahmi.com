@@ -4,7 +4,7 @@ date: 2018-12-10
 cover: "./reason.jpeg"
 ---
 
-ReasonML adalah bahasa sintaks, ekstensi dan *toolchain *yang berada diatas sebuah bahasa *jadul* [OCaml](https://ocaml.org/). Selain dapat dikompilasi ke JavaScript dengan bantuan [BuckleScript](https://bucklescript.github.io/), Reason juga dapat dikompilasi menjadi aplikasi native melalui OCaml. Daripada membuat bahasa baru dari awal, tim Facebook memutuskan untuk membuat sintaks baru dan memperkaya *environment* OCaml sehingga menjadi lebih modern dan kekinian. OCaml sendiri sudah digunakan lebih dari 20 tahun dan sudah teruji oleh industri sejak tahun 90-an.
+ReasonML adalah bahasa sintaks, ekstensi dan *toolchain* yang berada diatas sebuah bahasa *jadul* [OCaml](https://ocaml.org/). Selain dapat dikompilasi ke JavaScript dengan bantuan [BuckleScript](https://bucklescript.github.io/), Reason juga dapat dikompilasi menjadi aplikasi native melalui OCaml. Daripada membuat bahasa baru dari awal, tim Facebook memutuskan untuk membuat sintaks baru dan memperkaya *environment* OCaml sehingga menjadi lebih modern dan kekinian. OCaml sendiri sudah digunakan lebih dari 20 tahun dan sudah teruji oleh industri sejak tahun 90-an.
 
 Jika melihat sintaks Reason saat ini sudah mirip dan menyerupai ES6. Lihat perbandingan dibawah ini antara sintaks OCaml, Reason versi awal dan Reason terbaru. Semakin baru, sintaks nya semaki mirip ES6 atau JavaScript modern.
 
