@@ -3,7 +3,7 @@ title: "Memahami Sistem Konkurensi BEAM Melalui Elixir"
 date: 2019-04-29
 ---
 
-Salah satu kontribusi besar Joe Armstrong yang ketika tulisan ini dibuat baru saja meninggal dunia adalah bahasa pemrograman Erlang beserta BEAM, atau yang lebih dikenal dengan Erlang Virtual Machine. Erlang VM cukup terkenal kehebatannya terutama ketika [ mampu menangani 2 juta koneksi per server di aplikasi chat WhatsApp! ](http://highscalability.com/blog/2014/3/31/how-whatsapp-grew-to-nearly-500-million-users-11000-cores-an.html) Di artikel ini kita akan membedah mekanisme dibalik kemampuan konkurensi yang dimiliki BEAM dengan bahasa pemrograman Elixir. Meskipun demikian, semua yang akan dilakukan di artikel ini dapat pula diimplementasikan di bahasa pemrograman lain yang juga berjalan di BEAM atau Erlang VM seperti Erlang, LFE, Alpaca, Gleam dan lain-lain.
+Salah satu kontribusi besar [ Joe Armstrong ](https://twitter.com/FrancescoC/status/1119596234166218754) yang ketika tulisan ini dibuat baru saja meninggal dunia adalah bahasa pemrograman Erlang beserta BEAM, atau yang lebih dikenal dengan Erlang Virtual Machine. Erlang VM cukup terkenal kehebatannya terutama ketika [ mampu menangani 2 juta koneksi per server di aplikasi chat WhatsApp! ](http://highscalability.com/blog/2014/3/31/how-whatsapp-grew-to-nearly-500-million-users-11000-cores-an.html) Di artikel ini kita akan membedah mekanisme dibalik kemampuan konkurensi yang dimiliki BEAM dengan bahasa pemrograman Elixir. Meskipun demikian, semua yang akan dilakukan di artikel ini dapat pula diimplementasikan di bahasa pemrograman lain yang juga berjalan di BEAM atau Erlang VM seperti Erlang, LFE, Alpaca, Gleam dan lain-lain.
 
 ## Mekanisme Konkurensi di BEAM
 
@@ -87,6 +87,8 @@ Setiap ada yang membuka halaman ini koneksi akan terbentuk antara klien dan serv
 Dan misalkan ada tiga pengguna yang mengakses secara bersamaan, maka akan ada tiga koneksi. Satu untuk setiap pengguna atau setiap sesi (*session*). Begitu pula jika ada 1000 orang, akan ada 1000 koneksi yang terjadi antar proses dan begitu seterusnya.
 
 ![clients-servers](./clients-servers.png)
+
+> "We do not have one web server handling 2 millions sessions. We have 2 millions web servers handling one session each." -- Joe Armstrong
 
 Proses kalkulasinya sendiri terjadi di proses yang berbeda. Koneksi menelurkan (*spawn*) proses baru, kita sebut saja sebagai *calculation*. Proses *calculation* melakukan kalkulasi dan mengirimkan hasilnya kembali ke proses *server* untuk seterusnya diteruskan ke proses *client*. Kemudian proses *calculation* berhenti dan mati karena sudah menyelesaikan pekerjaannya.
 
