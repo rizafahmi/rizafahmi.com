@@ -88,6 +88,8 @@ Dan misalkan ada tiga pengguna yang mengakses secara bersamaan, maka akan ada ti
 
 ![clients-servers](./clients-servers.png)
 
+> "We do not have one web server handling 2 millions sessions. We have 2 millions web servers handling one session each." -- Joe Armstrong
+
 Proses kalkulasinya sendiri terjadi di proses yang berbeda. Koneksi menelurkan (*spawn*) proses baru, kita sebut saja sebagai *calculation*. Proses *calculation* melakukan kalkulasi dan mengirimkan hasilnya kembali ke proses *server* untuk seterusnya diteruskan ke proses *client*. Kemudian proses *calculation* berhenti dan mati karena sudah menyelesaikan pekerjaannya.
 
 ![server-calculation](./server-calculation.png)
