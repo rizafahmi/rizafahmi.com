@@ -23,6 +23,15 @@ const IndexPage = () => (
           <ul className="leading-loose list-reset">
             <li className="py-3">
               <a
+                href="/2019/04/29/memahami-beam/"
+                rel="noopener noreferrer"
+                className="no-underline"
+              >
+                Memahami Sistem Konkurensi BEAM Melalui Elixir
+              </a>
+            </li>
+            <li className="py-3">
+              <a
                 href="/2018/12/22/pengalaman-pertama-cds/"
                 rel="noopener noreferrer"
                 className="no-underline"
@@ -37,15 +46,6 @@ const IndexPage = () => (
                 className="no-underline"
               >
                 Perkenalan ReasonML, Sintaks Baru untuk OCaml
-              </a>
-            </li>
-            <li className="py-3">
-              <a
-                href="/2018/09/17/cara-belajar-pemrograman/"
-                rel="noopener noreferrer"
-                className="no-underline"
-              >
-                Cara Belajar Pemrograman Yang Cepat dan Efisien
               </a>
             </li>
             <li className="py-3">
