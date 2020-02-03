@@ -48,19 +48,19 @@ Untuk framework dengan fitur lengkap diwakili oleh Angular dan Ember, yang cukup
 
 Dari keenam framework dan pustaka diatas, mari kita lihat bagaimana ekosistemnya dengan melihat komunitas disekitar framework dan pustaka tersebut. Peran komunitas ini penting untuk mendukung kita belajar terutama untuk mempercepat proses belajar. Berikut adalah gambaran komunitas JavaScript secara umum di berbagai kota yang datanya berhasil saya dapatkan. Masih banyak kota-kota lain yang memiliki komunitas JavaScript sebenarnya.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_08.54.48.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_08.54.48.png)
+![Screen_Shot_2020-01-23_at_08.54.48.png](Screen_Shot_2020-01-23_at_08.54.48.png)
 
 Seperti yang dapat dilihat, komunitas MedanJS memiliki total 334 anggota meskipun saat ini sedang vakum. BaliJS ada 474 anggota, SurabayaJS ada 510, JogjaJS 545. Sedangkan jumlah anggota terbanyak masih berada di kota Bandung dengan 2.500 anggota dan Jakarta yang nyaris mencapai 4.000 anggota.
 
 Dan berikut adalah komunitas untuk beberapa framework yang berhasil saya dapatkan datanya. Saya berhasil mendapatkan tiga komunitas framework, yaitu: Vue, Angular dan juga React.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_09.00.05.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_09.00.05.png)
+![Screen_Shot_2020-01-23_at_09.00.05.png](Screen_Shot_2020-01-23_at_09.00.05.png)
 
 Ternyata untuk komunitas per framework masih didominasi oleh React dan Angular. Sedangkan komunitas Vue agak jauh perbedaannya dibandingkan React dan Angular.
 
 Data berikutnya yang akan kita lihat adalah grup facebook dari tiap-tiap framework atau pustaka yang berhasil saya dapatkan. Semua grup ini spesifik yang berbahasa Indonesia saja. Saya juga menambahkan informasi jumlah anggota, umur dari grup dan juga percakapan yang terjadi per tahunnya.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_09.11.42.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_09.11.42.png)
+![Screen_Shot_2020-01-23_at_09.11.42.png](Screen_Shot_2020-01-23_at_09.11.42.png)
 
 Hasilnya cukup menarik. Anggota yang paling banyak tentu saja grup jQuery, karena memang termasuk pustaka yang paling lama senior. jQuery sendiri sudah menemani developer JavaScript sejak tahun 2006 sehingga tidak heran jumlah anggotanya yang paling banyak.
 
@@ -70,7 +70,7 @@ Sedangkan untuk grup Svelte dan Ember memiliki anggota yang paling sedikit diban
 
 Satu data lagi terkait komunitas, yaitu grup di platform Telegram yang lumayan menarik terutama untuk yang mulai serius belajar pemrograman.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_09.14.04.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_09.14.04.png)
+![Screen_Shot_2020-01-23_at_09.14.04.png](Screen_Shot_2020-01-23_at_09.14.04.png)
 
 Di Telegram, saya juga baru berhasil mendapatkan tiga komunitas yaitu Angular, Vue dan React. Data ini didapat dengan bantuan carikbot. Saya berhasil mendapatkan informasi jumlah anggota dan percakapan yang terjadi sepanjang agustus sampai pertengahan september 2019.
 
@@ -80,7 +80,7 @@ Yang paling aktif dan paling banyak anggotanya, React disusul Vue dan disusul An
 
 Dan dibagian ini kita akan membahas tentang ketersediaan literatur, dalam hal ini adalah buku. Pertanyaannya apakah buku masih relevan sebagai sumber belajar? Terutama buku berbahasa Indonesia. Untuk saya pribadi sih jawabannya masih relevan. Apalagi buat teman-teman mahasiswa yang ingin belajar dan menggunakan framework atau pustaka tertentu di tugas akhirnya. Kan keren kalau ada buku yang bisa dijadikan referensi belajar dan bisa dikutip juga untuk skripsi atau tugas akhir.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_09.18.05.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-23_at_09.18.05.png)
+![Screen_Shot_2020-01-23_at_09.18.05.png](Screen_Shot_2020-01-23_at_09.18.05.png)
 
 Mungkin sebagian besar dari kita sudah bisa menebak hasilnya. Cukup menyedihkan karena jumlah buku yang tersedia masih sangat sedikit. Ini khusus buku berbahasa Indonesia. Untuk mendapatkan data ini saya melakukan pencarian dari gramedia online dan juga google. Untuk buku fisik yang tersedia, jQuery merupakan pustaka yang paling banyak sumber bacaannya. Sedangkan framework lainnya terhitung masih sangat sedikit.
 
@@ -92,13 +92,13 @@ Berikutnya kita akan bahas tentang kursus video online. Disini saya batasi khusu
 
 Ada beberapa platform kursus video online yang membahas tentang pemrograman, lebih spesifiknya tentang JavaScript dan berbagai frameworknya. Ada malescast, dumbways, idrails, sekolah koding dan juga kode.id.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_17.46.27.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_17.46.27.png)
+![Screen_Shot_2020-01-25_at_17.46.27.png](Screen_Shot_2020-01-25_at_17.46.27.png)
 
 Seperti yang sama-sama bisa kita lihat, yang paling produktif menghasilkan kursus video online terkait JavaScript adalah sekolah koding karena memang sudah berdiri sejak lama, 2016. Dumbways lebih banyak menghasilkan materi seputar framework React. Sedangkan malescast lebih fokus menghasilkan materi tentang vue. Sedangkan idrails memiliki materi seputar vue dan react.
 
 Selanjutnya kita akan melihat jumlah viewer dikelompokkan berdasarkan pustaka dan framework.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_17.51.13.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_17.51.13.png)
+![Screen_Shot_2020-01-25_at_17.51.13.png](Screen_Shot_2020-01-25_at_17.51.13.png)
 
 Ternyata jQuery merajai jumlah view dari kursus video online dengan angka nyaris seratus ribu. Kontribusi terbesar dari sekolah koding yang memang sudah memproduksi video course dari 2016. Diikuti vue dengan angka sekitar tuju puluh ribuan dan disusul react dengan lima puluh ribuan.
 
@@ -115,7 +115,7 @@ Kita masuk ke sudut pandang yang kedua. Kita akan melihat dari sudut pandang ses
 
 Sekarang kita akan melihat berapa banyak contoh aplikasi yang bisa kita lihat sebagai referensi dan panduan. Saya mencoba melakukan pencarian di berbagai servis seperti glitch.com, codepen namun tidak ada informasi pasti jumlah contoh aplikasi untuk keenam pustaka dan framework tadi.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_18.15.28.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_18.15.28.png)
+![Screen_Shot_2020-01-25_at_18.15.28.png](Screen_Shot_2020-01-25_at_18.15.28.png)
 
 Satu-satunya yang bisa mendapatkan total jumlah aplikasi per framework atau pustaka adalah dari codesandbox. Dan disini sangat jauh perbedaan antar framework. React mendominasi dengan nyaris ada 2 juta contoh aplikasi. Sangat jau dibandingkan vue yang hanya dua ratus ribuan.
 
@@ -125,7 +125,7 @@ Data dari codesandbox ini agak bias, karena codesandbox awalnya hanya mendukung 
 
 Untuk mendapatkan jumlah tutorial berbahasa Indonesia, saya melakukan pencarian via google dengan kata kunci “nama framework tutorial indonesia” dan buka tautannya satu per satu sampai halaman ketiga dan memastikan bahwa tutorial tersebut benar-benar valid dikategorikan sebagai tutorial dan berbahasa Indonesia. Dan berikut hasilnya.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_18.20.08.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_18.20.08.png)
+![Screen_Shot_2020-01-25_at_18.20.08.png](Screen_Shot_2020-01-25_at_18.20.08.png)
 
 Disini Angular, jQuery, React dan Vue jumlahnya nyaris sama berkisar antara 10 hingga 15. Sedangkan Svelte dan Ember agak susah dicari tutorial berbahasa Indonesia. Sebenarnya secara umum jumlah artikel berbahasa Indonesia ini jumlahnya masih terbilang sedikit. Sama halnya dengan literatur dalam format buku. Ini sebenarnya peluang buat teman-teman yang ingin membuat konten spesifik berbahasa Indonesia.
 
@@ -137,7 +137,7 @@ Kita akan melihat beberapa alatbantu seperti ketersediaan di Content Delivery Ne
 
 Tentu kita juga akan melihat dukungan berupa CLI, apakah sudah tersedia fitur seperti routing, state, alat bantu pengembangan atau devtools dan juga CLI untuk generator yang dapat meningkatkan produktifitas kita sebagai developer.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_19.04.43.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-25_at_19.04.43.png)
+![Screen_Shot_2020-01-25_at_19.04.43.png](Screen_Shot_2020-01-25_at_19.04.43.png)
 
 Seperti bagan diatas terlihat bedanya pustaka dengan framework. Angular dan Ember secara fitur sangat lengkap. Sementara Svelte, vue dan React cukup lengkap, sedangkan jQuery jauh dari lengkap karena memang jQuery pada dasarnya hanyalah pustaka untuk manipulasi DOM.
 
@@ -376,7 +376,7 @@ Yang tidak kalah penting adalah dukungan komunitas di sekitar kita. Ketika kita 
 
 Tadi di bagian pertama kita sudah membahas tentang _meetup_, grup di facebook dan grup telegram. Nah sekarang kita akan fokus gimana kalau kita kesulitan dan butuh mencari solusi jika menemukan masalah. Sayangnya belum ada forum tanya jawab \*\*di Indonesia atau yang berbahasa Indonesia. Sehingga data diambil dari stackoverflow.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_17.42.44.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_17.42.44.png)
+![Screen_Shot_2020-01-26_at_17.42.44.png](Screen_Shot_2020-01-26_at_17.42.44.png)
 
 Disini jquery sangat jauh mengungguli jumlah pertanyaan karena memang yang paling senior, otomatis pertanyaan juga yang paling banyak. Kemudian diikuti Angular, React, Vue, Ember dan terakhir Svelte.
 
@@ -386,13 +386,13 @@ Pertanyaan terkait Angular dan React banyak sekali, sementara dibandingkan kelom
 
 Data berikutnya, sedikit seru-seruan, mari kita bandingkan pengikut masing-masing akun resmi tiap framework dan pustaka di twitter.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_17.57.01.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_17.57.01.png)
+![Screen_Shot_2020-01-26_at_17.57.01.png](Screen_Shot_2020-01-26_at_17.57.01.png)
 
 React dan Angular cukup jauh meninggalkan teman-teman yang lainnya dari sisi pengikut atau _follower_ yang mencapai tiga ratus ribuan. Vue dan Ember juga cukup jauh sekitar seratus ribuan. Yang menarik jQuery pengikutnya paling sedikit. Bahkan sudah dilewati Svelte yang umurnya paling muda.
 
 Statistik berikutnya yang akan kita lihat adalah dari repositori GitHub.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.02.04.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.02.04.png)
+![Screen_Shot_2020-01-26_at_18.02.04.png](Screen_Shot_2020-01-26_at_18.02.04.png)
 
 Nah kalo di repositori GitHub, Vue cukup merajai. Disini seperti ada tiga kelompok:
 
@@ -404,7 +404,7 @@ Untuk jumlah _watches_ React merupakan pustaka yang paling banyak jumlah 'pengin
 
 Masih dari repositori GitHub, beberapa statistik menarik lainnya, yaitu jumlah _commit_, jumlah kontributor dan umurnya di GitHub.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.06.54.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.06.54.png)
+![Screen_Shot_2020-01-26_at_18.06.54.png](Screen_Shot_2020-01-26_at_18.06.54.png)
 
 Beberapa hal menarik disini pertama tentang Svelte. Dengan umur yang baru dua tahun bisa mengalahkan vue dari sisi jumlah _commit_. Padahal jumlah kontributornya tidak terlalu jauh berbeda. Apakah artinya kontributorSsvelte menerapkan strategi _commit often_?
 
@@ -414,7 +414,7 @@ Disini juga dapat dilihat framework seperti Angular, React, dan Ember memiliki k
 
 Cepat atau lambat sebuah pustaka dan framework membutuhkan bantuan tambahan dalam bentuk pustaka atau _library_, terutama untuk framework yang minimalis. Framework seperti Svelte atau pustaka jquery apalagi, pasti akan butuh pustaka tambahan. Nah disini saya melakukan pencarian dari npm dengan tag angular, ember, jquery, react, svlete dan vue.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.12.06.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.12.06.png)
+![Screen_Shot_2020-01-26_at_18.12.06.png](Screen_Shot_2020-01-26_at_18.12.06.png)
 
 Terlihat React melesat sendirian dengan jumlah pustaka terbanyak, nyaris lima puluh ribu. Disini terlihat jelas perbedaannya, React dipasarkan sebagai pustaka bukan framework, makanya banyak pustaka tambahan bermunculan. Bahkan beberapa pustaka _de facto_ seperti redux, react router, create react app muncul sebagai pustaka yang dikembangkan oleh komunitas. Meskipun React dikembangkan oleh Facebook.
 
@@ -428,13 +428,13 @@ Nah sekarang kita masuk ke pembahasan yang cukup menarik dibahas, yaitu performa
 
 Disini saya tidak menggunakan metode benchmark yang kadang ‘menyesatkan’ dan subjektif, namun saya akan menggunakan metode yang sebenarnya cukup subjektif, yaitu Chrome UX Report. Chrome UX Report adalah data yang secara anonymous didapat dari pengguna browser chrome. Jadi disini pengguna browser lain tidak dihitung. Data diambil dari 2014 hingga awal september 2019.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.17.03.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.17.03.png)
+![Screen_Shot_2020-01-26_at_18.17.03.png](Screen_Shot_2020-01-26_at_18.17.03.png)
 
 Dari Chrome UX Report saya bisa mendapatkan informasi jumlah pengguna yang mengakses website. Dari situ kemudian dipilah lagi website yang diakses menggunakan framework apa.
 
 Hasilnya, ternyata penggunaan pustaka dan framework dunia masih dikuasai secara dominan oleh jQuery. Hanya 10 persen sisanya dibagi-bagi ke framework dan pustaka lainnya.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.18.35.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.18.35.png)
+![Screen_Shot_2020-01-26_at_18.18.35.png](Screen_Shot_2020-01-26_at_18.18.35.png)
 
 Untuk performanya sendiri. Kita akan lihat dua metrik: first contentful paint dan first input delay. First Contentful Paint atau FCP adalah saat pertama kali konten atau isi dari sebuah web atau dicetak ke browser. FCP bergantung pada performa server rendered, dan seberapa efektif sebuah framework melakukan proses rendering.
 
@@ -446,7 +446,7 @@ Dan secara umum yang memiliki performa tercepat adalah Ember. Svelte sendiri mem
 
 Setelah belajar framework baru, dan sudah mendapatkan gambaran performa untuk masing-masing pustaka atau framework, sekarang kita akan mencoba menjawab kira-kira dari daftar framework ini prospek nya gimana saat ini dan kedepannya.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.22.48.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.22.48.png)
+![Screen_Shot_2020-01-26_at_18.22.48.png](Screen_Shot_2020-01-26_at_18.22.48.png)
 
 Pertama kita lihat jumlah lowongan pekerjaan tersedia di dunia. Disini saya melakukan pencarian data di stackoverflow jobs dan upwork untuk pekerjaan lepas atau _freelance_ dan juga *remote working. S*engaja saya tampilkan data seluruh dunia supaya bisa dikomparasi juga dengan perkembangan di Indonesia. Untuk stackoverflow jobs sendiri, talenta jQuery terlihat sudah mulai menurun. Lowongan React paling banyak, diikuti Angular, jQuery, Vue dan Ember.
 
@@ -454,11 +454,11 @@ Dan untuk data dari upwork, jQuery masih merajai. Jauh sekali dibandingkan React
 
 Bagaimana dengan lowongan pekerjaan di Indonesia? Disini saya menyajikan data dari dua sumber: LinkedIn dan juga Urbanhire.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.46.27.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.46.27.png)
+![Screen_Shot_2020-01-26_at_18.46.27.png](Screen_Shot_2020-01-26_at_18.46.27.png)
 
 Dan ternyata masih banyak sekali yang mencari developer yang bisa jQuery, nyaris mencapai tiga ribu lowongan. Sementara lowongan rReact dan yang lainnya berkisar di enam ratus atau lebih rendah. Data dari Linkedin ini sedikit bias karena saya melakukan proses pencarian di LinkedIn pribadi. Kemungkinan besar di lingkaran saya masih banyak yang membuka lowongan yang membutuhkan kemampuan jQuery.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.48.52.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.48.52.png)
+![Screen_Shot_2020-01-26_at_18.48.52.png](Screen_Shot_2020-01-26_at_18.48.52.png)
 
 Saya juga melakukan pencarian data lowongan di Urbanhire yang mungkin lebih objektif dan tidak bias. Di platform pencarian lowongan pekerjaan di Indonesia ini, ternyata jumlah lowongan React lebih banyak dari jQuery dan yang lainnya meski tidak terlalu signifikan perbedaannya. Cukup berimbang.
 
@@ -470,11 +470,11 @@ Dan di bagian ini kita akan menjawab pertanyaan-pertanyaan dari golongan yang te
 
 Disini saya kembali menggunakan fitur pencarian di LinkedIn untuk mencari banyaknya talenta untuk setiap framework dan pustaka.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.55.10.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.55.10.png)
+![Screen_Shot_2020-01-26_at_18.55.10.png](Screen_Shot_2020-01-26_at_18.55.10.png)
 
 Dan ternyata yang menguasai jQuery masih sangat banyak baik di Indonesia ataupun di dunia. Dan jaraknya masih cukup jauh antara jQuery dengan framework lainnya.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.56.22.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_18.56.22.png)
+![Screen_Shot_2020-01-26_at_18.56.22.png](Screen_Shot_2020-01-26_at_18.56.22.png)
 
 Dan berikut data yang ada di database geekhunter. Seperti yang bisa dilihat, jQuery masih merupakan pustaka yang paling banyak dikuasai.
 
@@ -482,7 +482,7 @@ Dan berikut data yang ada di database geekhunter. Seperti yang bisa dilihat, jQu
 
 Dibagian ini kita akan membahas tentang kedewasaan framework atau maturity. Disini kita akan melihat hal-hal seperti _release cycle_, jumlah pengelola, _issues_, _pull request_ dan juga _testing._
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_19.15.22.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_19.15.22.png)
+![Screen_Shot_2020-01-26_at_19.15.22.png](Screen_Shot_2020-01-26_at_19.15.22.png)
 
 Disini data saya dapatkan dari GitHub dan terlihat ada beberapa _insight_ menarik. Pertama yang menarik adalah Svelte. Framework termuda disini rilis per tahunnya paling tinggi. Wajar karena masih baru, jadi jangan kaget kalau masih sering terjadi perubahan API atau belum stabil. Bandingkan dengan jQuery yang secara umur adalah yang paling tua. Rilis per tahunnya paling kecil karena sudah berumur 10 tahun.
 
@@ -492,7 +492,7 @@ React sendiri meskipun disini umurnya 6 tahun namun React sudah dikembangkan dan
 
 Berikutnya kita melihat jumlah issue di GitHub. Issue github ini merupakan salah satu metrik untuk menilai apakah sebuah proyek open source itu sehat atau tidak.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_19.42.03.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_19.42.03.png)
+![Screen_Shot_2020-01-26_at_19.42.03.png](Screen_Shot_2020-01-26_at_19.42.03.png)
 
 Disini Angular adalah pemilik issues terbanyak baik yang sudah selesai atau _closed_ maupun yang masih belum diselesaikan atau _open._ Perbedaannya cukup signifikan. Hal ini mungkin disebabkan karena Angular punya banyak fitur yang harus dikembangkan dan dikelola. Namun Ember dengan fitur yang cukup lengkap juga jumlah _issue_-nya tidak sebanyak Angular, bahkan lebih sedikit jika dibandingkan React dan Vue.
 
@@ -500,13 +500,13 @@ Svelte adalah satu-satunya framework yangjumlah open issue-nya lebih banyak dari
 
 Berikutnya kita melihat seberapa banyak pull request atau PR yang terjadi.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_19.45.08.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_19.45.08.png)
+![Screen_Shot_2020-01-26_at_19.45.08.png](Screen_Shot_2020-01-26_at_19.45.08.png)
 
 jQuery sudah tidak terlalu banyak pull request yang open karena mungkin sudah cukup _mature_ atau sudah tidak terlalu banyak fitur yang dikembangkan. Atau juga sudah tidak memiliki banyak bugs. Sedangkan kontributor Angular ternyata adalah yang paling produktif mengirimkan pull request sementara Vue memiliki jumlah pull request yang paling sedikit.
 
 Selanjutnya kita akan melihat sebeapa banyak testing yang dilakukan oleh masing-masing framework dibandingkan dengan jumlah baris kode.
 
-![Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_19.46.52.png](Ekosistem%20JavaScript%20di%20Indonesia/Screen_Shot_2020-01-26_at_19.46.52.png)
+![Screen_Shot_2020-01-26_at_19.46.52.png](Screen_Shot_2020-01-26_at_19.46.52.png)
 
 Angular memiliki baris kode yang paling banyak dengan jumlah test case juga yang paling banyak. Yang agak mengejutkan disini adalah Ember ternyata jumlah baris kodenya hampir sama dengan Vue tapi dengan jumlah test case yang lebih banyak bahkan lebih banyak dibandingkan React. Svelte juga jumlah test case-nya cukup banyak jika dibandingkan dengan jumlah baris kodenya, secara rasio.
 
