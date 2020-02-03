@@ -5,7 +5,10 @@ date: 2020-02-03
 
 # Ekosistem JavaScript di Indonesia
 
-Artikel ini akan membahas tentang bagaimana perkembangan ekosistem JavaScript di Indonesia. Namun sebelum kita masuk ke pembahasan utama, mari kita bahas dulu tentang definisi ekosistem di konteks artikel ini.
+Artikel ini akan membahas tentang bagaimana perkembangan ekosistem JavaScript di
+Indonesia. Namun sebelum kita masuk ke pembahasan utama, mari kita bahas dulu
+tentang definisi ekosistem di konteks artikel ini. Topik ini merupakan materi
+yang saya bawakan ketika mengisi keynote di [ JSDay 2019 ](https://jsday.id).
 
 # Ekosistem JavaScript
 
