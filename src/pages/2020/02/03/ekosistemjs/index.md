@@ -72,7 +72,7 @@ Satu data lagi terkait komunitas, yaitu grup di platform Telegram yang lumayan m
 
 ![Screen_Shot_2020-01-23_at_09.14.04.png](Screen_Shot_2020-01-23_at_09.14.04.png)
 
-Di Telegram, saya juga baru berhasil mendapatkan tiga komunitas yaitu Angular, Vue dan React. Data ini didapat dengan bantuan carikbot. Saya berhasil mendapatkan informasi jumlah anggota dan percakapan yang terjadi sepanjang agustus sampai pertengahan september 2019.
+Di Telegram, saya juga baru berhasil mendapatkan tiga komunitas yaitu Angular, Vue dan React. Data ini didapat dengan bantuan [ carikbot ](https://carik.id). Saya berhasil mendapatkan informasi jumlah anggota dan percakapan yang terjadi sepanjang agustus sampai pertengahan september 2019.
 
 Yang paling aktif dan paling banyak anggotanya, React disusul Vue dan disusul Angular.
 
