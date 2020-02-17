@@ -315,6 +315,8 @@ Di app.js kita juga tidak menggunakan babel ataupun jsx. Komponen menggunakan si
     }
     ReactDOM.render(React.createElement(App), document.getElementById('root'));
 
+![react](./react.jpeg)
+
 #### Svelte
 
 Sekarang kita masuk ke framework berikutnya, Svelte. Svelte memang tidak memiliki CLI bawaan seperti halnya Angular atau Ember. Tapi di dokumentasinya kita disarankan menggunakan tools yang namanya degit. Sederhananya degit ini melakukan clone template yang sudah disiapkan di git atau github untuk proyek svelte ataupun proyek lainnya secara umum. Setelah menjalankan degit dengan npx kita jalankan npm install dan jalankan dengan npm run dev.
@@ -538,4 +540,8 @@ Tujuan disajikannya data ini bukan untuk melihat framework atau pustaka mana yan
 
 PS: Terimakasih banyak saya ucapkan kepada beberapa teman yang sudah membantu menyusun materi ini. Orang pertama yang saya hubungi ketika mulai menyusun topik ini adalah [Yohan Totting](https://twitter.com/tyohan). Dari awal _brainstorm_ materi sampai hari h di mentorin oleh beliau.
 
-Terimakasih juga buat Herlambang, [ Rizqi ](https://twitter.com/rizqme) dan [ Hisma ](https://twitter.com/hismamaz) alias Mamaz  yang juga ikut _brainstorming_ dari awal. Terimakasih juga untuk [ Jecelyn ](https://twitter.com/JecelynYeen) yang menghubungkan saya dengan salah satu kontributor Angular. Tak lupa terimakasih untuk [ Ken Ratri ](https://twitter.com/kenratriiswari) dari [ geekhunter ](http://geekhunter.co) yang udah bagi data talenta di Indonesia.
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><img src="https://pbs.twimg.com/media/EB7kz-iU8AI2rwz?format=jpg&name=4096x4096" alt="notes" /> Helping <a href="https://twitter.com/rizafahmi22?ref_src=twsrc%5Etfw">@rizafahmi22</a> to prepare his keynote for <a href="https://twitter.com/hashtag/JSDayID?src=hash&amp;ref_src=twsrc%5Etfw">#JSDayID</a> <a href="https://t.co/miuEfuqNzz">pic.twitter.com/miuEfuqNzz</a></p>&mdash; Yohan Totting (@tyohan) <a href="https://twitter.com/tyohan/status/1161617348228292610?ref_src=twsrc%5Etfw">August 14, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Terimakasih juga buat Herlambang, [ Rizqi ](https://twitter.com/rizqme) dan [ Hisma ](https://twitter.com/hismamaz) alias Mamaz  yang juga ikut _brainstorming_ dari awal. Terimakasih juga untuk [ Jecelyn Yeen ](https://twitter.com/JecelynYeen) yang menghubungkan saya dengan salah satu kontributor Angular. Tak lupa terimakasih untuk [ Ken Ratri ](https://twitter.com/kenratriiswari) dari [ geekhunter ](http://geekhunter.co) yang udah bagi data talenta di Indonesia.
+
+![Jecelyn](./jecelyn.jpeg)
