@@ -26,6 +26,16 @@ const Menu = () => (
             Book
           </a>
         </li>
+        <li className="mx-4">
+          <a
+            className="hover:bg-grey-light p-1"
+            href="https://karyakarsa.com/rizafahmi"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Support
+          </a>
+        </li>
       </ul>
     </div>
   </div>
