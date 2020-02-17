@@ -476,7 +476,7 @@ Dan ternyata yang menguasai jQuery masih sangat banyak baik di Indonesia ataupun
 
 ![Screen_Shot_2020-01-26_at_18.56.22.png](Screen_Shot_2020-01-26_at_18.56.22.png)
 
-Dan berikut data yang ada di database geekhunter. Seperti yang bisa dilihat, jQuery masih merupakan pustaka yang paling banyak dikuasai.
+Dan berikut data yang ada di database [ geekhunter ](https://geekhunter.co). Seperti yang bisa dilihat, jQuery masih merupakan pustaka yang paling banyak dikuasai.
 
 ### Tingkat Maturity
 
