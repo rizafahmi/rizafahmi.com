@@ -23,6 +23,15 @@ const IndexPage = () => (
           <ul className="leading-loose list-reset">
             <li className="py-3">
               <a
+                href="/2020/02/03/ekosistemjs"
+                rel="noopener noreferrer"
+                className="no-underline"
+              >
+                Ekosistem JavaScript di Indonesia
+              </a>
+            </li>
+            <li className="py-3">
+              <a
                 href="/2019/04/29/memahami-beam/"
                 rel="noopener noreferrer"
                 className="no-underline"
@@ -37,15 +46,6 @@ const IndexPage = () => (
                 className="no-underline"
               >
                 Pengalaman Pertama Menghadiri Chrome Dev Summit
-              </a>
-            </li>
-            <li className="py-3">
-              <a
-                href="/2018/12/10/perkenalan-reasonml/"
-                rel="noopener noreferrer"
-                className="no-underline"
-              >
-                Perkenalan ReasonML, Sintaks Baru untuk OCaml
               </a>
             </li>
             <li className="py-3">
