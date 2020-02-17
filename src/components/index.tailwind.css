@@ -133,3 +133,6 @@ blockquote > p > a {
   @apply text-white;
   transform: rotate(-3deg);
 }
+
+.social-media-link {
+}
