@@ -10,6 +10,8 @@ Indonesia. Namun sebelum kita masuk ke pembahasan utama, mari kita bahas dulu
 tentang definisi ekosistem di konteks artikel ini. Topik ini merupakan materi
 yang saya bawakan ketika mengisi keynote di [ JSDay 2019 ](https://jsday.id).
 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><img src="https://pbs.twimg.com/media/EFhPJHrU0AE2wIb?format=jpg&name=medium" alt="deliver" /> Riza is delivering keynote at <a href="https://twitter.com/hashtag/jsdayid?src=hash&amp;ref_src=twsrc%5Etfw">#jsdayid</a>. First JavaScript conference in Indonesia. <a href="https://twitter.com/rizafahmi22?ref_src=twsrc%5Etfw">@rizafahmi22</a> <a href="https://t.co/yxXKm1cNxM">pic.twitter.com/yxXKm1cNxM</a></p>&mdash; Jecelyn Yeen (@JecelynYeen) <a href="https://twitter.com/JecelynYeen/status/1177778326758277120?ref_src=twsrc%5Etfw">September 28, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 # Ekosistem JavaScript
 
 > “An ecosystem is a community of living organisms and their interactions with their abiotic (non-living) environment.” — Ecology of ecosystems
@@ -20,6 +22,7 @@ Yang dimaksud ekosistem disini diantaranya adalah komunitas, grup dan diskusi se
 - Kelengkapan alat bantu seperti pustaka, boilerplate, contoh aplikasi dan lain-lain
 - Dukungan komunitas di sekitar alat bantu dan juga lingkungan sekitar
 - Pembahasan akan fokus di frontend karena JavaScript di sisi backend cukup _straightforward_.
+
 
 # Sudut Pandang Pembahasan
 
@@ -45,6 +48,8 @@ Berikutnya kita akan membahas beberapa pertanyaan berikut:
 Framework JavaScript banyak sekali pilihannya. Terkadang untuk yang mulai belajar, pemilihan framework menjadi sesuatu yang cukup sulit. Ada yang bilang framework ini bagus. Opini lain mengatakan framework lain lebih cepat dan lain sebagainya. Untuk itu saya memilihkan enam opsi yang dapat dipilih. Keenam framework ini memiliki karakteristik yang cukup berbeda yang menurut saya mewakili framework lain yang tersedia.
 
 Untuk framework dengan fitur lengkap diwakili oleh Angular dan Ember, yang cukup lengkap ada React dan Vue, pustaka untuk memanipulasi DOM dan cukup terkenal di masanya, jQuery. Dan terakhir ada framework yang melakukan kompilasi ke JavaScript vanilla yang mungkin akan menjadi tren kedepan yaitu Svelte.
+
+<blockquote class="twitter-tweet"><p lang="in" dir="ltr"><img src="https://pbs.twimg.com/media/EFhRDE5U8AAcPCj?format=jpg&name=large" alt="salfok" /> Salfok sama slide presentasi dari om <a href="https://twitter.com/rizafahmi22?ref_src=twsrc%5Etfw">@rizafahmi22</a> 😹 <a href="https://twitter.com/hashtag/JSDayID?src=hash&amp;ref_src=twsrc%5Etfw">#JSDayID</a> <a href="https://t.co/W5XnrDEits">pic.twitter.com/W5XnrDEits</a></p>&mdash; FarahLuthfiOktarina (@FarahOktarina) <a href="https://twitter.com/FarahOktarina/status/1177780426800128001?ref_src=twsrc%5Etfw">September 28, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Dari keenam framework dan pustaka diatas, mari kita lihat bagaimana ekosistemnya dengan melihat komunitas disekitar framework dan pustaka tersebut. Peran komunitas ini penting untuk mendukung kita belajar terutama untuk mempercepat proses belajar. Berikut adalah gambaran komunitas JavaScript secara umum di berbagai kota yang datanya berhasil saya dapatkan. Masih banyak kota-kota lain yang memiliki komunitas JavaScript sebenarnya.
 
@@ -86,6 +91,8 @@ Mungkin sebagian besar dari kita sudah bisa menebak hasilnya. Cukup menyedihkan 
 
 Tidak puas dengan buku fisik, saya juga melakukan pencarian buku elektronik berbahasa Indonesia yang sebenarnya cukup menarik. Untuk format buku elektronik, Angular ada dua buku, namun masih membahas tentang Angular versi 1 yang cukup jauh berbeda dengan Angular versi terbaru saat ini. Buku elektronik tentang Vue dan React juga hanya tersedia sedikit.
 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><img src="https://pbs.twimg.com/media/EFhQqW6VAAECI30?format=jpg&name=medium" alt="peluang" /> <a href="https://twitter.com/rizafahmi22?ref_src=twsrc%5Etfw">@rizafahmi22</a> kick off <a href="https://twitter.com/hashtag/JSDayID?src=hash&amp;ref_src=twsrc%5Etfw">#JSDayID</a> with a talk about JavaScript ecosystem. There&#39;s still very few technical book in Bahasa Indonesia. But that means we still have lots of opportunity 😉 <a href="https://t.co/JCU23Surj2">pic.twitter.com/JCU23Surj2</a></p>&mdash; Kiki ✈️ (@kelimuttu) <a href="https://twitter.com/kelimuttu/status/1177780009450127361?ref_src=twsrc%5Etfw">September 28, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 ### Kursus Video Online
 
 Berikutnya kita akan bahas tentang kursus video online. Disini saya batasi khusus untuk kursus video online yang cukup lengkap dan ada learning path. Bukan sembarang video tutorial berbahasa Indonesia yang ada di Youtube.
@@ -115,11 +122,12 @@ Kita masuk ke sudut pandang yang kedua. Kita akan melihat dari sudut pandang ses
 
 Sekarang kita akan melihat berapa banyak contoh aplikasi yang bisa kita lihat sebagai referensi dan panduan. Saya mencoba melakukan pencarian di berbagai servis seperti glitch.com, codepen namun tidak ada informasi pasti jumlah contoh aplikasi untuk keenam pustaka dan framework tadi.
 
-![Screen_Shot_2020-01-25_at_18.15.28.png](Screen_Shot_2020-01-25_at_18.15.28.png)
+<blockquote class="twitter-tweet"><p lang="in" dir="ltr"><img src="https://pbs.twimg.com/media/EFiVLvpVAAAtHC7?format=jpg&name=medium" /> sebuah slide yang sangat ciamik dari mas <a href="https://twitter.com/rizafahmi22?ref_src=twsrc%5Etfw">@rizafahmi22</a> ntah berapa lama buatnya 😅😅 <a href="https://t.co/kAbOiUmMdI">pic.twitter.com/kAbOiUmMdI</a></p>&mdash; Adib Firman (@dibfirman) <a href="https://twitter.com/dibfirman/status/1177855341788160000?ref_src=twsrc%5Etfw">September 28, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Satu-satunya yang bisa mendapatkan total jumlah aplikasi per framework atau pustaka adalah dari codesandbox. Dan disini sangat jauh perbedaan antar framework. React mendominasi dengan nyaris ada 2 juta contoh aplikasi. Sangat jau dibandingkan vue yang hanya dua ratus ribuan.
 
 Data dari codesandbox ini agak bias, karena codesandbox awalnya hanya mendukung React cukup lama. Baru kemudian setelah beberapa lama mendukung framework lain. Itulah sebabnya React sangat mendominasi.
+
 
 ### Tutorial Berbahasa Indonesia
 
