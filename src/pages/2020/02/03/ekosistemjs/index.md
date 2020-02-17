@@ -522,6 +522,12 @@ Apapun piilihan teman-teman, yang penting semua itu bisa membantu teman-teman da
 
 Untuk sudut pandang pengambil keputusan, meskipun memilih teknologi berdasarkan _hype_ atau tren bukanlah hal yang salah, tapi perlu dikonsiderasi juga talenta tersedia dan jika saya diperbolehkan menambahkan opini pribadi, kadang kita perlu melawan arus, melakukan apa yang tidak dilakukan orang lain, anti mainstream.
 
-Ada yg namanya python paradox dimana kita sengaja pilih teknologi yang jarang digunakan agar memikat talenta-talenta yang memang tertarik dengan teknologi tersebut sekaligus tidak perlu bersaing dengan para _unicorn_ untuk merekrut developer. Ada juga yang mengambil jalur untuk memilih teknologi yang sudah matang, _obvious_, teknologi yang sudah membosankan, _boring technology club_
+Ada yg namanya [ python paradox ](http://www.paulgraham.com/pypar.html) dimana kita sengaja pilih teknologi yang jarang digunakan agar memikat talenta-talenta yang memang tertarik dengan teknologi tersebut sekaligus tidak perlu bersaing dengan para _unicorn_ untuk merekrut developer. Ada juga yang mengambil jalur untuk memilih teknologi yang sudah matang, _obvious_, teknologi yang sudah membosankan, _boring technology club_.
 
 Tujuan disajikannya data ini bukan untuk melihat framework atau pustaka mana yang paling bagus, tapi lebih kepada framework atau pustaka mana yang cocok buat kita dari ketiga sudut pandang tadi.
+
+<hr class="border-b" />
+
+PS: Terimakasih banyak saya ucapkan kepada beberapa teman yang sudah membantu menyusun materi ini. Orang pertama yang saya hubungi ketika mulai menyusun topik ini adalah [Yohan Totting](https://twitter.com/tyohan). Dari awal _brainstorm_ materi sampai hari h di mentorin oleh beliau.
+
+Terimakasih juga buat Herlambang, [ Rizqi ](https://twitter.com/rizqme) dan [ Hisma ](https://twitter.com/hismamaz) alias Mamaz  yang juga ikut _brainstorming_ dari awal. Terimakasih juga untuk [ Jecelyn ](https://twitter.com/JecelynYeen) yang menghubungkan saya dengan salah satu kontributor Angular. Tak lupa terimakasih untuk [ Ken Ratri ](https://twitter.com/kenratriiswari) dari [ geekhunter ](http://geekhunter.co) yang udah bagi data talenta di Indonesia.
