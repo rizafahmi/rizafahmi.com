@@ -59,10 +59,11 @@ class BlogPostTemplate extends React.Component {
   };
 
   render() {
-    const post = this.props.data.markdownRemark;
+    let post = this.props.data.markdownRemark;
     const { previous, next } = this.props.pageContext;
     const url = 'https://rizafahmi.com' + this.props.location.pathname;
     const { slug } = this.props.pageContext;
+    post.fields = { slug };
     const editUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/edit/master/src/pages${slug}index.md`;
 
     return (

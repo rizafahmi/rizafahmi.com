@@ -6362,6 +6362,9 @@ blockquote > p > a {
   transform: rotate(-3deg);
 }
 
+.social-media-link {
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
