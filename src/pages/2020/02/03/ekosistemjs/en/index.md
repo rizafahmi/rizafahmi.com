@@ -4,6 +4,7 @@ date: 2020-02-03
 ---
 
 Original article in [ Bahasa Indonesia ](https://rizafahmi.com/2020/02/03/ekosistemjs/).
+Translated by [Ajeng Sugiarti](mailto:ajeng.sugiarti@gmail.com)
 
 This article is going to discuss JavaScript ecosystem growth in Indonesia. Before going deep into the main topic though, let’s first talk about what this article refers to as an ecosystem. This topic is the one I delivered as a keynote session in JSDay 2019.
 
