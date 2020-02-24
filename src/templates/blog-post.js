@@ -55,7 +55,7 @@ class BlogPostTemplate extends React.Component {
             className="blog-content leading-loose"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
-          <div>
+          <div style={{ marginTop: 32 }}>
             <a href={editUrl} target="_blank" rel="noopener noreferrer">
               Find a typo? Edit on GitHub
             </a>
