@@ -6,6 +6,8 @@ slug: 'ekosistem-javascript-di-indonesia'
 
 # Ekosistem JavaScript di Indonesia
 
+Article in [ Engilish ](https://rizafahmi.com/2020/02/03/ekosistemjs/en).
+
 Artikel ini akan membahas tentang bagaimana perkembangan ekosistem JavaScript di
 Indonesia. Namun sebelum kita masuk ke pembahasan utama, mari kita bahas dulu
 tentang definisi ekosistem di konteks artikel ini. Topik ini merupakan materi
@@ -23,7 +25,6 @@ Yang dimaksud ekosistem disini diantaranya adalah komunitas, grup dan diskusi se
 - Kelengkapan alat bantu seperti pustaka, boilerplate, contoh aplikasi dan lain-lain
 - Dukungan komunitas di sekitar alat bantu dan juga lingkungan sekitar
 - Pembahasan akan fokus di frontend karena JavaScript di sisi backend cukup _straightforward_.
-
 
 # Sudut Pandang Pembahasan
 
@@ -129,7 +130,6 @@ Satu-satunya yang bisa mendapatkan total jumlah aplikasi per framework atau pust
 
 Data dari codesandbox ini agak bias, karena codesandbox awalnya hanya mendukung React cukup lama. Baru kemudian setelah beberapa lama mendukung framework lain. Itulah sebabnya React sangat mendominasi.
 
-
 ### Tutorial Berbahasa Indonesia
 
 Untuk mendapatkan jumlah tutorial berbahasa Indonesia, saya melakukan pencarian via google dengan kata kunci “nama framework tutorial indonesia” dan buka tautannya satu per satu sampai halaman ketiga dan memastikan bahwa tutorial tersebut benar-benar valid dikategorikan sebagai tutorial dan berbahasa Indonesia. Dan berikut hasilnya.
@@ -160,161 +160,190 @@ Sekarang kita akan melihat bagaimana cara menggunakan masing-masing framework da
 
 Untuk Angular, pertama kita instal alat bantu CLI dengan npm. Kemudian CLI kita gunakan untuk men-_generate_ proyek Angular baru. Serve untuk kemudian dibuka di browser.
 
-    $ npm install -g @angular/cli
-    $ ng new jsday
-    $ cd jsday
-    $ ng serve --open
+```shell
+$ npm install -g @angular/cli
+$ ng new jsday
+$ cd jsday
+$ ng serve --open
+```
 
 Kemudian kita akan membuat hello world, dengan komponen dengan membuat file baru `jsday.component.ts`.
 
-    // src/app/jsday.component.ts
+```typescript
+// src/app/jsday.component.ts
 
-    import { Component } from '@angular/core';
+import { Component } from '@angular/core';
 
-    @Component({
-      selector: 'jsday',
-      template: '<h2>JSDay 2019!!!</h2>'
-    })
-
-    export class JSDayComponent {}
+@Component({
+  selector: 'jsday',
+  template: '<h2>JSDay 2019!!!</h2>'
+})
+export class JSDayComponent {}
+```
 
 Pertama kita buat file baru di `src/app/jsday.component.ts`. Nah disini angular menyarankan kita menggunakan TypeScript sedari awal. Buat yang belum tahu, TypeScript adalah _subset_ dari JavaScript yang menambahkan salah satunya _type system_ kedalam JavaScript.
 
 Selanjutnya kita import component dari angular core. Lalu kita gunakan decorator component dengan nama selector atau tag yaitu jsday, dengan isinya header level 2. Jangan lupa kemudian juga di eksport komponen-nya.
 
-    // src/app/app.module.ts
+```typescript
+// src/app/app.module.ts
 
-    import { BrowserModule } from '@angular/platform-browser';
-    import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-    import { AppRoutingModule } from './app-routing.module';
-    import { AppComponent } from './app.component';
-    import { JSDayComponent } from './jsday.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { JSDayComponent } from './jsday.component';
 
-    @NgModule({
-      declarations: [
-        AppComponent,
-        JSDayComponent
-      ],
-      imports: [
-        BrowserModule,
-        AppRoutingModule
-      ],
-      providers: [],
-      bootstrap: [AppComponent]
-    })
-    export class AppModule { }
+@NgModule({
+  declarations: [AppComponent, JSDayComponent],
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 
 Kemudian kita akan menggunakan komponen jsday di file utama `app.module.ts`. Import dan deklarasikan di decorator NgModule. Langkah terakhir, tinggal menggunakan komponen jsday di `app.component.html` misalnya.
 
-    <!-- src/app/app.component.html -->
+```html
+<!-- src/app/app.component.html -->
 
-    <jsday></jsday>
+<jsday></jsday>
+```
 
 #### Ember
 
 Langkah-langkahnya hampir mirip dengan Angular, pertama kita lakukan instalasi alat bantu CLI. Kemudian kita Ggunakan CLI untuk men-generate proyek baru. Masuk ke direktor dan jalankan ember serve.
 
+```shell
+
     $ npm install -g ember-cli
     $ ember new jsday
     $ cd jsday
     $ ember serve
+```
 
 Kita mulai dengan membuat komponen baru di file baru di `app/components/jsday.js`. Import component dari pustaka `ember/component`, dan kemudian di extend untuk membuat komponen baru.
 
-    // app/components/jsday.js
+```javascript
+// app/components/jsday.js
 
-    import Component from '@ember/component';
+import Component from '@ember/component';
 
-    export default Component.extend({
-      componentMessage: 'JSDay 2019!!!'
-    });
+export default Component.extend({
+  componentMessage: 'JSDay 2019!!!'
+});
+```
 
 Dan kita buat sebuah file template dengan format handlebars dan menampilkan `message` didalam tag header level 2.
 
-    <!-- app/templates/components/jsday.hbs -->
+```html
+<!-- app/templates/components/jsday.hbs -->
 
-    <h2>
-      {{componentMessage}}
-    </h2>
+<h2>
+  {{componentMessage}}
+</h2>
+```
 
 Dan sekarang kita dapat menggunakan komponen jsday di template seperti ini.
 
-    <!-- app/templates/application.hbs —>
+```html
+<!-- app/templates/application.hbs -->
 
-    {{jsday}}
-    {{outlet}}
+{{jsday}} {{outlet}}
+```
 
 #### jQuery
 
 Untuk jQuery cukup straigthforward penggunaannya, buat sebuah folder dan sebuah file.
 
+```shell
     $ mkdir jsday
     $ cd jsday
+```
 
 Kemudian tambahkan CDN jQuery dan dapat segera digunakan.
 
-    <!-- index.html -->
+```html
+<!-- index.html -->
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>JSDay 2019!!</title>
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    </head>
-    <body>
-      <div id="app"></div>
-      <script src="app.js"></script>
-    </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSDay 2019!!</title>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+    ></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
 
 Di file dengan ekstensi JavaScript, `app.js` kita tambahkan header level 2 dengan pesan jsday 2019 didalamnya.
 
-    // app.js
+```javascript
+// app.js
 
-    $(document).ready(function() {
-      $("#app").html("<h2>JSDay 2019!!!</h2>");
-    });
+$(document).ready(function() {
+  $('#app').html('<h2>JSDay 2019!!!</h2>');
+});
+```
 
 #### React
 
 Bagaimana dengan React? Karena di tutorial resminya menggunakan CDN, maka kita akan menggunakan CDN. Langkah-langkahnya mirip dengan jQuery sebenarnya. Dimulai dengan membuat folder dan file html.
 
+```shell
     $ mkdir jsday
     $ cd jsday
+```
 
 Gunakan CDN untuk pustaka react dan react-dom didalam file `index.html`. Kodenya sendiri kita akan tulis di file terpisah `app.js`.
 
-    <!-- index.html -->
+```html
+<!-- index.html -->
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>JSDay 2019</title>
-      <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-      <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-    </head>
-    <body>
-      <div id="root"></div>
-      <script src="app.js">
-      </script>
-    </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSDay 2019</title>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
 
 Di app.js kita juga tidak menggunakan babel ataupun jsx. Komponen menggunakan sintaksis class, me-render sebuah komponen header leel 2 dengan teks JSDay 2019. Lalu kemudian kita render dengan ReactDOM dan di cemplungin ke div dengan id root.
 
-    // app.js
+```javascript
+// app.js
 
-    'use strict';
+'use strict';
 
-    class App extends React.Component {
-      render() {
-        return React.createElement('h2', {}, 'JSDay 2019!!!');
-      }
-    }
-    ReactDOM.render(React.createElement(App), document.getElementById('root'));
+class App extends React.Component {
+  render() {
+    return React.createElement('h2', {}, 'JSDay 2019!!!');
+  }
+}
+ReactDOM.render(React.createElement(App), document.getElementById('root'));
+```
 
 ![react](./react.jpeg)
 
@@ -322,64 +351,73 @@ Di app.js kita juga tidak menggunakan babel ataupun jsx. Komponen menggunakan si
 
 Sekarang kita masuk ke framework berikutnya, Svelte. Svelte memang tidak memiliki CLI bawaan seperti halnya Angular atau Ember. Tapi di dokumentasinya kita disarankan menggunakan tools yang namanya degit. Sederhananya degit ini melakukan clone template yang sudah disiapkan di git atau github untuk proyek svelte ataupun proyek lainnya secara umum. Setelah menjalankan degit dengan npx kita jalankan npm install dan jalankan dengan npm run dev.
 
+```shell
     $ npx degit sveltejs/template jsday
     $ cd jsday
     $ npm install
     $ npm run dev
+```
 
 Selanjutnya kita buat komponen baru dengan header level 2 dengan nama `jsday.svelte`.
 
-    <!-- src/JSDay.svelte -->
+```html
+<!-- src/JSDay.svelte -->
 
-    <h2>JSDay 2019!!!</h2>
+<h2>JSDay 2019!!!</h2>
+```
 
 Dan kita tinggal gunakan komponen JSDay. Jangan lupa diimport agar dapat digunakan di komponen atau file lain.
 
-    <!-- src/App.svelte -->
+```html
+<!-- src/App.svelte -->
 
-    <script>
-      import JSDay from './JSDay.svelte';
-    </script>
+<script>
+  import JSDay from './JSDay.svelte';
+</script>
 
-    <style>
-    </style>
+<style></style>
 
-    <div>
-      <JSDay />
-    </div>
+<div>
+  <JSDay />
+</div>
+```
 
 #### Vue
 
 Kita masuk ke framework terakhir yaitu Vue. Vue juga di awal tutorialnya menyarankan menggunakan CDN sama halnya seperti React dan jQuery. Jadi tinggal buat sebuah folder dan buat sebuah file html.
 
+```shell
     $ mkdir jsday
     $ cd jsday
+```
 
 Kemudian load vue dari CDN. Dan tulis kode vue di bagian script dibawah atau di file terpisah.
 
-    <!-- index.html -->
+```html
+<!-- index.html -->
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>JSDay 2019</title>
-      <script src="https://unpkg.com/vue"></script>
-    </head>
-    <body>
-      <div id="app">
-        <h2>{{ message }}</h2>
-      </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JSDay 2019</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{ message }}</h2>
+    </div>
 
-      <script>
-        var app = new Vue({
-          el: '#app',
-          data: {
-            message: 'JSDay 2019!!!'
-          }
-        })
-      </script>
-    </body>
-    </html>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'JSDay 2019!!!'
+        }
+      });
+    </script>
+  </body>
+</html>
+```
 
 ### Dukungan Komunitas
 
@@ -543,6 +581,10 @@ PS: Terimakasih banyak saya ucapkan kepada beberapa teman yang sudah membantu me
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><img src="https://pbs.twimg.com/media/EB7kz-iU8AI2rwz?format=jpg&name=4096x4096" alt="notes" /> Helping <a href="https://twitter.com/rizafahmi22?ref_src=twsrc%5Etfw">@rizafahmi22</a> to prepare his keynote for <a href="https://twitter.com/hashtag/JSDayID?src=hash&amp;ref_src=twsrc%5Etfw">#JSDayID</a> <a href="https://t.co/miuEfuqNzz">pic.twitter.com/miuEfuqNzz</a></p>&mdash; Yohan Totting (@tyohan) <a href="https://twitter.com/tyohan/status/1161617348228292610?ref_src=twsrc%5Etfw">August 14, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Terimakasih juga buat Herlambang, [ Rizqi ](https://twitter.com/rizqme) dan [ Hisma ](https://twitter.com/hismamaz) alias Mamaz  yang juga ikut _brainstorming_ dari awal. Terimakasih juga untuk [ Jecelyn Yeen ](https://twitter.com/JecelynYeen) yang menghubungkan saya dengan salah satu kontributor Angular. Tak lupa terimakasih untuk [ Ken Ratri ](https://twitter.com/kenratriiswari) dari [ geekhunter ](http://geekhunter.co) yang udah bagi data talenta di Indonesia.
+Terimakasih juga buat Herlambang, [ Rizqi ](https://twitter.com/rizqme) dan [ Hisma ](https://twitter.com/hismamaz) alias Mamaz yang juga ikut _brainstorming_ dari awal. Terimakasih juga untuk [ Jecelyn Yeen ](https://twitter.com/JecelynYeen) yang menghubungkan saya dengan salah satu kontributor Angular. Tak lupa terimakasih untuk [ Ken Ratri ](https://twitter.com/kenratriiswari) dari [ geekhunter ](http://geekhunter.co) yang udah bagi data talenta di Indonesia.
 
 ![Jecelyn](./jecelyn.jpeg)
+
+```
+
+```
