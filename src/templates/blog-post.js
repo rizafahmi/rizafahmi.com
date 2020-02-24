@@ -6,8 +6,6 @@ import Social from '../components/Social';
 // import config from '../config/config';
 import Layout from '../components/layout';
 
-import { database } from '../firebase.js';
-
 require('../../node_modules/prismjs/themes/prism-tomorrow.css');
 
 const GITHUB_USERNAME = 'rizafahmi';
@@ -20,43 +18,6 @@ class BlogPostTemplate extends React.Component {
       data: null
     };
   }
-
-  componentDidMount() {
-    document.addEventListener('scroll', this.trackScroll);
-
-    database
-      .ref()
-      .child(this.props.pageContext.slug)
-      .on('value', (snapshot) => {
-        this.setState({
-          data: snapshot.val()
-        });
-      });
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.trackScroll);
-  }
-
-  updateData = () => {
-    const newData = this.state.data + 1;
-    database
-      .ref()
-      .child(this.props.pageContext.slug)
-      .set(newData);
-  };
-
-  isBottom(el) {
-    return el.getBoundingClientRect().bottom <= window.innerHeight + 600;
-  }
-
-  trackScroll = () => {
-    const wrappedElement = document.getElementById('___gatsby');
-    if (this.isBottom(wrappedElement)) {
-      this.updateData();
-      document.removeEventListener('scroll', this.trackScroll);
-    }
-  };
 
   render() {
     let post = this.props.data.markdownRemark;
@@ -86,7 +47,6 @@ class BlogPostTemplate extends React.Component {
               📅
             </span>{' '}
             {post.frontmatter.date} 📗 {post.timeToRead} minutes read,{' '}
-            {this.state.data} 👀 |{' '}
             <a href={editUrl} target="_blank" rel="noopener noreferrer">
               Edit on GitHub
             </a>
