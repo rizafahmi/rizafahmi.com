@@ -3,12 +3,37 @@ title: 'JavaScript Ecosystem in Indonesia'
 date: 2020-02-03
 ---
 
-Original article in [ Bahasa Indonesia ](https://rizafahmi.com/2020/02/03/ekosistemjs/).
-Translated by [Ajeng Sugiarti](mailto:ajeng.sugiarti@gmail.com)
+Original article in [ Bahasa Indonesia](../).
+
+Translated by [Ajeng Sugiarti](mailto:ajeng.sugiarti@gmail.com).
+
 
 This article is going to discuss JavaScript ecosystem growth in Indonesia. Before going deep into the main topic though, let’s first talk about what this article refers to as an ecosystem. This topic is the one I delivered as a keynote session in JSDay 2019.
 
-## JavaScript Ecosystem
+## Table of Content
+
+* [About JavaScript Ecosystem](#about-javascript-ecosystem)
+* [Discussion Point of View](#discussion-point-of-view)
+  - [Beginners Point of View](#beginners-point-of-view)
+      + [Where Do We Start?](#where-do-we-start)
+      + [Which Framework?](#which-framework)
+      + [Books or Literature Availability](#books-or-literature-availability)
+      + [Online Courses](#online-courses)
+  - [Professionals Point of View](#professionals-point-of-view)
+      + [Sample Applications](#sample-applications)
+      + [Tutorials in Bahasa Indonesia](#tutorials-in-bahasa-indonesia)
+      + [Tools and Boilerplates](#tools-and-boilerplates)
+      + [How to Use](#how-to-use)
+      + [Community Support](#community-support)
+      + [Supporting Libraries](#supporting-libraries)
+      + [Performance](#performance)
+      + [Job Vacancies](#job-vacancies)
+  - [Masters Point of View](#masters-point-of-view)
+      + [Available Talents](#available-talents)
+      + [Maturity Level](#maturity-level)
+* [Conclusion](#conclusion)
+
+## About JavaScript Ecosystem
 
 > “An ecosystem is a community of living organisms and their interactions with their abiotic (non-living) environment.” — Ecology of ecosystems
 
@@ -79,7 +104,7 @@ In Telegram, I also just managed to find three communities, which are Angular, V
 
 The one with the most active and most members is React, with Vue and Angular following behind it.
 
-### Available Literature or Books
+### Books or Literature Availability
 
 And in this section, we’re going to talk about literature availability, in this case, books. The question is, are books still relevant as a learning resource? Especially book in Bahasa Indonesia. Personally, I think they are still relevant. Especially for students who want to learn and use some particular framework or library in their final project. Isn’t it great when there are books that could be used as a learning reference and properly quoted for the thesis or final project report?
 
@@ -89,7 +114,7 @@ Perhaps some of us could already guess the result. It’s rather sad because the
 
 Unsatisfied with the physical book result, I also did some research for the e-books in Bahasa Indonesia, which is actually quite interesting. For e-book format, Angular has two books, but still on Angular version 1 which is quite different from the current latest version of Angular. There are also only a few available e-books about Vue and React.
 
-### Online Course
+### Online Courses
 
 Next, we’re going to talk about online course videos. I limit the scope here for the ones that are quite comprehensive and have learning paths. Not some random video tutorials in Bahasa Indonesia that are available on [ Youtube ](https://youtube.com/rizafahmi).
 

@@ -6,16 +6,39 @@ slug: 'ekosistem-javascript-di-indonesia'
 
 # Ekosistem JavaScript di Indonesia
 
-Article in [ Engilish ](https://rizafahmi.com/2020/02/03/ekosistemjs/en).
+This article also available in [ Engilish](./en).
 
 Artikel ini akan membahas tentang bagaimana perkembangan ekosistem JavaScript di
 Indonesia. Namun sebelum kita masuk ke pembahasan utama, mari kita bahas dulu
 tentang definisi ekosistem di konteks artikel ini. Topik ini merupakan materi
 yang saya bawakan ketika mengisi keynote di [ JSDay 2019 ](https://jsday.id).
 
+## Daftar Isi
+
+* [Tentang Ekosistem JavaScript](#tentang-ekosistem-javascript)
+* [Sudut Pandang Pembahasan](#sudut-pandang-pembahasan)
+  - [Sudut Pandang Pemula](#sudut-pandang-pemula)
+      + [Mulai Dari Mana?](#mulai-dari-mana)
+      + [Belajar Framework Apa?](#belajar-framework-apa)
+      + [Literatur atau Buku Tersedia](#literatur-atau-buku-tersedia)
+      + [Kursus Video Online](#kursus-video-online)
+  - [Sudut Pandang Profesional](#sudut-pandang-profesional)
+      + [Contoh Aplikasi](#contoh-aplikasi)
+      + [Tutorial Berbahasa Indonesia](#tutorial-berbahasa-indonesia)
+      + [Alat Bantu dan Boilerplate](#alat-bantu-dan-boilerplate)
+      + [Mulai Menggunakan](#mulai-menggunakan)
+      + [Dukungan Komunitas](#dukungan-komunitas)
+      + [Pustaka Pendukung](#pustaka-pendukung)
+      + [Performa](#performa)
+      + [Lowongan Pekerjaan](#lowongan-pekerjaan)
+  - [Sudut Pandang Master](#sudut-pandang-master)
+      + [Talenta Tersedia](#talenta-tersedia)
+      + [Tingkat Maturity](#tingkat-maturity)
+* [Kesimpulan](#kesimpulan)
+
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><img src="https://pbs.twimg.com/media/EFhPJHrU0AE2wIb?format=jpg&name=medium" alt="deliver" /> Riza is delivering keynote at <a href="https://twitter.com/hashtag/jsdayid?src=hash&amp;ref_src=twsrc%5Etfw">#jsdayid</a>. First JavaScript conference in Indonesia. <a href="https://twitter.com/rizafahmi22?ref_src=twsrc%5Etfw">@rizafahmi22</a> <a href="https://t.co/yxXKm1cNxM">pic.twitter.com/yxXKm1cNxM</a></p>&mdash; Jecelyn Yeen (@JecelynYeen) <a href="https://twitter.com/JecelynYeen/status/1177778326758277120?ref_src=twsrc%5Etfw">September 28, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-# Ekosistem JavaScript
+# Tentang Ekosistem JavaScript
 
 > “An ecosystem is a community of living organisms and their interactions with their abiotic (non-living) environment.” — Ecology of ecosystems
 
@@ -517,7 +540,7 @@ Dan di bagian ini kita akan menjawab pertanyaan-pertanyaan dari golongan yang te
 
 ### Talenta Tersedia
 
-Disini saya kembali menggunakan fitur pencarian di LinkedIn untuk mencari banyaknya talenta untuk setiap framework dan pustaka.
+Disini saya kembali menggunakan fitur pencarian di [ LinkedIn ](https://linkedin.com/in/rizafahmi) untuk mencari banyaknya talenta untuk setiap framework dan pustaka.
 
 ![Screen_Shot_2020-01-26_at_18.55.10.png](Screen_Shot_2020-01-26_at_18.55.10.png)
 
