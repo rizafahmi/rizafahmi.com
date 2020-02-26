@@ -609,6 +609,3 @@ Terimakasih juga buat [ Herlambang](https://www.instagram.com/herlambang_srihart
 
 ![Jecelyn](./jecelyn.jpeg)
 
-```
-
-```
