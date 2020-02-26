@@ -62,6 +62,37 @@ class BlogPostTemplate extends React.Component {
           </div>
           <div className="mt-16 pt-8 social-content text-center border-t">
             <p className="font-light">
+              Did you enjoy this post? Buy me some{' '}
+              <span role="img" aria-label="traktir" style={{ fontSize: 32 }}>
+                ☕
+              </span>{' '}
+              with gopay or ovo.
+            </p>
+            <ul class="list-reset inline-flex">
+              <li class="p-4">
+                <div
+                  role="button"
+                  tabindex="0"
+                  className="SocialMediaShareButton SocialMediaShareButton--twitter button"
+                >
+                  <div style={{ width: 256 }}>
+                    <a
+                      href="https://karyakarsa.com/rizafahmi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        alt="karyakarsa logo"
+                        src="https://karyakarsa.com/_nuxt/img/0d8c212.png"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="mt-16 pt-8 social-content text-center border-t">
+            <p className="font-light">
               Did you enjoy this post? Share the{' '}
               <span role="img" aria-label="love the post">
                 ❤️
