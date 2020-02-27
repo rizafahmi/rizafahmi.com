@@ -190,6 +190,10 @@ Dan pemandangan terakhir yang bisa kita saksikan adalah singa laut yang sedang b
 
 Setelah bergaya menjadi model dadakan disekitar sini, karena memang pemandangannya sangat, sangat indah, kemudian kita sempatkan juga mencari suvenir buat oleh-oleh sebelum akhirnya pulang ke penginapan.
 
+Sampai dirumah, istirahat dan waktunya mengisi perut. Setelah berjalan-jalan ditempat yang cukup _fancy_ dan makan siang ditempat yang _fancy_ juga. Coba tebak makan malam kita apa? Buat yang penasaran, bisa cek video berikut hasil rekaman Pak [Bambang Wahyudi](https://www.facebook.com/masbamsby).
+
+<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fmasbamsby%2Fvideos%2F10211999329324868%2F&show_text=0&width=260" width="260" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
+
 Dengan demikian berakhir sudah perjalanan ke Silicon Valley kali ini. Kritik dan saran silakan dikirimkan via merpati pos 🕊️. Jika ingin mendengarkan laporan perjalanan saya ke kota-kota lainnya, [silakan sponsori saya untuk tiket pesawat dengan segala akomodasinya](mailto:rizafahmi@gmail.com) 😈. Sampai bertemu di lain kesempatan.
 
 Terimakasih banyak saya ucapkan untuk komunitas [facebook DevC Jakarta](https://www.facebook.com/groups/DevCJakarta/) karena tanpa kalian kita para *leads* tidak akan mendapatkan kesempatan langka ini. Terimakasih juga untuk [Facebook](https://facebook.com/rizafahmi) yang sudah mensponsori kita untuk tiket, akomodasi dan acara-acara keren selama disana. Dan tak lupa juga terimakasih banyak [Hacktiv8](https://hacktiv8.com) untuk waktu dan uang sakunya :)
