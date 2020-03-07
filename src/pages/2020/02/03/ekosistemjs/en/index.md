@@ -1,7 +1,7 @@
 ---
 title: 'JavaScript Ecosystem in Indonesia'
 date: 2020-02-03
-cover: './Screen Shot 2020-02-26 at 08.08.09.png'
+cover: '../JSDAy.jpg'
 ---
 
 Original article in [ Bahasa Indonesia](../).
