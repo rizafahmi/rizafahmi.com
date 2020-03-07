@@ -2,7 +2,7 @@
 title: 'Ekosistem JavaScript Di Indonesia'
 date: 2020-02-03
 slug: 'ekosistem-javascript-di-indonesia'
-cover: './Screen Shot 2020-02-26 at 08.08.09.png'
+cover: './JSDAy.jpg'
 ---
 
 # Ekosistem JavaScript di Indonesia
