@@ -193,7 +193,7 @@ console.log(i); // O(1)
 console.log(j); // O(1)
 ```
 
-maka operasi yang akan kita lakukan adalah menjumlahkan. Sehingga untuk kedua perintah diatas hasilnya adalah <strong>O<sub>(1)</sub> + O<sub>(1)</sub> = O<sub>(2)</sub></strong>. Jika digabungkan hasilnya menjadi <strong>O<sub>(n<sup>2</sup>)</sub> _ O<sub>(2)</sub></strong>. Namun biasanya untuk jenis kode diatas cukup dilambangkan dengan <strong>O<sub>(n<sup>2</sup>)</sub> _ O<sub>(2)</sub></strong> karena <strong>O<sub>(2)</sub></strong> tidak signifikan perbedaannya.
+Maka operasi yang akan kita lakukan adalah menjumlahkan. Sehingga untuk kedua perintah diatas hasilnya adalah <strong>O<sub>(1)</sub> + O<sub>(1)</sub> = O<sub>(2)</sub></strong>. Jika digabungkan hasilnya menjadi <strong>O<sub>(n<sup>2</sup>)</sub> _ O<sub>(2)</sub></strong>. Namun biasanya untuk jenis kode diatas cukup dilambangkan dengan <strong>O<sub>(n<sup>2</sup>)</sub> _ O<sub>(2)</sub></strong> karena <strong>O<sub>(2)</sub></strong> tidak signifikan perbedaannya.
 
 Mari kita lihat contoh kode berikutnya.
 
@@ -218,7 +218,7 @@ Sebagai kesimpulan, notasi O besar atau _Big-O Notation_ merupakan metode untuk 
 Notasi O besar inipun tidak hanya semata berlaku di bagian kode yang kita tulis,
 namun di _database_ pun berlaku. Jadi proses pengambilan data di database dengan
 sintaksis SQL yang dapat dianggap sebagai proses perulangan akan sangat tidak
-efektif jika di bagian _coding_-an kita kembali menggunakan perulangan. Maka
+efektif jika di bagian algoritma kode kita kembali menggunakan perulangan. Maka
 proses tersebut akan menjadi <strong>O<sub>(n<sup>2</sup>)</sub></strong> karena
 akan terdapat perulangan didalam perulangan.
 
