@@ -6365,6 +6365,26 @@ blockquote > p > a {
 .social-media-link {
 }
 
+table {
+  table-layout: auto;
+}
+
+th {
+  border-width: 1px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+td {
+  border-width: 1px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
