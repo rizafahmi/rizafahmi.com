@@ -6362,6 +6362,38 @@ blockquote > p > a {
   transform: rotate(-3deg);
 }
 
+/* .gatsby-highlight { */
+
+/*   background-color: #fdf6e3; */
+
+/*   border-radius: 0.3em; */
+
+/*   margin: 0.5em 0; */
+
+/*   padding: 1em; */
+
+/*   overflow: auto; */
+
+/* } */
+
+.gatsby-highlight pre[class*='language-'] {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  overflow: initial;
+  float: left; /* 1 */
+  min-width: 100%; /* 2 */
+}
+
+.gatsby-highlight pre[class*='language-'].line-numbers {
+  padding-left: 2.8em; /* 3 */
+}
+
+.line-numbers .line-numbers-rows {
+  margin-top: 24px;
+  margin-left: 10px;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
