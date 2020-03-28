@@ -6394,6 +6394,10 @@ blockquote > p > a {
   margin-left: 10px;
 }
 
+.typo {
+  margin-top: 12px;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
