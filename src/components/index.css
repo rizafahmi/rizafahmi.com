@@ -6453,6 +6453,7 @@ td {
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  margin-top: 12px;
 }
 
 @media (min-width: 576px) {
