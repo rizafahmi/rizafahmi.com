@@ -6454,6 +6454,8 @@ td {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin-top: 12px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 @media (min-width: 576px) {
