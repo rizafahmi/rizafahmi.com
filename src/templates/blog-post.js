@@ -9,6 +9,7 @@ import Layout from '../components/layout';
 import { database } from '../firebase.js';
 
 require('../../node_modules/prismjs/themes/prism-tomorrow.css');
+require('../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css');
 
 const GITHUB_USERNAME = 'rizafahmi';
 const GITHUB_REPO = 'rizafahmi.com-v2';
@@ -94,7 +95,7 @@ class BlogPostTemplate extends React.Component {
             className="blog-content leading-loose"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
-          <div>
+          <div className="typo">
             <a href={editUrl} target="_blank" rel="noopener noreferrer">
               Find a typo? Edit on GitHub
             </a>
