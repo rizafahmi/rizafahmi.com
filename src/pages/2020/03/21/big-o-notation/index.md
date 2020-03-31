@@ -23,8 +23,7 @@ TODO: Gambar input-process-output
 
 Notasi O besar merupakan skenario terburuk dari sebuah algoritma, dan biasanya terdapat notasi _n_ yang merepresentasikan jumlah masukan. Berikut adalah diagram notasi O besar dengan masukan yang dimulai dari 0 hingga tak terhingga.
 
-![infinity](./infinity.png)
-TODO: Redraw
+![grafik](./grafik copy.png)
 
 Dari diagram diatas dapat kita lihat beberapa notasi yang kerap muncul, yaitu: O<sub>(1)</sub>, O<sub>(log n)</sub>, O<sub>(n)</sub>, O<sub>(n<sup>2</sup>)</sub> atau O<sub>(n<sup>n</sup>)</sub>. Untuk membahasnya, mari kita berandai-andai membangun sebuah aplikasi travel. Dan kita diminta untuk membuat fitur baru yang menampilkan daftar kisaran harga dari hotel-hotel yang berada di area tertentu.
 
@@ -117,8 +116,7 @@ Dan secara umum berikut urutan dari notasi O besar diurutkan dari yang tercepat 
 |--------|----------|------------|--------|-----------|-------------|
 | *Notasi* | O<sub>(1)</sub>     | O<sub>(log n)</sub>   | O<sub>(n)</sub>   | O<sub>(n<sup>2</sup>)</sub>    | O<sub>(n<sup>n</sup>)</sub>      |
 
-![infinity](./infinity.png)
-TODO: Redraw
+![grafik](./grafik copy.png)
 
 ## Beberapa Contoh Notasi O Besar
 
