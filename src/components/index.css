@@ -6395,7 +6395,37 @@ blockquote > p > a {
 }
 
 .typo {
-  margin-top: 12px;
+  margin-top: 24px;
+}
+
+/* Inline code */
+
+:not(pre) > code[class*='language-'] {
+  border-radius: .3em !important;
+  background: #f1f5f8 !important;
+  color: #cc99cd;
+  padding: .15em .2em .05em !important;
+  white-space: normal !important;
+}
+
+table {
+  table-layout: fixed;
+}
+
+th {
+  border-width: 1px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+td {
+  border-width: 1px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
 }
 
 @media (min-width: 576px) {
