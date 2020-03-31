@@ -28,7 +28,7 @@ Dan yang bikin Reason lebih keren lagi adalah fitur *type inference*-nya. Reason
 
 ![Fungsi add menerima dua buah parameter integer dan fungsi add akan me-return integer juga.](https://cdn-images-1.medium.com/max/5760/1*nlpG7UlWXmAhIjF8FbgdyA.png)*Fungsi add menerima dua buah parameter integer dan fungsi add akan me-return integer juga.*
 
-Seperti bisa dilihat, kita membuat sebuah fungsi dengan nama add yang memiliki parameter a dan b dan menghasilkan penjumlahan a dengan b . Ketika mendeklarasikan fungsi add tersebut, kita tidak sama sekali mendefinisikan tipe data dari a, b dan juga hasil dari fungsi add. Akan tetapi setelah dievaluasi, menghasilkan kode berikut ini: `let add: (int, int) => int = <fun>;`. Artinya Reason dapat menebak bahwa tipe data a,b dan juga hasil dari addadalah integer.
+Seperti bisa dilihat, kita membuat sebuah fungsi dengan nama add yang memiliki parameter a dan b dan menghasilkan penjumlahan a dengan b . Ketika mendeklarasikan fungsi add tersebut, kita tidak sama sekali mendefinisikan tipe data dari a, b dan juga hasil dari fungsi add. Akan tetapi setelah dievaluasi, menghasilkan kode berikut ini: `let add: (int, int) => int = <fun>;`. Artinya Reason dapat menebak bahwa tipe data a, b dan juga hasil dari add adalah integer.
 
 Mari kita lihat satu contoh *type inference* lagi yang lebih keren dengan menggunakan struktur data records.
 
@@ -66,7 +66,7 @@ Reason berada di *sweet spot* antara kemudahan adopsi dan kemudahan untuk dikelo
 
 ![Grid yang diadaptasi dari *talk* Jared Forsyth ([https://jaredforsyth.com/](https://jaredforsyth.com/))](https://cdn-images-1.medium.com/max/3840/1*vktrkdYUCyeJQlTfvl7TUA.png)*Grid yang diadaptasi dari *talk* Jared Forsyth ([https://jaredforsyth.com/](https://jaredforsyth.com/))*
 
-Seperti yang dapat dilihat dari ilustrasi diatas, JavaScript dan ES6 sangat mudah dipelajari. Lain halnya jika kita berbicara *maintenance *kode kita karena JavaScript tidak memiliki type system dan rentan *bugs* dan kesalahan. TypeScript masih cenderung mudah dipelajari dan diadopsi. Proses *maintenance* kodenya sendiri memang jauhlebih baik daripada JavaScript.
+Seperti yang dapat dilihat dari ilustrasi diatas, JavaScript dan ES6 sangat mudah dipelajari. Lain halnya jika kita berbicara *maintenance *kode kita karena JavaScript tidak memiliki type system dan rentan *bugs* dan kesalahan. TypeScript masih cenderung mudah dipelajari dan diadopsi. Proses *maintenance* kodenya sendiri memang jauh lebih baik daripada JavaScript.
 
 Dari sisi yang berbeda, maintenance kode di Haskell sangatlah mudah, bahkan jika sudah berjalan, kemungkinan besar kode Haskell tidak perlu dikelola lagi. Akan tetapi Haskell terkenal dengan bahasa yang sulit dimengerti dan dipelajari. Elm adalah versi *mainstream* dari Haskell yang juga merupakan bahasa pemrograman yang dapat dikompilasi ke JavaScript.
 
@@ -101,7 +101,7 @@ Jadi misalnya kita sedang belajar functional programming tetapi belum menguasai 
 
 ## Memulai Reason
 
-Untuk mulai menggunakan Reason, ada beberapa package yang kita butuhkan. Pertama, kita butuh reason-cli . Karena kita akan membuat aplikasi JavaScript di sisi client, kita juga butuh bucklescript untuk melakukan kompilasi Reason atau OCaml ke JavaScript. Kedua *package* tersebut dapat kita install menggunakan yarn atau npm.
+Untuk mulai menggunakan Reason, ada beberapa package yang kita butuhkan. Pertama, kita butuh reason-cli . Karena kita akan membuat aplikasi JavaScript di sisi client, kita juga butuh BuckleScript untuk melakukan kompilasi Reason atau OCaml ke JavaScript. Kedua *package* tersebut dapat kita install menggunakan yarn atau npm.
 
     $ yarn global add reason-cli
     $ yarn global add bs-platform
