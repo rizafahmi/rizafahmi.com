@@ -209,3 +209,8 @@ Beberapa konsep struktur data pun seringkali menggunakan rekursi. Hal ini akan
 kita bahas lain waktu.
 
 Selamat belajar!
+
+## Referensi
+
+- [Buku 'Grokking Algorithms: An illustrated guide for programmers and other curious people'](https://www.manning.com/books/grokking-algorithms)
+- [Video 'FrontendMasters Data Structures and Algorithms in JavaScript, Bianca Gandolfo'](https://frontendmasters.com/courses/data-structures-algorithms/)
