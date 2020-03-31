@@ -19,7 +19,7 @@ Notasi O besar atau yang lazim disebut dengan Big-O Notation adalah sebuah cara 
 
 Di dalam sebuah program komputer pada umumnya, kita sudah lazim dengan istilah masukan-proses-keluaran.
 
-TODO: Gambar input-process-output
+![input, proses, output](./input.png)
 
 Notasi O besar merupakan skenario terburuk dari sebuah algoritma, dan biasanya terdapat notasi _n_ yang merepresentasikan jumlah masukan. Berikut adalah diagram notasi O besar dengan masukan yang dimulai dari 0 hingga tak terhingga.
 
@@ -57,9 +57,9 @@ for (let i = 0; i < hotels.length; i++) {
 
 Mari kita simulasikan ketika jumlah data semakin banyak.
 
-| n              | 3 | 5  | 10  | 100   |
-|----------------|---|----|-----|-------|
-| Jumlah Operasi | 9 | 25 | 100 | 10000 |
+| n              | 3   | 5   | 10  | 100   |
+| -------------- | --- | --- | --- | ----- |
+| Jumlah Operasi | 9   | 25  | 100 | 10000 |
 
 Lihat tabel diatas, antara 3 dan 5 cukup dekat perbedaannya hanya dua. Namun jumlah operasi yang dijalankan sangat signifikan bedanya. Semakin banyak datanya semakin signifikan jumlah operasi yang dijalankan.
 
@@ -98,23 +98,21 @@ Ketika kode menjalankan sebuah operasi, misalkan: _baris kode untuk mencari item
 
 Tidak masalah sebanyak apapun isi dari sebuah array atau sebanyak apapun jumlah baris di basis data, untuk mengambil nilai array dengan mengakses indeks maka algoritma berjalan secara konstan atau _constant time_.
 
-## Kesimpulan
-
 Kita sudah melihat beberapa contoh algoritma untuk menampilkan kisaran harga dari yang terendah hingga tertinggi dan hasilnya sebagai berikut.
 
-| Notasi O | Istilah Lain | Jumlah Operasi | Algoritma                                                                                 |
-|----------|--------------|----------------|-------------------------------------------------------------------------------------------|
-| O<sub>(n<sup>2</sup>)</sub>   | Quadratic    | n<sup>2</sup>            | Komparasi seluruh harga. Pengulangan dalam pengulangan                                    |
-| O<sub>(n)</sub>     | Linear       | 2n             | Mencari harga terendah dan tertinggi. 1 kali pengulangan                                  |
-| O<sub>(1)</sub>     | Constant     | 2              | Asumsi sudah diurut berdasarkan harga, tinggal mencari elemen pertama dan elemen terakhir |
+| Notasi O                    | Istilah Lain | Jumlah Operasi | Algoritma                                                                                 |
+| --------------------------- | ------------ | -------------- | ----------------------------------------------------------------------------------------- |
+| O<sub>(n<sup>2</sup>)</sub> | Quadratic    | n<sup>2</sup>  | Komparasi seluruh harga. Pengulangan dalam pengulangan                                    |
+| O<sub>(n)</sub>             | Linear       | 2n             | Mencari harga terendah dan tertinggi. 1 kali pengulangan                                  |
+| O<sub>(1)</sub>             | Constant     | 2              | Asumsi sudah diurut berdasarkan harga, tinggal mencari elemen pertama dan elemen terakhir |
 
 Dan secara umum berikut urutan dari notasi O besar diurutkan dari yang tercepat hingga yang terpelan.
 
-<--- Super Cepat ---------------------------------------  Super Lambat --------->
+<--- Super Cepat --------------------------------------- Super Lambat --------->
 
-| *Nama*   | Constant | Logaritmic | Linear | Quadratic | Exponential |
-|--------|----------|------------|--------|-----------|-------------|
-| *Notasi* | O<sub>(1)</sub>     | O<sub>(log n)</sub>   | O<sub>(n)</sub>   | O<sub>(n<sup>2</sup>)</sub>    | O<sub>(n<sup>n</sup>)</sub>      |
+| _Nama_   | Constant        | Logaritmic          | Linear          | Quadratic                   | Exponential                 |
+| -------- | --------------- | ------------------- | --------------- | --------------------------- | --------------------------- |
+| _Notasi_ | O<sub>(1)</sub> | O<sub>(log n)</sub> | O<sub>(n)</sub> | O<sub>(n<sup>2</sup>)</sub> | O<sub>(n<sup>n</sup>)</sub> |
 
 ![grafik](./grafik copy.png)
 
@@ -176,15 +174,17 @@ Hal yang menambah kompleksitas adalah ketika kita harus mengubah indeks dari arr
 Setelah sebelumnya kita sudah menghitung kompleksitas satu baris kode, sekarang kita akan menghitung total keseluruhan untuk beberapa baris kode. Kita akan mulai dari contoh sederhana terlebih dahulu.
 
 ```javascript
-for(let i=0; i<10; i++) { // O(n)
-  for(let j=0; j<10; j++) { // O(n)
+for (let i = 0; i < 10; i++) {
+  // O(n)
+  for (let j = 0; j < 10; j++) {
+    // O(n)
     console.log(i); // O(1)
     console.log(j); // O(1)
   }
 }
 ```
 
-Kompleksitas potongan kode diatas dapat dihitung dengan mengalikan notasi-notasi setiap baris. Karena terdapat pengulangan bersarang, maka operasi yang digunakan adalah perkalian. Artinya hasil dari pengulangan bersarang tersebut adalah: <strong>O(n) * O(n) = O<sub>(n<sup>2</sup>)</sub></strong>.
+Kompleksitas potongan kode diatas dapat dihitung dengan mengalikan notasi-notasi setiap baris. Karena terdapat pengulangan bersarang, maka operasi yang digunakan adalah perkalian. Artinya hasil dari pengulangan bersarang tersebut adalah: <strong>O(n) \* O(n) = O<sub>(n<sup>2</sup>)</sub></strong>.
 
 Jika perintah yang berada di level yang sama seperti:
 
@@ -193,16 +193,18 @@ console.log(i); // O(1)
 console.log(j); // O(1)
 ```
 
-maka operasi yang akan kita lakukan adalah menjumlahkan. Sehingga untuk kedua perintah diatas hasilnya adalah <strong>O<sub>(1)</sub> + O<sub>(1)</sub> = O<sub>(2)</sub></strong>. Jika digabungkan hasilnya menjadi <strong>O<sub>(n<sup>2</sup>)</sub> * O<sub>(2)</sub></strong>. Namun biasanya untuk jenis kode diatas cukup dilambangkan dengan <strong>O<sub>(n<sup>2</sup>)</sub> * O<sub>(2)</sub></strong> karena <strong>O<sub>(2)</sub></strong> tidak signifikan perbedaannya.
+maka operasi yang akan kita lakukan adalah menjumlahkan. Sehingga untuk kedua perintah diatas hasilnya adalah <strong>O<sub>(1)</sub> + O<sub>(1)</sub> = O<sub>(2)</sub></strong>. Jika digabungkan hasilnya menjadi <strong>O<sub>(n<sup>2</sup>)</sub> _ O<sub>(2)</sub></strong>. Namun biasanya untuk jenis kode diatas cukup dilambangkan dengan <strong>O<sub>(n<sup>2</sup>)</sub> _ O<sub>(2)</sub></strong> karena <strong>O<sub>(2)</sub></strong> tidak signifikan perbedaannya.
 
 Mari kita lihat contoh kode berikutnya.
 
 ```javascript
-for(let i=0; i<10; i++) { // O(n)
+for (let i = 0; i < 10; i++) {
+  // O(n)
   console.log(i);
 }
 
-for(let j=0; j<10; j++) { // O(n)
+for (let j = 0; j < 10; j++) {
+  // O(n)
   console.log(j);
 }
 ```
@@ -213,18 +215,56 @@ Potongan kode deiatas dapat dilambangkan sebagai <strong>O<sub>(n)</sub></strong
 
 Sebagai kesimpulan, notasi O besar atau _Big-O Notation_ merupakan metode untuk menghitung kompleksitas dari potongan kode yang kita buat. Sehingga dapat menumbuhkan kesadaran kita untuk mencari alternatif yang lebih baik sebelum data semakin besar dan berdampak kepada performa aplikasi yang kita buat.
 
-Berikut daftar kompleksitas kode dari operasi-operasi yang umum kita jumpai.
+Notasi O besar inipun tidak hanya semata berlaku di bagian kode yang kita tulis,
+namun di _database_ pun berlaku. Jadi proses pengambilan data di database dengan
+sintaksis SQL yang dapat dianggap sebagai proses perulangan akan sangat tidak
+efektif jika di bagian _coding_-an kita kembali menggunakan perulangan. Maka
+proses tersebut akan menjadi <strong>O<sub>(n<sup>2</sup>)</sub></strong> karena
+akan terdapat perulangan didalam perulangan.
 
-| Kompleksitas | Operasi                                                 |
-|--------------|---------------------------------------------------------|
-| O<sub>(1)</sub>         | Menjalankan sebuah perintah                             |
-| O<sub>(1)</sub>         | Mendapatkan sebuah item dari array, objek atau variabel |
-| O<sub>(log n)</sub>     | Pengulangan yang berkurang setengahnya setiap iterasi   |
-| O<sub>(n<sup>2</sup>)</sub>        | Pengulangan dalam pengulangan                           |
-| O<sub>(n<sup>3</sup>)</sub>        | Pengulangan dalam pengulangan dalam pengulangan         |
+Begitu juga halnya jika kita mengambil data dengan tabel yang sudah diindeks.
+Secara otomatis notasinya akan berubah dari <strong>O<sub>(n)</sub></strong>
+menjadi <strong>O<sub>(log n)</sub></strong>.
+
+![tanpa index](./tanpa_index.png)
+
+Tanpa menggunakan indeks database melakukan yang disebut dengan "Sequential
+Scan". Beberapa yang lain menyebutnya dengan istilah "Full Table Scan" yang
+kurang-lebih melakukan perulangan setiap barisnya dan membandingkan dengan
+argumen query yang kita tentukan.
+
+Dengan kata lain operasi _sequential_ seperti contoh diatas dapat kita beri
+notasi <strong>O<sub>(n)</sub></strong>. Seiring bertambahnya jumlah data,
+efisiensi akan semakin menurun.
+
+Hal termudah untuk mengangkat performa untuk kasus ini adalah dengan menambahkan
+indeks di tabel terkait dan kita dapat melihat perbedaan yang cukup signifikan
+terutama ketika data sudah semakin banyak.
+
+![dengan index](./dengan_index.png)
+
+Sehingga operasi diatas berubah notasinya menjadi <strong>O<sub>(log
+n)</sub></strong>.
+
+Hal yang menarik lainnya, [Redis](https://redis.io) sebuah _in-memory
+database_ menyertakan notasi kompleksitas waktu di setiap perintah yang ada di
+[dokumentasinya](https://redis.io/commands). Contohnya dapat dilihat seperti
+perintah [append](https://redis.io/commands/append),
+[del](https://redis.io/commands/del), [lpush](https://redis.io/commands/lpush),
+dan masih banyak lagi yang lainnya.
+
+Sebagai penutup, berikut daftar kompleksitas kode dari operasi-operasi yang umum kita jumpai.
+
+| Kompleksitas                | Operasi                                                 |
+| --------------------------- | ------------------------------------------------------- |
+| O<sub>(1)</sub>             | Menjalankan sebuah perintah                             |
+| O<sub>(1)</sub>             | Mendapatkan sebuah item dari array, objek atau variabel |
+| O<sub>(log n)</sub>         | Pengulangan yang berkurang setengahnya setiap iterasi   |
+| O<sub>(n<sup>2</sup>)</sub> | Pengulangan dalam pengulangan                           |
+| O<sub>(n<sup>3</sup>)</sub> | Pengulangan dalam pengulangan dalam pengulangan         |
 
 # Referensi
 
-* [Materi 'Four Semesters of Computer Science in Six Hours'](https://btholt.github.io/four-semesters-of-cs/)
-* [Buku 'JavaScript Data Structures and Algorithms, Sammie Bae'](https://www.amazon.com/JavaScript-Data-Structures-Algorithms-Understanding/dp/1484239873)
-* [Video 'FrontendMasters Data Structures and Algorithms in JavaScript, Bianca Gandolfo'](https://frontendmasters.com/courses/data-structures-algorithms/)
+- [Materi 'Four Semesters of Computer Science in Six Hours'](https://btholt.github.io/four-semesters-of-cs/)
+- [Buku 'JavaScript Data Structures and Algorithms, Sammie Bae'](https://www.amazon.com/JavaScript-Data-Structures-Algorithms-Understanding/dp/1484239873)
+- [Video 'FrontendMasters Data Structures and Algorithms in JavaScript, Bianca Gandolfo'](https://frontendmasters.com/courses/data-structures-algorithms/)
