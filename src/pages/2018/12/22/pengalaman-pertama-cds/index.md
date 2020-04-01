@@ -16,7 +16,7 @@ Suatu sore, saya *ngobrol* dengan Mas [Yohan Totting](https://twitter.com/tyohan
 
 Saya masih ingat banget jawaban Mas Yohan saat itu: “Lo lakukan apa yang selama ini sudah lo kerjakan. Tulis artikel, *screencast*, *podcast*, dan *talks*.” Bedanya sekarang semua itu di *support* Google. Jadi kalau saya diundang menjadi pembicara diluar Jakarta dan di sekitar Asia Tenggara, Google akan memberikan dukungan dalam bentuk tiket pesawat dan penginapan.
 
-Dalam hati, seru juga ya karena memang hal tersebut yang saya lakukan beberapa tahun terakhir dalam skala kecil. Singkat cerita, saya memberanikan diri untuk apply dengan* mindset nothing to lose*. Banyak tahapan yang harus dilewati, mulai dari *screening* awal, interview dengan GDE dan terakhir, kalau lulus, akan diinterview oleh *Googler*! Lumayan kan, menambah pengalaman.
+Dalam hati, seru juga ya karena memang hal tersebut yang saya lakukan beberapa tahun terakhir dalam skala kecil. Singkat cerita, saya memberanikan diri untuk apply dengan *mindset nothing to lose*. Banyak tahapan yang harus dilewati, mulai dari *screening* awal, interview dengan GDE dan terakhir, kalau lulus, akan diinterview oleh *Googler*! Lumayan kan, menambah pengalaman.
 
 Setelah melewati proses *screening*, saya akhirnya dapat kesempatan diinterview oleh GDE. Saya anggap ini sebagai kesempatan saya meyakinkan diri apakah GDE pantas saya perjuangkan, karena praktis akan banyak waktu dan juga biaya yang akan keluar. Saya berkesempatan diinterview oleh [Warat Wongmaneekit](https://developers.google.com/experts/people/warat-wongmaneekit), GDE asal Thailand.
 

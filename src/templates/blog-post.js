@@ -6,8 +6,6 @@ import Social from '../components/Social';
 // import config from '../config/config';
 import Layout from '../components/layout';
 
-import { database } from '../firebase.js';
-
 require('../../node_modules/prismjs/themes/prism-tomorrow.css');
 require('../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css');
 
@@ -22,48 +20,12 @@ class BlogPostTemplate extends React.Component {
     };
   }
 
-  componentDidMount() {
-    document.addEventListener('scroll', this.trackScroll);
-
-    database
-      .ref()
-      .child(this.props.pageContext.slug)
-      .on('value', (snapshot) => {
-        this.setState({
-          data: snapshot.val()
-        });
-      });
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.trackScroll);
-  }
-
-  updateData = () => {
-    const newData = this.state.data + 1;
-    database
-      .ref()
-      .child(this.props.pageContext.slug)
-      .set(newData);
-  };
-
-  isBottom(el) {
-    return el.getBoundingClientRect().bottom <= window.innerHeight + 600;
-  }
-
-  trackScroll = () => {
-    const wrappedElement = document.getElementById('___gatsby');
-    if (this.isBottom(wrappedElement)) {
-      this.updateData();
-      document.removeEventListener('scroll', this.trackScroll);
-    }
-  };
-
   render() {
-    const post = this.props.data.markdownRemark;
+    let post = this.props.data.markdownRemark;
     const { previous, next } = this.props.pageContext;
     const url = 'https://rizafahmi.com' + this.props.location.pathname;
     const { slug } = this.props.pageContext;
+    post.fields = { slug };
     const editUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/edit/master/src/pages${slug}index.md`;
 
     return (
@@ -86,7 +48,6 @@ class BlogPostTemplate extends React.Component {
               📅
             </span>{' '}
             {post.frontmatter.date} 📗 {post.timeToRead} minutes read,{' '}
-            {this.state.data} 👀 |{' '}
             <a href={editUrl} target="_blank" rel="noopener noreferrer">
               Edit on GitHub
             </a>
@@ -99,6 +60,37 @@ class BlogPostTemplate extends React.Component {
             <a href={editUrl} target="_blank" rel="noopener noreferrer">
               Find a typo? Edit on GitHub
             </a>
+          </div>
+          <div className="mt-16 pt-8 social-content text-center border-t">
+            <p className="font-light">
+              Did you enjoy this post? Buy me some{' '}
+              <span role="img" aria-label="traktir" style={{ fontSize: 32 }}>
+                ☕
+              </span>{' '}
+              with gopay or ovo.
+            </p>
+            <ul class="list-reset inline-flex">
+              <li class="p-4">
+                <div
+                  role="button"
+                  tabindex="0"
+                  className="SocialMediaShareButton SocialMediaShareButton--twitter button"
+                >
+                  <div style={{ width: 256 }}>
+                    <a
+                      href="https://karyakarsa.com/rizafahmi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        alt="karyakarsa logo"
+                        src="https://karyakarsa.com/_nuxt/img/0d8c212.png"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
           <div className="mt-16 pt-8 social-content text-center border-t">
             <p className="font-light">

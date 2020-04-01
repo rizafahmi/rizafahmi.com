@@ -22,6 +22,7 @@ const Seo = (props) => {
     ? postCover.childImageSharp.sizes.src
     : `${facebookCover}`;
   const url = config.siteUrl + config.pathPrefix + postSlug;
+  console.log(config.siteUrl, config.pathPrefix, postSlug);
 
   return (
     <Helmet
