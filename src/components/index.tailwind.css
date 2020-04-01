@@ -134,5 +134,45 @@ blockquote > p > a {
   transform: rotate(-3deg);
 }
 
-.social-media-link {
+.gatsby-highlight pre[class*='language-'] {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  overflow: initial;
+  float: left; /* 1 */
+  min-width: 100%; /* 2 */
+}
+
+.gatsby-highlight pre[class*='language-'].line-numbers {
+  padding-left: 2.8em; /* 3 */
+}
+.line-numbers .line-numbers-rows {
+  margin-top: 24px;
+  margin-left: 10px;
+}
+
+.typo {
+  margin-top: 24px;
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  border-radius: 0.3em !important;
+  background: #f1f5f8 !important;
+  color: #cc99cd;
+  padding: 0.15em 0.2em 0.05em !important;
+  white-space: normal !important;
+}
+
+table {
+  @apply table-fixed;
+}
+
+th {
+  @apply border px-4 py-2;
+}
+
+td {
+  @apply border px-4 py-2;
+
 }
