@@ -12,7 +12,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: '<your-google-analytics-tracking-id>',
+        trackingId: 'UA-100507458-1',
         head: true,
         anonymize: true,
         respectDNT: false,
@@ -54,7 +54,8 @@ module.exports = {
             }
           },
           'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants'
+          'gatsby-remark-smartypants',
+          'gatsby-remark-autolink-headers'
         ]
       }
     },
