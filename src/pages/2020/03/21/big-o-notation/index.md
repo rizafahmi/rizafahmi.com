@@ -130,7 +130,7 @@ animals.push('fish');
 console.log(animals); // ['ants', 'goats', 'cows', 'fish']
 ```
 
-Apakah notasi yang tepat untuk baris kode `animals.push('fish');`? Karena metode `push()` tidak peduli dengan seberapa banyak atau sedikit jumlah item yang ada, artinya operasi yang berjalan tetap sama, maka metode `push()` ini dapat diwakilkan dengan notasi <strong>O<sup>(1)</sup></strong> atau <strong>konstan</strong>.
+Apakah notasi yang tepat untuk baris kode `animals.push('fish');`? Karena metode `push()` tidak peduli dengan seberapa banyak atau sedikit jumlah item yang ada, artinya operasi yang berjalan tetap sama, maka metode `push()` ini dapat diwakilkan dengan notasi <strong>O<sub>(1)</sub></strong> atau <strong>konstan</strong>.
 
 ### 2. Array.pop()
 
@@ -142,7 +142,7 @@ plants.pop();
 console.log(plants); // ["broccoli", "cauliflower", "cabbage"]
 ```
 
-Apakah notasi yang tepat untuk baris kode `plants.pop();`? Mirip seperti metode `push()` diatas, metode `pop()` juga tidak mempermasalahkan jumlah item yang ada, artinya operasi yang berjalan tetap sama, maka metode `pop()` ini juga dapat diwakilkan dengan notasi <strong>O<sup>(1)</sup></strong> atau <strong>konstan</strong>.
+Apakah notasi yang tepat untuk baris kode `plants.pop();`? Mirip seperti metode `push()` diatas, metode `pop()` juga tidak mempermasalahkan jumlah item yang ada, artinya operasi yang berjalan tetap sama, maka metode `pop()` ini juga dapat diwakilkan dengan notasi <strong>O<sub>(1)</sub></strong> atau <strong>konstan</strong>.
 
 ### 3. Array.unshift()
 
