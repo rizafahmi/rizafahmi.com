@@ -2,7 +2,7 @@
 title: 'Rekursi: Fungsi Yang Memanggil Dirinya Sendiri'
 date: 2020-03-26
 slug: 'rekuris-atau-recursion'
-cover: ''
+cover: './martin-adams-lxujDxNigL4-unsplash.jpg'
 ---
 
 Di artikel ini kita akan mempelajari salah satu dari konsep fundamental dari ilmu komputer, rekursi atau _recursion_. Rekursi sederhananya adalah fungsi yang memanggil fungsi tersebut atau dirinya sendiri. Namun tidak berhenti disitu saja, ada beberapa aspek yang harus dibahas sebelum kita menggunakan rekursi di kode kita.
