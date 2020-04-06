@@ -174,5 +174,15 @@ th {
 
 td {
   @apply border px-4 py-2;
+}
 
+table {
+  @apply table-auto;
+}
+th {
+  @apply border px-4 py-2;
+}
+
+td {
+  @apply border px-4 py-2;
 }

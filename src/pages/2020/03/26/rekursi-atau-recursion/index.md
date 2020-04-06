@@ -1,7 +1,7 @@
 ---
 title: 'Rekursi: Fungsi Yang Memanggil Dirinya Sendiri'
 date: 2020-03-26
-slug: 'rekuris-atau-recursion'
+slug: 'rekursi-atau-recursion'
 cover: './martin-adams-lxujDxNigL4-unsplash.jpg'
 ---
 
