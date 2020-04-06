@@ -1,6 +1,6 @@
 module.exports = {
   siteTitle: "Hi, I'm Riza",
-  shortSiteTitle: 'Personal site presented by Riza',
+  shortSiteTitle: 'rizafahmi.com',
   siteDescription:
     'Building software? An app? I send newsletter with stories, best practices, lessons learned and random stuff such as podcast episode, screencast and more.',
   siteUrl: 'https://rizafahmi.com',
