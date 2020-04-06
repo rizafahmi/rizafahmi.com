@@ -6369,20 +6369,6 @@ blockquote > p > a {
   transform: rotate(-3deg);
 }
 
-/* .gatsby-highlight { */
-
-/*   background-color: #fdf6e3; */
-
-/*   border-radius: 0.3em; */
-
-/*   margin: 0.5em 0; */
-
-/*   padding: 1em; */
-
-/*   overflow: auto; */
-
-/* } */
-
 .gatsby-highlight pre[class*='language-'] {
   background-color: transparent;
   margin: 0;
