@@ -186,3 +186,11 @@ th {
 td {
   @apply border px-4 py-2;
 }
+
+.blog-content img {
+  border: 1em solid #fff382;
+}
+
+.blog-content video {
+  border: 1em solid #fff382;
+}
