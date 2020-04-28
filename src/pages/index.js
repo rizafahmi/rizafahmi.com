@@ -450,7 +450,7 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query MyQuery {
-    allMarkdownRemark(limit: 5, sort: { fields: fields___slug, order: DESC }) {
+    allMarkdownRemark(limit: 5, sort: { fields: fields___slug, order: DESC }, filter: {frontmatter: {draft: {ne: true}}}) {
       edges {
         node {
           fields {
