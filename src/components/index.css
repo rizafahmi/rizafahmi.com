@@ -6434,6 +6434,14 @@ td {
   padding-bottom: .5rem;
 }
 
+.blog-content img {
+  border: 1em solid #fff382;
+}
+
+.blog-content video {
+  border: 1em solid #fff382;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
