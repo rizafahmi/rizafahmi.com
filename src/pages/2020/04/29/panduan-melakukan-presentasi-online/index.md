@@ -2,7 +2,7 @@
 title: 'Panduan Melakukan Presentasi Online'
 date: 2020-04-29
 slug: 'panduan-melakukan-presentasi-online'
-cover: ''
+cover: 'gabriel-benois-qnWPjzewewA-unsplash.jpg'
 draft: false
 ---
 
@@ -18,15 +18,15 @@ Hal pertama yang harus dilakukan adalah mempersiapkan slide presentasi. Untuk me
 
 Format yang saat ini paling umum digunakan adalah format widescreen yaitu 16:9 sehingga lebih optimal untuk penonton. Karena saat ini hampir semua layar modern menggunakan format 16:9. Untuk membuat slide dengan format 16:9 dapat dilakukan dengan cara memilih tema dengan format 16:9 seperti contoh dibawah ini dengan menggunakan aplikasi Keynote.
 
-![wide](./wide.png)
+![wide](./wide.png 'Memilih format wide 16:9 di aplikasi Keynote')
 
-Ataupun juga bisa mengubah setting dokumen dengan memilih slide size widescreen(16:9) seperti contoh berikut.
+Ataupun juga bisa mengubah setting dokumen dengan memilih slide _size widescreen(16:9)_ seperti contoh berikut.
 
-![wide2](./wide2 copy.png)
+![Memilih setting dokumen dengan ukuran widescreen di aplikasi Keynote](./wide2 copy.png)
 
 Sedangkan cara mengubah ukuran slide presentasi di Google Slides adalah dengan memilih menu File lalu menuju ke Page Setup.
 
-![wide3](./wide3 copy.png)
+![Memilih ukuran widescreen di aplikasi Google Slides](./wide3 copy.png)
 
 ## Unduh Slide Presentasi
 
@@ -66,11 +66,11 @@ Dengan merekam proses latihan kita dapat mengevaluasi diri kita sendiri dan dapa
 
 Proses merekam saat latihan sebenarnya cukup sederhana. Kita dapat menggunakan alat bantu seperti QuickTime ataupun alat bantu perekam layar lainnya.
 
-![quicktime](./quicktime.png)
+![quicktime](./quicktime.png 'Melakukan rekaman dengan aplikasi Quicktime')
 
 Jangan lupa untuk menyalakan mikrofon agar suara kita terekam. Kita juga dapat sekaligus mencoba beberapa peralatan yang akan digunakan saat acara berlangsung seperti mikrofon eksternal, earphone ataupun headphone. Jika tidak, menggunakan mikrofon internal pun sudah cukup.
 
-![quicktime2](./quicktime2.png)
+![quicktime2](./quicktime2.png 'Menyalakan mic di aplikasi Quicktime')
 
 Hasil rekaman dapat dievaluasi sendiri atau jika dirasa membutuhkan masukan tambahan dapat mengirimkan ke panitia. Hasil rekaman tersebut juga dapat diupload ke [ Youtube ](https://www.youtube.com/watch?v=IJYp9the5h0) atau [ Vimeo ](https://vimeo.com) dan dapat juga ditampilkan di website kita sebagai bagian dari portofolio nantinya setelah acara berakhir.
 
@@ -88,13 +88,13 @@ Untuk menjalankan sesi online, pastikan koneksi internet stabil. Apabila memungk
 
 Siapkan juga koneksi cadangan seperti _tethering_ dengan ponsel, _mifi_ atau alat sejenis yang akan digunakan ketika koneksi utama bermasalah. Gunakan juga koneksi cadangan tersebut saat latihan atau gladi resik untuk memastikan semuanya berjalan lancar.
 
-![mifi](./mifi.png)
+![Contoh alat cadangan untuk koneksi internet](./mifi.png)
 
 ### Lokasi Dan Pencahayaan
 
 Carilah lokasi dirumah yang cukup tenang dan bebas dari gangguan. Pastikan juga pencahayaan cukup bagus. Jika pencahayaan dirasa kurang, bisa dibantu dengan pencahayaan tambahan dari lampu meja atau lampu belajar atau flash kamera ponsel.
 
-![Miniso-quality-product-quality-eye-folding-lamp-touch-office-lamp-reading-lamp](Miniso-quality-product-quality-eye-folding-lamp-touch-office-lamp-reading-lamp.jpg)
+![Contoh lampu belajar yang bisa digunakan untuk pencahayaan](Miniso-quality-product-quality-eye-folding-lamp-touch-office-lamp-reading-lamp.jpg)
 
 Pencahayaan yang baik akan dapat meningkatkan _engagement_ penonton dengan sangat signifikan.
 
@@ -102,21 +102,21 @@ Pencahayaan yang baik akan dapat meningkatkan _engagement_ penonton dengan sanga
 
 Jika menggunakan peralatan tambahan seperti webcam, mikrofon, earphone ataupun headphone harap untuk dicoba terlebih dahulu sebelum memulai presentasi. Pastikan sudah menyala dan alat sudah terpilih di platform video call pilihan seperti Hangout, Zoom, Skype atau yang lainnya. Pastikan juga posisi webcam dan mikrofon sudah berada di posisi yang tepat. Pastikan juga volume sudah dalam porsi yang tepat, tidak terlalu besar atau tidak terlalu kecil.
 
-![setting](./setting.png)
+![Setting di aplikasi Google Meet](./setting.png)
 
-![setting-audio](./setting-audio.png)
+![Setting pemilihan audio di aplikasi Google Meet](./setting-audio.png)
 
-![zoom-audio](./zoom-audio.png)
+![Setting pemilihan audio di aplikasi Zoom](./zoom-audio.png)
 
-![setting-video](./setting-video.png)
+![Setting pemilihan webcam di aplikasi Google Meet](./setting-video.png)
 
-![zoom-video](./zoom-video.png)
+![Setting pemilihan webcam di aplikasi Zoom](./zoom-video.png)
 
 ### Posisi Saat Presentasi
 
 Selain suara, hal yang tidak kalah penting saat melakukan presentasi adalah _body language_. Jika memungkinkan, materi dapat dibawakan sambil berdiri. Membawakan materi sambil berdiri dapat membantu kita menjadi lebih fokus, seimbang dan biasanya lebih bersemangat. Gerakan kita juga lebih leluasa dibandingkan dalam posisi duduk.
 
-![standing](./tips.jpeg)
+![Tips presentasi sambil berdiri](./tips.jpeg)
 
 Jika memutuskan untuk berdiri, pastikan juga posisi webcam atau laptop berada di posisi yang tepat sehingga tidak aneh dilihat penonton.
 
@@ -126,7 +126,7 @@ Jika pemateri lebih memilih untuk duduk, carilah posisi duduk yang nyaman. Janga
 
 Agar tidak mengganggu proses penyampaian materi, disarankan untuk mematikan semua notifikasi baik untuk laptop/PC maupun ponsel. Jauhkan posisi ponsel dari mikrofon untuk menghindari bunyi _feedback_ yang mungkin saja mengganggu kelancaran penyampaian materi.
 
-![disturb](./disturb.png)
+![Mengaktifkan mode hening](./disturb.png)
 
 ## Sesi Penyampaian Materi
 
@@ -140,35 +140,35 @@ Sebelum mulai menyampaikan materi pastikan laptop sudah terhubung ke aliran list
 
 Klik tombol “Present now” di Google Meet untuk mulai membagikan layar pemateri. Sedangkan di platform Zoom dapat menekan tombol "Share Screen".
 
-![present](./present.png)
+![Melakukan presentasi dengan share screen di aplikasi Google Meet](./present.png)
 
-![zoom-share-screen](./zoom-share-screen.png)
+![Melakukan presentasi dengan share screen di aplikasi Zoom](./zoom-share-screen.png)
 
 Disini terdapat dua pilihan: _Present a window_ atau _Present your entire screen_. Pilih _Present a window_ dan kemudian pilih _window_ dimana slide presentasi berada.
 
-![window](./window.png)
+![Memilih window untuk presentasi dengan aplikasi seperti Keynote di Google Meet](./window.png)
 
-![zoom-share-keynote](./zoom-share-keynote.png)
+![Memilih window untuk presentasi dengan aplikasi seperti Keynote di Zoom](./zoom-share-keynote.png)
 
 Apabila menggunakan alat presentasi online seperti Google Slides, slides.com, Canva atau yang lainnya dan berada di browser yang sama dengan Google Meet atau platform _video call_ lainnya, maka pilihlah browser tersebut untuk di share lalu segera pindah ke tab dimana slide presentasi berada.
 
-![tab](./tab.png)
+![Memilih browser untuk presentasi dengan aplikasi seperti Google Slides di Google Meet](./tab.png)
 
-![zoom-share-browser](./zoom-share-browser.png)
+![Memilih browser untuk presentasi dengan aplikasi seperti Slide.com di Zoom](./zoom-share-browser.png)
 
 ### Mute dan Unmute
 
 Pastikan pemateri mengetahui cara melakukan _mute_ dan _unmute_. Bila belum waktunya, pemateri dapat melakukan _mute_ dirinya sendiri di Google Meet agar tidak mengganggu jalannya sesi pemateri lain. Bila tiba saatnya menyampaikan materi silakan melakukan _unmute_ terlebih dahulu sebelum berbicara. Karena itu penting buat pemateri mengetahui cara melakukan _mute_ dan _unmute_ dan mengingat _shortcut_ akan lebih baik.
 
-![mute](./mute.png)
+![Mode diam atau mute di aplikasi Google Meet](./mute.png)
 
-![zoom-mute](./zoom-mute.png)
+![Mode diam atau mute di aplikasi Zoom](./zoom-mute.png)
 
 ### Menggunakan Lebih Dari Satu Monitor
 
 Monitor tambahan dapat digunakan untuk melihat catatan sehingga membantu proses penyampaian materi presentasi. Monitor tambahan juga dapat dimanfaatkan untuk memonitor keadaan _live streaming_ dan juga untuk memonitor grup apabila terdapat notifikasi dari panitia penyelenggara. Adanya monitor tambahan dapat membantu kelancaran penyampaian materi asalkan tidak membuat pemateri menjadi gagal fokus dan terdistraksi.
 
-![monitor](./monitor.JPG)
+![Mode dual monitor](./monitor.JPG)
 
 > PS: Punya tips dan trik yang belum dibahas? Pull-request di tautan [berikut](TODO).️
 

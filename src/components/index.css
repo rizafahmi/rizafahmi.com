@@ -6442,6 +6442,13 @@ td {
   border: 1em solid #fff382;
 }
 
+figcaption.gatsby-resp-image-figcaption {
+  text-align: center;
+  font-size: 1em;
+  font-style: italic;
+  color: #8795a1;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;
