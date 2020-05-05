@@ -5,7 +5,7 @@ slug: 'svelte'
 cover: 'ferenc-almasi-fhAfLtHToCs-unsplash.jpg'
 ---
 
-Svelte sederhananya adalah sebuah framework JavaScript untuk menulis komponen antarmuka atau _user interface_. Namun, menurut Rich Harris, Svelte bukan hanya sekedar framework tapi lebih dari itu. Menurutnya Svelte adalah semacam _compiler_, maksudnya kode yang kita tulis di Svelte dikonversi menjadi JavaScript yang sudah dioptimasi.
+Secara sederhana Svelte adalah sebuah framework JavaScript untuk menulis komponen antarmuka atau _user interface_. Namun, menurut Rich Harris, Svelte bukan hanya sekedar framework tapi lebih dari itu. Menurutnya Svelte adalah semacam _compiler_, maksudnya kode yang kita tulis di Svelte dikonversi menjadi JavaScript yang sudah dioptimasi.
 
 Salah satu fitur kunci dari Svelte adalah ukuran aplikasi yang kita tulis menjadi lebih kecil karena proses kompilasi yang dilakukan. Dan semua itu dicapai tanpa bantuan virtual DOM sama sekali. Seperti yang sama-sama kita ketahui, beberapa framework modern seperti React, Vue, Angular dan lainnya menggunakan alat bantu virtual DOM di framework mereka. Dengan tidak menggunakan virtual DOM maka ukuran aplikasi Svelte menjadi relatif lebih kecil.
 
