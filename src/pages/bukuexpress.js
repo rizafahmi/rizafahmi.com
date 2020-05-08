@@ -58,7 +58,17 @@ const BukuExpress = () => {
             </ul>
           </div>
           <h3>
-            Informasi lebih lanjut silakan hubungi via{' '}
+            Silakan menuju ke halaman{' '}
+            <a
+              href="https://karyakarsa.com/rizafahmi/buku-halo-web-server-dengan-express-dan-nodejs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              karyakarsa berikut
+            </a>{' '}
+            untuk melakukan pembayaran. Pembayaran dapat dilakukan via gopay,
+            ovo ataupun transfer bank. Butuh informasi lebih lanjut silakan
+            hubungi via{' '}
             <a
               href="https://t.me/rizafahmi"
               target="_blank"
