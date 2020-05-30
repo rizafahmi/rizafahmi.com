@@ -170,7 +170,7 @@ Monitor tambahan dapat digunakan untuk melihat catatan sehingga membantu proses 
 
 ![Mode dual monitor](./monitor.JPG)
 
-> PS: Punya tips dan trik yang belum dibahas? Pull-request di tautan [berikut](TODO).️
+> PS: Punya tips dan trik yang belum dibahas? Pull-request di tautan [berikut](https://github.com/rizafahmi/rizafahmi.com-v2).️
 
 ## Referensi
 
