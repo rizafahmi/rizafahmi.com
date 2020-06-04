@@ -19,6 +19,9 @@ class BlogPostTemplate extends React.Component {
       data: null
     };
   }
+  handleModal() {
+    console.log("open modal")
+  }
 
   render() {
     let post = this.props.data.markdownRemark;
@@ -78,13 +81,13 @@ class BlogPostTemplate extends React.Component {
                 >
                   <div style={{ width: 256 }}>
                     <a
-                      href="https://karyakarsa.com/rizafahmi"
+                      href="https://karyakarsa.com/checkout/207"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <img
                         alt="karyakarsa logo"
-                        src="https://karyakarsa.com/_nuxt/img/0d8c212.png"
+                        src={require('../images/karyakarsa-logo-black.svg')}
                       />
                     </a>
                   </div>
@@ -137,6 +140,8 @@ class BlogPostTemplate extends React.Component {
             </li>
           </ul>
         </div>
+                <a href="https://karyakarsa.com/checkout/207" target="_blank" rel="noopener noreferrer" title="Traktir saya segelas kopi" onClick={this.handleModal} className="float" style={{position: 'fixed', width: '60px', height: '60px',right: '40px', backgroundColor: '#FFF383', borderRadius: '50px', textAlign: 'center', boxShadow: '2px 2px 3px #999', fontSize: '3em', bottom: '18px'}} alt="Traktir saya segelas kopi">☕</a>
+
       </Layout>
     );
   }
