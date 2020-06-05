@@ -20,7 +20,8 @@ class BlogPostTemplate extends React.Component {
       showModal: false
     };
   }
-  handleModal = () => {
+  handleModal = (e) => {
+    e.preventDefault();
     this.setState({
       showModal: !this.state.showModal
     });
