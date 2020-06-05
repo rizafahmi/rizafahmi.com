@@ -16,12 +16,15 @@ class BlogPostTemplate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null
+      data: null,
+      showModal: false
     };
   }
-  handleModal() {
-    console.log("open modal")
-  }
+  handleModal = () => {
+    this.setState({
+      showModal: !this.state.showModal
+    });
+  };
 
   render() {
     let post = this.props.data.markdownRemark;
@@ -140,8 +143,58 @@ class BlogPostTemplate extends React.Component {
             </li>
           </ul>
         </div>
-                <a href="https://karyakarsa.com/checkout/207" target="_blank" rel="noopener noreferrer" title="Traktir saya segelas kopi" onClick={this.handleModal} className="float" style={{position: 'fixed', width: '60px', height: '60px',right: '40px', backgroundColor: '#FFF383', borderRadius: '50px', textAlign: 'center', boxShadow: '2px 2px 3px #999', fontSize: '3em', bottom: '18px'}} alt="Traktir saya segelas kopi">☕</a>
-
+        <a
+          href="javascript:;"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Traktir saya segelas kopi"
+          onClick={this.handleModal}
+          className="float"
+          style={{
+            position: 'fixed',
+            width: '60px',
+            height: '60px',
+            right: '40px',
+            backgroundColor: '#FFF383',
+            borderRadius: '50px',
+            textAlign: 'center',
+            boxShadow: '2px 2px 3px #999',
+            fontSize: '3em',
+            bottom: '18px'
+          }}
+          alt="Traktir saya segelas kopi"
+        >
+          {this.state.showModal === true ? (
+            <svg focusable="false" aria-hidden="true" width="16" height="20">
+              <path
+                fill="#ff00ff"
+                d="M13.978 12.637l-1.341 1.341L6.989 8.33l-5.648 5.648L0 12.637l5.648-5.648L0 1.341 1.341 0l5.648 5.648L12.637 0l1.341 1.341L8.33 6.989l5.648 5.648z"
+                fill-rule="evenodd"
+              ></path>
+            </svg>
+          ) : (
+            '☕'
+          )}
+        </a>
+        {this.state.showModal === true && (
+          <iframe
+            src="https://karyakarsa.com/checkout/207"
+            className="modal"
+            style={{
+              backgroundColor: '#fff',
+              position: 'fixed',
+              margin: 0,
+              padding: 0,
+              right: '18px',
+              bottom: '98px',
+              width: 400,
+              maxWidth: 500,
+              height: 'calc(100% - 140px)',
+              boxShadow: 'rgba(0, 0, 0, 0.4) 0px 8px 16px',
+              zIndex: 999
+            }}
+          ></iframe>
+        )}
       </Layout>
     );
   }
