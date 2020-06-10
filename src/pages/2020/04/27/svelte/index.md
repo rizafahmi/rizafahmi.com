@@ -627,3 +627,10 @@ Jika dilihat di browser, hasilnya pun nyaris sama dengan tampilan sebelumnya, be
 ### Peluncuran atau Deployment
 
 Cara termudah untuk meluncurkan aplikasi atau _deployment_ svelte adalah dengan alat bantu seperti Netlify, Now (namanya berganti menjadi Vercel sekarang), Surge ataupun servis sejenis. Tinggal jalankan perintah `$ npx now` dan selesai. Semudah itu! Silakan langsung kunjungi [https://sveltagram.now.sh](https://sveltagram.now.sh). Atau silakan cek kodenya di [https://github.com/rizafahmi/sveltagram](https://github.com/rizafahmi/sveltagram).
+
+## Selanjutnya
+
+Untuk mempelajari lebih lanjut tentang Svelte, teman-teman bisa mengikuti dua kelas online dari saya berikut ini:
+
+* [Kelas Online Svelte - BuildWithAngga](https://rizafahmi.com/BWASVELTE)
+* [Kelas Online Svelte Membuat Aplikasi Galang Dana - BuildWithAngga](https://rizafahmi.com/BWAFUNDING)
