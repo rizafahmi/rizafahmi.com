@@ -21,9 +21,9 @@ const Menu = () => (
         <li className="mx-4">
           <a
             className="bg-yellow-light hover:bg-grey-light p-1"
-            href="/bukuexpress"
+            href="/mentorship"
           >
-            Book
+            Mentor 🚢
           </a>
         </li>
         <li className="mx-4">
