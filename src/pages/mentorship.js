@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Layout from '../components/layout';
+import Diskusi from '../images/diskusi.mp4';
 
 const Mentorship = () => {
   return (
@@ -13,24 +14,24 @@ const Mentorship = () => {
           <p>
             Saya sedang dalam proses menyusun sebuah program mentorship online.
             Formatnya:
-            <ul>
-              <li>
-                <em>
-                  <strong>Self learning</strong>
-                </em>{' '}
-                dengan arahan mentor.
-              </li>
-              <li>
-                <em>
-                  <strong>Project-based</strong> learning
-                </em>
-                .
-              </li>
-              <li>
-                <em>Handcrafted learning roadmap</em>
-              </li>
-            </ul>
           </p>
+          <ul>
+            <li>
+              <em>
+                <strong>Self learning</strong>
+              </em>{' '}
+              dengan arahan mentor.
+            </li>
+            <li>
+              <em>
+                <strong>Project-based</strong> learning
+              </em>
+              .
+            </li>
+            <li>
+              <em>Handcrafted learning roadmap</em>
+            </li>
+          </ul>
           <p>
             Silakan isi form ketertarikan di{' '}
             <a href="https://play.feedloop.io/q/mentorship" target="_blank">
@@ -45,7 +46,7 @@ const Mentorship = () => {
             <h3>Investasi</h3>
             <div>
               <strong>Untuk 7 orang pertama yang terpilih</strong>:
-              <span class="bg-yellow-light text-yellow-darker p-2">
+              <span className="bg-yellow-light text-yellow-darker p-2">
                 IDR 150.000
               </span>
             </div>
@@ -97,14 +98,7 @@ const Mentorship = () => {
             </a>
             .
           </p>
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/gMi8sxQz6ls?start=4184"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          <video controls width="600" src={Diskusi}></video>
         </div>
       </div>
     </Layout>
