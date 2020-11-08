@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Layout from '../components/layout';
-import Diskusi from '../images/diskusi.mp4';
 
 const Mentorship = () => {
   return (
@@ -81,6 +80,21 @@ const Mentorship = () => {
             <li>Pembelajaran selesai ditutup dengan mengerjakan project</li>
             <li>Mentee dan mentor mengevaluasi hasil belajar</li>
           </ol>
+          <h3>Topik Mentorship</h3>
+          <ul>
+            <li>Frontend</li>
+            <li>Backend</li>
+            <li>DevOps basic</li>
+            <li>Personal branding</li>
+            <li>Intro to programming</li>
+            <li>Learning how to learn</li>
+            <li>Mobile</li>
+            <li>Git</li>
+            <li>Open source</li>
+            <li>Developer tools, Vim, Git, zsh, etc</li>
+            <li>Scaling</li>
+            <li>Arsitektur</li>
+          </ul>
           <h3>Catatan</h3>
           <p>
             Bentuk dan formatnya masih akan terus digodok dan terbuka untuk
@@ -98,7 +112,6 @@ const Mentorship = () => {
             </a>
             .
           </p>
-          <video controls width="600" src={Diskusi}></video>
         </div>
       </div>
     </Layout>
