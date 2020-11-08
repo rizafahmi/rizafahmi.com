@@ -94,6 +94,7 @@ const Mentorship = () => {
             <li>Developer tools, Vim, Git, zsh, etc</li>
             <li>Scaling</li>
             <li>Arsitektur</li>
+            <li>Dan lain-lain</li>
           </ul>
           <h3>Catatan</h3>
           <p>
