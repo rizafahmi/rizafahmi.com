@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Layout from '../components/layout';
+import thumbnail from '../images/Phoenix youtube thumbnail.png';
 
 const Mentorship = () => {
   return (
@@ -101,10 +102,16 @@ const Mentorship = () => {
             Bentuk dan formatnya masih akan terus digodok dan terbuka untuk
             didiskusikan. Biasanya kita mendiskusikannya di sesi livestreaming
             via{' '}
-            <a href="https://youtube.com/rizafahmi" target="_blank">
+            <a href="https://youtu.be/gMi8sxQz6ls?t=4181" target="_blank">
               youtube
             </a>
-            . Catatan hasil <em>brainstorm</em> bisa dilihat di{' '}
+            .
+          </p>
+          <a href="https://youtu.be/gMi8sxQz6ls?t=4181" target="_blank">
+            <img src={thumbnail} />
+          </a>
+          <p>
+            Catatan hasil <em>brainstorm</em> bisa dilihat di{' '}
             <a
               href="https://www.notion.so/rizafahmi/Mentoring-Online-a062733e999743d59ca00c1757309b47"
               target="_blank"
