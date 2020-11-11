@@ -116,6 +116,21 @@ Dan secara umum berikut urutan dari notasi O besar diurutkan dari yang tercepat 
 
 ![grafik](./grafik copy.png)
 
+<div
+  id="subscription-box"
+  class="leading-loose py-3 my-6 px-3 border border-grey-darker border-solid"
+>
+  <h3>Kelas Online Struktur Data dengan JavaScript - BuildWithAngga.com</h3>
+  <div>
+    <img style="width:25%" src="https://www.buildwithangga.com/storage/assets/thumbnails/thumbnail%20alur%20belajar%20menjadi%20front%20end%20developer%20buildwith%20angga.png" />
+    <p>Kelas online Struktur Data dengan JavaScript ini akan membahas berbagai macam struktur data. Mulai dari struktur data fundamental seperti array dan object literal, kemudian struktur data stack dan queue, hingga struktur data linked list.</p>
+    <div class="my-2">
+    <a class="bg-yellow-light p-2 font-bold" href="https://www.buildwithangga.com/kelas/struktur-data-dengan-javascript" target="_blank">Ikuti Kelas</a>
+    </div>
+  </div>
+</div>
+
+
 ## Beberapa Contoh Notasi O Besar
 
 Mari kita melihat contoh notasi O besar dari fungsi, ekspresi dan operasi JavaScript yang sederhana.
@@ -262,6 +277,20 @@ Sebagai penutup, berikut daftar kompleksitas kode dari operasi-operasi yang umum
 | O<sub>(log n)</sub>         | Pengulangan yang berkurang setengahnya setiap iterasi   |
 | O<sub>(n<sup>2</sup>)</sub> | Pengulangan dalam pengulangan                           |
 | O<sub>(n<sup>3</sup>)</sub> | Pengulangan dalam pengulangan dalam pengulangan         |
+
+<div
+  id="subscription-box"
+  class="leading-loose py-3 my-6 px-3 border border-grey-darker border-solid"
+>
+  <h3>Kelas Online Struktur Data dengan JavaScript - BuildWithAngga.com</h3>
+  <div>
+    <img style="width:25%" src="https://www.buildwithangga.com/storage/assets/thumbnails/thumbnail%20alur%20belajar%20menjadi%20front%20end%20developer%20buildwith%20angga.png" />
+    <p>Kelas online Struktur Data dengan JavaScript ini akan membahas berbagai macam struktur data. Mulai dari struktur data fundamental seperti array dan object literal, kemudian struktur data stack dan queue, hingga struktur data linked list.</p>
+    <div class="my-2">
+    <a class="bg-yellow-light p-2 font-bold" href="https://www.buildwithangga.com/kelas/struktur-data-dengan-javascript" target="_blank">Ikuti Kelas</a>
+    </div>
+  </div>
+</div>
 
 # Referensi
 
