@@ -54,6 +54,14 @@ const Mentorship = () => {
               Setelahnya akan menjadi: <strike>IDR 350.000</strike>.
             </div>
           </div>
+          <h3>Yang akan didapat</h3>
+          <ul>
+            <li>
+              <em>Learning roadmap</em>
+            </li>
+            <li>1 sesi mentorship</li>
+            <li>Butuh sesi mentorship tambahan? Harga yang sama berlaku</li>
+          </ul>
           <h3>Langkah-langkah pendaftaran</h3>
           <ol>
             <li>
