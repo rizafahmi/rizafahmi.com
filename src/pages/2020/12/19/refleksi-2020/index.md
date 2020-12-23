@@ -59,4 +59,38 @@ Total sudah ada tiga course sampai saat ini yang sudah dipublikasikan. _Course_ 
 
 ## Mengaktifkan (kembali) Kanal Youtube
 
-Terpantik dengan webinar yang diadakan bersama Angga, membuat saya ingin kembali mengaktifkan kembali kanal [YouTube](https://youtube.com/rizafahmi) yang sempat terbengkalai. Format _livestreaming_ dipilih murni karena untuk memudahkan dan tidak terlalu membutuhkan persiapan banyak. Terutama tidak membutuhkan proses _editing_ yang lumayan butuh _effort_ dan keunikan tersendiri dapat berinteraksi langsung dengan penonton.
+Terpantik dengan webinar yang diadakan bersama Angga, membuat saya ingin kembali mengaktifkan kembali kanal [YouTube](https://youtube.com/rizafahmi) yang sempat terbengkalai. Format _livestreaming_ dipilih murni karena untuk memudahkan dan tidak terlalu membutuhkan persiapan banyak. Terutama tidak membutuhkan proses _editing_ yang lumayan butuh _effort_. Tapi ternyata format _livestreaming_ memiliki keunikan tersendiri dapat berinteraksi langsung dengan penonton. Ternyata _livestreaming_ ini _ngangenin_ juga.
+
+Di akhir 2020 ini saya berhasil melakukan 57 kali sesi _livestreaming_. Setiap sesinya dibentuk dalam format serial seperti: Sesi Belajar Elixir, Sesi Belajar Svelte, Sesi PWA dll. Bisa langsung dicek [disini](https://www.youtube.com/c/RizaFahmi/playlists).
+
+Sempat juga iseng validasi ide ke penonton, dan jadilah program [mentorship](https://rizafahmi.com/mentorship). Dan setelah sesi _livestreaming_ biasanya saya dan penonton setia biasanya _nongkrong_ di [server discord berikut](https://discord.gg/wFfszuzk3Q). Silakan bergabung untuk diskusi bebas atau memberikan ide topik pembahasan, saran dan kritik membangun untuk sesi _livestreaming_.
+
+<a href="https://youtu.be/gMi8sxQz6ls?t=4181" target="_blank">
+    <img src="./Phoenix youtube thumbnail.png" />
+</a>
+<hr />
+
+## Target Belajar di 2020
+
+Di 2020 saya menargetkan belajar (kembali) beberapa teknologi yang menarik buat saya. Sebenarnya bukan teknologi baru akan tetapi sudah lama tidak update dan hanya memantau dari kejauhan. Akhirnya ditahun 2020 ini saya berhasil memaksa diri untuk belajar [ Svelte ](https://buildwithangga.com/kelas/sveltejs-front-end-javascript-development-web-donasi-online) (sekaligus membuat online course-nya), Phoenix LiveView, Progressive Web Apps dan GraphQL. Saya bisa memaksa diri untuk belajar salah satunya karena 'harus' melakukan sesi _livestreaming_. Sayangnya sesi _livestreaming_ sangat tergantung dengan koneksi internet. Dan memasuki bulan Desember ini koneksi internet dirumah saya sering mengalami banyak kendala.
+
+## _Preview_ 2021
+
+### Yang ingin dipelajari di 2021
+
+Sebagaimana yang disarankan buku [The Pragmatic Programmer](), kita disarankan untuk mempelajari setidaknya satu bahasa pemrograman baru setiap tahunnya. Di 2021 saya ingin mempelajari setidaknya satu dari beberapa bahasa pemrograman baru berikut: Rust, atau OCaml/ReasonML. Sekaligus di 2021 saya ingin mempelajari lebih dalam tentang Elixir dan ingin membangun sesuatu dengan Elixir.
+
+### Melanjutkan Beberapa Online Course
+
+Saya juga ingin melanjutkan beberapa _online course_ berikutnya, diantaranya: Struktur Data, dan Algoritma Pemrograman. Selain itu saya berencana ingin membuat konten tentang proses dan bagaimana mempersiapkan _coding interview_. Format dan bentuknya seperti apa? Tunggu saja!
+
+### Lainnya
+
+Saya ingin melanjutkan petualangan _livestreaming_ sambil memikirkan cara yang lebih baik untuk memperbaiki koneksi internet. Saya juga ingin melakukan _revamp_ web [rizafahmi.com](https://rizafahmi.com/).
+
+## Penutup
+
+Ternyata di tahun 2020 ini saya cukup produktif juga ya terutama dalam mengembangkan konten. Semoga produktifitas ini terus berlanjut di 2021. Bekerja dari rumah memang memiliki kelebihan terutama memiliki waktu luang lebih banyak. Saya ingin waktu luang digunakan untuk sesuatu yang bermanfaat seperti lebih dekat dengan keluarga dan menghasilkan konten yang menarik untuk sama-sama kita pelajari.
+
+Itu dia 2020 saya, bagaimana dengan teman-teman?!
+
