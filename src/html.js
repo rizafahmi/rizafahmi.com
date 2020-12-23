@@ -40,6 +40,7 @@ export default function HTML(props) {
           `
           }}
         />
+        <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" key="twitter" type="text/javascript" />
       </body>
     </html>
   );
