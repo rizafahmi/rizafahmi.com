@@ -2,7 +2,7 @@
 title: 'Refleksi 2020'
 date: 2020-12-19
 slug: 'review-2020'
-cover: ''
+cover: 'kelly-sikkema-1KfV102FCcQ-unsplash.jpg'
 ---
 
 Sebentar lagi 2020 akan segera berakhir. Mari review apa yang terjadi sepanjang 2020 di kehidupan profesional saya. Saya sarankan teman-teman juga melakukan hal yang sama agar mendapat _insight_ menuju tahun yang akan datang.
@@ -37,7 +37,6 @@ Tahun 2020 ini menginjak tahun ketiga. Ditahun ketiga ini saya mendapat dukungan
 
 Pendengarnya pun meningkat secara signifikan, meningkat hingga 600%!. Terimakasih banyak untuk para pendengar setia dan para pendengar baru. Terimakasih juga untuk para narasumber yang sudah berbagi cerita dan inspirasi.
 
-
 <blockquote class="twitter-tweet" data-theme="light"><p lang="in" dir="ltr">2020 sebentar lagi kita lewati. <a href="https://twitter.com/hashtag/podcast?src=hash&amp;ref_src=twsrc%5Etfw">#podcast</a> <a href="https://twitter.com/hashtag/ceritanya?src=hash&amp;ref_src=twsrc%5Etfw">#ceritanya</a> <a href="https://twitter.com/hashtag/developer?src=hash&amp;ref_src=twsrc%5Etfw">#developer</a> berhasil menelurkan 22 episode! Pendengar bertumbuh sampai 600%! Didengar di 33 negara! Selamat datang para pendengar dari US, should I talk in english now? 😅 <a href="https://t.co/XUODhXpzKs">pic.twitter.com/XUODhXpzKs</a></p>&mdash; youtube.com/rizafahmi (@rizafahmi22) <a href="https://twitter.com/rizafahmi22/status/1335037030888181760?ref_src=twsrc%5Etfw">December 5, 2020</a></blockquote>
 
 ## Podcast Hikayat Punggawa Teknologi
@@ -55,7 +54,6 @@ Akhirnya saya berhasil mendapatkan kanal untuk _passive income_ dengan membangun
 <img src="./52011482_360952281297288_4255667014115868121_n.jpg" width="400" />
 
 Total sudah ada tiga course sampai saat ini yang sudah dipublikasikan. _Course_ pertama adalah [SvelteJS Web Development](https://buildwithangga.com/kelas/svelte-javascript-web-development) yang dapat dipelajari secara gratis. Kemudian dilanjutkan dengan [Front-End JavaScript Development: Web Donasi Online](https://buildwithangga.com/kelas/sveltejs-front-end-javascript-development-web-donasi-online). Terakhir yang terbaru adalah [Struktur Data dengan JavaScript](https://buildwithangga.com/kelas/struktur-data-dengan-javascript) dan beberapa lainnya sedang dalam proses pembuatan.
-
 
 ## Mengaktifkan (kembali) Kanal Youtube
 
@@ -93,4 +91,3 @@ Saya ingin melanjutkan petualangan _livestreaming_ sambil memikirkan cara yang l
 Ternyata di tahun 2020 ini saya cukup produktif juga ya terutama dalam mengembangkan konten. Semoga produktifitas ini terus berlanjut di 2021. Bekerja dari rumah memang memiliki kelebihan terutama memiliki waktu luang lebih banyak. Saya ingin waktu luang digunakan untuk sesuatu yang bermanfaat seperti lebih dekat dengan keluarga dan menghasilkan konten yang menarik untuk sama-sama kita pelajari.
 
 Itu dia 2020 saya, bagaimana dengan teman-teman?!
-
