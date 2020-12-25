@@ -34,7 +34,7 @@ const Mentorship = () => {
           </ul>
           <p>
             Silakan isi form ketertarikan di{' '}
-            <a href="https://play.feedloop.io/q/mentorship" target="_blank">
+            <a href="https://play.feedloop.io/q/mentorship" rel="noreferrer" target="_blank">
               form berikut
             </a>
             .
@@ -66,7 +66,7 @@ const Mentorship = () => {
           <ol>
             <li>
               Mengisi{' '}
-              <a href="https://play.feedloop.io/q/mentorship" target="_blank">
+              <a href="https://play.feedloop.io/q/mentorship" rel="noreferrer" target="_blank">
                 form ketertarikan
               </a>
             </li>

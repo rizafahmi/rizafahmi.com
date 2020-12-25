@@ -14,7 +14,11 @@ const Menu = () => (
           <a href="/articles">Articles</a>
         </li>
         <li className="mx-4">
-          <a href="https://discord.gg/5xfgy3Sec8" rel="noopener noreferrer">
+          <a
+            href="https://discord.gg/bnS6VJzW6S"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Discussion
           </a>
         </li>
