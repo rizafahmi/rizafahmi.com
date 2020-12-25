@@ -66,6 +66,13 @@ Sempat juga iseng validasi ide ke penonton, dan jadilah program [mentorship](htt
 <a href="https://youtu.be/gMi8sxQz6ls?t=4181" target="_blank">
     <img src="./Phoenix youtube thumbnail.png" />
 </a>
+
+Secara keseluruhan selama 2020, kanal youtube saya bertambah **1.062** _subscribers_, berhasil mendapatkan **26.912** _views_, 49 video rekaman dan 56 _livestreaming_ dan mendapatkan total donasi **Rp2.823.750** via KaryaKarsa dan Saweria.
+
+Kanal youtube saya memang isinya beragam. Mulai dari _livestreaming_, cuplikan _online course_, podcast, dan lain-lain. Kanal youtube ini memang dibuat untuk tempat eksperimen saya, seperti yang saya ceritakan saat diundang pak Sandhika Galih di kanal youtube miliknya.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ohL5VIHs36s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
 <hr />
 
 ## Target Belajar di 2020
