@@ -9,3 +9,4 @@ node_modules
 
 .netlify
 pnpm-debug.log
+_site/

@@ -1,0 +1,23 @@
+{
+  "name": "rizafahmi.com-v2",
+  "version": "0.0.1",
+  "description": "Personal site rizafahmi.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rizafahmi/rizafahmi.com-v2.git"
+  },
+  "keywords": [],
+  "author": "Riza Fahmi <rizafahmi@gmail.com> (https://rizafahmi.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rizafahmi/rizafahmi.com-v2/issues"
+  },
+  "homepage": "https://github.com/rizafahmi/rizafahmi.com-v2#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "0.12.1"
+  }
+}
