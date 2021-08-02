@@ -1,0 +1,57 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "rizafahmi.com-v2",
+      "version": "0.0.1",
+      "description": "*Note: This starter project is running the latest version of Gatsby V2 which is still in Beta* 1. Install the `gatsby-cli` package globally. ```bash npm install --global gatsby-cli ``` 2. Create a new gatsby project using this starter project. ```bash gatsby new new-blog https://github.com/kylegalbraith/gatsby-starter-tailwind-seo-social ``` 3. Open `src/config/config.js` and fill in your information ```javascript module.exports = {     siteTitle: \"Your Blog Title\",     shortSiteTitle: \"Your Short Blog Title\",     siteDescription: \"Your nice blog description\",     siteUrl: \"https://blog.kylegalbraith.com\",     pathPrefix: \"\",     siteImage: \"images/facebook-cover.jpg\",     siteLanguage: \"en\",     authorName: \"Your Name\",     authorTwitterAccount: \"kylegalbraith\",     authorSocialLinks: [       { name: \"github\", url: \"https://github.com/kylegalbraith\" },       { name: \"twitter\", url: \"https://twitter.com/kylegalbraith\" },       { name: \"facebook\", url: \"http://facebook.com/kyle.galbraith459\" }     ]   }; ``` 4. Build Tailwind stylesheet and start local Gatsby development server. ```bash cd new-blog npm run build:css & gatsby develop ``` 5. Open local development server at `localhost:8000` and you should see the following sample.",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rizafahmi/rizafahmi.com-v2.git"
+      },
+      "keywords": [],
+      "author": "Riza Fahmi <rizafahmi@gmail.com> (https://rizafahmi.com)",
+      "license": "MIT",
+      "bugs": {
+        "url": "https://github.com/rizafahmi/rizafahmi.com-v2/issues"
+      },
+      "homepage": "https://github.com/rizafahmi/rizafahmi.com-v2#readme"
+    },
+    "prefix": "/Users/riza/playground/rizafahmi.com-v2"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/Users/riza/.pnpm-store/v3",
+    "virtualStoreDir": "/Users/riza/playground/rizafahmi.com-v2/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/Users/riza/playground/rizafahmi.com-v2",
+    "stage": "resolution_started"
+  },
+  "4 error pnpm": {
+    "code": "ERR_PNPM_FETCH_404",
+    "hint": "@1ty/eleventy is not in the npm registry, or you have no permission to fetch it.\n\nAn authorization header was used: Bearer ec4c[hidden]",
+    "request": {
+      "authHeaderValue": "Bearer ec4cfc56-7fe4-415e-930e-3e007aa3cfd2",
+      "url": "https://registry.npmjs.org/@1ty%2Feleventy"
+    },
+    "response": {
+      "size": 0,
+      "timeout": 60000
+    },
+    "pkgName": "@1ty/eleventy",
+    "pkgsStack": [],
+    "err": {
+      "name": "Error",
+      "message": "GET https://registry.npmjs.org/@1ty%2Feleventy: Not Found - 404",
+      "code": "ERR_PNPM_FETCH_404",
+      "stack": "Error: GET https://registry.npmjs.org/@1ty%2Feleventy: Not Found - 404\n    at RetryOperation._fn (/Users/riza/node_modules/pnpm-global/4/node_modules/.pnpm/pnpm@6.10.3/node_modules/pnpm/dist/pnpm.cjs:79562:18)\n    at processTicksAndRejections (node:internal/process/task_queues:93:5)"
+    }
+  }
+}
