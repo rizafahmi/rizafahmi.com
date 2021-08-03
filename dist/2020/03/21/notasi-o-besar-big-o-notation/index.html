@@ -1,0 +1,227 @@
+<p>Ketika kita memikirkan apakah barisan kode yang kita ciptakan sudah cukup &quot;cepat&quot; atau efisien dalam memecahkan masalah yang ingin kita pecahkan, maka kita butuh sebuah metodologi untuk menghitungnya. Salah satu alat bantu yang bisa kita gunakan adalah notasi O besar atau <em>Big-O Notation</em>.</p>
+<p>Ini juga berarti kita ingin menghitung kompleksitas dari sebuah kode. Ada dua dimensi dalam menghitung kompleksitas kode. Pertama adalah kompleksitas ruang atau <em>space complexity</em> yang berkaitan dengan berapa banyak ruang yang digunakan seperti memori ataupun harddisk komputer. Kedua adalah kompleksitas waktu atau <em>time complexity</em> yang berkaitan berapa lama baris kode dijalankan.</p>
+<p>Kenapa dibutuhkan sebuah metode untuk menghitung efisiensi kode? Karena kita tidak bisa hanya mengatakan bahwa kumpulan kode ini dapat dijalankan selama lima detik. Padahal sangat banyak faktor penentu lainnya seperti jumlah datanya, koneksi, latensi, jumlah memori, kecepatan prosesor dan masih banyak yang lainnya.</p>
+<p>Karena itu kita butuh alat ukur untuk menghitung efisiensi kode secara relatif seperti notasi O besar ini.</p>
+<h1>Sekilas Tentang Notasi O Besar</h1>
+<p>Notasi O besar atau yang lazim disebut dengan Big-O Notation adalah sebuah cara atau metode untuk melakukan analisa terhadap sebuah algoritma pemrograman terhadap waktu eksekusi. Tentang seberapa efisien dan kompleksitas barisan kode dalam dimensi waktu.</p>
+<p>Di dalam sebuah program komputer pada umumnya, kita sudah lazim dengan istilah masukan-proses-keluaran.</p>
+<p><img src="./input.png" alt="input, proses, output"></p>
+<p>Notasi O besar merupakan skenario terburuk dari sebuah algoritma, dan biasanya terdapat notasi <em>n</em> yang merepresentasikan jumlah masukan. Berikut adalah diagram notasi O besar dengan masukan yang dimulai dari 0 hingga tak terhingga.</p>
+<p>![grafik](./grafik copy.png)</p>
+<p>Dari diagram diatas dapat kita lihat beberapa notasi yang kerap muncul, yaitu: O<sub>(1)</sub>, O<sub>(log n)</sub>, O<sub>(n)</sub>, O<sub>(n<sup>2</sup>)</sub> atau O<sub>(n<sup>n</sup>)</sub>. Untuk membahasnya, mari kita berandai-andai membangun sebuah aplikasi travel. Dan kita diminta untuk membuat fitur baru yang menampilkan daftar kisaran harga dari hotel-hotel yang berada di area tertentu.</p>
+<p><img src="./kayak.png" alt="kayak"></p>
+<p>Untuk membuat fitur tersebut, sederhananya kita mencari harga terendah (min) dan harga tertinggi (max) dari daftar hotel. Tentunya semakin banyak datanya, akan semakin lama pula proses untuk mencari harga terendah dan tertinggi.</p>
+<p>Dan berikut versi sederhana dari representasi data yang akan kita gunakan. Kita akan menggunakan JavaScript sebagai contoh. Dapat juga diaplikasikan ke bahasa pemrograman lain.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> hotels <span class="token operator">=</span> <span class="token punctuation">[</span><br><span class="token punctuation">{</span> price<span class="token operator">:</span> <span class="token number">180</span><span class="token punctuation">,</span> brand<span class="token operator">:</span> <span class="token string">"Hotel Tugu Lombok"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span><br><span class="token punctuation">{</span> price<span class="token operator">:</span> <span class="token number">78</span><span class="token punctuation">,</span> brand<span class="token operator">:</span> <span class="token string">"Sheraton Senggigi Beach Resort"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span><br><span class="token operator">...</span><br><span class="token operator">...</span><br><span class="token punctuation">{</span> price<span class="token operator">:</span> <span class="token number">317</span><span class="token punctuation">,</span> brand<span class="token operator">:</span> <span class="token string">"The Oberio"</span> <span class="token punctuation">}</span><br><span class="token punctuation">]</span></code></pre>
+<h2>Pengulangan di Dalam Pengulangan: O<sub>(N<sup>2</sup>)</sub></h2>
+<p>Sekarang, bagaimana caranya mencari harga terendah dan tertinggi? Cara yang paling naif adalah dengan membandingkan harga satu-per-satu. Berikut potongan kode sebagai ilustrasi.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> hotels<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> hotels<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// kode untuk membandingkan satu harga dengan harga lainnya...</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Mari kita simulasikan ketika jumlah data semakin banyak.</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>3</th>
+<th>5</th>
+<th>10</th>
+<th>100</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jumlah Operasi</td>
+<td>9</td>
+<td>25</td>
+<td>100</td>
+<td>10000</td>
+</tr>
+</tbody>
+</table>
+<p>Lihat tabel diatas, antara 3 dan 5 cukup dekat perbedaannya hanya dua. Namun jumlah operasi yang dijalankan sangat signifikan bedanya. Semakin banyak datanya semakin signifikan jumlah operasi yang dijalankan.</p>
+<p>Dengan kata lain kita membutuhkan n<sup>2</sup> dan untuk mencari harga terendah (min) dan harga tertinggi (max). Itulah sebabnya kita menyebutnya dengan notasi <strong>O<sub>(n<sup>2</sup>)</sub></strong>. Algoritma seperti ini sangatlah lambat dan tidak optimal.</p>
+<h2>Pengulangan Dari Sebuah Set: O<sub>(N)</sub></h2>
+<p>Jika solusi pertama tidak optimal, adakah solusi lain? Tentu. Misalnya kita bisa mencari apakah harga adalah yang terendah atau tertinggi dalam satu kali pengulangan saja seperti ilustrasi kode berikut.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> hotels<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token comment">// cari harga paling kecil...</span><br>  <span class="token comment">// cari harga paling besar...</span><br><span class="token punctuation">}</span></code></pre>
+<p>Ketika kita membutuhkan proses &quot;pengulangan untuk setiap item&quot;, merupakan notasi <strong>O<sub>(N)</sub></strong>.</p>
+<h2>Hanya Satu Operasi: O<sub>(1)</sub></h2>
+<p>Jika dengan asumsi bahwa data <code>hotels</code> sudah diurutkan berdasarkan harga terendah ke harga tertinggi, maka pencarian harga terendah dan tertinggi menjadi semakin efisien.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> hotels <span class="token operator">=</span> <span class="token punctuation">[</span><br>  <span class="token punctuation">{</span> price<span class="token operator">:</span> <span class="token number">78</span><span class="token punctuation">,</span> brand<span class="token operator">:</span> <span class="token string">"Sheraton Senggigi Beach Resort"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token punctuation">{</span> price<span class="token operator">:</span> <span class="token number">180</span><span class="token punctuation">,</span> brand<span class="token operator">:</span> <span class="token string">"Hotel Tugu Lombok"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token operator">...</span><br>  <span class="token operator">...</span><br>  <span class="token punctuation">{</span> price<span class="token operator">:</span> <span class="token number">317</span><span class="token punctuation">,</span> brand<span class="token operator">:</span> <span class="token string">"The Oberio"</span> <span class="token punctuation">}</span><br><span class="token punctuation">]</span></code></pre>
+<p>Untuk mendapatkan harga terendah, kita tinggal memanggil <code>hotels[0].price</code>. Sementara untuk harga tertinggi kita bisa menggunakan <code>hotels[hotels.length-1].price</code>. Selain lebih mudah, eksekusi baris kode juga menjadi lebih cepat dan efisien.</p>
+<p>Ketika kode menjalankan sebuah operasi, misalkan: <em>baris kode untuk mencari item barang teratas</em> atau <em>mendapatkan nilai sebuah array dengan indeks ke-5</em>. Operasi seperti ini kita bisa sebut sebagai notasi O<sub>(1)</sub>.</p>
+<p>Tidak masalah sebanyak apapun isi dari sebuah array atau sebanyak apapun jumlah baris di basis data, untuk mengambil nilai array dengan mengakses indeks maka algoritma berjalan secara konstan atau <em>constant time</em>.</p>
+<p>Kita sudah melihat beberapa contoh algoritma untuk menampilkan kisaran harga dari yang terendah hingga tertinggi dan hasilnya sebagai berikut.</p>
+<table>
+<thead>
+<tr>
+<th>Notasi O</th>
+<th>Istilah Lain</th>
+<th>Jumlah Operasi</th>
+<th>Algoritma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O<sub>(n<sup>2</sup>)</sub></td>
+<td>Quadratic</td>
+<td>n<sup>2</sup></td>
+<td>Komparasi seluruh harga. Pengulangan dalam pengulangan</td>
+</tr>
+<tr>
+<td>O<sub>(n)</sub></td>
+<td>Linear</td>
+<td>2n</td>
+<td>Mencari harga terendah dan tertinggi. 1 kali pengulangan</td>
+</tr>
+<tr>
+<td>O<sub>(1)</sub></td>
+<td>Constant</td>
+<td>2</td>
+<td>Asumsi sudah diurut berdasarkan harga, tinggal mencari elemen pertama dan elemen terakhir</td>
+</tr>
+</tbody>
+</table>
+<p>Dan secara umum berikut urutan dari notasi O besar diurutkan dari yang tercepat hingga yang terpelan.</p>
+<p>&lt;--- Super Cepat --------------------------------------- Super Lambat ---------&gt;</p>
+<table>
+<thead>
+<tr>
+<th><em>Nama</em></th>
+<th>Constant</th>
+<th>Logaritmic</th>
+<th>Linear</th>
+<th>Quadratic</th>
+<th>Exponential</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Notasi</em></td>
+<td>O<sub>(1)</sub></td>
+<td>O<sub>(log n)</sub></td>
+<td>O<sub>(n)</sub></td>
+<td>O<sub>(n<sup>2</sup>)</sub></td>
+<td>O<sub>(n<sup>n</sup>)</sub></td>
+</tr>
+</tbody>
+</table>
+<p>![grafik](./grafik copy.png)</p>
+<div
+  id="subscription-box"
+  class="leading-loose py-3 my-6 px-3 border border-grey-darker border-solid"
+>
+  <h3>Kelas Online Struktur Data dengan JavaScript - BuildWithAngga.com</h3>
+  <div>
+    <img style="width:25%" src="https://www.buildwithangga.com/storage/assets/thumbnails/thumbnail%20alur%20belajar%20menjadi%20front%20end%20developer%20buildwith%20angga.png" />
+    <p>Kelas online Struktur Data dengan JavaScript ini akan membahas berbagai macam struktur data. Mulai dari struktur data fundamental seperti array dan object literal, kemudian struktur data stack dan queue, hingga struktur data linked list.</p>
+    <div class="my-2">
+    <a class="bg-yellow-light p-2 font-bold" href="https://www.buildwithangga.com/kelas/struktur-data-dengan-javascript" target="_blank">Ikuti Kelas</a>
+    </div>
+  </div>
+</div>
+<h2>Beberapa Contoh Notasi O Besar</h2>
+<p>Mari kita melihat contoh notasi O besar dari fungsi, ekspresi dan operasi JavaScript yang sederhana.</p>
+<h3>1. Array.push()</h3>
+<p><code>push()</code> merupakan sebuah metode untuk menambahkan item baru kedalam sebuah array. Item yang ditambahkan akan berada diakhir array tersebut. Contoh penggunaan dapat dilihat sebagai berikut.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> animals <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'ants'</span><span class="token punctuation">,</span> <span class="token string">'goats'</span><span class="token punctuation">,</span> <span class="token string">'cows'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>animals<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'fish'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>animals<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['ants', 'goats', 'cows', 'fish']</span></code></pre>
+<p>Apakah notasi yang tepat untuk baris kode <code>animals.push('fish');</code>? Karena metode <code>push()</code> tidak peduli dengan seberapa banyak atau sedikit jumlah item yang ada, artinya operasi yang berjalan tetap sama, maka metode <code>push()</code> ini dapat diwakilkan dengan notasi <strong>O<sub>(1)</sub></strong> atau <strong>konstan</strong>.</p>
+<h3>2. Array.pop()</h3>
+<p><code>pop()</code> merupakan sebuah metode yang mengambil item terakhir dari array sehingga jumlah item yang ada di array akan berkurang satu. Berikut contoh penggunaannya.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> plants <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'broccoli'</span><span class="token punctuation">,</span> <span class="token string">'cauliflower'</span><span class="token punctuation">,</span> <span class="token string">'cabbage'</span><span class="token punctuation">,</span> <span class="token string">'tomato'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>plants<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>plants<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ["broccoli", "cauliflower", "cabbage"]</span></code></pre>
+<p>Apakah notasi yang tepat untuk baris kode <code>plants.pop();</code>? Mirip seperti metode <code>push()</code> diatas, metode <code>pop()</code> juga tidak mempermasalahkan jumlah item yang ada, artinya operasi yang berjalan tetap sama, maka metode <code>pop()</code> ini juga dapat diwakilkan dengan notasi <strong>O<sub>(1)</sub></strong> atau <strong>konstan</strong>.</p>
+<h3>3. Array.unshift()</h3>
+<p><code>unshift()</code> adalah sebuah metode untuk menambahkan satu atau beberapa item ke bagian awal dari sebuah array. Contoh penggunaannya sebagai berikut.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> array1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>array1<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>array1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [4, 5, 1, 2, 3]</span></code></pre>
+<p>Sekilas operasi <code>unshift()</code> ini terlihat seperti operasi yang konstan seperti <code>push()</code> dan <code>pop()</code> namun jika kita melakukan implementasi ulang metode ini, maka akan terlihat notasi yang sebenarnya. Berikut kira-kira implementasi dari <code>unshift()</code>, implementasi naif tentunya sekedar gambaran.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">unshift</span><span class="token punctuation">(</span><span class="token parameter">arr<span class="token punctuation">,</span> newItem</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token keyword">let</span> newArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>  newArr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> newItem<span class="token punctuation">;</span><br>  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    newArr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token keyword">return</span> newArr<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Hal yang menambah kompleksitas adalah ketika kita harus mengubah indeks dari array karena kita akan menempatkan item baru di indeks ke-0. Secara otomatis indeks akan bergeser sebanyak satu langkah. Dan karena itu kita menggunakan pengulangan <code>for</code> hingga menjadikan operasi <code>unshift()</code> dapat diwakilkan oleh notasi <strong>linear</strong> atau <strong>O<sub>(n)</sub></strong>. Kita harus menyadari apa yang dilakukan oleh sebuah fungsi, operasi ataupun pustaka sehingga kita dapat memprediksi kira-kira seberapa tingkat kompleksitasnya.</p>
+<h2>Menghitung Total Kompleksitas Kode</h2>
+<p>Setelah sebelumnya kita sudah menghitung kompleksitas satu baris kode, sekarang kita akan menghitung total keseluruhan untuk beberapa baris kode. Kita akan mulai dari contoh sederhana terlebih dahulu.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token comment">// O(n)</span><br>  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// O(n)</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// O(1)</span><br>    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// O(1)</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Kompleksitas potongan kode diatas dapat dihitung dengan mengalikan notasi-notasi setiap baris. Karena terdapat pengulangan bersarang, maka operasi yang digunakan adalah perkalian. Artinya hasil dari pengulangan bersarang tersebut adalah: <strong>O(n) * O(n) = O<sub>(n<sup>2</sup>)</sub></strong>.</p>
+<p>Jika perintah yang berada di level yang sama seperti:</p>
+<pre class="language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// O(1)</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// O(1)</span></code></pre>
+<p>Maka operasi yang akan kita lakukan adalah menjumlahkan. Sehingga untuk kedua perintah diatas hasilnya adalah <strong>O<sub>(1)</sub> + O<sub>(1)</sub> = O<sub>(2)</sub></strong>. Jika digabungkan hasilnya menjadi <strong>O<sub>(n<sup>2</sup>)</sub> O<sub>(2)</sub></strong>. Namun biasanya untuk jenis kode diatas cukup dilambangkan dengan <strong>O<sub>(n<sup>2</sup>)</sub> _ O<sub>(2)</sub></strong> karena <strong>O<sub>(2)</sub></strong> tidak signifikan perbedaannya.</p>
+<p>Mari kita lihat contoh kode berikutnya.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token comment">// O(n)</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <span class="token comment">// O(n)</span><br>  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Potongan kode deiatas dapat dilambangkan sebagai <strong>O<sub>(n)</sub></strong> ditambah dengan <strong>O<sub>(n)</sub></strong> sehingga menjadi <strong>O<sub>(2n)</sub></strong>.</p>
+<h1>Kesimpulan</h1>
+<p>Sebagai kesimpulan, notasi O besar atau <em>Big-O Notation</em> merupakan metode untuk menghitung kompleksitas dari potongan kode yang kita buat. Sehingga dapat menumbuhkan kesadaran kita untuk mencari alternatif yang lebih baik sebelum data semakin besar dan berdampak kepada performa aplikasi yang kita buat.</p>
+<p>Notasi O besar inipun tidak hanya semata berlaku di bagian kode yang kita tulis,
+namun di <em>database</em> pun berlaku. Jadi proses pengambilan data di database dengan
+sintaksis SQL yang dapat dianggap sebagai proses perulangan akan sangat tidak
+efektif jika di bagian algoritma kode kita kembali menggunakan perulangan. Maka
+proses tersebut akan menjadi <strong>O<sub>(n<sup>2</sup>)</sub></strong> karena
+akan terdapat perulangan didalam perulangan.</p>
+<p>Begitu juga halnya jika kita mengambil data dengan tabel yang sudah diindeks.
+Secara otomatis notasinya akan berubah dari <strong>O<sub>(n)</sub></strong>
+menjadi <strong>O<sub>(log n)</sub></strong>.</p>
+<p><img src="./tanpa_index.png" alt="tanpa index"></p>
+<p>Tanpa menggunakan indeks database melakukan yang disebut dengan &quot;Sequential
+Scan&quot;. Beberapa yang lain menyebutnya dengan istilah &quot;Full Table Scan&quot; yang
+kurang-lebih melakukan perulangan setiap barisnya dan membandingkan dengan
+argumen query yang kita tentukan.</p>
+<p>Dengan kata lain operasi <em>sequential</em> seperti contoh diatas dapat kita beri
+notasi <strong>O<sub>(n)</sub></strong>. Seiring bertambahnya jumlah data,
+efisiensi akan semakin menurun.</p>
+<p>Hal termudah untuk mengangkat performa untuk kasus ini adalah dengan menambahkan
+indeks di tabel terkait dan kita dapat melihat perbedaan yang cukup signifikan
+terutama ketika data sudah semakin banyak.</p>
+<p><img src="./dengan_index.png" alt="dengan index"></p>
+<p>Sehingga operasi diatas berubah notasinya menjadi <strong>O<sub>(log
+n)</sub></strong>.</p>
+<p>Hal yang menarik lainnya, <a href="https://redis.io">Redis</a> sebuah <em>in-memory
+database</em> menyertakan notasi kompleksitas waktu di setiap perintah yang ada di
+<a href="https://redis.io/commands">dokumentasinya</a>. Contohnya dapat dilihat seperti
+perintah <a href="https://redis.io/commands/append">append</a>,
+<a href="https://redis.io/commands/del">del</a>, <a href="https://redis.io/commands/lpush">lpush</a>,
+dan masih banyak lagi yang lainnya.</p>
+<p>Sebagai penutup, berikut daftar kompleksitas kode dari operasi-operasi yang umum kita jumpai.</p>
+<table>
+<thead>
+<tr>
+<th>Kompleksitas</th>
+<th>Operasi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O<sub>(1)</sub></td>
+<td>Menjalankan sebuah perintah</td>
+</tr>
+<tr>
+<td>O<sub>(1)</sub></td>
+<td>Mendapatkan sebuah item dari array, objek atau variabel</td>
+</tr>
+<tr>
+<td>O<sub>(log n)</sub></td>
+<td>Pengulangan yang berkurang setengahnya setiap iterasi</td>
+</tr>
+<tr>
+<td>O<sub>(n<sup>2</sup>)</sub></td>
+<td>Pengulangan dalam pengulangan</td>
+</tr>
+<tr>
+<td>O<sub>(n<sup>3</sup>)</sub></td>
+<td>Pengulangan dalam pengulangan dalam pengulangan</td>
+</tr>
+</tbody>
+</table>
+<div
+  id="subscription-box"
+  class="leading-loose py-3 my-6 px-3 border border-grey-darker border-solid"
+>
+  <h3>Kelas Online Struktur Data dengan JavaScript - BuildWithAngga.com</h3>
+  <div>
+    <img style="width:25%" src="https://www.buildwithangga.com/storage/assets/thumbnails/thumbnail%20alur%20belajar%20menjadi%20front%20end%20developer%20buildwith%20angga.png" />
+    <p>Kelas online Struktur Data dengan JavaScript ini akan membahas berbagai macam struktur data. Mulai dari struktur data fundamental seperti array dan object literal, kemudian struktur data stack dan queue, hingga struktur data linked list.</p>
+    <div class="my-2">
+    <a class="bg-yellow-light p-2 font-bold" href="https://www.buildwithangga.com/kelas/struktur-data-dengan-javascript" target="_blank">Ikuti Kelas</a>
+    </div>
+  </div>
+</div>
+<h1>Referensi</h1>
+<ul>
+<li><a href="https://btholt.github.io/four-semesters-of-cs/">Materi 'Four Semesters of Computer Science in Six Hours'</a></li>
+<li><a href="https://www.amazon.com/JavaScript-Data-Structures-Algorithms-Understanding/dp/1484239873">Buku 'JavaScript Data Structures and Algorithms, Sammie Bae'</a></li>
+<li><a href="https://frontendmasters.com/courses/data-structures-algorithms/">Video 'FrontendMasters Data Structures and Algorithms in JavaScript, Bianca Gandolfo'</a></li>
+</ul>

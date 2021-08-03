@@ -1,0 +1,137 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Memahami Sistem Konkurensi BEAM Melalui Elixir</title>
+    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen" />
+  </head>
+  <body>
+      <h1>👋 <a href="/">Saya Riza</a>!</h1>
+      <h2>Memahami Sistem Konkurensi BEAM Melalui Elixir</h2>
+      <p>Salah satu kontribusi besar <a href="https://twitter.com/FrancescoC/status/1119596234166218754"> Joe Armstrong </a> yang ketika tulisan ini dibuat baru saja meninggal dunia adalah bahasa pemrograman Erlang beserta BEAM, atau yang lebih dikenal dengan Erlang Virtual Machine. Erlang VM cukup terkenal kehebatannya terutama ketika <a href="http://highscalability.com/blog/2014/3/31/how-whatsapp-grew-to-nearly-500-million-users-11000-cores-an.html"> mampu menangani 2 juta koneksi per server di aplikasi chat WhatsApp! </a> Di artikel ini kita akan membedah mekanisme dibalik kemampuan konkurensi yang dimiliki BEAM dengan bahasa pemrograman Elixir. Meskipun demikian, semua yang akan dilakukan di artikel ini dapat pula diimplementasikan di bahasa pemrograman lain yang juga berjalan di BEAM atau Erlang VM seperti Erlang, LFE, Alpaca, Gleam dan lain-lain.</p>
+<h2>Mekanisme Konkurensi di BEAM</h2>
+<p>Ide utama dari BEAM berpusat di sesuatu yang disebut dengan proses atau process. Proses sederhananya adalah program yang berjalan secara sekuensial, baris-per-baris dan tidak dapat berjalan secara paralel atau menjalankan pola konkurensi.</p>
+<p><img src="/assets/images/memahami-beam/process.png" alt="process"></p>
+<p>Untuk membuatnya menjadi konkuren, kita harus menjalankan proses lebih dari satu. Di Elixir, hal ini bisa kita lakukan dengan fungsi <code>spawn</code>. Dan ketika kita melakukan spawn, aplikasi kita akan memiliki dua proses yang berjalan bersamaan. Proses disini bukanlah proses di level sistem operasi. Proses di BEAM sangat ringan, hanya beberapa kilobytes saja dan kita dapat memiliki proses sebanyak yang kita mau. Satu mesin bisa memiliki hingga 268 juta proses!</p>
+<p><img src="/assets/images/memahami-beam/spawn.png" alt="spawn"></p>
+<p>Sebenarnya kita akan memiliki dua program independen yang berjalan terpisah satu
+dengan yang lainnya. Mereka tidak berbagi <em>state</em> atau apapun, dan tidak memiliki
+kesamaan sama sekali. Berada di memori, <em>stack, heap</em> yang berbeda, dan juga
+<em>garbage collector</em> sendiri-sendiri dan tidak saling mengganggu.</p>
+<p><img src="/assets/images/memahami-beam/processes.png" alt="proses"></p>
+<p>Dan satu-satunya cara untuk membuat kedua proses yang berbeda tadi untuk dapat
+bekerjasama adalah dengan saling berkirim pesan. Hal ini juga dikenal dengan
+pola konkurensi melalui berkirim pesan (message passing concurrency) atau lebih
+dikenal dengan actor model. Pola ini mirip dengan ide mircoservice dimana setiap
+service terpisah satu dengan yang lain dan saling berhubungan dengan protokol
+HTTP.</p>
+<p><img src="/assets/images/memahami-beam/processes_link.png" alt="processes link"></p>
+<p>Misalkan proses pertama mengirimkan pesan ke proses kedua. Proses pertama mengirimkan pesan dengan fungsi <code>send</code> dan proses kedua menerima fungsi dengan blok <code>receive</code> dan kemudian menangani permintaan dari proses pertama.</p>
+<p>Ketika aplikasi dijalankan, yang terjadi adalah sebuah proses di sistem operasi
+akan muncul. Yap, hanya satu proses di level sistem operasi. Di dalam proses inilah semua proses yang kita <code>spawn</code> akan berjalan. Proses-proses yang berjalan secara sekuensial, independen, dan ringan.</p>
+<p><img src="/assets/images/memahami-beam/activity.png" alt="activity"></p>
+<p><img src="/assets/images/memahami-beam/BEAM.png" alt="BEAM"></p>
+<p>Proses disini bukanlah proses di level sistem operasi. Proses di BEAM sangat ringan, hanya beberapa kilobytes saja dan kita dapat memiliki proses sebanyak yang kita mau. Satu mesin bisa memiliki hingga 268 juta proses!</p>
+<p><img src="/assets/images/memahami-beam/BEAM-Processes.png" alt="BEAM-Processes"></p>
+<p>BEAM secara internal kemudian menjalankan threads yang diberi nama penjadwal atau scheduler. Satu penjadwal untu satu inti dari CPU. Jika kita memiliki CPU dengan empat inti, maka penjadwalnya ada empat.</p>
+<p><img src="/assets/images/memahami-beam/BEAM-Scheduler.png" alt="scheduler"></p>
+<p>Penjadwal ini yang bertanggungjawab mengeksekusi proses-proses. Sederhananya,
+proses akan mengantri di satu jalur dan setiap penjadwal akan bergiliran
+mengambil satu proses dan kemudian mengeksekusinya hingga proses tersebut
+selesai dan akan mengambil proses di antrian berikutnya. Begitu seterusnya.</p>
+<h2>Praktek Menggunakan Konkurensi BEAM</h2>
+<p>Sekarang pertanyaannya, bagaimana cara kita melakukan implementasi pola proses di aplikasi atau sistem yang kita kembangkan? Bagaimana caranya kita memisahkan tugas-tugas sehingga menjadi proses-proses kecil dan independen? Mari kita lihat demo aplikasi berikut ini.</p>
+<p><img src="/assets/images/memahami-beam/dasbor.png" alt="dasbor"></p>
+<p><em>Jobs</em> adalah proses yang melakukan <em>infinite loop</em>. Didalam <em>loop</em> ada tugas
+yang dapat menyebabkan <em>CPU bound</em> untuk melakukan simulasi tugas yang cukup
+berat. Selanjutnya setiap proses yang ditelurkan (<em>spawn</em>), pada ilustrasi
+diatas terdapat 10.000 proses. Setelah proses selesai mengerjakan tugasnya, ia
+akan mengirimkan pesan ke proses lain yang tugasnya melakukan pencatatan bahwa
+proses berhasil dieksekusi atau tidak berhasil. Proses-proses yang melakukan
+tugas berat kemudian ditidurkan (<em>sleep</em>) selama satu detik dan hidup kembali. Begitu seterusnya.</p>
+<p>Di demo ini kita hanya menggunakan satu penjadwal (<em>scheduler</em>) saja, bukan empat meskipun memiliki empat inti CPU. Tujuannya agar memudahkan saja untuk membuat sibuk CPU.</p>
+<p><img src="/assets/images/memahami-beam/frontend.png" alt="frontend"></p>
+<p>Kemudian di halaman yang dapat diakses pengguna, aplikasinya cukup sederhana namun sudah cukup mewakili aplikasi web secara umum. Ada sebuah input teks yang dapat menerima bilangan bulat positif dan ketika disubmit aplikasi akan menghitung jumlah dari angka tersebut berurutan dari angka satu. Misalnya kita memasukkan angka 3 maka hasilnya menjadi 1 + 2 + 3 yaitu 6 atau jika kita memasukkan angka 4 maka hasilnya menjadi 10 dan seterusnya. Berikut cuplikan kode dari proses kalkulasinya.</p>
+<pre class="language-elixir"><code class="language-elixir"><span class="token keyword">defp</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token attr-name">do:</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><br><span class="token keyword">defp</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span>from<span class="token punctuation">,</span> from<span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token attr-name">do:</span> sum <span class="token operator">+</span> from<br><span class="token keyword">defp</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span>from<span class="token punctuation">,</span> to<span class="token punctuation">,</span> acc_sum<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token attr-name">do:</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span>from <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> acc_sum <span class="token operator">+</span> from<span class="token punctuation">)</span></code></pre>
+<p>Setiap ada yang membuka halaman ini koneksi akan terbentuk antara klien dan server atau sistem. Dan ketika pengguna memasukkan angka 3 maka sistem akan melakukan perhitungan dan mengembalikan hasilnya dalam hal ini angka 6.</p>
+<p><img src="/assets/images/memahami-beam/client-server.png" alt="client-server"></p>
+<p>Dan misalkan ada tiga pengguna yang mengakses secara bersamaan, maka akan ada tiga koneksi. Satu untuk setiap pengguna atau setiap sesi (<em>session</em>). Begitu pula jika ada 1000 orang, akan ada 1000 koneksi yang terjadi antar proses dan begitu seterusnya.</p>
+<p><img src="/assets/images/memahami-beam/clients-servers.png" alt="clients-servers"></p>
+<blockquote>
+<p>&quot;We do not have one web server handling 2 millions sessions. We have 2 millions web servers handling one session each.&quot; -- Joe Armstrong</p>
+</blockquote>
+<p>Proses kalkulasinya sendiri terjadi di proses yang berbeda. Koneksi menelurkan (<em>spawn</em>) proses baru, kita sebut saja sebagai <em>calculation</em>. Proses <em>calculation</em> melakukan kalkulasi dan mengirimkan hasilnya kembali ke proses <em>server</em> untuk seterusnya diteruskan ke proses <em>client</em>. Kemudian proses <em>calculation</em> berhenti dan mati karena sudah menyelesaikan pekerjaannya.</p>
+<p><img src="/assets/images/memahami-beam/server-calculation.png" alt="server-calculation"></p>
+<p>Pola seperti ini dibentuk dengan harapan sistem akan menjadi <em>fault-tolerant</em> dan <em>high availability</em> untuk menghasilkan servis yang tetap berjalan meski terjadi masalah di <em>production</em>.</p>
+<p>Situasi yang umum ditemui di <em>production</em>, misalnya ada kesalahan, yang akan menghasilkan kesalahan yang belum ditangani (<em>unhandled exception</em>) seperti <code>division by zero</code> atau <code>undefined is not a function</code>. Coba masukkan angka keberuntungan: 13! Terjadi kesalahan dan pesan kesalahan muncul di server.</p>
+<p><img src="/assets/images/memahami-beam/13error.png" alt="13 error"></p>
+<p>Namun menariknya, sistem tetap berjalan normal. Kita tetap bisa memasukkan angka lain selain angka 13 dan sistem tetap memberikan hasil yang tepat. Hanya satu proses <em>calculation</em> angka 13 saja yang bermasalah dan mati.</p>
+<p><strong>Catatan penting</strong>: Sampai tahapan ini kita berhasil memisahkan kesalahan-kesalahan (<em>failures</em>) dengan cara mendelegasikannya kedalam proses-proses kecil.</p>
+<p><img src="/assets/images/memahami-beam/running.gif" alt="running"></p>
+<h2>Praktek Sistem Latensi</h2>
+<p>Mari kita coba memasukkan angka yang cukup besar agar sistem bisa menghitung lebih lama seperti angka 999999999. Otomatis load di dasbor pun meningkat. Meski demikian, sistem tetap reaktif menerima angka lain sambil menunggu hasil dari 999999999! Hal ini karena yang sibuk menghitung hanyalah satu proses saja. Proses lainnya dapat berjalan normal seperti tidak terjadi apa-apa. Buat saya, ini adalah definisi dari <em>high availability</em>.</p>
+<p><img src="/assets/images/memahami-beam/availability.gif" alt="availability"></p>
+<h2>Simulasi Kesalahan Yang Lebih Fatal</h2>
+<p>Sekarang kita akan melihat kesalahan yang lebih berbahaya. Kita akan memasukkan
+angka negatif, misalnya -1 yang akan menyebabkan CPU menjadi 100% karena sistem
+yang dikembangkan sebenarnya hanya menerima bilangan bulat negatif. Namun kita
+lupa untuk menangani jika pengguna memasukkan angka negatif. Hal yang biasa
+terjadi kan?!</p>
+<p><img src="/assets/images/memahami-beam/negatif.gif" alt="negatif"></p>
+<p>Dan benar saja, ketika -1 diinput, yang terjadi adalah CPU langsung 100% dalam waktu yang cukup lama, bahkan terus menerus karena proses kalkulasi terus terjadi dan tidak dapat berhenti. Meski demikian, sistem tetap jalan, dan kita tetap bisa menggunakan aplikasi dan sistem tetap dapat digunakan seperti biasa.</p>
+<p>Masalah semakin rumit ketika tidak ada informasi apapun di catatan (<em>log</em>) sistem. Seolah tidak terjadi apa-apa. Yang kita dapatkan adalah CPU 100% terus menerus.</p>
+<h2>Bug Fixing di <em>Production</em></h2>
+<p>Mari sekarang kita telusuri dan mencari tahu apa yang terjadi. Ceritanya kita mendapatkan notifikasi bahwa sistem mencapai CPU 100% dalam waktu yang lama meski proses lainnya bekerja seperti biasa. Dapat dipastikan dari dasbor terlihat sepuluh ribu tugas yang kita instruksikan tetap berjalan dan memiliki tingkat kesuksesan nyaris 100%.</p>
+<p>Mari kita ssh ke server dan melihat apa yang terjadi. Ternyata tidak ada informasi apapun dari catatan sistem (<em>log</em>).</p>
+<p><img src="/assets/images/memahami-beam/catatan.png" alt="catatan"></p>
+<p>Berhubung hanya ada satu proses di level sistem operasi, kita tidak bisa membunuh proses tersebut di level sistem operasi dengan menggunakan manajemen tugas (<em>task manager</em>) misalnya. Apabila hal ini kita lakukan, seluruh sistem akan berhenti. Untuk itu kita harus masuk kedalam sistem.</p>
+<p><img src="/assets/images/memahami-beam/taskmanager.png" alt="taskmanager"></p>
+<p>Kita bisa melakukannya dengan perintah <code>_build/prod/rel/system/bin/system remote_console</code> dari direktori aplikasi berada untuk masuk ke sesi IEx dengan konteks sistem yang sedang berjalan dan kita bisa melakukan investigasi disana. IEx adalah REPL Elixir dan dengan menggunakan perintah diatas, kita akan mendapatkan sesi IEx didalam sistem berjalan dan konteks sistem yang sedang berjalan sehingga kita bisa melakukan investigasi.</p>
+<p><img src="/assets/images/memahami-beam/iex.png" alt="iex"></p>
+<p>Di sesi IEx kita bisa melakukan apapun yang biasa kita lakukan. Misalnya <code>1 + 2</code>. Kita bisa melihat daftar proses yang sedang berjalan dengan fungsi <code>Process.list()</code>.</p>
+<p><img src="/assets/images/memahami-beam/process_list.png" alt="process_list"></p>
+<p>Dan kita bisa mendapatkan informasi dari sebuah proses dengan fungsi <code>Process.info()</code>.</p>
+<p><img src="/assets/images/memahami-beam/process_info.png" alt="process info"></p>
+<p>Dan kita bisa mendapatkan informasi proses mana yang membuat <em>CPU load</em> yang tinggi dengan melakukan agregasi dari informasi yang didapat dari <code>Process.info()</code>. Di sistem sudah disiapkan sebuah fungsi untuk agregasi dengan menjalankan <code>Runtime.top()</code>.</p>
+<p><img src="/assets/images/memahami-beam/top.png" alt="top"></p>
+<p>Jalankan fungsi ini beberapa kali untuk memastikan id proses (PID) dengan CPU tertinggi adalah id proses yang sama. Dan kita sudah bisa menyimpulkan bahwa id proses yang bermasalah adalah <code>#PID&lt;0.12507.0&gt;</code>. Kita simpan informasi id proses kedalam sebuah variable untuk mendapatkan informasi lebih rinci dengan <code>Process.info()</code>. Dan kita bisa mendapatkan informasi seperti <code>current_stacktrace</code>. Dan disana kita dapat melihat sistem menjalankan modul <code>ExampleSystem.Math</code> dan fungsi <code>calc_sum</code> dengan jumlah argumen 3 dengan kode sumber berada di <code>lib/example_system/math.ex</code> dibaris ke-20.</p>
+<p>Dan kita bisa membunuh proses tersebut dengan fungsi <code>Process.kill()</code> dan sistem kembali <em>cool down</em>. Dan di sisi klien akhirnya setelah sekian lama, pesan kesalahan akhirnya muncul.</p>
+<p><img src="/assets/images/memahami-beam/dasbor-2.png" alt="dasbor"></p>
+<p><img src="/assets/images/memahami-beam/frontend-2.png" alt="frontend"></p>
+<p>Setelah sistem mereda, langkah selanjutnya yang biasa kita lakukan adalah memperbaiki kesalahan tersebut. Kita sebelumnya sudah mendapatkan informasi bahwa terakhir kali dieksekusi adalah baris ke-20 dari file <code>lib/example_system/math.ex</code>. Mari kita lihat kodenya.</p>
+<pre class="language-elixir"><code class="language-elixir"><span class="token keyword">defp</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token attr-name">do:</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><br><span class="token keyword">defp</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span>from<span class="token punctuation">,</span> from<span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token attr-name">do:</span> sum <span class="token operator">+</span> from<br><span class="token keyword">defp</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span>from<span class="token punctuation">,</span> to<span class="token punctuation">,</span> acc_sum<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token attr-name">do:</span> <span class="token function">calc_sum</span><span class="token punctuation">(</span>from <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> acc_sum <span class="token operator">+</span> from<span class="token punctuation">)</span></code></pre>
+<p>Dan fungsi <code>calc_sum</code> ini dipanggil dari <code>lib/example_system_web/math/sum.ex</code>. Dan benar saja, nilai negatif belum ditangani. Memperbaikinya cukup mudah, tinggal tambahkan satu kasus dimana input lebih kecil dari 0 dan kita nyatakan input yang tidak valid.</p>
+<pre class="language-diff"><code class="language-diff">defp start_sum(socket, str_input) do<br><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> operation =<br></span><span class="token prefix unchanged"> </span><span class="token line">     case Integer.parse(str_input) do<br></span><span class="token prefix unchanged"> </span><span class="token line">     :error -><br></span><span class="token prefix unchanged"> </span><span class="token line">         %{pid: nil, input: str_input, result: "invalid input"}<br></span></span><br><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line">     {_input, remaining} when byte_size(remaining) > 0 -><br></span><span class="token prefix unchanged"> </span><span class="token line">         %{pid: nil, input: str_input, result: "invalid input"}<br></span></span><br><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">     {input, ""} when input &lt;= 0 -><br></span><span class="token prefix inserted">+</span><span class="token line">         %{pid: nil, input: input, result: "invalid input"}<br></span></span><br><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line">     {input, ""} -><br></span><span class="token prefix unchanged"> </span><span class="token line">         do_start_sum(input)<br></span><span class="token prefix unchanged"> </span><span class="token line">     end<br></span></span><br><span class="token unchanged"><span class="token prefix unchanged"> </span><span class="token line"> socket |> update(:operations, &amp;[operation | &amp;1]) |> assign(:data, data())<br></span></span>end</code></pre>
+<p>Namun jika diperhatikan , fungsi calc<em>sum kita juga terdapat beberapa kesalahan. Pertama, penanganan input 13 yang memang sengaja dibuat _error</em>. Dan proses kalkulasinya kurang optimal. Dengan kekuatan <em>googling</em> dan <em>stackoverflow</em>, saya mendapatkan perhitungan yang lebih optimal.</p>
+<pre class="language-diff"><code class="language-diff"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">defp calc_sum(n), do: calc_sum(1, n, 0)<br></span><span class="token prefix deleted">-</span><span class="token line">defp calc_sum(from, from, sum), do: sum + from<br></span><span class="token prefix deleted">-</span><span class="token line">defp calc_sum(from, to, acc_sum), do: calc_sum(from + 1, to, acc_sum + from)<br></span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">defp calc_sum(n), do: div(n * (n + 1), 2)</code></pre>
+<p>Setelah kesalahan diperbaiki, jalankan <em>test</em> untuk memastikan bahwa semua sudah sesuai ekspektasi. Lalu, <em>moment of truth!</em> Kita bisa melakukan peluncuran ulang (<em>deployment</em>) dengan <em>zero downtime</em> dengan perintah <code>mix system.upgrade</code>! Ini terbukti dengan aplikasi dasbor yang tetap menyala.</p>
+<p><img src="/assets/images/memahami-beam/test-upgrade.png" alt="test-upgrade">
+<img src="/assets/images/memahami-beam/dasbor-3.png" alt="dasbor"></p>
+<p>Dan sekarang kita bisa mencoba kembali kesalahan-kesalahan yang tadi kita
+lakukan bahkan tanpa menghentikan sistem secara keseluruhan. Dan karena
+perhitungan sudah lebih optimal, perhitungan yang tadinya berjalan cukup lama,
+sekarang sudah jauh lebih cepat tanpa memberatkan CPU sama sekali.</p>
+<p><img src="/assets/images/memahami-beam/final.png" alt="final">
+<img src="/assets/images/memahami-beam/dasbor-4.png" alt="dasbor"></p>
+<p><img src="https://media.giphy.com/media/XjlNyeZp5lDri/giphy.gif" alt="fixing bug in production"></p>
+<p><strong>Catatan penting</strong>: Jangan lakukan hal ini di sistem lain. Hanya di Elixir dan
+bahasa-bahasa yang berjalan diatas BEAM yang bisa 😃. Hal ini juga dapat dibuktikan dengan Erlang yang digunakan di sistem telekomunikasi Ericsson yang ketika kode baru diluncurkan ketika kita sedang melakukan percakapan di telepon, telepon tidak terputus.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BXmOlCy0oBM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<hr />
+<p>Kode dapat dilihat di https://github.com/rizafahmi/demo_system. Untuk belajar
+lebih lanjut tentang Elixir dan BEAM silakan baca buku <a href="https://medium.com/r/?url=https%3A%2F%2Fwww.manning.com%2Fbooks%2Felixir-in-action"> Elixir in Action
+</a>
+karya Sasa Juric dan <a href="https://medium.com/r/?url=https%3A%2F%2Fwww.manning.com%2Fbooks%2Fthe-little-elixir-and-otp-guidebook"> Little Elixir &amp; OTP Guidebook
+</a>
+karya Ben Tan Wei Hao.</p>
+<p><img src="/assets/images/memahami-beam/elixirinaction.png" alt="elixir in action">
+<img src="/assets/images/memahami-beam/elixirotp.png" alt="elixir otp"></p>
+
+      ---
+      <footer>
+          <h5>👋 Saya Riza, co-founder 🦊 <a href="https://hacktiv8.com/" target="_blank" class="">HACKTIV8</a>, inisiator 🔥 <a href="https://deeptech.id" target="_blank" class="">DeepTech</a>, 🕸️ <a href="https://developers.google.com/community/experts/directory/profile/profile-riza-fahmi" target="_blank" class="">Google Developers Experts</a>.</h5> 
+          <p class="">Kadang 🗒️ <a href="/articles" class="">menulis</a>, kadang bikin 🎙️ <a href="https://anchor.com" target="_blank" class="">podcast</a>, kadang bikin 📹 <a href="https://youtube.com/rizafahmi" target="_blank" class="">video</a>, kadang bikin 🚀 <a href="/course" class="">online course</a>, kadang bikin 😹 <a href="/proyek" class="">proyek</a> lucu-lucu aja.</p>
+      </footer>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </body>
+</html>

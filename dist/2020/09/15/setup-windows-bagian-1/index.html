@@ -1,0 +1,56 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Setup Windows Bagian Pertama</title>
+    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen" />
+  </head>
+  <body>
+      <h1>👋 <a href="/">Saya Riza</a>!</h1>
+      <h2>Setup Windows Bagian Pertama</h2>
+      <p>Salah satu fitur menarik dari Windows 10 adalah kemampuan menjalankan Linux tanpa harus <em>reboot</em> atau <em>dual boot</em>. Artinya sistem operasi Windows dan Linux dapat berjalan beriringan 🎉</p>
+<p>Hal ini dimungkinkan karena teknologi yang diciptakan Microsoft yang diberi nama Windows Subsystem Linux atau disingkat WSL. Kita akan sedikit bereksperimen untuk menggunakan Windows sebagai mesin <em>ngoding</em> dan nanti kita akan membuktikan apakah Windows 10 dengan WSL-nya layak menjadi alternatif sistem operasi untuk mengembangkan aplikasi yang modern.</p>
+<p>Di artikel ini kita akan melakukan setup Windows 10 agar siap digunakan untuk pengembang perangkat lunak dengan melakukan instalasi Linux, <em>text editor</em>, Node.js, tmux dan alat bantu lainnya.</p>
+<h2>Menyalakan Fitur WSL</h2>
+<p>Secara <em>default</em>, fitur wsl dalam keadaan tidak menyala dan untuk menggunakannya kita harus menyalakan fiturnya terlebih dahulu dengan menggunakan PowerShell dan dijalankan sebagai administrator.</p>
+<p><img src="/assets/images/oxqn6ncshkfiqz0uopgg.png" alt="Alt Text"></p>
+<pre><code>$ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+</code></pre>
+<p>Jangan lupa setelah menjalankan perintah diatas, kita harus melakukan restart sistem operasinya.</p>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/R1AC7UFFWp8" frameborder="0" allowfullscreen></iframe></center>
+<h2>Install Distribusi Linux</h2>
+<p>Selanjutnya buka Windows Store dan cari dengan kata kunci &quot;Linux&quot; dan pilih salah satu. Jika bingung, pilih saja Ubuntu, salah satu distribusi Linux yang populer. Tenang saja, kita bisa melakukan instalasi distribusi Linux sebanyak-banyaknya.</p>
+<p><img src="/assets/images/xfd0mxqyqyzgkv24xxds.png" alt="Alt Text"></p>
+<p>Mumpung masih berada di Windows Store, sekalian install aplikasi Windows Terminal yang nantinya bisa kita gunakan untuk seluruh <em>command line</em> yang ada di Windows termasuk mengakses berbagai distribusi Linux yang sudah terinstal.</p>
+<p><img src="/assets/images/3eh8ubcdkzk8l3s42j4l.png" alt="Alt Text"></p>
+<h2>Menjalankan Linux</h2>
+<p>Untuk menjalankan linux, kita bisa menggunakan aplikasi yang ada di start menu dengan nama Ubuntu (atau distribusi lain yang diinstal), atau kita juga bisa menggunakan Windows Terminal yang tadi sudah kita install dengan membuka tab baru dan sudah muncul distribusi yang tadi kita install.</p>
+<p><img src="/assets/images/wcqsiqevxuw0y4sg42a8.png" alt="Alt Text"></p>
+<p>Selanjutnya kita sudah bisa menggunakan Linux seperti biasa seperti beberapa perintah berikut.</p>
+<pre class="language-shell"><code class="language-shell">$ <span class="token function">sudo</span> <span class="token function">apt</span> update<br>$ <span class="token function">sudo</span> <span class="token function">apt</span> upgrade</code></pre>
+<h2>Instalasi Node.js</h2>
+<p>Untuk menggunakan Node.js di Linux, kita bisa capai dengan beberapa cara. Salah satu cara yang direkomendasi adalah dengan menggunakan version manager. Version manager yang paling populer untuk Node saat ini adalah <a href="https://github.com/nvm-sh/nvm#nvmrc">nvm</a>. Namun sekitar setahun yang lalu saya menemukan sebuah Node version manager yang lebih cepat, namanya <a href="https://github.com/Schniz/fnm">fnm</a>. Untuk melakukan instalasi fnm ternyata dibutuhkan sebuah aplikasi unzip. Kita lakukan instalasi terlebih dahulu baru kemudian install fnm dengan bantuan curl.</p>
+<pre class="language-shell"><code class="language-shell">$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">unzip</span><br>$ <span class="token function">curl</span> -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh <span class="token operator">|</span> <span class="token function">bash</span></code></pre>
+<p>Setelah proses instalasi selesai, selanjutnya kita melakukan instalasi Node dengan versi terbaru (versi 14.9.0 saat artikel ini ditulis) dan langsung digunakan sebagai default dari versi nodejs kita.</p>
+<pre class="language-shell"><code class="language-shell">$ fnm <span class="token function">install</span> latest<br>$ fnm default v14.9.0<br>$ node -v</code></pre>
+<h2>Instalasi Visual Studio Code</h2>
+<p>Berikutnya kita akan mengunduh dan menginstal editor kode pilihan, misalnya Visual Studio Code yang bisa diunduh <a href="https://code.visualstudio.com">disini</a>.</p>
+<p>Setelah diinstal dan dibuka, secara otomatis VS Code medeteksi bahwa sistem operasi kita memiliki WSL dan menyarankan kita untuk melakukan instalasi plugin WSL.</p>
+<h2>Membuat Proyek Node.js</h2>
+<p>Sekarang kita akan mencoba membuat proyek Node.js baru dengan menjalankan perintah seperti berikut.</p>
+<pre class="language-shell"><code class="language-shell">$ <span class="token function">mkdir</span> node_on_wsl<br>$ <span class="token builtin class-name">cd</span> node_on_wsl<br>$ <span class="token function">npm</span> init -y<br>$ <span class="token function">npm</span> <span class="token function">install</span> express</code></pre>
+<p>Kita akan mencoba membuat web server sederhana dengan Express.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// app.js</span><br><span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">'Halo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Dan lalu kita buka browser dan ketikkan <code>http://localhost:3000</code>, dan tada!!!</p>
+<h2>Selanjutnya</h2>
+<p>Ada beberapa alat bantu yang masih dibutuhkan seperti database, tmux, dan lain sebagainya yang ingin ditambahkan. Dan saya melakukan semua ini secara live yang bisa dipantengi di <a href="https://www.youtube.com/channel/UCHhAlFGFCGgIusQkQIqJLYw?sub_confirmation=1">kanal youtube berikut</a>.</p>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/2Lq-x_X_hXs" frameborder="0" allowfullscreen></iframe></center>
+
+      ---
+      <footer>
+          <h5>👋 Saya Riza, co-founder 🦊 <a href="https://hacktiv8.com/" target="_blank" class="">HACKTIV8</a>, inisiator 🔥 <a href="https://deeptech.id" target="_blank" class="">DeepTech</a>, 🕸️ <a href="https://developers.google.com/community/experts/directory/profile/profile-riza-fahmi" target="_blank" class="">Google Developers Experts</a>.</h5> 
+          <p class="">Kadang 🗒️ <a href="/articles" class="">menulis</a>, kadang bikin 🎙️ <a href="https://anchor.com" target="_blank" class="">podcast</a>, kadang bikin 📹 <a href="https://youtube.com/rizafahmi" target="_blank" class="">video</a>, kadang bikin 🚀 <a href="/course" class="">online course</a>, kadang bikin 😹 <a href="/proyek" class="">proyek</a> lucu-lucu aja.</p>
+      </footer>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,8 +1,10 @@
 ---
 title: 'Menambahkan Video Watermark dengan ffmpeg'
 date: 2020-11-30
-slug: 'menambahkan-video-watermark-dengan-ffmpeg'
+permalink: /2020/11/30/menambahkan-video-watermark-dengan-ffmpeg/
 cover: './ruben-gregori-x-qLasX9kIo-unsplash.jpg'
+layout: tulisan
+tags: tulisan
 ---
 
 Berikut adalah tips singkat untuk menambahkan _watermark_ di video yang sudah diproduksi, terutama untuk para pembuat konten video. Alat bantu yang dibutuhkan hanyalah sebuah aplikasi CLI atau _command-line interface_ [ffmpeg](https://ffmpeg.org). Instalasi ffmpeg dapat dilakukan dengan menggunakan [homebrew](https://brew.sh), [apt-get](https://linux.die.net/man/8/apt-get), ataupun manajemen aplikasi lainnya.
