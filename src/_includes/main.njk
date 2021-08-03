@@ -1,0 +1,15 @@
+---
+title: Judul
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/assets/main.css" type="text/css" media="screen" />
+  </head>
+  <body>
+      <h1>👋 <a href="/">Saya Riza</a>!</h1>
+      <h2> Ini adalah kumpulan {{ title | lower }} saya.</h2>
+      {{ content | safe }}
+  </body>
+</html>
