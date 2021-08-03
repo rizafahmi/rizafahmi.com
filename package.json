@@ -4,6 +4,13 @@
   "description": "Personal site rizafahmi.com",
   "main": "index.js",
   "scripts": {
+    "clean": "npx rimraf dist/",
+    "prestart": "npm run clean",
+    "start": "ELEVENTY_ENV=dev npx eleventy --serve",
+    "prebuild": "npm run clean",
+    "build": "ELEVENTY_ENV=dev npx eleventy",
+    "build:prod": "ELEVENTY_ENV=prod npx eleventy",
+    "debug": "DEBUG=* npx eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +25,7 @@
   },
   "homepage": "https://github.com/rizafahmi/rizafahmi.com-v2#readme",
   "devDependencies": {
-    "@11ty/eleventy": "0.12.1"
+    "@11ty/eleventy": "0.12.1",
+    "rimraf": "3.0.2"
   }
 }
