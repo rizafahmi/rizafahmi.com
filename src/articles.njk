@@ -1,0 +1,10 @@
+---
+title: Tulisan
+layout: main
+---
+
+<ul>
+    {% for article in collections.tulisan  %}
+        <li><a href="{{article.url}}">{{ article.data.title }}</a></li>
+    {% endfor %}
+</ul>

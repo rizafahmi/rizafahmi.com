@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+  background-color: #222222;
+  color: #fcfcfc;
+  font-family: Nunito, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 24px;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+
+a {
+  color: #fcfcfc;
+}
