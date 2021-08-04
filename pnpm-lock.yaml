@@ -2,11 +2,13 @@ lockfileVersion: 5.3
 
 specifiers:
   '@11ty/eleventy': 0.12.1
+  '@11ty/eleventy-plugin-rss': 1.1.1
   '@11ty/eleventy-plugin-syntaxhighlight': 3.1.2
   rimraf: 3.0.2
 
 devDependencies:
   '@11ty/eleventy': 0.12.1
+  '@11ty/eleventy-plugin-rss': 1.1.1_@11ty+eleventy@0.12.1
   '@11ty/eleventy-plugin-syntaxhighlight': 3.1.2_@11ty+eleventy@0.12.1
   rimraf: 3.0.2
 
@@ -14,6 +16,19 @@ packages:
 
   /@11ty/dependency-tree/1.0.0:
     resolution: {integrity: sha512-2FWYlkphQ/83MG7b9qqBJfJJ0K9zupNz/6n4EdDuNLw6hQHGp4Sp4UMDRyBvA/xCTYDBaPSuSjHuu45tSujegg==}
+    dev: true
+
+  /@11ty/eleventy-plugin-rss/1.1.1_@11ty+eleventy@0.12.1:
+    resolution: {integrity: sha512-kHWXD2P7b05+SdWwh1oar4zToJfJvrBK4GS66P1kFHtXHeMbjcFQREZgf0YpWZEYz9ez0RQOpK0uuwKgyDOPAg==}
+    peerDependencies:
+      '@11ty/eleventy': '>=0.11.0'
+    dependencies:
+      '@11ty/eleventy': 0.12.1
+      debug: 4.3.2
+      posthtml: 0.15.2
+      posthtml-urls: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@11ty/eleventy-plugin-syntaxhighlight/3.1.2_@11ty+eleventy@0.12.1:
@@ -168,6 +183,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       color-convert: 2.0.1
+    dev: true
+
+  /any-promise/0.1.0:
+    resolution: {integrity: sha1-gwtoCqflbzNFHUsEnzvYBESY7ic=}
     dev: true
 
   /anymatch/3.1.2:
@@ -1043,6 +1062,11 @@ packages:
       entities: 2.2.0
     dev: true
 
+  /http-equiv-refresh/1.0.0:
+    resolution: {integrity: sha1-jsU4hmBCvl8/evpzfRmNlL6xsHs=}
+    engines: {node: '>= 0.10'}
+    dev: true
+
   /http-errors/1.6.3:
     resolution: {integrity: sha1-i1VoC7S+KDoLW/TqLjhYC+HZMg0=}
     engines: {node: '>= 0.6'}
@@ -1328,6 +1352,10 @@ packages:
     engines: {node: '>=4.8.7'}
     dev: true
 
+  /list-to-array/1.1.0:
+    resolution: {integrity: sha1-yn3/ZAYGQzysdcvoRGrNhksVv28=}
+    dev: true
+
   /localtunnel/2.0.1:
     resolution: {integrity: sha512-LiaI5wZdz0xFkIQpXbNI62ZnNn8IMsVhwxHmhA+h4vj8R9JG/07bQHWwQlyy7b95/5fVOCHJfIHv+a5XnkvaJA==}
     engines: {node: '>=8.3.0'}
@@ -1594,6 +1622,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /parse-srcset/1.0.2:
+    resolution: {integrity: sha1-8r0iH2zJcKk42IVWq8WJyqqiveE=}
+    dev: true
+
   /parseqs/0.0.6:
     resolution: {integrity: sha512-jeAGzMDbfSHHA091hr0r31eYfTig+29g3GKKE/PPbEQ65X0lmMwlEoqmhzu0iztID5uJpZsFlUPDP8ThPL7M8w==}
     dev: true
@@ -1673,6 +1705,36 @@ packages:
       is-number-like: 1.0.8
     dev: true
 
+  /posthtml-parser/0.7.2:
+    resolution: {integrity: sha512-LjEEG/3fNcWZtBfsOE3Gbyg1Li4CmsZRkH1UmbMR7nKdMXVMYI3B4/ZMiCpaq8aI1Aym4FRMMW9SAOLSwOnNsQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      htmlparser2: 6.1.0
+    dev: true
+
+  /posthtml-render/1.4.0:
+    resolution: {integrity: sha512-W1779iVHGfq0Fvh2PROhCe2QhB8mEErgqzo1wpIt36tCgChafP+hbXIhLDOM8ePJrZcFs0vkNEtdibEWVqChqw==}
+    engines: {node: '>=10'}
+    dev: true
+
+  /posthtml-urls/1.0.0:
+    resolution: {integrity: sha512-CMJ0L009sGQVUuYM/g6WJdscsq6ooAwhUuF6CDlYPMLxKp2rmCYVebEU+wZGxnQstGJhZPMvXsRhtqekILd5/w==}
+    engines: {node: '>= 4'}
+    dependencies:
+      http-equiv-refresh: 1.0.0
+      list-to-array: 1.1.0
+      parse-srcset: 1.0.2
+      promise-each: 2.2.0
+    dev: true
+
+  /posthtml/0.15.2:
+    resolution: {integrity: sha512-YugEJ5ze/0DLRIVBjCpDwANWL4pPj1kHJ/2llY8xuInr0nbkon3qTiMPe5LQa+cCwNjxS7nAZZTp+1M+6mT4Zg==}
+    engines: {node: '>=10.0.0'}
+    dependencies:
+      posthtml-parser: 0.7.2
+      posthtml-render: 1.4.0
+    dev: true
+
   /pretty-ms/0.2.2:
     resolution: {integrity: sha1-2oeaaC/zOjcBEEbxPWJ/Z8c7hPY=}
     engines: {node: '>=0.10.0'}
@@ -1692,6 +1754,12 @@ packages:
 
   /prismjs/1.24.1:
     resolution: {integrity: sha512-mNPsedLuk90RVJioIky8ANZEwYm5w9LcvCXrxHlwf4fNVSn8jEipMybMkWUyyF0JhnC+C4VcOVSBuHRKs1L5Ow==}
+    dev: true
+
+  /promise-each/2.2.0:
+    resolution: {integrity: sha1-M1MXTv8mlEgQN+BOAfd6oPttG2A=}
+    dependencies:
+      any-promise: 0.1.0
     dev: true
 
   /promise/7.3.1:
