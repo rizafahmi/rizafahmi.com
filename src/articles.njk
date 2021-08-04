@@ -4,7 +4,11 @@ layout: main
 ---
 
 <ul>
-    {% for article in collections.tulisan | reverse %}
+    {% for article in collections.tulisan  %}
         <li><a href="{{article.url}}">{{ article.data.title }}</a></li>
     {% endfor %}
 </ul>
+
+<hr />
+
+{% include "footer.njk" %}

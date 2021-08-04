@@ -9,7 +9,7 @@ title: Judul
     <link rel="stylesheet" href="/assets/main.css" type="text/css" media="screen" />
   </head>
   <body>
-      <h1>👋 <a class="color-blue" href="/">Saya Riza</a>! Ini adalah kumpulan tulisan saya.</h1>
+      <h1>👋 <a class="color-blue" href="/">Saya Riza</a>! Ini adalah kumpulan {{ title | lower }} saya.</h1>
       {{ content | safe }}
   </body>
 </html>
