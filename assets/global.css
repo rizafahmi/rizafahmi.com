@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
+
+body {
+  background-color: #211a1e;
+  color: #fcfcfc;
+  font-family: Lato, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 24px;
+  max-width: 85%;
+  margin: 0 auto;
+  margin-top: 20%;
+  line-height: 175%;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 2px solid;
+}
+
+.color-blue {
+  color: #5bc0eb;
+  border-color: #5bc0eb;
+}
+
+.color-green {
+  border-color: #7cffc4;
+  color: #7cffc4;
+}
+
+.color-yellow {
+  border-color: #fde74c;
+  color: #fde74c;
+}
+
+.color-red {
+  border-color: #e55381;
+  color: #e55381;
+}
+
+.color-orange {
+  border-color: #ff7f11;
+  color: #ff7f11;
+}
