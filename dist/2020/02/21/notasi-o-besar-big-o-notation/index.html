@@ -1,27 +1,15 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <title>Notasi O Besar atau Big-O Notation</title>
-
-    <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
-    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen" />
-  </head>
-  <body>
-      <h1>👋 <a class="color-blue" href="/">Saya Riza</a>!</h1>
-      <h2>Notasi O Besar atau Big-O Notation</h2>
-      <p>Ketika kita memikirkan apakah barisan kode yang kita ciptakan sudah cukup &quot;cepat&quot; atau efisien dalam memecahkan masalah yang ingin kita pecahkan, maka kita butuh sebuah metodologi untuk menghitungnya. Salah satu alat bantu yang bisa kita gunakan adalah notasi O besar atau <em>Big-O Notation</em>.</p>
+<p>Ketika kita memikirkan apakah barisan kode yang kita ciptakan sudah cukup &quot;cepat&quot; atau efisien dalam memecahkan masalah yang ingin kita pecahkan, maka kita butuh sebuah metodologi untuk menghitungnya. Salah satu alat bantu yang bisa kita gunakan adalah notasi O besar atau <em>Big-O Notation</em>.</p>
 <p>Ini juga berarti kita ingin menghitung kompleksitas dari sebuah kode. Ada dua dimensi dalam menghitung kompleksitas kode. Pertama adalah kompleksitas ruang atau <em>space complexity</em> yang berkaitan dengan berapa banyak ruang yang digunakan seperti memori ataupun harddisk komputer. Kedua adalah kompleksitas waktu atau <em>time complexity</em> yang berkaitan berapa lama baris kode dijalankan.</p>
 <p>Kenapa dibutuhkan sebuah metode untuk menghitung efisiensi kode? Karena kita tidak bisa hanya mengatakan bahwa kumpulan kode ini dapat dijalankan selama lima detik. Padahal sangat banyak faktor penentu lainnya seperti jumlah datanya, koneksi, latensi, jumlah memori, kecepatan prosesor dan masih banyak yang lainnya.</p>
 <p>Karena itu kita butuh alat ukur untuk menghitung efisiensi kode secara relatif seperti notasi O besar ini.</p>
 <h1>Sekilas Tentang Notasi O Besar</h1>
 <p>Notasi O besar atau yang lazim disebut dengan Big-O Notation adalah sebuah cara atau metode untuk melakukan analisa terhadap sebuah algoritma pemrograman terhadap waktu eksekusi. Tentang seberapa efisien dan kompleksitas barisan kode dalam dimensi waktu.</p>
 <p>Di dalam sebuah program komputer pada umumnya, kita sudah lazim dengan istilah masukan-proses-keluaran.</p>
-<p><img src="/assets/images/notasi/input.png" alt="input, proses, output"></p>
+<p><img src="./input.png" alt="input, proses, output"></p>
 <p>Notasi O besar merupakan skenario terburuk dari sebuah algoritma, dan biasanya terdapat notasi <em>n</em> yang merepresentasikan jumlah masukan. Berikut adalah diagram notasi O besar dengan masukan yang dimulai dari 0 hingga tak terhingga.</p>
-<p><img src="/assets/images/notasi/grafikcopy.png" alt="grafik"></p>
+<p>![grafik](./grafik copy.png)</p>
 <p>Dari diagram diatas dapat kita lihat beberapa notasi yang kerap muncul, yaitu: O<sub>(1)</sub>, O<sub>(log n)</sub>, O<sub>(n)</sub>, O<sub>(n<sup>2</sup>)</sub> atau O<sub>(n<sup>n</sup>)</sub>. Untuk membahasnya, mari kita berandai-andai membangun sebuah aplikasi travel. Dan kita diminta untuk membuat fitur baru yang menampilkan daftar kisaran harga dari hotel-hotel yang berada di area tertentu.</p>
-<p><img src="/assets/images/notasi/kayak.png" alt="kayak"></p>
+<p><img src="./kayak.png" alt="kayak"></p>
 <p>Untuk membuat fitur tersebut, sederhananya kita mencari harga terendah (min) dan harga tertinggi (max) dari daftar hotel. Tentunya semakin banyak datanya, akan semakin lama pula proses untuk mencari harga terendah dan tertinggi.</p>
 <p>Dan berikut versi sederhana dari representasi data yang akan kita gunakan. Kita akan menggunakan JavaScript sebagai contoh. Dapat juga diaplikasikan ke bahasa pemrograman lain.</p>
 <pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> hotels <span class="token operator">=</span> <span class="token punctuation">[</span><br><span class="token punctuation">{</span> price<span class="token operator">:</span> <span class="token number">180</span><span class="token punctuation">,</span> brand<span class="token operator">:</span> <span class="token string">"Hotel Tugu Lombok"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span><br><span class="token punctuation">{</span> price<span class="token operator">:</span> <span class="token number">78</span><span class="token punctuation">,</span> brand<span class="token operator">:</span> <span class="token string">"Sheraton Senggigi Beach Resort"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span><br><span class="token operator">...</span><br><span class="token operator">...</span><br><span class="token punctuation">{</span> price<span class="token operator">:</span> <span class="token number">317</span><span class="token punctuation">,</span> brand<span class="token operator">:</span> <span class="token string">"The Oberio"</span> <span class="token punctuation">}</span><br><span class="token punctuation">]</span></code></pre>
@@ -116,16 +104,17 @@
 </tr>
 </tbody>
 </table>
-<p><img src="/assets/images/notasi/grafikcopy.png" alt="grafik"></p>
+<p>![grafik](./grafik copy.png)</p>
 <div
-  class="subscription-box bg-green"
+  id="subscription-box"
+  class="leading-loose py-3 my-6 px-3 border border-grey-darker border-solid"
 >
   <h3>Kelas Online Struktur Data dengan JavaScript - BuildWithAngga.com</h3>
   <div>
     <img style="width:25%" src="https://www.buildwithangga.com/storage/assets/thumbnails/thumbnail%20alur%20belajar%20menjadi%20front%20end%20developer%20buildwith%20angga.png" />
     <p>Kelas online Struktur Data dengan JavaScript ini akan membahas berbagai macam struktur data. Mulai dari struktur data fundamental seperti array dan object literal, kemudian struktur data stack dan queue, hingga struktur data linked list.</p>
     <div class="my-2">
-    <a class="color-black button" href="https://www.buildwithangga.com/kelas/struktur-data-dengan-javascript" target="_blank">Ikuti Kelas</a>
+    <a class="bg-yellow-light p-2 font-bold" href="https://www.buildwithangga.com/kelas/struktur-data-dengan-javascript" target="_blank">Ikuti Kelas</a>
     </div>
   </div>
 </div>
@@ -166,7 +155,7 @@ akan terdapat perulangan didalam perulangan.</p>
 <p>Begitu juga halnya jika kita mengambil data dengan tabel yang sudah diindeks.
 Secara otomatis notasinya akan berubah dari <strong>O<sub>(n)</sub></strong>
 menjadi <strong>O<sub>(log n)</sub></strong>.</p>
-<p><img src="/assets/images/notasi/tanpa_index.png" alt="tanpa index"></p>
+<p><img src="./tanpa_index.png" alt="tanpa index"></p>
 <p>Tanpa menggunakan indeks database melakukan yang disebut dengan &quot;Sequential
 Scan&quot;. Beberapa yang lain menyebutnya dengan istilah &quot;Full Table Scan&quot; yang
 kurang-lebih melakukan perulangan setiap barisnya dan membandingkan dengan
@@ -177,7 +166,7 @@ efisiensi akan semakin menurun.</p>
 <p>Hal termudah untuk mengangkat performa untuk kasus ini adalah dengan menambahkan
 indeks di tabel terkait dan kita dapat melihat perbedaan yang cukup signifikan
 terutama ketika data sudah semakin banyak.</p>
-<p><img src="/assets/images/notasi/dengan_index.png" alt="dengan index"></p>
+<p><img src="./dengan_index.png" alt="dengan index"></p>
 <p>Sehingga operasi diatas berubah notasinya menjadi <strong>O<sub>(log
 n)</sub></strong>.</p>
 <p>Hal yang menarik lainnya, <a href="https://redis.io">Redis</a> sebuah <em>in-memory
@@ -218,14 +207,15 @@ dan masih banyak lagi yang lainnya.</p>
 </tbody>
 </table>
 <div
-  class="subscription-box bg-green"
+  id="subscription-box"
+  class="leading-loose py-3 my-6 px-3 border border-grey-darker border-solid"
 >
   <h3>Kelas Online Struktur Data dengan JavaScript - BuildWithAngga.com</h3>
   <div>
     <img style="width:25%" src="https://www.buildwithangga.com/storage/assets/thumbnails/thumbnail%20alur%20belajar%20menjadi%20front%20end%20developer%20buildwith%20angga.png" />
     <p>Kelas online Struktur Data dengan JavaScript ini akan membahas berbagai macam struktur data. Mulai dari struktur data fundamental seperti array dan object literal, kemudian struktur data stack dan queue, hingga struktur data linked list.</p>
     <div class="my-2">
-    <a class="color-black button" href="https://www.buildwithangga.com/kelas/struktur-data-dengan-javascript" target="_blank">Ikuti Kelas</a>
+    <a class="bg-yellow-light p-2 font-bold" href="https://www.buildwithangga.com/kelas/struktur-data-dengan-javascript" target="_blank">Ikuti Kelas</a>
     </div>
   </div>
 </div>
@@ -235,13 +225,3 @@ dan masih banyak lagi yang lainnya.</p>
 <li><a href="https://www.amazon.com/JavaScript-Data-Structures-Algorithms-Understanding/dp/1484239873">Buku 'JavaScript Data Structures and Algorithms, Sammie Bae'</a></li>
 <li><a href="https://frontendmasters.com/courses/data-structures-algorithms/">Video 'FrontendMasters Data Structures and Algorithms in JavaScript, Bianca Gandolfo'</a></li>
 </ul>
-
-      ---
-      <footer>
-          <h5>👋 Saya Riza, co-founder 🦊 <a href="https://hacktiv8.com/" target="_blank" class="">HACKTIV8</a>, inisiator 🔥 <a href="https://deeptech.id" target="_blank" class="">DeepTech</a>, 🕸️ <a href="https://developers.google.com/community/experts/directory/profile/profile-riza-fahmi" target="_blank" class="">Google Developers Experts</a>.</h5> 
-          <p class="footer">🗒️ <a href="/articles" class="color-blue">Tulisan</a> | 🎙️ <a href="/showcase" class="color-green">Karya</a> | ⚙️ <a href="/service" class="color-yellow">Service</a> | 🔬 <a href="/experiment" class="color-red">Eksperimen</a> | 🚢 <a href="/mentorship" class="color-orange">Mentorship</a></p>
-
-      </footer>
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  </body>
-</html>
