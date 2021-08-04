@@ -2,11 +2,13 @@
   <head>
     <meta charset="UTF-8"/>
     <title>Mengenal Svelte, Sebuah Komponen Framework</title>
+
+    <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
     <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen" />
   </head>
   <body>
-      <h1>👋 <a href="/">Saya Riza</a>!</h1>
+      <h1>👋 <a class="color-blue" href="/">Saya Riza</a>!</h1>
       <h2>Mengenal Svelte, Sebuah Komponen Framework</h2>
       <p>Secara sederhana Svelte adalah sebuah framework JavaScript untuk menulis komponen antarmuka atau <em>user interface</em>. Namun, menurut Rich Harris, Svelte bukan hanya sekedar framework tapi lebih dari itu. Menurutnya Svelte adalah semacam <em>compiler</em>, maksudnya kode yang kita tulis di Svelte dikonversi menjadi JavaScript yang sudah dioptimasi.</p>
 <p>Salah satu fitur kunci dari Svelte adalah ukuran aplikasi yang kita tulis menjadi lebih kecil karena proses kompilasi yang dilakukan. Dan semua itu dicapai tanpa bantuan virtual DOM sama sekali. Seperti yang sama-sama kita ketahui, beberapa framework modern seperti React, Vue, Angular dan lainnya menggunakan alat bantu virtual DOM di framework mereka. Dengan tidak menggunakan virtual DOM maka ukuran aplikasi Svelte menjadi relatif lebih kecil.</p>
@@ -131,7 +133,8 @@
       ---
       <footer>
           <h5>👋 Saya Riza, co-founder 🦊 <a href="https://hacktiv8.com/" target="_blank" class="">HACKTIV8</a>, inisiator 🔥 <a href="https://deeptech.id" target="_blank" class="">DeepTech</a>, 🕸️ <a href="https://developers.google.com/community/experts/directory/profile/profile-riza-fahmi" target="_blank" class="">Google Developers Experts</a>.</h5> 
-          <p class="">Kadang 🗒️ <a href="/articles" class="">menulis</a>, kadang bikin 🎙️ <a href="https://anchor.com" target="_blank" class="">podcast</a>, kadang bikin 📹 <a href="https://youtube.com/rizafahmi" target="_blank" class="">video</a>, kadang bikin 🚀 <a href="/course" class="">online course</a>, kadang bikin 😹 <a href="/proyek" class="">proyek</a> lucu-lucu aja.</p>
+          <p class="footer">🗒️ <a href="/articles" class="color-blue">Tulisan</a> | 🎙️ <a href="/showcase" class="color-green">Karya</a> | ⚙️ <a href="/service" class="color-yellow">Service</a> | 🔬 <a href="/experiment" class="color-red">Eksperimen</a> | 🚢 <a href="/mentorship" class="color-orange">Mentorship</a></p>
+
       </footer>
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </body>

@@ -5,11 +5,11 @@ title: Judul
   <head>
     <meta charset="UTF-8"/>
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/assets/main.css" type="text/css" media="screen" />
   </head>
   <body>
-      <h1>👋 <a href="/">Saya Riza</a>!</h1>
-      <h2> Ini adalah kumpulan {{ title | lower }} saya.</h2>
+      <h1>👋 <a class="color-blue" href="/">Saya Riza</a>! Ini adalah kumpulan tulisan saya.</h1>
       {{ content | safe }}
   </body>
 </html>
