@@ -7,6 +7,9 @@ title: Judul
     <meta charset="UTF-8"/>
     <title>{{ title }}</title>
     <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
+    {% if title == 'Tulisan' %}
+    <link rel="preload" as="style" href="/assets/main.css" type="text/css" media="screen" />
+    {% endif %}
 
     <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/assets/main.css" type="text/css" media="screen" />
