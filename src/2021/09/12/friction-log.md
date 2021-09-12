@@ -6,7 +6,7 @@ tags: tulisan
 layout: tulisan
 ---
 
-Friction adalah sebuah cara untuk mengevaluasi sebuah produk, atau
+Friction log adalah sebuah cara untuk mengevaluasi sebuah produk, atau
 meluncurkan fitur baru. Tujuannya untuk merekam pengalaman dalam
 menggunakan fitur atau produk tersebut.
 
@@ -17,7 +17,7 @@ Biasanya setiap pengalaman yang didapat dikategorikan menjadi tiga jenis:
 
 - Pengalaman yang menyenangkan dilambangkan dengan warna hijau 🟢
 - Pengalaman yang kurang menyenangkan, membingungkan, atau bikin frustrasi
-  dilambangkan dengan warna orange 🟠
+  dilambangkan dengan warna _orange_ 🟠
 - Pengalaman yang buruk dilambangkan dengan warna merah 🔴
 
 ## Kegunaa Friction Log

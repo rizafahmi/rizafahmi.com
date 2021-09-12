@@ -1,6 +1,7 @@
 ---
 title: 'Refleksi 2020'
 permalink: '/2020/12/19/refleksi-2020/'
+date: 2020-12-19
 cover: 'kelly-sikkema-1KfV102FCcQ-unsplash.jpg'
 tags: tulisan
 layout: tulisan
