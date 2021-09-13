@@ -41,6 +41,7 @@ dengan menulis blog dan sebagainya.
 
 ## Referensi
 
-* Friction logging 101 - Emma Iwao - YouTube
-* Friction Logs for Product Teams: Live Example - YouTube
+* [Friction Logs](https://css-tricks.com/friction-logs/)
+* [Friction logging 101 - Emma Iwao - YouTube](https://www.youtube.com/watch?v=765wLWVcyS0)
+* [Friction Logs for Product Teams: Live Example - YouTube](https://www.youtube.com/watch?v=zuZnOFUCpxs)
 * https://frictionlog.com/
