@@ -38,3 +38,9 @@ melalui email, media sosial, atau media lainnya.
 
 Setelah friction log dibuat, kita bisa mendiskusikan hasilnya dengan tim produk, bagikan hasilnya
 dengan menulis blog dan sebagainya.
+
+## Referensi
+
+* Friction logging 101 - Emma Iwao - YouTube
+* Friction Logs for Product Teams: Live Example - YouTube
+* https://frictionlog.com/
