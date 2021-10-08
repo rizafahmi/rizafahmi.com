@@ -11,9 +11,9 @@ Sebentar lagi 2020 akan segera berakhir. Mari review apa yang terjadi sepanjang 
 
 ## Covid-19
 
-2020 identik dengan Covid-19 atau virus Corona pastinya. Apa dampaknya terhadap hidup saya? Semuanya! Saya memang ada wacana ingin bekerja dari rumah, apalagi peran yang saya emban di [HACKTIV8](https://hacktiv8.com/) dua tahun terakhir lebih banyak berpergian keluar kota. Tapi _ngga gini juga_ :) Untuk bekerja dirumah butuh persiapan matang sebelum dieksekusi. Butuh ruangan tersendiri, koneksi yang mumpuni dan banyak lagi tentunya.
+2020 identik dengan Covid-19 atau virus Corona pastinya. Apa dampaknya terhadap hidup saya? Semuanya! Saya memang ada wacana ingin bekerja dari rumah, apalagi peran yang saya emban di [HACKTIV8](https://hacktiv8.com/) dua tahun terakhir lebih banyak berpergian keluar kota. Tapi _ngga gini juga_ :) Untuk bekerja di rumah butuh persiapan matang sebelum dieksekusi. Butuh ruangan tersendiri, koneksi yang mumpuni dan banyak lagi tentunya.
 
-Ketika PSBB diterapkan di Jakarta saya sedang melakukan _in-house training_. Terpaksa tetap mengisi disaat awal dengan protokol kesehatan tentunya, namun akhirnya dua sesi terakhir dilakukan dirumah.
+Ketika PSBB diterapkan di Jakarta saya sedang melakukan _in-house training_. Terpaksa tetap mengisi disaat awal dengan protokol kesehatan tentunya, namun akhirnya dua sesi terakhir dilakukan di rumah.
 
 Dampak bagi [HACKTIV8](https://hacktiv8.com/) secara umum? Luar biasa! Untuk _coding bootcamp_ yang awalnya dilakukan secara offline terpaksa harus _pivot_ menjadi online. Apalagi beberapa kampus tambahan sudah disiapkan. Diawal pandemi, peminat yang ingin ikut _coding bootcamp_ sempat menurun drastis meskipun beberapa bulan kemudian peminatnya kembali dan bahkan meningkat jauh.
 
@@ -21,7 +21,7 @@ Syukur alhamdulillah transisi dari offline menuju online akhirnya berjalan cukup
 
 Yang cukup menyedihkan buat saya pribadi adalah keharusan untuk melakukan proses _layoff_ untuk menjaga buku kas tetap seimbang. Termasuk kehilangan beberapa sosok kunci :'( Ini adalah salah satu sisi yang tidak mengenakkan menjadi pemilik bisnis atau _co-founder_.
 
-Untuk kehidupan saya pribadi bekerja dirumah memiliki kelebihan tersendiri. Punya lebih banyak waktu untuk keluarga, dan punya lebih banyak waktu untuk mengerjakan sesuatu. Sekarang saya punya waktu 1 sampai 1.5 jam tambahan karenta tidak harus menempuh macetnya Jakarta menuju ke kantor.
+Untuk kehidupan saya pribadi bekerja di rumah memiliki kelebihan tersendiri. Punya lebih banyak waktu untuk keluarga, dan punya lebih banyak waktu untuk mengerjakan sesuatu. Sekarang saya punya waktu 1 sampai 1.5 jam tambahan karena tidak harus menempuh macetnya Jakarta menuju ke kantor.
 
 ## HACKTIV8 Berhasil Masuk dan Menyelesaikan Program Google for Startups Accelerator
 
