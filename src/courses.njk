@@ -1,0 +1,14 @@
+---
+title: Courses
+layout: main
+---
+
+<ul>
+    {% for course in courses %}
+        <li><a href="{{course.slug}}">{{ course.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<hr />
+
+{% include "footer.njk" %}

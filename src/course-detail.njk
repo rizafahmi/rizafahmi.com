@@ -1,0 +1,15 @@
+---
+pagination:
+  data: courses
+  size: 1
+  alias: course
+permalink: "courses/{{ course.slug }}/"
+layout: courses_layout
+title: Halo
+---
+
+<ol>
+    {% for lesson in lessons | filterLessons(course.id) %}
+        <li><a href="/courses/{{course.slug}}/lessons/{{lesson.title | slugify}}">{{ lesson.title  }}</a></li>
+    {% endfor  %}
+</ol>

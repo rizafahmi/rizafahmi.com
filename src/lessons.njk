@@ -1,0 +1,17 @@
+---
+pagination:
+  data: lessons
+  size: 1
+  alias: lesson
+permalink: "courses/{{ lesson.courses.displayField }}/lessons/{{ lesson.title | slugify }}/"
+layout: courses_layout
+title: Halo
+---
+
+<main>
+    <h1>{{ lesson.title }}</h1>
+    <p>
+        {{ lesson.body | safe  }}
+    </p>
+    <iframe width="560" height="315" src="{{ lesson.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</main>
