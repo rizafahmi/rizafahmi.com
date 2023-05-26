@@ -1,0 +1,14 @@
+---
+title: Materi Workshop
+layout: workshop
+---
+
+<ul>
+    {% for article in collections.workshop  | reverse %}
+        <li><a href="{{article.url}}">{{ article.data.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<hr />
+
+{% include "footer.njk" %}
