@@ -1,12 +1,16 @@
 ---
 title: 'Web Scraping dengan Node'
 permalink: '/web-scraping/'
-date: 2023-05-26
-tags: workshop
-layout: workshop
+date: 2023-05-25
+tags: tulisan
+layout: tulisan
 ---
 
+<small style="color: rgba(252,252,252,0.5);"><em>Berikut adalah materi tertulis untuk acara workshop di Surabaya yang diselenggarakan Mei 2023.</em></small>
+
 # Prasarat
+
+Untuk mengikuti materi ini, teman-teman membutuhkan beberapa alat berikut:
 
 - [NodeJS versi 18](https://nodejs.org/en) atau yang lebih baru
 - Kode editor seperti [VS Code](https://code.visualstudio.com/), [Sublime](https://www.sublimetext.com/) dll
@@ -521,3 +525,9 @@ export async function initDB() {
 ```
 
 # Kesimpulan
+
+- Web scraping adalah sebuah teknik untuk ekstraksi data dari sebuah halaman web
+- Ada dua metode web scraping yang bisa dilakukan: server-side dan client-side
+- Melakukan web scraping dengan JavaScript/Node dapat dilakukan dengan pustaka seperti Cheerio
+- Juga bisa menggunakan pustaka seperti Puppeeter apabila web menggunakan metode client-side rendering atau single-page app
+- Menggunakan metode kedua dengan Puppeeter lebih berat secara performa karena mengemulasi pengguna dengan web browser
