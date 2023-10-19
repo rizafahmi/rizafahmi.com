@@ -1,5 +1,5 @@
 ---
-title: 'Pengalaman Pertama Menghadiri Chrome Dev Summit'
+title: 'Menjadi GDE dan Pengalaman Pertama Menghadiri Chrome Dev Summit'
 date: '2018-12-22'
 permalink: /2018/12/22/pengalaman-pertama-cds/
 cover: './cds.jpeg'
