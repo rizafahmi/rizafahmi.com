@@ -5,11 +5,12 @@ date: 2023-10-22
 tags: tulisan
 layout: tulisan
 description: Bagaimana membuat Platform-as-a-Service (PaaS) sendiri dengan Dokku. Artikel ini akan membahas cara instalasi, konfigurasi dan cara penggelaran atau deployment.
+image: '/assets/images/cloud-day.jpg'
 ---
 
 > Ini adalah artikel dari materi yang dibawakan di acara Cloud Day Indonesia 2023 beberapa waktu yang lalu.
 
-![](/assets/images/cloud-day.png)
+![](/assets/images/cloud-day.jpg)
 
 # Platform as a Service
 
@@ -21,7 +22,6 @@ perlu mengurus infrastruktur fisik seperti server, jaringan, ataupun
 basis data atau *database*.
 
 ![Ilustrasi PaaS](/assets/images/PaaS.png)
-<!-- ![](/assets/images/15gfsa-v2.jpg) -->
 
 Dengan PaaS, kita bisa fokus mengembangkan produk dan berbagai fitur dan
 mengutamakan produktivitas pengembang aplikasi. Dengan beberapa tahap,
