@@ -14,7 +14,9 @@ title: Judul
     <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Startup founder, developer, mentor, kreator konten, tukang podcast">
+    <meta name="description" content="{{ description or title | escape }}" property="og:description">
+    <meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />
+    <meta property="og:image" content="/assets/favico/ms-icon-310x310.png">
 
     <link rel="preload" href="/assets/fonts/lato-v17-latin-300.woff2" type="font/woff2" as="font" crossorigin="anonymous" />
     <link rel="preload" href="/assets/fonts/lato-v17-latin-300italic.woff2" type="font/woff2" as="font" crossorigin="anonymous" />
