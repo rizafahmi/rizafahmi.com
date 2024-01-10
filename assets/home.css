@@ -25,10 +25,13 @@ div.article > a {
 
 div.article > a > h6:hover {
   color: rgb(41, 38, 38);
-  border-bottom: 1px solid;
 }
 
 h6 {
   font-size: 0.75rem;
   margin: 0.5rem;
+}
+
+aside {
+  margin-top: 1.5rem;
 }

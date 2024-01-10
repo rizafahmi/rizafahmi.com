@@ -1,5 +1,10 @@
 ---
 title: Halo, Saya Riza!
+pagination:
+  data: collections.tulisan
+  size: 18
+  alias: tulisan
+  reverse: true
 ---
 <!DOCTYPE html>
 <html lang="id">
@@ -42,17 +47,26 @@ title: Halo, Saya Riza!
     <h1>👋 Saya Riza!</h1>
     
     <main>
-      <h2>Opini · <a href="/feed.xml">RSS</a></h2>
+      <h2>Artikel · <a href="/feed.xml">RSS</a></h2>
       <div class="articles">
-        {% for article in collections.tulisan  | reverse %}
+        {% for t in tulisan %}
           <div class="article">
-            <a href="{{article.url}}">
-              <h6>&gt;&nbsp;&nbsp; {{ article.data.title }}</h6>
+            <a href="{{t.url}}">
+              <h6>&gt;&nbsp;&nbsp; {{ t.data.title }}</h6>
             </a>
           </div>
         {% endfor %}
+        <div class="article">
+            <a href="/articles">
+              <h6>Artikel lainnya...</h6>
+            </a>
+          </div>
       </div>
     </main>
+    <aside>
+          <h2>Karya</h2>
+
+    </aside>
     
     <script data-goatcounter="https://rizafahmi.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
