@@ -35,3 +35,9 @@ h6 {
 aside {
   margin-top: 1.5rem;
 }
+
+a.back {
+  font-size: 0.75rem;
+  margin: 0.5rem;
+  border: none;
+}

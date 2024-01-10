@@ -1,14 +1,19 @@
 ---
-title: Tulisan
+title: Kumpulan Tulisan Riza
 layout: main
 ---
 
-<ul>
-    {% for article in collections.tulisan  | reverse %}
-        <li><a href="{{article.url}}">{{ article.data.title }}</a></li>
-    {% endfor %}
-</ul>
+<main>
+    <h2>Artikel · <a href="/feed.xml">RSS</a></h2>
+    <div class="articles">
+      {% for article in collections.tulisan  | reverse %}
+      <div class="article">
+        <a href="{{article.url}}">
+          <h6>&gt;&nbsp;&nbsp; {{ article.data.title }}</h6>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <a class="back" href="/">&lt; Kembali ke halaman utama</a>
+</main>
 
-<hr />
-
-{% include "footer.njk" %}
