@@ -35,39 +35,6 @@ a {
   border-bottom: 2px solid;
 }
 
-.color-blue {
-  color: #5bc0eb;
-  border-color: #5bc0eb;
-}
-
-.color-green {
-  border-color: #7cffc4;
-  color: #7cffc4;
-}
-
-.color-yellow {
-  border-color: #fde74c;
-  color: #fde74c;
-}
-
-.color-red {
-  border-color: #e55381;
-  color: #e55381;
-}
-
-.color-orange {
-  border-color: #ff7f11;
-  color: #ff7f11;
-}
-.color-black {
-  border-color: #211a1e;
-  color: #211a1e;
-}
-
-.bg-green {
-  background-color: #7cffc4;
-  color: #211a1e;
-}
 
 .subscription-box {
   border-radius: 1rem;
