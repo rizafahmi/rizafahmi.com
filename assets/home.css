@@ -1,8 +1,34 @@
 h1 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   line-height: 1.5em;
 }
 
-a {
-  color: #fcfcfc;
+h2 {
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 0 0.25rem;
+}
+
+div.articles {
+  margin-top: 1.5rem;
+}
+
+div.article {
+  margin: 0.5rem;
+}
+
+div.article > a {
+  border: none;
+}
+
+div.article > a > h6:hover {
+  color: rgb(41, 38, 38);
+  border-bottom: 1px solid;
+}
+
+h6 {
+  font-size: 0.75rem;
+  margin: 0.5rem;
 }
