@@ -4,7 +4,6 @@ date: 2020-04-29
 permalink: /2020/04/29/panduan-melakukan-presentasi-online/
 cover: 'gabriel-benois-qnWPjzewewA-unsplash.jpg'
 layout: tulisan
-tags: tulisan
 ---
 
 Berikut ini adalah panduan untuk melakukan presentasi secara online baik untuk online meetup ataupun ajang yang lebih besar seperti konferensi online seperti acara yang akan diadakan oleh wwwid yaitu [ Live Camp 2020 ](https://livecamp.wwwid.org/home).

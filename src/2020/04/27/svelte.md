@@ -4,7 +4,6 @@ date: 2020-04-27
 permalink: /2020/04/27/svelte/
 cover: 'ferenc-almasi-fhAfLtHToCs-unsplash.jpg'
 layout: tulisan
-tags: tulisan
 ---
 
 Secara sederhana Svelte adalah sebuah framework JavaScript untuk menulis komponen antarmuka atau _user interface_. Namun, menurut Rich Harris, Svelte bukan hanya sekedar framework tapi lebih dari itu. Menurutnya Svelte adalah semacam _compiler_, maksudnya kode yang kita tulis di Svelte dikonversi menjadi JavaScript yang sudah dioptimasi.

@@ -4,7 +4,6 @@ date: 2018-05-21
 permalink: /2018/05/21/f8-san-jose-trip-day-2/
 cover: ''
 layout: tulisan
-tags: tulisan
 ---
 
 Ini adalah cerita berseri tentang perjalanan saya dan teman-teman Facebook Developer Circle Leads ke Silicon Valley dalam rangka mengikuti Facebook F8 Developer Conference. Ikuti dari [ bagian 0 ](https://rizafahmi.com/2018/05/08/f8-san-jose-trip-day-0/), dan [ bagian 1 ](https://rizafahmi.com/2018/05/14/f8-silicon-valley-trip-day-1/) supaya mendapatkan jalan ceritanya secara keseluruhan.

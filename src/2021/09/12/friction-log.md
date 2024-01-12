@@ -2,7 +2,6 @@
 title: 'Tentang Friction Log'
 permalink: '/2021/09/12/tentang-friction-log/'
 date: 2021-09-12
-tags: tulisan
 layout: tulisan
 ---
 

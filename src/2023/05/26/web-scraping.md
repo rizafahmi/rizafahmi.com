@@ -2,7 +2,6 @@
 title: 'Web Scraping dengan Node'
 permalink: '/web-scraping/'
 date: 2023-05-25
-tags: tulisan
 layout: tulisan
 ---
 

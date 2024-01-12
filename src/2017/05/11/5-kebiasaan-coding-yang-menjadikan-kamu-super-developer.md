@@ -3,7 +3,6 @@ title: '5 Kebiasaan Coding Yang Menjadikan Kamu Super Developer'
 date: 2017-05-11
 permalink: '/2017/05/11/5-kebiasaan-coding/'
 cover: './1_JaLmTHV3SDIqTNaczZdhCQ.png'
-tags: tulisan
 layout: tulisan
 ---
 

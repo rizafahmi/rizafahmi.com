@@ -4,7 +4,6 @@ date: 2020-09-15
 permalink: /2020/09/15/setup-windows-bagian-1/
 cover: ''
 layout: tulisan
-tags: tulisan
 ---
 
 Salah satu fitur menarik dari Windows 10 adalah kemampuan menjalankan Linux tanpa harus _reboot_ atau _dual boot_. Artinya sistem operasi Windows dan Linux dapat berjalan beriringan 🎉
