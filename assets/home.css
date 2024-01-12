@@ -41,3 +41,8 @@ a.back {
   margin: 0.5rem;
   border: none;
 }
+
+span.tags {
+  align-self: center;
+  margin: 0rem 0.25rem;
+}

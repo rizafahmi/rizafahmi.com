@@ -89,3 +89,8 @@ hr {
   transform: rotate(2deg);
   background-color: #eaeaea;
 }
+
+small {
+  font-size: 1rem;
+  color: rgba(33,26,30,0.6);
+}

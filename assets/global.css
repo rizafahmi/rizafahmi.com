@@ -42,3 +42,15 @@ a {
   color: #fcfcfc;
   font-size: 1.25rem;
 }
+
+h6 {
+  display: flex;
+}
+
+span.tags {
+  font-size: 0.75rem;
+  background: rgb(41, 38, 38);
+  color: #eaeaea;
+  padding: 0 0.5rem 0.125rem;
+  border-radius: 0.5rem;
+}
