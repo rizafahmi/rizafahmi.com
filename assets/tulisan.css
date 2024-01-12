@@ -13,13 +13,18 @@ a.back {
   border: none;
 }
 
-p, ul, li {
+p, ul, li, table {
   font-size: 1rem;
   line-height: 1.5rem;
 }
 
-code {
-  font-size: 1rem;
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid rgba(33,26,30,0.6);
+  padding: 8px;
 }
 
 li {
@@ -27,6 +32,7 @@ li {
 }
 
 code {
+  font-size: 1rem;
   font-family: 'JetBrainsMono', monospace;
   background-color: #eaeaea;
   padding: 0.15rem 0.35rem;
@@ -66,4 +72,20 @@ blockquote > p {
 
 hr {
   margin-top: 1.75rem;
+}
+
+.subscription-box {
+  border-radius: 1rem;
+  padding: 1rem 1.75rem 1.75rem 1.75rem;
+  margin-top: 3rem;
+  transform: rotate(2deg);
+  background-color: #eaeaea;
+}
+
+#subscription-box {
+  border-radius: 1rem;
+  padding: 1rem 1.75rem 1.75rem 1.75rem;
+  margin-top: 3rem;
+  transform: rotate(2deg);
+  background-color: #eaeaea;
 }

@@ -7,12 +7,12 @@ title: Judul
     <meta charset="UTF-8"/>
     <title>{{ title }}</title>
 
-    <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
-    <link rel="preload" as="style" href="/assets/tulisan.css" type="text/css" media="screen" />
-
-    <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
     <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen" />
+    <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen">
+    <link rel="preload" as="style" href="/assets/tulisan.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ description or title | escape }}" property="og:description">
     <meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />

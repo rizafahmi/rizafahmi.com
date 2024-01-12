@@ -35,14 +35,6 @@ a {
   border-bottom: 2px solid;
 }
 
-
-.subscription-box {
-  border-radius: 1rem;
-  padding: 1rem 1.75rem 1rem 1.75rem;
-  margin-top: 3rem;
-  transform: rotate(2deg);
-}
-
 .button {
   background-color: #211a1e;
   padding: 0.75rem 1rem 0.75rem 1rem;
