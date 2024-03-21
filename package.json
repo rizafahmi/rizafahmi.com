@@ -1,5 +1,5 @@
 {
-  "name": "rizafahmi.com-v2",
+  "name": "rizafahmi.com",
   "version": "0.0.1",
   "description": "Personal site rizafahmi.com",
   "main": "index.js",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rizafahmi/rizafahmi.com-v2.git"
+    "url": "git+https://github.com/rizafahmi/rizafahmi.com.git"
   },
   "keywords": [],
   "author": "Riza Fahmi <rizafahmi@gmail.com> (https://rizafahmi.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rizafahmi/rizafahmi.com-v2/issues"
+    "url": "https://github.com/rizafahmi/rizafahmi.com/issues"
   },
-  "homepage": "https://github.com/rizafahmi/rizafahmi.com-v2#readme",
+  "homepage": "https://github.com/rizafahmi/rizafahmi.com#readme",
   "devDependencies": {
     "@11ty/eleventy": "0.12.1",
     "@11ty/eleventy-plugin-rss": "1.1.1",
