@@ -1,3 +1,8 @@
+div.container {
+  max-width: 720px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
 h1 {
   font-size: 2rem;
   line-height: 1.5em;
@@ -35,8 +40,26 @@ code {
   font-size: 1rem;
   font-family: 'JetBrainsMono', monospace;
   background-color: #eaeaea;
-  padding: 0.15rem 0.35rem;
   border-radius: 0.25rem;
+  padding: 0.15rem 0.35rem;
+}
+
+code[class*='language-'] {
+  padding: 0;
+}
+
+code .highlight-line:before {
+  -webkit-user-select: none;
+  border-right: 1px solid #404040;
+  color: #858585;
+  content: counter(lineNumber);
+  counter-increment: lineNumber;
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  margin-right: 1.2em;
+  padding-right: 1.2em;
+  text-align: right;
+  width: 2.4em;
 }
 
 img {
@@ -50,6 +73,9 @@ img{
    filter: drop-shadow(0px 16px 10px rgba(33,26,30,0.6)); 
   }
 
+pre {
+  counter-reset: lineNumber;
+}
 pre[class*='language-'] {
   font-size: 1rem;
   font-family: 'JetBrainsMono', monospace;
