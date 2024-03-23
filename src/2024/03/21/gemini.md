@@ -4,7 +4,7 @@ permalink: '/gemini-web-dev/'
 date: 2023-10-22
 layout: tulisan
 description: Contoh penggunaan Gemini API untuk web developer
-image: '/assets/images/cloud-day.jpg'
+image: '/assets/images/gemini/og-twitter.png'
 ---
 
 Gemini adalah model Generative AI andalan Google. Sudah dilatih dengan banyak teks, audio dan video dengan berbagai bahasa. Berbeda dengan model lainnya, Gemini dibangun dari awal dengan fitur multimodal, artinya dapat menerima beberapa jenis masukan seperti teks, gambar, kode, dan berbagai jenis file lainnya.
@@ -758,4 +758,4 @@ Sedangkan untuk integrasi Gemini API, kita melakukan langkah-langkah berikut:
 
 Hasil akhir dapat dinikmati di [https://gemini-mendang-mending-mjgx6qvgeq-et.a.run.app/](https://gemini-mendang-mending-mjgx6qvgeq-et.a.run.app/). Dan kode lengkapnya tersedia di [https://github.com/rizafahmi/gemini-for-web-dev](https://github.com/rizafahmi/gemini-for-web-dev).
 
-Sekian tutorial penggunaan Gemini API khususnya untuk web developer. Kira-kira kita bikin apalagi ya? Silakan berikan masukan dan saran di kolom komentar. Terima kasih sudah mampir.
+Sekian tutorial penggunaan Gemini API khususnya untuk web developer. Kira-kira kita bikin apalagi ya? Silakan berikan masukan dan saran di kolom komentar. Terima kasih sudah mampir!
