@@ -12,6 +12,9 @@ h2 {
   font-size: 2.25rem;
 }
 
+h3 {
+  font-size: 1.75rem;
+}
 a.back {
   font-size: 1rem;
   margin: 0.5rem;
@@ -62,6 +65,9 @@ code .highlight-line:before {
   width: 2.4em;
 }
 
+code .highlight-line {
+  text-wrap: balance;
+}
 img {
   max-width: 100%;
 }
