@@ -1,15 +1,15 @@
 ---
-title: 'Gemini API untuk Web Developer'
-permalink: '/gemini-web-dev/'
+title: "Gemini API untuk Web Developer"
+permalink: "/gemini-web-dev/"
 date: 2023-10-22
 layout: tulisan
 description: Contoh penggunaan Gemini API untuk web developer
-image: '/assets/images/gemini-web-dev/mendang-mending.png'
+image: "/assets/images/gemini-web-dev/mendang-mending.png"
 ---
 
 Gemini adalah model Generative AI andalan Google. Sudah dilatih dengan banyak teks, audio dan video dengan berbagai bahasa. Berbeda dengan model lainnya, Gemini dibangun dari awal dengan fitur multimodal, artinya dapat menerima beberapa jenis masukan seperti teks, gambar, kode, dan berbagai jenis file lainnya.
 
-Ada tiga cara menggunakan Gemini: melalui interface [gemini.google.com](https://gemini.google.com/), Gemini API via Google AI Studio. Cara ketiga dengan menggunakan Vertex AI jika ingin melakukan penggelaran atau *deployment* model sendiri via [Google Cloud Platform](https://cloud.google.com/vertex-ai?hl=en).
+Ada tiga cara menggunakan Gemini: melalui interface [gemini.google.com](https://gemini.google.com/), Gemini API via Google AI Studio. Cara ketiga dengan menggunakan Vertex AI jika ingin melakukan penggelaran atau _deployment_ model sendiri via [Google Cloud Platform](https://cloud.google.com/vertex-ai?hl=en).
 
 Untuk tutorial kali ini kita akan menggunakan Gemini API melalui [Google AI Studio](https://aistudio.google.com/), dan sama-sama belajar bagaimana menambahkan fitur AI kedalam aplikasi web.
 
@@ -48,13 +48,13 @@ Lalu buatlah sebuah file yang akan digunakan sebagai server atau backend untuk a
 Di file ini kita akan membuat server sederhana dengan menggunakan modul `http` bawaan NodeJS dengan sebuah route untuk permulaan.
 
 ```javascript
-import http from 'http';
+import http from "http";
 
-(async () => {
-  const server = http.createServer(async (request, response) => {
+(async function () {
+  const server = http.createServer(async function (request, response) {
     const { url } = request;
-    if (url === '/health') {
-      response.writeHead(200).end('OK');
+    if (url === "/health") {
+      response.writeHead(200).end("OK");
     } else {
       console.error(`${url} is 404!`);
       response.writeHead(404);
@@ -96,9 +96,9 @@ curl localhost:6789/health
 OK⏎
 ```
 
-### Membangun *Backend*
+### Membangun _Backend_
 
-Mari persiapkan aplikasi dari sisi backend. Untuk *route* utama akan menampilkan halaman utama dari aplikasi.
+Mari persiapkan aplikasi dari sisi backend. Untuk _route_ utama akan menampilkan halaman utama dari aplikasi.
 
 #### `server.js`
 
@@ -117,7 +117,7 @@ import http from "http";
 +      response.end(fs.readFileSync("./public/index.html"));
 ```
 
-### Membangun *Frontend*
+### Membangun _Frontend_
 
 Untuk sisi frontend, mulai dari yang paling sederhana saja, sebuah halaman `index.html` yang didalamnya akan ada CSS dan JavaScript.
 
@@ -125,7 +125,7 @@ Untuk sisi frontend, mulai dari yang paling sederhana saja, sebuah halaman `inde
 
 CSS dan JavaScript sebagian besar sudah disediakan agar bisa lebih fokus pada bagian Gemini API. Sehingga mudah bila ingin melakukan copy-paste.
 
-Sebagian besar kode JavaScript bertugas untuk menangani *form*, *state* dan DOM.
+Sebagian besar kode JavaScript bertugas untuk menangani _form_, _state_ dan DOM.
 
 ```html/
 <!DOCTYPE html>
@@ -268,7 +268,7 @@ Sebagian besar kode JavaScript bertugas untuk menangani *form*, *state* dan DOM.
       });
 
     });
-    
+
     async function runComparison() {
       compareButton.textContent = "🤔 mikir dulu..."
       compareButton.disabled = true;
@@ -327,13 +327,13 @@ async function compare(topic, opt1, opt2) {
 
 ```
 
-Dari sisi frontend, lakukan pemanggilan ke server dengan menggunakan `fetch` ke *route* `/compare` dengan parameter `topic`, `opt1` dan `opt2`. Hasil dari permintaan ini akan ditampilkan di halaman web.
+Dari sisi frontend, lakukan pemanggilan ke server dengan menggunakan `fetch` ke _route_ `/compare` dengan parameter `topic`, `opt1` dan `opt2`. Hasil dari permintaan ini akan ditampilkan di halaman web.
 
-### Membangun *Backend*
+### Membangun _Backend_
 
 #### `server.js`
 
-Tambahkan *route* baru untuk menangani permintaan dari *frontend*, `/compare` yang akan menerima parameter `topic`, `opt1` dan `opt2`. Untuk saat ini, kita akan mencacah parameter lalu mengembalikan hasilnya.
+Tambahkan _route_ baru untuk menangani permintaan dari _frontend_, `/compare` yang akan menerima parameter `topic`, `opt1` dan `opt2`. Untuk saat ini, kita akan mencacah parameter lalu mengembalikan hasilnya.
 
 ```diff
 import fs from "fs";
@@ -346,8 +346,8 @@ import http from "http";
 +   return { topic, opt1, opt2 };
 + }
 
- (async () => {
-   const server = http.createServer(async (request, response) => {
+ (async function() {
+   const server = http.createServer(async function (request, response) {
      const {url} = request;
      if (url === "/health") {
        response.writeHead(200).end("OK");
@@ -380,7 +380,7 @@ import http from "http";
 
 Untuk mulai menggunakan silakan login dengan akun GCP terlebih dahulu ke [https://aistudio.google.com/](https://aistudio.google.com/) lalu menuju ke [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) atau pilih menu "Get API Key" untuk membuat API Key baru yang akan kita gunakan di kode nantinya.
 
-Lalu pilih "Create API Key" dan pilih proyek dari GCP sebelumnya. Dan salin API Key untuk nantinya akan dimasukkan kedalam *environment variable* atau file `.env`
+Lalu pilih "Create API Key" dan pilih proyek dari GCP sebelumnya. Dan salin API Key untuk nantinya akan dimasukkan kedalam _environment variable_ atau file `.env`
 
 ![api key](/assets/images/gemini-web-dev/api-key.png)
 
@@ -390,7 +390,7 @@ Lalu pilih "Create API Key" dan pilih proyek dari GCP sebelumnya. Dan salin API 
 API_KEY=ApiKEYDariAIStudio
 ```
 
-Agar `API_KEY` bisa terbaca di kode `server.js` kita perlu mengubah sedikit *npm script* yang ada.
+Agar `API_KEY` bisa terbaca di kode `server.js` kita perlu mengubah sedikit _npm script_ yang ada.
 
 #### `package.json`
 
@@ -452,15 +452,15 @@ npm i @google/generative-ai
 
 #### `server.js`
 
-Hal pertama yang perlu dilakukan adalah import beberapa fungsi dari pustaka `generative-ai` yang baru saja diinstal. Lalu tambahkan fungsi `compare` yang akan menerima tiga parameter, yaitu `topic`, `opt1`, dan `opt2` dan akan menghasilkan saran dari Gemini API. Terakhir, eksekusi fungsi `compare` ketika permintaan dari *frontend* diterima.
+Hal pertama yang perlu dilakukan adalah import beberapa fungsi dari pustaka `generative-ai` yang baru saja diinstal. Lalu tambahkan fungsi `compare` yang akan menerima tiga parameter, yaitu `topic`, `opt1`, dan `opt2` dan akan menghasilkan saran dari Gemini API. Terakhir, eksekusi fungsi `compare` ketika permintaan dari _frontend_ diterima.
 
 ```diff
 import fs from "fs";
 import http from "http";
-+ import { 
-+   GoogleGenerativeAI, 
-+   HarmCategory, 
-+   HarmBlockThreshold 
++ import {
++   GoogleGenerativeAI,
++   HarmCategory,
++   HarmBlockThreshold
 + } from '@google/generative-ai';
 
 + async function compare(topic, opt1, opt2) {
@@ -521,8 +521,8 @@ function parse_options(options) {
   return {topic, opt1, opt2};
 }
 
-(async () => {
-  const server = http.createServer(async (request, response) => {
+(async function() {
+  const server = http.createServer(async function(request, response) {
     const {url} = request;
     if (url === "/health") {
       response.writeHead(200).end("OK");
@@ -557,7 +557,11 @@ Mari kita bahas beberapa bagian penting dari kode diatas satu-per-satu.
 #### Import `@google/generative-ai`
 
 ```javascript
-import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
+import {
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} from "@google/generative-ai";
 ```
 
 #### Fungsi `compare`
@@ -617,17 +621,18 @@ async function compare(topic, opt1, opt2) {
 ```
 
 Berikut langkah-langkah yang dilakukan oleh fungsi `compare`:
-- Pertama, inisiasi objek `genAI` dari `GoogleGenerativeAI` *class* dengan `API_KEY` yang sudah disediakan seperti yang dapat dilihat di baris ke-9.
+
+- Pertama, inisiasi objek `genAI` dari `GoogleGenerativeAI` _class_ dengan `API_KEY` yang sudah disediakan seperti yang dapat dilihat di baris ke-9.
 - Tentukan model yang ingin digunakan. Per tulisan ini dipublikasi, pilihan model yang tersedia melalui API adalah `gemini-1.0-pro`.
 - Buat file untuk menampung konfigurasi seperti `temperature`, `topK`, `topP`, `maxOutputTokens` dan juga konfigurasi keamanan di baris ke-11 hingga baris ke-35.
-- Lalu di baris ke-37 hingga baris ke-41 untuk mempersiapkan teks yang akan dikirim ke Gemini API dengan instruksi spesifik untuk membandingkan dua hal disertai dengan contoh. Salah satu cara efektif untuk *prompting* dengan memberikan contoh keluarang yang diinginkan.
-- Di baris ke-43 hingga baris ke-47, eksekusi fungsi `generateContent` dengan berbagai parameter yang sudah disiapkan dan hasilnya dikembalikan ke *frontend*.
+- Lalu di baris ke-37 hingga baris ke-41 untuk mempersiapkan teks yang akan dikirim ke Gemini API dengan instruksi spesifik untuk membandingkan dua hal disertai dengan contoh. Salah satu cara efektif untuk _prompting_ dengan memberikan contoh keluarang yang diinginkan.
+- Di baris ke-43 hingga baris ke-47, eksekusi fungsi `generateContent` dengan berbagai parameter yang sudah disiapkan dan hasilnya dikembalikan ke _frontend_.
 
 ![hasil mentah](/assets/images/gemini-web-dev/render-raw.png)
 
 ### Menampilkan Hasil sebagai HTML
 
-Pabila dijalankan akan menghasilkan seperti ilustrasi diatas. Teks yang dihasilkan Gemini API mengikuti format dengan tanda `*` *list* dan tidak diikuti dengan baris baru. Hal ini bisa *diakalin* dengan menganggap teks yang dihasilkan sebagai markdown dan konversi ke HTML. Mari kita coba dengan melakukan instalasi pustaka `marked`.
+Pabila dijalankan akan menghasilkan seperti ilustrasi diatas. Teks yang dihasilkan Gemini API mengikuti format dengan tanda `*` _list_ dan tidak diikuti dengan baris baru. Hal ini bisa _diakalin_ dengan menganggap teks yang dihasilkan sebagai markdown dan konversi ke HTML. Mari kita coba dengan melakukan instalasi pustaka `marked`.
 
 ```bash
 npm i marked
@@ -704,8 +709,8 @@ function parse_options(options) {
   return {topic, opt1, opt2};
 }
 
-(async () => {
-  const server = http.createServer(async (request, response) => {
+(async function() {
+  const server = http.createServer(async function(request, response) {
     const {url} = request;
     if (url === "/health") {
       response.writeHead(200).end("OK");
@@ -742,13 +747,15 @@ Jauh lebih baik, kan?! Dan aplikasi kita pun selesai.
 ## Penutup
 
 Tutorial kali ini memperlihatkan cara mengintegrasikan Gemini API kedalam sebuah aplikasi web. Berikut langkah-langkah yang dilakukan:
+
 1. Menyiapkan proyek NodeJS.
 2. Membuat server dengan modul `http`.
-3. Membuat *route* untuk menampilkan halaman utama.
-4. Mempersiapkan aplikasi di sisi *frontend*.
-5. Membuat *route* baru untuk menangani permintaan dari *frontend*.
+3. Membuat _route_ untuk menampilkan halaman utama.
+4. Mempersiapkan aplikasi di sisi _frontend_.
+5. Membuat _route_ baru untuk menangani permintaan dari _frontend_.
 
 Sedangkan untuk integrasi Gemini API, kita melakukan langkah-langkah berikut:
+
 1. Mendapatkan API Key dari Google AI Studio.
 2. Instalasi pustaka `@google/generative-ai`.
 3. Import fungsi yang dibutuhkan dari pustaka tersebut.
