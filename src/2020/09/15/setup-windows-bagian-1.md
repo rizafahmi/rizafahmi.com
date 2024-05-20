@@ -1,7 +1,7 @@
 ---
 title: 'Setup Windows untuk Development'
 date: 2020-09-15
-permalink: /2020/09/15/setup-windows-bagian-1/
+permalink: /2020/09/15/setup-windows/
 cover: ''
 layout: tulisan
 ---
