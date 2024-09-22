@@ -11,3 +11,5 @@ node_modules
 pnpm-debug.log
 _site/
 dist/
+
+.DS_Store
