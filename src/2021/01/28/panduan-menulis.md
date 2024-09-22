@@ -8,8 +8,6 @@ image: ""
 status: draft
 ---
 
-# Panduan Menulis Artikel Pemrograman
-
 Berikut adalah panduan singkat dalam menulis artikel pemrograman. Jika teman-teman memiliki pengalaman atau pengetahuan tertentu mengenai pemrograman dan ingin membagikannya untuk teman-teman lainnya, teman-teman dapat merumuskan pengalaman tersebut kedalam sebuah tulisan. Dengan demikian pengetahuan ataupun pengalaman tersebut akan lebih berguna.
 
 > Artikel ini disadur dari talk yang dibawakan oleh <a href="https://rachelnabors.com/" target="_blank">Rachel Nabors</a>.
