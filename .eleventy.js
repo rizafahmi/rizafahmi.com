@@ -1,15 +1,18 @@
-const pluginRss = require('@11ty/eleventy-plugin-rss');
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
+const pluginRss = require("@11ty/eleventy-plugin-rss");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
+  eleventyConfig.setServerOptions({
+    port: 3000,
+  });
   eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPassthroughCopy('assets');
-  eleventyConfig.addPassthroughCopy('src/_redirects');
+  eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy("src/_redirects");
   eleventyConfig.addPlugin(syntaxHighlight);
 
   return {
-    dir: { input: 'src', output: 'dist' },
-    dataTemplate: 'njk',
-    markdownTemplateEngine: 'njk'
+    dir: { input: "src", output: "dist" },
+    dataTemplate: "njk",
+    markdownTemplateEngine: "njk",
   };
 };

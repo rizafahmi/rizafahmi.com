@@ -7,14 +7,13 @@ eleventyExcludeFromCollections: true
 <main>
     <h2>Artikel · <a href="/feed.xml">RSS</a></h2>
     <div class="articles">
-      {% for article in collections.all  | reverse %}
+      {% for article in collections.tulisan | reverse %}
       <div class="article">
         <a href="{{article.url}}">
-          <h6>&gt;&nbsp;&nbsp; {{ article.data.title }} {% if article.data.tags %}<span class="tags">{{ article.data.tags }}</span>{% endif %}</h6>
+          <h6>&gt;&nbsp;&nbsp; {{ article.data.title }}</h6>
         </a>
       </div>
       {% endfor %}
     </div>
     <a class="back" href="/">&lt; Kembali ke halaman utama</a>
 </main>
-

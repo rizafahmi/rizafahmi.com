@@ -1,7 +1,7 @@
 ---
 title: Halo, Saya Riza!
 pagination:
-  data: collections.all
+  data: collections.tulisan
   size: 18
   alias: tulisan
   reverse: true
@@ -65,7 +65,7 @@ eleventyExcludeFromCollections: true
       {% for t in tulisan %}
       <div class="article">
         <a href="{{t.url}}">
-          <h6>&gt;&nbsp;&nbsp; {{ t.data.title }} {% if t.data.tags %}<span class="tags">{{t.data.tags}}</span>{% endif %}</h6>
+          <h6>&gt;&nbsp;&nbsp; {{ t.data.title }}</h6>
         </a>
       </div>
       {% endfor %}
