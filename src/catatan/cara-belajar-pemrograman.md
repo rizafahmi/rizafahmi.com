@@ -4,7 +4,7 @@ date: 2018-09-17
 permalink: /2018/09/17/cara-belajar-pemrograman/
 cover: "./goku.png"
 layout: tulisan
-tags: tulisan
+tags: catatan
 ---
 
 Artikel ini akan memaparkan beberapa tips buat teman-teman yang ingin belajar pemorgraman dengan efisien. Seluruh tips disini murni adalah pengalaman pribadi saya, baik yang saya alami sendiri dan juga hasil diskusi dan obrolan dengan teman sesama developer.

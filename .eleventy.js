@@ -10,9 +10,34 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/_redirects");
   eleventyConfig.addPlugin(syntaxHighlight);
 
+  eleventyConfig.addFilter("readableDate", (dateObj) => {
+    return getRelativeTimeString(dateObj);
+  });
+
   return {
     dir: { input: "src", output: "dist" },
     dataTemplate: "njk",
     markdownTemplateEngine: "njk",
   };
 };
+
+function getRelativeTimeString(date) {
+  const now = new Date();
+  const diffInSeconds = Math.floor((now - date) / 1000);
+
+  const intervals = [
+    { label: "tahun", seconds: 31536000 },
+    { label: "bulan", seconds: 2592000 },
+    { label: "hari", seconds: 86400 },
+    { label: "jam", seconds: 3600 },
+    { label: "menit", seconds: 60 },
+    { label: "detik", seconds: 1 },
+  ];
+
+  for (const interval of intervals) {
+    const value = Math.floor(diffInSeconds / interval.seconds);
+    if (value >= 1) {
+      return `${value} ${interval.label} yang lalu`;
+    }
+  }
+}

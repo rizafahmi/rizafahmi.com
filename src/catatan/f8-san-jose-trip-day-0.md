@@ -4,7 +4,7 @@ date: 2018-05-08
 permalink: /2018/05/08/f8-san-jose-trip-day-0/
 cover: "./1_J7TJO5VQfndtn3cyjF4flg.jpeg"
 layout: tulisan
-tags: tulisan
+tags: catatan
 ---
 
 Berikut adalah rekap perjalanan saya ketika diundang menghadiri F8 Developer Conference sebagai salah satu Facebook Developer Circle yang beruntung.

@@ -1,56 +1,91 @@
 @font-face {
-  font-family: 'Wotfard';
-  font-display: swap;
-  src: local(''), url('/assets/fonts/wotfard-regular-webfont.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('/assets/fonts/wotfard-regular-webfont.ttf') format('ttf'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    font-family: "Wotfard";
+    font-display: swap;
+    src:
+        local(""),
+        url("/assets/fonts/wotfard-regular-webfont.woff2") format("woff2"),
+        /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url("/assets/fonts/wotfard-regular-webfont.ttf") format("ttf"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @font-face {
-  font-family: 'JetBrainsMono';
-  font-weight: bold;
-  font-display: swap;
-  src: local(''), url('/assets/fonts/JetBrainsMono-Bold.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('/assets/fonts/JetBrainsMonoNL-Bold.ttf') format('ttf'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    font-family: "JetBrainsMono";
+    font-weight: bold;
+    font-display: swap;
+    src:
+        local(""),
+        url("/assets/fonts/JetBrainsMono-Bold.woff2") format("woff2"),
+        /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url("/assets/fonts/JetBrainsMonoNL-Bold.ttf") format("ttf"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @font-face {
-  font-family: 'JetBrainsMono';
-  font-display: swap;
-  src: local(''), url('/assets/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('/assets/fonts/JetBrainsMono-Regular.ttf') format('ttf'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    font-family: "JetBrainsMono";
+    font-display: swap;
+    src:
+        local(""),
+        url("/assets/fonts/JetBrainsMono-Regular.woff2") format("woff2"),
+        /* Chrome 26+, Opera 23+, Firefox 39+ */
+            url("/assets/fonts/JetBrainsMono-Regular.ttf") format("ttf"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 body {
-  color: rgb(41, 38, 38);
-  font-family: Wotfard,Futura,-apple-system,sans-serif;
-  font-size: 2rem;
-  margin: 1.5rem;
+    color: rgb(41, 38, 38);
+    font-family:
+        Wotfard,
+        Futura,
+        -apple-system,
+        sans-serif;
+    font-size: 2rem;
+    margin: 1.5rem;
 }
 
 a {
-  text-decoration: none;
-  border-bottom: 2px solid;
+    text-decoration: none;
+    border-bottom: 2px solid;
 }
 
 .button {
-  background-color: #211a1e;
-  padding: 0.75rem 1rem 0.75rem 1rem;
-  border-radius: 0.25rem;
-  color: #fcfcfc;
-  font-size: 1.25rem;
+    background-color: #211a1e;
+    padding: 0.75rem 1rem 0.75rem 1rem;
+    border-radius: 0.25rem;
+    color: #fcfcfc;
+    font-size: 1.25rem;
 }
 
+h3 {
+    font-size: 1.75rem;
+}
 h6 {
-  display: flex;
+    display: flex;
 }
 
 span.tags {
-  font-size: 0.75rem;
-  background: rgb(41, 38, 38);
-  color: #eaeaea;
-  padding: 0 0.5rem 0.125rem;
-  border-radius: 0.5rem;
+    font-size: 0.75rem;
+    background: rgb(41, 38, 38);
+    color: #eaeaea;
+    padding: 0 0.5rem 0.125rem;
+    border-radius: 0.5rem;
+}
+
+h1 > a {
+    text-decoration: none;
+    border-bottom: none;
+    color: inherit;
+}
+
+h1 > a:hover {
+    border-bottom: 2px solid;
+}
+
+p {
+    font-size: 1rem;
+}
+
+.note-modified {
+    margin-left: 0.5rem;
+}
+
+blockquote {
+    font-size: 0.75rem;
 }

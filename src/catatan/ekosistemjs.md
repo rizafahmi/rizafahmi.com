@@ -4,7 +4,7 @@ date: 2020-02-03
 permalink: /2020/02/03/ekosistemjs/
 cover: "./JSDAy.jpg"
 layout: tulisan
-tags: tulisan
+tags: catatan
 ---
 
 # Ekosistem JavaScript di Indonesia

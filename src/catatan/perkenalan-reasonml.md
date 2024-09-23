@@ -4,7 +4,7 @@ date: 2018-12-10
 permalink: /2018/12/10/perkenalan-reasonml/
 cover: "./reason.jpeg"
 layout: tulisan
-tags: tulisan
+tags: catatan
 ---
 
 ReasonML adalah bahasa sintaks, ekstensi dan _toolchain_ yang berada diatas sebuah bahasa _jadul_ [OCaml](https://ocaml.org/). Selain dapat dikompilasi ke JavaScript dengan bantuan [BuckleScript](https://bucklescript.github.io/), Reason juga dapat dikompilasi menjadi aplikasi native melalui OCaml. Daripada membuat bahasa baru dari awal, tim Facebook memutuskan untuk membuat sintaks baru dan memperkaya _environment_ OCaml sehingga menjadi lebih modern dan kekinian. OCaml sendiri sudah digunakan lebih dari 20 tahun dan sudah teruji oleh industri sejak tahun 90-an.

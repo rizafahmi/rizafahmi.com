@@ -4,7 +4,7 @@ date: 2020-02-03
 permalink: /2020/02/03/ekosistemjs/en/
 cover: "../JSDAy.jpg"
 layout: tulisan
-tags: tulisan
+tags: catatan
 ---
 
 Original article in [ Bahasa Indonesia ](/2020/02/03/ekosistemjs/).

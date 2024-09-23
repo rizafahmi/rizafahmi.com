@@ -1,8 +1,9 @@
 ---
-title: 'Web Scraping dengan Node'
-permalink: '/web-scraping/'
+title: "Web Scraping dengan Node"
+permalink: "/web-scraping/"
 date: 2023-05-25
 layout: tulisan
+tags: catatan
 ---
 
 <small style="color: rgba(252,252,252,0.5);"><em>Berikut adalah materi tertulis untuk acara workshop di Surabaya yang diselenggarakan Mei 2023.</em></small>
@@ -52,7 +53,7 @@ dari halaman web.
 ## `app.js`
 
 ```js
-import * as cheerio from 'cheerio';
+import * as cheerio from "cheerio";
 
 // Sediakan dokumen HTML
 const html = '<h2 class="title">Halo Surabaya</h2>';
@@ -143,7 +144,7 @@ Ketika data sudah dimuat, kita bisa memilih(select), menelusuri(traversing), dan
 ### `app.js`
 
 ```jsx
-import * as cheerio from 'cheerio';
+import * as cheerio from "cheerio";
 
 // Sediakan dokumen HTML
 const html = '<h2 class="title">Halo Surabaya</h2>';
@@ -152,7 +153,7 @@ const html = '<h2 class="title">Halo Surabaya</h2>';
 const $ = cheerio.load(html);
 
 // Uraikan dokumen HTML dengan cheerio
-text = $('h2.title').text();
+text = $("h2.title").text();
 console.log(text);
 
 // Ekstraksi data
@@ -168,7 +169,7 @@ Untuk mengunduh halaman web, bisa menggunakan `fetch()` yang sudah disediakan ol
 ### `app.js`
 
 ```jsx
-import * as cheerio from 'cheerio';
+import * as cheerio from "cheerio";
 
 async function getHtml(url) {
   try {
@@ -181,14 +182,14 @@ async function getHtml(url) {
   }
 }
 
-const html = await getHtml('https://rizafahmi.com');
+const html = await getHtml("https://rizafahmi.com");
 
 const $ = cheerio.load(html);
 
-const text = $('h1').text();
+const text = $("h1").text();
 console.log(text);
 
-const footer = $('p');
+const footer = $("p");
 console.log(footer.attr());
 console.log(footer.text());
 ```
@@ -238,7 +239,7 @@ Misalnya kita ingin mencari daftar artikel di `https://rizafahmi.com/2021/09/12/
 ### `app.js`
 
 ```js
-import * as cheerio from 'cheerio';
+import * as cheerio from "cheerio";
 
 async function getHtml(url) {
   try {
@@ -251,12 +252,12 @@ async function getHtml(url) {
 }
 
 const html = await getHtml(
-  'https://rizafahmi.com/2021/09/12/tentang-friction-log/'
+  "https://rizafahmi.com/2021/09/12/tentang-friction-log/",
 );
 
 const $ = cheerio.load(html);
 
-const footer = $('footer').find('a');
+const footer = $("footer").find("a");
 console.log(footer.length); // 10
 for (let i = 0; i < footer.length; i += 1) {
   console.log(footer[i].children[0].data);
@@ -270,7 +271,7 @@ for (let i = 0; i < footer.length; i += 1) {
 ### `app.js`
 
 ```js
-import * as cheerio from 'cheerio';
+import * as cheerio from "cheerio";
 
 async function getHtml(url) {
   try {
@@ -283,14 +284,14 @@ async function getHtml(url) {
 }
 
 const html = await getHtml(
-  'https://rizafahmi.com/2021/09/12/tentang-friction-log/'
+  "https://rizafahmi.com/2021/09/12/tentang-friction-log/",
 );
 
 const $ = cheerio.load(html);
 
-const header5 = $('h5');
-console.log(header5.parent().prop('tagName')); // Footer
-console.log(header5.parent().parent().prop('tagName')); // Body
+const header5 = $("h5");
+console.log(header5.parent().prop("tagName")); // Footer
+console.log(header5.parent().parent().prop("tagName")); // Body
 ```
 
 ## Mencari berikutnya/sebelumnya
@@ -298,7 +299,7 @@ console.log(header5.parent().parent().prop('tagName')); // Body
 ### `app.js`
 
 ```js
-import * as cheerio from 'cheerio';
+import * as cheerio from "cheerio";
 
 async function getHtml(url) {
   try {
@@ -310,11 +311,11 @@ async function getHtml(url) {
   }
 }
 
-const html = await getHtml('https://rizafahmi.com/articles');
+const html = await getHtml("https://rizafahmi.com/articles");
 
 const $ = cheerio.load(html);
 
-const first_article = $('li:first');
+const first_article = $("li:first");
 console.log(first_article.text());
 
 const second_article = first_article.next();
@@ -333,7 +334,7 @@ Mari scrape instagram, dan ambil data jumlah follower
 ## `app.js`
 
 ```js
-import * as cheerio from 'cheerio';
+import * as cheerio from "cheerio";
 
 async function getHtml(url) {
   try {
@@ -345,10 +346,10 @@ async function getHtml(url) {
   }
 }
 
-const html = await getHtml('https://instagram.com/rizafahmi');
+const html = await getHtml("https://instagram.com/rizafahmi");
 
 const $ = cheerio.load(html);
-const followers = $('.css-901oao');
+const followers = $(".css-901oao");
 console.log(followers.length); // 0
 ```
 
@@ -362,11 +363,11 @@ $ npm i puppeteer
 ### `app.js`
 
 ```js
-import puppeteer from 'puppeteer';
+import puppeteer from "puppeteer";
 
 async function getHtml(url) {
   try {
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     await page.goto(url);
     await page.waitForNetworkIdle();
@@ -385,7 +386,7 @@ async function getHtml(url) {
   }
 }
 
-const followers = await getHtml('https://twitter.com/rizafahmi22');
+const followers = await getHtml("https://twitter.com/rizafahmi22");
 
 console.log(`Followers: ${followers}`);
 ```
@@ -402,23 +403,23 @@ npm i -D nodemon
 ### `server.js`
 
 ```js
-import express from 'express';
+import express from "express";
 
 const app = express();
 
-app.get('/ping', function (req, res) {
-  res.json({ status: 'OK' });
+app.get("/ping", function (req, res) {
+  res.json({ status: "OK" });
 });
 
-app.get('/followers', function (req, res) {
+app.get("/followers", function (req, res) {
   res.json({
-    status: 'OK',
-    followers: [{ media: 'twitter', count: 5629 }],
+    status: "OK",
+    followers: [{ media: "twitter", count: 5629 }],
   });
 });
 
 app.listen(3000, function () {
-  console.log('Server is listening on port 3000');
+  console.log("Server is listening on port 3000");
 });
 ```
 
@@ -501,10 +502,10 @@ npm i sqlite3
 ### `db.js`
 
 ```js
-import sqlite3 from 'sqlite3';
+import sqlite3 from "sqlite3";
 
 export function getDB() {
-  return new sqlite3.Database('./followers.db');
+  return new sqlite3.Database("./followers.db");
 }
 
 export async function initDB() {

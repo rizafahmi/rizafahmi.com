@@ -1,12 +1,12 @@
 ---
-title: Belajar Paradigma Fungsional dengan Elixir
-permalink: /fungsional-elixir/
-date: 2024-07-16
+title: 🌱 Catatan Tentang Paradigma Pemrograman
+created: 2024-09-22
+modified: 2024-09-23
 layout: tulisan
-description: Belajar bahasa fungsional Elixir
-image: ""
+tags:
+  - catatan
+  - ide
 eleventyExcludeFromCollections: true
-tags: tulisan
 ---
 
 Dunia pemrograman sangat dinamis perkembangannya. Selalu ada saja hal baru yang muncul kepermukaan. Mulai dari bahasa pemrograman baru, kerangka kerja baru, pustaka baru dan lain sebagainya. Hal ini terjadi salah satunya karena ditemukannya masalah-masalah baru yang mungkin belum terpikirkan atau belum pernah terjadi sebelumnya.
@@ -23,6 +23,11 @@ Muncul juga gaya pemrograman yang berbeda-beda. Ada gaya imperatif yang mengguna
 
 Perkembangan perangkat keras juga menjadi salah satu penyebab munculnya hal-hal baru tersebut. Kecepatan prosesor yang sudah 'mentok' dan sulit ditingkatkan menjadi lebih cepat lagi. Namun di sisi lain, jumlah inti prosesor bertambah banyak secara eksponensial menyebabkan perubahan cara mengeksekusi kode agar dapat memanfaatkan _multi-core_ dari prosesor. Jika sebelumnya jika aplikasi dirasa sudah mulai lambat, kita bisa _upgrade_ prosesor dengan _clock speed_ yang lebih tinggi. Sekarang sudah tidak bisa lagi dilakukan karena _clock speed_ sudah 'mentok'.
 
-Referensi: http://www.gotw.ca/publications/concurrency-ddj.htm
+Referensi CPU Clock speed: http://www.gotw.ca/publications/concurrency-ddj.htm
 
 Sehingga berkembang konsep _concurrent programming_ atau _parallel programming_, yang memungkinkan kita menggunakan banyak inti prosesor untuk mengeksekusi kode secara bersamaan. Beberapa bahasa mulai mengadopsi hal ini seperti Go dengan goroutine, Elixir dan Erlang dengan processes, dan Kotlin dengan coroutine.
+
+...
+
+![](/assets/images/paradigma.jpeg)
+Ilustrasi diatas sepertinya menarik dibahas. Sebuah pengelompokan paradigma yang disederhanakan. Gak tau tepat atau tidak. Sumber: https://blog.favouritejome.dev/the-world-of-programming-paradigms
