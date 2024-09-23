@@ -1,128 +1,132 @@
 div.container {
-  max-width: 720px;
-  padding: 0 20px;
-  margin: 0 auto;
+    max-width: 720px;
+    padding: 0 20px;
+    margin: 0 auto;
 }
 h1 {
-  font-size: 2rem;
-  line-height: 1.5em;
+    font-size: 2rem;
+    line-height: 1.5em;
 }
 
 h2 {
-  font-size: 2.25rem;
+    font-size: 2.25rem;
 }
 
 h3 {
-  font-size: 1.75rem;
+    font-size: 1.75rem;
 }
 a.back {
-  font-size: 1rem;
-  margin: 0.5rem;
-  border: none;
+    font-size: 1rem;
+    margin: 0.5rem;
+    border: none;
 }
 
-p, ul, li, table {
-  font-size: 1rem;
-  line-height: 1.5rem;
+p,
+ul,
+li,
+table {
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 
-th, td {
-  border: 1px solid rgba(33,26,30,0.6);
-  padding: 8px;
+th,
+td {
+    border: 1px solid rgba(33, 26, 30, 0.6);
+    padding: 8px;
 }
 
 li {
-  margin: 0.5rem 0;
+    margin: 0.5rem 0;
 }
 
 code {
-  font-size: 1rem;
-  font-family: 'JetBrainsMono', monospace;
-  background-color: #eaeaea;
-  border-radius: 0.25rem;
-  padding: 0.15rem 0.35rem;
+    font-size: 1rem;
+    font-family: "JetBrainsMono", monospace;
+    background-color: #eaeaea;
+    border-radius: 0.25rem;
+    padding: 0.15rem 0.35rem;
 }
 
-code[class*='language-'] {
-  padding: 0;
+code[class*="language-"] {
+    padding: 0;
 }
 
 code .highlight-line:before {
-  -webkit-user-select: none;
-  border-right: 1px solid #404040;
-  color: #858585;
-  content: counter(lineNumber);
-  counter-increment: lineNumber;
-  display: inline-block;
-  font-variant-numeric: tabular-nums;
-  margin-right: 1.2em;
-  padding-right: 1.2em;
-  text-align: right;
-  width: 2.4em;
+    -webkit-user-select: none;
+    border-right: 1px solid #404040;
+    color: #858585;
+    content: counter(lineNumber);
+    counter-increment: lineNumber;
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+    margin-right: 1.2em;
+    padding-right: 1.2em;
+    text-align: right;
+    width: 2.4em;
 }
 
 code .highlight-line {
-  text-wrap: balance;
+    text-wrap: balance;
 }
 img {
-  max-width: 100%;
+    max-width: 100%;
 }
-img{
-  -webkit-filter: drop-shadow(0px 16px 10px rgba(33,26,30,0.6));
-  -moz-filter: drop-shadow(0px 16px 10px rgba(33,26,30,0.6));
-  -ms-filter: drop-shadow(0px 16px 10px rgba(33,26,30,0.6)); 
-  -o-filter: drop-shadow(0px 16px 10px rgba(33,26,30,0.6));
-   filter: drop-shadow(0px 16px 10px rgba(33,26,30,0.6)); 
-  }
+img {
+    -webkit-filter: drop-shadow(0px 8px 4px rgba(33, 26, 30, 0.6));
+    -moz-filter: drop-shadow(0px 8px 4px rgba(33, 26, 30, 0.6));
+    -ms-filter: drop-shadow(0px 8px 4px rgba(33, 26, 30, 0.6));
+    -o-filter: drop-shadow(0px 8px 4px rgba(33, 26, 30, 0.6));
+    filter: drop-shadow(0px 8px 4px rgba(33, 26, 30, 0.6));
+}
 
 pre {
-  counter-reset: lineNumber;
+    counter-reset: lineNumber;
 }
-pre[class*='language-'] {
-  font-size: 1rem;
-  font-family: 'JetBrainsMono', monospace;
+pre[class*="language-"] {
+    font-size: 1rem;
+    font-family: "JetBrainsMono", monospace;
 }
 
 blockquote {
-  font-style: italic;
-  color: rgba(33,26,30,0.6);
-  border-left: 0.25rem solid rgba(33,26,30,0.6);
-  padding-left: 1rem;
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
-  margin-bottom: 1.75rem;
+    font-style: italic;
+    color: rgba(33, 26, 30, 0.6);
+    border-left: 0.25rem solid rgba(33, 26, 30, 0.6);
+    padding-left: 1rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    margin-bottom: 1.75rem;
 }
 
 blockquote > p {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
 }
 
 hr {
-  margin-top: 1.75rem;
+    margin-top: 1.75rem;
 }
 
 .subscription-box {
-  border-radius: 1rem;
-  padding: 1rem 1.75rem 1.75rem 1.75rem;
-  margin-top: 3rem;
-  transform: rotate(2deg);
-  background-color: #eaeaea;
+    border-radius: 1rem;
+    padding: 1rem 1.75rem 1.75rem 1.75rem;
+    margin-top: 3rem;
+    transform: rotate(2deg);
+    background-color: #eaeaea;
 }
 
 #subscription-box {
-  border-radius: 1rem;
-  padding: 1rem 1.75rem 1.75rem 1.75rem;
-  margin-top: 3rem;
-  transform: rotate(2deg);
-  background-color: #eaeaea;
+    border-radius: 1rem;
+    padding: 1rem 1.75rem 1.75rem 1.75rem;
+    margin-top: 3rem;
+    transform: rotate(2deg);
+    background-color: #eaeaea;
 }
 
 small {
-  font-size: 1rem;
-  color: rgba(33,26,30,0.6);
+    font-size: 1rem;
+    color: rgba(33, 26, 30, 0.6);
 }
