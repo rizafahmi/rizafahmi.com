@@ -7,7 +7,6 @@ description: Contoh penggunaan Gemini API untuk web developer
 image: "/assets/images/gemini-web-dev/mendang-mending.png"
 tags: catatan
 ---
-
 Gemini adalah model Generative AI andalan Google. Sudah dilatih dengan banyak teks, audio dan video dengan berbagai bahasa. Berbeda dengan model lainnya, Gemini dibangun dari awal dengan fitur multimodal, artinya dapat menerima beberapa jenis masukan seperti teks, gambar, kode, dan berbagai jenis file lainnya.
 
 Ada tiga cara menggunakan Gemini: melalui interface [gemini.google.com](https://gemini.google.com/), Gemini API via Google AI Studio. Cara ketiga dengan menggunakan Vertex AI jika ingin melakukan penggelaran atau _deployment_ model sendiri via [Google Cloud Platform](https://cloud.google.com/vertex-ai?hl=en).
@@ -16,13 +15,11 @@ Untuk tutorial kali ini kita akan menggunakan Gemini API melalui [Google AI Stud
 
 ## Pratinjau
 
-Tutorial kali ini kita akan membuat aplikasi dengan AI sebagai bahan utamanya. Kita akan membuat aplikasi [mendang-mending](https://gemini-mendang-mending-mjgx6qvgeq-et.a.run.app/), membandingkan satu hal dengan hal lainnya.
+Tutorial kali ini kita akan membuat aplikasi dengan AI sebagai bahan utamanya. Kita akan membuat aplikasi mendang-mending, membandingkan satu hal dengan hal lainnya.
 
 Hasil perbandingan akan dihasilkan oleh AI, dalam hal ini Gemini API.
 
 ![](/assets/images/gemini-web-dev/mendang-mending.png)
-
-Ingin mencoba langsung? Silakan akses aplikasinya [disini](https://gemini-mendang-mending-mjgx6qvgeq-et.a.run.app/).
 
 ## Persiapan
 
@@ -764,6 +761,6 @@ Sedangkan untuk integrasi Gemini API, kita melakukan langkah-langkah berikut:
 5. Pilih model dan berbagai konfigurasi lainnya.
 6. Eksekusi fungsi `generateContent` dengan parameter yang sudah disiapkan.
 
-Hasil akhir dapat dinikmati di [https://gemini-mendang-mending-mjgx6qvgeq-et.a.run.app/](https://gemini-mendang-mending-mjgx6qvgeq-et.a.run.app/). Dan kode lengkapnya tersedia di [https://github.com/rizafahmi/gemini-for-web-dev](https://github.com/rizafahmi/gemini-for-web-dev).
+Kode lengkapnya tersedia di [https://github.com/rizafahmi/gemini-for-web-dev](https://github.com/rizafahmi/gemini-for-web-dev).
 
 Sekian tutorial penggunaan Gemini API khususnya untuk web developer. Kira-kira kita bikin apalagi ya? Silakan berikan masukan dan saran di kolom komentar. Terima kasih sudah mampir!
