@@ -1,48 +1,50 @@
 h1 {
-  font-size: 2rem;
-  line-height: 1.5em;
+    font-size: 2rem;
+    line-height: 1.5em;
 }
 
 h2 {
-  font-family: 'JetBrainsMono', monospace;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin: 0 0 0.25rem;
+    font-family: "JetBrainsMono", monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 0.25rem;
 }
 
 div.articles {
-  margin-top: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 div.article {
-  margin: 0.5rem;
+    margin: 0.5rem;
 }
 
 div.article > a {
-  border: none;
+    border: none;
 }
-
-div.article > a > h6:hover {
-  color: rgb(41, 38, 38);
+div.article > h6 > a {
+    border: none;
+}
+div > h6 > a:hover {
+    color: rgb(41, 38, 38);
 }
 
 h6 {
-  font-size: 1rem;
-  margin: 0.5rem;
+    font-size: 1rem;
+    margin: 0.5rem;
 }
 
 section {
-  margin-top: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 a.back {
-  font-size: 0.75rem;
-  margin: 0.5rem;
-  border: none;
+    font-size: 0.75rem;
+    margin: 0.5rem;
+    border: none;
 }
 
 span.tags {
-  align-self: center;
-  margin: 0rem 0.25rem;
+    align-self: center;
+    margin: 0rem 0.25rem;
 }
