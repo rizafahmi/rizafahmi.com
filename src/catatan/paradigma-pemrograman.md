@@ -108,7 +108,7 @@ Dengan menggunakan fungsi `pmap`, iterasi dijalankan secara parallel masing-masi
 
 Sebenarnya ada beberapa lagi paradigma lainnya, dengan berbagai percabangan lainnya. Namun untuk sederhananya kita bisa gunakan pengelompokan seperti ilustrasi berikut.
 
-![](/assets/images/paradigma.jpeg)
+![](/assets/images/paradigma.png)
 
 Kurang tahu ilustrasi ini tepat atau tidak namun cukup masuk akal menurut saya. [Ilustrasi ini dikutip dari artikel berikut](https://blog.favouritejome.dev/the-world-of-programming-paradigms).
 
