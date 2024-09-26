@@ -85,6 +85,9 @@ p {
 .note-modified {
     margin-left: 0.5rem;
 }
+.note-edit > a {
+    border: 0;
+}
 
 blockquote {
     font-size: 0.75rem;
