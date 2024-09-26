@@ -55,9 +55,6 @@ title: Judul
       {%- endif -%}
       {%- if modified -%}
       <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
-      <blockquote class="unfinished">
-        Catatan ini belum sepenuhnya selesai. Akan diubah dan ditambahkan lagi kedepannya. Jauh dari sempurna, namanya juga catatan yang penuh dengan opini pribadi. Berikan tanggapan di kolom komentar dibawah ya.
-      </blockquote>
       {%- endif -%}
 
       {{ content | safe }}
