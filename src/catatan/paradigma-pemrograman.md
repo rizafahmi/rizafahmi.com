@@ -37,6 +37,7 @@ Berkembanglah konsep _concurrent programming_ atau _parallel programming_ dalam 
 Kode berikut merupakan gambaran perbedaan antara kode yang belum menggunakan _concurrency_ dan kode yang memanfaatkkan _concurrency_ sehingga semua inti prosesor digunakan saat eksekusi kode.
 
 ## Kode Tanpa _Concurrency_
+Mari kita coba kode tanpa memanfaatkan _concurrency_ lalu dibandingkan dengan _concurrency_. Kedua kode dibawah dikembangkan menggunakan bahasa Elixir.
 
 ```elixir
 defmodule Sequence do
@@ -113,3 +114,7 @@ Sebenarnya ada beberapa lagi paradigma lainnya, dengan berbagai percabangan lain
 Kurang tahu ilustrasi ini tepat atau tidak namun cukup masuk akal menurut saya. [Ilustrasi ini dikutip dari artikel berikut](https://blog.favouritejome.dev/the-world-of-programming-paradigms).
 
 Menarik kali ya kalau kita bahas paradigma ini lebih lanjut dengan berbagai kelebihan dan kekurangannya masing-masing. Gimana menurut teman-teman? Boleh yuk sampaikan opininya di kolom komentar dibawah ini.
+
+Dan kalau teman-teman penasaran dengan contoh kode Elixir, boleh cek sesi _livestreaming_ saya di kanal youtube setiap senin malam.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=H6OGMDRNmTmnIiTz&amp;list=PLTY2nW4jwtG8V_eYUz6qQp1ywP4wN3R4k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
