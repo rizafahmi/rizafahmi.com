@@ -10,7 +10,9 @@ eleventyExcludeFromCollections: false
 ---
 NotebookLM sederhananya adalah Retrieval Augmented Generation atau RAG yang diperutukkan bagi pengguna umum atau _end user_. Jika biasanya untuk menggunakan RAG kita harus lalukan sendiri atau membangun aplikasi dulu. Dengan NotebookLM kita bisa memasukkan berbagai data: dokumen, teks, tautan hingga video YouTube dan kita bisa bertanya tentang semua data tersebut melalui antarmuka _chat_. Ditenagai oleh Gemini 1.5 Pro yang punya konteks besar.
 
-Yang menarik, ada fitur Audio Overview. Jadi kumpulan data tadi disimpulkan dan dibawakan dengan gaya percakapan ala podcast yang dikemas dengan sangat menarik! Dua pembawa acara AI saling diskusi berdasarkan data yang kita unggah.
+![](/assets/images/notebooklm2.png)
+
+Setelah data dari berbagai sumber sudah terkumpul, kita dapat bertanya melalui interface chat. Yang menarik, ada fitur Audio Overview. Jadi kumpulan data tadi disimpulkan dan dibawakan dengan gaya percakapan ala podcast yang dikemas dengan sangat menarik! Dua pembawa acara AI saling diskusi berdasarkan data yang kita unggah.
 
 ![](/assets/images/notebooklm.png)
 
