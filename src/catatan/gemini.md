@@ -125,7 +125,7 @@ CSS dan JavaScript sebagian besar sudah disediakan agar bisa lebih fokus pada ba
 
 Sebagian besar kode JavaScript bertugas untuk menangani _form_, _state_ dan DOM.
 
-```html/
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -298,7 +298,7 @@ Sebagian besar kode JavaScript bertugas untuk menangani _form_, _state_ dan DOM.
 
 Mari alihkan fokus ke baris 148 sampai baris ke-152. Di sini kita akan menambahkan kode JavaScript untuk mengirimkan permintaan ke server kita ketika tombol ditekan untuk membandingkan opsi pertama dengan opsi kedua.
 
-```diff-js
+```javascript
 async function compare(topic, opt1, opt2) {
   option2.blur();
   const url = `/compare?topic=${encodeURIComponent(topic)}&opt1=${encodeURIComponent(opt1)}&opt2=${encodeURIComponent(opt2)}`;
@@ -430,7 +430,7 @@ function parse_options(options) {
 
 Jalankan `npm run dev` dan pastikan `API_KEY` sudah tercetak di terminal.
 
-```shell/7
+```shell
 npm run dev
 
 > mendang-mending-gemini@1.0.0 dev
@@ -564,7 +564,7 @@ import {
 
 #### Fungsi `compare`
 
-```javascript/
+```javascript
 async function compare(topic, opt1, opt2) {
   // Generate suggestion
   const MODEL_NAME = 'gemini-1.0-pro';

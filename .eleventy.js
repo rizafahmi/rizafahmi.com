@@ -1,5 +1,5 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+// const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.setServerOptions({
@@ -8,7 +8,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("src/_redirects");
-  eleventyConfig.addPlugin(syntaxHighlight);
+  eleventyConfig.addPlugin(require("./src/libs/shiki.js"), {});
+  // eleventyConfig.addPlugin(require("./libs/shiki.js"), {
+  //   theme: "dark-plus",
+  // });
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return getRelativeTimeString(dateObj);
