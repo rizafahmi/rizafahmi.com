@@ -45,11 +45,15 @@ li {
 
 pre.shiki {
     padding: 1rem;
-}
-
-code {
     font-size: 1rem;
     text-wrap: balance;
+    line-height: 1.5rem;
+}
+
+p > code {
+    background: #dadada;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
 }
 
 img {
