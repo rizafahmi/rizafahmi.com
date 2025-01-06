@@ -1,5 +1,5 @@
 ---
-title: 🌱 Catatan tentang NotebookLM
+title: 🪴 Catatan tentang NotebookLM
 created: 2024-10-01
 modified: 2024-10-01
 layout: tulisan
