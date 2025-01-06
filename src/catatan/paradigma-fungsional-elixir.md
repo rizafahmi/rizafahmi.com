@@ -1,13 +1,13 @@
 ---
-title: 🌱 Konsep Pemrograman Fungsional
+title: 🪴 Konsep Pemrograman Fungsional
 created: 2024-12-30
-modified: 2024-12-30
+modified: 2025-01-06
 layout: tulisan
 tags:
   - catatan
   - ide
   - fungsional-elixir
-eleventyExcludeFromCollections: true
+eleventyExcludeFromCollections: false
 ---
 Dalam dunia pengembangan perangkat lunak yang semakin kompleks, pemrograman fungsional bisa menjadi udara segar bagi para developer. Fungsional adalah sebuah paradigma pemrograman yang menekankan penggunaan **fungsi** sebagai konsep utama. Berbeda dengan paradigma lain yang fokus pada langkah-langkah untuk mengubah *state* atau data, **pemrograman fungsional fokus pada transformasi data** melalui fungsi.
 
@@ -162,13 +162,9 @@ title |> lowercase() |> remove_special_chars() |> replace_space()
 ```
 
 Atau jika digambarkan sebagai diagram, kurang lebih seperti ini.
-```mermaid
-flowchart TD
-    A["title"] --> B["lowercase()"]
-    B --> C["remove_special_chars()"]
-    C --> D["replace_space()"]
-    D --> E["slug"]
-```
+
+![](/assets/images/diagram-mermaid.png)
+
 Judul artikel dikonversi menjadi huruf kecil semua (lowercase), lalu hapus karakter seperti `*,?!` dll jika ada, dan terakhir konversi semua spasi menjadi `-`.
 
 ```elixir
