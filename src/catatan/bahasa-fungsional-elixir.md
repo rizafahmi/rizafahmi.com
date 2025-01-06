@@ -5,6 +5,7 @@ modified: 2024-12-03
 layout: tulisan
 tags:
   - catatan
+  - elixir
 eleventyExcludeFromCollections: false
 ---
 
