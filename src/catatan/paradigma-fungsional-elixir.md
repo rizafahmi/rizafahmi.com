@@ -1,5 +1,5 @@
 ---
-title: 🪴 Konsep Pemrograman Fungsional
+title: 🪴 Konsep Pemrograman Fungsional dengan Elixir
 created: 2024-12-30
 modified: 2025-01-06
 layout: tulisan
