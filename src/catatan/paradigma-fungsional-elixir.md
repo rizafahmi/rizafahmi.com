@@ -7,7 +7,7 @@ tags:
   - catatan
   - ide
   - fungsional-elixir
-eleventyExcludeFromCollections: false
+eleventyExcludeFromCollections: true
 ---
 Dalam dunia pengembangan perangkat lunak yang semakin kompleks, pemrograman fungsional bisa menjadi udara segar bagi para developer. Fungsional adalah sebuah paradigma pemrograman yang menekankan penggunaan **fungsi** sebagai konsep utama. Berbeda dengan paradigma lain yang fokus pada langkah-langkah untuk mengubah *state* atau data, **pemrograman fungsional fokus pada transformasi data** melalui fungsi.
 
