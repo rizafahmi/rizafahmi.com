@@ -1,7 +1,7 @@
 ---
 title: 💧 Berkenalan dengan Bahasa Pemrograman Elixir
 created: 2024-11-08
-modified: 2024-12-03
+modified: 2025-01-10
 layout: tulisan
 tags:
   - catatan
@@ -39,14 +39,30 @@ Begitu pula dengan dukungan pustaka (library) dan kerangka kerja (framework) yan
 Elixir menyediakan tipe data untuk merepresentasikan angka seperti integer, float. Ada pula tipe data atom yang merepresentasikan dirinya sendiri, string atau binary, charlist, dan boolean.
 
 ```elixir
-product_name = "MacBook Pro"            # String
-quantity = 157                          # Integer
-stock_hex = 0x9D                        # Integer in Hex notation (157 in decimal)
-price = 1299.99                         # Float
-weight_sci = 1.4515e3                   # Float in scientific notation (1451.5)
-available? = true                       # Boolean
-category = :electronics                 # Atom
-discount = nil                          # The 'None/null/Nil' value
+# String
+product_name = "MacBook Pro"  
+
+# Integer
+quantity = 157                
+
+# Integer in Hex notation (157 in decimal)
+stock_hex = 0x9D
+
+# Float
+price = 1299.99                
+
+# Float in scientific notation (1451.5)
+weight_sci = 1.4515e3          
+
+# Boolean
+available? = true                
+
+# Atom
+category = :electronics          
+
+# The 'None/null/Nil' value
+discount = nil             
+
 IO.inspect([product_name, quantity, stock_hex, price, weight_sci, available?, category, discount])
 ```
 
