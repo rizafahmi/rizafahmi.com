@@ -1,0 +1,35 @@
+# Riza Fahmi's Personal Website
+
+> Personal site and blog of Riza Fahmi, a software developer, educator, and content creator focusing on web development, programming languages, and technology.
+
+This website contains my blog posts (catatan), projects, and contact information. I write about programming languages, web development, and technology in both Indonesian and English.
+
+## About Me
+- Founder of HACKTIV8 coding bootcamp (since 2016)
+- Content creator on YouTube and various platforms
+- Developer advocate and educator
+- Speaker and community builder
+
+## Blog Posts
+- [All Articles](/articles): Complete list of all articles
+- [RSS Feed](/feed.xml): Subscribe to my content updates
+
+## Featured Content
+- [Bahasa Fungsional Elixir](/catatan/bahasa-fungsional-elixir): Introduction to Elixir programming language
+- [Ekosistem JavaScript](/catatan/ekosistemjs): Overview of the JavaScript ecosystem
+- [Machine Learning for Web Developers](/catatan/machine-learning-for-web-developers): Introduction to ML concepts for web developers
+
+## Projects
+- [HACKTIV8](https://hacktiv8.com): Coding bootcamp founded in 2016
+- [Carikerja](https://carikerja.deeptech.id/): Platform for developers affected by COVID-19
+- [Awesome Speakers Indonesia](https://github.com/rizafahmi/awesome-speakers-id): List of Indonesian developer speakers
+
+## Podcasts & Videos
+- [Ngobrolin Web](https://youtube.com/playlist?list=PLTY2nW4jwtG8Sx2Bw6QShC271PzX31CtT): Weekly podcast about web development
+- [Live Coding Sessions](https://youtube.com/rizafahmi/live): Live coding and learning sessions
+
+## Contact
+- [Twitter/X](https://x.com/rizafahmi22)
+- [GitHub](https://github.com/rizafahmi)
+- [LinkedIn](https://linkedin.com/in/rizafahmi)
+- [Email](mailto:rizafahmi@gmail.com)

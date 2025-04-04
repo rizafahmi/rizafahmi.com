@@ -7,6 +7,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("src/_redirects");
+  eleventyConfig.addPassthroughCopy("llms.txt");
   eleventyConfig.addPlugin(require("./src/libs/shiki.js"), {});
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
