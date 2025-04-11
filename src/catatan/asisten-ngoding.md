@@ -59,3 +59,5 @@ AI yang spesifik digunakan untuk membangun *user interface* atau desain. Jika ch
 
 ## Kesimpulan
 Teknologi kecerdasan buatan (AI) telah mengubah pengembangan perangkat lunak secara fundamental, berkembang dari fitur *autocomplete* sederhana menjadi sistem cerdas yang memahami konteks kode secara menyeluruh. Kita mengidentifikasi empat kategori utama asisten koding berbasis AI: AI Chatbot untuk diskusi dan brainstorming, AI Code Completion untuk melengkapi kode secara real-time, AI Code Editor yang mampu memahami proyek secara keseluruhan, dan AI Interface Builder yang dioptimalkan khusus untuk pengembangan UI.
+
+Sekian dulu artikel tentang asisten ngoding kali ini. Nantikan artikel berikutnya ya. Umpan balik sangat berharga buat saya sebagai pertanda apakah topik ini menarik atau tidak. Boleh ya tulis pendapat atau saran di kolom komentar dibawah.
