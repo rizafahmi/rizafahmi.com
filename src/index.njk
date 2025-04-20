@@ -4,7 +4,7 @@ pagination:
   data: collections.catatan
   size: 18
   alias: tulisan
-  reverse: false
+  reverse: true
 eleventyExcludeFromCollections: true
 ---
 <!DOCTYPE html>
@@ -65,7 +65,7 @@ eleventyExcludeFromCollections: true
       {% for t in tulisan %}
       <div class="article">
         <h6>
-          <a href="{{t.url}}">&gt;&nbsp;&nbsp; {{ t.data.title }}</a> - {{ t.data.modified }}
+          <a href="{{t.url}}">&gt;&nbsp;&nbsp; {{ t.data.title }}</a>
         </h6>
       </div>
       {% endfor %}
