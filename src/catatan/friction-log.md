@@ -1,7 +1,7 @@
 ---
 title: "Tentang Friction Log"
 permalink: "/2021/09/12/tentang-friction-log/"
-modified: 2021-09-12
+date: 2021-09-12
 created: 2021-09-12
 layout: tulisan
 tags: catatan

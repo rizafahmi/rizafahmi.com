@@ -1,7 +1,7 @@
 ---
 title: 🪴 Catatan tentang NotebookLM
+date: 2024-10-01
 created: 2024-10-01
-modified: 2024-10-01
 layout: tulisan
 tags:
   - catatan

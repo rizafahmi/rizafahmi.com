@@ -1,7 +1,7 @@
 ---
 title: "Membangun Tampilan Web dengan HTML, CSS & JS"
 permalink: "/tampilan-web/"
-modified: 2023-05-26
+date: 2023-05-26
 created: 2023-05-26
 layout: tulisan
 tags: catatan

@@ -1,7 +1,7 @@
 ---
 title: 💧 Berkenalan dengan Bahasa Pemrograman Elixir
 created: 2024-11-08
-modified: 2025-01-10
+date: 2025-01-10
 layout: tulisan
 tags:
   - catatan

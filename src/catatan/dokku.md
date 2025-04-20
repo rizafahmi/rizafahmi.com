@@ -1,7 +1,7 @@
 ---
 title: "Membuat PaaS Sendiri dengan Dokku"
 permalink: "/paas-dokku/"
-modified: 2023-10-22
+date: 2023-10-22
 created: 2023-10-22
 layout: tulisan
 description: Bagaimana membuat Platform-as-a-Service (PaaS) sendiri dengan Dokku. Artikel ini akan membahas cara instalasi, konfigurasi dan cara penggelaran atau deployment.

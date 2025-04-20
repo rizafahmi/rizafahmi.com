@@ -1,7 +1,7 @@
 ---
 title: "Gemini API untuk Web Developer"
 permalink: "/gemini-web-dev/"
-modified: 2023-10-22
+date: 2023-10-22
 created: 2023-10-22
 layout: tulisan
 description: Contoh penggunaan Gemini API untuk web developer

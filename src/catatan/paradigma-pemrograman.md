@@ -1,6 +1,6 @@
 ---
 title: 🪴 Catatan Tentang Paradigma Pemrograman
-modified: 2024-10-01
+date: 2024-10-01
 created: 2024-09-22
 layout: tulisan
 tags:
