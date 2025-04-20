@@ -16,12 +16,21 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("sortDataByDate", (obj) => {
     const sorted = {};
-    Object.keys(obj)
-      .sort((a, b) => {
-        return obj[a].date > obj[b].date ? 1 : -1;
-      })
-      .forEach((name) => (sorted[name] = obj[name]));
-    return sorted;
+    if (obj.date === undefined) {
+      Object.keys(obj)
+        .sort((a, b) => {
+          return obj[a].modified > obj[b].modified ? 1 : -1;
+        })
+        .forEach((name) => (sorted[name] = obj[name]));
+      return sorted;
+    } else {
+      Object.keys(obj)
+        .sort((a, b) => {
+          return obj[a].date > obj[b].date ? 1 : -1;
+        })
+        .forEach((name) => (sorted[name] = obj[name]));
+      return sorted;
+    }
   });
 
   return {

@@ -1,7 +1,7 @@
 ---
 title: 🪴 Catatan Tentang Paradigma Pemrograman
-created: 2024-09-22
 modified: 2024-10-01
+created: 2024-09-22
 layout: tulisan
 tags:
   - catatan

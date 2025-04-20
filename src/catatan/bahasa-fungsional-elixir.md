@@ -10,7 +10,7 @@ eleventyExcludeFromCollections: false
 ---
 
 Tulisan kali ini kita akan membahas tentang bahasa pemrograman Elixir. Elixir adalah bahasa pemrograman fungsional, dinamis, dan mudah dikelola.
-Berjalan diatas BEAM (Erlang Virtual Machine) yang dikenal tangguh dan biasa digunakan untuk membangun sistem yang terdistribusi, atau hemat sumber daya dan *fault-tolerant* sehingga sistem yang dibuat tetap dapat digunakan meski terjadi kesalahan atau *error*. Istilah kerennya **let it crash!**
+Berjalan diatas BEAM (Erlang Virtual Machine) yang dikenal tangguh dan biasa digunakan untuk membangun sistem yang terdistribusi, atau hemat sumber daya dan *fault-tolerant* sehingga sistem yang dibuat tetap dapat digunaka[]()n meski terjadi kesalahan atau *error*. Istilah kerennya **let it crash!**
 
 Setelah membaca tulisan ini, teman-teman akan mendapat gambaran tentang apa itu Elixir, keunggulan dan hal-hal menarik lainnya seputar bahasa pemrograman Elixir.
 
