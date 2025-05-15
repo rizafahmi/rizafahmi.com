@@ -1,7 +1,7 @@
 ---
-title: 🤖 Diskusi dan Menulis Spesifikasi dengan AI
+title: Diskusi dan Menulis Spesifikasi dengan AI
+date: 2025-04-20
 created: 2025-04-11
-modified: 2025-04-20
 layout: tulisan
 tags:
   - catatan
