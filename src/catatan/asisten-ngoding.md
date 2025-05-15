@@ -1,5 +1,5 @@
 ---
-title: 🤖 Produktif dengan Asisten Ngoding
+title: Produktif dengan Asisten Ngoding
 date: 2025-04-11
 created: 2025-04-03
 layout: tulisan
