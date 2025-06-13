@@ -50,10 +50,9 @@ Dibawah ini beberapa alat yang dapat membantu untuk melengkapi kode disaat kita 
 Evolusi berikutnya dari *code completion*. Jika *code completion* mampu mengerti kode yang sedang dibuka saat itu, maka *AI Code Editor* mampu memahami proyek secara keseluruhan.    
 AI yang "menyatu" dengan kode editor. Selain mampu memberi saran terhadap kode yang sedang kita tulis (sama halnya dengan *code completion*) *AI Code Editor* mampu membuat, mengubah atau menghapus satu atau beberapa file sekaligus dalam satu kali perintah.    
 - [Cursor](https://www.cursor.com/): Pelopor AI Code Editor, populer dan punya UX terbaik saat ini. Fork dari vscode.
-- [VSCode + Copilot](https://code.visualstudio.com/): Meskipun dalam bentuk extensi, Copilot (chat dan edit) punya kemampuan yang cukup mumpuni.
+- [VSCode + Copilot](https://code.visualstudio.com/docs/copilot/overview): Meskipun dalam bentuk extensi, Copilot (chat, edit dan agent) punya kemampuan yang cukup mumpuni.
 - [VSCode + Gemini](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist): Ekstensi freemium dari Google Gemini yang sangat murah hati.
-- [WindSurf](https://codeium.com/windsurf): Fork dari vscode yang merupakan karya dari Codeium
-- [Trae](https://www.trae.ai/): Fork dari vscode punya ByteDance. (Sepertinya) dapat digunakan secara gratis
+- [Zed](https://zed.dev/): Kode editor baru yang dikenal sangat cepat.
 - [Aider](https://aider.chat/), [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) & [Amazon Q Developer CLI](https://aws.amazon.com/blogs/devops/introducing-the-enhanced-command-line-interface-in-amazon-q-developer/): Menggunakan antarmuka teks (*cli*), dapat digunakan dengan editor kode apapun.
 
 ![Contoh coding assistant Claude Code](/assets/asisten/claude-code.jpg)
