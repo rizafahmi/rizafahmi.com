@@ -8,6 +8,14 @@ tags:
 eleventyExcludeFromCollections: false
 ---
 
+--- 
+**Seri Asisten Ngoding**
+1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
+2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
+3. [Menyusun Rencana dengan Asisten Ngoding](/catatan/asisten-ngoding-3)
+4. Desain Antarmuka dengan Asisten Ngoding [Artikel saat ini]
+---
+
 Setelah [bagian sebelumnya](/catatan/asisten-ngoding-3) kita berhasil menghasilkan rencana yang matang dalam format _blueprint_, kini saatnya untuk melangkah ke tahap yang paling dinanti: eksekusi! Ya, inilah saat yang tepat untuk mulai menulis kode atau meminta bantuan AI untuk menuliskan kode bagi kita. Tentu saja, pilihan ada di tangan teman-teman dengan segala konsekuensi yang menyertainya 😉
 
 ```
@@ -80,9 +88,11 @@ Design:
 
 ![contoh firebase studio](/assets/asisten/firebase.png)
 
-Hasil dari [Firebase Studio](https://studio.firebase.google.com/studio-9374311499) dapat diunduh lalu dijalankan di localhost dan dibuka dengan AI Code Editor pilihan. Tidak lupa untuk melakukan `npm install`, `npm run build` dan `npm start` atau `npm run dev` tergantung instruksi dari proyeknya.
+Hasil dari [Firebase Studio](https://studio.firebase.google.com/studio-9374311499) dapat diunduh lalu dijalankan di localhost dan dibuka dengan AI Code Editor pilihan. Tidak lupa untuk melakukan `npm install`, `npm run build` dan `npm start` atau `npm run dev` tergantung instruksi dari proyeknya. Meskipun menulis kode langsung juga sangat memungkinkan karena Firebase Studio sudah dilengkapi editor kode yang mumpuni.
 
 ![download and zip](/assets/asisten/firebase-download.png)
+
+Dan hasilnya dapat dilihat di tautan [Firebase Studio berikut](https://studio--plain-thoughts.us-central1.hosted.app).
 
 Bagaimana jika kita tidak menggunakan Node.js atau Next.js? Mengingat berbagai alat desain berbasis AI sebagian besar menggunakan Node.js atau React sebagai fondasi, solusinya adalah meminta AI untuk mengonversi hasil desain ke platform lain yang diinginkan.
 
@@ -98,7 +108,7 @@ Namun, ada **tantangan integrasi manual** yang perlu diperhatikan. AI sering kes
 
 Menarik ditunggu gebrakan dari Firebase Studio yang ingin mengintegrasikan beberapa alat tambahan seperti database, otentikasi dan lain sebagainya.
 
-Terakhir, artikel ini menyarankan penggunaan Bolt.new untuk membangun UI frontend lengkap, dengan hasil yang dapat diunduh dan dijalankan secara lokal. 
+Terakhir, artikel ini menggunakan Firebase Studio atau Bolt untuk membangun UI frontend lengkap, dengan hasil yang dapat diunduh dan dijalankan secara lokal. 
 
 Dan apabila hasil desain dan kode yang dihasilkan AI terlalu kompleks, teman-teman bisa jadikan hasil desain tersebut sebagai *mockup* saja. Lalu tiru desainnya dengan menulis kode versi kita sendiri.
 
