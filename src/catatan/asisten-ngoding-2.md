@@ -1,12 +1,20 @@
 ---
 title: Diskusi dan Menulis Spesifikasi dengan AI
-date: 2025-04-20
+modified: 2025-06-13
 created: 2025-04-11
 layout: tulisan
 tags:
   - catatan
 eleventyExcludeFromCollections: false
 ---
+
+--- 
+**Seri Asisten Ngoding**
+1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
+2. Diskusi dan Menulis Spesifikasi dengan AI [Artikel saat ini]
+3. [Menyusun Rencana dengan Asisten Ngoding](/catatan/asisten-ngoding-3) 
+---
+
 Setelah di [bagian sebelumnya](/catatan/asisten-ngoding) kita sudah melihat berbagai jenis AI yang dapat digunakan untuk membangun aplikasi—seperti AI Chatbot, AI Code Completion, AI Code Editor, dan AI Interface Builder—tulisan berikut akan mengajak teman-teman semua melakukan eksplorasi dan melihat sejauh mana AI dapat "diajak" untuk membangun aplikasi.
 
 

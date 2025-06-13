@@ -8,6 +8,13 @@ tags:
 eleventyExcludeFromCollections: false
 ---
 
+--- 
+**Seri Asisten Ngoding**
+1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
+2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
+3. Menyusun Rencana dengan Asisten Ngoding [Artikel saat ini]
+---
+
 Setelah [di bagian sebelumnya](/catatan/asisten-ngoding-2) kita membahas penggunaan AI sebagai asisten untuk diskusi ide dan pembuatan spesifikasi aplikasi, kali ini kita akan fokus memanfaatkan AI untuk menyusun rencana. 
 
 Sering kali, kita tergoda untuk langsung membuka kode editor dan mulai menulis tanpa mempersiapkan rencana terlebih dahulu. Padahal, rencana yang matang adalah kunci keberhasilan pembangunan sebuah aplikasi. Tanpa rencana yang jelas, kita berisiko mengalami kebingungan atau kesalahan di tengah jalan. Bahkan dengan strategi yang sudah matang sekalipun, hasilnya bisa saja meleset. Bayangkan apa yang terjadi jika kita menulis tanpa rencana!

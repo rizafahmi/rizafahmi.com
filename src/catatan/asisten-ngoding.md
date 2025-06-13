@@ -1,15 +1,24 @@
 ---
 title: Produktif dengan Asisten Ngoding
-date: 2025-04-11
+modified: 2025-06-13
 created: 2025-04-03
 layout: tulisan
 tags:
   - catatan
 eleventyExcludeFromCollections: false
 ---
+
+--- 
+**Seri Asisten Ngoding**
+1. Produktif dengan Asisten Ngoding [Artikel saat ini]
+2. [Menyusun Rencana dengan Asisten Ngoding](/catatan/asisten-ngoding-2)
+3. [Menyusun Rencana dengan Asisten Ngoding](/catatan/asisten-ngoding-3)
+---
+
 Dunia pengembangan perangkat lunak telah mengalami transformasi signifikan dalam alat bantu pemrograman. Bermula dari fitur *autocomplete* sederhana yang hanya menyelesaikan kata kunci atau nama fungsi yang sudah diketahui, kini berkembang menjadi sistem cerdas yang mampu memahami konteks kode secara menyeluruh. Pada era awal, IDE seperti Visual Studio atau Eclipse menawarkan saran secara statis berdasarkan pustaka yang telah didefinisikan, namun memiliki keterbatasan dalam memahami logika.
 
 Kemajuan teknologi AI, khususnya model bahasa besar (LLM), telah merevolusi asisten koding menjadi alat yang jauh lebih canggih. Asisten koding modern seperti GitHub Copilot, Cursor, ChatGPT, v0, Aider.chat dan lain sebagainya tidak hanya melengkapi baris kode yang sedang ditulis, tetapi juga mampu menghasilkan fungsi lengkap, algoritma kompleks, dan bahkan seluruh modul berdasarkan penjelasan dengan bahasa manusia. Berbeda dengan cara tradisional, asisten berbasis AI punya kemampuan memahami pola penulisan kode dalam skala besar, menganalisis struktur proyek secara keseluruhan, dan menyesuaikan saran dengan gaya dari basis kode yang sudah ada. AI dapat memberikan penjelasan, mengusulkan refaktorisasi, mengidentifikasi potensi kesalahan (*bug*), dan bahkan menghasilkan kode pengujian (*testing*) — kemampuan yang jauh melampaui pencapaian generasi sebelumnya.
+
 ## Beberapa jenis asisten koding
 
 ### *AI Chatbot*
