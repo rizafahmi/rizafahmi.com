@@ -13,7 +13,6 @@ eleventyExcludeFromCollections: false
 1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
 2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
 3. Menyusun Rencana dengan Asisten Ngoding [Artikel saat ini]
-4. [Desain Antarmuka dengan Asisten Ngoding](/catatan/asisten-ngoding-4)
 ---
 
 
