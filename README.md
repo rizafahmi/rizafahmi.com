@@ -4,7 +4,7 @@ This repository contains the source code for [Rizafahmi.com](https://rizafahmi.c
 
 ## Project Overview
 
-- **Technology**: Built with 11ty, using Nunjucks for templating and Markdown for content.
+- [ ] **Technology**: Built with 11ty, using Nunjucks for templating and Markdown for content.
 - **Purpose**: Personal blog and portfolio site.
 - **Last Update**: A major redesign is planned for January 2024, inspired by the aesthetics of [https://www.chriis.dev/](https://www.chriis.dev/).
 
