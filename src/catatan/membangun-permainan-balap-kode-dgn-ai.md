@@ -11,7 +11,8 @@ eleventyExcludeFromCollections: true
 Artikel berikut menceritakan tentang bagaimana saya membangun [permainan balap kode](https://balapkode.com/) berbasis web yang memanfaatkan AI sebagai salah satu fiturnya. Saya akan menceritakan mulai dari ide hingga peluncuran, dari awal hingga proses *deployment*, dengan berbagai pertimbangan dan keputusan teknis yang diambil sambil jalan.
 
 Harapannya dengan menyimak artikel ini teman-teman bisa mendapatkan pelajaran dan memahami proses berfikir ketika menjalankan proyek atau membangun produk. Saya pribadi banyak belajar selama membangun permainan ini. Terutama tentang proses *deployment*, penggunaan AI dan keputusan *database* apa yang akan digunakan.
-Harapannya, dengan menyimak artikel ini, teman-teman bisa mendapatkan pelajaran dan memahami proses berpikir ketika menjalankan proyek atau membangun produk.Saya pribadi banyak belajar selama membangun permainan ini. Terutama tentang proses *deployment*, penggunaan AI, dan keputusan *database* apa yang akan digunakan.
+
+Semoga teman-teman bisa mendapatkan pelajaran dan memahami proses berpikir ketika menjalankan proyek atau membangun produk. Saya pribadi banyak belajar selama membangun permainan ini. Terutama tentang proses *deployment*, penggunaan AI, dan keputusan *database* apa yang akan digunakan.
  
 
 
@@ -23,7 +24,7 @@ Jika *typing game* pada umumnya menggunakan bahasa manusia (Inggris atau Indones
 
 Bisa digunakan untuk latihan mengetik, adu cepat dan bisa juga menjadi salah satu cara mencoba bahasa pemrograman baru untuk tahu apakah cocok dengan kita atau kurang cocok.
 
-Saya teringat kembali dengan ide ini ketika menyadari bahwa sekarang AI sudah mumpuni menghasilkan baris kode dari banyak bahasa pemrograman. Walaupun masih sering *halu*, namun untuk menghasilkan potongan kode acak yang tidak perlu dijalankan di *server production*, rasanya penggunaan AI untuk ide ini akan cocok sekali.
+Saya teringat kembali dengan ide ini ketika menyadari bahwa sekarang AI sudah sangat mumpuni menghasilkan baris kode dari banyak bahasa pemrograman. Walaupun masih sering *halu*, namun untuk menghasilkan potongan kode acak yang tidak perlu dijalankan di *server production*, rasanya penggunaan AI untuk ide ini akan cocok sekali.
 
 ![tangkapan layar](https://github.com/rizafahmi/coderacer/raw/main/priv/static/images/balapkode.com_.png)
 
@@ -85,7 +86,7 @@ Saya konfigurasi ketika terjadi event push atau pull request, secara otomatis CI
 
 ### Menggunakan kontainer untuk *deployment*
 
-Cara paling mudah dari sisi *developer experience* sebenarnya adalah menggunakan layanan seperti [Cloud Run](https://cloud.google.com/run?hl=en), yang juga pernah saya pakai di [proyek terdahulu](https://github.com/rizafahmi/gemini-for-web-dev#deployment).
+Cara paling mudah dari sisi *developer experience* sebenarnya adalah menggunakan layanan seperti [Cloud Run](https://cloud.google.com/run?hl=en), yang juga pernah saya pakai di [proyek #AISprint terdahulu](https://github.com/rizafahmi/gemini-for-web-dev#deployment).
 
 
 Namun untuk proyek kali ini saya ingin menggunakan pendekatan berbeda. Jika servis seperti Cloud Run sangat fleksibel dengan fitur autoscaling yang menyebabkan tagihan bergantung kepada jumlah pengguna, kali ini saya ingin menggunakan servis yang tagihannya tetap meskipun belum bisa autoscaling.
