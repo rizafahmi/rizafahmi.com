@@ -5,7 +5,7 @@ modified: 2025-06-13
 layout: tulisan
 tags:
   - catatan
-eleventyExcludeFromCollections: true
+eleventyExcludeFromCollections: false
 ---
 
 Artikel berikut menceritakan tentang bagaimana saya membangun [permainan balap kode](https://balapkode.com/) berbasis web yang memanfaatkan AI sebagai salah satu fiturnya. Saya akan menceritakan mulai dari ide hingga peluncuran, dari awal hingga proses *deployment*, dengan berbagai pertimbangan dan keputusan teknis yang diambil sambil jalan.
@@ -15,10 +15,9 @@ Harapannya dengan menyimak artikel ini teman-teman bisa mendapatkan pelajaran da
 Semoga teman-teman bisa mendapatkan pelajaran dan memahami proses berpikir ketika menjalankan proyek atau membangun produk. Saya pribadi banyak belajar selama membangun permainan ini. Terutama tentang proses *deployment*, penggunaan AI, dan keputusan *database* apa yang akan digunakan.
  
 
-
 ## Ide Balap Kode
 
-Sebenarnya ide ini sudah lama kepikiran, bahkan jauh sebelum era AI berkembang pesat seperti saat ini. Sedari dulu ingin membuat permainan *typing game* menyerupai [monkeytype](https://monkeytype.com/) atau [typeracer](https://play.typeracer.com/) tapi spesifik buat developer.
+Sebenarnya ide ini sudah lama kepikiran, bahkan jauh sebelum era AI berkembang pesat seperti saat ini. Sedari dulu ingin membuat permainan *typing game* menyerupai [monkeytype](https://monkeytype.com/) atau [typeracer](https://play.typeracer.com/) tapi spesifik buat *developer*.
 
 Jika *typing game* pada umumnya menggunakan bahasa manusia (Inggris atau Indonesia) sebagai soal yang harus diketik, mungkin akan menarik kalau soal yang harus diketik itu berbentuk potongan kode dari bahasa pemrograman yang kita pilih.
 
@@ -34,7 +33,9 @@ Untuk mempercepat proses pengembangan aplikasi, saya memilih web framework denga
 
 Dan saya memilih [Phoenix](https://phoenixframework.org) dan bahasa fungsional [Elixir](https://elixir-lang.org) selain karena fiturnya lengkap dan dapat membangun aplikasi web real-time, kedua teknologi ini merupakan favorit saya.
 
-Langkah berikutnya adalah memilih database yang ingin digunakan. Saya memilih SQLite sebagai database murni karena kesederhanaannya. Tidak membutuhkan konfigurasi apapun layaknya RDBMS lain, namun sudah cukup mumpuni. Terlebih dengan aplikasi ini penggunaan database tidak terlalu tinggi. Mungkin akan digunakan untuk membuat sesi baru (game dimulai) dan menyimpan data leaderboard saja, rasanya SQLite sudah lebih dari cukup.
+![Website Phoenix Framework](https://cdn-images-1.medium.com/max/2000/1*Gylsj_3ylGPyo-Ku7UoXRw.png)
+
+Langkah berikutnya adalah memilih database yang ingin digunakan. Saya memilih SQLite sebagai database murni karena kesederhanaannya. Tidak membutuhkan konfigurasi apapun layaknya RDBMS lain, namun sudah cukup mumpuni. Terlebih aplikasi ini penggunaan database tidak terlalu tinggi. Mungkin akan digunakan untuk membuat sesi baru (game dimulai) dan menyimpan data *leaderboard* saja, rasanya SQLite sudah lebih dari cukup.
 
 Yang saat itu tidak terpikirkan adalah bagaimana caranya *deployment* SQLite. Berbeda dengan PostgreSQL yang biasanya sudah memiliki servis di platform komputasi awan seperti [Cloud SQL](https://cloud.google.com/sql), atau RDS. SQLite jarang ada yang menyediakan servis siap pakai. Sepengetahuan saya, baru ada [Turso](https://turso.tech/). Lebih lanjut mengenai ini akan dibahas dibagian berikutnya.
 
@@ -83,6 +84,8 @@ jobs:
 
 Saya konfigurasi ketika terjadi event push atau pull request, secara otomatis CI akan dijalankan dan akan memberi masukan jika ada pengujian yang tidak lulus, atau kesulitan instalasi *dependencies*. CI memastikan semua proses integrasi berhasil dan siap di *deploy* ke produksi.
 
+![Tangkapan layar ketika CI otomatis dijalankan](https://cdn-images-1.medium.com/max/2000/1*tZsrIldyDs6-AT1PMslBYw.png)
+
 
 ### Menggunakan kontainer untuk *deployment*
 
@@ -91,7 +94,7 @@ Cara paling mudah dari sisi *developer experience* sebenarnya adalah menggunakan
 
 Namun untuk proyek kali ini saya ingin menggunakan pendekatan berbeda. Jika servis seperti Cloud Run sangat fleksibel dengan fitur autoscaling yang menyebabkan tagihan bergantung kepada jumlah pengguna, kali ini saya ingin menggunakan servis yang tagihannya tetap meskipun belum bisa autoscaling.
 
-Salah satu alasannya karena saya akan menggunakan API untuk servis LLM yang tagihannya bergantung kepada pengguna. Kalau saya *deploy* aplikasinya ke layanan seperti Cloud Run, maka saya harus *deg-degan* dua kali lipat. Sehingga saya memutuskan untuk menggunakan tagihan tetap untuk hosting aplikasi dan tagihan fleksibel untuk API agar tingkat *deg-degan* nya 1 kali saja 😉
+Salah satu alasannya karena saya akan menggunakan API untuk servis LLM yang tagihannya bergantung kepada pengguna. Kalau saya menggunakan Cloud Run, maka saya harus *deg-degan* dua kali lipat. Sehingga saya memutuskan untuk menggunakan tagihan tetap untuk hosting aplikasi dan tagihan fleksibel untuk AI agar tingkat *deg-degan* nya 1 kali saja 😉
 
 Untuk mempersiapkan aplikasi Elixir Phoenix supaya siap di-*deploy* bisa dengan menggunakan perintah berikut untuk sekalian dibuatkan Dockerfile.
 
@@ -99,29 +102,128 @@ Untuk mempersiapkan aplikasi Elixir Phoenix supaya siap di-*deploy* bisa dengan 
 mix phx.gen.release --docker
 ```
 
+Dengan menjalankan perintah diatas, hasil Dockerfile kurang lebih seperti cuplikan kode dibawah.
+
+#### `Dockerfile`
+
+```
+ARG ELIXIR_VERSION=1.18.4
+ARG OTP_VERSION=27.3.4
+ARG DEBIAN_VERSION=bookworm-20250520-slim
+
+ARG BUILDER_IMAGE="docker.io/hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
+ARG RUNNER_IMAGE="docker.io/debian:${DEBIAN_VERSION}"
+
+FROM ${BUILDER_IMAGE} AS builder
+
+# install build dependencies
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends build-essential git \
+  && rm -rf /var/lib/apt/lists/*
+
+# prepare build dir
+WORKDIR /app
+
+# install hex + rebar
+RUN mix local.hex --force \
+  && mix local.rebar --force
+
+# set build ENV
+ENV MIX_ENV="prod"
+
+# install mix dependencies
+COPY mix.exs mix.lock ./
+RUN mix deps.get --only $MIX_ENV
+RUN mkdir config
+
+# copy compile-time config files before we compile dependencies
+# to ensure any relevant config change will trigger the dependencies
+# to be re-compiled.
+COPY config/config.exs config/${MIX_ENV}.exs config/
+RUN mix deps.compile
+
+RUN mix assets.setup
+
+COPY priv priv
+
+COPY lib lib
+
+COPY assets assets
+
+# compile assets
+RUN mix assets.deploy
+
+# Compile the release
+RUN mix compile
+
+# Changes to config/runtime.exs don't require recompiling the code
+COPY config/runtime.exs config/
+
+COPY rel rel
+RUN mkdir -p /app/priv/data && chown nobody /app/priv/data
+RUN mix release
+
+# start a new build stage so that the final image will only contain
+# the compiled release and other runtime necessities
+FROM ${RUNNER_IMAGE} AS final
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends libstdc++6 openssl libncurses5 locales ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+# Set the locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
+  && locale-gen
+
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
+
+WORKDIR "/app"
+RUN chown nobody /app
+
+# set runner ENV
+ENV MIX_ENV="prod"
+
+# Only copy the final release from the build stage
+COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/coderacer ./
+
+COPY entrypoint.sh /app/entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+CMD ["/app/bin/start"]
+```
+
 Dockerfile sudah jadi, saatnya memilih servis apa yang ingin digunakan untuk *deployment*!
 
 #### Memilih Servis untuk Deployment Kontainer
 
-Ada beberapa pilihan *deployment* kontainer di GCP. Pilihan pertama adalah Cloud Run yang sudah kita bahas sebelumnya. Opsi kedua bisa menggunakan [Kubernetes Engine atau GKE](https://cloud.google.com/kubernetes-engine?hl=en). Opsi ketiga ada [App Engine Flexible Environment](https://cloud.google.com/appengine/docs/flexible). Opsi terahir menggunakan virtual machine (VM) dengan [Compute Engine](https://cloud.google.com/products/compute?hl=en).
+Ada beberapa pilihan *deployment* kontainer di GCP. Pilihan pertama adalah Cloud Run yang sudah kita bahas sebelumnya. Opsi kedua bisa menggunakan [Kubernetes Engine atau GKE](https://cloud.google.com/kubernetes-engine?hl=en). Opsi ketiga ada [App Engine Flexible Environment](https://cloud.google.com/appengine/docs/flexible). Opsi terakhir menggunakan virtual machine (VM) dengan [Compute Engine](https://cloud.google.com/products/compute?hl=en).
 
 Demi kesederhanaan dan biaya yang mudah diprediksi, saya memutuskan menggunakan Compute Engine. Berbeda dengan servis lain, agar dapat melakukan *deployment* kontainer, VM di Compute Engine harus disiapkan terlebih dahulu untuk beberapa hal:
 - Menerima atau mengambil kode untuk di *deploy*. Mari gunakan Git dan GitHub untuk hal ini
 - Menjalankan kontainer. Saya menggunakan Docker untuk saat ini. Bisa juga menggunakan Podman nantinya.
 - Opsi tambahan, saya menambahkan *reverse proxy* HAProxy untuk berinteraksi dengan aplikasi. Sebenarnya bisa ditambahkan ke `docker-compose.yml` tapi belum saya lakukan 😬
 
-Saya awalnya memilih mesin e2-micro, lalu setelah beberapa hari saya *update* ke mesin e2-small yang lebih mumpuni. Dan agar harganya menjadi lebih ekonomis lagi, saya memutuskan menggunakan tipe [Spot VM](https://cloud.google.com/compute/docs/instances/spot?hl=en) sebagai *provisioning model*.
+![Gambaran sederhana arsitektur aplikasai](https://cdn-images-1.medium.com/max/2000/1*lFbIqnzu-Y761o0Lub8YNA.jpeg)
 
-*Spot VM* adalah tipe mesin virtual yang dapat kapan saja dihentikan oleh GCP agar sumberdayanya dapat digunakan servis lainnya. Harganya jadi 60-90% lebih murah namun resikonya aplikasi bisa saja tidak dapat diakses karena sedang dalam keadaan mati. Tidak disarankan digunakan untuk jenis aplikasi penting, namun untuk aplikasi ini rasanya tidak akan menjadi masalah.
+Saya awalnya memilih mesin dengan tipe *e2-micro*, lalu setelah beberapa hari saya *update* ke mesin e2-small yang lebih mumpuni. Dan agar harganya menjadi lebih ekonomis lagi, saya memutuskan menggunakan tipe [Spot VM](https://cloud.google.com/compute/docs/instances/spot?hl=en) sebagai *provisioning model*.
 
+*Spot VM* adalah tipe mesin virtual yang dapat kapan saja dihentikan oleh GCP agar sumberdaya-nya dapat digunakan servis lainnya. Harganya jadi 60-90% lebih murah namun resikonya aplikasi bisa saja tidak dapat diakses karena sedang dalam keadaan mati. Tidak disarankan digunakan untuk jenis aplikasi penting, namun untuk aplikasi ini rasanya tidak akan menjadi masalah.
+
+![Konfigurasi SpotVM](https://cdn-images-1.medium.com/max/2000/1*ZcmzJZmX0uiN_QIofNFzEw.png)
+
+Saya juga menyiapkan servis agar setiap kali server restart akan otomatis menjalankan `docker compose up` supaya aplikasi otomatis menyala kembali. Servis ini juga dapat dijalankan dan dihentikan manual dengan perintah `sudo systemctl start coderacer` dan `sudo systemctl start coderacer`.
+
+![File /etc/systemd/coderacer.service](https://cdn-images-1.medium.com/max/2000/1*Rzj1_ZnguVCppeITZ-3p7Q.png)
 
 #### Deployment untuk Database
 
 Sebenarnya jika dari awal memilih database PostgreSQL, pembelajaran yang saya dapatkan tidak sebanyak ini 😉 Untuk database RDBMS seperti PostgreSQL atau MySQL cenderung lebih mudah karena bisa menggunakan servis seperti [Cloud SQL](https://cloud.google.com/sql), atau cara manual dengan instalasi RDBMS di mesin virtual.
 
-Karena saya menggunakan SQLite, saya jadi belajar lebih banyak tentang bagaimana mengintegrasikannya dengan kontainer. Hal ini memberi pengalaman baru yang tidak saya dapatkan jika sejak awal menggunakan PostgreSQL. Karena kontainer sifatnya _stateless_, database tidak bisa dimasukkan begitu saja ke kontainer.
+Karena saya menggunakan SQLite, saya jadi belajar tentang bagaimana mengintegrasikannya dengan kontainer. Hal ini memberi pengalaman baru yang tidak saya dapatkan jika sejak awal menggunakan PostgreSQL. Karena kontainer sifatnya _stateless_, database tidak bisa dimasukkan begitu saja ke kontainer.
 
-Akhirnya, saya belajar tentang Docker volumes yang bisa digunakan untuk menyimpan data. Bisa ditambahkan ke `docker-compose.yml` untuk volume dan jangan lupa arahkan konfigurasi ke volume tersebut.
+Akhirnya, saya belajar tentang [ Docker volumes ](https://docs.docker.com/engine/storage/volumes/) yang bisa digunakan untuk menyimpan data. Bisa ditambahkan ke `docker-compose.yml` untuk volume dan jangan lupa arahkan konfigurasi ke volume tersebut.
 
 ##### `docker-compose.yml`
 
@@ -147,13 +249,9 @@ volumes:
   coderacer_sqlite:
 ```
 
-
-
-
 ### Bonus: Domain
 
 Biar semakin keren, *ngide* cari domain. Berhubung coderacer.com dan variannya sudah tidak tersedia (atau super mahal), coba diterjemahkan menjadi balapkode. Dan ternyata [balapkode.com](https://balapkode.com) masih tersedia! Langsung beli dan disambungkan ke server.
-
 
 
 ## Servis AI sering kena *Rate-limit*
@@ -164,9 +262,9 @@ Solusinya bisa menggunakan servis berbayar, salah satunya Vertex AI yang disedia
 
 ![Vertex API Key](/assets/images/vertex-api-key.png)
 
-Yang saya lakukan adalah menjalankan perintah `gcloud auth print-access-token` di terminal, kemudian copas hasilnya ke environment variable. Padahal,/ perintah ini seharusnya dijalankan setiap kali ada *request* masuk.
+Yang saya lakukan adalah menjalankan perintah `gcloud auth print-access-token` di terminal, kemudian copas hasilnya ke environment variable. Padahal, perintah ini seharusnya dijalankan setiap kali ada *request* masuk.
 
-Setelah membaca ulang dokumentasi, saya baru menyadari kesalahan yang saya lakukan. Berbeda dengan AIStudio yang cukup menggunakan API Key yang sifatnya statis tidak berubah, Vertex AI menggunakan API Key yang berubah-ubah dan harus di-*refresh* secara berkala.
+Setelah membaca ulang dokumentasi, saya baru menyadari kesalahan yang saya lakukan. Berbeda dengan [AIStudio](https://aistudio.google.com/) yang cukup menggunakan API Key yang sifatnya statis tidak berubah, Vertex AI menggunakan API Key yang berubah-ubah dan harus di-*refresh* secara berkala.
 
 Alhasil, kodenya harus diubah kembali. Untungnya untuk berhubungan dengan operasi GCP seperti ini, sudah ada pustaka atau *library* [Goth](https://hex.pm/packages/goth) yang dibuat oleh komunitas.
 
@@ -184,6 +282,7 @@ headers: [
 +     {"Authorization", "Bearer #{token.token}"}
 ...
 ```
+
 Sederhananya, setiap kali ada *request*, kita meminta token baru yang kemudian disertakan kedalam http header authorization. Untuk kode lengkapnya bisa [diintip langsung disini](https://github.com/rizafahmi/coderacer/commit/58d83051ec8131cbc0631fae721221e301c598cd#diff-6e80fe3819000b4fb2d60ae3ea36d0275e19a5b151aa68d71b8b4d9f5d8a0267).
 
 
@@ -195,14 +294,14 @@ Saya juga belajar bahwa membangun produk bukan cuma soal menulis kode, tapi juga
 
 Menggunakan pendekatan pragmatis dan fokus pada "good enough to launch", proyek ini akhirnya bisa dinikmati publik lewat [balapkode.com](https://balapkode.com).
 
-Kalau kamu seorang developer (atau sedang belajar permrograman) dan ingin melatih kecepatan mengetik sambil mengenal berbagai bahasa pemrograman, yuk langsung coba main di:
+Kalau kamu seorang developer (atau sedang belajar permrograman) dan ingin melatih kecepatan mengetik sambil mengenal berbagai bahasa pemrograman, yuk langsung coba mainkan di:
 
 👉 [**balapkode.com**](https://balapkode.com)
 
-Kalau kamu menemukan bug, punya ide fitur baru, atau sekadar ingin lihat isi kode sumbernya, semua tersedia secara terbuka di:
+Kalau kamu menemukan *bug*, punya ide fitur baru, atau sekadar ingin lihat isi kode sumbernya, semua tersedia secara terbuka di:
 
 🛠️ [**GitHub: rizafahmi/coderacer**](https://github.com/rizafahmi/coderacer)
 
 Artikel diatas membahas proses pembuatan aplikasi dari awal hingga berhasil diluncurkan. Namun tidak membahas kodenya secara mendetil. Jika teman-teman tertarik untuk membahas kodenya, boleh ya ditulis di kolom komentar dibawah.
 
-Terima kasih sudah membaca sampai akhir. Semoga perjalanan ini bisa menginspirasi kamu untuk mulai (atau menyelesaikan) ide-ide yang selama ini hanya ada di kepala. ✨
+Terima kasih sudah membaca sampai akhir. Semoga perjalanan ini bisa menginspirasi kamu untuk mulai (atau menyelesaikan) ide-ide yang selama ini hanya ada di kepala.
