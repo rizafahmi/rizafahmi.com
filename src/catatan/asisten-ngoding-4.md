@@ -1,5 +1,6 @@
 ---
 title: Desain Antarmuka dengan Asisten Ngoding
+date: 2025-08-19
 created: 2025-06-13
 modified: 2025-08-19
 layout: tulisan
