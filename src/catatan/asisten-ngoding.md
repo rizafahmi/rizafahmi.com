@@ -10,9 +10,10 @@ eleventyExcludeFromCollections: false
 
 --- 
 **Seri Asisten Ngoding**
-1. Produktif dengan Asisten Ngoding [Artikel saat ini]
+1. ➡︎ Produktif dengan Asisten Ngoding
 2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
 3. [Menyusun Rencana dengan Asisten Ngoding](/catatan/asisten-ngoding-3) 
+4. [Desain Antarmuka dengan Asisten Ngoding](/catatan/asisten-ngoding-4)
 ---
 
 Dunia pengembangan perangkat lunak telah mengalami transformasi signifikan dalam alat bantu pemrograman. Bermula dari fitur *autocomplete* sederhana yang hanya menyelesaikan kata kunci atau nama fungsi yang sudah diketahui, kini berkembang menjadi sistem cerdas yang mampu memahami konteks kode secara menyeluruh. Pada era awal, IDE seperti Visual Studio atau Eclipse menawarkan saran secara statis berdasarkan pustaka yang telah didefinisikan, namun memiliki keterbatasan dalam memahami logika.
