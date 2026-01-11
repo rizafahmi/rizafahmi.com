@@ -11,13 +11,14 @@ eleventyExcludeFromCollections: false
 
 --- 
 **Seri Asisten Ngoding**
-1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
-2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
-3. [Menyusun Rencana dengan Asisten Ngoding](/catatan/asisten-ngoding-3)
+1. [Produktif dengan Asisten Ngoding](asisten-ngoding.md)
+2. [Diskusi dan Menulis Spesifikasi dengan AI](asisten-ngoding-2.md)
+3. [Menyusun Rencana dengan Asisten Ngoding](asisten-ngoding-3.md)
 4. ➡︎ Desain Antarmuka dengan Asisten Ngoding
+5. [Menulis Kode dengan Asisten Ngoding](asisten-ngoding-5.md)
 ---
 
-Setelah [bagian sebelumnya](/catatan/asisten-ngoding-3) kita berhasil menghasilkan rencana yang matang dalam format _blueprint_, kini saatnya untuk melangkah ke tahap yang paling dinanti: eksekusi! Ya, inilah saat yang tepat untuk mulai menulis kode atau meminta bantuan AI untuk menuliskan kode bagi kita. Dalam artikel ini, saya akan membagikan pengalaman pribadi dan tips praktis yang bisa langsung teman-teman terapkan. Tentu saja, pilihan ada di tangan teman-teman dengan segala konsekuensi yang menyertainya 😉
+Setelah [bagian sebelumnya](asisten-ngoding-3.md) kita berhasil menghasilkan rencana yang matang dalam format _blueprint_, kini saatnya untuk melangkah ke tahap yang paling dinanti: eksekusi! Ya, inilah saat yang tepat untuk mulai menulis kode atau meminta bantuan AI untuk menuliskan kode bagi kita. Dalam artikel ini, saya akan membagikan pengalaman pribadi dan tips praktis yang bisa langsung teman-teman terapkan. Tentu saja, pilihan ada di tangan teman-teman dengan segala konsekuensi yang menyertainya 😉
 
 Berpikir tentang desain antarmuka yang menarik dan fungsional seringkali menjadi tantangan tersendiri. Mari kita mulai dengan pendekatan yang terbukti efektif!
 

@@ -10,15 +10,16 @@ eleventyExcludeFromCollections: false
 
 --- 
 **Seri Asisten Ngoding**
-1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
-2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
+1. [Produktif dengan Asisten Ngoding](asisten-ngoding.md)
+2. [Diskusi dan Menulis Spesifikasi dengan AI](asisten-ngoding-2.md)
 3. ➡︎ Menyusun Rencana dengan Asisten Ngoding
-4. [Desain Antarmuka dengan Asisten Ngoding](/catatan/asisten-ngoding-4)
+4. [Desain Antarmuka dengan Asisten Ngoding](asisten-ngoding-4.md)
+5. [Menulis Kode dengan Asisten Ngoding](asisten-ngoding-5.md)
 
 ---
 
 
-Setelah [di bagian sebelumnya](/catatan/asisten-ngoding-2) kita membahas penggunaan AI sebagai asisten untuk diskusi ide dan pembuatan spesifikasi aplikasi, kali ini kita akan fokus memanfaatkan AI untuk menyusun rencana. 
+Setelah [di bagian sebelumnya](asisten-ngoding-2.md) kita membahas penggunaan AI sebagai asisten untuk diskusi ide dan pembuatan spesifikasi aplikasi, kali ini kita akan fokus memanfaatkan AI untuk menyusun rencana. 
 
 Sering kali, kita tergoda untuk langsung membuka kode editor dan mulai menulis tanpa mempersiapkan rencana terlebih dahulu. Padahal, rencana yang matang adalah kunci keberhasilan pembangunan sebuah aplikasi. Tanpa rencana yang jelas, kita berisiko mengalami kebingungan atau kesalahan di tengah jalan. Bahkan dengan strategi yang sudah matang sekalipun, hasilnya bisa saja meleset. Bayangkan apa yang terjadi jika kita menulis tanpa rencana!
 
@@ -75,7 +76,7 @@ Setelah memiliki rencana dan strategi, kita siap melangkah ke tahap eksekusi dan
 
 ### Referensi
 
-- [Artikel sebelumnya tentang diskusi ide](/catatan/asisten-ngoding-2)
+- [Artikel sebelumnya tentang diskusi ide](asisten-ngoding-2.md)
 - [Kumpulan artikel menarik tentang AI dan LLM dalam Bahasa Indonesia](https://dekontaminasi.substack.com)
 - [My LLM Codegen Workflow ATM](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)
 - [Daniel Delaney's Chat Workflow](https://danieldelaney.net/chat)
