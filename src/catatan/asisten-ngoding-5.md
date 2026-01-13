@@ -10,10 +10,10 @@ eleventyExcludeFromCollections: false
 
 --- 
 **Seri Asisten Ngoding**
-1. [Produktif dengan Asisten Ngoding](asisten-ngoding.md)
-2. [Diskusi dan Menulis Spesifikasi dengan AI](asisten-ngoding-2.md)
-3. [Menyusun Rencana dengan Asisten Ngoding](asisten-ngoding-3.md)
-4. [Desain Antarmuka dengan Asisten Ngoding](asisten-ngoding-4.md)
+1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
+2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
+3. [Menyusun Rencana dengan Asisten Ngoding](/catatan/asisten-ngoding-3)
+4. [Desain Antarmuka dengan Asisten Ngoding](/catatan/asisten-ngoding-4)
 5. Menulis Kode dengan Asisten Ngoding [Artikel saat ini]
 ---
 
