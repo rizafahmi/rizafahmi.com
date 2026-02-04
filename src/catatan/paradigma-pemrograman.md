@@ -36,7 +36,7 @@ Berkembanglah konsep _concurrent programming_ atau _parallel programming_ dalam 
 
 Kode berikut merupakan gambaran perbedaan antara kode yang belum menggunakan _concurrency_ dan kode yang memanfaatkkan _concurrency_ sehingga semua inti prosesor digunakan saat eksekusi kode.
 
-## Kode Tanpa _Concurrency_
+#### Kode Tanpa _Concurrency_
 Mari kita coba kode tanpa memanfaatkan _concurrency_ lalu dibandingkan dengan _concurrency_. Kedua kode dibawah dikembangkan menggunakan bahasa Elixir.
 
 ```elixir
@@ -56,7 +56,7 @@ Jika kode diatas dijalankan, akan memakan waktu sekitar 78.33 detik. Hal ini kar
 
 ![](/assets/images/elixir-seq-code.png)
 
-## Kode dengan _concurrency_
+#### Kode dengan _concurrency_
 
 Sekarang mari kita gunakan kode dengan _concurrency_.
 
