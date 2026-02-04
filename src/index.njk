@@ -81,9 +81,9 @@ eleventyExcludeFromCollections: true
 
   <main>
     <section class="articles-section">
-      <h2>📰 Newest Articles</h2>
+      <h2>📰 10 Catatan Terbaru</h2>
       <div class="articles">
-        {%- set newest = collections.catatan | reverse | slice(0, 5) %}
+        {%- set newest = collections.catatan | reverse | slice(0, 10) %}
         {%- for t in newest %}
         <div class="article">
           <h6><a href="{{t.url}}">&gt;&nbsp;&nbsp; {{ t.data.title }}</a></h6>
@@ -96,8 +96,7 @@ eleventyExcludeFromCollections: true
     </section>
 
     <section class="articles-section">
-      <h2>🔥 Popular Articles</h2>
-      <p>Based on GoatCounter analytics (last 30 days)</p>
+      <h2>🔥 10 Catatan Favorit</h2>
       <div class="articles">
         <div class="article">
           <h6><a href="/catatan/bahasa-fungsional-elixir">&gt;&nbsp;&nbsp; Berkenalan dengan Bahasa Pemrograman Elixir</a></h6>
@@ -109,7 +108,73 @@ eleventyExcludeFromCollections: true
           <h6><a href="/catatan/paradigma-pemrograman">&gt;&nbsp;&nbsp; Catatan tentang Paradigma Pemrograman</a></h6>
         </div>
         <div class="article">
-          <a href="/articles"><h6>Lihat semua...</h6></a>
+          <h6><a href="/catatan/rekursi-atau-recursion">&gt;&nbsp;&nbsp; Rekursi: Fungsi Yang Memanggil Dirinya Sendiri</a></h6>
+        </div>
+        <div class="article">
+          <h6><a href="/catatan/notasi-o-besar-big-o-notation">&gt;&nbsp;&nbsp; Notasi O Besar atau Big-O Notation</a></h6>
+        </div>
+        <div class="article">
+          <h6><a href="/catatan/elixir-phoenix-rest-api">&gt;&nbsp;&nbsp; Membangun REST API dengan Elixir dan Phoenix</a></h6>
+        </div>
+        <div class="article">
+          <h6><a href="/catatan/5-kebiasaan-coding">&gt;&nbsp;&nbsp; 5 Kebiasaan Coding yang Menjadikan Kamu Super Developer</a></h6>
+        </div>
+        <div class="article">
+          <h6><a href="/catatan/cara-belajar-pemrograman">&gt;&nbsp;&nbsp; Cara Belajar Pemrograman yang Benar</a></h6>
+        </div>
+        <div class="article">
+          <h6><a href="/catatan/membangun-permainan-balap-kode-dgn-ai">&gt;&nbsp;&nbsp; Membangun Permainan Balap Kode dengan AI</a></h6>
+        </div>
+        <div class="article">
+          <h6><a href="/catatan/panduan-menulis">&gt;&nbsp;&nbsp; Panduan Menulis Artikel Pemrograman</a></h6>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-section">
+      <h2>⭐ Featured</h2>
+      <div class="featured-grid">
+        <div class="featured-card">
+          <h3><a href="/catatan/bahasa-fungsional-elixir">Bahasa Fungsional Elixir</a></h3>
+          <p>Intro ke Elixir — artikel paling lengkap dalam bahasa Indonesia</p>
+        </div>
+        <div class="featured-card">
+          <h3><a href="/catatan/asisten-ngoding">Produktif dengan Asisten Ngoding</a></h3>
+          <p>Bagaimana AI agents mengubah cara saya coding</p>
+        </div>
+        <div class="featured-card">
+          <h3><a href="/catatan/paradigma-pemrograman">Paradigma Pemrograman</a></h3>
+          <p>思考 (thinking) tentang cara berpikir dalam programming</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="interviews-section">
+      <h2>🎙️ Interviews</h2>
+      <div class="articles">
+        <div class="article">
+          <h6>
+            <a href="https://www.youtube.com/watch?v=Nl-G7i7eb_k" target="_blank">
+              &gt;&nbsp;&nbsp; [YouTube] Podcast tentang Web Dev - Ngobrolin Web
+            </a>
+          </h6>
+        </div>
+        <div class="article">
+          <h6>
+            <a href="https://www.youtube.com/watch?v=ys2bC340wEE" target="_blank">
+              &gt;&nbsp;&nbsp; [YouTube] Ceritanya Developer - HACKTIV8 Journey
+            </a>
+          </h6>
+        </div>
+        <div class="article">
+          <h6>
+            <a href="https://www.youtube.com/watch?v=LoL2w_0SJcw" target="_blank">
+              &gt;&nbsp;&nbsp; [YouTube] Tech Interview Tips & Tricks
+            </a>
+          </h6>
+        </div>
+        <div class="article">
+          <a href="/interviews"><h6>Lihat semua...</h6></a>
         </div>
       </div>
     </section>
@@ -268,9 +333,7 @@ eleventyExcludeFromCollections: true
   <footer>
     <hr />
     <p>
-      <strong>🤖 AI Usage</strong><br>
-      All content written by me, not by AI.<br>
-      <a href="/ai">Read more</a>
+      Konten ditulis oleh manusia, dengan <a href="/ai">bantuan AI</a>.
     </p>
   </footer>
 </body>

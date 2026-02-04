@@ -40,6 +40,11 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  // Add catatan collection
+  eleventyConfig.addCollection("catatan", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
+  });
+
   return {
     dir: { input: "src", output: "dist" },
     dataTemplate: "njk",
