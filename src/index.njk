@@ -83,11 +83,12 @@ eleventyExcludeFromCollections: true
     <section class="articles-section">
       <h2>📰 10 Catatan Terbaru</h2>
       <div class="articles">
-        {%- set newest = collections.catatan | reverse | slice(0, 10) %}
-        {%- for t in newest %}
+        {%- for t in collections.catatan | reverse %}
+        {%- if loop.index0 < 10 %}
         <div class="article">
           <h6><a href="{{t.url}}">&gt;&nbsp;&nbsp; {{ t.data.title }}</a></h6>
         </div>
+        {%- endif %}
         {%- endfor %}
         <div class="article">
           <a href="/articles"><h6>Lihat semua...</h6></a>
@@ -127,6 +128,9 @@ eleventyExcludeFromCollections: true
         </div>
         <div class="article">
           <h6><a href="/catatan/panduan-menulis">&gt;&nbsp;&nbsp; Panduan Menulis Artikel Pemrograman</a></h6>
+        </div>
+        <div class="article">
+          <a href="/articles"><h6>Lihat semua...</h6></a>
         </div>
       </div>
     </section>
