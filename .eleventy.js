@@ -16,7 +16,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("dateToISO", (date) => {
     if (!date) return '';
-    return new Date(date).toISOString().split('T')[0];
+    const d = new Date(date);
+    if (isNaN(d.getTime())) return '';
+    return d.toISOString().split('T')[0];
   });
 
   eleventyConfig.addFilter("sortDataByDate", (obj) => {
