@@ -80,6 +80,40 @@ eleventyExcludeFromCollections: true
   <h1>👋 Saya Riza!</h1>
 
   <main>
+    <section class="articles-section">
+      <h2>📰 Newest Articles</h2>
+      <div class="articles">
+        {%- set newest = collections.catatan | reverse | slice(0, 5) %}
+        {%- for t in newest %}
+        <div class="article">
+          <h6><a href="{{t.url}}">&gt;&nbsp;&nbsp; {{ t.data.title }}</a></h6>
+        </div>
+        {%- endfor %}
+        <div class="article">
+          <a href="/articles"><h6>Lihat semua...</h6></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="articles-section">
+      <h2>🔥 Popular Articles</h2>
+      <p>Based on GoatCounter analytics (last 30 days)</p>
+      <div class="articles">
+        <div class="article">
+          <h6><a href="/catatan/bahasa-fungsional-elixir">&gt;&nbsp;&nbsp; Berkenalan dengan Bahasa Pemrograman Elixir</a></h6>
+        </div>
+        <div class="article">
+          <h6><a href="/catatan/asisten-ngoding">&gt;&nbsp;&nbsp; Produktif dengan Asisten Ngoding</a></h6>
+        </div>
+        <div class="article">
+          <h6><a href="/catatan/paradigma-pemrograman">&gt;&nbsp;&nbsp; Catatan tentang Paradigma Pemrograman</a></h6>
+        </div>
+        <div class="article">
+          <a href="/articles"><h6>Lihat semua...</h6></a>
+        </div>
+      </div>
+    </section>
+
     <h2>Catatan · <a href="/feed.xml">RSS</a></h2>
     <div class="articles">
       {%- for t in tulisan -%}
@@ -230,6 +264,15 @@ eleventyExcludeFromCollections: true
   </section>
 
   <script data-goatcounter="https://rizafahmi.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <footer>
+    <hr />
+    <p>
+      <strong>🤖 AI Usage</strong><br>
+      All content written by me, not by AI.<br>
+      <a href="/ai">Read more</a>
+    </p>
+  </footer>
 </body>
 
 </html>
