@@ -60,3 +60,27 @@ span.tags {
   color: #666;
   margin-bottom: 1rem;
 }
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.featured-card {
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.featured-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.featured-card p {
+  font-size: 0.875rem;
+  color: #666;
+}
+.featured-section,
+.interviews-section {
+  margin-bottom: 2rem;
+}
