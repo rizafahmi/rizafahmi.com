@@ -1,7 +1,7 @@
 ---
-title: 🌱 Membangun Prototipe Aplikasi dengan Elixir Phoenix
+title: Membangun Prototipe Aplikasi dengan Elixir Phoenix
 created: 2025-09-04
-modified: 2025-09-05
+modified: 2025-09-22
 layout: tulisan
 tags:
   - catatan
@@ -29,12 +29,11 @@ Fitur utama:
 
 #### Tampilan Layar
 
+![](/assets/images/prototipe/event-create.png)
+
 ![](/assets/images/prototipe/event-listing.png)
 
 ![](/assets/images/prototipe/event-detail.png)
-
-![](/assets/images/prototipe/event-create.png)
-
 
 ![](/assets/images/prototipe/attendance.png)
 
@@ -558,6 +557,270 @@ git commit -m "Add user name field with validation and UI updates"
 ---
 
 ## Deployment
+
+Aplikasi kita sudah bisa registrasi, login dan logout. Artinya data pengguna sudah tersimpan kedalam database. Waktu yang tepat untuk deploy. Pendekatan yang saya senangi adalah deploy sedini mungkin sebelum aplikasi menjadi terlalu kompleks sehingga jika terjadi kesalahan masih bisa diatasi dengan mudah.
+
+Kita akan meluncurkan aplikasi dengan menggunakan teknik kontainer. Docker adalah alat yang paling populer saat ini. Semua elemen akan menggunakan Docker mulai dari backend & frontend, database hingga proxy.
+
+TODO: Diagram arsitektur.
+
+Pertama kita akan siapkan segala sesuatunya di local terlebih dahulu baru kemudian datanya dikirimkan ke server, untuk dieksekusi di sisi server.
+
+Jalankan `mix phx.gen.secret` dan hasilnya ditambahkan sebagai `SECRET_KEY_BASE` di `.env`.
+
+```text
+export SECRET_KEY_BASE=keyGeneratedByPhxGenSecretHere
+```
+
+File `.env` ini harus diabaikan dan tidak boleh disimpan di repo. Isinya nanti di _copas_ manual saja ketika akan menjalankan docker di server.
+
+Untuk Dockerfile, Phoenix sudah menyediakan penggunaan docker untuk deployment dengan perintah `mix phx.gen.release --docker`.
+
+Saya ingin agar setiap kali deployment proses migrasi database dijalankan, mari ubah sedikit `Dockerfile` agar sebelum menjalankan server jalankan migrasi terlebih dahulu dengan membuat file baru dengan nama `start`.
+
+#### `Dockerfile`
+
+```diff
+# Only copy the final release from the build stage
+COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/eventflow ./
+
+USER nobody
+
++ COPY --from=builder --chown=nobody:root /app/rel/overlays/bin/start ./bin/start
++ RUN chmod +x ./bin/start
+
+# If using an environment that doesn't automatically reap zombie processes, it is
+# advised to add an init process such as tini via `apt-get install`
+# above and adding an entrypoint. See https://github.com/krallin/tini for details
+# ENTRYPOINT ["/tini", "--"]
+
+- CMD ["/app/bin/server"]
++ CMD ["/app/bin/start"]
+
+```
+
+Lalu buat file baru di folder `rel/overlays/bin/`
+
+#### `rel/overlays/bin/start`
+
+```sh
+#!/bin/sh
+set -eu
+
+cd -P -- "$(dirname -- "$0")"
+./migrate && ./server
+```
+
+Mari simpan perubahan yang kita lakukan ke repo.
+
+```shell
+$ git add --all .
+$ git commit -m "Prepare Dockerfile, etc for deployment"
+```
+
+Agar dapat diakses dari server, kita buat repo GitHub dan kirim kodenya ke repo tersebut. Untuk membuat repo github, saya biasa menggunakan github cli
+
+```shell
+$ gh repo create
+```
+
+Lalu jalankan `git push` jika belum.
+
+```shell
+$ git push origin main
+```
+
+### Mempersiapkan Server
+
+Untuk persiapan selanjutnya akan kita akan lakukan di sisi server. Siapkan dulu sebuah mesin virtual sebagai tujuan deployment. Saya akan menggunakan servis Compute Engine dari GCP. Berikut konfigurasinya.
+
+![](/assets/images/prototipe/vm-spec.png)
+
+TODO: Ganti ke docker
+https://reintech.io/blog/setting-up-docker-docker-compose-debian-12
+
+
+Bikin .env isinya SECRET_KEY_BASE
+
+Connect ke email gmn caranya?
+Pakai Swoosh Adapters Mailgun
+
+Login ke server yang baru dibuat lewat ssh, instalasi Podman dan Podman Compose.
+
+```shell
+riza@eventflow:~$ sudo apt update && sudo apt upgrade -y
+riza@eventflow:~$ sudo apt install -y podman podman-compose
+riza@eventflow:~$ sudo apt install -y git
+```
+
+#### Kenapa Podman?
+
+- https://www.threads.com/@riris_bayu/post/DKdk34yBTx-
+- 99% sama
+
+TODO
+
+---
+
+```shell
+riza@eventflow-id:~$ sudo apt install qemu-system-x86
+riza@eventflow:~$ podman machine init
+riza@eventflow:~$ podman machine start
+```
+
+Mari cek podman
+
+```shell
+riza@eventflow:~$ sudo podman run -dit --name nginx -p 80:80 docker.io/nginx
+riza@eventflow-id:~$ curl localhost
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+```
+
+Podman berhasil menjalankan nginx di port 80.
+
+```shell
+riza@eventflow-id:~$ podman stop nginx
+riza@eventflow-id:~$ podman rm nginx
+```
+
+Karena kita ingin menulis kode dan menjalankan docker/podman yang berhubungan dengan deployment di server, nantinya kita membutuhkan kemampuan untuk mengirimkan kode via ssh.
+
+
+```shell
+riza@eventflow:~$ ssh-keygen -t ed25519 -C "rizafahmi@gmail.com"
+riza@eventflowd:~$ ssh-add ~/.ssh/id_ed25519
+Identity added: /home/riza/.ssh/id_ed25519 (rizafahmi@gmail.com)
+$ cat ~/.ssh/id_ed25519.pub
+# Then select and copy the contents of the id_ed25519.pub file
+# displayed in the terminal to your clipboard
+```
+
+![](/assets/images/prototipe/github-ssh.png)
+
+
+Coba koneksi ke github via ssh.
+
+```shell
+riza@eventflow:~$ ssh -T git@github.com
+The authenticity of host 'github.com (20.205.243.166)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisf/zLDA0zPMSvHdkr4UvCoqU.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+Hi rizafahmi! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+Pengaturan github dan ssh selesai! Sekarang mari unduh kode dan jalankan di server.
+
+```shell
+riza@eventflow:~$ git clone git@github.com:rizafahmi/eventflow.git
+riza@eventflow:~$ cd eventflow/
+```
+
+Kode sudah didapat, saatnya mulai proses deployment. Namun sebelum itu, mari kita desain infrastruktur yang akan dibuat dengan docker dan docker-compose, atau dalam hal ini, podman.
+
+![](/assets/images/prototipe/infra.png)
+
+Seperti diagram arsitektur diatas, kita butuh beberapa kontainer tambahan yang dijalankan berbarengan. Utamanya database. Agar mudah dikelola, kita buat sebuah file `docker-compose.yaml`. 
+
+#### `docker-compose.yaml`
+
+```yaml
+version: "3.9"
+services:
+  db:
+    image: docker.io/library/postgres:17.6
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: eventflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  web:
+    build: .
+    depends_on:
+      - db
+    environment:
+      PHX_HOST: localhost
+      DATABASE_URL: ecto://postgres:postgres@db/eventflow
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      MAILGUN_API_KEY: ${MAILGUN_API_KEY}
+  proxy:
+    image: docker.io/library/caddy:2.7.6
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+    restart: unless-stopped
+volumes:
+  postgres_data:
+  caddy_data:
+  caddy_config:
+```
+
+#### `Caddyfile`
+
+Proxy akan digunakan untuk http/https dan websocket juga. Karena aplikasi Phoenix menggunakan websocket. Untuk mendefinisikan konfigurasi server, kita akan gunakan ip address atau domain/subdomain server.
+
+```text
+eventflow.rizafahmi.com {
+    # Enable compression
+    encode zstd gzip
+
+    # Proxy all requests to the Phoenix app
+    reverse_proxy web:4000 {
+        header_up Host {host}
+        header_up X-Real_IP {remote}
+        header_up X-Forwarded-For {remote}
+        header_up X-Forwarded-Proto {schema}}
+
+        transport http {
+            keepalive 30s
+        }
+    }
+
+    # Log in JSON format
+    log {
+        format json
+    }
+}
+```
+
+Jalankan docker/podman compose.
+
+```shell
+riza@eventflow-id:~/eventflow$ podman-compose up --build
+```
+
+
+Jangan lupa arahkan DNS domain/subdomain ke ip eksternal vm di gcp.
 
 ### Continuous Integration
 #### Menambahkan credo dan dialyzer
