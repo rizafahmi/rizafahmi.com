@@ -1,10 +1,5 @@
 ---
 title: Halo, Saya Riza!
-pagination:
-  data: collections.catatan
-  size: 18
-  alias: tulisan
-  reverse: true
 eleventyExcludeFromCollections: true
 ---
 <!DOCTYPE html>
@@ -182,22 +177,6 @@ eleventyExcludeFromCollections: true
         </div>
       </div>
     </section>
-
-    <h2>Catatan · <a href="/feed.xml">RSS</a></h2>
-    <div class="articles">
-      {%- for t in tulisan -%}
-      <div class="article">
-        <h6>
-          <a href="{{t.url}}">&gt;&nbsp;&nbsp; {{ t.data.title }}</a>
-        </h6>
-      </div>
-      {% endfor %}
-      <div class="article">
-        <a href="/articles">
-          <h6>Artikel lainnya...</h6>
-        </a>
-      </div>
-    </div>
   </main>
   <section>
     <h2>Karya</h2>
