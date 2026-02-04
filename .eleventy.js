@@ -14,6 +14,11 @@ module.exports = function (eleventyConfig) {
     return getRelativeTimeString(dateObj);
   });
 
+  eleventyConfig.addFilter("dateToISO", (date) => {
+    if (!date) return '';
+    return new Date(date).toISOString().split('T')[0];
+  });
+
   eleventyConfig.addFilter("sortDataByDate", (obj) => {
     const sorted = {};
     if (obj.date === undefined) {
