@@ -88,7 +88,12 @@ title: Judul
 
       <hr />
 
-    </div>
+      {%- set show_comments = false %}
+      {%- if '/catatan/' in page.url %}{% set show_comments = true %}{%- endif %}
+      {%- if page.url == '/now/' %}{% set show_comments = true %}{%- endif %}
+      {%- if page.url == '/uses/' %}{% set show_comments = true %}{%- endif %}
+      
+      {%- if show_comments %}
       <script src="https://utteranc.es/client.js"
         repo="rizafahmi/rizafahmi.com"
         issue-term="pathname"
@@ -97,6 +102,7 @@ title: Judul
         crossorigin="anonymous"
         async>
       </script>
+      {%- endif %}
 
 
 
