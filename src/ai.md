@@ -6,12 +6,12 @@ layout: tulisan.njk
 
 # Penggunaan AI
 
-Semua konten di website ini ditulis oleh saya sendiri — bukan dihasilkan oleh AI.
+Konten ditulis oleh manusia, dengan bantuan AI untuk riset dan penyuntingan.
 
 ## Cara saya menggunakan AI
 
 - **Riset** — AI membantu saya mengeksplorasi topik dan mencari informasi
-- **Editing** — AI membantu pengecekan tata bahasa dan kejelasan
+- **Penyuntingan** — AI membantu pengecekan tata bahasa dan kejelasan
 - **Kode** — AI coding assistant membantu menulis dan debugging kode
 
 ## Filosofi saya
