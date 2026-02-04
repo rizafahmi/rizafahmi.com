@@ -44,6 +44,30 @@ title: Judul
     <meta name="msapplication-TileImage" content="/assets/images/favico/ms-icon-144x144.png">
     <meta name="theme-color" content="#211a1e">
     <link rel="alternate" type="application/rss+xml" href="https://rizafahmi.com/feed.xml" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{ title | escape }}",
+      "description": "{{ description or title | escape }}",
+      "author": {
+        "@type": "Person",
+        "name": "Riza Fahmi",
+        "url": "https://rizafahmi.com"
+      },
+      "datePublished": "{{ (date or created) | dateToISO }}",
+      "dateModified": "{{ modified | dateToISO }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rizafahmi.com{{ page.url }}"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Riza Fahmi"
+      }
+    }
+    </script>
   </head>
   <body>
     <div class="container">

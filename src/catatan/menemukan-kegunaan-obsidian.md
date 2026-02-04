@@ -1,7 +1,7 @@
 ---
 title: 🌱 Akhirnya bisa menemukan kegunaan Obsidian
-created: 2024-09-272
-modified: 2024-09-272
+created: 2024-09-27
+modified: 2024-09-27
 layout: tulisan
 tags:
   - catatan
