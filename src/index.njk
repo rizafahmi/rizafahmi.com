@@ -76,7 +76,7 @@ eleventyExcludeFromCollections: true
 
   <main>
     <section class="articles-section">
-      <h2>📰 10 Catatan Terbaru</h2>
+      <h2>📰 10 Catatan Terbaru · <a href="/feed.xml">RSS</a></h2>
       <div class="articles">
         {%- for t in collections.catatan | reverse %}
         {%- if loop.index0 < 10 %}
