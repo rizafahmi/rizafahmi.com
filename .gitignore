@@ -13,3 +13,4 @@ _site/
 dist/
 
 .DS_Store
+.agent-shell/

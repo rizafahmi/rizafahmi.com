@@ -56,7 +56,7 @@ title: Judul
       {%- if modified -%}
       <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
       {%- endif -%}
-      <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/master/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit catatan ini.</a></small>
+      <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/master/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
       <div class="note-edit">
       </div>
 
