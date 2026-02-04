@@ -86,6 +86,28 @@ title: Judul
 
       {{ content | safe }}
 
+      <!-- Related Articles -->
+      {%- if '/catatan/' in page.url %}
+      <section class="related-articles">
+        <h3>📚 Artikel Terkait</h3>
+        <div class="related-grid">
+          {%- set currentUrl = page.url %}
+          {%- set count = 0 %}
+          {%- for article in collections.catatan | reverse %}
+            {%- if article.url != currentUrl and count < 3 %}
+              <a href="{{ article.url }}" class="related-card">
+                <span class="related-title">{{ article.data.title }}</span>
+                {%- if article.data.created %}
+                <span class="related-date">{{ article.data.created | readableDate }}</span>
+                {%- endif %}
+              </a>
+              {%- set count = count + 1 %}
+            {%- endif %}
+          {%- endfor %}
+        </div>
+      </section>
+      {%- endif %}
+
       <hr />
 
       {%- set show_comments = false %}

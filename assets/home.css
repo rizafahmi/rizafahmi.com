@@ -1,3 +1,71 @@
+/* Hero Section */
+.hero {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #211a1e;
+}
+
+.hero-text h1 {
+    margin: 0 0 0.5rem 0;
+}
+
+.hero-tagline {
+    font-size: 1rem;
+    color: #555;
+    margin: 0 0 1rem 0;
+}
+
+.hero-tagline a {
+    color: #211a1e;
+    font-weight: bold;
+}
+
+.hero-nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.hero-nav a {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    background: #f5f5f5;
+    border-radius: 2rem;
+    border: none;
+    transition: background 0.2s;
+}
+
+.hero-nav a:hover {
+    background: #211a1e;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-nav {
+        justify-content: center;
+    }
+}
+
+/* Original styles */
 h1 {
     font-size: 2rem;
     line-height: 1.5em;

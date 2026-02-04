@@ -106,3 +106,54 @@ small {
     font-size: 1rem;
     color: rgba(33, 26, 30, 0.6);
 }
+
+/* Related Articles */
+.related-articles {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 0.5rem;
+}
+
+.related-articles h3 {
+    font-size: 1.25rem;
+    margin: 0 0 1rem 0;
+}
+
+.related-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.related-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.related-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.related-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #211a1e;
+    margin-bottom: 0.25rem;
+}
+
+.related-date {
+    font-size: 0.875rem;
+    color: #888;
+}
+
+@media (min-width: 600px) {
+    .related-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
