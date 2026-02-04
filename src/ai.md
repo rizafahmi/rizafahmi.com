@@ -2,7 +2,6 @@
 title: Penggunaan AI - Riza Fahmi
 description: Bagaimana saya menggunakan tools AI
 layout: tulisan.njk
-comments: false
 ---
 
 # Penggunaan AI
