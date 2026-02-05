@@ -29,6 +29,16 @@
             url("/assets/fonts/JetBrainsMono-Regular.ttf") format("ttf"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 body {
     color: rgb(41, 38, 38);
     font-family:
