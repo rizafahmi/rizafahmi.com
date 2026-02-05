@@ -29,6 +29,16 @@
             url("/assets/fonts/JetBrainsMono-Regular.ttf") format("ttf"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 body {
     color: rgb(41, 38, 38);
     font-family:
@@ -89,6 +99,47 @@ p {
     border: 0;
 }
 
+.reading-time {
+    font-size: 0.875rem;
+    color: rgba(33, 26, 30, 0.6);
+    display: block;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 blockquote {
     font-size: 0.75rem;
+}
+
+/* View Transitions API */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: glitch-out 0.35s ease-out forwards;
+}
+
+::view-transition-new(root) {
+  animation: glitch-in 0.35s ease-in forwards;
+}
+
+@keyframes glitch-out {
+  0% { opacity: 1; filter: none; transform: translate(0); }
+  15% { opacity: 0.9; filter: blur(1px); transform: translate(-3px, 1px); }
+  30% { opacity: 0.7; filter: blur(0); transform: translate(2px, -1px); }
+  45% { opacity: 0.5; filter: blur(2px); transform: translate(-1px, 2px); }
+  60% { opacity: 0.3; filter: blur(1px); transform: translate(3px, 0); }
+  75% { opacity: 0.15; filter: blur(3px); transform: translate(-2px, -1px); }
+  100% { opacity: 0; filter: blur(0); transform: translate(0); }
+}
+
+@keyframes glitch-in {
+  0% { opacity: 0; filter: blur(3px); transform: translate(2px, -1px); }
+  15% { opacity: 0.15; filter: blur(2px); transform: translate(-3px, 1px); }
+  30% { opacity: 0.3; filter: blur(1px); transform: translate(1px, 2px); }
+  45% { opacity: 0.5; filter: blur(2px); transform: translate(-2px, 0); }
+  60% { opacity: 0.7; filter: blur(0); transform: translate(3px, -1px); }
+  75% { opacity: 0.9; filter: blur(1px); transform: translate(-1px, 1px); }
+  100% { opacity: 1; filter: none; transform: translate(0); }
 }

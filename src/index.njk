@@ -18,6 +18,7 @@ eleventyExcludeFromCollections: true
     crossorigin="anonymous" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="view-transition" content="same-origin">
 
   <meta name="description" content="{{ description or title | escape }}" property="og:description">
   <meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />
@@ -74,14 +75,15 @@ eleventyExcludeFromCollections: true
 <body>
   <header class="hero">
     <div class="hero-content">
-      <img src="/assets/images/riza-transparent.png" alt="Foto Riza Fahmi" class="hero-avatar" width="120" height="120" />
+      <img src="/assets/images/riza-transparent.png" alt="Foto Riza Fahmi" class="hero-avatar" width="120" height="120" loading="lazy" />
       <div class="hero-text">
         <h1>👋 Saya Riza!</h1>
-        <p class="hero-tagline">Co-Founder <a href="https://hacktiv8.com" target="_blank">HACKTIV8</a> · Content Creator · AI & Elixir Enthusiast</p>
+        <p class="hero-tagline">Co-Founder <a href="https://hacktiv8.com" target="_blank" rel="noopener noreferrer">HACKTIV8</a> · Content Creator · AI & Elixir Enthusiast</p>
         <nav class="hero-nav">
           <a href="#catatan">📰 Catatan</a>
           <a href="#karya">🎨 Karya</a>
           <a href="#kontak">💬 Kontak</a>
+          <a href="/search">🔍 Cari</a>
         </nav>
       </div>
     </div>
@@ -148,14 +150,14 @@ eleventyExcludeFromCollections: true
       <div class="articles">
         <div class="article">
           <h6>
-            <a href="https://hacktiv8.com" target="_blank">
+            <a href="https://hacktiv8.com" target="_blank" rel="noopener noreferrer">
             🦊 &nbsp; HACKTIV8 Coding bootcamp, dirintis sejak&nbsp;<strong>2016</strong>.</a>
           </h6>
         </div>
         <div class="article">
           <h6>
             <a href="https://buildwithangga.com/kelas/sveltejs-front-end-javascript-development-web-donasi-online"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
             📽️ &nbsp; Belajar SvelteJS, dan membuat aplikasi web donasi online dan integrasi dengan &nbsp; <em>payment gateway</em>.
             </a>
           </h6>
@@ -163,14 +165,14 @@ eleventyExcludeFromCollections: true
         <div class="article">
           <h6>
             <a href="https://buildwithangga.com/kelas/struktur-data-javascript-improve-website-e-commerce"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
               📽️ &nbsp; Struktur data dengan JS, belajar fundamental dengan bahasa pemrograman JavaScript.</a>
           </h6>
         </div>
         <div class="article">
           <h6>
             <a href="https://buildwithangga.com/kelas/mastering-react-js-progressive-web-apps-e-commerce"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
             📽️ &nbsp; PWA dengan React, belajar implementasi PWA dengan React.
             </a>
           </h6>
@@ -178,7 +180,7 @@ eleventyExcludeFromCollections: true
         <div class="article">
           <h6>
             <a href="https://carikerja.deeptech.id/"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
             📱 &nbsp; Carikerja, daftar developer keren yang terkena dampak COVID-19.
             </a>
           </h6>
@@ -186,7 +188,7 @@ eleventyExcludeFromCollections: true
         <div class="article">
           <h6>
             <a href="https://youtube.com/rizafahmi/live"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
               🔴 &nbsp; Sesi <em>&nbsp;livestreaming</em>, belajar dan bikin-bikin bareng.
             </a>
           </h6>
@@ -194,7 +196,7 @@ eleventyExcludeFromCollections: true
         <div class="article">
           <h6>
             <a href="https://youtube.com/playlist?list=PLTY2nW4jwtG8Sx2Bw6QShC271PzX31CtT&feature=shared"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
             🎧 &nbsp; Ngobrolin Web, podcast mingguan membahas segala hal tentang WEB.
             </a>
           </h6>
@@ -202,7 +204,7 @@ eleventyExcludeFromCollections: true
         <div class="article">
           <h6>
             <a href="https://github.com/rizafahmi/awesome-speakers-id"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
               🐙 &nbsp; Awesome Speakers Indonesia, daftar developer yang berkenan diundang menjadi narasumber.
             </a>
           </h6>
@@ -212,7 +214,7 @@ eleventyExcludeFromCollections: true
         <div class="article">
           <h6>
             <a href="https://open.spotify.com/show/6grT1c7jDkhK4skm1YIsTs"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
             ☠️🎧 &nbsp; Ceritanya Developer Podcast.
             </a>
           </h6>
@@ -220,7 +222,7 @@ eleventyExcludeFromCollections: true
         <div class="article">
           <h6>
             <a href="https://www.youtube.com/playlist?list=PLTY2nW4jwtG9IEUCDspLH0tAuF450DZz-"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
             ☠️🎧 &nbsp; Hikayat Punggawa Teknologi.
             </a>
           </h6>
@@ -228,7 +230,7 @@ eleventyExcludeFromCollections: true
         <div class="article">
           <h6>
             <a href="https://open.spotify.com/show/6wjIRrIQ8yvAgCwXCUXKXI"
-          target="_blank">
+          target="_blank" rel="noopener noreferrer">
               ☠️🎧 &nbsp; AppsCoast, Indonesia Tech Startup Podcast
 .
             </a>
@@ -242,77 +244,77 @@ eleventyExcludeFromCollections: true
       <div class="articles">
         <div class="article">
           <h6>
-            <a href="https://medium.com/startup-frontier/how-i-met-10-entrepreneurs-in-asia-and-what-can-we-learn-from-them-f0193b632176" target="_blank">
+            <a href="https://medium.com/startup-frontier/how-i-met-10-entrepreneurs-in-asia-and-what-can-we-learn-from-them-f0193b632176" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; 10 Entrepreneurs in Asia — Startup Frontier
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://www.youtube.com/watch?v=wCo_EThV858" target="_blank">
+            <a href="https://www.youtube.com/watch?v=wCo_EThV858" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; Ngobrolin Startup — Tech in Asia
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://id.techinasia.com/hacktiv8-pendanaan-pra-seri-a" target="_blank">
+            <a href="https://id.techinasia.com/hacktiv8-pendanaan-pra-seri-a" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; HACKTIV8 Raises Pre-Series A — Tech in Asia
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://blog.google/intl/id-id/company-news/outreach-initiatives/2021_01_membangun-talenta-developer-indonesia/" target="_blank">
+            <a href="https://blog.google/intl/id-id/company-news/outreach-initiatives/2021_01_membangun-talenta-developer-indonesia/" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; Membangun Talenta Developer Indonesia — Google
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://www.youtube.com/watch?v=ohL5VIHs36s" target="_blank">
+            <a href="https://www.youtube.com/watch?v=ohL5VIHs36s" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; Startup Journey — HACKTIV8 Story
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://www.youtube.com/watch?v=2NOZJn1BQtA" target="_blank">
+            <a href="https://www.youtube.com/watch?v=2NOZJn1BQtA" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; Developer Indonesia — GDG Jakarta
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://www.youtube.com/watch?v=tDZ3DPH4DEc" target="_blank">
+            <a href="https://www.youtube.com/watch?v=tDZ3DPH4DEc" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; Tech Talk — Elixir
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://www.youtube.com/watch?v=k1KrbaIzg30" target="_blank">
+            <a href="https://www.youtube.com/watch?v=k1KrbaIzg30" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; Career Talk — UPN Jakarta
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://www.youtube.com/watch?v=o6P9RMQ2cOo" target="_blank">
+            <a href="https://www.youtube.com/watch?v=o6P9RMQ2cOo" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; Tech Interview Tips — Ngobrolin Web
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://www.youtube.com/watch?v=7j04qtSvhE4" target="_blank">
+            <a href="https://www.youtube.com/watch?v=7j04qtSvhE4" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; Remote Work — Ngobrolin Web
             </a>
           </h6>
         </div>
         <div class="article">
           <h6>
-            <a href="https://www.youtube.com/watch?v=xrccfxgLWTo" target="_blank">
+            <a href="https://www.youtube.com/watch?v=xrccfxgLWTo" target="_blank" rel="noopener noreferrer">
               &gt;&nbsp;&nbsp; Building HACKTIV8 — Ngobrolin Web
             </a>
           </h6>
@@ -321,32 +323,32 @@ eleventyExcludeFromCollections: true
     </section>
   </main>
 
-  <section>
-    <h2 id="kontak">Kontak</h2>
+  <section id="kontak">
+    <h2>Kontak</h2>
     <div class="articles">
       <div class="article">
-        <h6><a href="https://youtube.com/rizafahmi" target="_blank">
+        <h6><a href="https://youtube.com/rizafahmi" target="_blank" rel="noopener noreferrer">
           ▶️ &nbsp; YouTube</a></h6>
       </div>
       <div class="article">
-        <h6><a href="https://x.com/rizafahmi22" target="_blank">
+        <h6><a href="https://x.com/rizafahmi22" target="_blank" rel="noopener noreferrer">
           🐤 &nbsp; Twitter/X</a></h6>
       </div>
       <div class="article">
-        <h6><a href="https://github.com/rizafahmi" target="_blank">
+        <h6><a href="https://github.com/rizafahmi" target="_blank" rel="noopener noreferrer">
           🐙 &nbsp; GitHub</a></h6>
       </div>
 
       <div class="article">
-        <h6><a href="https://linkedin.com/in/rizafahmi" target="_blank">
+        <h6><a href="https://linkedin.com/in/rizafahmi" target="_blank" rel="noopener noreferrer">
           🔗 &nbsp; LinkedIn</a></h6>
       </div>
       <div class="article">
-        <h6><a href="https://instagram.com/rizafahmi" target="_blank">
+        <h6><a href="https://instagram.com/rizafahmi" target="_blank" rel="noopener noreferrer">
           🏞️ &nbsp; Instagram</a></h6>
       </div>
       <div class="article">
-        <h6><a href="mailto:rizafahmi@gmail.com" target="_blank">
+        <h6><a href="mailto:rizafahmi@gmail.com" target="_blank" rel="noopener noreferrer">
           💌 &nbsp; Email</a></h6>
       </div>
       <div class="article">

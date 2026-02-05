@@ -21,6 +21,15 @@ module.exports = function (eleventyConfig) {
     return d.toISOString().split('T')[0];
   });
 
+  eleventyConfig.addFilter("readingTime", (content) => {
+    if (!content) return "1 menit baca";
+    const text = content.replace(/<[^>]*>/g, '');
+    const words = text.trim().split(/\s+/).length;
+    const wordsPerMinute = 200;
+    const minutes = Math.ceil(words / wordsPerMinute);
+    return minutes + " menit baca";
+  });
+
   eleventyConfig.addFilter("sortDataByDate", (obj) => {
     const sorted = {};
     if (obj.date === undefined) {
@@ -43,6 +52,14 @@ module.exports = function (eleventyConfig) {
   // Add catatan collection
   eleventyConfig.addCollection("catatan", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
+  });
+
+  // Pre-computed latest articles for performance (avoids O(N²) in templates)
+  eleventyConfig.addCollection("latestCatatan", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/catatan/*.md")
+      .filter(item => item.data.date)
+      .sort((a, b) => b.data.date - a.data.date)
+      .slice(0, 4);
   });
 
   return {
