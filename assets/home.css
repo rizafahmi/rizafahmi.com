@@ -47,9 +47,16 @@
     transition: background 0.2s;
 }
 
-.hero-nav a:hover {
+.hero-nav a:hover,
+.hero-nav a:focus {
     background: #211a1e;
     color: #fff;
+    outline: none;
+}
+
+.hero-nav a:focus-visible {
+    outline: 2px solid #211a1e;
+    outline-offset: 2px;
 }
 
 @media (max-width: 600px) {
