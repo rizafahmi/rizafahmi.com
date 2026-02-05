@@ -1,14 +1,38 @@
-const pluginRss = require("@11ty/eleventy-plugin-rss");
+import pluginRss from "@11ty/eleventy-plugin-rss";
+import shikiPlugin from "./src/libs/shiki.js";
 
-module.exports = function (eleventyConfig) {
+function getRelativeTimeString(date) {
+  const now = new Date();
+  const diffInSeconds = Math.floor((now - date) / 1000);
+
+  const intervals = [
+    { label: "tahun", seconds: 31536000 },
+    { label: "bulan", seconds: 2592000 },
+    { label: "hari", seconds: 86400 },
+    { label: "jam", seconds: 3600 },
+    { label: "menit", seconds: 60 },
+    { label: "detik", seconds: 1 },
+  ];
+
+  for (const interval of intervals) {
+    const value = Math.floor(diffInSeconds / interval.seconds);
+    if (value >= 1) {
+      return `${value} ${interval.label} yang lalu`;
+    }
+  }
+}
+
+export default function (eleventyConfig) {
   eleventyConfig.setServerOptions({
     port: 3000,
   });
+
   eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addPlugin(shikiPlugin);
+
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("src/_redirects");
   eleventyConfig.addPassthroughCopy("llms.txt");
-  eleventyConfig.addPlugin(require("./src/libs/shiki.js"), {});
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return getRelativeTimeString(dateObj);
@@ -30,12 +54,10 @@ module.exports = function (eleventyConfig) {
     return minutes + " menit baca";
   });
 
-  // Add catatan collection
   eleventyConfig.addCollection("catatan", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
   });
 
-  // Pre-computed latest articles for performance (avoids O(N²) in templates)
   eleventyConfig.addCollection("latestCatatan", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/catatan/*.md")
       .filter(item => item.data.date)
@@ -48,25 +70,4 @@ module.exports = function (eleventyConfig) {
     dataTemplate: "njk",
     markdownTemplateEngine: "njk",
   };
-};
-
-function getRelativeTimeString(date) {
-  const now = new Date();
-  const diffInSeconds = Math.floor((now - date) / 1000);
-
-  const intervals = [
-    { label: "tahun", seconds: 31536000 },
-    { label: "bulan", seconds: 2592000 },
-    { label: "hari", seconds: 86400 },
-    { label: "jam", seconds: 3600 },
-    { label: "menit", seconds: 60 },
-    { label: "detik", seconds: 1 },
-  ];
-
-  for (const interval of intervals) {
-    const value = Math.floor(diffInSeconds / interval.seconds);
-    if (value >= 1) {
-      return `${value} ${interval.label} yang lalu`;
-    }
-  }
 }

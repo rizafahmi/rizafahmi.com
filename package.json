@@ -1,6 +1,7 @@
 {
   "name": "rizafahmi.com",
   "version": "0.0.1",
+  "type": "module",
   "description": "Personal site rizafahmi.com",
   "main": "index.js",
   "scripts": {
@@ -25,8 +26,8 @@
   },
   "homepage": "https://github.com/rizafahmi/rizafahmi.com#readme",
   "devDependencies": {
-    "@11ty/eleventy": "2.0.0",
-    "@11ty/eleventy-plugin-rss": "1.2.0",
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
     "pagefind": "^1.4.0",
     "rimraf": "5.0.5",
     "shiki": "1.23.1"
