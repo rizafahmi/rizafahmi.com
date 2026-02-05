@@ -97,9 +97,6 @@ title: Judul
             {%- if article.url != currentUrl and count < 3 %}
               <a href="{{ article.url }}" class="related-card">
                 <span class="related-title">{{ article.data.title }}</span>
-                {%- if article.data.created %}
-                <span class="related-date">{{ article.data.created | readableDate }}</span>
-                {%- endif %}
               </a>
               {%- set count = count + 1 %}
             {%- endif %}
