@@ -54,6 +54,14 @@ module.exports = function (eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
   });
 
+  // Pre-computed latest articles for performance (avoids O(N²) in templates)
+  eleventyConfig.addCollection("latestCatatan", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/catatan/*.md")
+      .filter(item => item.data.date)
+      .sort((a, b) => b.data.date - a.data.date)
+      .slice(0, 4);
+  });
+
   return {
     dir: { input: "src", output: "dist" },
     dataTemplate: "njk",
