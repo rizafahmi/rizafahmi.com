@@ -100,3 +100,36 @@ p {
 blockquote {
     font-size: 0.75rem;
 }
+
+/* View Transitions API */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: glitch-out 0.35s ease-out forwards;
+}
+
+::view-transition-new(root) {
+  animation: glitch-in 0.35s ease-in forwards;
+}
+
+@keyframes glitch-out {
+  0% { opacity: 1; filter: none; transform: translate(0); }
+  15% { opacity: 0.9; filter: blur(1px); transform: translate(-3px, 1px); }
+  30% { opacity: 0.7; filter: blur(0); transform: translate(2px, -1px); }
+  45% { opacity: 0.5; filter: blur(2px); transform: translate(-1px, 2px); }
+  60% { opacity: 0.3; filter: blur(1px); transform: translate(3px, 0); }
+  75% { opacity: 0.15; filter: blur(3px); transform: translate(-2px, -1px); }
+  100% { opacity: 0; filter: blur(0); transform: translate(0); }
+}
+
+@keyframes glitch-in {
+  0% { opacity: 0; filter: blur(3px); transform: translate(2px, -1px); }
+  15% { opacity: 0.15; filter: blur(2px); transform: translate(-3px, 1px); }
+  30% { opacity: 0.3; filter: blur(1px); transform: translate(1px, 2px); }
+  45% { opacity: 0.5; filter: blur(2px); transform: translate(-2px, 0); }
+  60% { opacity: 0.7; filter: blur(0); transform: translate(3px, -1px); }
+  75% { opacity: 0.9; filter: blur(1px); transform: translate(-1px, 1px); }
+  100% { opacity: 1; filter: none; transform: translate(0); }
+}
