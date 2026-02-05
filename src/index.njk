@@ -72,10 +72,23 @@ eleventyExcludeFromCollections: true
 </head>
 
 <body>
-  <h1>👋 Saya Riza!</h1>
+  <header class="hero">
+    <div class="hero-content">
+      <img src="/assets/images/riza-transparent.png" alt="Foto Riza Fahmi" class="hero-avatar" width="120" height="120" />
+      <div class="hero-text">
+        <h1>👋 Saya Riza!</h1>
+        <p class="hero-tagline">Co-Founder <a href="https://hacktiv8.com" target="_blank">HACKTIV8</a> · Content Creator · AI & Elixir Enthusiast</p>
+        <nav class="hero-nav">
+          <a href="#catatan">📰 Catatan</a>
+          <a href="#karya">🎨 Karya</a>
+          <a href="#kontak">💬 Kontak</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
   <main>
-    <section class="articles-section">
+    <section class="articles-section" id="catatan">
       <h2>📰 10 Catatan Terbaru · <a href="/feed.xml">RSS</a></h2>
       <div class="articles">
         {%- for t in collections.catatan | reverse %}
@@ -130,7 +143,7 @@ eleventyExcludeFromCollections: true
       </div>
     </section>
 
-    <section>
+    <section id="karya">
       <h2>Karya</h2>
       <div class="articles">
         <div class="article">
