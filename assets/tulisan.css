@@ -110,13 +110,16 @@ small {
 .article-meta {
     display: flex;
     flex-wrap: wrap;
+    align-items: baseline;
     gap: 0.5rem 1rem;
     margin-bottom: 0.5rem;
 }
 
-.reading-time {
-    font-size: 0.875rem;
+.article-meta .reading-time {
+    font-size: 1rem;
     color: rgba(33, 26, 30, 0.6);
+    display: inline;
+    margin: 0;
 }
 
 /* Related Articles */
