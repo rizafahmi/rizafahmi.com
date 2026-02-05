@@ -1,3 +1,7 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
 # Riza Fahmi's Personal Website
 
 > Personal site and blog of Riza Fahmi, a software developer, educator, and content creator focusing on web development, programming languages, and technology.
@@ -13,6 +17,11 @@ This website contains my blog posts (catatan), projects, and contact information
 ## Blog Posts
 - [All Articles](/articles): Complete list of all articles
 - [RSS Feed](/feed.xml): Subscribe to my content updates
+
+## Recent Articles
+{% for post in collections.catatan | reverse | head(10) %}
+- [{{ post.data.title }}]({{ post.url }}): {% if post.data.tags %}{{ post.data.tags | join(", ") }}{% endif %}
+{% endfor %}
 
 ## Featured Content
 - [Bahasa Fungsional Elixir](/catatan/bahasa-fungsional-elixir): Introduction to Elixir programming language
