@@ -1,5 +1,5 @@
 ---
-title: "💡 TIL: Menjalankan Observer di Proyek Elixir"
+title: "TIL: Menjalankan Observer di Proyek Elixir"
 date: 2024-12-03
 created: 2024-12-03
 layout: tulisan

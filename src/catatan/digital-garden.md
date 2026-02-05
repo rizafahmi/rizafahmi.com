@@ -1,5 +1,5 @@
 ---
-title: 🌱 Catatan Tentang Kebun Digital atau Digital Garden
+title: Catatan Tentang Kebun Digital atau Digital Garden
 created: 2024-09-23
 modified: 2024-09-23
 layout: tulisan

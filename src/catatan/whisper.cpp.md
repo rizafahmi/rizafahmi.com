@@ -1,5 +1,5 @@
 ---
-title: 🌱 Menggunakan whisper.cpp untuk transkripsi audio
+title: Menggunakan whisper.cpp untuk transkripsi audio
 created: 2024-09-272
 modified: 2024-09-272
 layout: tulisan

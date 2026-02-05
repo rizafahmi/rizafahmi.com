@@ -1,5 +1,5 @@
 ---
-title: 💧 Berkenalan dengan Bahasa Pemrograman Elixir
+title: Berkenalan dengan Bahasa Pemrograman Elixir
 created: 2024-11-08
 date: 2025-01-10
 layout: tulisan

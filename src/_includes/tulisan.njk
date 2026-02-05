@@ -14,6 +14,7 @@ title: Judul
     <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="view-transition" content="same-origin">
     <meta name="description" content="{{ description or title | escape }}" property="og:description">
     <meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />
     <meta property="og:image" content="https://rizafahmi.com{{ image or "/assets/images/og-twitter.png" }}" />
@@ -74,32 +75,31 @@ title: Judul
       {% include 'back_button.njk' %}
 
       <h2>{{ title }}</h2>
-      {%- if created -%}
-      <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
-      {%- endif -%}
-      {%- if modified -%}
-      <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
-      {%- endif -%}
-      <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/master/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
+      <div class="article-meta">
+        {%- if created -%}
+        <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
+        {%- endif -%}
+        {%- if modified -%}
+        <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
+        {%- endif -%}
+        <small class="reading-time">⏱️ {{ content | readingTime }}</small>
+      </div>
+      <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/main/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
       <div class="note-edit">
       </div>
 
       {{ content | safe }}
 
-      <!-- Related Articles -->
+      <!-- Latest Articles (using pre-computed collection for performance) -->
       {%- if '/catatan/' in page.url %}
       <section class="related-articles">
-        <h3>📚 Artikel Terkait</h3>
+        <h3>📚 Artikel Lainnya</h3>
         <div class="related-grid">
-          {%- set currentUrl = page.url %}
           {%- set count = 0 %}
-          {%- for article in collections.catatan | reverse %}
-            {%- if article.url != currentUrl and count < 3 %}
+          {%- for article in collections.latestCatatan %}
+            {%- if article.url != page.url and count < 3 %}
               <a href="{{ article.url }}" class="related-card">
                 <span class="related-title">{{ article.data.title }}</span>
-                {%- if article.data.created %}
-                <span class="related-date">{{ article.data.created | readableDate }}</span>
-                {%- endif %}
               </a>
               {%- set count = count + 1 %}
             {%- endif %}
