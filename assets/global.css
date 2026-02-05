@@ -141,6 +141,17 @@ p {
     color: var(--text-color);
 }
 
+.cursor {
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 blockquote {
     font-size: 0.75rem;
 }
