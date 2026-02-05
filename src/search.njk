@@ -48,7 +48,10 @@ eleventyExcludeFromCollections: true
 </head>
 <body>
   <div class="search-container">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
     <a class="back-link" href="/">&lt; Kembali</a>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.5rem;">🌙</button>
+    </div>
     
     <header class="search-header">
       <h1>🔍 Cari Artikel</h1>
@@ -75,5 +78,27 @@ eleventyExcludeFromCollections: true
   </script>
   
   <script data-goatcounter="https://rizafahmi.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Check saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const initialTheme = savedTheme || systemTheme;
+    
+    html.setAttribute('data-theme', initialTheme);
+    if (toggleBtn) {
+        toggleBtn.innerText = initialTheme === 'dark' ? '☀️' : '🌙';
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            toggleBtn.innerText = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+    }
+  </script>
 </body>
 </html>

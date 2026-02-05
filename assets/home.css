@@ -169,6 +169,7 @@ span.tags {
 }
 
 [data-theme="dark"] .hero-avatar {
+    opacity: 0.85;
     filter: brightness(0.9);
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
