@@ -1,5 +1,5 @@
 ---
-title: 🌱 Membangun REST API dengan Elixir dan Phoenix
+title: Membangun REST API dengan Elixir dan Phoenix
 created: 2024-09-29
 modified: 2024-09-29
 layout: tulisan

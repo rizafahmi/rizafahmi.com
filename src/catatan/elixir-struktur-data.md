@@ -1,5 +1,5 @@
 ---
-title: 💧 Struktur Data di Bahasa Pemrograman Elixir
+title: Struktur Data di Bahasa Pemrograman Elixir
 created: 2024-12-21
 modified: 2024-12-21
 layout: tulisan
