@@ -17,12 +17,6 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #211a1e;
-    filter: grayscale(100%);
-    transition: filter 0.3s;
-}
-
-.hero-avatar:hover {
-    filter: grayscale(0%);
 }
 
 .hero-text h1 {
