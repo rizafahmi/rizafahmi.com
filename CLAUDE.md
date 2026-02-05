@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run debug` - Run with debug output enabled
 
 ## Technology Stack
-- 11ty/Eleventy (2.0.0) - Static site generator
+- 11ty/Eleventy (3.x) - Static site generator (ESM config: eleventy.config.js)
 - Nunjucks (.njk) - Templating engine
 - Markdown (.md) - Content files
 
