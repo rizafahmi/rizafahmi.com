@@ -51,7 +51,8 @@ pre.shiki {
 }
 
 p > code {
-    background: #dadada;
+    background: var(--code-bg);
+    color: var(--code-text);
     padding: 0.25rem;
     border-radius: 0.25rem;
 }

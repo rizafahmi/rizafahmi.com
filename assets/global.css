@@ -42,6 +42,8 @@
     --nav-btn-text: #211a1e;
     --nav-btn-hover-bg: #211a1e;
     --nav-btn-hover-text: #fff;
+    --code-bg: #dadada;
+    --code-text: #211a1e;
 }
 
 [data-theme="dark"] {
@@ -57,6 +59,8 @@
     --nav-btn-text: #e0e0e0;
     --nav-btn-hover-bg: #8ab4f8;
     --nav-btn-hover-text: #121212;
+    --code-bg: #2d2d2d;
+    --code-text: #e0e0e0;
 }
 
 html {
