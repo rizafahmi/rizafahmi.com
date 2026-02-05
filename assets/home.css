@@ -158,3 +158,17 @@ span.tags {
 .interviews-section {
   margin-bottom: 2rem;
 }
+
+/* Dark Mode Fine-tuning */
+[data-theme="dark"] .hero-tagline {
+    color: #d1d1d1;
+}
+
+[data-theme="dark"] .hero-tagline a {
+    color: var(--link-color);
+}
+
+[data-theme="dark"] .hero-avatar {
+    filter: brightness(0.9);
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
