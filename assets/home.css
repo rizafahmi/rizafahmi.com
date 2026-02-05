@@ -14,9 +14,7 @@
 .hero-avatar {
     width: 120px;
     height: 120px;
-    border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #211a1e;
 }
 
 .hero-text h1 {
