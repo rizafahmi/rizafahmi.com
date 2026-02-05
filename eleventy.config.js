@@ -32,7 +32,7 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("src/_redirects");
-  eleventyConfig.addPassthroughCopy("llms.txt");
+
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return getRelativeTimeString(dateObj);
@@ -43,6 +43,11 @@ export default function (eleventyConfig) {
     const d = new Date(date);
     if (isNaN(d.getTime())) return '';
     return d.toISOString().split('T')[0];
+  });
+
+  eleventyConfig.addFilter("head", (array, n) => {
+    if (!Array.isArray(array)) return [];
+    return array.slice(0, n);
   });
 
   eleventyConfig.addFilter("readingTime", (content) => {
