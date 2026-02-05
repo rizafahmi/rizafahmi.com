@@ -92,3 +92,26 @@ p {
 blockquote {
     font-size: 0.75rem;
 }
+
+/* View Transitions API */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: fade-out 0.15s ease-out;
+}
+
+::view-transition-new(root) {
+    animation: fade-in 0.15s ease-in;
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
