@@ -30,25 +30,6 @@ module.exports = function (eleventyConfig) {
     return minutes + " menit baca";
   });
 
-  eleventyConfig.addFilter("sortDataByDate", (obj) => {
-    const sorted = {};
-    if (obj.date === undefined) {
-      Object.keys(obj)
-        .sort((a, b) => {
-          return obj[a].modified > obj[b].modified ? 1 : -1;
-        })
-        .forEach((name) => (sorted[name] = obj[name]));
-      return sorted;
-    } else {
-      Object.keys(obj)
-        .sort((a, b) => {
-          return obj[a].date > obj[b].date ? 1 : -1;
-        })
-        .forEach((name) => (sorted[name] = obj[name]));
-      return sorted;
-    }
-  });
-
   // Add catatan collection
   eleventyConfig.addCollection("catatan", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);

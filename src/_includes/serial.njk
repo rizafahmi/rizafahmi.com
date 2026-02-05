@@ -4,71 +4,39 @@ title: Judul
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <meta charset="UTF-8"/>
     <title>{{ title }}</title>
-
-    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
     <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen">
     <link rel="preload" as="style" href="/assets/tulisan.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ description or title | escape }}" property="og:description">
-    <meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />
-    <meta property="og:image" content="https://rizafahmi.com{{ image or "/assets/images/og-twitter.png" }}" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@rizafahmi22" />
-    <meta name="twitter:title" content="{{ title | escape }}" />
-    <meta name="twitter:description" content="{{ description or title | escape }}" />
-    <meta name="twitter:image" content="https://rizafahmi.com{{ image or "/assets/images/og-twitter.png" }}">
-
-    <link rel="preload" href="/assets/fonts/wotfard-regular-webfont.woff2" type="font/woff2" as="font" crossorigin="anonymous" />
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/favico/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/favico/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/favico/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/favico/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/favico/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/favico/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/favico/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/favico/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favico/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/favico/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favico/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favico/favicon-16x16.png">
-    <!-- <link rel="manifest" href="/manifest.json"> -->
-
-    <meta name="msapplication-TileColor" content="#211a1e">
-    <meta name="msapplication-TileImage" content="/assets/images/favico/ms-icon-144x144.png">
-    <meta name="theme-color" content="#211a1e">
-    <link rel="alternate" type="application/rss+xml" href="https://rizafahmi.com/feed.xml" />
+    {% include 'head.njk' %}
   </head>
   <body>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
       {% include 'back_button.njk' %}
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.5rem;">🌙</button>
+    </div>
 
-      <h2>{{ title }}</h2>
+    <h2>{{ title }}</h2>
 
-      <small>Bagian dari serial tentang <span class="tags">{{tags}}</span></h3>
+    <small>Bagian dari serial tentang <span class="tags">{{tags}}</span></h3>
 
-      {{ content | safe }}
+    {{ content | safe }}
 
-      <hr />
+    <hr />
 
-      <a class="back" href="/">&lt; Kembali ke halaman utama</a>
+    <a class="back" href="/">&lt; Kembali ke halaman utama</a>
 
-      <script src="https://utteranc.es/client.js"
-        repo="rizafahmi/rizafahmi.com"
-        issue-term="pathname"
-        label="💬 Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-      </script>
+    <script src="https://utteranc.es/client.js"
+      repo="rizafahmi/rizafahmi.com"
+      issue-term="pathname"
+      label="💬 Comment"
+      theme="github-light"
+      crossorigin="anonymous"
+      async>
+    </script>
 
-      <script data-goatcounter="https://rizafahmi.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    {% include 'analytics.njk' %}
+    {% include 'theme-toggle.njk' %}
   </body>
 </html>
