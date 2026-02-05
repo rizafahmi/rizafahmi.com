@@ -93,16 +93,13 @@ title: Judul
       <!-- Latest Articles (using pre-computed collection for performance) -->
       {%- if '/catatan/' in page.url %}
       <section class="related-articles">
-        <h3>📚 Artikel Terbaru</h3>
+        <h3>📚 Artikel Lainnya</h3>
         <div class="related-grid">
           {%- set count = 0 %}
           {%- for article in collections.latestCatatan %}
             {%- if article.url != page.url and count < 3 %}
               <a href="{{ article.url }}" class="related-card">
                 <span class="related-title">{{ article.data.title }}</span>
-                {%- if article.data.created %}
-                <span class="related-date">{{ article.data.created | readableDate }}</span>
-                {%- endif %}
               </a>
               {%- set count = count + 1 %}
             {%- endif %}
