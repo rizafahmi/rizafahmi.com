@@ -9,7 +9,7 @@
     "start": "ELEVENTY_ENV=dev npx eleventy --serve",
     "prebuild": "npm run clean",
     "build": "ELEVENTY_ENV=dev npx eleventy",
-    "build:prod": "ELEVENTY_ENV=prod npx eleventy",
+    "build:prod": "ELEVENTY_ENV=prod npx eleventy && npx pagefind --site dist",
     "debug": "DEBUG=* npx eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@11ty/eleventy": "2.0.0",
     "@11ty/eleventy-plugin-rss": "1.2.0",
+    "pagefind": "^1.4.0",
     "rimraf": "5.0.5",
     "shiki": "1.23.1"
   }
