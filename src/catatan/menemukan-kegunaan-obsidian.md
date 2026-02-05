@@ -1,5 +1,5 @@
 ---
-title: 🌱 Akhirnya bisa menemukan kegunaan Obsidian
+title: Akhirnya bisa menemukan kegunaan Obsidian
 created: 2024-09-27
 modified: 2024-09-27
 layout: tulisan

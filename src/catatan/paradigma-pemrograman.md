@@ -1,5 +1,5 @@
 ---
-title: 🪴 Catatan Tentang Paradigma Pemrograman
+title: Catatan Tentang Paradigma Pemrograman
 date: 2024-10-01
 created: 2024-09-22
 layout: tulisan
