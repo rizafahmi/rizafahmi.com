@@ -73,15 +73,21 @@ eleventyExcludeFromCollections: true
 </head>
 
 <body>
+  <div style="position: absolute; top: 1rem; right: 1rem; z-index: 100;">
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">🌙</button>
+  </div>
+
   <header class="hero">
     <div class="hero-content">
       <img src="/assets/images/riza-transparent.png" alt="Foto Riza Fahmi" class="hero-avatar" width="120" height="120" loading="lazy" />
       <div class="hero-text">
         <h1>👋 Saya Riza!</h1>
         <p class="hero-tagline">Co-Founder <a href="https://hacktiv8.com" target="_blank" rel="noopener noreferrer">HACKTIV8</a> · Content Creator · AI & Elixir Enthusiast</p>
-        <p class="hero-status" style="font-size: 0.9rem; margin-top: 0.25rem; color: var(--meta-color);">
-          🚀 Sedang membangun <strong>MBB</strong>: Model Bahasa Besar
-        </p>
+        
+        <div class="typewriter-container" style="font-size: 0.9rem; margin-top: 0.5rem; margin-bottom: 2rem; color: var(--meta-color); font-family: 'JetBrainsMono', monospace;">
+          🚀 <span id="typewriter"></span><span class="cursor">|</span>
+        </div>
+
         <nav class="hero-nav">
           <a href="#catatan">📰 Catatan</a>
           <a href="#karya">🎨 Karya</a>
@@ -366,6 +372,52 @@ eleventyExcludeFromCollections: true
   </section>
 
   <script data-goatcounter="https://rizafahmi.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <script>
+    // Dark Mode Logic
+    const toggleBtn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Check saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const initialTheme = savedTheme || systemTheme;
+    
+    html.setAttribute('data-theme', initialTheme);
+    toggleBtn.innerText = initialTheme === 'dark' ? '☀️' : '🌙';
+
+    toggleBtn.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        toggleBtn.innerText = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+
+    // Typewriter Logic
+    const text = "Sedang menulis artikel tentang cara kerja coding agent. Sementara bisa diintip di github.com/rizafahmi/mbb/issues";
+    const typewriterElement = document.getElementById('typewriter');
+    let i = 0;
+
+    function typeWriter() {
+      if (i < text.length) {
+        typewriterElement.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50); // Kecepatan ngetik (ms)
+      } else {
+        // Kalau udah selesai ngetik, ubah URL jadi link aktif
+        const finalHtml = typewriterElement.innerHTML.replace(
+          /github\.com\/rizafahmi\/mbb\/issues/g, 
+          '<a href="https://github.com/rizafahmi/mbb/issues" target="_blank" style="border-bottom: 1px dashed;">github.com/rizafahmi/mbb/issues</a>'
+        );
+        typewriterElement.innerHTML = finalHtml;
+      }
+    }
+
+    // Start typing after a small delay
+    setTimeout(typeWriter, 1000);
+  </script>
 
   <footer>
     <hr />

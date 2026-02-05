@@ -41,16 +41,17 @@
 .hero-nav a {
     font-size: 0.875rem;
     padding: 0.5rem 1rem;
-    background: #f5f5f5;
+    background: var(--nav-btn-bg);
+    color: var(--nav-btn-text);
     border-radius: 2rem;
     border: none;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
 
 .hero-nav a:hover,
 .hero-nav a:focus {
-    background: #211a1e;
-    color: #fff;
+    background: var(--nav-btn-hover-bg);
+    color: var(--nav-btn-hover-text);
     outline: none;
 }
 
@@ -156,4 +157,19 @@ span.tags {
 .featured-section,
 .interviews-section {
   margin-bottom: 2rem;
+}
+
+/* Dark Mode Fine-tuning */
+[data-theme="dark"] .hero-tagline {
+    color: #d1d1d1;
+}
+
+[data-theme="dark"] .hero-tagline a {
+    color: var(--link-color);
+}
+
+[data-theme="dark"] .hero-avatar {
+    opacity: 0.85;
+    filter: brightness(0.9);
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
