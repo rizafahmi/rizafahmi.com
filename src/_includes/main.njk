@@ -48,7 +48,32 @@ title: Judul
   <link rel="alternate" type="application/rss+xml" href="https://rizafahmi.com/feed.xml" />
 </head>
   <body>
-      <h1><a href="/">👋 Saya Riza!</a></h1>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1><a href="/">👋 Saya Riza!</a></h1>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+      </div>
       {{ content | safe }}
+
+      <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const initialTheme = savedTheme || systemTheme;
+        
+        html.setAttribute('data-theme', initialTheme);
+        toggleBtn.innerText = initialTheme === 'dark' ? '☀️' : '🌙';
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            toggleBtn.innerText = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+      </script>
   </body>
 </html>
