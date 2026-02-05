@@ -74,13 +74,16 @@ title: Judul
       {% include 'back_button.njk' %}
 
       <h2>{{ title }}</h2>
-      {%- if created -%}
-      <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
-      {%- endif -%}
-      {%- if modified -%}
-      <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
-      {%- endif -%}
-      <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/master/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
+      <div class="article-meta">
+        {%- if created -%}
+        <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
+        {%- endif -%}
+        {%- if modified -%}
+        <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
+        {%- endif -%}
+        <small class="reading-time">⏱️ {{ content | readingTime }}</small>
+      </div>
+      <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/main/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
       <div class="note-edit">
       </div>
 

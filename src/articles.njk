@@ -12,6 +12,7 @@ eleventyExcludeFromCollections: true
         <a href="{{article.url}}">
           <h6>&gt;&nbsp;&nbsp; {{ article.data.title }}</h6>
         </a>
+        <span class="reading-time">⏱️ {{ article.content | readingTime }}</span>
       </div>
       {% endfor %}
     </div>
