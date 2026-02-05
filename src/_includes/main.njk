@@ -4,76 +4,19 @@ title: Judul
 <!DOCTYPE html>
 <html lang="id">
   <head>
-  <meta charset="UTF-8" />
-  <title>{{ title }}</title>
-  <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
-  <link rel="preload" as="style" href="/assets/home.css" type="text/css" media="screen" />
-
-  <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/assets/home.css" type="text/css" media="screen" />
-
-  <link rel="preload" href="/assets/fonts/wotfard-regular-webfont.woff2" type="font/woff2" as="font"
-    crossorigin="anonymous" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="view-transition" content="same-origin">
-  <meta name="description" content="Startup founder, developer, mentor, kreator konten, tukang podcast">
-  <meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />
-  <meta property="og:image" content="https://rizafahmi.com{{ image or "/assets/images/og-twitter.png" }}" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@rizafahmi22" />
-  <meta name="twitter:title" content="{{ title | escape }}" />
-  <meta name="twitter:description" content="{{ description or title | escape }}" />
-  <meta name="twitter:image" content="https://rizafahmi.com{{ image or "/assets/images/og-twitter.png" }}" />
-
-  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/favico/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/favico/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/favico/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/favico/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/favico/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/favico/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/favico/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/favico/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favico/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favico/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favico/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favico/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favico/favicon-16x16.png">
-  <!-- <link rel="manifest" href="/manifest.json"> -->
-
-  <meta name="msapplication-TileColor" content="#211a1e">
-  <meta name="msapplication-TileImage" content="/assets/images/favico/ms-icon-144x144.png">
-  <meta name="theme-color" content="#211a1e">
-
-  <link rel="alternate" type="application/rss+xml" href="https://rizafahmi.com/feed.xml" />
-</head>
+    <title>{{ title }}</title>
+    <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
+    <link rel="preload" as="style" href="/assets/home.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/home.css" type="text/css" media="screen" />
+    {% include 'head.njk' %}
+  </head>
   <body>
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h1><a href="/">👋 Saya Riza!</a></h1>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-      </div>
-      {{ content | safe }}
-
-      <script>
-        const toggleBtn = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        // Check saved theme or system preference
-        const savedTheme = localStorage.getItem('theme');
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        const initialTheme = savedTheme || systemTheme;
-        
-        html.setAttribute('data-theme', initialTheme);
-        toggleBtn.innerText = initialTheme === 'dark' ? '☀️' : '🌙';
-
-        toggleBtn.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            toggleBtn.innerText = newTheme === 'dark' ? '☀️' : '🌙';
-        });
-      </script>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h1><a href="/">👋 Saya Riza!</a></h1>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+    </div>
+    {{ content | safe }}
+    {% include 'theme-toggle.njk' %}
   </body>
 </html>
