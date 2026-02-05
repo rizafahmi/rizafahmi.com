@@ -12,8 +12,8 @@ Catatan perubahan penting di situs rizafahmi.com.
 - **Navigasi smooth** — Transisi halaman yang lebih halus
 
 ### 📝 Konten
-- Halaman [/ai](/ai) — Pernyataan penggunaan AI di situs ini
-- Halaman [/changelog](/changelog) — Halaman ini!
+- Halaman [/ai](https://rizafahmi.com/ai) — Pernyataan penggunaan AI di situs ini
+- Halaman [/changelog](https://rizafahmi.com/changelog) — Halaman ini!
 - Section Featured & Interviews di homepage
 - Sistem komentar untuk diskusi
 
