@@ -4,7 +4,11 @@ permalink: "/2021/09/12/tentang-friction-log/"
 date: 2021-09-12
 created: 2021-09-12
 layout: tulisan
-tags: catatan
+tags:
+  - catatan
+  - produktivitas
+  - produk-manajemen
+  - ux
 ---
 
 Friction log adalah sebuah cara untuk mengevaluasi sebuah produk, atau
