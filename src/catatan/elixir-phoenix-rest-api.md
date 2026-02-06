@@ -4,8 +4,11 @@ created: 2024-09-29
 modified: 2024-09-29
 layout: tulisan
 tags:
-  - catatan
-  - ide
+  - elixir
+  - phoenix
+  - rest-api
+  - tutorial
+  - backend
 eleventyExcludeFromCollections: true
 ---
 - Generate project

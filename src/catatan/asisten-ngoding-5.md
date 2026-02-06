@@ -5,6 +5,14 @@ modified: 2025-11-13
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - coding-assistant
+  - code-generation
+  - testing
+  - documentation
+  - refactoring
+  - llm
+  - development-process
 eleventyExcludeFromCollections: false
 ---
 

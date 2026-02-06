@@ -5,6 +5,12 @@ modified: 2025-06-10
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - coding-assistant
+  - planning
+  - prompting
+  - llm
+  - development-process
 eleventyExcludeFromCollections: false
 ---
 

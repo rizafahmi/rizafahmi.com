@@ -6,6 +6,11 @@ layout: tulisan
 tags:
   - catatan
   - ide
+  - agentic-coding
+  - elixir
+  - claude
+  - ai
+  - llm
 eleventyExcludeFromCollections: true
 ---
 ## Daftar Isi

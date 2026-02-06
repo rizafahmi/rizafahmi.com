@@ -5,6 +5,12 @@ created: 2025-04-03
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - coding-assistant
+  - llm
+  - development-process
+  - tools
+  - overview
 eleventyExcludeFromCollections: false
 ---
 

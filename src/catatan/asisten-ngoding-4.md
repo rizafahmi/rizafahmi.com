@@ -6,6 +6,14 @@ modified: 2025-08-19
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - coding-assistant
+  - ui-design
+  - prompting
+  - llm
+  - development-process
+  - firebase-studio
+  - bolt
 eleventyExcludeFromCollections: false
 ---
 
