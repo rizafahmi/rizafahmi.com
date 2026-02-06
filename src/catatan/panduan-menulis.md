@@ -5,7 +5,11 @@ date: 2021-01-28
 layout: tulisan
 description: Panduan singkat dalam menulis artikel pemrograman
 image: ""
-tags: catatan
+tags:
+  - catatan
+  - menulis
+  - produktivitas
+  - panduan
 ---
 
 Berikut adalah panduan singkat dalam menulis artikel pemrograman. Jika teman-teman memiliki pengalaman atau pengetahuan tertentu mengenai pemrograman dan ingin membagikannya untuk teman-teman lainnya, teman-teman dapat merumuskan pengalaman tersebut kedalam sebuah tulisan. Dengan demikian pengetahuan ataupun pengalaman tersebut akan lebih berguna.
