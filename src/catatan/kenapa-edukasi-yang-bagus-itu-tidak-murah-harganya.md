@@ -4,7 +4,12 @@ date: 2018-04-06
 permalink: "/2018/04/06/kenapa-edukasi-yang-bagus-itu-tidak-murah-harganya/"
 cover: "./4.jpg"
 layout: tulisan
-tags: catatan
+tags:
+  - catatan
+  - edukasi
+  - bisnis
+  - opini
+  - hacktiv8
 ---
 
 ## Paradigma Bisnis Publishing VS Paradigma Bisnis Edukasi
