@@ -5,6 +5,10 @@ created: 2025-04-03
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - agentic-coding
+  - workflow
+
 eleventyExcludeFromCollections: false
 ---
 
