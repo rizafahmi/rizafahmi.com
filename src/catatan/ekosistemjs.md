@@ -9,9 +9,10 @@ tags:
   - javascript
   - komunitas
   - rangkuman
-  - jsday
+  - konferensi
   - frontend
   - framework
+
 ---
 
 # Ekosistem JavaScript di Indonesia

@@ -6,10 +6,10 @@ layout: tulisan
 tags:
   - catatan
   - javascript
-  - tensorflowjs
-  - ai
   - machine-learning
+  - ai
   - tutorial
+
 ---
 
 Tensorflow.js adalah sebuah library yang dibangun diatas deeplearn.js untuk membuat modul deep learninglangsung dari web browser! Deep learning sendiri adalah sebuah cabang dari machine learning dan juga artificial intelligence. Dengan Tensorflow.js kita dapat membuat implementasi Convolutional Neural Network (CNN), Recurrent Neural Network (RNN) dan lain sebagainya.

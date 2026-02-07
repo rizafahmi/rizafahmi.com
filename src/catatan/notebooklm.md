@@ -7,7 +7,6 @@ tags:
   - catatan
   - ai
   - tools
-  - notebooklm
 
 eleventyExcludeFromCollections: false
 ---

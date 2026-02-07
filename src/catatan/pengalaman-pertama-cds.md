@@ -7,11 +7,10 @@ layout: tulisan
 tags:
   - catatan
   - komunitas
-  - google
-  - gde
-  - chrome-dev-summit
+  - konferensi
   - rangkuman
-  - pwa
+  - web
+
 ---
 
 Berikut cerita pengalaman pertama saya menghadiri [Chrome Dev Summit 2018](https://developer.chrome.com/devsummit/) atas undangan Google untuk para [Google Developers Expert](https://developers.google.com/experts/people/riza-fahmi.html) yang fokus di [Web Technologies](https://developers.google.com/experts/all/technology/web-technologies). Setelah sehari sebelumnya, di tanggal 10–11 November 2018 juga ada perhelatan akbar Developers Experts Summit dimana GDE atau [Google Developers Experts](https://developers.google.com/experts/) seluruh dunia berkumpul dan ber-_summit_-ria.

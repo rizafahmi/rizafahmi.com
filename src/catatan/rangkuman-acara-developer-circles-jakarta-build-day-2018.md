@@ -7,10 +7,8 @@ layout: tulisan
 tags:
   - catatan
   - komunitas
-  - devc-jakarta
-  - facebook
-  - meetup
   - rangkuman
+
 ---
 
 ## Meetup DeveloperCircles Jakarta Build Day 2018

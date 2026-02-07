@@ -10,6 +10,7 @@ tags:
   - bisnis
   - opini
   - hacktiv8
+
 ---
 
 ## Paradigma Bisnis Publishing VS Paradigma Bisnis Edukasi

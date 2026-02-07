@@ -8,9 +8,8 @@ tags:
   - catatan
   - computer-science
   - algoritma
-  - struktur-data
-  - big-o
   - javascript
+
 ---
 
 Ketika kita memikirkan apakah barisan kode yang kita ciptakan sudah cukup "cepat" atau efisien dalam memecahkan masalah yang ingin kita pecahkan, maka kita butuh sebuah metodologi untuk menghitungnya. Salah satu alat bantu yang bisa kita gunakan adalah notasi O besar atau _Big-O Notation_.

@@ -6,10 +6,8 @@ layout: tulisan
 tags:
   - catatan
   - elixir
-  - erlang
-  - beam
-  - concurrency
   - otp
+
 ---
 
 Salah satu kontribusi besar [ Joe Armstrong ](https://twitter.com/FrancescoC/status/1119596234166218754) yang ketika tulisan ini dibuat baru saja meninggal dunia adalah bahasa pemrograman Erlang beserta BEAM, atau yang lebih dikenal dengan Erlang Virtual Machine. Erlang VM cukup terkenal kehebatannya terutama ketika [ mampu menangani 2 juta koneksi per server di aplikasi chat WhatsApp! ](http://highscalability.com/blog/2014/3/31/how-whatsapp-grew-to-nearly-500-million-users-11000-cores-an.html) Di artikel ini kita akan membedah mekanisme dibalik kemampuan konkurensi yang dimiliki BEAM dengan bahasa pemrograman Elixir. Meskipun demikian, semua yang akan dilakukan di artikel ini dapat pula diimplementasikan di bahasa pemrograman lain yang juga berjalan di BEAM atau Erlang VM seperti Erlang, LFE, Alpaca, Gleam dan lain-lain.

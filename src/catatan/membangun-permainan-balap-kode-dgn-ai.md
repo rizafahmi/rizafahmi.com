@@ -6,12 +6,10 @@ layout: tulisan
 tags:
   - catatan
   - elixir
-  - phoenix
   - ai
-  - sqlite
   - docker
-  - gcp
   - tutorial
+
 eleventyExcludeFromCollections: false
 ---
 

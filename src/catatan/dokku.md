@@ -10,10 +10,10 @@ tags:
   - catatan
   - devops
   - paas
-  - dokku
+  - self-hosting
   - docker
   - tutorial
-  - self-hosting
+
 ---
 
 > Ini adalah artikel dari materi yang dibawakan di acara Cloud Day Indonesia 2023 beberapa waktu yang lalu.

@@ -9,7 +9,7 @@ image: "/assets/images/gemini-web-dev/mendang-mending.png"
 tags:
   - catatan
   - ai
-  - gemini
+  - tools
 
 ---
 Gemini adalah model Generative AI andalan Google. Sudah dilatih dengan banyak teks, audio dan video dengan berbagai bahasa. Berbeda dengan model lainnya, Gemini dibangun dari awal dengan fitur multimodal, artinya dapat menerima beberapa jenis masukan seperti teks, gambar, kode, dan berbagai jenis file lainnya.
