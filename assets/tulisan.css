@@ -69,6 +69,20 @@ img {
     filter: drop-shadow(0px 8px 4px rgba(33, 26, 30, 0.6));
 }
 
+figure {
+    margin: 1.5rem auto;
+    padding: 0;
+    text-align: center;
+}
+
+figcaption {
+    font-size: 0.875rem;
+    font-style: italic;
+    color: var(--meta-color);
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
 blockquote {
     font-style: italic;
     color: var(--meta-color);
