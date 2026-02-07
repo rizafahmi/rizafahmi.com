@@ -1,0 +1,24 @@
+---
+title: Tags
+layout: main
+---
+
+<main>
+  <h2>Tags</h2>
+  <p style="color: var(--gray-600); margin-top: -0.5rem;">
+    Kumpulan topik dari tulisan-tulisan di situs ini.
+  </p>
+
+  <div class="articles">
+    {%- for tag in collections.tagList %}
+      {%- set count = collections[tag] | length %}
+      <div class="article">
+        <a href="/tags/{{ tag | url }}/">
+          <h6>&gt;&nbsp;&nbsp; {{ tag }} <span style="opacity: .65">({{ count }})</span></h6>
+        </a>
+      </div>
+    {%- endfor %}
+  </div>
+
+  <a class="back" href="/">&lt; Kembali ke halaman utama</a>
+</main>

@@ -1,0 +1,29 @@
+---
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag | url }}/"
+layout: main
+title: "Tag: {{ tag }}"
+---
+
+<main>
+  <h2>Tag: {{ tag }}</h2>
+  <p style="color: var(--gray-600); margin-top: -0.5rem;">
+    {{ collections[tag] | length }} tulisan
+  </p>
+
+  <div class="articles">
+    {%- for article in collections[tag] | reverse %}
+      <div class="article">
+        <a href="{{article.url}}">
+          <h6>&gt;&nbsp;&nbsp; {{ article.data.title }}</h6>
+        </a>
+        <span class="reading-time">⏱️ {{ article.content | readingTime }}</span>
+      </div>
+    {%- endfor %}
+  </div>
+
+  <a class="back" href="/tags/">&lt; Semua tags</a>
+</main>

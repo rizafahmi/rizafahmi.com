@@ -70,6 +70,27 @@ export default function (eleventyConfig) {
       .slice(0, 4);
   });
 
+  // Curated tag list for /tags and /tags/<tag>/ pages.
+  // Eleventy automatically creates collections per tag; this collection
+  // only defines which tags should be shown.
+  eleventyConfig.addCollection("tagList", function(collectionApi) {
+    const tagSet = new Set();
+    for (const item of collectionApi.getAll()) {
+      let tags = item.data && item.data.tags;
+      if (!tags) continue;
+      if (typeof tags === "string") tags = [tags];
+      if (!Array.isArray(tags)) continue;
+
+      for (const tag of tags) {
+        if (!tag) continue;
+        // Hide overly-generic/internal tags
+        if (["all", "nav", "post", "catatan"].includes(tag)) continue;
+        tagSet.add(tag);
+      }
+    }
+    return [...tagSet].sort((a, b) => a.localeCompare(b));
+  });
+
   return {
     dir: { input: "src", output: "dist" },
     dataTemplate: "njk",
