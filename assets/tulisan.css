@@ -195,3 +195,114 @@ small {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+@media print {
+    body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    div.container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    a.back,
+    .theme-toggle,
+    .note-edit,
+    .related-articles,
+    .subscription-box,
+    #subscription-box,
+    .utterances,
+    hr {
+        display: none !important;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin-top: 0;
+    }
+
+    h3 {
+        font-size: 14pt;
+    }
+
+    p,
+    ul,
+    li,
+    table {
+        font-size: 11pt;
+        line-height: 1.6;
+    }
+
+    small {
+        font-size: 9pt;
+        color: #555;
+    }
+
+    a {
+        color: black;
+        text-decoration: underline;
+        border-bottom: none;
+    }
+
+    img {
+        max-width: 100%;
+        filter: none;
+        -webkit-filter: none;
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+
+    figure {
+        page-break-inside: avoid;
+    }
+
+    pre.shiki {
+        font-size: 9pt;
+        line-height: 1.4;
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        page-break-inside: avoid;
+        background: #f5f5f5 !important;
+        color: black !important;
+    }
+
+    pre.shiki code span {
+        color: black !important;
+    }
+
+    p > code {
+        background: #f0f0f0;
+        color: black;
+        border: 1px solid #ccc;
+    }
+
+    blockquote {
+        color: #333;
+        border-left-color: #999;
+    }
+
+    blockquote > p {
+        font-size: 11pt;
+    }
+
+    h2, h3 {
+        page-break-after: avoid;
+    }
+
+    table {
+        page-break-inside: avoid;
+    }
+
+    th,
+    td {
+        border-color: #999;
+    }
+}
