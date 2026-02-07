@@ -5,14 +5,22 @@
 
 <link rel="preload" href="/assets/fonts/wotfard-regular-webfont.woff2" type="font/woff2" as="font" crossorigin="anonymous" />
 
-<meta name="description" content="{{ description or title | escape }}" property="og:description">
+{# --- Social + SEO helpers --- #}
+{%- set _desc = description or (content | excerpt(180)) or title -%}
+{%- set _ogPath = image or cover or "/assets/images/og-twitter.png" -%}
+{%- if _ogPath and _ogPath.startsWith('./') -%}
+  {%- set _ogPath = page.url + (_ogPath | replace('./', '')) -%}
+{%- endif -%}
+
+<link rel="canonical" href="https://rizafahmi.com{{ page.url | escape }}" />
+<meta name="description" content="{{ _desc | escape }}" property="og:description">
 <meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />
-<meta property="og:image" content="https://rizafahmi.com{{ image or "/assets/images/og-twitter.png" }}" />
+<meta property="og:image" content="https://rizafahmi.com{{ _ogPath }}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@rizafahmi22" />
 <meta name="twitter:title" content="{{ title | escape }}" />
-<meta name="twitter:description" content="{{ description or title | escape }}" />
-<meta name="twitter:image" content="https://rizafahmi.com{{ image or "/assets/images/og-twitter.png" }}">
+<meta name="twitter:description" content="{{ _desc | escape }}" />
+<meta name="twitter:image" content="https://rizafahmi.com{{ _ogPath }}">
 
 <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/favico/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/favico/apple-icon-60x60.png">
