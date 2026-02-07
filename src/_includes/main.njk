@@ -12,10 +12,10 @@ title: Judul
     {% include 'head.njk' %}
   </head>
   <body>
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <header style="display: flex; justify-content: space-between; align-items: center;">
       <h1><a href="/">👋 Saya Riza!</a></h1>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-    </div>
+    </header>
     {{ content | safe }}
     {% include 'theme-toggle.njk' %}
   </body>

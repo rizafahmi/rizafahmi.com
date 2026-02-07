@@ -10,6 +10,12 @@ title: Judul
     <link rel="preload" as="style" href="/assets/tulisan.css" type="text/css" />
     <link rel="stylesheet" href="/assets/tulisan.css" type="text/css">
     {% include 'head.njk' %}
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="{{ (date or created) | dateToISO }}" />
+    {%- if modified %}
+    <meta property="article:modified_time" content="{{ modified | dateToISO }}" />
+    {%- endif %}
+    <meta property="article:author" content="Riza Fahmi" />
 
     <script type="application/ld+json">
     {
@@ -36,52 +42,56 @@ title: Judul
     </script>
   </head>
   <body>
-    <div class="container">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        {% include 'back_button.njk' %}
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.5rem;">🌙</button>
+    <nav class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      {% include 'back_button.njk' %}
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.5rem;">🌙</button>
+    </nav>
+
+    <main class="container">
+      <article>
+        <header>
+          <h2>{{ title }}</h2>
+          <div class="article-meta">
+            {%- if created -%}
+            <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
+            {%- endif -%}
+            {%- if modified -%}
+            <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
+            {%- endif -%}
+            <small class="reading-time">⏱️ {{ content | readingTime }}</small>
+          </div>
+          <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/main/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
+        </header>
+
+        {{ content | safe }}
+      </article>
+    </main>
+
+    {%- if '/catatan/' in page.url %}
+    <aside class="related-articles container">
+      <h3>📚 Artikel Lainnya</h3>
+      <div class="related-grid">
+        {%- set count = 0 %}
+        {%- for article in collections.latestCatatan %}
+          {%- if article.url != page.url and count < 3 %}
+            <a href="{{ article.url }}" class="related-card">
+              <span class="related-title">{{ article.data.title }}</span>
+            </a>
+            {%- set count = count + 1 %}
+          {%- endif %}
+        {%- endfor %}
       </div>
+    </aside>
+    {%- endif %}
 
-      <h2>{{ title }}</h2>
-      <div class="article-meta">
-        {%- if created -%}
-        <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
-        {%- endif -%}
-        {%- if modified -%}
-        <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
-        {%- endif -%}
-        <small class="reading-time">⏱️ {{ content | readingTime }}</small>
-      </div>
-      <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/main/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
-      <div class="note-edit">
-      </div>
-
-      {{ content | safe }}
-
-      {%- if '/catatan/' in page.url %}
-      <section class="related-articles">
-        <h3>📚 Artikel Lainnya</h3>
-        <div class="related-grid">
-          {%- set count = 0 %}
-          {%- for article in collections.latestCatatan %}
-            {%- if article.url != page.url and count < 3 %}
-              <a href="{{ article.url }}" class="related-card">
-                <span class="related-title">{{ article.data.title }}</span>
-              </a>
-              {%- set count = count + 1 %}
-            {%- endif %}
-          {%- endfor %}
-        </div>
-      </section>
-      {%- endif %}
-
+    <footer class="container">
       <hr />
 
       {%- set show_comments = false %}
       {%- if '/catatan/' in page.url %}{% set show_comments = true %}{%- endif %}
       {%- if page.url == '/now/' %}{% set show_comments = true %}{%- endif %}
       {%- if page.url == '/uses/' %}{% set show_comments = true %}{%- endif %}
-      
+
       {%- if show_comments %}
       <script src="https://utteranc.es/client.js"
         repo="rizafahmi/rizafahmi.com"
@@ -92,8 +102,9 @@ title: Judul
         async>
       </script>
       {%- endif %}
+    </footer>
 
-      {% include 'analytics.njk' %}
-      {% include 'theme-toggle.njk' %}
+    {% include 'analytics.njk' %}
+    {% include 'theme-toggle.njk' %}
   </body>
 </html>
