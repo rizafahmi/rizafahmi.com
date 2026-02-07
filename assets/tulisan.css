@@ -190,6 +190,23 @@ small {
     gap: 0.5rem;
 }
 
+.share-native {
+    font: inherit;
+    font-size: 1rem;
+    color: inherit;
+    border: none;
+    background: var(--nav-btn-bg);
+    padding: 0.15rem 0.6rem;
+    border-radius: 0.35rem;
+    cursor: pointer;
+}
+
+.share-native:hover,
+.share-native:focus {
+    background: var(--nav-btn-hover-bg);
+    color: var(--nav-btn-hover-text);
+}
+
 .share-link {
     border-bottom: none;
     padding: 0.15rem 0.4rem;

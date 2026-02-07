@@ -56,9 +56,21 @@ title: Judul
         {%- endif -%}
         <small class="reading-time">⏱️ {{ content | readingTime }}</small>
         <small class="share-links" aria-label="Bagikan">
-          🔗 Bagikan:
-          <a class="share-link" href="{{ xShareHref }}" target="_blank" rel="noopener noreferrer">X</a>
-          <a class="share-link" href="{{ liShareHref }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <button
+            type="button"
+            class="share-native"
+            data-share-native
+            data-share-title="{{ title | escape }}"
+            data-share-url="{{ canonicalUrl }}"
+            hidden>
+            🔗 Bagikan bila bermanfaat
+          </button>
+
+          <span class="share-fallback" data-share-fallback>
+            🔗 Bagikan bila bermanfaat:
+            <a class="share-link" href="{{ xShareHref }}" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke X">X</a>
+            <a class="share-link" href="{{ liShareHref }}" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke LinkedIn">LinkedIn</a>
+          </span>
         </small>
 
         {%- if tags %}
@@ -126,6 +138,34 @@ title: Judul
         async>
       </script>
       {%- endif %}
+
+      <script>
+        (function () {
+          const btn = document.querySelector('[data-share-native]');
+          const fallback = document.querySelector('[data-share-fallback]');
+          if (!btn || !fallback) return;
+
+          if (navigator && typeof navigator.share === 'function') {
+            btn.hidden = false;
+            fallback.hidden = true;
+
+            btn.addEventListener('click', async function () {
+              const title = btn.getAttribute('data-share-title') || document.title;
+              const url = btn.getAttribute('data-share-url') || window.location.href;
+              const text = `${title} ${url}`;
+
+              try {
+                await navigator.share({ title, text, url });
+              } catch (e) {
+                // User cancelled or share failed; ignore.
+              }
+            });
+          } else {
+            btn.hidden = true;
+            fallback.hidden = false;
+          }
+        })();
+      </script>
 
       {% include 'analytics.njk' %}
       {% include 'theme-toggle.njk' %}
