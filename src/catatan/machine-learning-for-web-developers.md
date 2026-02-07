@@ -4,7 +4,12 @@ date: 2018-08-20
 permalink: /2018/08/20/machine-learning-for-web-developers/
 cover: "./IMG20180705162500.jpg"
 layout: tulisan
-tags: catatan
+tags:
+  - catatan
+  - machine-learning
+  - web
+  - javascript
+
 ---
 
 Berikut adalah cuplikan video sesi yang saya bawakan di event Product Development Conference TechInAsia 2018 di Juli 2018 yang lalu. Kali ini saya membawakan topik yang sedang happening, tentang Machine Learning.

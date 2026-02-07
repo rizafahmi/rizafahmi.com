@@ -5,7 +5,11 @@ modified: 2026-01-25
 layout: tulisan
 tags:
   - catatan
-  - ide
+  - ai
+  - agentic-coding
+  - workflow
+  - produktivitas
+
 eleventyExcludeFromCollections: true
 ---
 ## Daftar Isi

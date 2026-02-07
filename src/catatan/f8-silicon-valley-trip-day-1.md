@@ -4,7 +4,12 @@ date: 2018-05-14
 permalink: /2018/05/14/f8-san-jose-trip-day-1/
 cover: ""
 layout: tulisan
-tags: catatan
+tags:
+  - catatan
+  - komunitas
+  - konferensi
+  - travel
+
 ---
 
 Ini adalah cerita berseri tentang perjalanan saya dan teman-teman Facebook Developer Circle Leads ke Silicon Valley dalam rangka mengikuti Facebook F8 Developer Conference. Ikuti dari bagian 0 supaya mendapatkan jalan ceritanya secara keseluruhan.

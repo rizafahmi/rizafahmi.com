@@ -5,7 +5,11 @@ modified: 2025-09-22
 layout: tulisan
 tags:
   - catatan
-  - ide
+  - elixir
+  - phoenix
+  - tutorial
+  - prototyping
+
 eleventyExcludeFromCollections: true
 ---
 ## Pengantar

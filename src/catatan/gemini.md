@@ -6,7 +6,11 @@ created: 2023-10-22
 layout: tulisan
 description: Contoh penggunaan Gemini API untuk web developer
 image: "/assets/images/gemini-web-dev/mendang-mending.png"
-tags: catatan
+tags:
+  - catatan
+  - ai
+  - gemini
+
 ---
 Gemini adalah model Generative AI andalan Google. Sudah dilatih dengan banyak teks, audio dan video dengan berbagai bahasa. Berbeda dengan model lainnya, Gemini dibangun dari awal dengan fitur multimodal, artinya dapat menerima beberapa jenis masukan seperti teks, gambar, kode, dan berbagai jenis file lainnya.
 

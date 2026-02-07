@@ -5,7 +5,10 @@ created: 2024-10-01
 layout: tulisan
 tags:
   - catatan
-  - ide
+  - ai
+  - tools
+  - notebooklm
+
 eleventyExcludeFromCollections: false
 ---
 NotebookLM sederhananya adalah Retrieval Augmented Generation atau RAG yang diperutukkan bagi pengguna umum atau _end user_. Jika biasanya untuk menggunakan RAG kita harus lalukan sendiri atau membangun aplikasi dulu. Dengan NotebookLM kita bisa memasukkan berbagai data: dokumen, teks, tautan hingga video YouTube dan kita bisa bertanya tentang semua data tersebut melalui antarmuka _chat_. Ditenagai oleh Gemini 1.5 Pro yang punya konteks besar.

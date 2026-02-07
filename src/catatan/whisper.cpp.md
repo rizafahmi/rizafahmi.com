@@ -5,7 +5,11 @@ modified: 2024-09-272
 layout: tulisan
 tags:
   - catatan
-  - ide
+  - ai
+  - audio
+  - tools
+  - whisper
+
 eleventyExcludeFromCollections: true
 ---
 * git clone https://github.com/ggerganov/whisper.cpp.git
