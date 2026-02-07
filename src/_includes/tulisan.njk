@@ -63,7 +63,7 @@ title: Judul
           {%- endfor %}
 
           {%- if visibleTags.length %}
-            <small class="note-tags">🏷️
+            <small class="note-tags">🏷️ Topik:
               {%- for t in visibleTags %}
                 <a href="/tags/{{ t | url }}/">{{ t }}</a>{% if not loop.last %}, {% endif %}
               {%- endfor %}

@@ -5,11 +5,11 @@ pagination:
   alias: tag
 permalink: "/tags/{{ tag | url }}/"
 layout: main
-title: "Tag: {{ tag }}"
+title: "Topik: {{ tag }}"
 ---
 
 <main>
-  <h2>Tag: {{ tag }}</h2>
+  <h2>Topik: {{ tag }}</h2>
   <p style="color: var(--gray-600); margin-top: -0.5rem;">
     {{ collections[tag] | length }} tulisan
   </p>
