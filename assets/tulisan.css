@@ -181,3 +181,36 @@ small {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+/* Share links (unobtrusive) */
+.share-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.share-link {
+    border-bottom: none;
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.35rem;
+    background: var(--nav-btn-bg);
+}
+
+.share-link:hover,
+.share-link:focus {
+    background: var(--nav-btn-hover-bg);
+    color: var(--nav-btn-hover-text);
+}
+
+/* Follow CTA near end of article */
+.follow-cta {
+    margin-top: 2.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    background: var(--nav-btn-bg);
+}
+
+.follow-cta p {
+    margin: 0;
+}
