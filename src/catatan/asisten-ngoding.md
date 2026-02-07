@@ -1,5 +1,6 @@
 ---
 title: Produktif dengan Asisten Ngoding
+date: 2025-06-13
 modified: 2025-06-13
 created: 2025-04-03
 layout: tulisan

@@ -2,6 +2,7 @@
 title: Diskusi dan Menulis Spesifikasi dengan AI
 modified: 2025-06-13
 created: 2025-04-11
+date: 2025-06-13
 layout: tulisan
 tags:
   - catatan

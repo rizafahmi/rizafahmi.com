@@ -2,6 +2,7 @@
 title: Menyusun Rencana dengan Asisten Ngoding
 created: 2025-05-03
 modified: 2025-06-10
+date: 2025-06-10
 layout: tulisan
 tags:
   - catatan
