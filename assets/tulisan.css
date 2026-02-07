@@ -142,7 +142,7 @@ small {
 
 /* Related Articles */
 .related-articles {
-    margin: 2rem 0;
+    margin: 2rem auto;
     padding: 1.5rem;
     background: var(--nav-btn-bg);
     border-radius: 0.5rem;

@@ -9,9 +9,9 @@ tags:
 eleventyExcludeFromCollections: false
 ---
 
-Bayangkan teman-teman cukup menulis dan memberi perintah 'Buatkan aplikasi untuk mencatat pengeluaran', lalu tiba-tiba file baru muncul, terminal berjalan sendiri, dan beberapa menit berselang aplikasi sudah siap untuk digunakan. Apakah ini sihir? Bukan, ini Agentic Coding.
+Bayangkan teman-teman cukup menulis dan memberi perintah 'Buatkan aplikasi untuk mencatat pengeluaran', lalu tiba-tiba file baru muncul, terminal berjalan sendiri, dan beberapa menit berselang aplikasi sudah siap untuk digunakan. Apakah ini sihir? Bukan, ini *Agentic Coding*.
 
-*Agentic coding tool* seperti Claude Code, Codex, Cursor atau yang lainnya, memang rasanya seperti sihir. Sedikit sulit dipercaya, apalagi yang belum merasakan manfaatnya. Bagi yang belum menggunakan, silakan dicoba dalam jangka beberapa waktu. Cepat atau lambat teman-teman akan merasakan daya magisnya.
+*Agentic coding tool* seperti [Claude Code](https://claude.com/product/claude-code), [Codex](https://openai.com/codex/), [Cursor](https://cursor.com/) atau yang lainnya, memang rasanya seperti sihir. Sedikit sulit dipercaya, apalagi yang belum merasakan manfaatnya. Bagi yang belum menggunakan, silakan dicoba dalam jangka beberapa waktu. Cepat atau lambat teman-teman akan merasakan daya magisnya.
 
 Tapi di balik layar, semua itu bukanlah sihir. Melainkan sebuah pola yang disebut *agentic coding*.
 Di artikel ini, kita tidak hanya akan mengintip ke balik tirai, kita akan belajar bagaimana cara kerjanya dan mempelajari polanya.
@@ -22,9 +22,9 @@ Sebelum itu, mari kita lihat bagaimana perjalanan asisten ngoding dari awal hing
 
 ## Dari Tukang Ketik ke Mandor Proyek
 
-Perkakas ngoding dengan AI ini telah melewati evolusi yang cukup cepat. Mulai dari chatbot, autocomplete, coding assistant, hingga sekarang kita memasuki eranya agentic coding. Cara penggunaannya pun berbeda-beda.
+Perkakas ngoding dengan AI ini telah melewati evolusi yang cukup cepat. Mulai dari *chatbot* , *autocomplete* , *coding assistant*, hingga sekarang kita memasuki eranya *agentic coding*.
 
-Chatbot umumnya menggunakan antarmuka web. Ketika butuh bantuan, kita membuka chatgpt.com, claude.ai, gemini.google, dsb. Bertanya tentang topik pemrograman (atau topik apapun), si chatbot memberikan potongan kode yang dibutuhkan. Lalu kita sebagai developer menyalin kode tersebut dan melanjutkan proses pengembangan aplikasi. Dan begitu seterusnya.
+*Chatbot* umumnya menggunakan antarmuka web. Ketika butuh bantuan, kita membuka [chatgpt.com](https://chatgpt.com), [claude.ai](https://claude.ai), [gemini.google](https://gemini.google), dsb. Bertanya tentang topik pemrograman (atau topik apapun), si *chatbot* memberikan potongan kode yang dibutuhkan. Lalu kita sebagai developer menyalin kode tersebut dan melanjutkan proses pengembangan aplikasi. Dan begitu seterusnya.
 
 <figure>
 	<picture>
@@ -34,7 +34,7 @@ Chatbot umumnya menggunakan antarmuka web. Ketika butuh bantuan, kita membuka ch
 	</picture>
 </figure>
 	
-Berikutnya muncul fitur autocomplete. Diawali oleh munculnya GitHub Copilot yang diusung oleh Visual Studio Code. Biasanya kita mengetik sesuatu di editor kode lalu AI akan mencoba "menebak" kita maunya apa. Atau autocomplete bisa dipantik dengan menulis komentar kita ingin melakukan apa, lalu AI akan memberikan tebakan terbaiknya.
+Berikutnya muncul fitur *autocomplete*. Diawali oleh munculnya [GitHub Copilot](https://github.com/features/copilot) yang diusung oleh [Visual Studio Code](https://code.visualstudio.com/). Biasanya kita mengetik sesuatu di editor kode lalu AI akan mencoba "menebak" kita maunya apa. Atau *autocomplete* bisa dipantik dengan menulis komentar kita ingin melakukan apa, lalu AI akan memberikan tebakan terbaiknya.
 
 <figure>
 	<picture>
@@ -45,9 +45,9 @@ Berikutnya muncul fitur autocomplete. Diawali oleh munculnya GitHub Copilot yang
 </figure>
 
 
-Kemudian berkembang lagi. Dengan kemunculan code editor baru, Cursor, coding assistant mulai populer. Sederhananya, ini adalah chatbot yang tadinya diakses dengan web browser sekarang ada di code editor. Dengan tambahan konteks file yang sedang dibuka sehingga kita tidak perlu *copas* lagi. Dan beberapa fitur menarik lainnya seperti inline chat, hingga fitur yang mampu memahami proyek secara keseluruhan dengan berbagai metodenya seperti indexing code, repomap dan sebagainya.
+Kemudian berkembang lagi. Dengan kemunculan code editor baru, [Cursor](https://cursor.com/), asisten ngoding semakin populer. Sederhananya, ini adalah *chatbot* yang tadinya diakses dengan web browser sekarang ada langsung di editor kode. Dengan tambahan konteks file yang sedang dibuka sehingga kita tidak perlu *copas* lagi. Dan beberapa fitur menarik lainnya seperti *inline chat*, hingga fitur yang mampu memahami proyek secara keseluruhan dengan berbagai metodenya seperti *indexing code*, [repomap](https://aider.chat/2023/10/22/repomap.html) dan sebagainya.
 
-Setiap kode yang ditambahkan, tetap ada peran kita sebagai manusia yang melakukan perubahan. Menyimpan perubahan file misalnya. Meskipun biasanya editor kita set untuk melakukan auto save. File baru pun harus kita yang buat.
+Setiap kode yang ditambahkan, tetap ada peran kita sebagai manusia yang melakukan perubahan. Menyimpan perubahan file misalnya. Meskipun biasanya editor kita set untuk melakukan *auto save*. File baru pun harus kita yang buat.
 
 <figure>
 	<picture>
@@ -58,9 +58,9 @@ Setiap kode yang ditambahkan, tetap ada peran kita sebagai manusia yang melakuka
 </figure>
 
 
-Terakhir, tibalah kita ke era agentic. Jika menggunakan agentic coding, semuanya otomatis. Bikin file baru, baca, tulis dan ubah file, menjalankan perintah terminal dan sebagainya bisa dilakukan oleh llm. Dimulai dari Cursor dan dipopulerkan oleh Claude Code.
+Terakhir, tibalah kita ke era agentic. Jika menggunakan agen, semuanya serba otomatis. Bikin file baru, baca, tulis dan ubah file, menjalankan perintah terminal dan sebagainya bisa dilakukan oleh LLM. Dimulai dari [Cursor](https://cursor.com/learn/agents) dan dipopulerkan oleh [Claude Code](https://claude.com/product/claude-code).
 
-Salah satu ciri khas agentic coding ketika diberi perintah, LLM akan merencanakan, membuat langkah demi langkah untuk menyelesaikan perintah terus menerus sampai perintah dianggap sudah selesai. Jadi si agen ini bukan hanya berusaha menyelesaikan perintah tapi seolah ia berpikir, berencana baru mengeksekusi hingga selesai.
+Salah satu ciri khas *agentic coding* ketika diberi perintah, LLM akan merencanakan, membuat langkah demi langkah untuk menyelesaikan perintah terus menerus sampai perintah dianggap sudah selesai. Jadi si agen ini bukan hanya berusaha menyelesaikan perintah tapi seolah ia berpikir, berencana baru mengeksekusi hingga selesai.
 
 <figure>
 	<picture>
@@ -76,7 +76,7 @@ Cara ini cocok sekali untuk tugas yang kompleks dan sulit dikerjakan dalam sekal
 
 *Agent* atau *Agentic* berasal dari kata *agency*. *Agency* secara harfiah berarti kemampuan untuk bertindak, bukan cuma berpikir atau memberi saran. Atau dengan kata lain punya inisiatif. 
 
-LLM tanpa agent layaknya AI dalam tempurung. Jago ngomong, pengetahuan luas, walaupun terbatas (cut off). Meski pintar menjawab pertanyaan kita, tapi LLM tidak bisa berbuat apa-apa, tidak bisa mengingat apapun dan tidak mampu memutuskan jika diberi pilihan. Tidak bisa membaca file, menulis file bahkan tidak tahu tanggal dan jam berapa saat ini.
+LLM tanpa agen layaknya **AI dalam tempurung**. Jago ngomong, pengetahuan luas, walaupun terbatas (*cut off*). Meski pintar menjawab pertanyaan kita, tapi LLM tidak bisa berbuat apa-apa, tidak bisa mengingat apapun dan tidak mampu memutuskan jika diberi pilihan. Tidak bisa membaca file, menulis file bahkan tidak tahu tanggal dan jam berapa saat ini.
 
 <figure>
 	<picture>
@@ -86,7 +86,7 @@ LLM tanpa agent layaknya AI dalam tempurung. Jago ngomong, pengetahuan luas, wal
 	</picture>
 </figure>
 
-LLM adalah mesin prediksi token. Berusaha menyelesaikan teks dengan probabilitas tertinggi. Termasuk juga autocomplete kode, yang adalah teks. Kemampuan dasar LLM adalah menghasilkan teks, tidak dapat mengetahui apa yang terjadi disekitarnya. Tidak tahu tanggal dan jam saat ini, baca dan tulis file, bahkan percakapan terdahulu pun LLM tidak ingat. Kecuali diberi akses untuk mendapatkan informasi tanggal dan jam saat ini, akses untuk baca dan tulis file atau menyertakan percakapan terdahulu.
+LLM adalah mesin prediksi token. Berusaha menyelesaikan teks dengan probabilitas tertinggi. Termasuk juga *autocomplete* kode, yang adalah teks. Kemampuan dasar LLM adalah menghasilkan teks, tidak dapat mengetahui apa yang terjadi disekitarnya. Tidak tahu tanggal dan jam saat ini, baca dan tulis file, bahkan percakapan terdahulu pun LLM tidak ingat. Kecuali diberi akses untuk mendapatkan informasi tanggal dan jam saat ini, akses untuk baca dan tulis file atau menyertakan percakapan terdahulu.
 
 Jadi sebenarnya LLM itu bukan kurang pintar, cuma kurang diberi akses saja.
 
@@ -102,7 +102,7 @@ Jadi sebenarnya LLM itu bukan kurang pintar, cuma kurang diberi akses saja.
 
 Jadi gimana caranya supaya LLM punya inisiatif? Persenjatai LLM dengan perkakas atau _tools_. Mulai dari yang sederhana seperti kasih akses untuk *ngecek* jam dan tanggal, *ngecek* kurs atau cuaca hingga memberikan akses untuk baca dan tulis file.
 
-LLM dengan alat ini, ditambah perkakas untuk menyimpan percakapan dan kemampuan untuk menentukan pilihan perkakas mana yang cocok, itulah yang disebut sebagai AI Agent.
+LLM dengan perkakas ini, ditambah perkakas untuk menyimpan percakapan dan kemampuan untuk menentukan pilihan perkakas mana yang cocok, dan berjalan terus-menerus hingga tugas selesai itulah yang disebut sebagai AI Agent.
 
 <figure>
 	<picture>
@@ -113,28 +113,33 @@ LLM dengan alat ini, ditambah perkakas untuk menyimpan percakapan dan kemampuan 
 </figure>
 
 
-Dengan kata lain, LLM disebut sebagai agent atau agentic jika LLM berjalan terus-menerus (loop) yang dapat melakukan observasi apa yang sedang dikerjakan, disediakan perkakas untuk bekerja dan punya kemampuan untuk memutuskan kapan sebuah pekerjaan dinyatakan selesai.
+Dengan kata lain, LLM disebut sebagai agen atau *agentic* jika LLM berjalan terus-menerus (*loop*) yang dapat melakukan observasi apa yang sedang dikerjakan, disediakan perkakas untuk bekerja dan punya kemampuan untuk memutuskan kapan sebuah pekerjaan dinyatakan selesai.
 
 ![Agentic Looping](/assets/images/agentic/loop.gif)
 
 ## Tiga Komponen Utama
 
-Ada tiga komponen utama dalam agentic AI, yaitu: perkakas, memori dan reasoning loop. Mari kita bahas satu-per-satu.
+Ada tiga komponen utama dalam **Agentic AI**, yaitu: perkakas, memori dan reasoning loop. Mari kita bahas satu-per-satu.
 
 ### Perkakas
-
 Memberikan kemampuan kepada LLM. Misalnya kemampuan mendapatkan informasi tanggal dan jam saat ini, cuaca di sebuah kota, harga emas terkini, hingga mengoperasikan file seperti baca dan tulis bahkan kita bisa memberikan kemampuan untuk menjalankan perintah bash.
-
-
 ### Memori
-
-Memberikan daya ingat, jangka panjang ataupun jangka pendek akan membuat LLM semakin terlihat "pinter". LLM bisa paham siapa yang sedang berbicara, tugas apa yang ingin diselesaikan karena setiap percakapan baru ditambahkan ke dalam memori. Mulai dari yang paling sederhana, menambahkan ke struktur data array dan mengirimkan kembali histori percakapan hingga yang canggih seperti database eksternal.
+Memberikan daya ingat, jangka panjang ataupun jangka pendek akan membuat LLM semakin terlihat "pintar". LLM bisa paham siapa yang sedang berbicara, tugas apa yang ingin diselesaikan karena setiap percakapan baru ditambahkan ke dalam memori. Mulai dari yang paling sederhana, menambahkan ke struktur data array dan mengirimkan kembali histori percakapan hingga yang canggih seperti database eksternal.
 
 Kita bisa saja setiap kali ingin mengirimkan perintah selalu menyertakan percakapan terdahulu. Namun dalam jangka panjang hal ini menjadi melelahkan dan membuat LLM menjadi terlihat "bodoh". Atau bahkan membuat LLM bingung karena kebanyakan konteks.
 
-Hal ini terjadi karena LLM memiliki batasan pandangan yang disebut Context Window. Bayangkan context window seperti meja kerja. Memori adalah lemari arsip yang penuh dengan dokumen. Kita tidak bisa menumpuk semua isi lemari ke atas meja sekaligus karena mejanya akan penuh, berantakan, dan kita malah tidak bisa bekerja.
+Hal ini terjadi karena LLM memiliki batasan pandangan yang disebut **Context Window**. Bayangkan *context window* seperti meja kerja. Memori adalah lemari arsip yang penuh dengan dokumen. Kita tidak bisa menumpuk semua isi lemari ke atas meja sekaligus karena mejanya akan penuh, berantakan, dan kita malah tidak bisa bekerja.
 
-Di sinilah Context Engineering berperan. Jika memori adalah tentang apa yang disimpan, maka context engineering adalah tentang bagaimana kita memilih dan menyusun informasi tersebut agar LLM tetap fokus. Tanpa pengelolaan konteks yang baik, LLM akan mengalami fenomena lost in the middle—ia mulai mengabaikan instruksi yang berada di tengah-tengah percakapan yang terlalu panjang.
+<figure>
+	<picture>
+		<source srcset="/assets/images/agentic/meja.webp" type="image/webp">
+		<img src="/assets/images/agentic/meja.png" alt="Ilustrasi meja yang penuh dokumen">
+		<figcaption>Ilustrasi meja yang penuh dokumen. Dibuat oleh AI.</figcaption>
+	</picture>
+</figure>
+
+
+Di sinilah **Context Engineering** berperan. Jika memori adalah tentang apa yang disimpan, maka *context engineering* adalah tentang bagaimana kita memilih dan menyusun informasi tersebut agar LLM tetap fokus. Tanpa pengelolaan konteks yang baik, LLM akan kehilangan arah, bingung lalu mulai mengabaikan instruksi yang berada di tengah-tengah percakapan yang terlalu panjang.
 
 ### *Reasoning Loop* 
 
@@ -143,6 +148,15 @@ Dan yang tidak kalah penting adalah kemampuan LLM dalam menentukan dan memilih p
 Dan LLM juga punya kemampuan untuk terus menerus berusaha untuk menyelesaikan pekerjaannya. Hal inilah yang menjadi pembeda. Sebelum model Sonnet versi 3.7, LLM sulit sekali diajak *looping*. Meskipun sudah diinstruksikan secara eksplisit kadang LLM memutuskan berhenti sebelum tuntas.
 
 Proses berpikir ini sering disebut sebagai **Chain of Thought**. LLM diinstruksikan untuk berpikir dan *ngomong* sendiri untuk merencanakan langkah-langkah untuk menyelesaikan sebuah tugas. Ketika digabung dengan perkakas lainnya, bisa menjelma menjadi sebuah framework seperti ReAct (Reason + Act) yang lebih *powerful*. Reasoning loop ini adalah "**nyawa**" dari agentic coding.
+
+<figure>
+	<picture>
+		<source srcset="/assets/images/agentic/thinking.webp" type="image/webp">
+		<img src="/assets/images/agentic/thinking.png" alt="Proses berpikir ala LLM">
+		<figcaption>Proses berpikir ala LLM</figcaption>
+	</picture>
+</figure>
+
 
 ## Praktek Membuat Agentic Coding Tool
 
@@ -156,7 +170,7 @@ Mari kita praktekkan langkah demi langkah. Berhubung LLM chatbot saat ini sudah 
 	</picture>
 </figure>
 
-Untuk itu, kita perlu membangun chatbot sederhana. Dengan memanfaatkan REST API, kita bisa memberi instruksi sederhana dalam satu kesempatan (one shot) dan LLM akan mengirimkan respons. Contohnya bisa menggunakan beberapa penyedia jasa LLM seperti Google, Anthropic, OpenAI dan sebagainya. Untuk contoh disini akan menggunakan Google dan Gemini 3 Flash sebagai pilihan modelnya.
+Untuk itu, kita perlu membangun chatbot sederhana. Dengan memanfaatkan REST API, kita bisa memberi instruksi sederhana dalam satu kesempatan (one shot) dan LLM akan mengirimkan respons. Contohnya bisa menggunakan beberapa penyedia jasa LLM seperti Google, Anthropic, OpenAI dan sebagainya. Untuk contoh disini akan menggunakan Google dan Gemini 3 Flash sebagai pilihan modelnya. Silakan ganti URL, model dan variable API_KEY jika ingin menggunakan penyedia jasa LLM lain.
 
 ```elixir
 defmodule Mbb do
@@ -196,7 +210,7 @@ defmodule Mbb do
 end
 ```
 
-[Kode lengkap bisa diintip di GitHub](https://github.com/rizafahmi/mbb)
+🐙 [Kode lengkap bisa diintip di GitHub](https://github.com/rizafahmi/mbb)
 
 <br />
 	
@@ -204,8 +218,10 @@ Sekarang coba kita jalankan untuk menanyakan tanggal dan jam saat ini.
 
 ```text
 $ mix escript.build # compile
+Generated escript mbb
+
 $ ./mbb "Tanggal dan jam berapa sekarang?"
-Saat ini adalah Rabu, 22 Mei 2024, pukul 08:50 UTC. Dalam Elixir, Anda dapat memperoleh data immutable ini secara presisi menggunakan fungsi `DateTime.utc_now()`.
+Saat ini adalah Rabu, 22 Mei 2024, pukul 08:50 UTC.
 ```
 
 Halu kan?! Saat menulis ini saya berada di tahun 2026. Ini bukanlah trik mesin waktu. Lebih kepada LLM belum diberi akses untuk mendapatkan informasi tanggal dan jam sehingga LLM terpaksa berbohong. Karena memang di desain seperti itu, untuk memastikan tugasnya selesai walaupun keliru.
