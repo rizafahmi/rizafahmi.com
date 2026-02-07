@@ -16,11 +16,11 @@ Di artikel ini, kita tidak hanya akan mengintip ke balik tirai, kita akan belaja
 
 Paham cara kerjanya tentu akan membantu kita menggunakan agentic coding dengan lebih efektif dan efisien. Semoga setelah membaca tulisan ini teman-teman bisa mendapat gambaran yang lebih jelas tentang apa itu agent dan apa yang membedakan AI agent dengan AI yang bukan agent.
 
-Tapi sebelum itu, mari kita lihat bagaimana perjalanan asisten ngoding dari awal hingga sekarang.
+Sebelum itu, mari kita lihat bagaimana perjalanan asisten ngoding dari awal hingga sekarang.
 
 ## Dari chatbot ke agentic coding
 
-Alat bantu ngoding dengan AI ini telah melewati evolusi yang cukup cepat. Mulai dari chatbot, autocomplete, coding assistant, hingga sekarang kita memasuki eranya agentic coding. Cara penggunaannya pun berbeda-beda.
+Perkakas ngoding dengan AI ini telah melewati evolusi yang cukup cepat. Mulai dari chatbot, autocomplete, coding assistant, hingga sekarang kita memasuki eranya agentic coding. Cara penggunaannya pun berbeda-beda.
 
 Chatbot umumnya menggunakan antarmuka web. Ketika butuh bantuan, kita membuka chatgpt.com, claude.ai, gemini.google, dsb. Bertanya tentang topik pemrograman (atau topik apapun), si chatbot memberikan potongan kode yang dibutuhkan. Lalu kita sebagai developer menyalin kode tersebut dan melanjutkan proses pengembangan aplikasi. Dan begitu seterusnya.
 
@@ -58,7 +58,7 @@ Setiap kode yang ditambahkan, tetap ada peran kita sebagai manusia yang melakuka
 
 Terakhir, tibalah kita ke era agentic. Jika menggunakan agentic coding, semuanya otomatis. Bikin file baru, baca, tulis dan ubah file, menjalankan perintah terminal dan sebagainya bisa dilakukan oleh llm. Dimulai dari Cursor dan dipopulerkan oleh Claude Code.
 
-Tapi apa sih sebenarnya agents atau agentic ini? Kenapa kok tiba-tiba llm bisa melakukan banyak hal yang tadinya tidak bisa dilakukan?
+Salah satu ciri khas agentic coding ketika diberi perintah, LLM akan merencanakan, membuat langkah demi langkah untuk menyelesaikan perintah terus menerus sampai perintah dianggap sudah selesai. Jadi si agen ini bukan hanya berusahan menyelesaikan peritanh tapi seolah ia berfikir, berencana baru mengeksekusi hingga selesai.
 
 <figure>
 	<picture>
@@ -68,10 +68,11 @@ Tapi apa sih sebenarnya agents atau agentic ini? Kenapa kok tiba-tiba llm bisa m
 	</picture>
 </figure>
 
+Cara ini cocok sekali untuk tugas yang kompleks dan sulit dikerjakan dalam sekali tembak. Kok bisa ya tiba-tiba ada LLM yang bisa "mikir", buat rencana lalu eksekusi?
 
 ## Pola *Agentic*
 
-*Agent* atau *Agentic* berasal dari kata *agency*. *Agency* secara harfiah berarti kemampuan untuk bertindak, bukan cuma berpikir atau memberi saran. Atau dengan kata lain punya inisiatif.
+*Agent* atau *Agentic* berasal dari kata *agency*. *Agency* secara harfiah berarti kemampuan untuk bertindak, bukan cuma berpikir atau memberi saran. Atau dengan kata lain punya inisiatif. 
 
 LLM tanpa agent layaknya AI dalam tempurung. Jago ngomong, pengetahuan luas, walaupun terbatas (cut off). Meski pintar menjawab pertanyaan kita, tapi LLM tidak bisa berbuat apa-apa, tidak bisa mengingat apapun dan tidak mampu memutuskan jika diberi pilihan. Tidak bisa membaca file, menulis file bahkan tidak tahu tanggal dan jam berapa saat ini.
 
@@ -83,7 +84,10 @@ LLM tanpa agent layaknya AI dalam tempurung. Jago ngomong, pengetahuan luas, wal
 	</picture>
 </figure>
 
-TODO: LLM + Tools
+LLM adalah mesin prediksi token. Berusaha menyelesaikan teks dengan probabilitas tertinggi. Termasuk juga autocomplete kode, yang adalah teks. Kemampuan dasar LLM adalah menghasilkan teks, tidak dapat mengetahui apa yang terjadi disekitarnya. Tidak tahu tanggal dan jam saat ini, baca dan tulis file, bahkan percakapan terdahulu pun LLM tidak ingat. Kecuali diberi akses untuk mendapatkan informasi tanggal dan jam saat ini, akses untuk baca dan tulis file atau menyertakan percakapan terdahulu.
+
+Jadi sebenarnya LLM itu bukan kurang pintar, cuma kurang diberi akses saja.
+
 
 <figure>
 	<picture>
@@ -94,9 +98,9 @@ TODO: LLM + Tools
 </figure>
 
 
-Jadi gimana caranya supaya LLM punya inisiatif? Persenjatai LLM dengan alat bantu atau _tools_. Mulai dari yang sederhana seperti kasih akses untuk *ngecek* jam dan tanggal, *ngecek* kurs atau cuaca hingga memberikan akses untuk baca dan tulis file.
+Jadi gimana caranya supaya LLM punya inisiatif? Persenjatai LLM dengan perkakas atau _tools_. Mulai dari yang sederhana seperti kasih akses untuk *ngecek* jam dan tanggal, *ngecek* kurs atau cuaca hingga memberikan akses untuk baca dan tulis file.
 
-LLM dengan alat ini, ditambah alat untuk menyimpan percakapan dan kemampuan untuk menentukan pilihan alat mana yang cocok, itulah yang disebut sebagai AI Agent.
+LLM dengan alat ini, ditambah perkakas untuk menyimpan percakapan dan kemampuan untuk menentukan pilihan perkakas mana yang cocok, itulah yang disebut sebagai AI Agent.
 
 <figure>
 	<picture>
@@ -106,17 +110,21 @@ LLM dengan alat ini, ditambah alat untuk menyimpan percakapan dan kemampuan untu
 	</picture>
 </figure>
 
-TODO Diagram: the loop
 
-Dengan kata lain, LLM disebut sebagai agent atau agentic jika LLM berjalan terus-menerus (loop) yang dapat melakukan observasi apa yang sedang dikerjakan, disediakan alat untuk bekerja dan punya kemampuan untuk memutuskan kapan sebuah pekerjaan dinyatakan selesai.
+Dengan kata lain, LLM disebut sebagai agent atau agentic jika LLM berjalan terus-menerus (loop) yang dapat melakukan observasi apa yang sedang dikerjakan, disediakan perkakas untuk bekerja dan punya kemampuan untuk memutuskan kapan sebuah pekerjaan dinyatakan selesai.
+
+![Agentic Looping](/assets/images/agentic/loop.gif)
 
 ## Tiga komponen utama
 
-Yang membuat agent berbeda adalah alat bantu yang harus kita sediakan. Selain alat bantu seperti cek tanggal dan jam, baca file, tulis file dan lain sebagainya, kita juga harus menyediakan media penyimpanan atau memori untuk menyimpan histori percakapan dan memilih LLM yang punya kemampuan mengambil keputusan atau *reasoning*.
+Sederhananya, agent adalah LLM yang diberikan alat bantu atau *tools*. Dan perkakas ini bisa melakukan sesuatu. Entah itu melakukan perubahan di komputer kita, atau mengirimkan data untuk memesan tiket kereta. Bisa juga menambahkan informasi yang belum ada di "otak" LLM. Misalnya kita bisa menambahkan dokumen internal yang tentu informasinya belum ada di LLM.
+
+Selain perkakas seperti cek tanggal dan jam, baca file, tulis file dan lain sebagainya, kita juga harus menyediakan media penyimpanan atau memori untuk menyimpan histori percakapan dan memilih LLM yang punya kemampuan mengambil keputusan atau *reasoning*.
 
 ### *Tools*
 
 Memberikan kemampuan kepada LLM. Misalnya kemampuan mendapatkan informasi tanggal dan jam saat ini, cuaca di sebuah kota, harga emas terkini, hingga mengoperasikan file seperti baca dan tulis bahkan kita bisa memberikan kemampuan untuk menjalanakan perintah bash.
+
 
 ### _Memory_
 
@@ -127,15 +135,15 @@ TODO Apakah ini yang dinamakan context engineering?
 
 ### *Reasoning Loop* 
 
-Dan yang tidak kalah penting adalah kemampuan LLM dalam menentukan dan memilih perkakas yang mana yang digunakan ketika ada permintaan dari pengguna.
+Dan yang tidak kalah penting adalah kemampuan LLM dalam menentukan dan memilih perkakas yang mana yang cocok digunakan ketika ada permintaan dari pengguna. Misalnya, ketika pengguna bertanya tentang jam berapa, LLM dapat memutuskan untuk menggunakan perkakas jam dan tanggal, bukan malah baca atau tulis file.
 
-Dan LLM juga punya kemampuan untuk terus menerus berusaha untuk menyelesaikan pekerjaannya. Makanya sangat penting buat kita pemberi instruksi untuk secara eksplisit mendefinisikan kriteria apa saja sebuah tugas dapat dinyatakan selesai atau *definition of done*. Jika tidak ada instruksi eksplisit maka LLm yang akan memutuskan sendiri kapan tugasnya selesai, atau dia akan halu. Jadi penting buat kita untuk memastikan hal ini.
+Dan LLM juga punya kemampuan untuk terus menerus berusaha untuk menyelesaikan pekerjaannya. Hal inilah yang menjadi pembeda. Sebelum model Sonnet versi 3.7, LLM sulit sekali diajak *looping*. Meskipun sudah diinstruksikan secara eksplisit kadang LLM memutuskan berhenti sebelum tuntas.
 
-Proses berpikir ini sering disebut sebagai **Chain of Thought**. LLM diinstruksikan untuk berfikir dan *ngomong* sendiri untuk merencanakan langkah-langah untuk menyelesaikan sebuah tugas. Ketika digabung dengan alat lainnya, bisa menjelma menjadi sebuah framework seperti ReAct (Reason + Act) yang lebih *powerful*.
+Proses berpikir ini sering disebut sebagai **Chain of Thought**. LLM diinstruksikan untuk berfikir dan *ngomong* sendiri untuk merencanakan langkah-langah untuk menyelesaikan sebuah tugas. Ketika digabung dengan perkakas lainnya, bisa menjelma menjadi sebuah framework seperti ReAct (Reason + Act) yang lebih *powerful*.
 
 ## Praktek Membuat Agentic Coding Tool
 
-Mari kita praktekkan langkah demi langkah. Berhubung LLM chatbot saat ini sudah dilengkapi oleh banyak alat, kita bisa bertanya tanggal dan jam saat ini dan LLM mampu menjawab dengan akurat. Karena itu kita akan membuat LLM chatbot dari awal dengan menggunakan REST API.
+Mari kita praktekkan langkah demi langkah. Berhubung LLM chatbot saat ini sudah dilengkapi oleh banyak perkakas, kita bisa bertanya tanggal dan jam saat ini dan LLM mampu menjawab dengan akurat. Karena itu kita akan membuat LLM chatbot dari awal dengan menggunakan REST API.
 
 [Screenshot chatbot]
 
