@@ -79,16 +79,13 @@ title: Judul
 
       {%- if '/catatan/' in page.url %}
       <section class="related-articles">
-        <h3>📚 Artikel Lainnya</h3>
+        <h3>📚 Artikel Terkait</h3>
         <div class="related-grid">
-          {%- set count = 0 %}
-          {%- for article in collections.latestCatatan %}
-            {%- if article.url != page.url and count < 3 %}
-              <a href="{{ article.url }}" class="related-card">
-                <span class="related-title">{{ article.data.title }}</span>
-              </a>
-              {%- set count = count + 1 %}
-            {%- endif %}
+          {%- set related = collections.catatan | relatedByTags(tags, page.url, 3) %}
+          {%- for article in related %}
+            <a href="{{ article.url }}" class="related-card">
+              <span class="related-title">{{ article.data.title }}</span>
+            </a>
           {%- endfor %}
         </div>
       </section>
