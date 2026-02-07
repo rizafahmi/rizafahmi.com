@@ -145,14 +145,60 @@ Proses berpikir ini sering disebut sebagai **Chain of Thought**. LLM diinstruksi
 
 Mari kita praktekkan langkah demi langkah. Berhubung LLM chatbot saat ini sudah dilengkapi oleh banyak perkakas, kita bisa bertanya tanggal dan jam saat ini dan LLM mampu menjawab dengan akurat. Karena itu kita akan membuat LLM chatbot dari awal dengan menggunakan REST API.
 
-[Screenshot chatbot]
+<figure>
+	<picture>
+		<source srcset="/assets/images/agentic/gemini.webp" type="image/webp">
+		<img src="/assets/images/agentic/gemini.png" alt="Gemini">
+		<figcaption>Bertanya tentang jam dan tanggal.</figcaption>
+	</picture>
+</figure>
 
-[Kode hit ke llm service]
+```elixir
+defmodule Mbb do
+  @model "gemini-3-flash-preview"
+  @system_prompt """
+  You are an excellent principal engineer. You love programming language. \
+  Your favorite language is Elixir and you always write code in functional paradigm. \
+  You always answer in a concise and precise manner. Answer in 1-3 sentences maximum. No preamble, no summary.\
+  """
+
+  defp api_url do
+    api_key = System.get_env("API_KEY") || ""
+
+    "https://generativelanguage.googleapis.com/v1beta/models/#{@model}:generateContent?key=#{api_key}"
+  end
+
+  defp send(message) do
+    api_url()
+    |> Req.post(
+      json: %{
+        system_instruction: %{parts: [%{text: @system_prompt}]},
+        contents: [%{role: "user", parts: [%{text: message}]}],
+        generationConfig: %{
+          maxOutputTokens: 1_000,
+          temperature: 0.0,
+          thinkingConfig: %{
+            thinkingLevel: "MEDIUM"
+          }
+        }
+      }
+    )
+    |> handle_response()
+  end
+  
+  # ... kode selanjutnya
+  
+end
+```
 	
 Sekarang coba kita jalankan untuk menanyakan tanggal dan jam saat ini.
 
-```shell
-./mbb "Tanggal dan jam berapa sekarang?"
+```text
+$ mix escript.build # compile
+$ ./mbb "Tanggal dan jam berapa sekarang?"
+Saat ini adalah Rabu, 22 Mei 2024, pukul 08:50 UTC. Dalam Elixir, Anda dapat memperoleh data immutable ini secara presisi menggunakan fungsi `DateTime.utc_now()`.
 ```
+
+Halu kan?! Saat menulis ini saya berada di tahun 2026. Ini bukanlah trik mesin waktu. Lebih kepad LLM belum diberi akses untuk mendapatkan informasi tanggal dan jam sehingga LLM terpaksa berbohong. Karena memang di desain seperti itu, untuk memastikan tugasnya selesai walaupun keliru.
 
 ## Kesimpulan
