@@ -107,6 +107,8 @@ export default function (eleventyConfig) {
     return (withShared.length ? withShared : scored)
       .slice(0, limit)
       .map((x) => x.item);
+  });
+
   // Plain-text excerpt for meta description (social previews, SEO).
   eleventyConfig.addFilter("excerpt", (content, length = 180) => {
     if (!content) return "";
