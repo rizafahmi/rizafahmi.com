@@ -12,7 +12,7 @@ title: Judul
     {% include 'head.njk' %}
   </head>
   <body>
-    <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+    <header class="site-header" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
       <div style="display:flex; align-items:center; gap: 0.75rem;">
         <h1 style="margin:0;"><a href="/">👋 Saya Riza!</a></h1>
         <nav class="hero-nav" style="margin-left: .25rem;">
@@ -22,7 +22,7 @@ title: Judul
         </nav>
       </div>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-    </div>
+    </header>
     {{ content | safe }}
     {% include 'theme-toggle.njk' %}
   </body>
