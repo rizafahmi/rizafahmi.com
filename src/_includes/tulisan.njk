@@ -70,6 +70,7 @@ title: Judul
             🔗 Bagikan bila bermanfaat:
             <a class="share-link" href="{{ xShareHref }}" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke X">X</a>
             <a class="share-link" href="{{ liShareHref }}" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke LinkedIn">LinkedIn</a>
+            <button type="button" class="share-link share-copy" data-share-copy data-share-url="{{ canonicalUrl }}" aria-label="Salin link">📋 Salin</button>
           </span>
         </small>
 
@@ -143,8 +144,11 @@ title: Judul
         (function () {
           const btn = document.querySelector('[data-share-native]');
           const fallback = document.querySelector('[data-share-fallback]');
+          const copyBtn = document.querySelector('[data-share-copy]');
+
           if (!btn || !fallback) return;
 
+          // Native share (mostly mobile + some desktop Safari)
           if (navigator && typeof navigator.share === 'function') {
             btn.hidden = false;
             fallback.hidden = true;
@@ -163,6 +167,21 @@ title: Judul
           } else {
             btn.hidden = true;
             fallback.hidden = false;
+          }
+
+          // Clipboard fallback (nice for desktop)
+          if (copyBtn && navigator && navigator.clipboard && navigator.clipboard.writeText) {
+            copyBtn.addEventListener('click', async function () {
+              const url = copyBtn.getAttribute('data-share-url') || window.location.href;
+              try {
+                await navigator.clipboard.writeText(url);
+                const old = copyBtn.textContent;
+                copyBtn.textContent = '✅ Tersalin';
+                setTimeout(() => (copyBtn.textContent = old), 1200);
+              } catch (e) {
+                // ignore
+              }
+            });
           }
         })();
       </script>

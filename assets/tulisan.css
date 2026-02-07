@@ -214,6 +214,14 @@ small {
     background: var(--nav-btn-bg);
 }
 
+.share-copy {
+    font: inherit;
+    font-size: 1rem;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
 .share-link:hover,
 .share-link:focus {
     background: var(--nav-btn-hover-bg);
