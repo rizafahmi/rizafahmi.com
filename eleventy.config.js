@@ -109,6 +109,17 @@ export default function (eleventyConfig) {
       .map((x) => x.item);
   });
 
+  // Plain-text excerpt for meta description (social previews, SEO).
+  eleventyConfig.addFilter("excerpt", (content, length = 180) => {
+    if (!content) return "";
+    const text = content
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (text.length <= length) return text;
+    return text.slice(0, length).replace(/\s+\S*$/, "") + "…";
+  });
+
   eleventyConfig.addCollection("catatan", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
   });
