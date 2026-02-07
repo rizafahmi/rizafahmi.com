@@ -5,7 +5,8 @@ pagination:
   alias: tag
 permalink: "/tags/{{ tag | url }}/"
 layout: main
-title: "Topik: {{ tag }}"
+eleventyComputed:
+  title: "Topik: {{ tag }}"
 ---
 
 <main>
