@@ -107,7 +107,8 @@ hr {
     padding: 1rem 1.75rem 1.75rem 1.75rem;
     margin-top: 3rem;
     transform: rotate(2deg);
-    background-color: #eaeaea;
+    background-color: var(--nav-btn-bg);
+    color: var(--text-color);
 }
 
 #subscription-box {
@@ -115,7 +116,8 @@ hr {
     padding: 1rem 1.75rem 1.75rem 1.75rem;
     margin-top: 3rem;
     transform: rotate(2deg);
-    background-color: #eaeaea;
+    background-color: var(--nav-btn-bg);
+    color: var(--text-color);
 }
 
 small {
