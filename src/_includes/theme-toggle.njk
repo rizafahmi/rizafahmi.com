@@ -16,6 +16,14 @@
       html.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
       toggleBtn.innerText = newTheme === 'dark' ? '☀️' : '🌙';
+
+      var utterancesFrame = document.querySelector('.utterances-frame');
+      if (utterancesFrame) {
+        utterancesFrame.contentWindow.postMessage(
+          { type: 'set-theme', theme: newTheme === 'dark' ? 'github-dark' : 'github-light' },
+          'https://utteranc.es'
+        );
+      }
     });
   }
 </script>

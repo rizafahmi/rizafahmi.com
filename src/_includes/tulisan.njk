@@ -93,13 +93,20 @@ title: Judul
       {%- if page.url == '/uses/' %}{% set show_comments = true %}{%- endif %}
 
       {%- if show_comments %}
-      <script src="https://utteranc.es/client.js"
-        repo="rizafahmi/rizafahmi.com"
-        issue-term="pathname"
-        label="💬 Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+      <div id="utterances-container"></div>
+      <script>
+        (function() {
+          var theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'github-dark' : 'github-light';
+          var script = document.createElement('script');
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', 'rizafahmi/rizafahmi.com');
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', '💬 Comment');
+          script.setAttribute('theme', theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          document.getElementById('utterances-container').appendChild(script);
+        })();
       </script>
       {%- endif %}
     </footer>
