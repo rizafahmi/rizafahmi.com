@@ -6,6 +6,9 @@ layout: tulisan
 tags:
   - catatan
   - elixir
+  - struktur-data
+  - computer-science
+
 eleventyExcludeFromCollections: true
 ---
 Elixir memiliki struktur data koleksi atau *collection types* yang biasanya dapat digunakan untuk mengoleksi berbagai bentuk data: List dan Tuple. Tulisan kali ini kita akan membahas tentang struktur data di bahasa pemrograman Elixir melanjutkan [perkenalan bahasa Elixir di artikel sebelumnya](https://rizafahmi.com/catatan/bahasa-fungsional-elixir/).

@@ -5,6 +5,10 @@ created: 2025-04-11
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - agentic-coding
+  - spesifikasi
+
 eleventyExcludeFromCollections: false
 ---
 

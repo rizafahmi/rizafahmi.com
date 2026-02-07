@@ -6,6 +6,9 @@ layout: tulisan
 tags:
   - catatan
   - elixir
+  - functional-programming
+  - paradigma
+
 eleventyExcludeFromCollections: false
 ---
 

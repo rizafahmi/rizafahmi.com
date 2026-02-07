@@ -51,6 +51,25 @@ title: Judul
         <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
         {%- endif -%}
         <small class="reading-time">⏱️ {{ content | readingTime }}</small>
+
+        {%- if tags %}
+          {%- set _tags = tags %}
+          {%- if _tags is string %}{% set _tags = [_tags] %}{% endif %}
+          {%- set visibleTags = [] %}
+          {%- for t in _tags %}
+            {%- if t and t != 'catatan' and t != 'all' and t != 'post' and t != 'nav' %}
+              {%- set visibleTags = (visibleTags.push(t), visibleTags) %}
+            {%- endif %}
+          {%- endfor %}
+
+          {%- if visibleTags.length %}
+            <small class="note-tags">🏷️ Topik:
+              {%- for t in visibleTags %}
+                <a href="/tags/{{ t | url }}/">{{ t }}</a>{% if not loop.last %}, {% endif %}
+              {%- endfor %}
+            </small>
+          {%- endif %}
+        {%- endif %}
       </div>
       <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/main/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
       <div class="note-edit">

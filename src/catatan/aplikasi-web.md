@@ -4,7 +4,11 @@ permalink: "/tampilan-web/"
 date: 2023-05-26
 created: 2023-05-26
 layout: tulisan
-tags: catatan
+tags:
+  - catatan
+  - web
+  - tutorial
+
 ---
 
 <small style="color: rgba(252,252,252,0.5);"><em>Berikut adalah materi tertulis untuk acara workshop di Surabaya yang diselenggarakan Mei 2023.</em></small>

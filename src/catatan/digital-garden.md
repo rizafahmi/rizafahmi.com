@@ -5,7 +5,10 @@ modified: 2024-09-23
 layout: tulisan
 tags:
   - catatan
-  - ide
+  - menulis
+  - produktivitas
+  - tools
+
 eleventyExcludeFromCollections: true
 ---
 

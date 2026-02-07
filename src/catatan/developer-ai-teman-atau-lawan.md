@@ -5,6 +5,10 @@ modified: 2025-02-11
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - opini
+  - developer
+
 eleventyExcludeFromCollections: true
 ---
 Intro

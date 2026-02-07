@@ -6,6 +6,10 @@ modified: 2025-08-19
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - agentic-coding
+  - desain-ui
+
 eleventyExcludeFromCollections: false
 ---
 

@@ -4,7 +4,11 @@ date: 2018-07-12
 permalink: /2018/07/12/rangkuman-acara-devc-jakarta-build-day-2018/
 cover: "./devc.jpeg"
 layout: tulisan
-tags: catatan
+tags:
+  - catatan
+  - komunitas
+  - rangkuman
+
 ---
 
 ## Meetup DeveloperCircles Jakarta Build Day 2018

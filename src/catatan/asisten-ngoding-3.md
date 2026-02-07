@@ -5,6 +5,10 @@ modified: 2025-06-10
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - agentic-coding
+  - planning
+
 eleventyExcludeFromCollections: false
 ---
 
