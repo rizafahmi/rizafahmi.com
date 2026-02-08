@@ -141,6 +141,12 @@ p {
     font-size: 1rem;
 }
 
+strong, b {
+    font-weight: 900;
+    letter-spacing: 0.01em;
+    -webkit-text-stroke: 0.3px currentColor;
+}
+
 .note-modified {
     margin-left: 0.5rem;
 }

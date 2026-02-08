@@ -5,36 +5,45 @@ title: Judul
 <html lang="id">
   <head>
     <title>{{ title }}</title>
-    <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen">
-    <link rel="preload" as="style" href="/assets/tulisan.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="/assets/tulisan.css" type="text/css" media="screen">
+    <link rel="preload" as="style" href="/assets/global.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/global.css" type="text/css">
+    <link rel="preload" as="style" href="/assets/tulisan.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/tulisan.css" type="text/css">
     {% include 'head.njk' %}
   </head>
   <body>
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
       {% include 'back_button.njk' %}
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.5rem;">🌙</button>
-    </div>
+    </nav>
 
-    <h2>{{ title }}</h2>
+    <main>
+      <article>
+        <header>
+          <h2>{{ title }}</h2>
+          <small>Bagian dari serial tentang <span class="tags">{{tags}}</span></small>
+        </header>
 
-    <small>Bagian dari serial tentang <span class="tags">{{tags}}</span></h3>
+        {{ content | safe }}
+      </article>
+    </main>
 
-    {{ content | safe }}
+    <footer>
+      <hr />
 
-    <hr />
+      <nav>
+        <a class="back" href="/">&lt; Kembali ke halaman utama</a>
+      </nav>
 
-    <a class="back" href="/">&lt; Kembali ke halaman utama</a>
-
-    <script src="https://utteranc.es/client.js"
-      repo="rizafahmi/rizafahmi.com"
-      issue-term="pathname"
-      label="💬 Comment"
-      theme="github-light"
-      crossorigin="anonymous"
-      async>
-    </script>
+      <script src="https://utteranc.es/client.js"
+        repo="rizafahmi/rizafahmi.com"
+        issue-term="pathname"
+        label="💬 Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </footer>
 
     {% include 'analytics.njk' %}
     {% include 'theme-toggle.njk' %}

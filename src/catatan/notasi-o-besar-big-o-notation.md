@@ -1,6 +1,7 @@
 ---
 title: "Notasi O Besar atau Big-O Notation"
 date: 2020-03-21
+created: 2020-03-21
 permalink: /2020/03/21/notasi-o-besar-big-o-notation/
 cover: "./valentin-lacoste-jNSJE8dMro0-unsplash.jpg"
 layout: tulisan
