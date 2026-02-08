@@ -170,7 +170,9 @@ Mari kita praktekkan langkah demi langkah. Berhubung LLM chatbot saat ini sudah 
 	</picture>
 </figure>
 
-Untuk itu, kita perlu membangun chatbot sederhana. Dengan memanfaatkan REST API, kita bisa memberi instruksi sederhana dalam satu kesempatan (one shot) dan LLM akan mengirimkan respons. Contohnya bisa menggunakan beberapa penyedia jasa LLM seperti Google, Anthropic, OpenAI dan sebagainya. Untuk contoh disini akan menggunakan Google dan Gemini 3 Flash sebagai pilihan modelnya. Silakan ganti URL, model dan variable API_KEY jika ingin menggunakan penyedia jasa LLM lain.
+Untuk itu, kita perlu membangun chatbot sederhana. Dengan memanfaatkan REST API, kita bisa memberi instruksi sederhana dalam satu kesempatan (*one shot*) dan LLM akan mengirimkan respons. Contohnya bisa menggunakan beberapa penyedia jasa LLM seperti Google, Anthropic, OpenAI dan sebagainya. Untuk contoh disini akan menggunakan Google dan Gemini 3 Flash sebagai pilihan modelnya. Silakan ganti URL, model dan variable API_KEY jika ingin menggunakan penyedia jasa LLM lain.
+
+Kali ini kode menggunakan bahasa fungsional Elixir. Silakan kirim komentar dibawah jika ingin melihat dengan bahasa pemrograman lain.
 
 ```elixir
 defmodule Mbb do
