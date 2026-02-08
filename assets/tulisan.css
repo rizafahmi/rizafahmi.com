@@ -31,6 +31,10 @@ table {
 
 table {
     border-collapse: collapse;
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 th,
@@ -48,6 +52,14 @@ pre.shiki {
     font-size: 1rem;
     text-wrap: balance;
     line-height: 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Generic pre blocks (non-shiki) */
+pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 p > code {
