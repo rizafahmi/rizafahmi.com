@@ -4,7 +4,12 @@ date: 2017-05-11
 permalink: "/2017/05/11/5-kebiasaan-coding/"
 cover: "./1_JaLmTHV3SDIqTNaczZdhCQ.png"
 layout: tulisan
-tags: catatan
+tags:
+  - catatan
+  - produktivitas
+  - belajar
+  - developer
+
 ---
 
 > "Genius is 1% talent and 99% percent hard work…" — Albert Einstein

@@ -7,11 +7,11 @@
   "scripts": {
     "clean": "npx rimraf dist/",
     "prestart": "npm run clean",
-    "start": "ELEVENTY_ENV=dev npx eleventy --serve",
+    "start": "ELEVENTY_ENV=dev npx @11ty/eleventy --serve",
     "prebuild": "npm run clean",
-    "build": "ELEVENTY_ENV=dev npx eleventy",
-    "build:prod": "ELEVENTY_ENV=prod npx eleventy && npx pagefind --site dist",
-    "debug": "DEBUG=* npx eleventy",
+    "build": "ELEVENTY_ENV=dev npx @11ty/eleventy",
+    "build:prod": "ELEVENTY_ENV=prod npx @11ty/eleventy && npx pagefind --site dist",
+    "debug": "DEBUG=* npx @11ty/eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

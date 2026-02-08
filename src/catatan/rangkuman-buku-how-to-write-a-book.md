@@ -2,7 +2,12 @@
 title: 'Rangkuman Buku "How to Write a Book"'
 permalink: "/rangkuman-how-to-write-a-book/"
 date: 2022-11-05
-tags: catatan
+tags:
+  - catatan
+  - menulis
+  - rangkuman
+  - buku
+
 layout: tulisan
 eleventyExcludeFromCollections: true
 ---

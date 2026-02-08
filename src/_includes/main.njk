@@ -12,8 +12,15 @@ title: Judul
     {% include 'head.njk' %}
   </head>
   <body>
-    <header style="display: flex; justify-content: space-between; align-items: center;">
-      <h1><a href="/">👋 Saya Riza!</a></h1>
+    <header class="site-header" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+      <div style="display:flex; align-items:center; gap: 0.75rem;">
+        <h1 style="margin:0;"><a href="/">👋 Saya Riza!</a></h1>
+        <nav class="hero-nav" style="margin-left: .25rem;">
+          <a href="/articles">📰 Catatan</a>
+          <a href="/tags">🏷️ Topik</a>
+          <a href="/search">🔍 Cari</a>
+        </nav>
+      </div>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
     </header>
     {{ content | safe }}

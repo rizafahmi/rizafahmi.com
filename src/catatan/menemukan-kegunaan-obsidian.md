@@ -5,7 +5,10 @@ modified: 2024-09-27
 layout: tulisan
 tags:
   - catatan
-  - ide
+  - tools
+  - produktivitas
+  - menulis
+
 eleventyExcludeFromCollections: true
 ---
 - Maksudnya kegunaan selain menyimpan catatan pribadi ya

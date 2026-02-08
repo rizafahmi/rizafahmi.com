@@ -59,6 +59,67 @@ export default function (eleventyConfig) {
     return minutes + " menit baca";
   });
 
+  const HIDDEN_TAGS = new Set(["all", "nav", "post", "catatan"]);
+
+  function normalizeTags(tags) {
+    if (!tags) return [];
+    let arr = tags;
+    if (typeof arr === "string") arr = [arr];
+    if (!Array.isArray(arr)) return [];
+    return arr.filter((t) => t && !HIDDEN_TAGS.has(t));
+  }
+
+  // Pick related posts by shared tags/topik.
+  // Deterministic ordering: shared tag count (desc), date (desc), url (asc).
+  eleventyConfig.addFilter("relatedByTags", (collection, tags, currentUrl, limit = 3) => {
+    if (!Array.isArray(collection) || !collection.length) return [];
+
+    const currentTags = new Set(normalizeTags(tags));
+
+    const scored = [];
+    for (const item of collection) {
+      if (!item || item.url === currentUrl) continue;
+
+      const itemTags = normalizeTags(item.data && item.data.tags);
+      let shared = 0;
+      if (currentTags.size) {
+        for (const t of itemTags) {
+          if (currentTags.has(t)) shared++;
+        }
+      }
+
+      scored.push({
+        item,
+        shared,
+        date: item.data && item.data.date ? new Date(item.data.date).getTime() : 0,
+        url: item.url || "",
+      });
+    }
+
+    scored.sort((a, b) => {
+      if (b.shared !== a.shared) return b.shared - a.shared;
+      if (b.date !== a.date) return b.date - a.date;
+      return a.url.localeCompare(b.url);
+    });
+
+    // Prefer posts with at least 1 shared tag; otherwise fall back to latest.
+    const withShared = scored.filter((x) => x.shared > 0);
+    return (withShared.length ? withShared : scored)
+      .slice(0, limit)
+      .map((x) => x.item);
+  });
+
+  // Plain-text excerpt for meta description (social previews, SEO).
+  eleventyConfig.addFilter("excerpt", (content, length = 180) => {
+    if (!content) return "";
+    const text = content
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (text.length <= length) return text;
+    return text.slice(0, length).replace(/\s+\S*$/, "") + "…";
+  });
+
   eleventyConfig.addCollection("catatan", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
   });
@@ -68,6 +129,27 @@ export default function (eleventyConfig) {
       .filter(item => item.data.date)
       .sort((a, b) => b.data.date - a.data.date)
       .slice(0, 4);
+  });
+
+  // Curated tag list for /tags and /tags/<tag>/ pages.
+  // Eleventy automatically creates collections per tag; this collection
+  // only defines which tags should be shown.
+  eleventyConfig.addCollection("tagList", function(collectionApi) {
+    const tagSet = new Set();
+    for (const item of collectionApi.getAll()) {
+      let tags = item.data && item.data.tags;
+      if (!tags) continue;
+      if (typeof tags === "string") tags = [tags];
+      if (!Array.isArray(tags)) continue;
+
+      for (const tag of tags) {
+        if (!tag) continue;
+        // Hide overly-generic/internal tags
+        if (["all", "nav", "post", "catatan"].includes(tag)) continue;
+        tagSet.add(tag);
+      }
+    }
+    return [...tagSet].sort((a, b) => a.localeCompare(b));
   });
 
   return {

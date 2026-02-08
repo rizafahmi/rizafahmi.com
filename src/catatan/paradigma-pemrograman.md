@@ -5,7 +5,9 @@ created: 2024-09-22
 layout: tulisan
 tags:
   - catatan
-  - ide
+  - paradigma
+  - computer-science
+
 eleventyExcludeFromCollections: false
 ---
 

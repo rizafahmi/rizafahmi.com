@@ -49,42 +49,86 @@ title: Judul
 
     <main class="container">
       <article>
-        <header>
-          <h2>{{ title }}</h2>
-          <div class="article-meta">
-            {%- if created -%}
-            <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
-            {%- endif -%}
-            {%- if modified -%}
-            <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
-            {%- endif -%}
-            <small class="reading-time">⏱️ {{ content | readingTime }}</small>
-          </div>
-          <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/main/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
-        </header>
+      {%- set canonicalUrl = "https://rizafahmi.com" + page.url -%}
+      {%- set xShareHref = "https://twitter.com/intent/tweet?text=" + (title | urlencode) + "&url=" + (canonicalUrl | urlencode) -%}
+      {%- set liShareHref = "https://www.linkedin.com/shareArticle?mini=true&url=" + (canonicalUrl | urlencode) + "&title=" + (title | urlencode) + "&summary=" + ((description or title) | urlencode) -%}
 
-        {{ content | safe }}
-      </article>
-    </main>
+      <h2>{{ title }}</h2>
+      <div class="article-meta">
+        {%- if created -%}
+        <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
+        {%- endif -%}
+        {%- if modified -%}
+        <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
+        {%- endif -%}
+        <small class="reading-time">⏱️ {{ content | readingTime }}</small>
+        <small class="share-links" aria-label="Bagikan">
+          <button
+            type="button"
+            class="share-native"
+            data-share-native
+            data-share-title="{{ title | escape }}"
+            data-share-url="{{ canonicalUrl }}"
+            hidden>
+            🔗 Bagikan bila bermanfaat
+          </button>
 
-    {%- if '/catatan/' in page.url %}
-    <aside class="related-articles container">
-      <h3>📚 Artikel Lainnya</h3>
-      <div class="related-grid">
-        {%- set count = 0 %}
-        {%- for article in collections.latestCatatan %}
-          {%- if article.url != page.url and count < 3 %}
+          <span class="share-fallback" data-share-fallback>
+            🔗 Bagikan bila bermanfaat:
+            <a class="share-link" href="{{ xShareHref }}" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke X">X</a>
+            <a class="share-link" href="{{ liShareHref }}" target="_blank" rel="noopener noreferrer" aria-label="Bagikan ke LinkedIn">LinkedIn</a>
+            <button type="button" class="share-link share-copy" data-share-copy data-share-url="{{ canonicalUrl }}" aria-label="Salin link">📋 Salin</button>
+          </span>
+        </small>
+
+        {%- if tags %}
+          {%- set _tags = tags %}
+          {%- if _tags is string %}{% set _tags = [_tags] %}{% endif %}
+          {%- set visibleTags = [] %}
+          {%- for t in _tags %}
+            {%- if t and t != 'catatan' and t != 'all' and t != 'post' and t != 'nav' %}
+              {%- set visibleTags = (visibleTags.push(t), visibleTags) %}
+            {%- endif %}
+          {%- endfor %}
+
+          {%- if visibleTags.length %}
+            <small class="note-tags">🏷️ Topik:
+              {%- for t in visibleTags %}
+                <a href="/tags/{{ t | url }}/">{{ t }}</a>{% if not loop.last %}, {% endif %}
+              {%- endfor %}
+            </small>
+          {%- endif %}
+        {%- endif %}
+      </div>
+      <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/main/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
+      <div class="note-edit">
+      </div>
+
+      {{ content | safe }}
+
+      <section class="follow-cta" aria-label="Ikuti saya">
+        <p>
+          Jika kamu suka tulisan ini, ikuti saya di
+          <a href="https://x.com/rizafahmi22" target="_blank" rel="noopener noreferrer">X</a>
+          dan
+          <a href="https://linkedin.com/in/rizafahmi" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+        </p>
+      </section>
+
+      {%- if '/catatan/' in page.url %}
+      <section class="related-articles">
+        <h3>📚 Artikel Terkait</h3>
+        <div class="related-grid">
+          {%- set related = collections.catatan | relatedByTags(visibleTags, page.url, 3) %}
+          {%- for article in related %}
             <a href="{{ article.url }}" class="related-card">
               <span class="related-title">{{ article.data.title }}</span>
             </a>
-            {%- set count = count + 1 %}
-          {%- endif %}
-        {%- endfor %}
-      </div>
-    </aside>
-    {%- endif %}
+          {%- endfor %}
+        </div>
+      </section>
+      {%- endif %}
 
-    <footer class="container">
       <hr />
 
       {%- set show_comments = false %}
@@ -109,8 +153,58 @@ title: Judul
         })();
       </script>
       {%- endif %}
-    </footer>
+      </article>
+    </main>
 
+    <footer class="container">
+
+      <script>
+        (function () {
+          const btn = document.querySelector('[data-share-native]');
+          const fallback = document.querySelector('[data-share-fallback]');
+          const copyBtn = document.querySelector('[data-share-copy]');
+
+          if (!btn || !fallback) return;
+
+          // Native share (mostly mobile + some desktop Safari)
+          if (navigator && typeof navigator.share === 'function') {
+            btn.hidden = false;
+            fallback.hidden = true;
+
+            btn.addEventListener('click', async function () {
+              const title = btn.getAttribute('data-share-title') || document.title;
+              const url = btn.getAttribute('data-share-url') || window.location.href;
+              const text = `${title} ${url}`;
+
+              try {
+                await navigator.share({ title, text, url });
+              } catch (e) {
+                // User cancelled or share failed; ignore.
+              }
+            });
+          } else {
+            btn.hidden = true;
+            fallback.hidden = false;
+          }
+
+          // Clipboard fallback (nice for desktop)
+          if (copyBtn && navigator && navigator.clipboard && navigator.clipboard.writeText) {
+            copyBtn.addEventListener('click', async function () {
+              const url = copyBtn.getAttribute('data-share-url') || window.location.href;
+              try {
+                await navigator.clipboard.writeText(url);
+                const old = copyBtn.textContent;
+                copyBtn.textContent = '✅ Tersalin';
+                setTimeout(() => (copyBtn.textContent = old), 1200);
+              } catch (e) {
+                // ignore
+              }
+            });
+          }
+        })();
+      </script>
+
+    </footer>
     {% include 'analytics.njk' %}
     {% include 'theme-toggle.njk' %}
   </body>

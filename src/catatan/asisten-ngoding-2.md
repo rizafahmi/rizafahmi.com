@@ -6,6 +6,10 @@ date: 2025-06-13
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - agentic-coding
+  - spesifikasi
+
 eleventyExcludeFromCollections: false
 ---
 

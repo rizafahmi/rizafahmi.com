@@ -4,7 +4,11 @@ created: 2025-12-04
 modified: 2025-12-05
 layout: tulisan
 tags:
+  - catatan
   - ai
+  - gemini
+  - review
+
 eleventyExcludeFromCollections: true
 ---
 
