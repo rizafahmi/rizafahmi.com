@@ -28,7 +28,7 @@
     <email>{{ metadata.author.email }}</email>
   </author>
   <generator>Eleventy</generator>
-  {%- for post in collections.all | reverse %}
+  {%- for post in collections.catatan | reverse %}
   {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
   <entry>
     <title>{{ post.data.title }}</title>
