@@ -341,7 +341,7 @@ eleventyExcludeFromCollections: true
 
   <script>
     // Typewriter Logic
-    const text = "Sedang menulis artikel tentang cara kerja coding agent. Sementara bisa diintip di github.com/rizafahmi/mbb/issues";
+    const text = "Baru rilis artikel tentang cara kerja coding agent. Bisa diintip di rizafahmi.com/catatan/agentic-coding";
     const typewriterElement = document.getElementById('typewriter');
     let i = 0;
 
@@ -353,8 +353,8 @@ eleventyExcludeFromCollections: true
       } else {
         // Kalau udah selesai ngetik, ubah URL jadi link aktif
         const finalHtml = typewriterElement.innerHTML.replace(
-          /github\.com\/rizafahmi\/mbb\/issues/g, 
-          '<a href="https://github.com/rizafahmi/mbb/issues" target="_blank" style="border-bottom: 1px dashed;">github.com/rizafahmi/mbb/issues</a>'
+          /rizafahmi\.com\/catatan\/agentic-coding/g,
+          '<a href="https://rizafahmi.com/catatan/agentic-coding" style="border-bottom: 1px dashed;">rizafahmi.com/catatan/agentic-coding</a>'
         );
         typewriterElement.innerHTML = finalHtml;
       }
