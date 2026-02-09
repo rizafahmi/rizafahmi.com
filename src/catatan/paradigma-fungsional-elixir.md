@@ -203,7 +203,7 @@ title |> String.downcase() |> String.replace(~r/[^a-z0-9\s]/, "") |> String.repl
 Elixir dan F# menggunakan notasi `|>` untuk hal ini. Jika teman-teman pernah menggunakan notasi `|` di bash script atau command line unix/linux juga sama cara kerjanya.
 
 ```sh
-$ grep "error" data.txt | wc -l
+grep "error" data.txt | wc -l
 ```
 
 `grep "error" data.txt` akan mencari semua baris yang mengandung kata "error".    
@@ -266,19 +266,19 @@ end
 Fungsi diatas, jika dijalankan dengan angka yang semakin besar, waktu yang dibutuhkan akan semakin lama, dan meningkat secara eksponensial. Contoh hasil eksekusi dibawah memperlihatkan peningkatan signifikan dari fibonacci 30 yang membutuhkan 200-an milidetik menjadi 3 detik untuk menghasilkan fibonacci 40.
 
 ```shell
-$ time ./fibonacci 20
+time ./fibonacci 20
 The 20th Fibonacci number is: 6765
 
 ________________________________________________________
 Executed in  186.83 millis
 
-$ time ./fibonacci 30
+time ./fibonacci 30
 The 30th Fibonacci number is: 832040
 
 ________________________________________________________
 Executed in  211.43 millis
 
-$ time ./fibonacci 40
+time ./fibonacci 40
 The 40th Fibonacci number is: 102334155
 
 ________________________________________________________
@@ -310,19 +310,19 @@ end
 Kita coba bandingkan hasil eksekusinya.
 
 ```shell
-$ time ./fibonacci 20
+time ./fibonacci 20
 The 20th Fibonacci number is: 6765
 
 ________________________________________________________
 Executed in  155.38 millis
 
-$ time ./fibonacci 30
+time ./fibonacci 30
 The 30th Fibonacci number is: 832040
 
 ________________________________________________________
 Executed in  162.81 millis
 
-$ time ./fibonacci 40
+time ./fibonacci 40
 The 40th Fibonacci number is: 102334155
 
 ________________________________________________________

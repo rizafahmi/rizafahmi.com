@@ -195,10 +195,10 @@ Sekarang kita akan melihat bagaimana cara menggunakan masing-masing framework da
 Untuk Angular, pertama kita instal alat bantu CLI dengan npm. Kemudian CLI kita gunakan untuk men-_generate_ proyek Angular baru. Serve untuk kemudian dibuka di browser.
 
 ```shell
-$ npm install -g @angular/cli
-$ ng new jsday
-$ cd jsday
-$ ng serve --open
+npm install -g @angular/cli
+ng new jsday
+cd jsday
+ng serve --open
 ```
 
 Kemudian kita akan membuat hello world, dengan komponen dengan membuat file baru `jsday.component.ts`.
@@ -251,11 +251,10 @@ Kemudian kita akan menggunakan komponen jsday di file utama `app.module.ts`. Imp
 Langkah-langkahnya hampir mirip dengan Angular, pertama kita lakukan instalasi alat bantu CLI. Kemudian kita Ggunakan CLI untuk men-generate proyek baru. Masuk ke direktor dan jalankan ember serve.
 
 ```shell
-
-    $ npm install -g ember-cli
-    $ ember new jsday
-    $ cd jsday
-    $ ember serve
+npm install -g ember-cli
+ember new jsday
+cd jsday
+ember serve
 ```
 
 Kita mulai dengan membuat komponen baru di file baru di `app/components/jsday.js`. Import component dari pustaka `ember/component`, dan kemudian di extend untuk membuat komponen baru.
@@ -291,8 +290,8 @@ Dan sekarang kita dapat menggunakan komponen jsday di template seperti ini.
 Untuk jQuery cukup straigthforward penggunaannya, buat sebuah folder dan sebuah file.
 
 ```shell
-    $ mkdir jsday
-    $ cd jsday
+mkdir jsday
+cd jsday
 ```
 
 Kemudian tambahkan CDN jQuery dan dapat segera digunakan.
@@ -332,8 +331,8 @@ $(document).ready(function () {
 Bagaimana dengan React? Karena di tutorial resminya menggunakan CDN, maka kita akan menggunakan CDN. Langkah-langkahnya mirip dengan jQuery sebenarnya. Dimulai dengan membuat folder dan file html.
 
 ```shell
-    $ mkdir jsday
-    $ cd jsday
+mkdir jsday
+cd jsday
 ```
 
 Gunakan CDN untuk pustaka react dan react-dom didalam file `index.html`. Kodenya sendiri kita akan tulis di file terpisah `app.js`.
@@ -384,10 +383,10 @@ ReactDOM.render(React.createElement(App), document.getElementById("root"));
 Sekarang kita masuk ke framework berikutnya, Svelte. Svelte memang tidak memiliki CLI bawaan seperti halnya Angular atau Ember. Tapi di dokumentasinya kita disarankan menggunakan tools yang namanya degit. Sederhananya degit ini melakukan clone template yang sudah disiapkan di git atau github untuk proyek svelte ataupun proyek lainnya secara umum. Setelah menjalankan degit dengan npx kita jalankan npm install dan jalankan dengan npm run dev.
 
 ```shell
-    $ npx degit sveltejs/template jsday
-    $ cd jsday
-    $ npm install
-    $ npm run dev
+npx degit sveltejs/template jsday
+cd jsday
+npm install
+npm run dev
 ```
 
 Selanjutnya kita buat komponen baru dengan header level 2 dengan nama `jsday.svelte`.
@@ -419,8 +418,8 @@ Dan kita tinggal gunakan komponen JSDay. Jangan lupa diimport agar dapat digunak
 Kita masuk ke framework terakhir yaitu Vue. Vue juga di awal tutorialnya menyarankan menggunakan CDN sama halnya seperti React dan jQuery. Jadi tinggal buat sebuah folder dan buat sebuah file html.
 
 ```shell
-    $ mkdir jsday
-    $ cd jsday
+mkdir jsday
+cd jsday
 ```
 
 Kemudian load vue dari CDN. Dan tulis kode vue di bagian script dibawah atau di file terpisah.

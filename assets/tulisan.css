@@ -56,6 +56,11 @@ pre.shiki {
     -webkit-overflow-scrolling: touch;
 }
 
+.line-prefix {
+    user-select: none;
+    opacity: 0.5;
+}
+
 /* Generic pre blocks (non-shiki) */
 pre {
     overflow-x: auto;

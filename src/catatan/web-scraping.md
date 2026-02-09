@@ -39,9 +39,9 @@ Kesempatan kali ini kita akan belajar cara melakukan web scraping dengan JavaScr
 # Bagian 1: Persiapan Proyek
 
 ```bash
-  $ mkdir webscraping
-  $ cd webscraping
-  $ npm init -y
+mkdir webscraping
+cd webscraping
+npm init -y
 ```
 
 ## Instalasi alat bantu
@@ -51,7 +51,7 @@ Salah satu keunggulan Cheerio dibandingkan pustaka lain adalah API yang sederhan
 dari halaman web.
 
 ```bash
-	$ npm install cheerio
+npm install cheerio
 ```
 
 # Bagian 2: Web Scraping Dasar
@@ -76,7 +76,11 @@ console.log($);
 Coba dijalankan, dan error…
 
 ```bash
-$ node app.js
+node app.js
+```
+
+
+```
 (node:55175) Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.
 (Use `node --trace-warnings ...` to show where the warning was created)
 /Users/riza/playground/webscrape-tutorial/app.js:1
@@ -118,7 +122,10 @@ Node secara default masih menggunakan format `require`. Agar lebih ‘modern’ 
 ```
 
 ```bash
-➜ node app.js
+node app.js
+```
+
+```
 	[Function: initialize] {
 		contains: [Function: contains],
 		html: [Function: html],
@@ -363,7 +370,7 @@ Karena dokumen di-render di sisi klien (web browser)
 Kita butuh pustaka lain: puppeteer
 
 ```shell
-$ npm i puppeteer
+npm i puppeteer
 ```
 
 ### `app.js`

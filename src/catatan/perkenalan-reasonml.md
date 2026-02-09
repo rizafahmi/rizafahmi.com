@@ -111,23 +111,26 @@ Jadi misalnya kita sedang belajar functional programming tetapi belum menguasai 
 
 Untuk mulai menggunakan Reason, ada beberapa package yang kita butuhkan. Pertama, kita butuh reason-cli . Karena kita akan membuat aplikasi JavaScript di sisi client, kita juga butuh BuckleScript untuk melakukan kompilasi Reason atau OCaml ke JavaScript. Kedua _package_ tersebut dapat kita install menggunakan yarn atau npm.
 
-    $ yarn global add reason-cli
-    $ yarn global add bs-platform
-
+```shell
+yarn global add reason-cli
+yarn global add bs-platform
+```
 Untuk membuat aplikasi sederhana, kita sekarang bisa menggunakan perintah:
 
 ```shell
-    $ bsb -init nama-app -theme basic-reason
-    $ cd nama-app
-    $ tree
-    ./reason-demo/
-    ├── .vscode
-    ├── src
-    │   └── Demo.re
-    ├── .gitignore
-    ├── README.md
-    ├── bsconfig.json
-    └── package.json
+bsb -init nama-app -theme basic-reason
+cd nama-app
+tree
+```
+
+```
+./reason-demo/
+├── src
+│   └── Demo.re
+├── .gitignore
+├── README.md
+├── bsconfig.json
+└── package.json
 ```
 
 Mari kita bahas satu-per-satu. Pertama ada folder src yang berisi kode Reason kita. Kemudian ada package.json yang merupakan daftar _dependencies_ sama seperti project JavaScript ataupun NodeJS.
@@ -144,11 +147,13 @@ Sekarang mari kita coba buka file src/Demo.re . Isinya kodenya cukup sederhana, 
 
 Sekedar informasi, semua modul yang menggunakan Js.\* berasal dari BuckleScript. Contohnya Js.log, Js.Promise, Js.then\_ dan lain sebagainya. Dan untuk melakukan kompilasi dari Reason menjadi JavaScript, kita tinggal menjalankan perintah berikut.
 
-```diff
-    $ yarn build
-    $ tree .
+```shell
+yarn build
+tree .
+```
+
+```
     .
-    ├── .vscode
     ├── lib
     │   └── bs
     ├── src
