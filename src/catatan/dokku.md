@@ -66,23 +66,23 @@ lupa lakukan update dan upgrade sebelum instalasi Dokku.
 
 ```shell
 # Contoh jika menggunakan linux ubuntu/debian
-$ sudo apt update
-$ sudo apt upgrade
+sudo apt update
+sudo apt upgrade
 ```
 
 Selanjutnya lakukan instalasi Dokku seperti yang tertera di
 dokumentasinya.
 
 ```shell
-$ wget -NP . https://dokku.com/install/v0.31.1/bootstrap.sh
-$ sudo DOKKU_TAG=v0.31.1 bash bootstrap.sh
+wget -NP . https://dokku.com/install/v0.31.1/bootstrap.sh
+sudo DOKKU_TAG=v0.31.1 bash bootstrap.sh
 ```
 
 Lakukan sedikit konfigurasi untuk otorisasi via ssh. Dan Dokku siap
 digunakan.
 
 ```shell
-$ sudo su # act as super user
+sudo su # act as super user
 %> cat /home/admin/.ssh/authorized_keys | dokku ssh-keys:add admin
 ```
 
@@ -91,8 +91,11 @@ $ sudo su # act as super user
 Sekarang Dokku sudah dapat dijalankan dengan menulis perintah
 `dokku`{.shell}
 
-```text
-$ dokku
+```shell
+dokku
+```
+
+```
 Usage: dokku [--quiet|--trace|--force] COMMAND <app> [command-specific-options]
 
 Primary help options, type "dokku COMMAND:help" for more details, or dokku help --all to see all commands.
@@ -151,8 +154,11 @@ Commands:
 Langkah pertama untuk menyiapkan Dokku untuk penggelaran adalah untuk
 membuat aplikasi via perintah dokku.
 
-```text
-$ dokku apps:help
+```shell
+dokku apps:help
+```
+
+```
 Usage: dokku apps[:COMMAND]
 
 Manage apps
@@ -174,11 +180,13 @@ Additional commands:
 Jalankan perintah berikut di server.
 
 ```shell
-$ dokku apps:create dokku_express
+dokku apps:create dokku_express
+```
+```
 -----> Creating dokku_express…
 =====> Global server virtual host not set, disabling app host…
 
-$ dokku app:list
+dokku app:list
 =====> My Apps
 dokku_express
 
@@ -194,9 +202,10 @@ ini adalah sebuah aplikasi Node.js sederhana.
 ### Mengirimkan kode ke Dokku
 
 Kirimkan kode yang ingin digelar ke server Dokku via git.
-
-    $ git remote add dokku dokku@<ip.addr>:landing
-    $ git push dokku main
+```shell
+git remote add dokku dokku@<ip.addr>:landing
+git push dokku main
+```
 
 Dan, bukan sulap bukan sihir secara otomatis Dokku dapat mendeteksi
 aplikasi kita, yang dibangun dengan NodeJS dan menyiapkan platform untuk
@@ -215,23 +224,40 @@ Dan jika belum memiliki domain aplikasi dapat diakses via public ip
 address yang bisa didapat di EC2.
 
 ```shell
-$ dokku domains:report
+dokku domains:report
+```
+
+```
 =====> landing domains information
        Domains app enabled: false
        Domains app vhosts:
        Domains global enabled: false
        Domains global vhosts:
+```
 
-$ dokku domains:add-global <ip.addr>
+```shell
+dokku domains:add-global <ip.addr>
+```
+
+```
 -----> Added <ip.addr>
+```
 
-$ dokku domains:add dokku_express <ip.addr>
+```shell
+dokku domains:add dokku_express <ip.addr>
+```
+
+```
 -----> Added <ip.addr> to dokku_express
 -----> Configuring <ip.addr>… (using build-in template)
 -----> Creating http nginx.conf
        Reloading nginx
+```
 
-$ dokku domains:report
+```shell
+dokku domains:report
+```
+```
 =====> dokku_express domains information
        Domains app enabled: true
        Domains app vhosts: <ip.addr>
@@ -261,17 +287,31 @@ Lakukan langkah berikut untuk mengembalikan konfigurasi domain ke awal
 lagi.
 
 ```shell
-$ dokku domains:clear-global
+dokku domains:clear-global
+```
+
+```
 -----> Clearing global domains
-$ dokku domains:clear dokku_express
+```
+
+```shell
+dokku domains:clear dokku_express
+```
+
+```
 =====> Global server virtual host not set, disabling vhosts...
 -----> No port set, setting to random open high port
 -----> Random port 40211
 -----> Creating http nginx.conf
        Reloading nginx
 -----> Cleared domains in dokku_express
+```
 
-$ dokku domains:report
+```shell
+dokku domains:report
+```
+
+```
 =====> landing domains information
        Domains app enabled:    false
        Domains app vhosts:
@@ -282,16 +322,29 @@ $ dokku domains:report
 Kemudian lakukan konfigurasi kembali untuk domain dan subdomain pilihan.
 
 ```shell
-$ dokku domains:set-global wiraku.dev
------> Added wiraku.dev
+dokku domains:set-global wiraku.dev
+```
 
-$ dokku domains:set dokku_express express.wiraku.dev
+```
+-----> Added wiraku.dev
+```
+
+```shell
+dokku domains:set dokku_express express.wiraku.dev
+```
+
+```
 -----> Set wiraku.dev for dokku_express
 -----> Configuring dokku_express.wiraku.dev... (using template)
 -----> Creating http nginx.conf
        Reloading nginx
+```
+    
+```shell
+dokku domains:report
+```
 
-$ dokku domains:report
+```
 =====> dokku_express domains information
        Domains app enabled:    true
        Domains app vhosts:     express.wiraku.dev
@@ -306,7 +359,10 @@ https. Sebelum itu, mari pastikan subdomain sudah sesuai dengan bantuan
 `curl`.
 
 ```shell
-$ curl http://express.wiraku.dev
+curl http://express.wiraku.dev
+```
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -326,8 +382,11 @@ letsencrypt yang merupakan salah satu _plugin_ resmi yang dikembangkan
 langsung oleh tim Dokku.
 
 ```shell
-$ sudo su
-%> dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+sudo su
+dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+```
+
+```
 Cloning into 'letsencrypt'...
 remote: Enumerating objects: 1103, done.
 remote: Counting objects: 100% (434/434), done.
@@ -336,9 +395,10 @@ Resolving deltas: 100% (703/703), done.
 -----> Plugin letsencrypt enabled
 ...
 Adding user dokku to group adm
+```
 
-%> exit
-
+```shell
+exit
 ```
 
 Dan sekarang _plugin_ letsencrypt sudah siap digunakan. Pekerjaan yang
@@ -347,7 +407,10 @@ Belum lagi untuk proses memperpanjang sertifikat. Dengan _plugin_ ini,
 bahkan kita bisa lakukan perpanjangan secara otomatis!
 
 ```shell
-$ dokku letsencrypt:help
+dokku letsencrypt:help
+```
+
+```
 Usage: dokku letsencrypt[:COMMAND]
 
 Manage the letsencrypt integration
@@ -369,10 +432,13 @@ Jalankan perintah `dokku letsencrypt:enable` untuk mengizinkan subdomain
 `express` dijalankan via https.
 
 ```shell
-$ dokku letsencrypt:set --global email <email@domain.com>
+dokku letsencrypt:set --global email <email@domain.com>
+```
+
+```
 =====> Setting email to <email@domain.com>
 
-$ dokku letsencrypt:enable express
+dokku letsencrypt:enable express
 =====> Enabling letsencrypt for express
 -----> Enabling ACME proxy for express...
 -----> Getting letsencrypt certificate for express via HTTP-01

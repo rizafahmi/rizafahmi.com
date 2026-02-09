@@ -1,7 +1,7 @@
 ---
 title: "JavaScript Ecosystem in Indonesia"
 date: 2020-02-03
-permalink: /2020/02/03/ekosistemjs/en/
+permalink: /ekosistemjs/en/
 cover: "../JSDAy.jpg"
 layout: tulisan
 tags:
@@ -190,10 +190,10 @@ Now let’s take a look at how to use each framework and library with the easies
 For Angular, first, we need to install a CLI tool with npm. Then we also can use CLI to generate a new Angular project. Use serve to open it in the browser.
 
 ```shell
-$ npm install -g @angular/cli
-$ ng new jsday
-$ cd jsday
-$ ng serve --open
+npm install -g @angular/cli
+ng new jsday
+cd jsday
+ng serve --open
 ```
 
 Then we’re going to make hello world Component in a new file `jsday.component.ts`.
@@ -244,10 +244,10 @@ Then we’re going to use thejsday component in the main file app.module.ts. Imp
 The steps in Ember are almost the same as the ones we use for Angular. First, we need to install a CLI tool. Then we use CLI to generate a new project. Go into the directory and run ember serve.
 
 ```shell
-$ npm install -g ember-cli
-$ ember new jsday
-$ cd jsday
-$ ember serve
+npm install -g ember-cli
+ember new jsday
+cd jsday
+ember serve
 ```
 
 We start by making a new component in a new file app/components/jsday.js. Import Component from ember/component library, and then extend it to make a new component.
@@ -284,8 +284,8 @@ Now we can use jsday component from the template like this:
 Using jQuery is pretty straightforward, make a new folder and a new file.
 
 ```shell
-$ mkdir jsday
-$ cd jsday
+mkdir jsday
+cd jsday
 ```
 
 Then add CDN jQuery and it’s ready to go.
@@ -324,8 +324,8 @@ $(document).ready(function () {
 How about React? Since they use CDN in its official tutorial, let’s also use CDN. The steps are actually similar to jQuery. Start by making a folder and an HTML file.
 
 ```shell
-$ mkdir jsday
-$ cd jsday
+mkdir jsday
+cd jsday
 ```
 
 Use CDN to import react and react-dom into index.html. But we’re going to write the code itself in a different file app.js.
@@ -374,10 +374,10 @@ ReactDOM.render(React.createElement(App), document.getElementById("root"));
 Now we’re going to the next framework, Svelte. Svelte does not have a default CLI tool like Angular or Ember. But in its documentation, they suggested using a tool called degit. Simply put, degit would clone a git or GitHub pre-provided template for a Svelte project or even other projects in general. After running degit command with npx we run npm install and run it with npm run dev.
 
 ```shell
-$ npx degit sveltejs/template jsday
-$ cd jsday
-$ npm install
-$ npm run dev
+npx degit sveltejs/template jsday
+cd jsday
+npm install
+npm run dev
 ```
 
 Next, we’re going to use a new component with a level 2 header in jsday.svelte file.
@@ -409,8 +409,8 @@ And we only to use that JSDay component. Don’t forget to import it in order to
 Now we’re going to the last framework in our list, Vue. Vue in its beginner tutorial also suggested us to use CDN, just like React and jQuery. So let’s make a folder and an HTML file.
 
 ```shell
-$ mkdir jsday
-$ cd jsday
+mkdir jsday
+cd jsday
 ```
 
 Then we’re going to load Vue from CDN. We can write the Vue code inside the script tag or in another file.

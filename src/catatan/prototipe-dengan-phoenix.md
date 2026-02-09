@@ -125,7 +125,7 @@ mix phx.server
 Jalankan juga `mix test` untuk memastikan testing berjalan lancar.
 
 ```bash
-$ mix test
+mix test
 Compiling 16 files (.ex)
 Generated eventflow app
 Running ExUnit with seed: 717094, max_cases: 20
@@ -148,7 +148,7 @@ git commit -m "Init"
 ## Otentikasi
 
 ```bash
-$ mix phx.gen.auth Accounts User users
+mix phx.gen.auth Accounts User users
 An authentication system can be created in two different ways:
 - Using Phoenix.LiveView (default)
 - Using Phoenix.Controller only
@@ -242,7 +242,7 @@ defmodule EventFlow.Accounts.User do
 Mari jalankan test yang dibuatkan oleh generator yang dijalankan sebelumnya. Untuk memastikan testing berhasil sebelum melakukan perubahan atau _refactor_.
 
 ```bash
-$ mix test
+mix test
 ...
  24) test update password form updates the user password (EventFlowWeb.UserLive.SettingsTest)
      test/eventflow_web/live/user_live/settings_test.exs:98
@@ -280,11 +280,11 @@ Sepertinya butuh `lazy_html` untuk menjalankan kode pengujian yang dihasilkan ge
 ```
 
 ```bash
-$ mix deps.get
+mix deps.get
 ```
 
 ```bash
-$ mix test
+mix test
 Generated eventflow app
 Running ExUnit with seed: 351808, max_cases: 20
 
@@ -322,7 +322,7 @@ Cek browser, error.
 Coba jalankan test, dijamin akan banyak yang gagal. 
 
 ```bash
-$ mix test
+mix test
 ...
 Finished in 0.3 seconds (0.2s async, 0.05s sync)
 110 tests, 88 failures
@@ -335,7 +335,7 @@ Ada beberapa faktor yang menyebabkan hal ini:
 Buat rancangan migrasi baru untuk menambahkan field name kedalam table database.
 
 ```bash
-$ mix ecto.gen.migration add_user_name
+mix ecto.gen.migration add_user_name
 * creating priv/repo/migrations/20250905035028_add_user_name.exs
 ```
 
@@ -357,7 +357,7 @@ end
 Jalankan proses migrasi database
 
 ```bash
-$ mix ecto.migrate
+mix ecto.migrate
 10:55:26.948 [info] == Running 20250905035028 EventFlow.Repo.Migrations.AddUserName.change/0 forward
 
 10:55:26.949 [info] alter table users
@@ -434,7 +434,7 @@ Akhirnya...
 Jalankan kembali testing. Tapi kok lolos semua? Wah ada yang aneh nih. 
 
 ```bash
-$ mix test
+mix test
 
 Generated eventflow app
 Running ExUnit with seed: 689918, max_cases: 20
@@ -470,7 +470,7 @@ Penyebabnya: field name bersifat opsional. Artinya kalaupun tidak diisi atau kos
 Sekarang kalau dijalankan, akan banyak error.
 
 ```bash
-$ mix test
+mix test
 
 ...
  87) test update_user_email/2 does not update email if token expired (EventFlow.AccountsTest)
@@ -506,7 +506,7 @@ Pada saat proses membuat user baru di kode testing, tambahkan nama sebagai sesua
 
 
 ```bash
-$ mix test
+mix test
 
 Generated eventflow app
 Running ExUnit with seed: 711647, max_cases: 20
@@ -540,7 +540,7 @@ Sisa 1 test yang gagal, ada di `test/eventflow/accounts_test.exs` baris 112. Yan
 ```
 
 ```bash
-$ mix test
+mix test
 
 Running ExUnit with seed: 639584, max_cases: 20
 
@@ -618,20 +618,20 @@ cd -P -- "$(dirname -- "$0")"
 Mari simpan perubahan yang kita lakukan ke repo.
 
 ```shell
-$ git add --all .
-$ git commit -m "Prepare Dockerfile, etc for deployment"
+git add --all .
+git commit -m "Prepare Dockerfile, etc for deployment"
 ```
 
 Agar dapat diakses dari server, kita buat repo GitHub dan kirim kodenya ke repo tersebut. Untuk membuat repo github, saya biasa menggunakan github cli
 
 ```shell
-$ gh repo create
+gh repo create
 ```
 
 Lalu jalankan `git push` jika belum.
 
 ```shell
-$ git push origin main
+git push origin main
 ```
 
 ### Mempersiapkan Server
@@ -716,7 +716,7 @@ Karena kita ingin menulis kode dan menjalankan docker/podman yang berhubungan de
 riza@eventflow:~$ ssh-keygen -t ed25519 -C "rizafahmi@gmail.com"
 riza@eventflowd:~$ ssh-add ~/.ssh/id_ed25519
 Identity added: /home/riza/.ssh/id_ed25519 (rizafahmi@gmail.com)
-$ cat ~/.ssh/id_ed25519.pub
+cat ~/.ssh/id_ed25519.pub
 # Then select and copy the contents of the id_ed25519.pub file
 # displayed in the terminal to your clipboard
 ```

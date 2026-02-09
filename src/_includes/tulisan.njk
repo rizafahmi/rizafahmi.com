@@ -205,6 +205,23 @@ title: Judul
       </script>
 
     </footer>
+    <script>
+      document.querySelectorAll('.code-copy').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var block = btn.closest('.code-block');
+          var code = block.querySelector('code');
+          var text = Array.from(code.querySelectorAll('.line')).map(function (line) {
+            return Array.from(line.childNodes).filter(function (node) {
+              return !node.classList || !node.classList.contains('line-prefix');
+            }).map(function (node) { return node.textContent; }).join('');
+          }).join('\n').replace(/\n+$/, '');
+          navigator.clipboard.writeText(text).then(function () {
+            btn.textContent = '✅ Tersalin';
+            setTimeout(function () { btn.textContent = 'Salin'; }, 1200);
+          });
+        });
+      });
+    </script>
     {% include 'analytics.njk' %}
     {% include 'theme-toggle.njk' %}
   </body>
