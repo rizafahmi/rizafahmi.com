@@ -36,7 +36,9 @@ description: Statistik transparan + cara kerja untuk kerjasama/sponsorship bersa
       <h3>Video terbaru</h3>
       <ul>
         {% for v in youtube.recentVideos %}
-          <li><a href="{{ v.url }}">{{ v.title }}</a> <span style="opacity:0.7">({{ v.views | int | localeString("id-ID") }} views)</span></li>
+          {% if v.views and v.views > 0 %}
+            <li><a href="{{ v.url }}">{{ v.title }}</a> <span style="opacity:0.7">({{ v.views | int | localeString("id-ID") }} views)</span></li>
+          {% endif %}
         {% endfor %}
       </ul>
     {% endif %}
