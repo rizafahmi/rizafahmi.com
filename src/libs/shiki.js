@@ -26,7 +26,7 @@ export default function(eleventyConfig, options) {
     eleventyConfig.amendLibrary("md", (mdLib) =>
       mdLib.set({
         highlight: (code, lang) => {
-          return highlighter.codeToHtml(code, {
+          const html = highlighter.codeToHtml(code, {
             lang: lang,
             theme: "dark-plus",
             transformers: shellLangs.includes(lang)
@@ -79,6 +79,8 @@ export default function(eleventyConfig, options) {
                 ]
               : [],
           });
+          const btn = `<button class="code-copy" aria-label="Salin kode">Salin</button>`;
+          return `<div class="code-block">${btn}${html}</div>`;
         },
       }),
     );
