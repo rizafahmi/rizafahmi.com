@@ -40,6 +40,19 @@ description: Statistik transparan + cara kerja untuk kerjasama/sponsorship bersa
         {% endfor %}
       </ul>
     {% endif %}
+
+    {% if ratecardBestVideos and ratecardBestVideos.length %}
+      <h3>Video terbaik (curated)</h3>
+      <p class="text-sm" style="opacity:0.7">Dipilih manual untuk merepresentasikan format konten + kecocokan untuk kolaborasi.</p>
+      <ul>
+        {% for v in ratecardBestVideos %}
+          <li>
+            <a href="{{ v.url }}">{{ v.title }}</a>
+            {% if v.tag %}<span style="opacity:0.7"> — {{ v.tag }}</span>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   {% else %}
     <p><em>Statistik belum terisi. (Butuh job update via API.)</em></p>
   {% endif %}
