@@ -13,3 +13,5 @@ _site/
 dist/
 
 .DS_Store
+
+.envrc
