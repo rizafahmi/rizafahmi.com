@@ -170,61 +170,44 @@ Mari kita praktekkan langkah demi langkah. Berhubung LLM chatbot saat ini sudah 
 	</picture>
 </figure>
 
-Untuk itu, kita perlu membangun chatbot sederhana. Dengan memanfaatkan REST API, kita bisa memberi instruksi sederhana dalam satu kesempatan (*one shot*) dan LLM akan mengirimkan respons. Contohnya bisa menggunakan beberapa penyedia jasa LLM seperti Google, Anthropic, OpenAI dan sebagainya. Untuk contoh disini akan menggunakan Google dan Gemini 3 Flash sebagai pilihan modelnya. Silakan ganti URL, model dan variable API_KEY jika ingin menggunakan penyedia jasa LLM lain.
+Untuk itu, kita akan mengirimkan data langsung ke penyedia jasa LLM melalui REST API seperti Google, Anthropic, OpenAI dan sebagainya. Untuk contoh disini akan menggunakan Google dan Gemini 3 Flash sebagai pilihan modelnya. Silakan ganti URL, model dan variable API_KEY jika ingin menggunakan penyedia jasa LLM lain.
 
-Kali ini kode menggunakan bahasa fungsional Elixir. Silakan kirim komentar dibawah jika ingin melihat dengan bahasa pemrograman lain.
-
-```elixir
-defmodule Mbb do
-  @model "gemini-3-flash-preview"
-  @system_prompt """
-  You are an excellent principal engineer. You love programming language. \
-  Your favorite language is Elixir and you always write code in functional paradigm. \
-  You always answer in a concise and precise manner. Answer in 1-3 sentences maximum. No preamble, no summary.\
-  """
-
-  defp api_url do
-    api_key = System.get_env("API_KEY") || ""
-
-    "https://generativelanguage.googleapis.com/v1beta/models/#{@model}:generateContent?key=#{api_key}"
-  end
-
-  defp send(message) do
-    api_url()
-    |> Req.post(
-      json: %{
-        system_instruction: %{parts: [%{text: @system_prompt}]},
-        contents: [%{role: "user", parts: [%{text: message}]}],
-        generationConfig: %{
-          maxOutputTokens: 1_000,
-          temperature: 0.0,
-          thinkingConfig: %{
-            thinkingLevel: "MEDIUM"
+```shell
+export API_KEY=-AI...
+curl -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${API_KEY}" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "contents": [
+          {
+            "role": "user",
+            "parts": {
+              "text": "Tanggal dan jam berapa sekarang?"
+            }
           }
+        ],
+        "generationConfig": {
+            "thinkingConfig": {
+                "thinkingLevel": "LOW"
+            }
         }
-      }
-    )
-    |> handle_response()
-  end
-  
-  # ... kode selanjutnya
-  
-end
+    }'
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Sekarang adalah hari **Jumat, 24 Mei 2024**.\n\nWaktu saat ini menunjukkan pukul **14:34 WIB** (Waktu Indonesia Barat).",
+            ...
+          },
+        ]
+      },
+    }
+  ]
+}
 ```
-
-🐙 [Kode lengkap bisa diintip di GitHub](https://github.com/rizafahmi/mbb)
 
 <br />
-	
-Sekarang coba kita jalankan untuk menanyakan tanggal dan jam saat ini.
-
-```text
-$ mix escript.build # compile
-Generated escript mbb
-
-$ ./mbb "Tanggal dan jam berapa sekarang?"
-Saat ini adalah Rabu, 22 Mei 2024, pukul 08:50 UTC.
-```
 
 Halu kan?! Saat menulis ini saya berada di tahun 2026. Ini bukanlah trik mesin waktu. Lebih kepada LLM belum diberi akses untuk mendapatkan informasi tanggal dan jam sehingga LLM terpaksa berbohong. Karena memang di desain seperti itu, untuk memastikan tugasnya selesai walaupun keliru.
 
