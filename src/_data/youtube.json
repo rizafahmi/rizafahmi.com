@@ -1,0 +1,22 @@
+{
+  "channel": {
+    "id": null,
+    "title": null,
+    "url": null,
+    "handle": "@rizafahmi",
+    "thumbnail": null
+  },
+  "stats": {
+    "subscribers": null,
+    "totalViews": null,
+    "videoCount": null,
+    "avgViewsLast12": null,
+    "viewsLast12Range": null
+  },
+  "recentVideos": [],
+  "updatedAt": null,
+  "source": {
+    "api": "YouTube Data API v3",
+    "note": "Placeholder. Run scripts/fetch-youtube-stats.mjs to populate."
+  }
+}

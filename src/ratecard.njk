@@ -1,0 +1,62 @@
+---
+layout: main
+title: Kerjasama & Sponsorship
+permalink: /kerjasama/
+description: Statistik transparan + cara kerja untuk kerjasama/sponsorship bersama Riza Fahmi.
+---
+
+<div class="prose">
+  <h1>Kerjasama & Sponsorship</h1>
+  <p>
+    Fokus utama: <strong>YouTube</strong> (dev education: AI/Agentic, Elixir, Web).
+    Statistik di halaman ini diambil dari API dan diupdate berkala.
+  </p>
+
+  <hr />
+
+  <h2>YouTube — Statistik</h2>
+  {% if youtube and youtube.stats and youtube.stats.subscribers %}
+    <ul>
+      <li><strong>Subscribers:</strong> {{ youtube.stats.subscribers | int | localeString("id-ID") }}</li>
+      <li><strong>Total views:</strong> {{ youtube.stats.totalViews | int | localeString("id-ID") }}</li>
+      <li><strong>Total videos:</strong> {{ youtube.stats.videoCount | int | localeString("id-ID") }}</li>
+      {% if youtube.stats.avgViewsLast12 %}
+      <li><strong>Avg views (12 video terakhir):</strong> {{ youtube.stats.avgViewsLast12 | int | localeString("id-ID") }}</li>
+      {% endif %}
+      {% if youtube.stats.viewsLast12Range %}
+      <li><strong>Range views (12 video terakhir):</strong> {{ youtube.stats.viewsLast12Range.min | int | localeString("id-ID") }} – {{ youtube.stats.viewsLast12Range.max | int | localeString("id-ID") }}</li>
+      {% endif %}
+    </ul>
+
+    <p class="text-sm" style="opacity:0.7">
+      Last updated: {{ youtube.updatedAt }}
+    </p>
+
+    {% if youtube.recentVideos and youtube.recentVideos.length %}
+      <h3>Video terbaru</h3>
+      <ul>
+        {% for v in youtube.recentVideos %}
+          <li><a href="{{ v.url }}">{{ v.title }}</a> <span style="opacity:0.7">({{ v.views | int | localeString("id-ID") }} views)</span></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% else %}
+    <p><em>Statistik belum terisi. (Butuh job update via API.)</em></p>
+  {% endif %}
+
+  <hr />
+
+  <h2>Deliverables</h2>
+  <ul>
+    <li><strong>YouTube</strong>: dedicated video, integration (midroll), Shorts, community post</li>
+    <li><strong>Amplifier (opsional)</strong>: X post / thread, LinkedIn post</li>
+  </ul>
+
+  <h2>Harga</h2>
+  <p>Harga by request (mengikuti objective, timeline, dan bentuk deliverables).</p>
+
+  <h2>Request kerjasama</h2>
+  <p>
+    Email: <a href="mailto:hello@rizafahmi.com?subject=Kerjasama%20%2F%20Sponsorship">hello@rizafahmi.com</a>
+  </p>
+</div>

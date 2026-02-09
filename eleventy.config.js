@@ -120,6 +120,13 @@ export default function (eleventyConfig) {
     return text.slice(0, length).replace(/\s+\S*$/, "") + "…";
   });
 
+  // Format number with locale string (e.g. 123456 -> "123.456" for id-ID).
+  eleventyConfig.addFilter("localeString", (num, locale = "id-ID") => {
+    const n = Number(num);
+    if (!Number.isFinite(n)) return String(num);
+    return n.toLocaleString(locale);
+  });
+
   eleventyConfig.addCollection("catatan", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
   });
