@@ -1,0 +1,98 @@
+---
+layout: main
+title: Kerjasama & Sponsorship
+permalink: /kerjasama/
+description: Statistik transparan + cara kerja untuk kerjasama/sponsorship bersama Riza Fahmi.
+---
+
+<div class="prose">
+  <h1>Kerjasama & Sponsorship</h1>
+  <p>
+    Fokus utama: <strong>YouTube</strong> (dev education: AI/Agentic, Elixir, Web).
+    Statistik di halaman ini diambil dari API dan diupdate berkala.
+  </p>
+
+  <h2>Sekilas</h2>
+  <ul>
+    <li>Membuat konten pemrograman sejak <strong>2012</strong></li>
+    <li>Memulai podcast sejak <strong>2015</strong></li>
+    <li>Kontribusi ke komunitas pemrograman sejak <strong>2014</strong></li>
+  </ul>
+
+  <h2>Narasumber / Workshop</h2>
+  <p>
+    Bisa untuk talk/seminar/workshop (software development, komputasi awan, arsitektur, basis data, soft skill, dan topik teknologi lain).
+  </p>
+  <ul>
+    <li><strong>41</strong> acara seminar</li>
+    <li><strong>19</strong> workshop</li>
+  </ul>
+
+  <h2>Pernah kolaborasi dengan</h2>
+  <p>AWS Indonesia, BenQ Indonesia, Meta/Facebook, Google Indonesia, Domainesia, Niagahoster, Feedloop, DeepTech.</p>
+
+  <hr />
+
+  <h2>YouTube — Statistik</h2>
+  {% if youtube and youtube.stats and youtube.stats.subscribers %}
+    <ul>
+      <li><strong>Subscribers:</strong> {{ youtube.stats.subscribers | int | localeString("id-ID") }}</li>
+      <li><strong>Total views:</strong> {{ youtube.stats.totalViews | int | localeString("id-ID") }}</li>
+      <li><strong>Total videos:</strong> {{ youtube.stats.videoCount | int | localeString("id-ID") }}</li>
+      {% if youtube.stats.avgViewsLast12 %}
+      <li><strong>Avg views (12 video terakhir):</strong> {{ youtube.stats.avgViewsLast12 | int | localeString("id-ID") }}</li>
+      {% endif %}
+      {% if youtube.stats.viewsLast12Range %}
+      <li><strong>Range views (12 video terakhir):</strong> {{ youtube.stats.viewsLast12Range.min | int | localeString("id-ID") }} – {{ youtube.stats.viewsLast12Range.max | int | localeString("id-ID") }}</li>
+      {% endif %}
+    </ul>
+
+    <p class="text-sm" style="opacity:0.7">
+      Last updated: {{ youtube.updatedAt }}
+    </p>
+
+    {% if youtube.recentVideos and youtube.recentVideos.length %}
+      <h3>Video terbaru</h3>
+      <ul>
+        {% for v in youtube.recentVideos %}
+          {% if v.views and v.views > 0 %}
+            <li><a href="{{ v.url }}">{{ v.title }}</a> <span style="opacity:0.7">({{ v.views | int | localeString("id-ID") }} views)</span></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if ratecardBestVideos and ratecardBestVideos.length %}
+      <h3>Video terbaik (curated)</h3>
+      <p class="text-sm" style="opacity:0.7">Dipilih manual untuk merepresentasikan format konten + kecocokan untuk kolaborasi.</p>
+      <ul>
+        {% for v in ratecardBestVideos %}
+          <li>
+            <a href="{{ v.url }}">{{ v.title }}</a>
+            {% if v.tag %}<span style="opacity:0.7"> — {{ v.tag }}</span>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% else %}
+    <p><em>Statistik belum terisi. (Butuh job update via API.)</em></p>
+  {% endif %}
+
+  <hr />
+
+  <h2>Deliverables</h2>
+  <ul>
+    <li><strong>YouTube</strong>: recorded video, Shorts, community post</li>
+    <li><strong>Livestream sponsorship</strong>: pre-stream (video 30 detik), placement (logo/gambar di layar), shoutout (dibacakan/narasi)</li>
+    <li><strong>Speaking</strong>: talk/seminar/workshop</li>
+    <li><strong>Amplifier (opsional)</strong>: X post / thread, LinkedIn post</li>
+  </ul>
+
+  <h2>Harga</h2>
+  <p>Harga <strong>by request</strong> (mengikuti objective, timeline, dan bentuk deliverables).</p>
+
+  <h2>Request kerjasama</h2>
+  <p>
+    Email: <a href="mailto:rizafahmi@gmail.com?subject=Kerjasama%20%2F%20Sponsorship&body=Halo%20Riza%2C%0A%0ASaya%20%5BNama%5D%20dari%20%5BBrand%5D.%0A%0AObjective%3A%20%5Bawareness%2Flead%20gen%2Fhiring%5D%0ATimeline%3A%20%5Btanggal%5D%0ADeliverables%3A%20%5Byoutube%2Flivestream%2Fx%2Flinkedin%5D%0ABudget%20range%3A%20%5Brange%5D%0ANotes%3A%20%5Bopsional%5D%0A%0ATerima%20kasih">rizafahmi@gmail.com</a>
+  </p>
+</div>

@@ -1,0 +1,68 @@
+{
+  "channel": {
+    "id": "UCHhAlFGFCGgIusQkQIqJLYw",
+    "title": "Eksperimen Pemrograman",
+    "url": "https://www.youtube.com/channel/UCHhAlFGFCGgIusQkQIqJLYw",
+    "handle": "@rizafahmi",
+    "thumbnail": "https://yt3.ggpht.com/vFHuT39fHI70_X3pUZSj3Cne2Q9hLqMnSB5cApxUDt0rIixwlh3UgBXuRJZybXelbNzeP6G-99E=s800-c-k-c0x00ffffff-no-rj"
+  },
+  "stats": {
+    "subscribers": 6880,
+    "totalViews": 322729,
+    "videoCount": 749,
+    "avgViewsLast12": 209,
+    "viewsLast12Range": {
+      "min": 0,
+      "max": 400
+    }
+  },
+  "recentVideos": [
+    {
+      "id": "TdgJMT3NrRM",
+      "title": "Library Animasi - Ngobrolin WEB",
+      "publishedAt": "2026-02-09T08:50:57Z",
+      "url": "https://www.youtube.com/watch?v=TdgJMT3NrRM",
+      "views": 0
+    },
+    {
+      "id": "c5RSiDy2sRM",
+      "title": "Computational Thinking - Ngobrolin WEB",
+      "publishedAt": "2026-02-03T15:09:18Z",
+      "url": "https://www.youtube.com/watch?v=c5RSiDy2sRM",
+      "views": 378
+    },
+    {
+      "id": "Tkh8-LleLws",
+      "title": "Agentic Coding Tools - Ngobrolin WEB",
+      "publishedAt": "2026-01-28T03:03:23Z",
+      "url": "https://www.youtube.com/watch?v=Tkh8-LleLws",
+      "views": 367
+    },
+    {
+      "id": "nJZeTHNdsrU",
+      "title": "✨🔴  Vibestreaming 2026  💻",
+      "publishedAt": "2026-01-27T03:13:41Z",
+      "url": "https://www.youtube.com/watch?v=nJZeTHNdsrU",
+      "views": 105
+    },
+    {
+      "id": "9-XnVFtfeQM",
+      "title": "✨🔴  Vibestreaming 2026 📱",
+      "publishedAt": "2026-01-27T02:56:27Z",
+      "url": "https://www.youtube.com/watch?v=9-XnVFtfeQM",
+      "views": 105
+    },
+    {
+      "id": "D-ngxrSqgUU",
+      "title": "@AmpCodeInc  Walkthrough Skill Demo",
+      "publishedAt": "2026-01-23T13:00:00Z",
+      "url": "https://www.youtube.com/watch?v=D-ngxrSqgUU",
+      "views": 119
+    }
+  ],
+  "updatedAt": "2026-02-09T08:59:52.240Z",
+  "source": {
+    "api": "YouTube Data API v3",
+    "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
+  }
+}
