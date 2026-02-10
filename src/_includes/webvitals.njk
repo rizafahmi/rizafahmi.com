@@ -1,12 +1,33 @@
 <script type="module">
   import {onCLS, onINP, onLCP, onFCP, onTTFB} from 'https://unpkg.com/web-vitals@4/dist/web-vitals.attribution.js?module';
 
+  function waitForGoatCounter(callback, attempts) {
+    attempts = attempts || 0;
+    if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+      callback();
+      return;
+    }
+    if (attempts < 50) {
+      setTimeout(function() { waitForGoatCounter(callback, attempts + 1); }, 100);
+    }
+  }
+
+  var pending = [];
+
   function sendToGoatCounter(metric) {
-    if (typeof window.goatcounter === 'undefined' || !window.goatcounter.count) return;
-    window.goatcounter.count({
-      path: `web-vitals/${metric.name}`,
-      title: `${metric.name}: ${Math.round(metric.value)}`,
-      event: true
+    pending.push(metric);
+  }
+
+  function flushMetrics() {
+    waitForGoatCounter(function() {
+      pending.forEach(function(metric) {
+        window.goatcounter.count({
+          path: 'web-vitals/' + metric.name,
+          title: metric.name + ': ' + Math.round(metric.value),
+          event: true
+        });
+      });
+      pending = [];
     });
   }
 
@@ -15,4 +36,10 @@
   onLCP(sendToGoatCounter);
   onFCP(sendToGoatCounter);
   onTTFB(sendToGoatCounter);
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') flushMetrics();
+  });
+  window.addEventListener('pagehide', flushMetrics);
+  setTimeout(flushMetrics, 5000);
 </script>
