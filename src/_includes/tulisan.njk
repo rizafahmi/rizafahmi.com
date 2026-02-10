@@ -45,7 +45,6 @@ title: Judul
     <div class="reading-progress" id="reading-progress"></div>
     <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
     <nav class="container" style="display: flex; justify-content: space-between; align-items: center;">
-      {%- if '/catatan/' in page.url %}
       <ol class="breadcrumb" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
           <a itemprop="item" href="/"><span itemprop="name">Beranda</span></a>
@@ -60,7 +59,6 @@ title: Judul
           <meta itemprop="position" content="3" />
         </li>
       </ol>
-      {%- endif %}
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.5rem;">🌙</button>
     </nav>
 
@@ -132,7 +130,7 @@ title: Judul
         </p>
       </section>
 
-      {%- if '/catatan/' in page.url %}
+      {%- if tags and 'catatan' in tags %}
       <section class="related-articles">
         <h3>📚 Artikel Terkait</h3>
         <div class="related-grid">
@@ -149,7 +147,7 @@ title: Judul
       <hr />
 
       {%- set show_comments = false %}
-      {%- if '/catatan/' in page.url %}{% set show_comments = true %}{%- endif %}
+      {%- if tags and 'catatan' in tags %}{% set show_comments = true %}{%- endif %}
       {%- if page.url == '/now/' %}{% set show_comments = true %}{%- endif %}
       {%- if page.url == '/uses/' %}{% set show_comments = true %}{%- endif %}
 

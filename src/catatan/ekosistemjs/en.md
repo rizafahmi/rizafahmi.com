@@ -17,29 +17,6 @@ Translated by [Ajeng Sugiarti](mailto:ajeng.sugiarti@gmail.com).
 
 This article is going to discuss JavaScript ecosystem growth in Indonesia. Before going deep into the main topic though, let’s first talk about what this article refers to as an ecosystem. This topic is the one I delivered as a keynote session in JSDay 2019.
 
-## Table of Content
-
-- [About JavaScript Ecosystem](#about-javascript-ecosystem)
-- [Discussion Point of View](#discussion-point-of-view)
-  - [Beginners Point of View](#beginners-point-of-view)
-    - [Where Do We Start?](#where-do-we-start)
-    - [Which Framework?](#which-framework)
-    - [Books or Literature Availability](#books-or-literature-availability)
-    - [Online Courses](#online-courses)
-  - [Professionals Point of View](#professionals-point-of-view)
-    - [Sample Applications](#sample-applications)
-    - [Tutorials in Bahasa Indonesia](#tutorials-in-bahasa-indonesia)
-    - [Tools and Boilerplates](#tools-and-boilerplates)
-    - [How to Use](#how-to-use)
-    - [Community Support](#community-support)
-    - [Supporting Libraries](#supporting-libraries)
-    - [Performance](#performance)
-    - [Job Vacancies](#job-vacancies)
-  - [Masters Point of View](#masters-point-of-view)
-    - [Available Talents](#available-talents)
-    - [Maturity Level](#maturity-level)
-- [Conclusion](#conclusion)
-
 ## About JavaScript Ecosystem
 
 > “An ecosystem is a community of living organisms and their interactions with their abiotic (non-living) environment.” — Ecology of ecosystems
