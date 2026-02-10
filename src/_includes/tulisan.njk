@@ -63,7 +63,7 @@ title: Judul
     </nav>
 
     <main class="container" id="main-content">
-      <article>
+      <article data-pagefind-body>
       {%- set canonicalUrl = "https://rizafahmi.com" + page.url -%}
       {%- set xShareHref = "https://twitter.com/intent/tweet?text=" + (title | urlencode) + "&url=" + (canonicalUrl | urlencode) -%}
       {%- set liShareHref = "https://www.linkedin.com/shareArticle?mini=true&url=" + (canonicalUrl | urlencode) + "&title=" + (title | urlencode) + "&summary=" + ((description or title) | urlencode) -%}
