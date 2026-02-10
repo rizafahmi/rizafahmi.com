@@ -1,9 +1,7 @@
-with import <nixpkgs> {};
-let
-  basePackages = [
-    nodejs_20
+{ pkgs ? import <nixpkgs> { } }:
+
+pkgs.mkShellNoCC {
+  buildInputs = with pkgs; [
+    nodejs_22
   ];
-in
-  pkgs.mkShellNoCC {
-    buildInputs = basePackages;
-  }
+}
