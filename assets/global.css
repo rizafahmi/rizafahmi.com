@@ -96,7 +96,7 @@ body {
     color: var(--button-text);
     padding: 0.5rem 1rem;
     text-decoration: none;
-    z-index: 1000;
+    z-index: 1001;
     border-radius: 0 0 0.5rem 0;
     font-size: 1rem;
 }
