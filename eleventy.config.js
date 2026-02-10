@@ -161,9 +161,16 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addTransform("lazyImages", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
+      let first = true;
       return content.replace(
         /<img(?![^>]*loading=)([^>]*)>/gi,
-        '<img loading="lazy"$1>'
+        (match, attrs) => {
+          if (first) {
+            first = false;
+            return match;
+          }
+          return `<img loading="lazy"${attrs}>`;
+        }
       );
     }
     return content;
