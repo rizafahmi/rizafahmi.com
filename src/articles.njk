@@ -3,17 +3,12 @@ title: Kumpulan Catatan Riza
 description: Kumpulan artikel dan catatan tentang pemrograman, teknologi, AI, Elixir, dan web development oleh Riza Fahmi
 layout: main
 eleventyExcludeFromCollections: true
-pagination:
-  data: collections.catatan
-  size: 20
-  reverse: true
-  alias: posts
 ---
 
 <main id="main-content">
     <h2>Catatan · <a href="/feed.xml">RSS</a> </h2>
     <div class="articles">
-      {% for article in posts %}
+      {% for article in collections.catatan | reverse %}
       <div class="article">
         <a href="{{article.url}}">
           <h6>&gt;&nbsp;&nbsp; {{ article.data.title }}</h6>
@@ -22,18 +17,5 @@ pagination:
       </div>
       {% endfor %}
     </div>
-
-    {% if pagination.href.previous or pagination.href.next %}
-    <nav class="pagination" aria-label="Pagination">
-      {% if pagination.href.previous %}
-        <a href="{{ pagination.href.previous }}" class="pagination-link">&larr; Lebih baru</a>
-      {% endif %}
-      <span class="pagination-info">Halaman {{ pagination.pageNumber + 1 }} dari {{ pagination.pages.length }}</span>
-      {% if pagination.href.next %}
-        <a href="{{ pagination.href.next }}" class="pagination-link">Lebih lama &rarr;</a>
-      {% endif %}
-    </nav>
-    {% endif %}
-
     <a class="back" href="/">&lt; Kembali ke halaman utama</a>
 </main>
