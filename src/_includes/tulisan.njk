@@ -42,12 +42,32 @@ title: Judul
     </script>
   </head>
   <body>
+    <div class="reading-progress" id="reading-progress"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <nav class="container" style="display: flex; justify-content: space-between; align-items: center;">
       {% include 'back_button.njk' %}
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.5rem;">🌙</button>
     </nav>
 
-    <main class="container">
+    <main class="container" id="main-content">
+      {%- if '/catatan/' in page.url %}
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/"><span itemprop="name">Home</span></a>
+            <meta itemprop="position" content="1" />
+          </li>
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/articles/"><span itemprop="name">Catatan</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">{{ title }}</span>
+            <meta itemprop="position" content="3" />
+          </li>
+        </ol>
+      </nav>
+      {%- endif %}
       <article>
       {%- set canonicalUrl = "https://rizafahmi.com" + page.url -%}
       {%- set xShareHref = "https://twitter.com/intent/tweet?text=" + (title | urlencode) + "&url=" + (canonicalUrl | urlencode) -%}
@@ -205,6 +225,19 @@ title: Judul
       </script>
 
     </footer>
+    <script>
+      (function() {
+        var progressBar = document.getElementById('reading-progress');
+        if (progressBar) {
+          window.addEventListener('scroll', function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+          });
+        }
+      })();
+    </script>
     <script>
       document.querySelectorAll('.code-copy').forEach(function (btn) {
         btn.addEventListener('click', function () {

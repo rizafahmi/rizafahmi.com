@@ -159,6 +159,16 @@ export default function (eleventyConfig) {
     return [...tagSet].sort((a, b) => a.localeCompare(b));
   });
 
+  eleventyConfig.addTransform("lazyImages", function(content, outputPath) {
+    if (outputPath && outputPath.endsWith(".html")) {
+      return content.replace(
+        /<img(?![^>]*loading=)([^>]*)>/gi,
+        '<img loading="lazy"$1>'
+      );
+    }
+    return content;
+  });
+
   return {
     dir: { input: "src", output: "dist" },
     dataTemplate: "njk",

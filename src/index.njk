@@ -1,5 +1,6 @@
 ---
 title: Halo, Saya Riza!
+description: Personal website Riza Fahmi - Co-Founder HACKTIV8, Content Creator, AI & Elixir Enthusiast. Berbagi catatan tentang pemrograman, teknologi, dan produktivitas.
 eleventyExcludeFromCollections: true
 ---
 <!DOCTYPE html>
@@ -7,6 +8,7 @@ eleventyExcludeFromCollections: true
 
 <head>
   <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
   <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
   <link rel="preload" as="style" href="/assets/home.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
@@ -35,6 +37,7 @@ eleventyExcludeFromCollections: true
 </head>
 
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <div style="position: absolute; top: 1rem; right: 1rem; z-index: 100;">
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">🌙</button>
   </div>
@@ -62,7 +65,7 @@ eleventyExcludeFromCollections: true
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="articles-section" id="catatan">
       <h2>📰 10 Catatan Terbaru · <a href="/feed.xml">RSS</a></h2>
       <div class="articles">
@@ -340,28 +343,39 @@ eleventyExcludeFromCollections: true
   {% include 'theme-toggle.njk' %}
 
   <script>
-    // Typewriter Logic
-    const text = "Baru rilis artikel tentang cara kerja coding agent. Bisa diintip di rizafahmi.com/catatan/agentic-coding";
-    const typewriterElement = document.getElementById('typewriter');
-    let i = 0;
-
-    function typeWriter() {
-      if (i < text.length) {
-        typewriterElement.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50); // Kecepatan ngetik (ms)
-      } else {
-        // Kalau udah selesai ngetik, ubah URL jadi link aktif
-        const finalHtml = typewriterElement.innerHTML.replace(
+    (function() {
+      // Typewriter Logic - only run once per session
+      if (sessionStorage.getItem('typewriterShown')) {
+        const typewriterElement = document.getElementById('typewriter');
+        const text = "Baru rilis artikel tentang cara kerja coding agent. Bisa diintip di rizafahmi.com/catatan/agentic-coding";
+        typewriterElement.innerHTML = text.replace(
           /rizafahmi\.com\/catatan\/agentic-coding/g,
           '<a href="https://rizafahmi.com/catatan/agentic-coding" style="border-bottom: 1px dashed;">rizafahmi.com/catatan/agentic-coding</a>'
         );
-        typewriterElement.innerHTML = finalHtml;
+        return;
       }
-    }
 
-    // Start typing after a small delay
-    setTimeout(typeWriter, 1000);
+      const text = "Baru rilis artikel tentang cara kerja coding agent. Bisa diintip di rizafahmi.com/catatan/agentic-coding";
+      const typewriterElement = document.getElementById('typewriter');
+      let i = 0;
+
+      function typeWriter() {
+        if (i < text.length) {
+          typewriterElement.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        } else {
+          const finalHtml = typewriterElement.innerHTML.replace(
+            /rizafahmi\.com\/catatan\/agentic-coding/g,
+            '<a href="https://rizafahmi.com/catatan/agentic-coding" style="border-bottom: 1px dashed;">rizafahmi.com/catatan/agentic-coding</a>'
+          );
+          typewriterElement.innerHTML = finalHtml;
+          sessionStorage.setItem('typewriterShown', 'true');
+        }
+      }
+
+      setTimeout(typeWriter, 1000);
+    })();
   </script>
 
   <footer>
