@@ -71,7 +71,7 @@
     }
 
     .hero-nav a,
-    button,
+    .hero-nav button,
     .article a {
         min-height: 44px;
         display: inline-flex;
@@ -183,33 +183,3 @@ span.tags {
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 2rem 0.5rem 1rem;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.pagination-link {
-  padding: 0.5rem 1rem;
-  background: var(--nav-btn-bg);
-  color: var(--nav-btn-text);
-  border-radius: 0.5rem;
-  border: none;
-  transition: background 0.2s, color 0.2s;
-  font-size: 0.875rem;
-}
-
-.pagination-link:hover,
-.pagination-link:focus {
-  background: var(--nav-btn-hover-bg);
-  color: var(--nav-btn-hover-text);
-}
-
-.pagination-info {
-  font-size: 0.875rem;
-  color: var(--meta-color);
-}
