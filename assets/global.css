@@ -88,6 +88,23 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--button-bg);
+    color: var(--button-text);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    z-index: 1001;
+    border-radius: 0 0 0.5rem 0;
+    font-size: 1rem;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 .site-header {
     margin-bottom: 1.25rem;
 }
@@ -102,6 +119,18 @@ a {
     color: var(--link-color);
     text-decoration: none;
     border-bottom: 2px solid;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--button-bg);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+[data-theme="dark"] a:focus-visible,
+[data-theme="dark"] button:focus-visible {
+    outline-color: var(--link-color);
 }
 
 .button {

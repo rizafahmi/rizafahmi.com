@@ -69,6 +69,15 @@
     .hero-nav {
         justify-content: center;
     }
+
+    .hero-nav a,
+    .hero-nav button,
+    .article a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 /* Original styles */
@@ -173,3 +182,4 @@ span.tags {
     filter: brightness(0.9);
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
+
