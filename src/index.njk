@@ -37,7 +37,7 @@ eleventyExcludeFromCollections: true
 </head>
 
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
   <div style="position: absolute; top: 1rem; right: 1rem; z-index: 100;">
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">🌙</button>
   </div>
@@ -344,19 +344,21 @@ eleventyExcludeFromCollections: true
 
   <script>
     (function() {
-      // Typewriter Logic - only run once per session
-      if (sessionStorage.getItem('typewriterShown')) {
-        const typewriterElement = document.getElementById('typewriter');
-        const text = "Baru rilis artikel tentang cara kerja coding agent. Bisa diintip di rizafahmi.com/catatan/agentic-coding";
-        typewriterElement.innerHTML = text.replace(
+      const text = "Baru rilis artikel tentang cara kerja coding agent. Bisa diintip di rizafahmi.com/catatan/agentic-coding";
+      const typewriterElement = document.getElementById('typewriter');
+
+      function linkify(str) {
+        return str.replace(
           /rizafahmi\.com\/catatan\/agentic-coding/g,
           '<a href="https://rizafahmi.com/catatan/agentic-coding" style="border-bottom: 1px dashed;">rizafahmi.com/catatan/agentic-coding</a>'
         );
+      }
+
+      if (sessionStorage.getItem('typewriterShown')) {
+        typewriterElement.innerHTML = linkify(text);
         return;
       }
 
-      const text = "Baru rilis artikel tentang cara kerja coding agent. Bisa diintip di rizafahmi.com/catatan/agentic-coding";
-      const typewriterElement = document.getElementById('typewriter');
       let i = 0;
 
       function typeWriter() {
@@ -365,11 +367,7 @@ eleventyExcludeFromCollections: true
           i++;
           setTimeout(typeWriter, 50);
         } else {
-          const finalHtml = typewriterElement.innerHTML.replace(
-            /rizafahmi\.com\/catatan\/agentic-coding/g,
-            '<a href="https://rizafahmi.com/catatan/agentic-coding" style="border-bottom: 1px dashed;">rizafahmi.com/catatan/agentic-coding</a>'
-          );
-          typewriterElement.innerHTML = finalHtml;
+          typewriterElement.innerHTML = linkify(typewriterElement.innerHTML);
           sessionStorage.setItem('typewriterShown', 'true');
         }
       }
