@@ -1,0 +1,18 @@
+<script type="module">
+  import {onCLS, onINP, onLCP, onFCP, onTTFB} from 'https://unpkg.com/web-vitals@4/dist/web-vitals.attribution.js?module';
+
+  function sendToGoatCounter(metric) {
+    if (typeof window.goatcounter === 'undefined' || !window.goatcounter.count) return;
+    window.goatcounter.count({
+      path: `web-vitals/${metric.name}`,
+      title: `${metric.name}: ${Math.round(metric.value)}`,
+      event: true
+    });
+  }
+
+  onCLS(sendToGoatCounter);
+  onINP(sendToGoatCounter);
+  onLCP(sendToGoatCounter);
+  onFCP(sendToGoatCounter);
+  onTTFB(sendToGoatCounter);
+</script>
