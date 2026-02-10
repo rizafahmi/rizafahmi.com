@@ -15,8 +15,6 @@ tags:
 
 ---
 
-# Ekosistem JavaScript di Indonesia
-
 This article also available in [ Engilish ](/ekosistemjs/en/).
 
 Artikel ini akan membahas tentang bagaimana perkembangan ekosistem JavaScript di
@@ -24,32 +22,9 @@ Indonesia. Namun sebelum kita masuk ke pembahasan utama, mari kita bahas dulu
 tentang definisi ekosistem di konteks artikel ini. Topik ini merupakan materi
 yang saya bawakan ketika mengisi keynote di [ JSDay 2019 ](https://jsday.id).
 
-## Daftar Isi
-
-- [Tentang Ekosistem JavaScript](#tentang-ekosistem-javascript)
-- [Sudut Pandang Pembahasan](#sudut-pandang-pembahasan)
-  - [Sudut Pandang Pemula](#sudut-pandang-pemula)
-    - [Mulai Dari Mana?](#mulai-dari-mana)
-    - [Belajar Framework Apa?](#belajar-framework-apa)
-    - [Literatur atau Buku Tersedia](#literatur-atau-buku-tersedia)
-    - [Kursus Video Online](#kursus-video-online)
-  - [Sudut Pandang Profesional](#sudut-pandang-profesional)
-    - [Contoh Aplikasi](#contoh-aplikasi)
-    - [Tutorial Berbahasa Indonesia](#tutorial-berbahasa-indonesia)
-    - [Alat Bantu dan Boilerplate](#alat-bantu-dan-boilerplate)
-    - [Mulai Menggunakan](#mulai-menggunakan)
-    - [Dukungan Komunitas](#dukungan-komunitas)
-    - [Pustaka Pendukung](#pustaka-pendukung)
-    - [Performa](#performa)
-    - [Lowongan Pekerjaan](#lowongan-pekerjaan)
-  - [Sudut Pandang Master](#sudut-pandang-master)
-    - [Talenta Tersedia](#talenta-tersedia)
-    - [Tingkat Maturity](#tingkat-maturity)
-- [Kesimpulan](#kesimpulan)
-
 <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">Riza is delivering keynote at <a href="https://twitter.com/hashtag/jsdayid?src=hash&amp;ref_src=twsrc%5Etfw">#jsdayid</a>. First JavaScript conference in Indonesia. <a href="https://twitter.com/rizafahmi22?ref_src=twsrc%5Etfw">@rizafahmi22</a> <a href="https://t.co/yxXKm1cNxM">pic.twitter.com/yxXKm1cNxM</a></p>&mdash; Jecelyn Yeen (@JecelynYeen) <a href="https://twitter.com/JecelynYeen/status/1177778326758277120?ref_src=twsrc%5Etfw">September 28, 2019</a></blockquote>
 
-# Tentang Ekosistem JavaScript
+## Tentang Ekosistem JavaScript
 
 > “An ecosystem is a community of living organisms and their interactions with their abiotic (non-living) environment.” — Ecology of ecosystems
 
@@ -60,7 +35,7 @@ Yang dimaksud ekosistem disini diantaranya adalah komunitas, grup dan diskusi se
 - Dukungan komunitas di sekitar alat bantu dan juga lingkungan sekitar
 - Pembahasan akan fokus di frontend karena JavaScript di sisi backend cukup _straightforward_.
 
-# Sudut Pandang Pembahasan
+## Sudut Pandang Pembahasan
 
 Artikel ini akan membagi pembahasan kepada tiga sudut pandang. Sudut pandang pertama ditujukan untuk yang baru mulai belajar, kita sebut saja pemula. Kita akan mencoba menjawab beberapa pertanyaan yang sering muncul di benak pemula ketika ingin belajar JavaScript. Kemudian kita juga akan membahas JavaScript dari sudut pandang teman-teman yang sudah pernah membuat aplikasi dan ingin belajar hal baru terutama teknologi web. Kita sebut saja sebagai profesional. Sudut pandang terakhir diperuntukkan kepada para pengambil keputusan seperti Vice President, Chief Technology Officer, Team Lead dan lain sebagainya. Kita menyebutnya sebagai sudut pandang master.
 
@@ -592,7 +567,7 @@ Angular memiliki baris kode yang paling banyak dengan jumlah test case juga yang
 
 Maksud saya menampilkan data ini bukan untuk adu siapa yang paling banyak jumlah test, tapi lebih melihat gambaran _framework_ mana yang peduli dengan testing. Dan data ini bisa jadi bereleasi dengan seberapa mudah aplikasi kita di test nantinya.
 
-# Kesimpulan
+## Kesimpulan
 
 Masa-masa saat ini adalah masa yang sangat menyenangkan dan _exciting_ terutama untuk developer JavaScript. Ekosistem pendukung semakin matang, pilihan untuk belajar sangat banyak, begitu juga media dan pilihan cara belajar. Bisa belajar dari artikel, buku hingga format video. Ada pustaka atau framework yang sangat _developer friendly_, dengan beberapa langkah kita sudah bisa membuat aplikasi. Ada juga yang sangat _user friendly_ dalam artian mungkin untuk _development_ butuh waktu yang agak panjang dan tidak semudah yang lain, namun hasil akhirnya sangat memanjakan. Aplikasinya cepat dan ringan tidak memberatkan pengguna.
 

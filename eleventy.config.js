@@ -159,6 +159,85 @@ export default function (eleventyConfig) {
     return [...tagSet].sort((a, b) => a.localeCompare(b));
   });
 
+  eleventyConfig.addTransform("tableOfContents", function(content, outputPath) {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+    if (!content.includes('class="reading-progress"')) return content;
+
+    const contentStart = content.indexOf('<div class="note-edit">');
+    const contentEnd = content.indexOf('<section class="follow-cta"');
+    if (contentStart === -1) return content;
+
+    const endPos = contentEnd !== -1 ? contentEnd : content.length;
+    const articleContent = content.slice(contentStart, endPos);
+
+    const headingRegex = /<h([23])\b[^>]*(?:\s+id="([^"]*)")?[^>]*>(.*?)<\/h[23]>/gi;
+    const headings = [];
+    let match;
+
+    while ((match = headingRegex.exec(articleContent)) !== null) {
+      const level = parseInt(match[1]);
+      const text = match[3].replace(/<[^>]*>/g, "").trim();
+      const id = match[2] || text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
+
+      if (!match[2]) {
+        const oldTag = match[0];
+        const newTag = oldTag.replace(`<h${level}`, `<h${level} id="${id}"`);
+        content = content.replace(oldTag, newTag);
+      }
+
+      headings.push({ level, id, text });
+    }
+
+    if (headings.length < 3) return content;
+
+    let toc = `<nav class="toc" aria-label="Daftar Isi">\n`;
+    toc += `<details open>\n<summary>📑 Daftar Isi</summary>\n<ol>\n`;
+
+    let inSublist = false;
+    for (let i = 0; i < headings.length; i++) {
+      const h = headings[i];
+      const next = headings[i + 1];
+
+      if (h.level === 2) {
+        if (inSublist) {
+          toc += `</ol></li>\n`;
+          inSublist = false;
+        }
+        if (next && next.level === 3) {
+          toc += `<li><a href="#${h.id}">${h.text}</a>\n<ol>\n`;
+          inSublist = true;
+        } else {
+          toc += `<li><a href="#${h.id}">${h.text}</a></li>\n`;
+        }
+      } else if (h.level === 3) {
+        toc += `<li><a href="#${h.id}">${h.text}</a></li>\n`;
+      }
+    }
+
+    if (inSublist) {
+      toc += `</ol></li>\n`;
+    }
+
+    toc += `</ol>\n</details>\n</nav>\n`;
+
+    const seriRegex = /(<hr>\s*<p><strong>Seri\s.*?<\/strong><\/p>\s*<ol>[\s\S]*?<\/ol>\s*<hr>)/;
+    const seriMatch = content.match(seriRegex);
+
+    let seriBlock = "";
+    if (seriMatch) {
+      seriBlock = seriMatch[1];
+      content = content.replace(seriBlock, "");
+    }
+
+    const markerRegex = /<div class="note-edit">\s*<\/div>/;
+    const markerMatch = content.match(markerRegex);
+    if (markerMatch) {
+      content = content.replace(markerRegex, markerMatch[0] + "\n" + seriBlock + "\n" + toc);
+    }
+
+    return content;
+  });
+
   eleventyConfig.addTransform("lazyImages", function(content, outputPath) {
     if (outputPath && outputPath.endsWith(".html")) {
       let first = true;
