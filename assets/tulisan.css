@@ -5,10 +5,6 @@
 }
 
 .breadcrumb {
-    margin-bottom: 1.5rem;
-}
-
-.breadcrumb ol {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -45,7 +41,7 @@
     top: 0;
     left: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--link-color), var(--button-bg));
+    background: linear-gradient(90deg, var(--button-bg), var(--tag-bg));
     width: 0%;
     z-index: 1000;
     transition: width 0.1s ease;
