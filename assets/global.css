@@ -247,3 +247,45 @@ blockquote {
   75% { opacity: 0.9; filter: blur(1px); transform: translate(-1px, 1px); }
   100% { opacity: 1; filter: none; transform: translate(0); }
 }
+
+/* Card UI (used in /showcase and homepage "Karya") */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0.5rem 0;
+}
+
+.card {
+  background: var(--nav-btn-bg);
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.card p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--meta-color);
+  line-height: 1.4;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+}
