@@ -73,6 +73,27 @@ Notes:
 - Data is cached in `.cache/goatcounter/views.json` to keep builds fast and avoid rate limits.
 - If the env vars are not set, the site will build normally and simply hide the view counts.
 
+### Reactions (👍 ❤️ 🤯)
+
+Article pages show a small set of reaction buttons. Each click sends a **GoatCounter custom event** (no backend, no login).
+
+How it works:
+- The client sends `goatcounter.count({ event: true, path: ... })` events.
+- The selected reaction is stored in `localStorage` (key: `reaction:<pathname>`) so a visitor can only react once per page in that browser.
+
+Event path format:
+
+- `reaction/<emoji><pathname>`
+
+Examples:
+- `reaction/👍/articles/my-post/`
+- `reaction/❤️/now/`
+
+Viewing totals:
+- Open GoatCounter dashboard → **Events**
+- Filter by path prefix `reaction/`
+- You can also filter further by `reaction/👍`, `reaction/❤️`, or `reaction/🤯`
+
 ### Debugging
 
 Run the project with debug output enabled:
@@ -104,6 +125,16 @@ Or build and inspect the output files in `dist/`:
 npm run build
 ls -lah dist/feed.xml dist/feed/full.xml
 ```
+
+## SEO + LLM discovery
+
+The site publishes a few well-known machine-readable endpoints:
+
+- `https://rizafahmi.com/robots.txt` (generated from `src/robots.njk`, links to the sitemap)
+- `https://rizafahmi.com/sitemap.xml` (generated from `src/sitemap.njk`)
+- `https://rizafahmi.com/llms.txt` (generated from `src/llms.njk`)
+
+Canonical URLs are set in `src/_includes/head.njk` and use `https://rizafahmi.com{{ page.url }}`.
 
 ## Project Structure
 
