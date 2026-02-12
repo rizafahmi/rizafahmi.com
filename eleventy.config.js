@@ -140,6 +140,13 @@ export default function (eleventyConfig) {
       .slice(0, 4);
   });
 
+  // Prompting journal entries
+  eleventyConfig.addCollection("prompts", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/prompts/*.md")
+      .filter(item => item.data && item.data.date)
+      .sort((a, b) => b.data.date - a.data.date);
+  });
+
   // Curated tag list for /tags and /tags/<tag>/ pages.
   // Eleventy automatically creates collections per tag; this collection
   // only defines which tags should be shown.

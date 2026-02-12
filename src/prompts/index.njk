@@ -1,0 +1,57 @@
+---
+layout: main
+title: Prompts
+description: Prompting journal publik — catatan prompt yang beneran dipakai (verbatim), apa hasilnya, dan kapan kepake.
+permalink: /prompts/
+---
+
+<h1>Prompts</h1>
+<p>
+  Prompting journal publik. Isinya prompt yang beneran dipakai (verbatim), konteks singkat, hasil, dan catatan “kepake kapan lagi”.
+  Kalau ada yang sensitif, nanti aku tandai dan sensor manual.
+</p>
+
+<p><a href="#template">Template entry</a> · <a href="#latest">Entri terbaru</a></p>
+
+<hr />
+
+<h2 id="latest">Entri terbaru</h2>
+
+{% set entries = collections.prompts | reverse %}
+
+{% if entries and entries.length %}
+  <div class="articles">
+    {% for post in entries %}
+      <div class="article">
+        <h6>
+          <a href="{{ post.url }}">&gt;&nbsp;&nbsp; {{ post.data.title or post.fileSlug }}</a>
+        </h6>
+        {% if post.data.date %}
+          <span class="reading-time">{{ post.data.date | dateToISO }}</span>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p><em>Belum ada entri. Kirim prompt pertama ke Claudia, nanti dibikinin entri + PR.</em></p>
+{% endif %}
+
+<hr />
+
+<h2 id="template">Template entry</h2>
+
+<p>Format minimal yang akan aku isi setiap kali kamu kirim prompt:</p>
+
+<pre><code>Date: YYYY-MM-DD
+Tool: (Claude Code / Codex / Cursor / OpenClaw / dll)
+Context: (project/file/constraints; 1-3 baris)
+Outcome: (success/fail; 1-3 baris)
+Tags: #prompt-pattern #success #toolname
+
+## Prompt
+(paste verbatim)
+
+## Notes
+- Kenapa kepake / kenapa gagal
+- Kapan dipakai lagi
+</code></pre>
