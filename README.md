@@ -105,6 +105,16 @@ npm run build
 ls -lah dist/feed.xml dist/feed/full.xml
 ```
 
+## SEO + LLM discovery
+
+The site publishes a few well-known machine-readable endpoints:
+
+- `https://rizafahmi.com/robots.txt` (generated from `src/robots.njk`, links to the sitemap)
+- `https://rizafahmi.com/sitemap.xml` (generated from `src/sitemap.njk`)
+- `https://rizafahmi.com/llms.txt` (generated from `src/llms.njk`)
+
+Canonical URLs are set in `src/_includes/head.njk` and use `https://rizafahmi.com{{ page.url }}`.
+
 ## Project Structure
 
 - `src/`: Contains source files for pages, templates, styles, and assets.
