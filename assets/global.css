@@ -32,37 +32,56 @@
 :root {
     --bg-color: #ffffff;
     --text-color: rgb(41, 38, 38);
+    --heading-color: rgb(33, 26, 30);
+
     --link-color: inherit;
+    --link-hover-color: rgb(33, 26, 30);
+
     --button-bg: #211a1e;
     --button-text: #fcfcfc;
+
     --tag-bg: rgb(41, 38, 38);
     --tag-text: #eaeaea;
+
     --meta-color: rgba(33, 26, 30, 0.6);
+
     --nav-btn-bg: #f5f5f5;
     --nav-btn-text: #211a1e;
     --nav-btn-hover-bg: #211a1e;
     --nav-btn-hover-text: #fff;
+
     --code-bg: #dadada;
     --code-text: #211a1e;
     --code-border: #c0c0c0;
 }
 
 [data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --link-color: #4db6ac;
-    --button-bg: #333333;
-    --button-text: #f0f0f0;
-    --tag-bg: #333333;
-    --tag-text: #f0f0f0;
-    --meta-color: rgba(224, 224, 224, 0.6);
-    --nav-btn-bg: #2d2d2d;
-    --nav-btn-text: #e0e0e0;
+    /* Slightly lifted neutrals for readability (WCAG contrast friendly) */
+    --bg-color: #0f1115;
+    --text-color: #e6e6e6;
+    --heading-color: #f5f5f5;
+
+    /* Brighter link to distinguish from body text */
+    --link-color: #7dd3fc;
+    --link-hover-color: #a5d8ff;
+
+    --button-bg: #2b2f38;
+    --button-text: #f5f5f5;
+
+    --tag-bg: #2b2f38;
+    --tag-text: #f5f5f5;
+
+    --meta-color: rgba(230, 230, 230, 0.7);
+
+    --nav-btn-bg: #1b1f27;
+    --nav-btn-text: #e6e6e6;
     --nav-btn-hover-bg: #8ab4f8;
-    --nav-btn-hover-text: #121212;
-    --code-bg: #3a3a3a;
-    --code-text: #f0f0f0;
-    --code-border: #555555;
+    --nav-btn-hover-text: #0f1115;
+
+    /* Inline code (p > code) */
+    --code-bg: #151a22;
+    --code-text: #eaf2ff;
+    --code-border: #2a3343;
 }
 
 html {
@@ -121,6 +140,10 @@ a {
     border-bottom: 2px solid;
 }
 
+a:hover {
+    color: var(--link-hover-color);
+}
+
 a:focus-visible,
 button:focus-visible {
     outline: 2px solid var(--button-bg);
@@ -139,6 +162,15 @@ button:focus-visible {
     border-radius: 0.25rem;
     color: var(--button-text);
     font-size: 1.25rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
 }
 
 h2 {
