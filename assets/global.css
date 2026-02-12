@@ -141,8 +141,16 @@ button:focus-visible {
     font-size: 1.25rem;
 }
 
+h2 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    margin: 1.25rem 0 0.5rem;
+}
+
 h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin: 1rem 0 0.5rem;
 }
 h6 {
     display: flex;
@@ -246,4 +254,46 @@ blockquote {
   60% { opacity: 0.7; filter: blur(0); transform: translate(3px, -1px); }
   75% { opacity: 0.9; filter: blur(1px); transform: translate(-1px, 1px); }
   100% { opacity: 1; filter: none; transform: translate(0); }
+}
+
+/* Card UI (used in /showcase and homepage "Karya") */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0.5rem 0;
+}
+
+.card {
+  background: var(--nav-btn-bg);
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.card p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--meta-color);
+  line-height: 1.4;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
 }
