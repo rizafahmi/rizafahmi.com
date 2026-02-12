@@ -77,6 +77,9 @@ title: Judul
         <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
         {%- endif -%}
         <small class="reading-time">⏱️ {{ content | readingTime }}</small>
+        {%- if goatcounterViews and goatcounterViews[page.url] %}
+        <small class="view-count" aria-label="Popularitas artikel">🔥 {{ goatcounterViews[page.url] | localeString }} dibaca</small>
+        {%- endif %}
         <small class="share-links" aria-label="Bagikan">
           <button
             type="button"

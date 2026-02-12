@@ -14,6 +14,9 @@ eleventyExcludeFromCollections: true
           <h6>&gt;&nbsp;&nbsp; {{ article.data.title }}</h6>
         </a>
         <span class="reading-time">⏱️ {{ article.content | readingTime }}</span>
+        {%- if goatcounterViews and goatcounterViews[article.url] %}
+        <span class="view-count">🔥 {{ goatcounterViews[article.url] | localeString }} dibaca</span>
+        {%- endif %}
       </div>
       {% endfor %}
     </div>

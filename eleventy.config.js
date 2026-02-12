@@ -127,6 +127,29 @@ export default function (eleventyConfig) {
     return n.toLocaleString(locale);
   });
 
+  // Sort a collection by view counts (descending) using GoatCounter data.
+  // Usage: collections.catatan | popularByViews(goatcounterViews, 10)
+  eleventyConfig.addFilter("popularByViews", (collection, views = {}, limit = 10) => {
+    if (!Array.isArray(collection) || !collection.length) return [];
+
+    const getViews = (url) => {
+      if (!url) return 0;
+      const v = views[url] ?? views[url.replace(/\/+$/, '')] ?? views[url + '/'];
+      return Number.isFinite(Number(v)) ? Number(v) : 0;
+    };
+
+    return [...collection]
+      .sort((a, b) => {
+        const av = getViews(a && a.url);
+        const bv = getViews(b && b.url);
+        if (bv !== av) return bv - av;
+        const ad = a && a.data && a.data.date ? new Date(a.data.date).getTime() : 0;
+        const bd = b && b.data && b.data.date ? new Date(b.data.date).getTime() : 0;
+        return bd - ad;
+      })
+      .slice(0, limit);
+  });
+
   eleventyConfig.addCollection("catatan", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
   });

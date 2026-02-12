@@ -85,36 +85,50 @@ eleventyExcludeFromCollections: true
     <section class="articles-section">
       <h2>🔥 10 Catatan Favorit</h2>
       <div class="articles">
-        <div class="article">
-          <h6><a href="/catatan/bahasa-fungsional-elixir">&gt;&nbsp;&nbsp; Berkenalan dengan Bahasa Pemrograman Elixir</a></h6>
-        </div>
-        <div class="article">
-          <h6><a href="/catatan/asisten-ngoding">&gt;&nbsp;&nbsp; Produktif dengan Asisten Ngoding</a></h6>
-        </div>
-        <div class="article">
-          <h6><a href="/catatan/paradigma-pemrograman">&gt;&nbsp;&nbsp; Catatan tentang Paradigma Pemrograman</a></h6>
-        </div>
-        <div class="article">
-          <h6><a href="/catatan/rekursi-atau-recursion">&gt;&nbsp;&nbsp; Rekursi: Fungsi Yang Memanggil Dirinya Sendiri</a></h6>
-        </div>
-        <div class="article">
-          <h6><a href="/catatan/notasi-o-besar-big-o-notation">&gt;&nbsp;&nbsp; Notasi O Besar atau Big-O Notation</a></h6>
-        </div>
-        <div class="article">
-          <h6><a href="/catatan/elixir-phoenix-rest-api">&gt;&nbsp;&nbsp; Membangun REST API dengan Elixir dan Phoenix</a></h6>
-        </div>
-        <div class="article">
-          <h6><a href="/catatan/5-kebiasaan-coding">&gt;&nbsp;&nbsp; 5 Kebiasaan Coding yang Menjadikan Kamu Super Developer</a></h6>
-        </div>
-        <div class="article">
-          <h6><a href="/catatan/cara-belajar-pemrograman">&gt;&nbsp;&nbsp; Cara Belajar Pemrograman yang Benar</a></h6>
-        </div>
-        <div class="article">
-          <h6><a href="/catatan/membangun-permainan-balap-kode-dgn-ai">&gt;&nbsp;&nbsp; Membangun Permainan Balap Kode dengan AI</a></h6>
-        </div>
-        <div class="article">
-          <h6><a href="/catatan/panduan-menulis">&gt;&nbsp;&nbsp; Panduan Menulis Artikel Pemrograman</a></h6>
-        </div>
+        {%- set popular = collections.catatan | popularByViews(goatcounterViews, 10) -%}
+
+        {%- if popular.length %}
+          {%- for t in popular %}
+          <div class="article">
+            <h6><a href="{{t.url}}">&gt;&nbsp;&nbsp; {{ t.data.title }}</a></h6>
+            {%- if goatcounterViews and goatcounterViews[t.url] %}
+            <span class="view-count">🔥 {{ goatcounterViews[t.url] | localeString }} dibaca</span>
+            {%- endif %}
+          </div>
+          {%- endfor %}
+        {%- else %}
+          <div class="article">
+            <h6><a href="/catatan/bahasa-fungsional-elixir">&gt;&nbsp;&nbsp; Berkenalan dengan Bahasa Pemrograman Elixir</a></h6>
+          </div>
+          <div class="article">
+            <h6><a href="/catatan/asisten-ngoding">&gt;&nbsp;&nbsp; Produktif dengan Asisten Ngoding</a></h6>
+          </div>
+          <div class="article">
+            <h6><a href="/catatan/paradigma-pemrograman">&gt;&nbsp;&nbsp; Catatan tentang Paradigma Pemrograman</a></h6>
+          </div>
+          <div class="article">
+            <h6><a href="/catatan/rekursi-atau-recursion">&gt;&nbsp;&nbsp; Rekursi: Fungsi Yang Memanggil Dirinya Sendiri</a></h6>
+          </div>
+          <div class="article">
+            <h6><a href="/catatan/notasi-o-besar-big-o-notation">&gt;&nbsp;&nbsp; Notasi O Besar atau Big-O Notation</a></h6>
+          </div>
+          <div class="article">
+            <h6><a href="/catatan/elixir-phoenix-rest-api">&gt;&nbsp;&nbsp; Membangun REST API dengan Elixir dan Phoenix</a></h6>
+          </div>
+          <div class="article">
+            <h6><a href="/catatan/5-kebiasaan-coding">&gt;&nbsp;&nbsp; 5 Kebiasaan Coding yang Menjadikan Kamu Super Developer</a></h6>
+          </div>
+          <div class="article">
+            <h6><a href="/catatan/cara-belajar-pemrograman">&gt;&nbsp;&nbsp; Cara Belajar Pemrograman yang Benar</a></h6>
+          </div>
+          <div class="article">
+            <h6><a href="/catatan/membangun-permainan-balap-kode-dgn-ai">&gt;&nbsp;&nbsp; Membangun Permainan Balap Kode dengan AI</a></h6>
+          </div>
+          <div class="article">
+            <h6><a href="/catatan/panduan-menulis">&gt;&nbsp;&nbsp; Panduan Menulis Artikel Pemrograman</a></h6>
+          </div>
+        {%- endif %}
+
         <div class="article">
           <a href="/articles"><h6>Lihat semua...</h6></a>
         </div>
