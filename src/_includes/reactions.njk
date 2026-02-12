@@ -1,0 +1,99 @@
+{#
+  Reaction buttons
+  - Static-site friendly (no backend)
+  - Sends GoatCounter custom events (event=true)
+  - Stores user's choice in localStorage to prevent repeated clicks
+
+  Event path format:
+    reaction/<emoji><page.url>
+  Examples:
+    reaction/👍/articles/my-post/
+    reaction/❤️/now/
+
+  View in GoatCounter:
+    Dashboard → Events → filter by path starts with "reaction/"
+#}
+<section class="reactions" aria-label="Reaksi">
+  <h3 class="reactions__title">Reaksi</h3>
+  <div class="reactions__buttons" role="group" aria-label="Pilih reaksi untuk artikel ini">
+    <button class="reaction-btn" type="button" data-reaction="👍" aria-label="Reaksi: suka">👍</button>
+    <button class="reaction-btn" type="button" data-reaction="❤️" aria-label="Reaksi: cinta">❤️</button>
+    <button class="reaction-btn" type="button" data-reaction="🤯" aria-label="Reaksi: mind blown">🤯</button>
+  </div>
+  <p class="reactions__hint" data-reactions-hint>Klik salah satu. (Tersimpan di browser kamu.)</p>
+
+  <script>
+    (function () {
+      var root = document.currentScript && document.currentScript.closest('.reactions');
+      if (!root) return;
+
+      var buttons = Array.prototype.slice.call(root.querySelectorAll('[data-reaction]'));
+      if (!buttons.length) return;
+
+      var hint = root.querySelector('[data-reactions-hint]');
+
+      var pagePath = (document.documentElement.getAttribute('data-page-url') || window.location.pathname || '/');
+      // Keep consistent trailing slash behaviour by using the real path as-is.
+      var storageKey = 'reaction:' + pagePath;
+
+      function setSelected(reaction) {
+        buttons.forEach(function (btn) {
+          var isSelected = btn.getAttribute('data-reaction') === reaction;
+          btn.classList.toggle('is-selected', isSelected);
+          btn.disabled = true;
+          btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+        });
+        if (hint) hint.textContent = 'Terima kasih!';
+      }
+
+      function waitForGoatCounter(callback, attempts) {
+        attempts = attempts || 0;
+        if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+          callback();
+          return;
+        }
+        if (attempts < 50) {
+          setTimeout(function () { waitForGoatCounter(callback, attempts + 1); }, 100);
+        }
+      }
+
+      // If user already reacted on this page, lock UI.
+      try {
+        var existing = window.localStorage.getItem(storageKey);
+        if (existing) {
+          setSelected(existing);
+          return;
+        }
+      } catch (e) {
+        // localStorage might be blocked; continue without persistence.
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var reaction = btn.getAttribute('data-reaction');
+          if (!reaction) return;
+
+          // Persist first to avoid double-click spamming.
+          try {
+            window.localStorage.setItem(storageKey, reaction);
+          } catch (e) {}
+
+          setSelected(reaction);
+
+          // Send GoatCounter event (no additional trackers).
+          waitForGoatCounter(function () {
+            try {
+              window.goatcounter.count({
+                path: 'reaction/' + reaction + pagePath,
+                title: reaction + ' ' + (document.title || pagePath),
+                event: true
+              });
+            } catch (e) {
+              // ignore
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</section>

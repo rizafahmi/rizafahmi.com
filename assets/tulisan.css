@@ -83,8 +83,18 @@ table {
 
 th,
 td {
-    border: 1px solid rgba(33, 26, 30, 0.6);
+    border: 1px solid var(--border-color);
     padding: 8px;
+}
+
+th {
+    background: var(--table-header-bg);
+    color: var(--heading-color);
+    text-align: left;
+}
+
+tr:nth-child(even) td {
+    background: var(--table-row-alt-bg);
 }
 
 li {
@@ -515,6 +525,58 @@ small {
 .share-link:focus {
     background: var(--nav-btn-hover-bg);
     color: var(--nav-btn-hover-text);
+}
+
+/* Reactions */
+.reactions {
+    margin-top: 2.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    background: var(--nav-btn-bg);
+}
+
+.reactions__title {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.05rem;
+}
+
+.reactions__buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.reaction-btn {
+    border: none;
+    background: var(--nav-btn-bg);
+    border: 1px solid var(--nav-btn-border, rgba(0,0,0,0.1));
+    border-radius: 0.6rem;
+    padding: 0.35rem 0.65rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.reaction-btn:hover,
+.reaction-btn:focus {
+    background: var(--nav-btn-hover-bg);
+    color: var(--nav-btn-hover-text);
+}
+
+.reaction-btn.is-selected {
+    background: var(--nav-btn-hover-bg);
+    color: var(--nav-btn-hover-text);
+    outline: 2px solid rgba(0,0,0,0.12);
+}
+
+.reaction-btn:disabled {
+    opacity: 0.75;
+    cursor: default;
+}
+
+.reactions__hint {
+    margin: 0.65rem 0 0 0;
+    opacity: 0.85;
 }
 
 /* Follow CTA near end of article */
