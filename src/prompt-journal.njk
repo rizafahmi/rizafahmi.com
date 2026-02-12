@@ -8,14 +8,21 @@ permalink: /prompt-journal/
 <style>
   /* Local styling so we can iterate without touching global CSS */
   .pj-intro { max-width: 70ch; }
-  .pj-meta { color: var(--text-2); font-size: var(--font-size-1); }
+  .pj-meta { color: var(--text-2); font-size: 0.95rem; line-height: 1.4; }
+  .pj-block { padding: var(--size-3) 0; border-top: 1px solid var(--surface-2); }
+  .pj-block:first-of-type { border-top: 0; }
+
   .pj-entry { padding: var(--size-3) 0; border-top: 1px solid var(--surface-2); }
   .pj-entry:first-of-type { border-top: 0; }
-  .pj-entry h3 { margin: 0 0 var(--size-1) 0; }
-  .pj-entry h4 { margin: var(--size-1) 0 var(--size-2) 0; }
-  .pj-kv { margin: 0; padding: 0; display: grid; gap: .4rem .8rem; grid-template-columns: max-content 1fr; }
+
+  .pj-entry h3 { margin: 0 0 var(--size-2) 0; }
+  .pj-entry h4 { margin: var(--size-2) 0 var(--size-2) 0; }
+
+  .pj-kv { margin: 0; padding: 0; display: grid; gap: .35rem .8rem; grid-template-columns: max-content 1fr; }
   .pj-kv dt { color: var(--text-2); }
   .pj-kv dd { margin: 0; }
+
+  details summary { cursor: pointer; }
 
   /* Fix: long prompt lines should wrap (avoid horizontal scroll) */
   pre.pj-prompt {
@@ -32,11 +39,13 @@ permalink: /prompt-journal/
   Default-nya verbatim; kalau ada yang sensitif, kamu tinggal bilang “sensor bagian X”.
 </p>
 
-<div class="pj-entry">
-  <h2>Format</h2>
-  <p class="pj-meta">Minimal info biar entry-nya useful buat di-reuse.</p>
+<section class="pj-block" aria-label="Format">
+  <h2>Format (ringkas)</h2>
+  <p class="pj-meta">Minimal info biar entry-nya gampang di-reuse. (Nggak wajib semua, tapi makin lengkap makin enak.)</p>
 
-  <pre class="pj-prompt"><code>Date: YYYY-MM-DD
+  <details>
+    <summary><strong>Lihat template</strong></summary>
+    <pre class="pj-prompt" style="margin-top: var(--size-2);"><code>Date: YYYY-MM-DD
 Tool: (Gemini / Claude Code / Codex / Cursor / OpenClaw / dll)
 Context: (project/file/constraints; 1–3 baris)
 Outcome: (success/fail; 1–3 baris)
@@ -44,14 +53,14 @@ Tags: #review #success #toolname
 
 Prompt:
 (paste verbatim)</code></pre>
-</div>
+  </details>
+</section>
 
 <h2>Entries</h2>
 <p class="pj-meta">Seed awal dari OPML (Jan 2026) + entry terbaru.</p>
 
 <section class="pj-entry" aria-label="Entry 2026-02-13">
-  <h3>13-02-2026</h3>
-  <h4>Thorough file review</h4>
+  <h3>13-02-2026 — Thorough file review</h3>
 
   <dl class="pj-kv">
     <dt>Tool</dt><dd>Gemini 3 Pro</dd>
@@ -148,8 +157,7 @@ Theme: programming
 </section>
 
 <section class="pj-entry" aria-label="Entry 2026-01-29">
-  <h3>29-01-2026</h3>
-  <h4>AI slop showcase app (Elixir/Phoenix/LiveView)</h4>
+  <h3>29-01-2026 — AI slop showcase app (Elixir/Phoenix/LiveView)</h3>
 
   <p class="pj-meta" style="margin-bottom: var(--size-1);">Prompt</p>
   <pre class="pj-prompt"><code>Create a web app to showcase vibe coded app that user build. The spirit is: Let's embrace the AI Slop! Audience able to submit whether it's slop or not. Audience able to submit the url to the app or url to github repo. Audience also able to give optional information such as what model they used, what tools, etc.
