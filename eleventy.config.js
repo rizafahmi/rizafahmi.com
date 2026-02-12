@@ -1,5 +1,7 @@
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import shikiPlugin from "./src/libs/shiki.js";
+import fs from "node:fs";
+import path from "node:path";
 
 function getRelativeTimeString(date) {
   const now = new Date();
@@ -276,6 +278,38 @@ export default function (eleventyConfig) {
       );
     }
     return content;
+  });
+
+  // Prefer modern formats when available by wrapping PNG <img> tags with <picture>.
+  // Original PNG remains in place as the <img> fallback (non-destructive).
+  eleventyConfig.addTransform("modernPictures", function(content, outputPath) {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+
+    return content.replace(
+      /<img\b[^>]*?src=("|')([^"']+?\.png(?:\?[^"']*)?)(\1)[^>]*?>/gi,
+      (imgTag, _quote, srcRaw) => {
+        if (imgTag.includes("data-no-picture")) return imgTag;
+        if (/^https?:\/\//i.test(srcRaw) || srcRaw.startsWith("data:")) return imgTag;
+
+        const [srcPathOnly, srcQuery = ""] = srcRaw.split("?");
+        const absSrc = path.join(process.cwd(), srcPathOnly.replace(/^\//, ""));
+
+        const hasAvif = fs.existsSync(absSrc.replace(/\.png$/i, ".avif"));
+        const hasWebp = fs.existsSync(absSrc.replace(/\.png$/i, ".webp"));
+        if (!hasAvif && !hasWebp) return imgTag;
+
+        const withQuery = (base) => base + (srcQuery ? `?${srcQuery}` : "");
+        const avifSrc = withQuery(srcPathOnly.replace(/\.png$/i, ".avif"));
+        const webpSrc = withQuery(srcPathOnly.replace(/\.png$/i, ".webp"));
+
+        const sources = [
+          hasAvif ? `<source type="image/avif" srcset="${avifSrc}">` : "",
+          hasWebp ? `<source type="image/webp" srcset="${webpSrc}">` : "",
+        ].filter(Boolean).join("");
+
+        return `<picture>${sources}${imgTag}</picture>`;
+      }
+    );
   });
 
   return {
