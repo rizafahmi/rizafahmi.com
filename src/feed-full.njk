@@ -1,0 +1,49 @@
+---json
+{
+  "permalink": "feed/full.xml",
+  "eleventyExcludeFromCollections": true,
+  "metadata": {
+    "title": "Kumpulan Catatan Riza Fahmi (Full)",
+    "subtitle": "Feed Atom dengan konten lengkap untuk setiap tulisan.",
+    "url": "https://rizafahmi.com/",
+    "feedUrl": "https://rizafahmi.com/feed/full.xml",
+    "author": {
+      "name": "Riza Fahmi",
+      "email": "rizafahmi@gmail.com"
+    },
+    "language": "id"
+  }
+}
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language }}">
+  <title>{{ metadata.title }}</title>
+  <subtitle>{{ metadata.subtitle }}</subtitle>
+  <link href="{{ metadata.feedUrl }}" rel="self"/>
+  <link href="{{ metadata.url }}"/>
+  <updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>{{ metadata.url }}</id>
+  <author>
+    <name>{{ metadata.author.name }}</name>
+    <email>{{ metadata.author.email }}</email>
+  </author>
+  <generator>Eleventy</generator>
+  {%- for post in collections.catatan | reverse %}
+  {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absolutePostUrl }}"/>
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <pubDate>{{ post.date | dateToRfc3339 }}</pubDate>
+    <id>{{ absolutePostUrl }}</id>
+    <summary>{{ (post.data.description or (post.templateContent | excerpt(220))) | safe }}</summary>
+    {%- if post.data.tags %}
+    <category term="{{ post.data.tags | join(', ') }}"/>
+    {%- endif %}
+    {%- if post.data.image %}
+    <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="{{ post.data.image | url | absoluteUrl(metadata.url) }}"/>
+    {%- endif %}
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
+  </entry>
+  {%- endfor %}
+</feed>
