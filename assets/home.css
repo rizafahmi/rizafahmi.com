@@ -94,6 +94,23 @@ h2 {
     margin: 0 0 0.25rem;
 }
 
+/* Homepage: ensure heading hierarchy in "Karya" section (h2 > h3) and consistent font */
+#karya > h2 {
+    font-family: Wotfard, Futura, -apple-system, sans-serif;
+    font-size: 2.25rem;
+    font-weight: 900;
+    text-transform: none;
+    margin: 0 0 0.75rem;
+}
+
+#karya h3 {
+    font-family: Wotfard, Futura, -apple-system, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: none;
+    margin: 1rem 0 0.5rem;
+}
+
 div.articles {
     margin-top: 1.5rem;
 }
