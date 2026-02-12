@@ -140,12 +140,9 @@ export default function (eleventyConfig) {
       .slice(0, 4);
   });
 
-  // Prompting journal entries
-  eleventyConfig.addCollection("prompts", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/prompts/*.md")
-      .filter(item => item.data && item.data.date)
-      .sort((a, b) => b.data.date - a.data.date);
-  });
+  // Prompting journal: currently single-page. If we later switch to per-entry files,
+  // we can reintroduce a collection here.
+
 
   // Curated tag list for /tags and /tags/<tag>/ pages.
   // Eleventy automatically creates collections per tag; this collection
