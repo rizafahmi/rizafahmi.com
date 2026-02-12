@@ -94,8 +94,10 @@ h2 {
     margin: 0 0 0.25rem;
 }
 
-/* Homepage: ensure heading hierarchy in "Karya" section (h2 > h3) and consistent font */
-#karya > h2 {
+/* Homepage: normalize section titles + card headings (avoid h2/h3 hierarchy weirdness) */
+#karya > h2,
+.featured-section > h2,
+#kontak > h2 {
     font-family: Wotfard, Futura, -apple-system, sans-serif;
     font-size: 2.25rem;
     font-weight: 900;
@@ -103,12 +105,20 @@ h2 {
     margin: 0 0 0.75rem;
 }
 
-#karya h3 {
+#karya h3,
+.featured-section h3,
+#kontak h3 {
     font-family: Wotfard, Futura, -apple-system, sans-serif;
     font-size: 1.5rem;
     font-weight: 800;
     text-transform: none;
     margin: 1rem 0 0.5rem;
+}
+
+/* Card title in homepage/showcase */
+.card h3 {
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
 }
 
 div.articles {
