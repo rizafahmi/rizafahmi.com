@@ -53,6 +53,26 @@ To build the site for development or production:
   npm run build:prod
   ```
 
+### GoatCounter (Article Popularity)
+
+This site can optionally show article popularity (view counts) by querying the GoatCounter API **at build time** (no client-side API calls).
+
+Configuration is done via environment variables (do **not** commit the token):
+
+```sh
+# Required
+export GOATCOUNTER_SITE="<your-goatcounter-code-or-domain>"
+export GOATCOUNTER_API_TOKEN="<your-api-token>"
+
+# Optional
+export GOATCOUNTER_API_BASE="https://<your-goatcounter-domain>/api/v0"  # overrides GOATCOUNTER_SITE
+export GOATCOUNTER_CACHE_TTL_HOURS="12"                                # default: 12
+```
+
+Notes:
+- Data is cached in `.cache/goatcounter/views.json` to keep builds fast and avoid rate limits.
+- If the env vars are not set, the site will build normally and simply hide the view counts.
+
 ### Debugging
 
 Run the project with debug output enabled:
