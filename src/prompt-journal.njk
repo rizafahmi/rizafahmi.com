@@ -33,5 +33,97 @@ Tags: #prompt-pattern #success #toolname
 
 <h2>Entries</h2>
 
-<p><em>Belum ada entri.</em> Nanti kalau kamu kirim prompt ke Claudia, aku akan:
-(1) nanya konteks yang kurang, (2) nambahin entry ke file journal ini, (3) buat PR.</p>
+<p>
+  Starting point: diekstrak dari jurnal OPML lama. Beberapa field seperti tool/outcome belum lengkap — nanti aku tanya kalau kamu kirim konteks tambahan.
+</p>
+
+<h3>27-01-2026</h3>
+
+<h4>Greenfield project idea brainstorming</h4>
+<ul>
+  <li><strong>What I tried:</strong> pengen proses yang sederhana (nggak kebanyakan PRD/doc) untuk dapat output yang bisa langsung dikerjain.</li>
+  <li><strong>Flow:</strong> Brainstorm → Product Description → MVP Scope → User Stories → DB Schema → Routes → Example Data</li>
+  <li><strong>Reference:</strong> <a href="https://ampcode.com/threads/T-019bfc9f-5453-70bb-87f1-54e2d31b8b42" target="_blank" rel="noopener noreferrer">ampcode thread</a></li>
+</ul>
+
+<h5>Prompt</h5>
+<pre><code>Let brainstorm the idea. Ask me 3-5 questions for clarity. Your end goal was to generate product description.
+
+I want to create an idea generator for social media content. User need to find a main theme first from user's expertise or user's interests or combination of that thing. After that, the app will generate 3-5 ideas by sub theme or category.
+
+Example:
+Theme: programming
+- parody or meme
+  - topic 1
+  - topic 2
+  - topic 3
+- programming paradigm
+  - topic 1
+  - topic 2
+  - topic 3
+- tools
+  - topic 1
+  - topic 2
+  - topic 3
+- gen ai
+  - topic 1
+  - topic 2
+  - topic 3</code></pre>
+
+<p><strong>Example note:</strong> <code>'/Users/riza/Documents/ideasparks - gen docs'</code></p>
+
+<h4>Prompt structure</h4>
+<ul>
+  <li><strong>What I tried:</strong> (P)ersona, (T)ask, (R)esult | (Q)uestion</li>
+  <li><strong>Reference:</strong> <a href="https://bigmachine.io/courses/ai-pro/simple-wins-pro-readme/" target="_blank" rel="noopener noreferrer">bigmachine: simple wins</a></li>
+</ul>
+
+<h4>Plan-Execute-Test-Verify Workflow</h4>
+<ul>
+  <li><strong>Note:</strong> use plan mode to plan your app; tools: cursor-agent, opencode, agy</li>
+  <li><strong>References:</strong>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=3sXGt0MKmY8" target="_blank" rel="noopener noreferrer">Specs Driven Development in Action</a></li>
+      <li><a href="https://www.youtube.com/watch?v=WNx-s-RxVxk" target="_blank" rel="noopener noreferrer">I was an AI skeptic. Then I tried plan mode (Matt Pocock)</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h5>Example prompt</h5>
+<pre><code>Create a text to image generator. The user will provide a text input. The Google Nano Banana Model will generate four different images. We will use the REST API. Do not use any SDK. Put everything in a single file. Also, have the ability for the user to provide the API key directly within the app. Make sure the app looks like it was designed by a billion-dollar design company.</code></pre>
+
+<hr />
+
+<h3>28-01-2026</h3>
+
+<ul>
+  <li><strong>✅ Review code</strong>
+    <pre><code>Please review all codes. Check for dead code, subtle conceptual errors, inconsistencies, overcomplicate code, bloat abstractions, inefficient and idiomatic [language] code</code></pre>
+  </li>
+  <li><strong>✅ Perf (geminicli + chrome devtool extension)</strong>
+    <pre><code>Check the performance of [web url]</code></pre>
+  </li>
+  <li><strong>Redesign</strong>
+    <pre><code>This is web application to pick the next topic of discussion of our podcast. Please redesign this web app. Make sure the app looks like it was designed by a billion-dollar design company.</code></pre>
+  </li>
+</ul>
+
+<hr />
+
+<h3>29-01-2026</h3>
+
+<h4>AI slop showcase app (Elixir/Phoenix/LiveView)</h4>
+<h5>Prompt</h5>
+<pre><code>Create a web app to showcase vibe coded app that user build. The spirit is: Let's embrace the AI Slop! Audience able to submit whether it's slop or not. Audience able to submit the url to the app or url to github repo. Audience also able to give optional information such as what model they used, what tools, etc.
+
+Use my usual tech stack: Elixir, Phoenix & LiveView, SQLite, and https://open-props.style.
+
+Do feature test first with PhoenixTest, then implement the code. Do one test case at a time. Then commit changes to git. So on and so forth.
+
+Make sure the app looks like it was designed by a billion-dollar design company.
+
+Read the project folder provided. Let's plan this and ask me questions for clarity.</code></pre>
+
+<p>
+  Next: kalau kamu kirim prompt baru, aku akan tambahin ke halaman ini + PR.
+</p>
