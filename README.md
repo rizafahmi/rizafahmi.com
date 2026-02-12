@@ -61,6 +61,30 @@ Run the project with debug output enabled:
 npm run debug
 ```
 
+## Feeds (RSS/Atom)
+
+This site generates two Atom feeds:
+
+- Excerpt feed: `https://rizafahmi.com/feed.xml`
+- Full-content feed: `https://rizafahmi.com/feed/full.xml`
+
+### Testing feeds locally
+
+1. Run the dev server:
+   ```sh
+   npm start
+   ```
+2. Open:
+   - http://localhost:3000/feed.xml
+   - http://localhost:3000/feed/full.xml
+
+Or build and inspect the output files in `dist/`:
+
+```sh
+npm run build
+ls -lah dist/feed.xml dist/feed/full.xml
+```
+
 ## Project Structure
 
 - `src/`: Contains source files for pages, templates, styles, and assets.

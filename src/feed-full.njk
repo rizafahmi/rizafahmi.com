@@ -1,12 +1,12 @@
 ---json
 {
-  "permalink": "feed.xml",
+  "permalink": "feed/full.xml",
   "eleventyExcludeFromCollections": true,
   "metadata": {
-    "title": "Kumpulan Catatan Riza Fahmi",
-    "subtitle": "Berikut adalah kumpulan tulisan Riza Fahmi",
+    "title": "Kumpulan Catatan Riza Fahmi (Full)",
+    "subtitle": "Feed Atom dengan konten lengkap untuk setiap tulisan.",
     "url": "https://rizafahmi.com/",
-    "feedUrl": "https://rizafahmi.com/feed.xml",
+    "feedUrl": "https://rizafahmi.com/feed/full.xml",
     "author": {
       "name": "Riza Fahmi",
       "email": "rizafahmi@gmail.com"
@@ -43,6 +43,7 @@
     {%- if post.data.image %}
     <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="{{ post.data.image | url | absoluteUrl(metadata.url) }}"/>
     {%- endif %}
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
   </entry>
   {%- endfor %}
 </feed>
