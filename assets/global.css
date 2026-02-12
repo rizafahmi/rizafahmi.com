@@ -141,8 +141,16 @@ button:focus-visible {
     font-size: 1.25rem;
 }
 
+h2 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    margin: 1.25rem 0 0.5rem;
+}
+
 h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin: 1rem 0 0.5rem;
 }
 h6 {
     display: flex;
