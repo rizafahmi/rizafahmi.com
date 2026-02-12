@@ -1,5 +1,6 @@
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import shikiPlugin from "./src/libs/shiki.js";
+import { getRelatedPosts } from "./src/libs/related.js";
 
 function getRelativeTimeString(date) {
   const now = new Date();
@@ -69,44 +70,22 @@ export default function (eleventyConfig) {
     return arr.filter((t) => t && !HIDDEN_TAGS.has(t));
   }
 
-  // Pick related posts by shared tags/topik.
-  // Deterministic ordering: shared tag count (desc), date (desc), url (asc).
+  // Related articles (build-time, deterministic):
+  // Combine signals: shared tags, content similarity, and recency.
+  //
+  // Usage (recommended):
+  //   collections.catatan | relatedArticles({ url, tags, title, excerpt, content }, 3)
+  eleventyConfig.addFilter("relatedArticles", (collection, current, limit = 3) => {
+    return getRelatedPosts(collection, current, { limit, hiddenTags: HIDDEN_TAGS });
+  });
+
+  // Backwards-compatible filter (previously tag-only).
   eleventyConfig.addFilter("relatedByTags", (collection, tags, currentUrl, limit = 3) => {
-    if (!Array.isArray(collection) || !collection.length) return [];
-
-    const currentTags = new Set(normalizeTags(tags));
-
-    const scored = [];
-    for (const item of collection) {
-      if (!item || item.url === currentUrl) continue;
-
-      const itemTags = normalizeTags(item.data && item.data.tags);
-      let shared = 0;
-      if (currentTags.size) {
-        for (const t of itemTags) {
-          if (currentTags.has(t)) shared++;
-        }
-      }
-
-      scored.push({
-        item,
-        shared,
-        date: item.data && item.data.date ? new Date(item.data.date).getTime() : 0,
-        url: item.url || "",
-      });
-    }
-
-    scored.sort((a, b) => {
-      if (b.shared !== a.shared) return b.shared - a.shared;
-      if (b.date !== a.date) return b.date - a.date;
-      return a.url.localeCompare(b.url);
-    });
-
-    // Prefer posts with at least 1 shared tag; otherwise fall back to latest.
-    const withShared = scored.filter((x) => x.shared > 0);
-    return (withShared.length ? withShared : scored)
-      .slice(0, limit)
-      .map((x) => x.item);
+    return getRelatedPosts(
+      collection,
+      { url: currentUrl, tags },
+      { limit, hiddenTags: HIDDEN_TAGS }
+    );
   });
 
   // Plain-text excerpt for meta description (social previews, SEO).
