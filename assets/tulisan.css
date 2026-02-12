@@ -87,6 +87,16 @@ td {
     padding: 8px;
 }
 
+th {
+    background: var(--table-header-bg);
+    color: var(--heading-color);
+    text-align: left;
+}
+
+tr:nth-child(even) td {
+    background: var(--table-row-alt-bg);
+}
+
 li {
     margin: 0.5rem 0;
 }

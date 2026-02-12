@@ -32,11 +32,12 @@
 :root {
     --bg-color: #ffffff;
     --text-color: rgb(41, 38, 38);
-    --heading-color: rgb(33, 26, 30);
-
+    --heading-color: #211a1e;
     --link-color: inherit;
-    --link-hover-color: rgb(33, 26, 30);
-
+    --link-hover-color: #211a1e;
+    --border-color: rgba(33, 26, 30, 0.2);
+    --table-header-bg: #f5f5f5;
+    --table-row-alt-bg: #fafafa;
     --button-bg: #211a1e;
     --button-text: #fcfcfc;
 
@@ -137,7 +138,11 @@ body {
 a {
     color: var(--link-color);
     text-decoration: none;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid currentColor;
+}
+
+a:hover {
+    color: var(--link-hover-color);
 }
 
 a:hover {
@@ -154,6 +159,15 @@ button:focus-visible {
 [data-theme="dark"] a:focus-visible,
 [data-theme="dark"] button:focus-visible {
     outline-color: var(--link-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
 }
 
 .button {
