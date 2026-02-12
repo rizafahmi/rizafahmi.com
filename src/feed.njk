@@ -36,14 +36,13 @@
     <updated>{{ post.date | dateToRfc3339 }}</updated>
     <pubDate>{{ post.date | dateToRfc3339 }}</pubDate>
     <id>{{ absolutePostUrl }}</id>
-    <summary>{{ post.data.description | safe }}</summary>
+    <summary>{{ (post.data.description or (post.templateContent | excerpt(220))) | safe }}</summary>
     {%- if post.data.tags %}
     <category term="{{ post.data.tags | join(', ') }}"/>
     {%- endif %}
     {%- if post.data.image %}
     <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="{{ post.data.image | url | absoluteUrl(metadata.url) }}"/>
     {%- endif %}
-    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
   </entry>
   {%- endfor %}
 </feed>

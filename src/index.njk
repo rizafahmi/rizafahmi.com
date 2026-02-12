@@ -67,7 +67,7 @@ eleventyExcludeFromCollections: true
 
   <main id="main-content">
     <section class="articles-section" id="catatan">
-      <h2>📰 10 Catatan Terbaru · <a href="/feed.xml">RSS</a></h2>
+      <h2>📰 10 Catatan Terbaru · <a href="/feed.xml">RSS</a> / <a href="/feed/full.xml">Full</a></h2>
       <div class="articles">
         {%- for t in collections.catatan | reverse %}
         {%- if loop.index0 < 10 %}
