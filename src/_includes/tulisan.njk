@@ -137,7 +137,7 @@ title: Judul
       <section class="related-articles">
         <h3>📚 Artikel Terkait</h3>
         <div class="related-grid">
-          {%- set related = collections.catatan | relatedByTags(visibleTags, page.url, 3) %}
+          {%- set related = collections.catatan | relatedArticles({ url: page.url, tags: visibleTags, title: title, content: content }, 3) %}
           {%- for article in related %}
             <a href="{{ article.url }}" class="related-card">
               <span class="related-title">{{ article.data.title }}</span>
