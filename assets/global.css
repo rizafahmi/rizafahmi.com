@@ -199,6 +199,14 @@ strong, b {
     margin-bottom: 0.5rem;
 }
 
+.view-count {
+    font-size: 0.875rem;
+    color: var(--meta-color);
+    display: block;
+    margin-top: -0.25rem;
+    margin-bottom: 0.5rem;
+}
+
 .theme-toggle {
     background: none;
     border: none;
