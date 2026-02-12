@@ -73,6 +73,21 @@ Notes:
 - Data is cached in `.cache/goatcounter/views.json` to keep builds fast and avoid rate limits.
 - If the env vars are not set, the site will build normally and simply hide the view counts.
 
+### Image Optimization (WebP/AVIF)
+
+This repo keeps original images (e.g. PNG) and can generate modern formats alongside them.
+
+1. Generate optimized variants (writes `*.webp` and `*.avif` next to each `*.png`):
+   ```sh
+   npm run images:optimize
+   ```
+
+   Notes:
+   - The script skips tiny files/icons by default.
+   - It only regenerates outputs when the source PNG is newer (use `--force` to regenerate everything).
+
+2. During build, HTML output will automatically prefer AVIF/WebP when available by wrapping PNG `<img>` tags with a `<picture>` element (PNG remains as fallback).
+
 ### Debugging
 
 Run the project with debug output enabled:
