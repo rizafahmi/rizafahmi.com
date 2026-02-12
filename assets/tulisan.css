@@ -83,8 +83,18 @@ table {
 
 th,
 td {
-    border: 1px solid rgba(33, 26, 30, 0.6);
+    border: 1px solid var(--border-color);
     padding: 8px;
+}
+
+th {
+    background: var(--table-header-bg);
+    color: var(--heading-color);
+    text-align: left;
+}
+
+tr:nth-child(even) td {
+    background: var(--table-row-alt-bg);
 }
 
 li {
