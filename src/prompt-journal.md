@@ -14,11 +14,11 @@ Jurnal prompt publik: **prompt verbatim + konteks + hasil**.
 
 ---
 
-## 13-02-2026 — Thorough file review
+## 13-02-2026 — Review dokumen (menyeluruh)
 
 - **Tool:** Gemini 3 Pro
-- **Context:** <https://github.com/rizafahmi/clawdex/blob/main/docs/phase-3-tools-and-web.md>
-- **Outcome:** Review menyeluruh; hasilnya sesuai harapan (bagus).
+- **Konteks:** <https://github.com/rizafahmi/clawdex/blob/main/docs/phase-3-tools-and-web.md>
+- **Hasil:** Review menyeluruh; hasilnya sesuai harapan (bagus).
 
 **Prompt**
 
@@ -26,15 +26,15 @@ Jurnal prompt publik: **prompt verbatim + konteks + hasil**.
 Please do check and review @phase-3-tools-and-web.md check for flaws, correctness and everything else. be thorough.
 ```
 
-> Catatan: kalau kamu mau, paste ringkasan temuan Gemini, nanti aku tambahin sebagai bullet “Findings”.
+> Catatan: kalau kamu mau, paste ringkasan temuan Gemini, nanti aku tambahin sebagai bullet **Temuan**.
 
 ---
 
-## 27-01-2026 — Greenfield project idea brainstorming
+## 27-01-2026 — Brainstorm ide (greenfield)
 
-- **What:** pengen proses sederhana (nggak kebanyakan PRD/doc) untuk dapat output implementable.
-- **Flow:** Brainstorm → Product Description → MVP Scope → User Stories → DB Schema → Routes → Example Data
-- **Ref:** <https://ampcode.com/threads/T-019bfc9f-5453-70bb-87f1-54e2d31b8b42>
+- **Inti:** pengen proses sederhana (nggak kebanyakan PRD/doc) untuk dapat output yang langsung implementable.
+- **Alur:** Brainstorm → Product Description → MVP Scope → User Stories → DB Schema → Routes → Example Data
+- **Referensi:** <https://ampcode.com/threads/T-019bfc9f-5453-70bb-87f1-54e2d31b8b42>
 
 **Prompt**
 
@@ -63,21 +63,21 @@ Theme: programming
   - topic 3
 ```
 
-- **Example note:** `/Users/riza/Documents/ideasparks - gen docs`
+- **Catatan contoh:** `/Users/riza/Documents/ideasparks - gen docs`
 
-### Prompt structure
+### Struktur prompt
 
-- **What:** (P)ersona, (T)ask, (R)esult | (Q)uestion
-- **Ref:** <https://bigmachine.io/courses/ai-pro/simple-wins-pro-readme/>
+- **Inti:** (P)ersona, (T)ask, (R)esult | (Q)uestion
+- **Referensi:** <https://bigmachine.io/courses/ai-pro/simple-wins-pro-readme/>
 
-### Plan-Execute-Test-Verify Workflow
+### Workflow Plan-Execute-Test-Verify
 
-- **Note:** use plan mode to plan your app. Tools: cursor-agent, opencode, agy
-- **Refs:**
+- **Catatan:** pakai plan mode buat ngerencanain app. Tools: cursor-agent, opencode, agy
+- **Referensi:**
   - <https://www.youtube.com/watch?v=3sXGt0MKmY8>
   - <https://www.youtube.com/watch?v=WNx-s-RxVxk>
 
-**Example prompt**
+**Contoh prompt**
 
 ```text
 Create a text to image generator. The user will provide a text input. The Google Nano Banana Model will generate four different images. We will use the REST API. Do not use any SDK. Put everything in a single file. Also, have the ability for the user to provide the API key directly within the app. Make sure the app looks like it was designed by a billion-dollar design company.
@@ -87,19 +87,19 @@ Create a text to image generator. The user will provide a text input. The Google
 
 ## 28-01-2026
 
-### Code review prompt (thorough)
+### Prompt code review (menyeluruh)
 
 ```text
 Please review all codes. Check for dead code, subtle conceptual errors, inconsistencies, overcomplicate code, bloat abstractions, inefficient and idiomatic [language] code
 ```
 
-### Perf check (geminicli + chrome devtool extension)
+### Cek performa (geminicli + chrome devtool extension)
 
 ```text
 Check the performance of [web url]
 ```
 
-### Redesign prompt (billion-dollar design company)
+### Prompt redesign ("billion-dollar design company")
 
 ```text
 This is web application to pick the next topic of discussion of our podcast. Please redesign this web app. Make sure the app looks like it was designed by a billion-dollar design company.
@@ -107,7 +107,7 @@ This is web application to pick the next topic of discussion of our podcast. Ple
 
 ---
 
-## 29-01-2026 — AI slop showcase app (Elixir/Phoenix/LiveView)
+## 29-01-2026 — Showcase AI slop (Elixir/Phoenix/LiveView)
 
 **Prompt**
 
