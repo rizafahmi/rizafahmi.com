@@ -19,6 +19,7 @@ Jurnal prompt publik: **prompt verbatim + konteks + hasil**.
 - **Perkakas:** Ampcode (model otomatis)
 - **Konteks:** mulai implement Phase 4 dari ADR (architecture decision record)
 - **Hasil:** lebih bagus karena model bikin rencana dan memecah kerjaan per task; kalau tidak diminta plan, cenderung langsung ngerjain semuanya.
+- **Catatan:** hasilnya juga lebih bagus dibanding prompt Phase 3 sebelumnya (review file).
 
 **Prompt**
 
