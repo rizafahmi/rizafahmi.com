@@ -16,7 +16,7 @@ Jurnal prompt publik: **prompt verbatim + konteks + hasil**.
 
 ## 13-02-2026 — Review dokumen (menyeluruh)
 
-- **Tool:** Gemini 3 Pro
+- **Perkakas:** Gemini 3 Pro
 - **Konteks:** <https://github.com/rizafahmi/clawdex/blob/main/docs/phase-3-tools-and-web.md>
 - **Hasil:** Review menyeluruh; hasilnya sesuai harapan (bagus).
 
