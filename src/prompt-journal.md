@@ -32,7 +32,9 @@ Please do check and review @phase-3-tools-and-web.md check for flaws, correctnes
 
 ## 27-01-2026 — Brainstorm ide (greenfield)
 
-- **Inti:** pengen proses sederhana (nggak kebanyakan PRD/doc) untuk dapat output yang langsung implementable.
+- **Perkakas:** LLM (umum)
+- **Konteks:** cari ide produk “idea generator” untuk social media content
+- **Hasil:** struktur pertanyaan klarifikasi + output berjenjang (product description → MVP scope → user stories, dst.)
 - **Alur:** Brainstorm → Product Description → MVP Scope → User Stories → DB Schema → Routes → Example Data
 - **Referensi:** <https://ampcode.com/threads/T-019bfc9f-5453-70bb-87f1-54e2d31b8b42>
 
@@ -89,17 +91,29 @@ Create a text to image generator. The user will provide a text input. The Google
 
 ### Prompt code review (menyeluruh)
 
+- **Perkakas:** LLM (umum)
+- **Konteks:** review kode basis code tertentu
+- **Hasil:** menemukan dead code, inconsistency, dan perbaikan idiomatik/efisiensi
+
 ```text
 Please review all codes. Check for dead code, subtle conceptual errors, inconsistencies, overcomplicate code, bloat abstractions, inefficient and idiomatic [language] code
 ```
 
-### Cek performa (geminicli + chrome devtool extension)
+### Cek performa (gemini cli + Chrome DevTools extension)
+
+- **Perkakas:** gemini cli, Chrome DevTools extension
+- **Konteks:** URL web tertentu
+- **Hasil:** insight bottleneck + rekomendasi perbaikan
 
 ```text
 Check the performance of [web url]
 ```
 
 ### Prompt redesign ("billion-dollar design company")
+
+- **Perkakas:** LLM (umum)
+- **Konteks:** web app untuk memilih topik diskusi podcast
+- **Hasil:** usulan redesign UI/UX + copy, lebih rapi & konsisten
 
 ```text
 This is web application to pick the next topic of discussion of our podcast. Please redesign this web app. Make sure the app looks like it was designed by a billion-dollar design company.
@@ -108,6 +122,10 @@ This is web application to pick the next topic of discussion of our podcast. Ple
 ---
 
 ## 29-01-2026 — Showcase AI slop (Elixir/Phoenix/LiveView)
+
+- **Perkakas:** LLM (umum)
+- **Konteks:** bikin web app (Elixir, Phoenix & LiveView, SQLite, open-props.style), test-first via PhoenixTest, commit bertahap
+- **Hasil:** rencana + pertanyaan klarifikasi untuk mulai implementasi
 
 **Prompt**
 
