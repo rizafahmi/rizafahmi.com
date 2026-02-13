@@ -17,7 +17,7 @@ Jurnal prompt publik: **prompt verbatim + konteks + hasil**.
 ## 13-02-2026 — Plan dulu biar bisa pecah per task
 
 - **Perkakas:** Ampcode (model otomatis)
-- **Konteks:** mulai implement Phase 4 dari ADR (architecture decision record)
+- **Konteks:** mulai implement Phase 4 dari specs + ADR (folder `docs/` di repo <https://github.com/rizafahmi/clawdex/>)
 - **Hasil:** lebih bagus karena model bikin rencana dan memecah kerjaan per task; kalau tidak diminta plan, cenderung langsung ngerjain semuanya.
 - **Catatan:** hasilnya juga lebih bagus dibanding prompt Phase 3 sebelumnya (review file).
 
