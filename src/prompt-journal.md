@@ -14,6 +14,20 @@ Jurnal prompt publik: **prompt verbatim + konteks + hasil**.
 
 ---
 
+## 13-02-2026 — Plan dulu biar bisa pecah per task
+
+- **Perkakas:** Ampcode (LLM)
+- **Konteks:** mulai implement Phase 4 dari ADR (architecture decision record)
+- **Hasil:** lebih bagus karena model bikin rencana dan memecah kerjaan per task; kalau tidak diminta plan, cenderung langsung ngerjain semuanya.
+
+**Prompt**
+
+```text
+Carefully read @docs/adr/002-phase-4-architecture.md and @docs/adr/002-phase-4-architecture.md. Let's start implement phase 4. What the plan looks like?
+```
+
+---
+
 ## 13-02-2026 — Review dokumen (menyeluruh)
 
 - **Perkakas:** Gemini 3 Pro
