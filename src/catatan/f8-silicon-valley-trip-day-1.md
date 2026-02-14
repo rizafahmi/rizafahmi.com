@@ -20,19 +20,19 @@ Sampailah kita di acara utama [F8 Conference](https://f8.com) day 1! Di hari per
 
 Setelah mengantri cukup panjang untuk masuk ke auditorium, akhirnya bisa dapat tempat duduk yang cukup strategis.
 
-![Ngantri with om Bambang dan Firdaus](/assets/images/f81/1_AMQhtCJzEAb2-OskvuQIUw.jpg)_Ngantri with om Bambang dan Firdaus_
+{% image "./assets/images/f81/1_AMQhtCJzEAb2-OskvuQIUw.jpg", "Ngantri with om Bambang dan Firdaus" %}_Ngantri with om Bambang dan Firdaus_
 
 DAN bisa foto dan naik panggung sebelum Mark muncul! Walaupun setelah itu dikejar-kejar satpam :)
 
-![DevC Asia Pacific foto-foto di depan stage sebelum Mark tampil.](/assets/images/f81/1_-cAGTJ0EGesmbWtTWXjCBg.jpeg)_DevC Asia Pacific foto-foto di depan stage sebelum Mark tampil._
+{% image "./assets/images/f81/1_-cAGTJ0EGesmbWtTWXjCBg.jpeg", "DevC Asia Pacific foto-foto di depan stage sebelum Mark tampil." %}_DevC Asia Pacific foto-foto di depan stage sebelum Mark tampil._
 
-![With DevC Jakarta: Om Luri (paling kiri) dan Anne.](/assets/images/f81/1_1ZP18jOOg8GKH7EQCFXg3g.jpeg)_With DevC Jakarta: Om Luri (paling kiri) dan Anne._
+{% image "./assets/images/f81/1_1ZP18jOOg8GKH7EQCFXg3g.jpeg", "With DevC Jakarta: Om Luri (paling kiri) dan Anne." %}_With DevC Jakarta: Om Luri (paling kiri) dan Anne._
 
 Ok, masuk ke catatan _keynote_. Saya ngga akan me-_review_ secara detil ya disini. Silakan baca atau nonton videonya kalo mau lebih detil. Saya hanya akan me-_review_ dari sudut pandang saya dan ada beberapa momen yang mungkin terlewat karena saya tertidur karena jet lag :)
 
 Terlepas dari masalah yang dihadapi akhir-akhir ini, Mark terlihat segar dan cukup ceria. Mengusung tagline “**We will keep building**”, Mark membawakannya dengan semangat yang tinggi sehingga saya yang mendengarkan juga bisa ikut merasakan semangatnya. Sangking semangatnya hingga tertidur di tengah-tengah _talk_ 😉.
 
-![Mark on the stage.](/assets/images/f81/1_sm9hNEsX8IV3hKEmvFYx8A.jpeg)
+{% image "./assets/images/f81/1_sm9hNEsX8IV3hKEmvFYx8A.jpeg", "Mark on the stage." %}
 
 Berikut beberapa catatan dari keynote Mark Zuckerberg terkati Facebook:
 
@@ -68,13 +68,13 @@ Sementara untuk WhatsApp, ada beberapa update juga:
 
 Dan sebagai catatan penutup, Oculus meluncurkan produk barunya yaitu [Oculus Go](https://www.oculus.com/go/) dan harganya $199 dan semua yang ikutan F8 mendapatkannya secara gratis!
 
-![Oculus Go sudah ditangan](/assets/images/f81/1_OAh9_OHfUlkZQCyYmIzxMQ.jpeg)_Oculus Go sudah ditangan_
+{% image "./assets/images/f81/1_OAh9_OHfUlkZQCyYmIzxMQ.jpeg", "Oculus Go sudah ditangan" %}_Oculus Go sudah ditangan_
 
 ## Hunting Swag
 
 Kegiatan berikutnya adalah hunting swag! 😈 Dapat cukup banyak sampai-sampai koper nyaris tidak muat. Hampir semua booth memanjakan pengunjung dengan berbagai swag keren. _Booth-booth_ yang ada semuanya adalah produk Facebook. Mulai dari Oculus, Messenger, Analytics, Video, PyTorch, Ads, Instagram, dan banyak yang lainnya. Hasilnya… Cukup menggembirakan!
 
-![Hunted!](/assets/images/f81/1_JzPUcm47l0jj06QEC_G4OA.jpeg)_Hunted!_
+{% image "./assets/images/f81/1_JzPUcm47l0jj06QEC_G4OA.jpeg", "Hunted!" %}_Hunted!_
 
 Dan yang menjadi favorit _booth_ buat saya adalah _booth_ Open Source! Sangking kerennya, _booth_ ini layak mendapat porsi pembahasan tersendiri.
 
@@ -82,17 +82,17 @@ Dan yang menjadi favorit _booth_ buat saya adalah _booth_ Open Source! Sangking 
 
 Kenapa _booth_ ini menjadi favorit? Karena dikasih segepok stiker buat dibagi-bagi ke komunitas di Jakarta. Alasan kedua karena bisa bertemu dengan _influencer_ di dunia open source dan _tech scene_ secara umum. Booth ini dijaga oleh [Joel Marcey](https://github.com/JoelMarcey), Developer Advocate Facebook. Saya sempat berinteraksi dengan Joel ketika mencoba kontribusi ke salah satu project open source [Docusaurus](https://github.com/facebook/Docusaurus/issues/467). Dan bisa bertemu dan diskusi langsung adalah hal yang sangat menyenangkan.
 
-![With Joel](/assets/images/f81/1_dck_uuDn4CHM-N8HDCijOQ.jpeg)_With Joel_
+{% image "./assets/images/f81/1_dck_uuDn4CHM-N8HDCijOQ.jpeg", "With Joel" %}_With Joel_
 
 Dan ada satu orang lagi yang menjaga _booth_ open source adalah [Eric Nakagawa](https://twitter.com/ericnakagawa)! Dia adalah orang yang bertanggung jawab terhadap semua project open source yang ada di Facebook! Sebenarnya ada kesempatan bertemu kemaren pas acara DevC Leadership tapi saya _missed_ karena sedang ngobrol dengan [Emeka Afigbo](https://www.facebook.com/chukwuemeka.afigbo). [Silakan baca artikel sebelumnya](https://rizafahmi.com/2018/05/08/f8-san-jose-trip-day-0/).
 
-![With Eric Nakagawa](/assets/images/f81/1_m_Hrdb-uR2CO5yCvGih_iw.jpeg)_With Eric Nakagawa_
+{% image "./assets/images/f81/1_m_Hrdb-uR2CO5yCvGih_iw.jpeg", "With Eric Nakagawa" %}_With Eric Nakagawa_
 
 Dengan Eric diskusi cukup banyak. Yang saya baru tahu adalah Eric sempat mencoba menjadi podcaster. Dia sempat menjalankan podcast dengan format yang, well, mirip dengan [Ceritanya Developer](https://ceritanyadeveloper.com), podcast yang sedang jalankan. Dia melakukan interview dengan teman-temannya yang adalah developer juga. Namanya [Potluck Podcast ](https://itunes.apple.com/pl/podcast/potluck-podcast/id1196828738)dan sudah berhenti di episode 6. Sudah tidak bisa di _download_ dan didengarkan, sayangnya.
 
 Kemudian giliran saya yang bercerita. Saya sampaikan bahwa saya juga baru saja me-_launch_ sebuah [podcast](https://ceritanyadeveloper.com) setelah [podcast lama saya berhenti](https://soundcloud.com/appscoast). Saya juga sempat memperlihatkan statistik dua episode awal: [episode teaser/coming soon](https://anchor.fm/ceritanya-developer/episodes/Coming-Soon-e1aaad) dan [episode pertama](https://anchor.fm/ceritanya-developer/episodes/devs0--Dicky-Arinal-e186lm). Dia cukup kaget dan bilang “Impressive! You’re doing much better than me!!”. Terimakasih banyak pendengar [Ceritanya Developer Podcast](https://ceritanyadeveloper.com). Karena kalian, saya jadi bisa sedikit pamer didepan sosok _prolific_ seperti Eric 😈.
 
-![Statistik Ceritanya Developer Podcast](/assets/images/f81/1_IIbxY1Z4mHvCg1Cpsqs1wQ.png)
+{% image "./assets/images/f81/1_IIbxY1Z4mHvCg1Cpsqs1wQ.png", "Statistik Ceritanya Developer Podcast" %}
 
 Kemudian Eric juga memperingatkan saya supaya menjaga momentum dan jangan sampai _burnout_. Dia menyebutkan bahwa dia melakukan podcast **sambil** membuat _tools_ untuk podcast. Agak kepo dan ingin melakukan analisa terhadap pendengarnya, Eric memutuskan membuat sendiri _analytic tools_ yang bisa melihat _behavior_ pendengar secara _realtime_. Hal itulah yang akhirnya membuat dia _burnout_ dan memutuskan berhenti nge-_podcast_.
 
@@ -108,7 +108,7 @@ Jadi mari segera belajar AI.
 
 Setelah bertemu Eric dan Joel dan mendapatkan _insight_ yang _super useful_ saya dan teman-teman sangat merasa puas. Saya bisa tidur nyenyak nih nanti malam 😃. Tapi ada satu lagi momen dimana saya merinding. Bukan (hanya) karena kedinginan, tapi karena menjadi saksi dan menyaksikan teman seperjuangan, [Anne](https://www.facebook.com/annereginancy) berdiri dan _talk_ didepan audience F8! Bangga lah pasti sebagai teman dan co-lead. Meski bukan panggung utama, tapi tetap aja!!
 
-![Anne on the stage](/assets/images/f81/1_oSCToY-XQoW2OAa98bVsGg.jpeg)_Anne on the stage_
+{% image "./assets/images/f81/1_oSCToY-XQoW2OAa98bVsGg.jpeg", "Anne on the stage" %}_Anne on the stage_
 
 Topik yang diangkat adalah tentang komunitas dan _female developer_. Sampai saat ini belum ada videonya, semoga ada rekamannya jadi teman-teman bisa nonton juga.
 

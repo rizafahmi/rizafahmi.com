@@ -40,7 +40,7 @@ Meski bukan spesifik untuk membantu pemrograman, beberapa AI chatbot dapat digun
     
    Selain untuk meminta saran untuk kode, AI berbasis chatbot seperti ini sangat cocok untuk diskusi atau *brainstorming*.
        
-![contoh chatbot](/assets/asisten/claude.png)
+{% image "./assets/asisten/claude.png", "contoh chatbot" %}
 
 ###  *AI Code Completion*
 
@@ -50,7 +50,7 @@ Dibawah ini beberapa alat yang dapat membantu untuk melengkapi kode disaat kita 
 - [Supermaven](https://supermaven.com/): Dikenal sangat cepat dalam menghasilkan kode yang dapat digunakan di berbagai kode editor seperti vscode, vim, zed, dll.
 - [Codeium](https://codeium.com/): Ekstensi vscode *open-source* yang dapat digunakan secara gratis untuk penggunaan personal.
 
-![contoh code completion](/assets/asisten/completion.png)
+{% image "./assets/asisten/completion.png", "contoh code completion" %}
 
 ###  *AI Code Editor*
 
@@ -62,7 +62,7 @@ AI yang "menyatu" dengan kode editor. Selain mampu memberi saran terhadap kode y
 - [Zed](https://zed.dev/): Kode editor baru yang dikenal sangat cepat.
 - [Aider](https://aider.chat/), [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) & [Amazon Q Developer CLI](https://aws.amazon.com/blogs/devops/introducing-the-enhanced-command-line-interface-in-amazon-q-developer/): Menggunakan antarmuka teks (*cli*), dapat digunakan dengan editor kode apapun.
 
-![Contoh coding assistant Claude Code](/assets/asisten/claude-code.jpg)
+{% image "./assets/asisten/claude-code.jpg", "Contoh coding assistant Claude Code" %}
 
 ###  *AI interface builder*
 
@@ -71,7 +71,7 @@ AI yang spesifik digunakan untuk membangun *user interface* atau desain. Jika ch
 - [bolt.new](https://bolt.new/?rid=nzeu0d): Generative AI dengan *interface chat* untuk mengembangkan aplikasi frontend.
 - [lovable.dev](https://lovable.dev/): Aplikasi yang mampu membuat aplikasi fullstack. Cocok untuk konversi desain figma menjadi kode.
 
-![contoh tangkapan layar dari v0](/assets/asisten/v0.png)
+{% image "./assets/asisten/v0.png", "contoh tangkapan layar dari v0" %}
 
 ## Kesimpulan
 Teknologi kecerdasan buatan (AI) telah mengubah pengembangan perangkat lunak secara fundamental, berkembang dari fitur *autocomplete* sederhana menjadi sistem cerdas yang memahami konteks kode secara menyeluruh. Kita mengidentifikasi empat kategori utama asisten koding berbasis AI: AI Chatbot untuk diskusi dan brainstorming, AI Code Completion untuk melengkapi kode secara real-time, AI Code Editor yang mampu memahami proyek secara keseluruhan, dan AI Interface Builder yang dioptimalkan khusus untuk pengembangan UI.

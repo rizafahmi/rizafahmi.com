@@ -57,7 +57,7 @@ Untuk copilot sendiri, saat ini ada 3 fitur utama:
 
 Jalankan iterasi satu-per-satu. Jika saat menjalankan sebuah iterasi dibutuhkan penyesuaian, lakukan terlebih dahulu sebelum menuju ke iterasi berikutnya.
 
-![img](/assets/asisten/contoh-iterasi.png)
+{% image "./assets/asisten/contoh-iterasi.png", "img" %}
 
 ### Mengelola Kode dengan AI
 
@@ -71,7 +71,7 @@ Strategi yang efektif saat bekerja dengan AI untuk membuat pengujian adalah deng
 
 Pendekatan ini dalam dunia LLM dikenal dengan istilah *few-shot prompting* – teknik di mana kita memberikan satu atau beberapa contoh konkret agar AI dapat "belajar" dari pola tersebut dan menghasilkan konten serupa dengan kualitas yang lebih baik. Untuk penjelasan lebih mendalam tentang teknik ini, [teman-teman dapat membaca artikel ini](https://dekontaminasi.substack.com/p/menyundul-llm-dengan-contoh-nyata). 
 
-![Github Copilot](/assets/asisten/testing.png)
+{% image "./assets/asisten/testing.png", "Github Copilot" %}
 
 Berhubung proyek belum disiapkan untuk pengujian, sebelum *prompting* untuk pembuatan pengujian atau *testing* sebaiknya kita konfigurasi terlebih dahulu. Bisa minta tolong AI juga, kali ini kita akan menggunakan fitur Copilot Chat. Tapi akan lebih baik jika kita setup sendiri dan berikan satu atau beberapa contoh *test case*.
 
@@ -147,7 +147,7 @@ Sebagai seorang _developer_, menulis dokumentasi seringkali terasa seperti beban
 
 Misalnya, untuk mendokumentasikan sebuah fungsi, biasanya kita menggunakan format standar seperti JSDoc (JavaScript), JavaDoc (Java), docstring (Python) atau format lainnya sesuai bahasa. AI dapat dengan cepat menganalisis kode kita dan menghasilkan dokumentasi yang komprehensif dalam format yang sesuai.
 
-![dokumentasi kode](/assets/asisten/jsdoc.png)
+{% image "./assets/asisten/jsdoc.png", "dokumentasi kode" %}
 
 Yang menarik, jika AI menghasilkan dokumentasi yang kurang tepat atau terkesan "ngawur", ini bisa menjadi sinyal berharga. Jika asisten AI yang sudah dilatih dengan miliaran baris kode masih kesulitan memahami logika kode kita, kemungkinan besar kode tersebut memang kurang jelas atau terlalu kompleks. Anggap saja ini sebagai peringatan dini bahwa kode kita perlu disederhanakan.
 
@@ -158,7 +158,7 @@ Saat menulis kode, prioritas utama kita biasanya adalah membuat fitur berfungsi 
 
 Contoh sederhana: saat semua kode terkumpul dalam satu file seperti `App.tsx`, kita dapat meminta AI untuk memecahnya menjadi komponen-komponen terpisah yang lebih terorganisir.
 
-![img](/assets/asisten/refactor.png)
+{% image "./assets/asisten/refactor.png", "img" %}
 
 Lebih dari itu, AI juga dapat membantu transformasi kode yang lebih kompleks, seperti:
 -   Menerapkan prinsip _Clean Architecture_

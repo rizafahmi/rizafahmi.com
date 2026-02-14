@@ -27,15 +27,15 @@ Notasi O besar atau yang lazim disebut dengan Big-O Notation adalah sebuah cara 
 
 Di dalam sebuah program komputer pada umumnya, kita sudah lazim dengan istilah masukan-proses-keluaran.
 
-![input, proses, output](/assets/images/notasi/input.png)
+{% image "./assets/images/notasi/input.png", "input, proses, output" %}
 
 Notasi O besar merupakan skenario terburuk dari sebuah algoritma, dan biasanya terdapat notasi _n_ yang merepresentasikan jumlah masukan. Berikut adalah diagram notasi O besar dengan masukan yang dimulai dari 0 hingga tak terhingga.
 
-![grafik](/assets/images/notasi/grafikcopy.png)
+{% image "./assets/images/notasi/grafikcopy.png", "grafik" %}
 
 Dari diagram diatas dapat kita lihat beberapa notasi yang kerap muncul, yaitu: O<sub>(1)</sub>, O<sub>(log n)</sub>, O<sub>(n)</sub>, O<sub>(n<sup>2</sup>)</sub> atau O<sub>(n<sup>n</sup>)</sub>. Untuk membahasnya, mari kita berandai-andai membangun sebuah aplikasi travel. Dan kita diminta untuk membuat fitur baru yang menampilkan daftar kisaran harga dari hotel-hotel yang berada di area tertentu.
 
-![kayak](/assets/images/notasi/kayak.png)
+{% image "./assets/images/notasi/kayak.png", "kayak" %}
 
 Untuk membuat fitur tersebut, sederhananya kita mencari harga terendah (min) dan harga tertinggi (max) dari daftar hotel. Tentunya semakin banyak datanya, akan semakin lama pula proses untuk mencari harga terendah dan tertinggi.
 
@@ -122,7 +122,7 @@ Dan secara umum berikut urutan dari notasi O besar diurutkan dari yang tercepat 
 | -------- | --------------- | ------------------- | --------------- | --------------------------- | --------------------------- |
 | _Notasi_ | O<sub>(1)</sub> | O<sub>(log n)</sub> | O<sub>(n)</sub> | O<sub>(n<sup>2</sup>)</sub> | O<sub>(n<sup>n</sup>)</sub> |
 
-![grafik](/assets/images/notasi/grafikcopy.png)
+{% image "./assets/images/notasi/grafikcopy.png", "grafik" %}
 
 {% include 'kelas_struktur.njk' %}
 
@@ -236,7 +236,7 @@ Begitu juga halnya jika kita mengambil data dengan tabel yang sudah diindeks.
 Secara otomatis notasinya akan berubah dari <strong>O<sub>(n)</sub></strong>
 menjadi <strong>O<sub>(log n)</sub></strong>.
 
-![tanpa index](/assets/images/notasi/tanpa_index.png)
+{% image "./assets/images/notasi/tanpa_index.png", "tanpa index" %}
 
 Tanpa menggunakan indeks database melakukan yang disebut dengan "Sequential
 Scan". Beberapa yang lain menyebutnya dengan istilah "Full Table Scan" yang
@@ -251,7 +251,7 @@ Hal termudah untuk mengangkat performa untuk kasus ini adalah dengan menambahkan
 indeks di tabel terkait dan kita dapat melihat perbedaan yang cukup signifikan
 terutama ketika data sudah semakin banyak.
 
-![dengan index](/assets/images/notasi/dengan_index.png)
+{% image "./assets/images/notasi/dengan_index.png", "dengan index" %}
 
 Sehingga operasi diatas berubah notasinya menjadi <strong>O<sub>(log
 n)</sub></strong>.

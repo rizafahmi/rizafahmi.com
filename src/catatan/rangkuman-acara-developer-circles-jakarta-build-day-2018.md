@@ -27,7 +27,7 @@ Mas Ziyad memulai presentasi dengan memperkenalkan dirinya sebagai Engineer yang
 
 Saya jadi teringat bagaimana Mas Ziyad berbagi ilmu ketika mengisi acara serupa tahun 2017 silam. Saat itu Mas Ziyad berbicara tentang teknologi dibelakang Facebook Lite dan seputar development aplikasi di platform Android.
 
-![Sesi Ziyad Bazed](/assets/images/rangkuman/ziyad.jpeg)_Sesi Ziyad Bazed_
+{% image "./assets/images/rangkuman/ziyad.jpeg", "Sesi Ziyad Bazed" %}_Sesi Ziyad Bazed_
 
 Masuk ke topik utama, Mas Ziyad memaparkan beberapa hal terkait kultur pengembangan aplikasi di internal Facebook seperti kultur code review, continuous delivery, monorepo dan mono branch hingga perjalanan dari perkembangan library/framework yang digunakan oleh facebook dari awal hingga saat ini. Seperti yang kita ketahui bersama, Facebook berawal dari sebuah media sosial online hingga sekarang memiliki berbagai produk lainnya seperti Instagram, Oculus, WhatsApp, Messenger dan lain sebagainya. Berikut beberapa hal-hal menarik yang saya dapatkan:
 
@@ -67,7 +67,7 @@ Sesi TechTalk kemudian dilanjutkan oleh Mas Riandy yang membawakan topik tentang
 
 8. Persenjatai bot kamu dengan kemampuan bahasa dengan wit.ai
 
-![Sesi Mas Riandy](/assets/images/rangkuman/riandy.jpeg)_Sesi Mas Riandy_
+{% image "./assets/images/rangkuman/riandy.jpeg", "Sesi Mas Riandy" %}_Sesi Mas Riandy_
 
 Mas Riandy juga membahas. beberapa fitur keren dari Messenger seperti _card_, _user’s identity_, kemampuan menampilkan web dengan _webview_, _qr code_ yang keren dan beda, dll.
 
@@ -79,7 +79,7 @@ Dan untuk membuat sebuah bot lebih menarik, _bot_ _messenger_ juga dapat diperse
 
 Beberapa hari sebelum acara dimulai, para peserta yang sudah memiliki ide atau yang belum diminta untuk mengisi form pendaftaran. Dari 105 pendaftar, ada 40 peserta terpilih yang berkesempatan mengikuti acara di hari kedua yang kita namakan Ideathon. Konsepnya mirip dengan hackathon, bedanya adalah ini baru tahap formulasi ide jadi belum ada proses development aplikasi di tahapan ini.
 
-![Sesi mentoring Ideathon](/assets/images/rangkuman/mentoring.jpeg)_Sesi mentoring Ideathon_
+{% image "./assets/images/rangkuman/mentoring.jpeg", "Sesi mentoring Ideathon" %}_Sesi mentoring Ideathon_
 
 Tujuan Ideathon ini adalah untuk melatih kreatifitas sekaligus mendorong teman-teman developer dan maker untuk mengikuti Build Day yang diadakan secara global oleh Facebook.
 

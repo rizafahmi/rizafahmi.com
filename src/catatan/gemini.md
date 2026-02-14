@@ -24,7 +24,7 @@ Tutorial kali ini kita akan membuat aplikasi dengan AI sebagai bahan utamanya. K
 
 Hasil perbandingan akan dihasilkan oleh AI, dalam hal ini Gemini API.
 
-![](/assets/images/gemini-web-dev/mendang-mending.png)
+{% image "./assets/images/gemini-web-dev/mendang-mending.png", "" %}
 
 ## Persiapan
 
@@ -385,7 +385,7 @@ Untuk mulai menggunakan silakan login dengan akun GCP terlebih dahulu ke [https:
 
 Lalu pilih "Create API Key" dan pilih proyek dari GCP sebelumnya. Dan salin API Key untuk nantinya akan dimasukkan kedalam _environment variable_ atau file `.env`
 
-![api key](/assets/images/gemini-web-dev/api-key.png)
+{% image "./assets/images/gemini-web-dev/api-key.png", "api key" %}
 
 #### `.env`
 
@@ -631,7 +631,7 @@ Berikut langkah-langkah yang dilakukan oleh fungsi `compare`:
 - Lalu di baris ke-37 hingga baris ke-41 untuk mempersiapkan teks yang akan dikirim ke Gemini API dengan instruksi spesifik untuk membandingkan dua hal disertai dengan contoh. Salah satu cara efektif untuk _prompting_ dengan memberikan contoh keluarang yang diinginkan.
 - Di baris ke-43 hingga baris ke-47, eksekusi fungsi `generateContent` dengan berbagai parameter yang sudah disiapkan dan hasilnya dikembalikan ke _frontend_.
 
-![hasil mentah](/assets/images/gemini-web-dev/render-raw.png)
+{% image "./assets/images/gemini-web-dev/render-raw.png", "hasil mentah" %}
 
 ### Menampilkan Hasil sebagai HTML
 
@@ -743,7 +743,7 @@ function parse_options(options) {
 
 ```
 
-![render html](/assets/images/gemini-web-dev/render-html.png)
+{% image "./assets/images/gemini-web-dev/render-html.png", "render html" %}
 
 Jauh lebih baik, kan?! Dan aplikasi kita pun selesai.
 

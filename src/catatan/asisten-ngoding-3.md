@@ -53,7 +53,7 @@ Kini dengan bantuan AI, proses menyusun rencana dapat dilakukan secara lebih efe
 
 Dengan bekal spesifikasi hasil dari proses diskusi ide di artikel sebelumnya, kita dapat meminta bantuan AI untuk menyusun rencana beserta berbagai tahapannya. Untuk tugas ini, disarankan menggunakan model AI yang unggul dalam *reasoning*, seperti **ChatGPT-01**, **DeepSeek DeepThink**, **Qwen Thinking**, atau **Gemini Pro 2.5**. Sepertinya saat ini hampir semua model AI modern memiliki kemampuan ini.
 
-![DeepSeek DeepThink](/assets/asisten/deepseek-r1.png)
+{% image "./assets/asisten/deepseek-r1.png", "DeepSeek DeepThink" %}
 
 ### Langkah Membuat Rencana
 

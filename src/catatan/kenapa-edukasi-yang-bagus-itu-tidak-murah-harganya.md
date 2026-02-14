@@ -38,7 +38,7 @@ Namun produk informasi ini juga memiliki kekurangan dari sisi pembeli. Seseorang
 
 Ketika seseorang membeli sebuah produk informasi seperti buku, tanggung jawab si penerbit dan _author_ hanya sampai disitu. Mau bukunya dibaca, ataupun tidak, itu urusan si pemilik buku. Apakah bukunya dijadikan ganjalan pintu atau tatakan monitor juga tidak ada yang melarang. Tidak ada kewajiban dari pihak penulis ataupun penerbit untuk memastikan bahwa _impact_ terhadap perubahan hidup seseorang itu sesuai ekspektasinya. Tanggungjawab apakah ia sukses ataupun tidak hanya tergantung kepada si pembeli saja dalam hal ini.
 
-![](/assets/images/kenapa-edukasi/ruby.jpg)
+{% image "./assets/images/kenapa-edukasi/ruby.jpg", "" %}
 
 Sekarang mari kita lihat sisi yang lain, yaitu bisnis edukasi.
 

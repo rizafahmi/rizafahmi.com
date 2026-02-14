@@ -16,18 +16,18 @@ Salah satu kontribusi besar [ Joe Armstrong ](https://twitter.com/FrancescoC/sta
 
 Ide utama dari BEAM berpusat di sesuatu yang disebut dengan proses atau process. Proses sederhananya adalah program yang berjalan secara sekuensial, baris-per-baris dan tidak dapat berjalan secara paralel atau menjalankan pola konkurensi.
 
-![process](/assets/images/memahami-beam/process.png)
+{% image "./assets/images/memahami-beam/process.png", "process" %}
 
 Untuk membuatnya menjadi konkuren, kita harus menjalankan proses lebih dari satu. Di Elixir, hal ini bisa kita lakukan dengan fungsi `spawn`. Dan ketika kita melakukan spawn, aplikasi kita akan memiliki dua proses yang berjalan bersamaan. Proses disini bukanlah proses di level sistem operasi. Proses di BEAM sangat ringan, hanya beberapa kilobytes saja dan kita dapat memiliki proses sebanyak yang kita mau. Satu mesin bisa memiliki hingga 268 juta proses!
 
-![spawn](/assets/images/memahami-beam/spawn.png)
+{% image "./assets/images/memahami-beam/spawn.png", "spawn" %}
 
 Sebenarnya kita akan memiliki dua program independen yang berjalan terpisah satu
 dengan yang lainnya. Mereka tidak berbagi _state_ atau apapun, dan tidak memiliki
 kesamaan sama sekali. Berada di memori, _stack, heap_ yang berbeda, dan juga
 _garbage collector_ sendiri-sendiri dan tidak saling mengganggu.
 
-![proses](/assets/images/memahami-beam/processes.png)
+{% image "./assets/images/memahami-beam/processes.png", "proses" %}
 
 Dan satu-satunya cara untuk membuat kedua proses yang berbeda tadi untuk dapat
 bekerjasama adalah dengan saling berkirim pesan. Hal ini juga dikenal dengan
@@ -36,24 +36,24 @@ dikenal dengan actor model. Pola ini mirip dengan ide mircoservice dimana setiap
 service terpisah satu dengan yang lain dan saling berhubungan dengan protokol
 HTTP.
 
-![processes link](/assets/images/memahami-beam/processes_link.png)
+{% image "./assets/images/memahami-beam/processes_link.png", "processes link" %}
 
 Misalkan proses pertama mengirimkan pesan ke proses kedua. Proses pertama mengirimkan pesan dengan fungsi `send` dan proses kedua menerima fungsi dengan blok `receive` dan kemudian menangani permintaan dari proses pertama.
 
 Ketika aplikasi dijalankan, yang terjadi adalah sebuah proses di sistem operasi
 akan muncul. Yap, hanya satu proses di level sistem operasi. Di dalam proses inilah semua proses yang kita `spawn` akan berjalan. Proses-proses yang berjalan secara sekuensial, independen, dan ringan.
 
-![activity](/assets/images/memahami-beam/activity.png)
+{% image "./assets/images/memahami-beam/activity.png", "activity" %}
 
-![BEAM](/assets/images/memahami-beam/BEAM.png)
+{% image "./assets/images/memahami-beam/BEAM.png", "BEAM" %}
 
 Proses disini bukanlah proses di level sistem operasi. Proses di BEAM sangat ringan, hanya beberapa kilobytes saja dan kita dapat memiliki proses sebanyak yang kita mau. Satu mesin bisa memiliki hingga 268 juta proses!
 
-![BEAM-Processes](/assets/images/memahami-beam/BEAM-Processes.png)
+{% image "./assets/images/memahami-beam/BEAM-Processes.png", "BEAM-Processes" %}
 
 BEAM secara internal kemudian menjalankan threads yang diberi nama penjadwal atau scheduler. Satu penjadwal untu satu inti dari CPU. Jika kita memiliki CPU dengan empat inti, maka penjadwalnya ada empat.
 
-![scheduler](/assets/images/memahami-beam/BEAM-Scheduler.png)
+{% image "./assets/images/memahami-beam/BEAM-Scheduler.png", "scheduler" %}
 
 Penjadwal ini yang bertanggungjawab mengeksekusi proses-proses. Sederhananya,
 proses akan mengantri di satu jalur dan setiap penjadwal akan bergiliran
@@ -64,7 +64,7 @@ selesai dan akan mengambil proses di antrian berikutnya. Begitu seterusnya.
 
 Sekarang pertanyaannya, bagaimana cara kita melakukan implementasi pola proses di aplikasi atau sistem yang kita kembangkan? Bagaimana caranya kita memisahkan tugas-tugas sehingga menjadi proses-proses kecil dan independen? Mari kita lihat demo aplikasi berikut ini.
 
-![dasbor](/assets/images/memahami-beam/dasbor.png)
+{% image "./assets/images/memahami-beam/dasbor.png", "dasbor" %}
 
 _Jobs_ adalah proses yang melakukan _infinite loop_. Didalam _loop_ ada tugas
 yang dapat menyebabkan _CPU bound_ untuk melakukan simulasi tugas yang cukup
@@ -76,7 +76,7 @@ tugas berat kemudian ditidurkan (_sleep_) selama satu detik dan hidup kembali. B
 
 Di demo ini kita hanya menggunakan satu penjadwal (_scheduler_) saja, bukan empat meskipun memiliki empat inti CPU. Tujuannya agar memudahkan saja untuk membuat sibuk CPU.
 
-![frontend](/assets/images/memahami-beam/frontend.png)
+{% image "./assets/images/memahami-beam/frontend.png", "frontend" %}
 
 Kemudian di halaman yang dapat diakses pengguna, aplikasinya cukup sederhana namun sudah cukup mewakili aplikasi web secara umum. Ada sebuah input teks yang dapat menerima bilangan bulat positif dan ketika disubmit aplikasi akan menghitung jumlah dari angka tersebut berurutan dari angka satu. Misalnya kita memasukkan angka 3 maka hasilnya menjadi 1 + 2 + 3 yaitu 6 atau jika kita memasukkan angka 4 maka hasilnya menjadi 10 dan seterusnya. Berikut cuplikan kode dari proses kalkulasinya.
 
@@ -88,35 +88,35 @@ defp calc_sum(from, to, acc_sum), do: calc_sum(from + 1, to, acc_sum + from)
 
 Setiap ada yang membuka halaman ini koneksi akan terbentuk antara klien dan server atau sistem. Dan ketika pengguna memasukkan angka 3 maka sistem akan melakukan perhitungan dan mengembalikan hasilnya dalam hal ini angka 6.
 
-![client-server](/assets/images/memahami-beam/client-server.png)
+{% image "./assets/images/memahami-beam/client-server.png", "client-server" %}
 
 Dan misalkan ada tiga pengguna yang mengakses secara bersamaan, maka akan ada tiga koneksi. Satu untuk setiap pengguna atau setiap sesi (_session_). Begitu pula jika ada 1000 orang, akan ada 1000 koneksi yang terjadi antar proses dan begitu seterusnya.
 
-![clients-servers](/assets/images/memahami-beam/clients-servers.png)
+{% image "./assets/images/memahami-beam/clients-servers.png", "clients-servers" %}
 
 > "We do not have one web server handling 2 millions sessions. We have 2 millions web servers handling one session each." -- Joe Armstrong
 
 Proses kalkulasinya sendiri terjadi di proses yang berbeda. Koneksi menelurkan (_spawn_) proses baru, kita sebut saja sebagai _calculation_. Proses _calculation_ melakukan kalkulasi dan mengirimkan hasilnya kembali ke proses _server_ untuk seterusnya diteruskan ke proses _client_. Kemudian proses _calculation_ berhenti dan mati karena sudah menyelesaikan pekerjaannya.
 
-![server-calculation](/assets/images/memahami-beam/server-calculation.png)
+{% image "./assets/images/memahami-beam/server-calculation.png", "server-calculation" %}
 
 Pola seperti ini dibentuk dengan harapan sistem akan menjadi _fault-tolerant_ dan _high availability_ untuk menghasilkan servis yang tetap berjalan meski terjadi masalah di _production_.
 
 Situasi yang umum ditemui di _production_, misalnya ada kesalahan, yang akan menghasilkan kesalahan yang belum ditangani (_unhandled exception_) seperti `division by zero` atau `undefined is not a function`. Coba masukkan angka keberuntungan: 13! Terjadi kesalahan dan pesan kesalahan muncul di server.
 
-![13 error](/assets/images/memahami-beam/13error.png)
+{% image "./assets/images/memahami-beam/13error.png", "13 error" %}
 
 Namun menariknya, sistem tetap berjalan normal. Kita tetap bisa memasukkan angka lain selain angka 13 dan sistem tetap memberikan hasil yang tepat. Hanya satu proses _calculation_ angka 13 saja yang bermasalah dan mati.
 
 **Catatan penting**: Sampai tahapan ini kita berhasil memisahkan kesalahan-kesalahan (_failures_) dengan cara mendelegasikannya kedalam proses-proses kecil.
 
-![running](/assets/images/memahami-beam/running.gif)
+{% image "./assets/images/memahami-beam/running.gif", "running" %}
 
 ## Praktek Sistem Latensi
 
 Mari kita coba memasukkan angka yang cukup besar agar sistem bisa menghitung lebih lama seperti angka 999999999. Otomatis load di dasbor pun meningkat. Meski demikian, sistem tetap reaktif menerima angka lain sambil menunggu hasil dari 999999999! Hal ini karena yang sibuk menghitung hanyalah satu proses saja. Proses lainnya dapat berjalan normal seperti tidak terjadi apa-apa. Buat saya, ini adalah definisi dari _high availability_.
 
-![availability](/assets/images/memahami-beam/availability.gif)
+{% image "./assets/images/memahami-beam/availability.gif", "availability" %}
 
 ## Simulasi Kesalahan Yang Lebih Fatal
 
@@ -126,7 +126,7 @@ yang dikembangkan sebenarnya hanya menerima bilangan bulat negatif. Namun kita
 lupa untuk menangani jika pengguna memasukkan angka negatif. Hal yang biasa
 terjadi kan?!
 
-![negatif](/assets/images/memahami-beam/negatif.gif)
+{% image "./assets/images/memahami-beam/negatif.gif", "negatif" %}
 
 Dan benar saja, ketika -1 diinput, yang terjadi adalah CPU langsung 100% dalam waktu yang cukup lama, bahkan terus menerus karena proses kalkulasi terus terjadi dan tidak dapat berhenti. Meski demikian, sistem tetap jalan, dan kita tetap bisa menggunakan aplikasi dan sistem tetap dapat digunakan seperti biasa.
 
@@ -138,35 +138,35 @@ Mari sekarang kita telusuri dan mencari tahu apa yang terjadi. Ceritanya kita me
 
 Mari kita ssh ke server dan melihat apa yang terjadi. Ternyata tidak ada informasi apapun dari catatan sistem (_log_).
 
-![catatan](/assets/images/memahami-beam/catatan.png)
+{% image "./assets/images/memahami-beam/catatan.png", "catatan" %}
 
 Berhubung hanya ada satu proses di level sistem operasi, kita tidak bisa membunuh proses tersebut di level sistem operasi dengan menggunakan manajemen tugas (_task manager_) misalnya. Apabila hal ini kita lakukan, seluruh sistem akan berhenti. Untuk itu kita harus masuk kedalam sistem.
 
-![taskmanager](/assets/images/memahami-beam/taskmanager.png)
+{% image "./assets/images/memahami-beam/taskmanager.png", "taskmanager" %}
 
 Kita bisa melakukannya dengan perintah `_build/prod/rel/system/bin/system remote_console` dari direktori aplikasi berada untuk masuk ke sesi IEx dengan konteks sistem yang sedang berjalan dan kita bisa melakukan investigasi disana. IEx adalah REPL Elixir dan dengan menggunakan perintah diatas, kita akan mendapatkan sesi IEx didalam sistem berjalan dan konteks sistem yang sedang berjalan sehingga kita bisa melakukan investigasi.
 
-![iex](/assets/images/memahami-beam/iex.png)
+{% image "./assets/images/memahami-beam/iex.png", "iex" %}
 
 Di sesi IEx kita bisa melakukan apapun yang biasa kita lakukan. Misalnya `1 + 2`. Kita bisa melihat daftar proses yang sedang berjalan dengan fungsi `Process.list()`.
 
-![process_list](/assets/images/memahami-beam/process_list.png)
+{% image "./assets/images/memahami-beam/process_list.png", "process_list" %}
 
 Dan kita bisa mendapatkan informasi dari sebuah proses dengan fungsi `Process.info()`.
 
-![process info](/assets/images/memahami-beam/process_info.png)
+{% image "./assets/images/memahami-beam/process_info.png", "process info" %}
 
 Dan kita bisa mendapatkan informasi proses mana yang membuat _CPU load_ yang tinggi dengan melakukan agregasi dari informasi yang didapat dari `Process.info()`. Di sistem sudah disiapkan sebuah fungsi untuk agregasi dengan menjalankan `Runtime.top()`.
 
-![top](/assets/images/memahami-beam/top.png)
+{% image "./assets/images/memahami-beam/top.png", "top" %}
 
 Jalankan fungsi ini beberapa kali untuk memastikan id proses (PID) dengan CPU tertinggi adalah id proses yang sama. Dan kita sudah bisa menyimpulkan bahwa id proses yang bermasalah adalah `#PID<0.12507.0>`. Kita simpan informasi id proses kedalam sebuah variable untuk mendapatkan informasi lebih rinci dengan `Process.info()`. Dan kita bisa mendapatkan informasi seperti `current_stacktrace`. Dan disana kita dapat melihat sistem menjalankan modul `ExampleSystem.Math` dan fungsi `calc_sum` dengan jumlah argumen 3 dengan kode sumber berada di `lib/example_system/math.ex` dibaris ke-20.
 
 Dan kita bisa membunuh proses tersebut dengan fungsi `Process.kill()` dan sistem kembali _cool down_. Dan di sisi klien akhirnya setelah sekian lama, pesan kesalahan akhirnya muncul.
 
-![dasbor](/assets/images/memahami-beam/dasbor-2.png)
+{% image "./assets/images/memahami-beam/dasbor-2.png", "dasbor" %}
 
-![frontend](/assets/images/memahami-beam/frontend-2.png)
+{% image "./assets/images/memahami-beam/frontend-2.png", "frontend" %}
 
 Setelah sistem mereda, langkah selanjutnya yang biasa kita lakukan adalah memperbaiki kesalahan tersebut. Kita sebelumnya sudah mendapatkan informasi bahwa terakhir kali dieksekusi adalah baris ke-20 dari file `lib/example_system/math.ex`. Mari kita lihat kodenya.
 
@@ -210,18 +210,18 @@ Namun jika diperhatikan , fungsi calc*sum kita juga terdapat beberapa kesalahan
 
 Setelah kesalahan diperbaiki, jalankan _test_ untuk memastikan bahwa semua sudah sesuai ekspektasi. Lalu, _moment of truth!_ Kita bisa melakukan peluncuran ulang (_deployment_) dengan _zero downtime_ dengan perintah `mix system.upgrade`! Ini terbukti dengan aplikasi dasbor yang tetap menyala.
 
-![test-upgrade](/assets/images/memahami-beam/test-upgrade.png)
-![dasbor](/assets/images/memahami-beam/dasbor-3.png)
+{% image "./assets/images/memahami-beam/test-upgrade.png", "test-upgrade" %}
+{% image "./assets/images/memahami-beam/dasbor-3.png", "dasbor" %}
 
 Dan sekarang kita bisa mencoba kembali kesalahan-kesalahan yang tadi kita
 lakukan bahkan tanpa menghentikan sistem secara keseluruhan. Dan karena
 perhitungan sudah lebih optimal, perhitungan yang tadinya berjalan cukup lama,
 sekarang sudah jauh lebih cepat tanpa memberatkan CPU sama sekali.
 
-![final](/assets/images/memahami-beam/final.png)
-![dasbor](/assets/images/memahami-beam/dasbor-4.png)
+{% image "./assets/images/memahami-beam/final.png", "final" %}
+{% image "./assets/images/memahami-beam/dasbor-4.png", "dasbor" %}
 
-![fixing bug in production](https://media.giphy.com/media/XjlNyeZp5lDri/giphy.gif)
+{% image "https://media.giphy.com/media/XjlNyeZp5lDri/giphy.gif", "fixing bug in production" %}
 
 **Catatan penting**: Jangan lakukan hal ini di sistem lain. Hanya di Elixir dan
 bahasa-bahasa yang berjalan diatas BEAM yang bisa 😃. Hal ini juga dapat dibuktikan dengan Erlang yang digunakan di sistem telekomunikasi Ericsson yang ketika kode baru diluncurkan ketika kita sedang melakukan percakapan di telepon, telepon tidak terputus.
@@ -237,5 +237,5 @@ karya Sasa Juric dan [ Little Elixir & OTP Guidebook
 ](https://medium.com/r/?url=https%3A%2F%2Fwww.manning.com%2Fbooks%2Fthe-little-elixir-and-otp-guidebook)
 karya Ben Tan Wei Hao.
 
-![elixir in action](/assets/images/memahami-beam/elixirinaction.png)
-![elixir otp](/assets/images/memahami-beam/elixirotp.png)
+{% image "./assets/images/memahami-beam/elixirinaction.png", "elixir in action" %}
+{% image "./assets/images/memahami-beam/elixirotp.png", "elixir otp" %}

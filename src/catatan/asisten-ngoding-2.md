@@ -74,7 +74,7 @@ Lanjutkan dengan melemparkan ide yang ingin didiskusikan, misalnya:
     I want to develop a platform to store my ideas in one place.
 ```
 
-![chatbot claude.ai](/assets/asisten/claude.png)
+{% image "./assets/asisten/claude.png", "chatbot claude.ai" %}
 
 Setelah melakukan diskusi yang mendalam dengan *chatbot*, hasil diskusi kemudian perlu dikemas dalam format spesifikasi aplikasi atau "spec" agar dapat didelegasikan kepada developer atau—dalam konteks artikel ini—digunakan sebagai panduan untuk langkah berikutnya dengan meminta bantuan dari asisten koding.
 
