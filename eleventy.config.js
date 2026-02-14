@@ -1,6 +1,8 @@
+import path from "node:path";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import shikiPlugin from "./src/libs/shiki.js";
 import { getRelatedPosts } from "./src/libs/related.js";
+import { generateOgImage } from "./src/libs/og-image.js";
 
 function getRelativeTimeString(date) {
   const now = new Date();
@@ -255,6 +257,107 @@ export default function (eleventyConfig) {
       );
     }
     return content;
+  });
+
+  // --- Generate dynamic OG images for articles after build ---
+  eleventyConfig.on("eleventy.after", async ({ results }) => {
+    const HIDDEN = new Set(["all", "nav", "post", "catatan"]);
+    const outputDir = "dist";
+
+    // Parse frontmatter from source files for articles that need OG images.
+    // We use `results` which includes ALL rendered pages (even those excluded
+    // from collections).
+    const jobs = [];
+    for (const result of results) {
+      if (!result.inputPath || !result.inputPath.includes("src/catatan/")) continue;
+      if (!result.inputPath.endsWith(".md")) continue;
+
+      // Read frontmatter from the source file
+      const srcPath = result.inputPath;
+      let frontmatter = {};
+      try {
+        const { readFileSync } = await import("node:fs");
+        const raw = readFileSync(srcPath, "utf-8");
+        const fmMatch = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+        if (fmMatch) {
+          // Simple YAML-like parser for the fields we need
+          const fmText = fmMatch[1];
+          const titleMatch = fmText.match(/^title:\s*["']?(.+?)["']?\s*$/m);
+          const descMatch = fmText.match(/^description:\s*["']?(.+?)["']?\s*$/m);
+          const imageMatch = fmText.match(/^image:\s*["']?(.*?)["']?\s*$/m);
+          const coverMatch = fmText.match(/^cover:\s*["']?(.*?)["']?\s*$/m);
+
+          if (titleMatch) frontmatter.title = titleMatch[1];
+          if (descMatch) frontmatter.description = descMatch[1];
+          if (imageMatch) frontmatter.image = imageMatch[1];
+          if (coverMatch) frontmatter.cover = coverMatch[1];
+
+          // Parse tags
+          const tagsSection = fmText.match(/^tags:\s*\n((?:\s+-\s+.+\n?)*)/m);
+          if (tagsSection) {
+            frontmatter.tags = [...tagsSection[1].matchAll(/^\s+-\s+(.+)$/gm)]
+              .map((m) => m[1].trim());
+          }
+        }
+
+        // Extract the markdown body (after frontmatter) for excerpt
+        const bodyStart = raw.indexOf("---", raw.indexOf("---") + 3);
+        if (bodyStart !== -1) {
+          frontmatter._body = raw.slice(bodyStart + 3).trim();
+        }
+      } catch {
+        // If we can't read the file, skip it
+        continue;
+      }
+
+      // Skip articles that already have a custom image or cover
+      if (frontmatter.image && frontmatter.image.length > 0) continue;
+      if (frontmatter.cover && frontmatter.cover.length > 0) continue;
+
+      const slug = path.basename(srcPath, path.extname(srcPath));
+
+      // Build excerpt from markdown body (strip markdown syntax + HTML)
+      const bodyText = (frontmatter._body || "")
+        .replace(/<[^>]*>/g, " ")             // HTML tags first
+        .replace(/!\[.*?\]\(.*?\)/g, "")      // images
+        .replace(/\[([^\]]*)\]\(.*?\)/g, "$1") // links -> text
+        .replace(/```[\s\S]*?```/g, " ")      // fenced code blocks
+        .replace(/`[^`]+`/g, " ")             // inline code
+        .replace(/^#{1,6}\s+/gm, "")          // heading markers
+        .replace(/[*_~>]/g, "")               // markdown emphasis chars
+        .replace(/\s+/g, " ")
+        .trim();
+
+      const excerpt = frontmatter.description || (bodyText.length > 200
+        ? bodyText.slice(0, 200).replace(/\s+\S*$/, "") + "\u2026"
+        : bodyText);
+
+      const tags = Array.isArray(frontmatter.tags)
+        ? frontmatter.tags.filter((t) => t && !HIDDEN.has(t))
+        : [];
+
+      jobs.push({
+        title: frontmatter.title || slug,
+        excerpt,
+        tags,
+        outputPath: path.resolve(outputDir, "og", `${slug}.png`),
+      });
+    }
+
+    if (jobs.length === 0) return;
+
+    console.log(`[og-image] Generating ${jobs.length} OG images\u2026`);
+    const start = Date.now();
+
+    // Generate in parallel (batches of 8 to avoid memory pressure)
+    const BATCH = 8;
+    for (let i = 0; i < jobs.length; i += BATCH) {
+      await Promise.all(
+        jobs.slice(i, i + BATCH).map((job) => generateOgImage(job))
+      );
+    }
+
+    console.log(`[og-image] Done in ${Date.now() - start}ms`);
   });
 
   return {
