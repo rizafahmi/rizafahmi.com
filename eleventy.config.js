@@ -2,7 +2,6 @@ import path from "node:path";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import shikiPlugin from "./src/libs/shiki.js";
 import Image from "@11ty/eleventy-img";
-import path from "path";
 import { getRelatedPosts } from "./src/libs/related.js";
 import { generateOgImage } from "./src/libs/og-image.js";
 
