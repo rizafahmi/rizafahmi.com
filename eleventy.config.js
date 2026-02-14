@@ -1,5 +1,49 @@
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import shikiPlugin from "./src/libs/shiki.js";
+import Image from "@11ty/eleventy-img";
+import path from "path";
+
+async function imageShortcode(src, alt, className = "", sizes = "100vw", widths = [300, 600, 1200]) {
+  if (!src) {
+    console.error(`[11ty/img] Missing src attribute. Alt: ${alt}`);
+    return "";
+  }
+  try {
+    let metadata = await Image(src, {
+      widths: widths,
+      formats: ["webp", "png"],
+      outputDir: "./dist/img/",
+      urlPath: "/img/",
+      filenameFormat: function (id, src, width, format, options) {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}-${width}w.${format}`;
+      }
+    });
+
+    let imageAttributes = {
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+    };
+
+    if (className) {
+      imageAttributes.class = className;
+    }
+
+    if (!metadata) {
+       console.warn(`[11ty/img] Warning: Metadata missing for ${src}. Fallback to default img.`);
+       return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
+    }
+
+    return Image.generateHTML(metadata, imageAttributes);
+
+  } catch (error) {
+    console.warn(`[11ty/img] Error processing ${src}: ${error.message}. Fallback to default img.`);
+    return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
+  }
+}
 
 function getRelativeTimeString(date) {
   const now = new Date();
@@ -29,6 +73,8 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(shikiPlugin);
+
+  eleventyConfig.addAsyncShortcode("image", imageShortcode);
 
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("src/_redirects");
