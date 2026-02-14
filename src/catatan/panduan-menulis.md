@@ -58,7 +58,7 @@ Inti dari artikel juga butuh struktur yang kokoh. Strukturnya terdiri dari tiga 
 3. Penjelasan rinci dari beberapa baris kode yang dicontohkan
 4. Ulangi hingga artikel selesai
 
-![Struktur Artikel](/assets/images/inti.png)
+{% image "./assets/images/inti.png", "Struktur Artikel" %}
 
 ### Bagian Penutup
 

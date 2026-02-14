@@ -162,7 +162,7 @@ title |> lowercase() |> remove_special_chars() |> replace_space()
 
 Atau jika digambarkan sebagai diagram, kurang lebih seperti ini.
 
-![](/assets/images/diagram-mermaid.png)
+{% image "./assets/images/diagram-mermaid.png", "" %}
 
 Judul artikel dikonversi menjadi huruf kecil semua (*lowercase*), lalu hapus karakter seperti `*,?!` dll jika ada, dan terakhir konversi semua spasi menjadi `-`.
 

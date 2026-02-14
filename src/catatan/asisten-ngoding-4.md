@@ -111,11 +111,11 @@ Design:
     Layout: Main page includes a search form with results shown below.
 ```
 
-![contoh firebase studio](/assets/asisten/firebase.png)
+{% image "./assets/asisten/firebase.png", "contoh firebase studio" %}
 
 Hasil dari [Firebase Studio](https://studio.firebase.google.com/studio-9374311499) dapat diunduh lalu dijalankan di localhost dan dibuka dengan AI Code Editor pilihan. Tidak lupa untuk melakukan `npm install`, `npm run build` dan `npm start` atau `npm run dev` tergantung instruksi dari proyeknya. Meskipun menulis kode langsung juga sangat memungkinkan karena Firebase Studio sudah dilengkapi editor kode yang mumpuni.
 
-![download and zip](/assets/asisten/firebase-download.png)
+{% image "./assets/asisten/firebase-download.png", "download and zip" %}
 
 Bagaimana jika kita tidak menggunakan Node.js atau Next.js? Mengingat berbagai alat desain berbasis AI sebagian besar menggunakan Node.js atau React sebagai fondasi, solusinya adalah meminta AI untuk mengonversi hasil desain ke platform lain yang diinginkan.
 

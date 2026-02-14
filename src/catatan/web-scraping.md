@@ -247,7 +247,7 @@ const $ = cheerio.load(html);
 
 Misalnya kita ingin mencari daftar artikel di `https://rizafahmi.com/2021/09/12/tentang-friction-log/`.
 
-![](/assets/images/web-scraping/Screenshot%202023-05-19%20at%2020.21.09.png)
+{% image "./assets/images/web-scraping/Screenshot 2023-05-19 at 20.21.09.png", "" %}
 
 ### `app.js`
 
@@ -279,7 +279,7 @@ for (let i = 0; i < footer.length; i += 1) {
 
 ## Mencari keatas
 
-![](/assets/images/web-scraping/Screenshot%202023-05-19%20at%2020.28.08.png)
+{% image "./assets/images/web-scraping/Screenshot 2023-05-19 at 20.28.08.png", "" %}
 
 ### `app.js`
 

@@ -30,7 +30,7 @@ Bisa digunakan untuk latihan mengetik, adu cepat dan bisa juga menjadi salah sat
 
 Saya teringat kembali dengan ide ini ketika menyadari bahwa sekarang AI sudah sangat mumpuni menghasilkan baris kode dari banyak bahasa pemrograman. Walaupun masih sering *halu*, namun untuk menghasilkan potongan kode acak yang tidak perlu dijalankan di *server production*, rasanya penggunaan AI untuk ide ini akan cocok sekali.
 
-![tangkapan layar](https://github.com/rizafahmi/coderacer/raw/main/priv/static/images/balapkode.com_.png)
+{% image "https://github.com/rizafahmi/coderacer/raw/main/priv/static/images/balapkode.com_.png", "tangkapan layar" %}
 
 ## Pemilihan teknologi
 
@@ -38,7 +38,7 @@ Untuk mempercepat proses pengembangan aplikasi, saya memilih web framework denga
 
 Dan saya memilih [Phoenix](https://phoenixframework.org) dan bahasa fungsional [Elixir](https://elixir-lang.org) selain karena fiturnya lengkap dan dapat membangun aplikasi web real-time, kedua teknologi ini merupakan favorit saya.
 
-![Website Phoenix Framework](https://cdn-images-1.medium.com/max/2000/1*Gylsj_3ylGPyo-Ku7UoXRw.png)
+{% image "https://cdn-images-1.medium.com/max/2000/1*Gylsj_3ylGPyo-Ku7UoXRw.png", "Website Phoenix Framework" %}
 
 Langkah berikutnya adalah memilih database yang ingin digunakan. Saya memilih SQLite sebagai database murni karena kesederhanaannya. Tidak membutuhkan konfigurasi apapun layaknya RDBMS lain, namun sudah cukup mumpuni. Terlebih aplikasi ini penggunaan database tidak terlalu tinggi. Mungkin akan digunakan untuk membuat sesi baru (game dimulai) dan menyimpan data *leaderboard* saja, rasanya SQLite sudah lebih dari cukup.
 
@@ -89,7 +89,7 @@ jobs:
 
 Saya konfigurasi ketika terjadi event push atau pull request, secara otomatis CI akan dijalankan dan akan memberi masukan jika ada pengujian yang tidak lulus, atau kesulitan instalasi *dependencies*. CI memastikan semua proses integrasi berhasil dan siap di *deploy* ke produksi.
 
-![Tangkapan layar ketika CI otomatis dijalankan](https://cdn-images-1.medium.com/max/2000/1*tZsrIldyDs6-AT1PMslBYw.png)
+{% image "https://cdn-images-1.medium.com/max/2000/1*tZsrIldyDs6-AT1PMslBYw.png", "Tangkapan layar ketika CI otomatis dijalankan" %}
 
 
 ### Menggunakan kontainer untuk *deployment*
@@ -210,17 +210,17 @@ Demi kesederhanaan dan biaya yang mudah diprediksi, saya memutuskan menggunakan 
 - Menjalankan kontainer. Saya menggunakan Docker untuk saat ini. Bisa juga menggunakan Podman nantinya.
 - Opsi tambahan, saya menambahkan *reverse proxy* HAProxy untuk berinteraksi dengan aplikasi. Sebenarnya bisa ditambahkan ke `docker-compose.yml` tapi belum saya lakukan 😬
 
-![Gambaran sederhana arsitektur aplikasai](https://cdn-images-1.medium.com/max/2000/1*lFbIqnzu-Y761o0Lub8YNA.jpeg)
+{% image "https://cdn-images-1.medium.com/max/2000/1*lFbIqnzu-Y761o0Lub8YNA.jpeg", "Gambaran sederhana arsitektur aplikasai" %}
 
 Saya awalnya memilih mesin dengan tipe *e2-micro*, lalu setelah beberapa hari saya *update* ke mesin e2-small yang lebih mumpuni. Dan agar harganya menjadi lebih ekonomis lagi, saya memutuskan menggunakan tipe [Spot VM](https://cloud.google.com/compute/docs/instances/spot?hl=en) sebagai *provisioning model*.
 
 *Spot VM* adalah tipe mesin virtual yang dapat kapan saja dihentikan oleh GCP agar sumberdaya-nya dapat digunakan servis lainnya. Harganya jadi 60-90% lebih murah namun resikonya aplikasi bisa saja tidak dapat diakses karena sedang dalam keadaan mati. Tidak disarankan digunakan untuk jenis aplikasi penting, namun untuk aplikasi ini rasanya tidak akan menjadi masalah.
 
-![Konfigurasi SpotVM](https://cdn-images-1.medium.com/max/2000/1*ZcmzJZmX0uiN_QIofNFzEw.png)
+{% image "https://cdn-images-1.medium.com/max/2000/1*ZcmzJZmX0uiN_QIofNFzEw.png", "Konfigurasi SpotVM" %}
 
 Saya juga menyiapkan servis agar setiap kali server restart akan otomatis menjalankan `docker compose up` supaya aplikasi otomatis menyala kembali. Servis ini juga dapat dijalankan dan dihentikan manual dengan perintah `sudo systemctl start coderacer` dan `sudo systemctl start coderacer`.
 
-![File /etc/systemd/coderacer.service](https://cdn-images-1.medium.com/max/2000/1*Rzj1_ZnguVCppeITZ-3p7Q.png)
+{% image "https://cdn-images-1.medium.com/max/2000/1*Rzj1_ZnguVCppeITZ-3p7Q.png", "File /etc/systemd/coderacer.service" %}
 
 #### Deployment untuk Database
 
@@ -265,7 +265,7 @@ Setelah semuanya beres, woro-woro ke media sosial supaya teman-teman bisa mencob
 
 Solusinya bisa menggunakan servis berbayar, salah satunya Vertex AI yang disediakan oleh GCP. Berhubung ini adalah pengalaman pertama menggunakan Vertex, dan sedikit keliru menterjemahkan maksud contoh kode yang ada di dokumentasi menyebabkan pengguna tetap kena *rate-limit* ketika menggunakan aplikasi.
 
-![Vertex API Key](/assets/images/vertex-api-key.png)
+{% image "./assets/images/vertex-api-key.png", "Vertex API Key" %}
 
 Yang saya lakukan adalah menjalankan perintah `gcloud auth print-access-token` di terminal, kemudian copas hasilnya ke environment variable. Padahal, perintah ini seharusnya dijalankan setiap kali ada *request* masuk.
 

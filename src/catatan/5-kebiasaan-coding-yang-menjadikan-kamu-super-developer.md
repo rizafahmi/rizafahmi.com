@@ -26,13 +26,13 @@ Hal ini juga saya rasakan ketika saya tidak _coding_ dalam rentang waktu beberap
 
 Dengan melakukan latihan _coding_ setiap hari, kita menjaga momentum, _flow_ dan disiplin. Layaknya latihan yang diberikan oleh [Mr. Miyagi](http://www.imdb.com/character/ch0007693/?ref_=tt_cl_t2) dalam film [Karate Kid](http://www.imdb.com/title/tt0087538/?ref_=nv_sr_1).
 
-![Wax](/assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_kRDevrDff_QPZblFbodq6Q.jpeg)
+{% image "./assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_kRDevrDff_QPZblFbodq6Q.jpeg", "Wax" %}
 
 Pada awalnya latihan yang diberikan [Mr. Miyagi](http://www.imdb.com/character/ch0007693/?ref_=tt_cl_t2) dirasa tidak berguna oleh [Daniel](http://www.imdb.com/name/nm0001494/?ref_=tt_cl_t1) yang ingin segera belajar jurus dan ogah belajar fundamental. Tetapi dengan berlatih hal fundamental secara terus menerus melatih reflek dan naluri saat bertarung nantinya.
 
 **Pro tip**: Gunakan [GitHub](https://github.com/rizafahmi) agar profil kamu menjadi lebih keren!
 
-![GitHub](/assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_VQ8vr7Atcmhc5U1Lz6H0RA.png)
+{% image "./assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_VQ8vr7Atcmhc5U1Lz6H0RA.png", "GitHub" %}
 
 ## Cobalah sesuatu yang baru
 
@@ -40,7 +40,7 @@ Setiap beberapa bulan sekali, cobalah sesuatu yang baru. Bisa berupa bahasa pemr
 
 Cobalah sesuatu yang kamu bahkan tidak yakin kamu akan sukai. Tantang diri kamu dan keluar dari zona nyaman. Katakanlah kamu tidak menyukai Microsoft, cobalah menggunakan C#, TypeScript atau produk Microsoft lainnya. Atau tidak suka Apple? Cobalah Swift ataupun Objective-C. Kamu fans [VIM](http://www.vim.org/)? Cobalah [Emacs](https://www.gnu.org/software/emacs/) :)
 
-![Challenge Accepted!](/assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_BKEg9Xihnj-9IMa7KeuVqQ.jpeg)
+{% image "./assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_BKEg9Xihnj-9IMa7KeuVqQ.jpeg", "Challenge Accepted!" %}
 
 Latihan ini akan membuat kita belajar berfikir _out-of-the-box_ dengan cara memantang dirimu setiap kesempatan. Pasti ada sesuatu yang dapat kita pelajari dari berbagai bahasa ataupun platform yang berbeda.
 
@@ -52,7 +52,7 @@ Masih berkaitan dengan tips sebelumnya, ketika mencoba bahasa, paradigma atau pl
 
 Sebagai contoh, cobalah untuk se-object-oriented mungkin ketika mencoba [Java](https://www.java.com/en/) atau [Kotlin](https://kotlinlang.org/) karena memang naturalnya seperti itu.
 
-![Flow](/assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_7xaVHJnd8-oALSGcc9di8g.jpeg)_Flow_
+{% image "./assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_7xaVHJnd8-oALSGcc9di8g.jpeg", "Flow" %}_Flow_
 
 Setelah beberapa lama, kembali lakukan eksperimen. Gunakan sebuah bahasa dengan cara yang berbeda. Misalnya hindari penggunaan _for loop_ di Ruby dan gunakan metode rekursif untuk melatih _mindset_ _functional programming_. Berkreasilah!
 
@@ -64,7 +64,7 @@ Cara-cara atau trik di _functional programming_ tentu dapat digunakan di paradig
 
 Contoh lain misalnya dengan belajar _declarative programming_ dapat meningkatkan pemahaman kita terhadap _immutability_ dan lain sebagainya.
 
-![New is always better](/assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_YUiRR_4_3APukZla90hZNA.jpeg)
+{% image "./assets/images/5-kebiasaan-coding-yang-menjadikan-kamu-super-developer/1_YUiRR_4_3APukZla90hZNA.jpeg", "New is always better" %}
 
 Banyak pula praktek-praktek OOP yang bisa digunakan di _functional programming_ maupun paradigma-paradigma lainnya.
 

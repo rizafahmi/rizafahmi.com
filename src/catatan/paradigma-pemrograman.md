@@ -29,7 +29,7 @@ Muncul juga gaya pemrograman yang berbeda-beda. Ada gaya imperatif yang mengguna
 
 Perkembangan perangkat keras juga menjadi salah satu penyebab munculnya hal-hal baru tersebut. Kecepatan prosesor yang sudah mulai 'mentok' dan sulit ditingkatkan menjadi lebih cepat lagi. Namun di sisi lain, jumlah inti prosesor bertambah secara eksponensial menyebabkan perubahan cara mengeksekusi kode agar dapat memanfaatkan _multi-core_ dari prosesor. Jika sebelumnya jika aplikasi dirasa sudah mulai lambat, kita bisa _upgrade_ prosesor dengan _clock speed_ yang lebih tinggi. Sekarang sudah tidak bisa lagi dilakukan karena _clock speed_ sudah nyaris 'mentok'. Tren ini disebut sebagai [The Free Lunch is Over, A Fundamental Turn Toward Concurrency in Software](http://www.gotw.ca/publications/concurrency-ddj.htm) yang pertama kali dipopulerkan oleh Herb Sutter. _Free lunch_ disini maksudnya _scaling hardware_ (dalam hal ini CPU) sudah tidak semudah sebelumnya.
 
-![Tren CPU Clock Speed](/assets/images/Microprocessor-clock-frequency-data-14-and-trend.png)
+{% image "./assets/images/Microprocessor-clock-frequency-data-14-and-trend.png", "Tren CPU Clock Speed" %}
 Gambar dikutip dari publikasi karya [Michael L. Rieger](https://www.researchgate.net/publication/338517514_Retrospective_on_VLSI_value_scaling_and_lithography).
 
 > "Concurrency is the next major revolution in how we write software" -- Herb Sutter
@@ -56,7 +56,7 @@ IO.inspect(Sequence.map([35, 36, 37, 38, 39, 40, 41], fn n -> Sequence.calculate
 
 Jika kode diatas dijalankan, akan memakan waktu sekitar 78.33 detik. Hal ini karena proses kalkulasi dijalankan satu-per-satu dan inti prosesor yang digunakan hanya sebagian sedangkan beberapa inti prosesor lainnya _nganggur_.
 
-![](/assets/images/elixir-seq-code.png)
+{% image "./assets/images/elixir-seq-code.png", "" %}
 
 #### Kode dengan _concurrency_
 
@@ -105,13 +105,13 @@ IO.inspect(
 
 Dengan menggunakan fungsi `pmap`, iterasi dijalankan secara parallel masing-masing satu proses atau _worker_ untuk setiap angka yang akan dikalkulasi. Kemudian hasilnya dikumpulkan untuk dikembalikan. Kali ini eksekusinya memakan waktu 32,88 detik saja. Dan seperti gambar dibawah, semua inti prosesor laptop saya ikut bekerja.
 
-![](/assets/images/pmap.png)
+{% image "./assets/images/pmap.png", "" %}
 
 ## Penutup
 
 Sebenarnya ada beberapa lagi paradigma lainnya, dengan berbagai percabangan lainnya. Namun untuk sederhananya kita bisa gunakan pengelompokan seperti ilustrasi berikut.
 
-![](/assets/images/paradigma.png)
+{% image "./assets/images/paradigma.png", "" %}
 
 Kurang tahu ilustrasi ini tepat atau tidak namun cukup masuk akal menurut saya. [Ilustrasi ini dikutip dari artikel berikut](https://blog.favouritejome.dev/the-world-of-programming-paradigms).
 

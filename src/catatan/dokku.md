@@ -18,7 +18,7 @@ tags:
 
 > Ini adalah artikel dari materi yang dibawakan di acara Cloud Day Indonesia 2023 beberapa waktu yang lalu.
 
-![](/assets/images/cloud-day.jpg)
+{% image "./assets/images/cloud-day.jpg", "" %}
 
 # Platform as a Service
 
@@ -29,7 +29,7 @@ aplikasi dapat lebih fokus untuk mengembangkan produk dan fitur tanpa
 perlu mengurus infrastruktur fisik seperti server, jaringan, ataupun
 basis data atau _database_.
 
-![Ilustrasi PaaS](/assets/images/PaaS.png)
+{% image "./assets/images/PaaS.png", "Ilustrasi PaaS" %}
 
 Dengan PaaS, kita bisa fokus mengembangkan produk dan berbagai fitur dan
 mengutamakan produktivitas pengembang aplikasi. Dengan beberapa tahap,
@@ -197,7 +197,7 @@ dokku_express
 Dengan asumsi sudah memiliki aplikasi yang siap digelar, dalam contoh
 ini adalah sebuah aplikasi Node.js sederhana.
 
-![Screenshot aplikasi](/assets/images/dokku-app.png)
+{% image "./assets/images/dokku-app.png", "Screenshot aplikasi" %}
 
 ### Mengirimkan kode ke Dokku
 
@@ -217,7 +217,7 @@ Kembali ke Dokku server, mari sekarang kita konfigurasi domain/subdomain
 agar aplikasi yang baru digelar dapat diakses dengan domain yang sudah
 disiapkan.
 
-![](/assets/images/dokku-route53.png)
+{% image "./assets/images/dokku-route53.png", "" %}
 
 Jika teman-teman memiliki domain bisa lakukan konfigurasi via Route 53.
 Dan jika belum memiliki domain aplikasi dapat diakses via public ip
@@ -267,7 +267,7 @@ dokku domains:report
 
 Dan sekarang aplikasi kita sudah dapat diakses via public ip address 🎉
 
-![](/assets/images/dokku-ip-addr.png)
+{% image "./assets/images/dokku-ip-addr.png", "" %}
 
 ### Subdomain
 
@@ -281,7 +281,7 @@ Dengan bantuan Route 53 dari AWS kita bisa mengarahkan domain yang kita
 miliki ke ip address di EC2 tempat dimana servis Dokku berada. Lalu kita
 bisa melakukan konfigurasi domain dan subdomain via perintah `dokku`.
 
-![](/assets/images/dokku-route-53-2.png)
+{% image "./assets/images/dokku-route-53-2.png", "" %}
 
 Lakukan langkah berikut untuk mengembalikan konfigurasi domain ke awal
 lagi.
@@ -454,7 +454,7 @@ Saved key to /certs/accounts/acme-v02.api.letsencrypt.org/<email@domain.com>/key
 
 ```
 
-![](/assets/images/dokku-ssl-complete.png)
+{% image "./assets/images/dokku-ssl-complete.png", "" %}
 
 # Fitur ekstra
 

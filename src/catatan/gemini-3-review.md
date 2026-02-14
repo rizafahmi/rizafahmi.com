@@ -24,7 +24,7 @@ Untuk mendapatkan API Key Gemini 3 bisa didapatkan dengan dua cara: dari AIStudi
 
 Sebelum dapat menggunakan aistudio, kita harus punya akun Google dan GCP. Silakan lakukan registrasi jika belum, masukkan metode pembayaran lalu aktifkan *billing*.
 
-TODO: ![GCP]()
+<!-- TODO: image "", "GCP" -->
 
 Setelah itu menuju ke [https://aistudio.google.com/](https://aistudio.google.com/) dan pilih menu [Get API Key](https://aistudio.google.com/app/apikey) di kanan bawah halaman untuk membuat API Key baru.
 

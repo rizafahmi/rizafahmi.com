@@ -68,6 +68,6 @@ iex(1)> :observer.start()
 
 Dan di desktop akan muncul aplikasi observer tersebut.
 
-![](/assets/images/observer.png)
+{% image "./assets/images/observer.png", "" %}
 
 Informasi lebih lanjut tentang observer bisa dicek di dokumentasi [Erlang berikut](https://www.erlang.org/doc/apps/observer/observer.html).

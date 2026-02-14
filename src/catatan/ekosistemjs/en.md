@@ -58,19 +58,19 @@ The framework with comprehensive features will be represented by Angular and Emb
 
 From those six frameworks and libraries mentioned, let’s see how their ecosystems are with looking at the communities around those frameworks and libraries. Community plays an important role in supporting how we learn and how we advance. Here is the graph showing JavaScript communities in some cities from the data that I gathered. Of course, there are still a lot of other cities that have JavaScript communities but not mentioned here.
 
-![Members of local communities in several cities in Indonesia](/assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_08.54.48.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_08.54.48.png", "Members of local communities in several cities in Indonesia" %}
 
 We can see that MedanJS community has a total of 334 members even though currently they are on hiatus. BaliJS has 474 members, SurabayaJS has 510, and JogjaJS has 545. While the ones with most members are in Bandung with 2.500 members and Jakarta with almost 4.000 members.
 
 And here are the communities around frameworks that I managed to gather information on. I got three framework communities, for: Vue, Angular, and React.
 
-![Members of framework communities in Indonesia](/assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_09.00.05.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_09.00.05.png", "Members of framework communities in Indonesia" %}
 
 Turned out framework communities are still dominated by React and Angular. While the Vue community is rather far behind React and Angular.
 
 The next data we’re going to see is the Facebook groups for each framework or library that I managed to find. All these groups are specifically in Bahasa Indonesia. I put information on total members, age of the group, and also the number of the discussion that happened yearly.
 
-![Age, members, and discussions per year](/assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_09.11.42.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_09.11.42.png", "Age, members, and discussions per year" %}
 
 The result is pretty interesting. The one with the most members is, of course, jQuery group, as it is one of the oldest libraries. jQuery itself has been developer’s companion since 2006 so it’s no wonder that it has the most members.
 
@@ -82,7 +82,7 @@ One more data around communities is the discussion group in the [ Telegram
 ](https://telegram.org) chat platform that is pretty interesting especially for the
 ones that are started getting serious into learning programming.
 
-![Members and discussions on Telegram groups](/assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_09.14.04.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_09.14.04.png", "Members and discussions on Telegram groups" %}
 
 In Telegram, I also just managed to find three communities, which are Angular, Vue, and React. This data is gathered with the help of a Telegram chatbot called carikbot. I also got data about the number of members joined and the discussions happening around August until mid-September of 2019.
 
@@ -92,7 +92,7 @@ The one with the most active and most members is React, with Vue and Angular fol
 
 And in this section, we’re going to talk about literature availability, in this case, books. The question is, are books still relevant as a learning resource? Especially book in Bahasa Indonesia. Personally, I think they are still relevant. Especially for students who want to learn and use some particular framework or library in their final project. Isn’t it great when there are books that could be used as a learning reference and properly quoted for the thesis or final project report?
 
-![Number of books available in Bahasa Indonesia](/assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_09.18.05.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-23_at_09.18.05.png", "Number of books available in Bahasa Indonesia" %}
 
 Perhaps some of us could already guess the result. It’s rather sad because the number of books available is very limited. This is only for books in Bahasa Indonesia. To get this data, I did some research from Gramedia online and Google. For available physical books, jQuery is the library with the most resources. While other frameworks still got very few.
 
@@ -104,13 +104,13 @@ Next, we’re going to talk about online course videos. I limit the scope here f
 
 There are some online course video platforms that have programming courses, specifically about JavaScript and its frameworks. There are [ malescast ](https://malescast.com), [ dumbways ](https://dumbways.id), [ idrails ](https://idrails.com), [ sekolah koding ](https://sekolahkoding.com), and also [KODE](https://kode.id).
 
-![Number of JavaScript materials in each platform](/assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_17.46.27.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_17.46.27.png", "Number of JavaScript materials in each platform" %}
 
 As we can see, the most productive one that made online course videos about JavaScript is sekolah koding, since it’s founded from way back in 2016. Dumbways has more materials around React framework. While malescast is more focused on making resources about Vue. idrails has materials around Vue and react.
 
 Next, we’re going to see the number of viewers categorized based on libraries and frameworks.
 
-![Total views for each framework/library](/assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_17.51.13.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_17.51.13.png", "Total views for each framework/library" %}
 
 Turned out, jQuery is leading the number of views from online course video with almost a hundred thousand views. That’s the result of the biggest contribution from sekolah koding that’s already produced course videos since 2016. Followed by Vue with seventy-thousands and trailing behind them is React with fifty-thousands.
 
@@ -127,7 +127,7 @@ Let’s go to the second point of view. We’re going to see from the perspectiv
 
 Now let’s see how many sample applications we can use as reference and guide. I tried to search in various services like glitch.com, codepen but there is no concrete information on how many sample applications available for our six libraries and frameworks.
 
-![The total of available sample applications at codesandbox](/assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_18.15.28.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_18.15.28.png", "The total of available sample applications at codesandbox" %}
 
 The only one providing the total of sample applications per framework or library is codesandbox. And here we can see there is a huge gap between frameworks. React is dominating with almost 2 million applications. Far above Vue which only got two hundred thousand.
 
@@ -140,7 +140,7 @@ keyword “<framework name> tutorial indonesia” and opened the link one by one
 until the third page and made sure that the tutorial is really valid to be
 considered as a tutorial and delivered in Bahasa Indonesia. Here is the result.
 
-![The number of tutorials available in Bahasa Indonesia for each framework/library](/assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_18.20.08.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_18.20.08.png", "The number of tutorials available in Bahasa Indonesia for each framework/library" %}
 
 From here, we can gather that Angular, jQuery, React, and Vue got an almost equal number between 10 to 15. While Svelte and Ember are rather difficult to find in Bahasa Indonesia. Actually, in general, the number of articles in Bahasa Indonesia also can be considered very limited. The same goes for literature in the form of books. This is actually a big opportunity for you who are interested in making contents in Bahasa Indonesia.
 
@@ -152,7 +152,7 @@ We’re going to look at some of the tools like the existence of Content Deliver
 
 Of course, we’re also going to look at some CLI support, whether the features like routing, states, development tools or devtools, and generators are available to increase our productivity as a developer.
 
-![Tools availability](/assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_19.04.43.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-25_at_19.04.43.png", "Tools availability" %}
 
 As seen from the above schematic, there is a clear difference between the library and framework. Angular and Ember are better equipped with more features. While Svelte, Vue, and React have just enough, and jQuery is far from fully equipped since it’s basically only a library for manipulating DOM.
 
@@ -424,7 +424,7 @@ Community support is just as important to consider. When we start to learn new t
 
 In the first section, we already talked about meetups, Facebook groups, and Telegram groups. Well now let’s focus on when we face issues and need help to find the solutions. Unfortunately, there isn’t yet any Q&A or tech discussion forum in Indonesia, or in Bahasa Indonesia. So I took the data from Stack Overflow.
 
-![Number of answered and unanswered questions in Stack Overflow for each library/framework](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_17.42.44.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_17.42.44.png", "Number of answered and unanswered questions in Stack Overflow for each library/framework" %}
 
 Here jQuery greatly outperformed the number of questions, of course since it is the oldest one, so normally it has the most number of questions. It’s followed by Angular, React, Vue, Ember, and the last one is Svelte.
 
@@ -434,13 +434,13 @@ There are many more questions about Angular and React, compared to the second gr
 
 For the next data, for a little bit of added fun, let’s compare follower numbers for each of the library/framework official accounts on Twitter.
 
-![Number of followers of each library/framework on Twitter](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_17.57.01.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_17.57.01.png", "Number of followers of each library/framework on Twitter" %}
 
 React and Angular are far ahead of the others in terms of followers count with almost three-hundred-thousand. Vue and Ember also have a big gap of around one hundred thousand. Interestingly, jQuery has the least number of followers. It’s even surpassed by the youngest one Svelte.
 
 The next statistics we're going to see is the GitHub repository.
 
-![Number of watches and stars for each library/framework GitHub repo](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.02.04.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.02.04.png", "Number of watches and stars for each library/framework GitHub repo" %}
 Now in the GitHub repository, Vue rule above the others. I think we can group them in three:
 
 1. Vue and React,
@@ -450,7 +450,7 @@ Now in the GitHub repository, Vue rule above the others. I think we can group th
 For the number of watches, React is the library with the most eyes on it.
 Also on the GitHub repository, there are also other interesting statistics, that are number of commits, number of contributors, and its lifetime.
 
-![Age (lifetime), number of contributors, and number of commits for each library/framework GitHub repo](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.06.54.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.06.54.png", "Age (lifetime), number of contributors, and number of commits for each library/framework GitHub repo" %}
 
 There are several interesting points to note here, first is about Svelte. With only two years old, it can beat Vue in the number of commits. Even though the numbers of contributors are not that different. Does it mean Svelte contributors implement ‘commit often’ strategy?
 
@@ -458,7 +458,7 @@ There are several interesting points to note here, first is about Svelte. With o
 
 Sooner or later a library and framework will need external help in the form of library, especially for a minimalistic framework. A framework like Svelte or a library like jQuery definitely would need external libraries. I did some searching in the npm with tags angular, ember, jquery, react, svelte and vue.
 
-![Number of external libraries for each library/framework](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.12.06.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.12.06.png", "Number of external libraries for each library/framework" %}
 
 We can see React is far surpassing the others with the most libraries had, almost five thousand. Clearly, we can see the difference that React is being marketed as a library, not a framework, that’s why more of its libraries pop up. Even for defacto libraries like redux, react-router, create react app, they appeared as libraries that are developed by the community. Even though React is developed by Facebook.
 
@@ -472,13 +472,13 @@ Now we’re going to a quite fascinating topic to discuss, performance. One of t
 
 I didn’t use the benchmarking method that is sometimes ‘misleading’ and subjective, but I chose another method, which actually also is subjective, [ Chrome UX Report ](https://developers.google.com/web/tools/chrome-user-experience-report). Chrome UX Report is a compilation of data that is anonymously collected from Chrome browser users. So with this tool, the users who use another browser are not included. Data was taken from 2014 until early September of 2019.
 
-![Number of users for each library/framework](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.17.03.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.17.03.png", "Number of users for each library/framework" %}
 
 From Chrome UX Report, I could gather the information on how many users access a particular website. From there, I compile the data on which website using which framework.
 
 The result is, turned out, libraries and frameworks domain are still dominated by jQuery. Only 10 percent of it is spread among other libraries and frameworks.
 
-![Library/frameworks performance based on Chrome UX Report](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.18.35.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.18.35.png", "Library/frameworks performance based on Chrome UX Report" %}
 
 For the performance, we can see two metrics: first contentful paint and first input delay. First Contentful Paint or FCP is the time when the first bit of content of the web is loaded or displayed to the browser. FCP depends on the performance of the rendered server, and how effective a framework does the rendering.
 
@@ -490,7 +490,7 @@ In general, the one with the fastest performance is Ember. Svelte has the fastes
 
 After learning new frameworks, and getting a glimpse of the performance for each library or framework, next we’re going to answer how are the prospect of this list of frameworks in the future industry.
 
-![Number of job vacancies posted in Stack Overflow and Upwork](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.22.48.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.22.48.png", "Number of job vacancies posted in Stack Overflow and Upwork" %}
 
 First, let’s take a look at the vacancies offered around the globe. Here I searched the data in [ Stack Overflow jobs ](https://stackoverflow.com/jobs) and [ Upwork ](https://www.upwork.com) for freelancing and remote working offers. I deliberately showed the data from around the world so we can later compare it to the ones in Indonesia. For Stack Overflow, it looks like jQuery talents needed are decreased in number. React has the most vacancies, followed by Angular, jQuery, Vue, and Ember.
 
@@ -498,11 +498,11 @@ And for Upwork, jQuery is still leading the numbers. Far above Rect, Angular, Vu
 
 How about vacancies in Indonesia? Here I’ll show the data from two sources: [ LinkedIn ](https://www.linkedin.com) and [ Urbanhire ](https://www.urbanhire.com).
 
-![Number of job vacancies posted in LinkedIn Indonesia](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.46.27.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.46.27.png", "Number of job vacancies posted in LinkedIn Indonesia" %}
 
 And apparently there are still quite a lot of companies looking for developers with jQuery competency, almost three thousand posts. While React vacancies and others are around six hundred or less. This data from LinkedIn is a little biased since I searched using my personal LinkedIn account. There’s a big possibility that in my circle there are still a lot of companies using jQuery.
 
-![Number of job vacancies posted in Urbanhire](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.48.52.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.48.52.png", "Number of job vacancies posted in Urbanhire" %}
 
 I also searched for the job vacancies data in Urbanhire which perhaps would be more objective and unbiased. In this Indonesian job vacancy search platform, it turned out that React has more vacancies than jQuery and others even though the differences are not that significant. They’re fairly balanced.
 
@@ -514,13 +514,13 @@ In this section, we’re going to answer the questions from those who are consid
 
 For this, I went back to the LinkedIn search feature to find how many talents are there for each framework and library.
 
-![Available talents for each library/framework in LinkedIn](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.55.10.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.55.10.png", "Available talents for each library/framework in LinkedIn" %}
 
 And apparently, there are still quite a number of people who are capable of
 jQuery in both Indonesia and around the world. The gap is still pretty far
 between jQuery and other frameworks.
 
-![Available talents for each library/framework in Geekhunter](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.56.22.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_18.56.22.png", "Available talents for each library/framework in Geekhunter" %}
 And above is the data from [ Geekhunter ](https://geekhunter.co) database. As we can see, jQuery is still the most widely mastered library.
 
 ### Maturity Level
@@ -528,7 +528,7 @@ And above is the data from [ Geekhunter ](https://geekhunter.co) database. As we
 In this section, we’re going to talk about framework maturity. Here we’re also
 going to see aspects like number of release cycle, the number of maintainers, issues, pull requests, and also tests.
 
-![Age (lifetime), and yearly releases and commits](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_19.15.22.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_19.15.22.png", "Age (lifetime), and yearly releases and commits" %}
 
 I gathered the data from GitHub and apparently we got some interesting insights. The first interesting thing is Svelte. This youngest framework has the highest release numbers per year. Of course, it’s only natural since it’s new, so we shouldn’t be surprised if there are still API changes or other changes that are not stable. Compared to jQuery, which is the oldest one of them, it has the least yearly release numbers since it’s now 10 years old.
 
@@ -538,7 +538,7 @@ React, while it’s only 6 years old, but it’s already developed and used far 
 
 Next, we’re going to see the number of issues reported on GitHub. GitHub issue is one of the metrics we can use to evaluate whether any open source project is healthy.
 
-![Number of open and closed issues reported in GitHub](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_19.42.03.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_19.42.03.png", "Number of open and closed issues reported in GitHub" %}
 
 Angular is the owner of the highest number of issues, for both resolved or closed ones and open or unresolved issues. The difference is quite significant. This might be because Angular has a lot of features that have to be developed and maintained. But on the other hand, Ember which also has quite extensive features does not really have issues as much as Angular, it’s even less compared with React and Vue.
 
@@ -546,13 +546,13 @@ Svelte is the only framework with the number of open issues more than the closed
 
 Next, we’re going to take a look at how many pull requests or PR exist in each repo.
 
-![Number of open and merged PR](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_19.45.08.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_19.45.08.png", "Number of open and merged PR" %}
 
 jQuery no longer has that many open pull requests, maybe because it’s already mature enough or there are not many new features being developed. Or it could also mean it doesn’t have many bugs. While Angular contributors are apparently the most productive ones with the pull requests and Vue has the least number of pull requests.
 
 Next, we’re going to see how many test cases are covered and compare them to the lines of code in each framework
 
-![The number of test cases versus the line of codes](/assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_19.46.52.png)
+{% image "./assets/images/ekosistemjs/Screen_Shot_2020-01-26_at_19.46.52.png", "The number of test cases versus the line of codes" %}
 
 Angular has the most lines of codes with also the most test cases. Rather surprisingly, Ember has almost the same lines of codes with Vue, but with more test cases, it even has more test cases than React one. Svelte also has quite many test cases if compared to the lines of codes in ratio.
 
