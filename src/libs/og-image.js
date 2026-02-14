@@ -7,11 +7,17 @@ import path from "node:path";
 const FONTS_DIR = path.resolve("assets/fonts");
 
 let wotfardB64 = null;
+let jetbrainsB64 = null;
 
 function loadFonts() {
   if (!wotfardB64) {
     wotfardB64 = readFileSync(
       path.join(FONTS_DIR, "wotfard-regular-webfont.ttf")
+    ).toString("base64");
+  }
+  if (!jetbrainsB64) {
+    jetbrainsB64 = readFileSync(
+      path.join(FONTS_DIR, "JetBrainsMono-Regular.ttf")
     ).toString("base64");
   }
 }
@@ -38,19 +44,11 @@ function esc(str) {
     .replace(/'/g, "&apos;");
 }
 
-/** Truncate text to a max length, adding ellipsis */
-function truncate(text, max) {
-  if (!text) return "";
-  if (text.length <= max) return text;
-  return text.slice(0, max).replace(/\s+\S*$/, "") + "\u2026";
-}
-
 /** Strip HTML tags, emoji, and collapse whitespace */
 function stripHtml(html) {
   if (!html) return "";
   return html
     .replace(/<[^>]*>/g, " ")
-    // Remove emoji and other non-BMP / symbol characters that crash Pango
     .replace(/[\u{1F000}-\u{1FFFF}]/gu, "")
     .replace(/[\u{2600}-\u{27BF}]/gu, "")
     .replace(/[\u{FE00}-\u{FE0F}]/gu, "")
@@ -94,27 +92,31 @@ function wrapText(text, maxChars, maxLines) {
   return lines;
 }
 
-// --- SVG Template (native <text> elements, no foreignObject) ---
+// --- SVG Template ---
+// Matches the site's clean, white aesthetic with Wotfard + JetBrainsMono,
+// dark heading color (#211a1e), subtle borders, and pill-shaped tags.
 
 function buildSvg({ title, excerpt, tags }) {
   loadFonts();
 
   const WIDTH = 1200;
   const HEIGHT = 630;
-  const PAD = 60;
-  const BG = "#211a1e";
-  const TEXT_COLOR = "#f5f0eb";
-  const MUTED = "#a8a0a0";
-  const ACCENT = "#e8b931";
+  const PAD = 72;
 
-  // --- Branding ---
-  const brandY = 70;
+  // Colors from the site's CSS variables (light theme)
+  const BG = "#ffffff";
+  const HEADING = "#211a1e";
+  const TEXT = "rgb(41, 38, 38)";
+  const META = "rgba(33, 26, 30, 0.55)";
+  const TAG_BG = "#292626";
+  const TAG_TEXT = "#eaeaea";
+  const BORDER = "rgba(33, 26, 30, 0.12)";
 
   // --- Title ---
-  const titleFontSize = 46;
-  const titleLineHeight = 58;
-  const titleY = 140;
-  const titleMaxChars = 38;
+  const titleFontSize = 48;
+  const titleLineHeight = 62;
+  const titleY = 88;
+  const titleMaxChars = 36;
   const titleMaxLines = 3;
   const titleLines = wrapText(title || "Catatan Baru", titleMaxChars, titleMaxLines);
 
@@ -125,10 +127,10 @@ function buildSvg({ title, excerpt, tags }) {
     .join("\n      ");
 
   // --- Excerpt ---
-  const excerptFontSize = 22;
-  const excerptLineHeight = 34;
-  const excerptY = titleY + titleLines.length * titleLineHeight + 30;
-  const excerptMaxChars = 55;
+  const excerptFontSize = 21;
+  const excerptLineHeight = 32;
+  const excerptY = titleY + titleLines.length * titleLineHeight + 24;
+  const excerptMaxChars = 56;
   const excerptMaxLines = 3;
   const excerptLines = wrapText(excerpt || "", excerptMaxChars, excerptMaxLines);
 
@@ -138,27 +140,28 @@ function buildSvg({ title, excerpt, tags }) {
     )
     .join("\n      ");
 
-  // --- Tags ---
+  // --- Tags (pill-shaped, matching site's span.tags style) ---
   const tagList = visibleTags(tags).slice(0, 4);
-  const tagsY = HEIGHT - 50;
+  const tagsY = HEIGHT - 90;
   let tagsSvg = "";
   if (tagList.length > 0) {
     let tagX = PAD;
     const tagParts = tagList.map((t) => {
-      const label = `#${t}`;
-      // Approximate width: ~10px per char + 24px padding
-      const w = label.length * 10 + 24;
+      const label = t;
+      // Approximate width: ~8.5px per char + 20px horizontal padding
+      const w = label.length * 8.5 + 24;
+      const h = 28;
       const part = `
-      <rect x="${tagX}" y="${tagsY - 22}" width="${w}" height="32" rx="4" fill="${ACCENT}" fill-opacity="0.15" />
-      <text x="${tagX + 12}" y="${tagsY}" font-family="Wotfard, sans-serif" font-size="18" fill="${ACCENT}">${esc(label)}</text>`;
-      tagX += w + 12;
+      <rect x="${tagX}" y="${tagsY}" width="${w}" height="${h}" rx="14" fill="${TAG_BG}" />
+      <text x="${tagX + w / 2}" y="${tagsY + 19}" font-family="Wotfard, sans-serif" font-size="14" fill="${TAG_TEXT}" text-anchor="middle">${esc(label)}</text>`;
+      tagX += w + 10;
       return part;
     });
     tagsSvg = tagParts.join("");
   }
 
-  // --- Separator line ---
-  const sepY = excerptY + excerptLines.length * excerptLineHeight + 20;
+  // --- Footer branding ---
+  const footerY = HEIGHT - 36;
 
   return `<svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -169,38 +172,45 @@ function buildSvg({ title, excerpt, tags }) {
         font-weight: normal;
         font-style: normal;
       }
+      @font-face {
+        font-family: 'JetBrainsMono';
+        src: url('data:font/ttf;base64,${jetbrainsB64}') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
     </style>
   </defs>
 
-  <!-- Background -->
+  <!-- White background -->
   <rect width="${WIDTH}" height="${HEIGHT}" fill="${BG}" />
 
-  <!-- Top accent line -->
-  <rect x="0" y="0" width="${WIDTH}" height="6" fill="${ACCENT}" />
+  <!-- Thin top border line (like the reading-progress bar) -->
+  <rect x="0" y="0" width="${WIDTH}" height="4" fill="${HEADING}" />
 
-  <!-- Bottom accent line -->
-  <rect x="0" y="${HEIGHT - 6}" width="${WIDTH}" height="6" fill="${ACCENT}" />
-
-  <!-- Branding: circle + text -->
-  <circle cx="${PAD + 20}" cy="${brandY}" r="20" fill="${ACCENT}" />
-  <text x="${PAD + 10}" y="${brandY + 7}" font-family="Wotfard, sans-serif" font-size="22" font-weight="bold" fill="${BG}" text-anchor="middle">R</text>
-  <text x="${PAD + 52}" y="${brandY + 7}" font-family="Wotfard, sans-serif" font-size="22" fill="${MUTED}">rizafahmi.com</text>
+  <!-- Outer frame (subtle border like the existing OG image) -->
+  <rect x="16" y="16" width="${WIDTH - 32}" height="${HEIGHT - 32}" rx="0" fill="none" stroke="${BORDER}" stroke-width="2" />
 
   <!-- Title -->
-  <text x="${PAD}" y="${titleY}" font-family="Wotfard, sans-serif" font-size="${titleFontSize}" font-weight="bold" fill="${TEXT_COLOR}">
+  <text x="${PAD}" y="${titleY}" font-family="Wotfard, sans-serif" font-size="${titleFontSize}" font-weight="bold" fill="${HEADING}">
       ${titleTspans}
   </text>
 
-  <!-- Separator -->
-  <line x1="${PAD}" y1="${sepY}" x2="${PAD + 80}" y2="${sepY}" stroke="${ACCENT}" stroke-width="3" />
-
   <!-- Excerpt -->
-  <text x="${PAD}" y="${excerptY}" font-family="Wotfard, sans-serif" font-size="${excerptFontSize}" fill="${MUTED}">
+  <text x="${PAD}" y="${excerptY}" font-family="Wotfard, sans-serif" font-size="${excerptFontSize}" fill="${META}">
       ${excerptTspans}
   </text>
 
   <!-- Tags -->
   ${tagsSvg}
+
+  <!-- Bottom separator -->
+  <line x1="${PAD}" y1="${footerY - 16}" x2="${WIDTH - PAD}" y2="${footerY - 16}" stroke="${BORDER}" stroke-width="1" />
+
+  <!-- Footer: site name (monospace, like the site's h2 style) -->
+  <text x="${PAD}" y="${footerY + 4}" font-family="JetBrainsMono, monospace" font-size="16" fill="${META}">rizafahmi.com</text>
+
+  <!-- Footer: catatan label on the right -->
+  <text x="${WIDTH - PAD}" y="${footerY + 4}" font-family="JetBrainsMono, monospace" font-size="16" fill="${META}" text-anchor="end">catatan</text>
 </svg>`;
 }
 
