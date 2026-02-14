@@ -32,37 +32,57 @@
 :root {
     --bg-color: #ffffff;
     --text-color: rgb(41, 38, 38);
+    --heading-color: #211a1e;
     --link-color: inherit;
+    --link-hover-color: #211a1e;
+    --border-color: rgba(33, 26, 30, 0.2);
+    --table-header-bg: #f5f5f5;
+    --table-row-alt-bg: #fafafa;
     --button-bg: #211a1e;
     --button-text: #fcfcfc;
+
     --tag-bg: rgb(41, 38, 38);
     --tag-text: #eaeaea;
+
     --meta-color: rgba(33, 26, 30, 0.6);
+
     --nav-btn-bg: #f5f5f5;
     --nav-btn-text: #211a1e;
     --nav-btn-hover-bg: #211a1e;
     --nav-btn-hover-text: #fff;
+
     --code-bg: #dadada;
     --code-text: #211a1e;
     --code-border: #c0c0c0;
 }
 
 [data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --link-color: #4db6ac;
-    --button-bg: #333333;
-    --button-text: #f0f0f0;
-    --tag-bg: #333333;
-    --tag-text: #f0f0f0;
-    --meta-color: rgba(224, 224, 224, 0.6);
-    --nav-btn-bg: #2d2d2d;
-    --nav-btn-text: #e0e0e0;
+    /* Slightly lifted neutrals for readability (WCAG contrast friendly) */
+    --bg-color: #0f1115;
+    --text-color: #e6e6e6;
+    --heading-color: #f5f5f5;
+
+    /* Brighter link to distinguish from body text */
+    --link-color: #7dd3fc;
+    --link-hover-color: #a5d8ff;
+
+    --button-bg: #2b2f38;
+    --button-text: #f5f5f5;
+
+    --tag-bg: #2b2f38;
+    --tag-text: #f5f5f5;
+
+    --meta-color: rgba(230, 230, 230, 0.7);
+
+    --nav-btn-bg: #1b1f27;
+    --nav-btn-text: #e6e6e6;
     --nav-btn-hover-bg: #8ab4f8;
-    --nav-btn-hover-text: #121212;
-    --code-bg: #3a3a3a;
-    --code-text: #f0f0f0;
-    --code-border: #555555;
+    --nav-btn-hover-text: #0f1115;
+
+    /* Inline code (p > code) */
+    --code-bg: #151a22;
+    --code-text: #eaf2ff;
+    --code-border: #2a3343;
 }
 
 html {
@@ -118,7 +138,15 @@ body {
 a {
     color: var(--link-color);
     text-decoration: none;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid currentColor;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+a:hover {
+    color: var(--link-hover-color);
 }
 
 a:focus-visible,
@@ -133,6 +161,15 @@ button:focus-visible {
     outline-color: var(--link-color);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
+}
+
 .button {
     background-color: var(--button-bg);
     padding: 0.75rem 1rem 0.75rem 1rem;
@@ -141,8 +178,25 @@ button:focus-visible {
     font-size: 1.25rem;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
+}
+
+h2 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    margin: 1.25rem 0 0.5rem;
+}
+
 h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin: 1rem 0 0.5rem;
 }
 h6 {
     display: flex;
@@ -188,6 +242,14 @@ strong, b {
     color: var(--meta-color);
     display: block;
     margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.view-count {
+    font-size: 0.875rem;
+    color: var(--meta-color);
+    display: block;
+    margin-top: -0.25rem;
     margin-bottom: 0.5rem;
 }
 
@@ -246,4 +308,46 @@ blockquote {
   60% { opacity: 0.7; filter: blur(0); transform: translate(3px, -1px); }
   75% { opacity: 0.9; filter: blur(1px); transform: translate(-1px, 1px); }
   100% { opacity: 1; filter: none; transform: translate(0); }
+}
+
+/* Card UI (used in /showcase and homepage "Karya") */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0.5rem 0;
+}
+
+.card {
+  background: var(--nav-btn-bg);
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.card p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--meta-color);
+  line-height: 1.4;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
 }

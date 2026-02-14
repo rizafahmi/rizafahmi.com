@@ -53,6 +53,26 @@ To build the site for development or production:
   npm run build:prod
   ```
 
+### GoatCounter (Article Popularity)
+
+This site can optionally show article popularity (view counts) by querying the GoatCounter API **at build time** (no client-side API calls).
+
+Configuration is done via environment variables (do **not** commit the token):
+
+```sh
+# Required
+export GOATCOUNTER_SITE="<your-goatcounter-code-or-domain>"
+export GOATCOUNTER_API_TOKEN="<your-api-token>"
+
+# Optional
+export GOATCOUNTER_API_BASE="https://<your-goatcounter-domain>/api/v0"  # overrides GOATCOUNTER_SITE
+export GOATCOUNTER_CACHE_TTL_HOURS="12"                                # default: 12
+```
+
+Notes:
+- Data is cached in `.cache/goatcounter/views.json` to keep builds fast and avoid rate limits.
+- If the env vars are not set, the site will build normally and simply hide the view counts.
+
 ### Debugging
 
 Run the project with debug output enabled:
@@ -60,6 +80,40 @@ Run the project with debug output enabled:
 ```sh
 npm run debug
 ```
+
+## Feeds (RSS/Atom)
+
+This site generates two Atom feeds:
+
+- Excerpt feed: `https://rizafahmi.com/feed.xml`
+- Full-content feed: `https://rizafahmi.com/feed/full.xml`
+
+### Testing feeds locally
+
+1. Run the dev server:
+   ```sh
+   npm start
+   ```
+2. Open:
+   - http://localhost:3000/feed.xml
+   - http://localhost:3000/feed/full.xml
+
+Or build and inspect the output files in `dist/`:
+
+```sh
+npm run build
+ls -lah dist/feed.xml dist/feed/full.xml
+```
+
+## SEO + LLM discovery
+
+The site publishes a few well-known machine-readable endpoints:
+
+- `https://rizafahmi.com/robots.txt` (generated from `src/robots.njk`, links to the sitemap)
+- `https://rizafahmi.com/sitemap.xml` (generated from `src/sitemap.njk`)
+- `https://rizafahmi.com/llms.txt` (generated from `src/llms.njk`)
+
+Canonical URLs are set in `src/_includes/head.njk` and use `https://rizafahmi.com{{ page.url }}`.
 
 ## Project Structure
 
