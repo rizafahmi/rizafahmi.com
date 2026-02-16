@@ -653,6 +653,23 @@ Sekarang kita akan menambahkan indikator "Berpikir..." supaya pengguna tidak keb
 
 Potongan kode di atas menambahkan beberapa fungsi baru agar pengalaman pengguna menjadi lebih baik. Fungsi `print_thinking/0` akan menampilkan indikator "Berpikir..." dengan warna cyan saat aplikasi sedang menunggu respons dari LLM. Fungsi `print_response/1` akan menampilkan respons sukses dengan warna hijau, sedangkan fungsi `print_error/1` akan menampilkan pesan kesalahan dengan warna merah. Selain itu, kita juga memperbarui fungsi `main/1` untuk memanggil fungsi-fungsi baru ini sesuai dengan hasil yang diterima dari fungsi `call/1`. Terakhir, kita memperbarui pesan bantuan di dalam fungsi `help_message/0` agar lebih informatif dan menarik.
 
+<figure>
+	{% image "/assets/images/agentic/demo-0001.png", "Demo error" %}
+	<figcaption>Demo error</figcaption>
+</figure>
+
+<figure>
+	{% image "/assets/images/agentic/demo-0002.png", "Demo indikator" %}
+	<figcaption>Demo indikator</figcaption>
+</figure>
+
+<figure>
+	{% image "/assets/images/agentic/demo-0003.png", "Demo berhasil" %}
+	<figcaption>Demo berhasil</figcaption>
+</figure>
+
+
+
 ## Kesimpulan
 
 Kita mulai pengembangan aplikasi dari awal dengan program sederhana yang mencetak "Hello, world!". Sekarang, 100-an baris kode kemudian, kita punya program yang bisa:
