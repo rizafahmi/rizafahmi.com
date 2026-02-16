@@ -18,6 +18,7 @@ export default function(eleventyConfig, options) {
         "diff",
         "elixir",
         "typescript",
+        "markdown",
       ],
     });
 

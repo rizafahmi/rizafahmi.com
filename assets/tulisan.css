@@ -59,6 +59,18 @@ h2 {
 h3 {
     font-size: 1.75rem;
 }
+
+h4 {
+    font-size: 1.35rem;
+}
+
+h5 {
+    font-size: 1.15rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
 a.back {
     font-size: 1rem;
     margin: 0.5rem;
@@ -468,6 +480,7 @@ small {
 
 .toc ol ol {
     margin-top: 0.25rem;
+    list-style-type: lower-alpha;
 }
 
 .toc li {
