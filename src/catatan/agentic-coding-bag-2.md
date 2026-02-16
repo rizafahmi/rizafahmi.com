@@ -668,8 +668,6 @@ Potongan kode di atas menambahkan beberapa fungsi baru agar pengalaman pengguna 
 	<figcaption>Demo berhasil</figcaption>
 </figure>
 
-
-
 ## Kesimpulan
 
 Kita mulai pengembangan aplikasi dari awal dengan program sederhana yang mencetak "Hello, world!". Sekarang, 100-an baris kode kemudian, kita punya program yang bisa:
