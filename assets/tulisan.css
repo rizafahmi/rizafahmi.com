@@ -59,10 +59,29 @@ h2 {
 h3 {
     font-size: 1.75rem;
 }
+
+h4 {
+    font-size: 1.35rem;
+}
+
+h5 {
+    font-size: 1.15rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
 a.back {
     font-size: 1rem;
     margin: 0.5rem;
     border: none;
+}
+
+/* Article links: use underline instead of border-bottom (prevents overlap with inline code background) */
+.container a {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    border-bottom: none;
 }
 
 p,
@@ -161,10 +180,13 @@ pre {
     -webkit-overflow-scrolling: touch;
 }
 
-p > code {
+p > code,
+li > code {
     background: var(--code-bg);
     color: var(--code-text);
-    padding: 0.2rem 0.4rem;
+    padding: 0.05rem 0.35rem; /* prevent covering link underline */
+    line-height: 1.2;
+    vertical-align: baseline;
     border-radius: 0.25rem;
     border: 1px solid var(--code-border);
 }
@@ -468,6 +490,7 @@ small {
 
 .toc ol ol {
     margin-top: 0.25rem;
+    list-style-type: lower-alpha;
 }
 
 .toc li {

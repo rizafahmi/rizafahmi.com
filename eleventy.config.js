@@ -1,21 +1,33 @@
 import path from "node:path";
+import { existsSync } from "node:fs";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import shikiPlugin from "./src/libs/shiki.js";
 import Image from "@11ty/eleventy-img";
 import { getRelatedPosts } from "./src/libs/related.js";
 import { generateOgImage } from "./src/libs/og-image.js";
 
+const isDev = process.env.ELEVENTY_ENV === "dev";
+
 async function imageShortcode(src, alt, className = "", sizes = "100vw", widths = [300, 600, 1200]) {
   if (!src) {
     console.error(`[11ty/img] Missing src attribute. Alt: ${alt}`);
     return "";
   }
+
+  if (isDev) {
+    return `<img src="${src}" alt="${alt}"${className ? ` class="${className}"` : ""} loading="lazy" decoding="async">`;
+  }
+
   try {
     let metadata = await Image(src, {
       widths: widths,
       formats: ["webp", "png"],
       outputDir: "./dist/img/",
       urlPath: "/img/",
+      cacheOptions: {
+        duration: "1y",
+        directory: ".cache/eleventy-img",
+      },
       filenameFormat: function (id, src, width, format, options) {
         const extension = path.extname(src);
         const name = path.basename(src, extension);
@@ -305,8 +317,9 @@ export default function (eleventyConfig) {
     return content;
   });
 
-  // --- Generate dynamic OG images for articles after build ---
+  // --- Generate dynamic OG images for articles after build (prod only) ---
   eleventyConfig.on("eleventy.after", async ({ results }) => {
+    if (isDev) return;
     const HIDDEN = new Set(["all", "nav", "post", "catatan"]);
     const outputDir = "dist";
 
@@ -382,11 +395,16 @@ export default function (eleventyConfig) {
         ? frontmatter.tags.filter((t) => t && !HIDDEN.has(t))
         : [];
 
+      const ogOutputPath = path.resolve(outputDir, "og", `${slug}.png`);
+
+      // Skip if the OG image already exists (avoid re-generating on every rebuild)
+      if (existsSync(ogOutputPath)) continue;
+
       jobs.push({
         title: frontmatter.title || slug,
         excerpt,
         tags,
-        outputPath: path.resolve(outputDir, "og", `${slug}.png`),
+        outputPath: ogOutputPath,
       });
     }
 

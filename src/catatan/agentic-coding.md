@@ -1,5 +1,5 @@
 ---
-title: Mengulik Cara Kerja Agentic Coding
+title: Fondasi Agentic Coding - Apa itu Agent?
 date: 2026-02-06
 modified: 2026-02-06
 created: 2026-01-25
