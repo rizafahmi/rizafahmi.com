@@ -77,6 +77,13 @@ a.back {
     border: none;
 }
 
+/* Article links: use underline instead of border-bottom (prevents overlap with inline code background) */
+.container a {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    border-bottom: none;
+}
+
 p,
 ul,
 li,
