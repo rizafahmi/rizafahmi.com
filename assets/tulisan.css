@@ -173,10 +173,13 @@ pre {
     -webkit-overflow-scrolling: touch;
 }
 
-p > code {
+p > code,
+li > code {
     background: var(--code-bg);
     color: var(--code-text);
-    padding: 0.2rem 0.4rem;
+    padding: 0.05rem 0.35rem; /* prevent covering link underline */
+    line-height: 1.2;
+    vertical-align: baseline;
     border-radius: 0.25rem;
     border: 1px solid var(--code-border);
 }
