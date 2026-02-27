@@ -188,6 +188,10 @@ export default function (eleventyConfig) {
       .slice(0, 4);
   });
 
+  // Prompting journal: currently single-page. If we later switch to per-entry files,
+  // we can reintroduce a collection here.
+
+
   // Curated tag list for /tags and /tags/<tag>/ pages.
   // Eleventy automatically creates collections per tag; this collection
   // only defines which tags should be shown.
