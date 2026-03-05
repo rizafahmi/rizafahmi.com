@@ -15,7 +15,8 @@ async function imageShortcode(src, alt, className = "", sizes = "100vw", widths 
   }
 
   if (isDev) {
-    return `<img src="${src}" alt="${alt}"${className ? ` class="${className}"` : ""} loading="lazy" decoding="async">`;
+    const devSrc = src.startsWith("./") ? src.slice(1) : src;
+    return `<img src="${devSrc}" alt="${alt}"${className ? ` class="${className}"` : ""} loading="lazy" decoding="async">`;
   }
 
   try {
