@@ -27,6 +27,7 @@ function slugify (str) {
 function getFrontmatter (title, date) {
   return `---
 title: ${title}
+date: ${date}
 created: ${date}
 modified: ${date}
 layout: tulisan
