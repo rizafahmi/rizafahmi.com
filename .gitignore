@@ -15,3 +15,5 @@ dist/
 .DS_Store
 
 .envrc
+
+.agent-shell/
