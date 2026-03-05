@@ -317,11 +317,19 @@ Namun jika kita mencoba dengan pertanyaan yang membutuhkan informasi tanggal dan
 📤 Hasil: 2024-05-22T03:19:00Z
 ```
 
-Setelah melewati fase berpikir, LLM memutuskan untuk menggunakan perkakas `get_current_datetime` untuk menjawab pertanyaan tentang tanggal dan waktu saat ini. Hasilnya adalah tanggal dan waktu saat ini dalam format ISO 8601.
-
-Tapi tunggu dulu, bagaimana LLM tahu hasilnya? **Kita belum mengirim balik hasil eksekusi perkakas ke model**.
-
-Ini yang akan kita bahas di bagian berikutnya: **The Agentic Loop**. Termasuk menambahkan perkakas lainnya.
-
 LLM sudah meminta `get_current_datetime` dipanggil, dan kita sudah menjalankannya. Tapi hasilnya tidak pernah sampai ke LLM. Artinya LLM tidak bisa merangkai jawaban dari hasil perkakas itu.
+
 Di bagian berikutnya, kita tutup loop ini: kirim hasil eksekusi perkakas kembali ke LLM, biarkan ia merangkai jawaban final, lalu kita bisa tambahkan perkakas berikutnya.
+
+## Kesimpulan
+
+Sekarang `mbb` sudah tidak sepenuhnya buta. Dengan menambahkan perkakas pertama, kita sudah:
+
+- ✅ Mendefinisikan struktur perkakas: `name`, `description`, dan `input_schema`
+- ✅ Mengirim daftar perkakas ke LLM bersama setiap permintaan
+- ✅ Parsing dua jenis respons berbeda: teks langsung dan pemanggilan fungsi
+- ✅ Mengeksekusi fungsi secara lokal dan menampilkan hasilnya
+
+Tapi loop-nya belum tertutup. LLM meminta `get_current_datetime` dipanggil, kita menjalankannya, tapi hasilnya tidak pernah sampai ke LLM. Artinya LLM tidak bisa merangkai jawaban dari hasil perkakas itu.
+
+Di bagian berikutnya, kita tutup loop ini: kirim hasil eksekusi perkakas kembali ke LLM, biarkan ia merangkai jawaban final, lalu tambahkan perkakas kedua yang lebih kompleks karena menerima argumen dari pengguna.
