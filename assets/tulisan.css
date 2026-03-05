@@ -129,9 +129,16 @@ pre.shiki {
     -webkit-overflow-scrolling: touch;
 }
 
-.line-prefix {
+.line-prefix,
+.diff-prefix {
     user-select: none;
     opacity: 0.5;
+}
+
+pre.shiki .line.highlighted {
+    background-color: rgba(255, 255, 255, 0.06);
+    display: inline-block;
+    width: 100%;
 }
 
 .code-block {

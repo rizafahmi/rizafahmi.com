@@ -24,14 +24,44 @@ export default function(eleventyConfig, options) {
 
     const shellLangs = ["shell", "bash", "sh"];
 
+    const { transformerMetaHighlight } = await import("@shikijs/transformers");
+
     eleventyConfig.amendLibrary("md", (mdLib) =>
       mdLib.set({
-        highlight: (code, lang) => {
-          const html = highlighter.codeToHtml(code, {
-            lang: lang,
-            theme: "dark-plus",
-            transformers: shellLangs.includes(lang)
-              ? [
+        highlight: (code, lang, attrs) => {
+          const meta = attrs || "";
+
+          const transformers = [transformerMetaHighlight()];
+
+          if (lang === "diff") {
+            transformers.push({
+              line(node) {
+                const firstChild = node.children[0];
+                const textNode =
+                  firstChild?.type === "text"
+                    ? firstChild
+                    : firstChild?.children?.[0];
+                if (!textNode || textNode.type !== "text") return;
+
+                const match = textNode.value.match(/^([+-])/);
+                if (!match) return;
+
+                const symbol = match[1];
+                textNode.value = textNode.value.slice(1);
+
+                const prefix = {
+                  type: "element",
+                  tagName: "span",
+                  properties: { class: "diff-prefix" },
+                  children: [{ type: "text", value: symbol }],
+                };
+                node.children.unshift(prefix);
+              },
+            });
+          }
+
+          if (shellLangs.includes(lang)) {
+            transformers.push(
                   (() => {
                     let continuation = false;
                     let inQuote = null;
@@ -77,8 +107,14 @@ export default function(eleventyConfig, options) {
                       },
                     };
                   })(),
-                ]
-              : [],
+            );
+          }
+
+          const html = highlighter.codeToHtml(code, {
+            lang: lang,
+            theme: "dark-plus",
+            meta: { __raw: meta },
+            transformers,
           });
           const btn = `<button class="code-copy" aria-label="Salin kode">Salin</button>`;
           return `<div class="code-block">${btn}${html}</div>`;
