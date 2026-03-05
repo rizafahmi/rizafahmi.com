@@ -19,6 +19,11 @@ async function imageShortcode(src, alt, className = "", sizes = "100vw", widths 
     return `<img src="${devSrc}" alt="${alt}"${className ? ` class="${className}"` : ""} loading="lazy" decoding="async">`;
   }
 
+  if (path.extname(src).toLowerCase() === ".gif") {
+    const devSrc = src.startsWith("./") ? src.slice(1) : src;
+    return `<img src="${devSrc}" alt="${alt}"${className ? ` class="${className}"` : ""} loading="lazy" decoding="async">`;
+  }
+
   try {
     let metadata = await Image(src, {
       widths: widths,
