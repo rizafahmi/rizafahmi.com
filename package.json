@@ -9,10 +9,8 @@
     "prestart": "npm run clean",
     "start": "ELEVENTY_ENV=dev npx @11ty/eleventy --serve",
     "prebuild": "npm run clean",
-    "build": "ELEVENTY_ENV=dev npx @11ty/eleventy",
-    "build:prod": "ELEVENTY_ENV=prod npx @11ty/eleventy && npx pagefind --site dist",
+    "build": "ELEVENTY_ENV=prod npx @11ty/eleventy && npx pagefind --site dist",
     "debug": "DEBUG=* npx @11ty/eleventy",
-    "images:optimize": "node scripts/optimize-images.mjs",
     "test": "node --test test/*.test.js"
   },
   "repository": {
