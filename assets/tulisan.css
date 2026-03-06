@@ -191,7 +191,8 @@ li > code {
     border: 1px solid var(--code-border);
 }
 
-img {
+img,
+video {
     max-width: 100%;
     height: auto;
 }
