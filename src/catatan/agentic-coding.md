@@ -1,12 +1,18 @@
 ---
 title: Fondasi Agentic Coding - Apa itu Agent?
 date: 2026-02-06
-modified: 2026-02-06
+modified: 2026-03-09
 created: 2026-01-25
 layout: tulisan
 tags:
   - catatan
 eleventyExcludeFromCollections: false
+---
+
+**Seri Agentic Coding**
+1. ➡︎ Fondasi Agentic Coding - Apa itu Agent?
+2. [Fondasi Agentic Coding - Integrasi LLM](/catatan/agentic-coding-bag-2)
+
 ---
 
 Bayangkan teman-teman cukup menulis dan memberi perintah 'Buatkan aplikasi untuk mencatat pengeluaran', lalu tiba-tiba file baru muncul, terminal berjalan sendiri, dan beberapa menit berselang aplikasi sudah siap untuk digunakan. Apakah ini sihir? Bukan, ini *Agentic Coding*.
@@ -195,7 +201,7 @@ Perkakas yang diberikan bisa apa saja, namun untuk "menyulap" LLM agar menjadi l
 - Memori. Memberikan daya ingat agar LLM tetap relevan dan sesuai konteks.
 - Reasoning loop. Mekanisme yang membantu LLM akan terus mencoba hingga tugasnya dianggap selesai.
 
-Di bagian berikutnya kita akan bikin versi minimal agentic coding tool melanjutkan aplikasi chatbot sederhana yang tadi sudah kita bahas.
+[Di bagian berikutnya](/catatan/agentic-coding-bag-2) kita akan bikin versi minimal agentic coding tool melanjutkan aplikasi chatbot sederhana yang tadi sudah kita bahas.
 
 ## Referensi
 - 📺 [What Are AI Agents & How Do They Work by ByteByteAI](https://www.youtube.com/watch?v=oP6DS_x5K0Y)

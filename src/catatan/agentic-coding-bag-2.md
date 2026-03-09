@@ -2,14 +2,19 @@
 title: Fondasi Agentic Coding - Integrasi LLM
 date: 2026-02-08
 created: 2026-02-08
-modified: 2026-02-09
+modified: 2026-03-09
 layout: tulisan
 tags:
   - catatan
 eleventyExcludeFromCollections: false
 ---
 
-Setelah membedah konsep AI Agent di [bagian pertama](/agentic-coding), kini saatnya kita mempraktikkan teori dalam barisan kode. Kita akan membangun `mbb`, sebuah aplikasi CLI fungsional menggunakan Elixir, bahasa yang sangat ideal untuk Agentic AI karena kemampuan konkurensi dan fault tolerance.
+**Seri Agentic Coding**
+1. [Fondasi Agentic Coding - Apa itu Agent?](/catatan/agentic-coding)
+2. ➡️ Fondasi Agentic Coding - Integrasi LLM
+
+---
+Setelah membedah konsep AI Agent di [bagian pertama](/catatan/agentic-coding), kini saatnya kita mempraktikkan teori dalam barisan kode. Kita akan membangun `mbb`, sebuah aplikasi CLI fungsional menggunakan Elixir, bahasa yang sangat ideal untuk Agentic AI karena kemampuan konkurensi dan fault tolerance.
 Kita akan belajar langkah demi langkah cara memanggil LLM melalui REST API dan menterjemahkan responsnya agar bisa dipahami oleh pengguna.
 
 Sedikit demi sedikit kita akan mengembangkan mbb mulai nol sampai menjadi agentic coding sederhana.
