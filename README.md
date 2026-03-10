@@ -53,6 +53,28 @@ To build the site for development or production:
   npm run build:prod
   ```
 
+### Search (Pagefind)
+
+This site uses [Pagefind](https://pagefind.app/) for full-text search.
+
+- The search page lives at `/search/` (source: `src/search.njk`).
+- Autocomplete/suggestions are powered by Pagefind’s JS API and a small custom script (`assets/search-autocomplete.js`).
+- The Pagefind index is generated **after** Eleventy builds the HTML, during the production build.
+
+#### Testing search locally
+
+1. Build the site + generate the Pagefind index:
+   ```sh
+   npm run build:prod
+   ```
+2. Serve the generated `dist/` folder (any static server works):
+   ```sh
+   npx serve dist
+   # or: npx http-server dist -p 3000
+   ```
+3. Open:
+   - http://localhost:3000/search/
+
 ### GoatCounter (Article Popularity)
 
 This site can optionally show article popularity (view counts) by querying the GoatCounter API **at build time** (no client-side API calls).

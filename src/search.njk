@@ -9,44 +9,131 @@ eleventyExcludeFromCollections: true
   <title>{{ title }} - Riza Fahmi</title>
   <link rel="stylesheet" href="/assets/global.css">
   <link rel="stylesheet" href="/assets/home.css">
-  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
   {% include 'head.njk' %}
-  
+
   <style>
     .search-container {
       max-width: 720px;
       margin: 0 auto;
       padding: 2rem 1rem;
     }
+
     .search-header {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
+
     .search-header h1 {
       font-size: 2rem;
       margin-bottom: 0.5rem;
     }
+
     .search-header p {
       color: var(--meta-color);
     }
+
     .back-link {
       display: inline-block;
       margin-bottom: 1rem;
       font-size: 1rem;
     }
-    :root {
-      --pagefind-ui-scale: 1;
-      --pagefind-ui-primary: #211a1e;
-      --pagefind-ui-text: #211a1e;
-      --pagefind-ui-background: #ffffff;
-      --pagefind-ui-border: #eeeeee;
-      --pagefind-ui-tag: #eeeeee;
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
-    [data-theme="dark"] {
-      --pagefind-ui-primary: #8ab4f8;
-      --pagefind-ui-text: #e0e0e0;
-      --pagefind-ui-background: #1e1e1e;
-      --pagefind-ui-border: #333333;
-      --pagefind-ui-tag: #333333;
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .search-help {
+      margin-top: 0.5rem;
+      color: var(--meta-color);
+      font-size: 0.95rem;
+    }
+
+    .search-panel {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 8px);
+      z-index: 50;
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+
+    .search-suggestions {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 340px;
+      overflow: auto;
+    }
+
+    .search-suggestion {
+      border-top: 1px solid var(--border-color);
+    }
+
+    .search-suggestion:first-child {
+      border-top: none;
+    }
+
+    .search-suggestion__link {
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .search-suggestion[aria-selected="true"] .search-suggestion__link {
+      background: rgba(138, 180, 248, 0.18);
+    }
+
+    .search-suggestion__title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .search-suggestion__excerpt {
+      color: var(--meta-color);
+      font-size: 0.95rem;
+      line-height: 1.3;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .search-status {
+      padding: 0.6rem 1rem;
+      font-size: 0.95rem;
+      color: var(--meta-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .search-panel { box-shadow: none; }
     }
   </style>
 </head>
@@ -62,25 +149,34 @@ eleventyExcludeFromCollections: true
       <p>Temukan catatan dan artikel yang kamu cari</p>
     </header>
     
-    <div id="search"></div>
+    <div class="search-box">
+      <label for="search-input" class="visually-hidden">Cari artikel</label>
+      <input
+        id="search-input"
+        class="search-input"
+        type="search"
+        inputmode="search"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Ketik untuk mencari…"
+        data-search-input
+        role="combobox"
+        aria-autocomplete="list"
+        aria-expanded="false"
+        aria-controls="search-panel"
+      />
+
+      <div id="search-panel" class="search-panel" data-search-panel hidden>
+        <div class="search-status" data-search-status aria-live="polite"></div>
+        <ul class="search-suggestions" data-search-list role="listbox"></ul>
+      </div>
+
+      <p class="search-help">Tips: ketik minimal 2 huruf, lalu gunakan ↑ ↓ dan Enter.</p>
+    </div>
   </main>
-  
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    new PagefindUI({
-      element: "#search",
-      showSubResults: true,
-      showImages: false,
-      translations: {
-        placeholder: "Ketik untuk mencari...",
-        zero_results: "Tidak ditemukan hasil untuk [SEARCH_TERM]",
-        many_results: "[COUNT] hasil ditemukan",
-        one_result: "1 hasil ditemukan",
-        searching: "Mencari..."
-      }
-    });
-  </script>
-  
+
+  <script type="module" src="/assets/search-autocomplete.js"></script>
+
   <script data-goatcounter="https://rizafahmi.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   {% include 'theme-toggle.njk' %}
 </body>
