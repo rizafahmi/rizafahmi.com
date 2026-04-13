@@ -1,5 +1,5 @@
 ---
-title: Memberi LLM Akses ke Dunia Nyata - Tool Calling di Elixir
+title: Memberi LLM Akses - Tool Calling
 date: 2026-02-19
 modified: 2026-03-05
 layout: tulisan
