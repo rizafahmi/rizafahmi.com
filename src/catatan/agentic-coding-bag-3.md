@@ -1,7 +1,7 @@
 ---
 title: Memberi LLM Akses - Tool Calling
 date: 2026-02-19
-modified: 2026-03-05
+modified: 2026-04-13
 layout: tulisan
 tags:
   - catatan
