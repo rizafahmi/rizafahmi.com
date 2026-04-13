@@ -143,6 +143,7 @@ defmodule Mbb do
        {:ok, text} ->
          print_response(text)
 ```
+
 Respons yang dikirimkan akan berbeda antara ketika LLM memutuskan untuk menggunakan perkakas atau tidak. Jika LLM tidak butuh perkakas, responnya langsung berisi teks. Perhatikan baris 6-8: field `text` di dalam `parts` berisi jawaban final. Field lain seperti `usageMetadata` dan `responseId` tidak relevan untuk sekarang.
 
 ```shell
@@ -194,7 +195,7 @@ Jika LLM memutuskan butuh perkakas, strukturnya berbeda. Perhatikan baris 7-8: f
 }
 ```
 
-Dari respons di atas, dua field penting: `finishMessage` mengkonfirmasi LLM memutuskan untuk memanggil fungsi, dan `content.parts` berisi nama fungsi beserta argumennya.
+Dari respon di atas, dua field penting: `finishMessage` mengkonfirmasi LLM memutuskan untuk memanggil fungsi, dan `content.parts` berisi nama fungsi beserta argumennya.
 
 Sedangkan untuk mengeksekusi fungsinya sendiri harus dilakukan oleh kita, atau dalam hal ini kita menyiapkan logika untuk mengeksekusi fungsi yang dibutuhkan oleh LLM tadi. Lalu hasilnya langsung dicetak ke layar.
 
