@@ -12,6 +12,7 @@ eleventyExcludeFromCollections: false
 **Seri Agentic Coding**
 1. ➡︎ Fondasi Agentic Coding - Apa itu Agent?
 2. [Fondasi Agentic Coding - Integrasi LLM](/catatan/agentic-coding-bag-2)
+3. [Memberi LLM Akses - Tool Calling](/catatan/agentic-coding-bag-3)
 
 ---
 

@@ -8,6 +8,13 @@ tags:
 eleventyExcludeFromCollections: false
 ---
 
+**Seri Agentic Coding**
+1. [Fondasi Agentic Coding - Apa itu Agent?](/catatan/agentic-coding)
+2. [Fondasi Agentic Coding - Integrasi LLM](/catatan/agentic-coding-bag-2)
+3. ➡️ Memberi LLM Akses - Tool Calling
+
+---
+
 Aplikasi `mbb` yang kita kembangkan sejauh ini sudah mampu menjawab pertanyaan seputar sejarah, menjelaskan konsep, dan berdebat soal tab vs whitespace.
 
 ```shell
