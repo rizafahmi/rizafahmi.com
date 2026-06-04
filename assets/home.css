@@ -505,3 +505,105 @@
         text-align: center;
     }
 }
+
+/* ==========================================================================
+   Catatan Listing Page Specific Styling
+   ========================================================================== */
+
+.articles {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+}
+
+.article {
+    border: 2px solid var(--border-color);
+    padding: 1.5rem;
+    background: transparent;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.article:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0 var(--border-color);
+    background-color: var(--accent-acid);
+    color: #0a0b0d;
+}
+
+[data-theme="dark"] .article:hover {
+    background-color: var(--accent-cobalt);
+    color: #ffffff;
+}
+
+.article h3 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.article h3 a {
+    color: var(--heading-color);
+    border-bottom: none !important;
+}
+
+.article:hover h3 a {
+    color: inherit;
+}
+
+.article-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--meta-color);
+    text-transform: uppercase;
+}
+
+.article:hover .article-meta-row {
+    color: inherit;
+}
+
+.articles-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 4px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.articles-header h2 {
+    margin: 0;
+}
+
+.rss-pill {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: bold;
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    padding: 0.35rem 0.75rem;
+    text-transform: uppercase;
+}
+
+.rss-pill a {
+    color: var(--link-color);
+    border-bottom: none !important;
+    font-weight: bold;
+}
+
+.rss-pill a:hover {
+    background-color: transparent;
+    color: var(--link-color);
+    text-decoration: underline;
+}

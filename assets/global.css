@@ -124,6 +124,11 @@ body {
     }
 }
 
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
 .skip-link {
     position: absolute;
     top: -60px;
