@@ -42,6 +42,7 @@
     
     --table-header-bg: #ecece9;
     --table-row-alt-bg: #f1f1ee;
+    --blockquote-border: var(--border-color);
     
     --button-bg: #0a0b0d;
     --button-text: #f7f7f5;
@@ -90,6 +91,10 @@
     --code-bg: #1d2127;
     --code-text: #c2cad6;
     --code-border: #383d47;
+
+    --table-header-bg: #22272e;
+    --table-row-alt-bg: #1d2127;
+    --blockquote-border: var(--accent-acid);
 }
 
 html {
@@ -351,7 +356,7 @@ strong, b {
 
 blockquote {
     font-size: 1rem;
-    border-left: 4px solid var(--border-color);
+    border-left: 4px solid var(--blockquote-border);
     margin: 1.5rem 0;
     padding-left: 1.5rem;
     font-style: italic;

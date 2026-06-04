@@ -314,7 +314,7 @@ blockquote {
     font-size: 1.125rem;
     line-height: 1.6;
     color: var(--text-color);
-    border-left: 6px solid var(--border-color);
+    border-left: 6px solid var(--blockquote-border);
     background: var(--table-row-alt-bg);
     margin: 2rem 0;
     padding: 1.5rem;
