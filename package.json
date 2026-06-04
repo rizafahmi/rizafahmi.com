@@ -10,6 +10,7 @@
     "start": "ELEVENTY_ENV=dev npx @11ty/eleventy --serve",
     "prebuild": "npm run clean",
     "build": "ELEVENTY_ENV=prod npx @11ty/eleventy && npx pagefind --site dist",
+    "build:prod": "npm run build",
     "debug": "DEBUG=* npx @11ty/eleventy",
     "test": "node --test test/*.test.js",
     "new:catatan": "node scripts/new-catatan.mjs"
