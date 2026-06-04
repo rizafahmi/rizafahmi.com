@@ -11,15 +11,9 @@ tags:
   - desain-ui
 
 eleventyExcludeFromCollections: false
+series: "Asisten Ngoding"
+series_index: 4
 ---
-
---- 
-**Seri Asisten Ngoding**
-1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
-2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
-3. [Menyusun Rencana dengan Asisten Ngoding](/catatan/asisten-ngoding-3)
-4. ➡︎ Desain Antarmuka dengan Asisten Ngoding
-5. [Menulis Kode dengan Asisten Ngoding](/catatan/asisten-ngoding-5)
 ---
 
 Setelah [bagian sebelumnya](asisten-ngoding-3.md) kita berhasil menghasilkan rencana yang matang dalam format _blueprint_, kini saatnya untuk melangkah ke tahap yang paling dinanti: eksekusi! Ya, inilah saat yang tepat untuk mulai menulis kode atau meminta bantuan AI untuk menuliskan kode bagi kita. Dalam artikel ini, saya akan membagikan pengalaman pribadi dan tips praktis yang bisa langsung teman-teman terapkan. Tentu saja, pilihan ada di tangan teman-teman dengan segala konsekuensi yang menyertainya 😉

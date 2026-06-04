@@ -11,15 +11,9 @@ tags:
   - planning
 
 eleventyExcludeFromCollections: false
+series: "Asisten Ngoding"
+series_index: 3
 ---
-
---- 
-**Seri Asisten Ngoding**
-1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
-2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
-3. ➡︎ Menyusun Rencana dengan Asisten Ngoding
-4. [Desain Antarmuka dengan Asisten Ngoding](/catatan/asisten-ngoding-4)
-5. [Menulis Kode dengan Asisten Ngoding](/catatan/asisten-ngoding-5)
 
 ---
 
