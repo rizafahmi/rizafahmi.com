@@ -9,10 +9,10 @@ eleventyExcludeFromCollections: true
 <head>
   <title>{{ title }}</title>
   <meta name="description" content="{{ description }}">
-  <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
-  <link rel="preload" as="style" href="/assets/home.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/assets/home.css" type="text/css" media="screen" />
+  <link rel="preload" as="style" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+  <link rel="preload" as="style" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
   {% include 'head.njk' %}
 
   <script type="application/ld+json">
