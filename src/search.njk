@@ -16,51 +16,170 @@ eleventyExcludeFromCollections: true
     .search-container {
       max-width: 720px;
       margin: 0 auto;
-      padding: 2rem 1rem;
+      padding: 2rem 1.5rem;
     }
     .search-header {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
     .search-header h1 {
-      font-size: 2rem;
+      font-size: clamp(2rem, 5vw, 2.75rem);
       margin-bottom: 0.5rem;
+      font-family: var(--font-display);
+      font-weight: 800;
     }
     .search-header p {
       color: var(--meta-color);
-    }
-    .back-link {
-      display: inline-block;
-      margin-bottom: 1rem;
       font-size: 1rem;
+      margin: 0;
     }
     :root {
       --pagefind-ui-scale: 1;
-      --pagefind-ui-primary: #211a1e;
-      --pagefind-ui-text: #211a1e;
-      --pagefind-ui-background: #ffffff;
-      --pagefind-ui-border: #eeeeee;
-      --pagefind-ui-tag: #eeeeee;
+      --pagefind-ui-primary: #1a3bf5; /* Cobalt */
+      --pagefind-ui-text: #0a0b0d;
+      --pagefind-ui-background: #f7f7f5;
+      --pagefind-ui-border: #0a0b0d;
+      --pagefind-ui-tag: #f7f7f5;
+      --pagefind-ui-font: "Schibsted Grotesk", sans-serif;
     }
     [data-theme="dark"] {
-      --pagefind-ui-primary: #8ab4f8;
-      --pagefind-ui-text: #e0e0e0;
-      --pagefind-ui-background: #1e1e1e;
-      --pagefind-ui-border: #333333;
-      --pagefind-ui-tag: #333333;
+      --pagefind-ui-primary: #c5f82a; /* Acid Chartreuse */
+      --pagefind-ui-text: #c2cad6;
+      --pagefind-ui-background: #121519;
+      --pagefind-ui-border: #383d47;
+      --pagefind-ui-tag: #121519;
+    }
+    
+    /* Pagefind Brutalist Overrides */
+    .pagefind-ui__form {
+      position: relative !important;
+    }
+    .pagefind-ui__form::before {
+      background-color: var(--pagefind-ui-text) !important;
+      opacity: 0.8 !important;
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") !important;
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") !important;
+      background-image: none !important;
+      width: 20px !important;
+      height: 20px !important;
+      top: 1.65rem !important;
+      left: 1.25rem !important;
+      z-index: 1;
+    }
+    .pagefind-ui__search-input {
+      border: 3px solid var(--pagefind-ui-border) !important;
+      border-radius: 0 !important;
+      background-color: transparent !important;
+      font-family: var(--font-mono) !important;
+      font-weight: bold !important;
+      font-size: 1.25rem !important;
+      padding: 1.25rem 2rem 1.25rem 3.5rem !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      color: var(--pagefind-ui-text) !important;
+    }
+    .pagefind-ui__search-input::placeholder {
+      color: var(--meta-color) !important;
+      opacity: 0.5 !important;
+    }
+    .pagefind-ui__search-input:focus {
+      outline: none !important;
+      border-color: var(--pagefind-ui-primary) !important;
+      box-shadow: 6px 6px 0 var(--border-color) !important;
+      transform: translate(-2px, -2px) !important;
+    }
+    .pagefind-ui__search-clear {
+      top: 1.25rem !important;
+      right: 1.25rem !important;
+      background-color: var(--accent-acid) !important;
+      color: #0a0b0d !important;
+      border: 2px solid var(--border-color) !important;
+      border-radius: 0 !important;
+      font-family: var(--font-mono) !important;
+      font-weight: bold !important;
+      font-size: 0.75rem !important;
+      text-transform: uppercase !important;
+      padding: 0.25rem 0.5rem !important;
+      height: auto !important;
+      transition: all 0.2s ease !important;
+    }
+    [data-theme="dark"] .pagefind-ui__search-clear {
+      background-color: var(--accent-cobalt) !important;
+      color: #ffffff !important;
+    }
+    .pagefind-ui__search-clear:hover {
+      background-color: var(--pagefind-ui-text) !important;
+      color: var(--pagefind-ui-background) !important;
+    }
+    .pagefind-ui__result {
+      border-bottom: 2px solid var(--pagefind-ui-border) !important;
+      padding: 1.5rem 0 !important;
+    }
+    .pagefind-ui__result-link {
+      font-family: var(--font-display) !important;
+      font-weight: 800 !important;
+      font-size: 1.25rem !important;
+      text-decoration: none !important;
+      border-bottom: 3px solid var(--pagefind-ui-primary) !important;
+      transition: all 0.2s ease !important;
+      color: var(--pagefind-ui-text) !important;
+      display: inline-block !important;
+    }
+    .pagefind-ui__result-link:hover {
+      background-color: var(--accent-acid) !important;
+      color: #0a0b0d !important;
+      border-bottom-color: var(--accent-acid) !important;
+    }
+    [data-theme="dark"] .pagefind-ui__result-link:hover {
+      background-color: var(--accent-cobalt) !important;
+      color: #ffffff !important;
+      border-bottom-color: var(--accent-cobalt) !important;
+    }
+    .pagefind-ui__result-excerpt {
+      font-family: var(--font-body) !important;
+      font-size: 1rem !important;
+      line-height: 1.6 !important;
+      margin-top: 0.75rem !important;
+      color: var(--meta-color) !important;
+    }
+    .pagefind-ui__result-excerpt mark {
+      background-color: var(--accent-acid) !important;
+      color: #0a0b0d !important;
+      font-weight: bold;
+      padding: 0 0.25rem;
+    }
+    [data-theme="dark"] .pagefind-ui__result-excerpt mark {
+      background-color: var(--accent-cobalt) !important;
+      color: #ffffff !important;
+    }
+    .pagefind-ui__button {
+      border: 3px solid var(--pagefind-ui-border) !important;
+      border-radius: 0 !important;
+      background-color: var(--pagefind-ui-border) !important;
+      color: var(--pagefind-ui-background) !important;
+      font-family: var(--font-mono) !important;
+      font-weight: bold !important;
+      text-transform: uppercase !important;
+      padding: 0.875rem 1.5rem !important;
+      transition: all 0.25s ease !important;
+    }
+    .pagefind-ui__button:hover {
+      background-color: var(--accent-acid) !important;
+      color: #0a0b0d !important;
+    }
+    [data-theme="dark"] .pagefind-ui__button:hover {
+      background-color: var(--accent-cobalt) !important;
+      color: #ffffff !important;
     }
   </style>
 </head>
 <body>
-  <main class="search-container">
-    <nav style="display: flex; justify-content: space-between; align-items: center;">
-      <a class="back-link" href="/">&lt; Kembali</a>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.5rem;">🌙</button>
+  <main class="search-container" id="main-content">
+    <nav class="articles-header" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-bottom: 4px solid var(--border-color); padding-bottom: 1.5rem; margin-bottom: 2.5rem;">
+      <h2 style="margin: 0; font-family: var(--font-display); font-weight: 800;">🔍 CARI</h2>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a class="back" href="/" style="border: 2px solid var(--border-color); padding: 0.5rem 1rem; text-transform: uppercase; font-family: var(--font-mono); font-size: 0.8125rem; font-weight: bold; border-bottom: 2px solid var(--border-color) !important; text-decoration: none;">&lt; BERANDA</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+      </div>
     </nav>
-    
-    <header class="search-header">
-      <h1>🔍 Cari Artikel</h1>
-      <p>Temukan catatan dan artikel yang kamu cari</p>
-    </header>
     
     <div id="search"></div>
   </main>

@@ -176,6 +176,14 @@ a:hover {
     border-bottom-color: var(--link-color);
 }
 
+/* Card link overrides to prevent double-hover backgrounds */
+.article a:hover,
+.featured-project-card a:hover,
+.related-card a:hover {
+    background-color: transparent !important;
+    border-bottom: none !important;
+}
+
 .site-header a, 
 .hero-nav a, 
 h1 > a, 
