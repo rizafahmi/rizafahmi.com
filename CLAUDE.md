@@ -29,3 +29,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Markdown files should use frontmatter for metadata
 - Use proper heading hierarchy (H1 > H2 > H3)
 - Include alt text for all images
+
+## Design Context
+- **Register**: `brand` (personal site, portfolio, blog)
+- **Creative North Star**: "The Minimalist Foundry" (monospaced accents + clean editorial spaces)
+- **Colors**: Tinted light/dark backgrounds (`#ffffff`/`#0f1115`), accent Sky Blue (`#7dd3fc` dark) and Charcoal (`#211a1e` light)
+- **Bans**: No text gradients, neon-on-black, nested cards, side-stripe borders, or decorative glassmorphism blurs
+- **Rules**: Keep line lengths strictly under `75ch` and container widths under `720px` in article views
