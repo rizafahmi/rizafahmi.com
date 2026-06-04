@@ -124,6 +124,10 @@ title: Judul
 
       {{ content | safe }}
 
+      {%- if series and series_index %}
+      {{ collections.catatan | seriesNav(series, series_index, page.url) | safe }}
+      {%- endif %}
+
       <section class="follow-cta" aria-label="Ikuti saya">
         <p>
           Jika kamu suka tulisan ini, ikuti saya di
@@ -260,8 +264,50 @@ title: Judul
         });
       });
     </script>
+    <script>
+      (function() {
+        var url = window.location.pathname;
+        if (!url) return;
+
+        // Restore scroll position on load
+        var saved = localStorage.getItem('scrollPos:' + url);
+        if (saved) {
+          var pos = parseInt(saved, 10);
+          if (pos > 0) {
+            setTimeout(function() { window.scrollTo(0, pos); }, 50);
+          }
+        }
+
+        // Debounced scroll position save
+        var scrollTimer;
+        window.addEventListener('scroll', function() {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(function() {
+            localStorage.setItem('scrollPos:' + url, window.scrollY);
+          }, 300);
+        }, { passive: true });
+
+        // Mark article as completed when footer becomes visible
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              var completed = JSON.parse(localStorage.getItem('completedArticles') || '[]');
+              if (completed.indexOf(url) === -1) {
+                completed.push(url);
+                localStorage.setItem('completedArticles', JSON.stringify(completed));
+              }
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0 });
+
+        var footer = document.querySelector('footer.container');
+        if (footer) observer.observe(footer);
+      })();
+    </script>
     {% include 'analytics.njk' %}
     {% include 'webvitals.njk' %}
+    {% include 'keyboard-shortcuts.njk' %}
     {% include 'theme-toggle.njk' %}
   </body>
 </html>

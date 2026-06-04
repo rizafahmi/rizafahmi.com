@@ -7,12 +7,9 @@ layout: tulisan
 tags:
   - catatan
 eleventyExcludeFromCollections: false
+series: "Agentic Coding"
+series_index: 2
 ---
-
-**Seri Agentic Coding**
-1. [Fondasi Agentic Coding - Apa itu Agent?](/catatan/agentic-coding)
-2. ➡️ Fondasi Agentic Coding - Integrasi LLM
-3. [Memberi LLM Akses - Tool Calling](/catatan/agentic-coding-bag-3)
 
 ---
 Setelah membedah konsep AI Agent di [bagian pertama](/catatan/agentic-coding), kini saatnya kita mempraktikkan teori dalam barisan kode. Kita akan membangun `mbb`, sebuah aplikasi CLI fungsional menggunakan Elixir, bahasa yang sangat ideal untuk Agentic AI karena kemampuan konkurensi dan fault tolerance.

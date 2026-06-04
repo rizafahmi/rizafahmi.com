@@ -10,15 +10,9 @@ tags:
   - coding
 
 eleventyExcludeFromCollections: false
+series: "Asisten Ngoding"
+series_index: 5
 ---
-
---- 
-**Seri Asisten Ngoding**
-1. [Produktif dengan Asisten Ngoding](/catatan/asisten-ngoding)
-2. [Diskusi dan Menulis Spesifikasi dengan AI](/catatan/asisten-ngoding-2)
-3. [Menyusun Rencana dengan Asisten Ngoding](/catatan/asisten-ngoding-3)
-4. [Desain Antarmuka dengan Asisten Ngoding](/catatan/asisten-ngoding-4)
-5. Menulis Kode dengan Asisten Ngoding [Artikel saat ini]
 ---
 
 Setelah [bagian sebelumnya](asisten-ngoding-4.md) kita sudah mendapatkan desain yang dihasilkan *AI Interface Generator*, dalam hal ini menggunakan [Firebase Studio](https://studio.firebase.google.com/studio-9374311499). Sekarang saatnya menciptakan kode logika. Lalu kemudian kita akan melihat beberapa opsi untuk mengelola kode yang sudah dibuatkan AI. Tentu saja dengan bantuan AI.

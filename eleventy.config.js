@@ -227,6 +227,31 @@ export default function (eleventyConfig) {
     return [...tagSet].sort((a, b) => a.localeCompare(b));
   });
 
+  // Generate series navigation HTML for articles with series frontmatter.
+  // Usage: {{ collections.catatan | seriesNav(series, series_index, page.url) }}
+  eleventyConfig.addFilter("seriesNav", function(collection, series, seriesIndex, currentUrl) {
+    if (!series || !seriesIndex) return "";
+
+    const articles = collection
+      .filter(item => item.data && item.data.series === series && item.data.series_index)
+      .sort((a, b) => a.data.series_index - b.data.series_index);
+
+    if (articles.length < 2) return "";
+
+    let html = `<hr>\n<p><strong>Seri ${series}</strong></p>\n<ol>\n`;
+    for (const article of articles) {
+      const idx = article.data.series_index;
+      const title = article.data.title;
+      if (article.url === currentUrl) {
+        html += `<li>➡︎ ${title}</li>\n`;
+      } else {
+        html += `<li><a href="${article.url}">${title}</a></li>\n`;
+      }
+    }
+    html += `</ol>\n<hr>`;
+    return html;
+  });
+
   eleventyConfig.addTransform("tableOfContents", function(content, outputPath) {
     if (!outputPath || !outputPath.endsWith(".html")) return content;
     if (!content.includes('class="reading-progress"')) return content;
