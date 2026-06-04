@@ -68,7 +68,7 @@ title: Judul
       {%- set xShareHref = "https://twitter.com/intent/tweet?text=" + (title | urlencode) + "&url=" + (canonicalUrl | urlencode) -%}
       {%- set liShareHref = "https://www.linkedin.com/shareArticle?mini=true&url=" + (canonicalUrl | urlencode) + "&title=" + (title | urlencode) + "&summary=" + ((description or title) | urlencode) -%}
 
-      <h2>{{ title }}</h2>
+      <h1>{{ title }}</h1>
       <div class="article-meta">
         {%- if created -%}
         <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
