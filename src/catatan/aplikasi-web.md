@@ -8,7 +8,6 @@ tags:
   - catatan
   - web
   - tutorial
-
 ---
 
 <small style="color: rgba(252,252,252,0.5);"><em>Berikut adalah materi tertulis untuk acara workshop di Surabaya yang diselenggarakan Mei 2023.</em></small>

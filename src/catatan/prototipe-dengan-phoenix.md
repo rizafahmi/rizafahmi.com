@@ -12,6 +12,7 @@ tags:
 
 eleventyExcludeFromCollections: true
 ---
+
 ## Pengantar
 
 Artikel kali ini kita akan membangun prototipe aplikasi dengan Phoenix dan Elixir.
@@ -21,29 +22,30 @@ Artikel kali ini kita akan membangun prototipe aplikasi dengan Phoenix dan Elixi
 EventFlow adalah aplikasi untuk mengelola komunitas. Dirancang untuk membantu komunitas mengelola dan berinteraksi dengan anggota, sekaligus menyediakan tempat untuk orang-orang menemukan komunitas yang relevan.
 
 Fitur utama:
+
 - Otentikasi
 - Modul untuk mengelola komunitas
-- Modul untuk mengelola acara atau event 
+- Modul untuk mengelola acara atau event
 - Modul untuk mengelola RSVP acara atau event
 - Eksplorasi dan pencarian komunitas
 - Modul absensi/attendance
 - Modul forum atau pesan/chat
 
-![](/assets/images/prototipe/mindmap.png)
+{% image "./assets/images/prototipe/mindmap.png", "" %}
 
 #### Tampilan Layar
 
-![](/assets/images/prototipe/event-create.png)
+{% image "./assets/images/prototipe/event-create.png", "" %}
 
-![](/assets/images/prototipe/event-listing.png)
+{% image "./assets/images/prototipe/event-listing.png", "" %}
 
-![](/assets/images/prototipe/event-detail.png)
+{% image "./assets/images/prototipe/event-detail.png", "" %}
 
-![](/assets/images/prototipe/attendance.png)
+{% image "./assets/images/prototipe/attendance.png", "" %}
 
-![](/assets/images/prototipe/attendance-index.png)
+{% image "./assets/images/prototipe/attendance-index.png", "" %}
 
-![](/assets/images/prototipe/attendance-qr.png)
+{% image "./assets/images/prototipe/attendance-qr.png", "" %}
 
 ### Tujuan
 
@@ -53,13 +55,13 @@ Harapannya, teman-teman yang membaca dapat mengikuti perjalanan mengembangkan ap
 
 ### Teknologi yang digunakan
 
-*All in* menggunakan Phoenix dan Elixir.
+_All in_ menggunakan Phoenix dan Elixir.
+
 - **Bahasa**: Elixir ~> 1.15
 - **Framework**: Phoenix ~> 1.8.0
 - **Database**: PostgreSQL with Ecto SQL
 - **Frontend**: Phoenix LiveView with DaisyUI & Tailwind CSS
 - **Otentikasi**: Passwordless with Phoenix Auth
-
 
 ## Persiapan Proyek
 
@@ -120,7 +122,7 @@ mix ecto.create
 mix phx.server
 ```
 
-![](/assets/images/prototipe/phoenix.png)
+{% image "./assets/images/prototipe/phoenix.png", "" %}
 
 Jalankan juga `mix test` untuk memastikan testing berjalan lancar.
 
@@ -135,7 +137,6 @@ Finished in 0.04 seconds (0.01s async, 0.03s sync)
 5 tests, 0 failures
 ```
 
-
 ```shell
 git init
 git add .
@@ -143,7 +144,6 @@ git commit -m "Init"
 ```
 
 ---
-
 
 ## Otentikasi
 
@@ -202,22 +202,21 @@ mix ecto.migrate
 mix phx.server
 ```
 
-![](/assets/images/prototipe/auth.png)
+{% image "./assets/images/prototipe/auth.png", "" %}
 
-![](/assets/images/prototipe/login.png)
+{% image "./assets/images/prototipe/login.png", "" %}
 
-![](/assets/images/prototipe/login-2.png)
+{% image "./assets/images/prototipe/login-2.png", "" %}
 
-![](/assets/images/prototipe/login-3.png)
+{% image "./assets/images/prototipe/login-3.png", "" %}
 
-![](/assets/images/prototipe/login-4.png)
+{% image "./assets/images/prototipe/login-4.png", "" %}
 
 ### Menambahkan Nama untuk User
 
 Registrasi dan login dengan email, tapi belum ada nama untuk modul User.
 
-![](/assets/images/prototipe/name.png)
-
+{% image "./assets/images/prototipe/name.png", "" %}
 
 ```elixir
 defmodule EventFlow.Accounts.User do
@@ -317,9 +316,9 @@ defmodule EventFlow.Accounts.User do
 
 Cek browser, error.
 
-![](/assets/images/prototipe/name-error.png)
+{% image "./assets/images/prototipe/name-error.png", "" %}
 
-Coba jalankan test, dijamin akan banyak yang gagal. 
+Coba jalankan test, dijamin akan banyak yang gagal.
 
 ```bash
 mix test
@@ -329,6 +328,7 @@ Finished in 0.3 seconds (0.2s async, 0.05s sync)
 ```
 
 Ada beberapa faktor yang menyebabkan hal ini:
+
 1. Belum ada field name di database
 2. Berbagai kode testing belum mengakomodir field name
 
@@ -367,7 +367,7 @@ mix ecto.migrate
 
 Cek browser, sudah tidak error. Tapi nama belum digunakan. Coba logout, lalu ke halaman registrasi, belum ada input untuk nama.
 
-![](/assets/images/prototipe/name-2.png)
+{% image "./assets/images/prototipe/name-2.png", "" %}
 
 Pastikan field name dapat digunakan di schema user.
 
@@ -408,11 +408,11 @@ Tambahkan name ke form.
 
 Coba register dengan email yang beda.
 
-![](/assets/images/prototipe/register-name.png)
+{% image "./assets/images/prototipe/register-name.png", "" %}
 
 Belum ada nama di header.
 
-![](/assets/images/prototipe/register-name-2.png)
+{% image "./assets/images/prototipe/register-name-2.png", "" %}
 
 Mari tambahkan nama di template.
 
@@ -429,9 +429,9 @@ Mari tambahkan nama di template.
 
 Akhirnya...
 
-![](/assets/images/prototipe/user-name.png)
+{% image "./assets/images/prototipe/user-name.png", "" %}
 
-Jalankan kembali testing. Tapi kok lolos semua? Wah ada yang aneh nih. 
+Jalankan kembali testing. Tapi kok lolos semua? Wah ada yang aneh nih.
 
 ```bash
 mix test
@@ -462,7 +462,7 @@ Penyebabnya: field name bersifat opsional. Artinya kalaupun tidak diisi atau kos
 +   |> validate_required([:name])
 +   |> validate_length(:name, min: 2, max: 100)
 + end
-  
+
   defp validate_email(changeset, opts) do
   ...
 ```
@@ -503,7 +503,6 @@ Pada saat proses membuat user baru di kode testing, tambahkan nama sebagai sesua
     })
   end
 ```
-
 
 ```bash
 mix test
@@ -638,11 +637,10 @@ git push origin main
 
 Untuk persiapan selanjutnya akan kita akan lakukan di sisi server. Siapkan dulu sebuah mesin virtual sebagai tujuan deployment. Saya akan menggunakan servis Compute Engine dari GCP. Berikut konfigurasinya.
 
-![](/assets/images/prototipe/vm-spec.png)
+{% image "./assets/images/prototipe/vm-spec.png", "" %}
 
 TODO: Ganti ke docker
 https://reintech.io/blog/setting-up-docker-docker-compose-debian-12
-
 
 Bikin .env isinya SECRET_KEY_BASE
 
@@ -711,7 +709,6 @@ riza@eventflow-id:~$ podman rm nginx
 
 Karena kita ingin menulis kode dan menjalankan docker/podman yang berhubungan dengan deployment di server, nantinya kita membutuhkan kemampuan untuk mengirimkan kode via ssh.
 
-
 ```shell
 riza@eventflow:~$ ssh-keygen -t ed25519 -C "rizafahmi@gmail.com"
 riza@eventflowd:~$ ssh-add ~/.ssh/id_ed25519
@@ -721,8 +718,7 @@ cat ~/.ssh/id_ed25519.pub
 # displayed in the terminal to your clipboard
 ```
 
-![](/assets/images/prototipe/github-ssh.png)
-
+{% image "./assets/images/prototipe/github-ssh.png", "" %}
 
 Coba koneksi ke github via ssh.
 
@@ -745,9 +741,9 @@ riza@eventflow:~$ cd eventflow/
 
 Kode sudah didapat, saatnya mulai proses deployment. Namun sebelum itu, mari kita desain infrastruktur yang akan dibuat dengan docker dan docker-compose, atau dalam hal ini, podman.
 
-![](/assets/images/prototipe/infra.png)
+{% image "./assets/images/prototipe/infra.png", "" %}
 
-Seperti diagram arsitektur diatas, kita butuh beberapa kontainer tambahan yang dijalankan berbarengan. Utamanya database. Agar mudah dikelola, kita buat sebuah file `docker-compose.yaml`. 
+Seperti diagram arsitektur diatas, kita butuh beberapa kontainer tambahan yang dijalankan berbarengan. Utamanya database. Agar mudah dikelola, kita buat sebuah file `docker-compose.yaml`.
 
 #### `docker-compose.yaml`
 
@@ -823,40 +819,25 @@ Jalankan docker/podman compose.
 riza@eventflow-id:~/eventflow$ podman-compose up --build
 ```
 
-
 Jangan lupa arahkan DNS domain/subdomain ke ip eksternal vm di gcp.
 
 ### Continuous Integration
+
 #### Menambahkan credo dan dialyzer
 
-### Kirim Email 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Kirim Email
 
 ---
 
 ## Catatan
+
 - Express it as a model
 - Map the model to a plan that is 1:1 with phx.live.gen
 - Plan for less than 40 hours of work
-	- Prioritize
+  - Prioritize
 
 ### Filosofi
+
 - Generator first, code second
 - Generated code is the canonical representation of your app
 - Generated code is complete, don't remove parts

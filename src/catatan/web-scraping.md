@@ -9,7 +9,6 @@ tags:
   - javascript
   - web-scraping
   - tutorial
-
 ---
 
 <small style="color: rgba(252,252,252,0.5);"><em>Berikut adalah materi tertulis untuk acara workshop di Surabaya yang diselenggarakan Mei 2023.</em></small>
@@ -78,7 +77,6 @@ Coba dijalankan, dan error…
 ```bash
 node app.js
 ```
-
 
 ```
 (node:55175) Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.
@@ -247,7 +245,7 @@ const $ = cheerio.load(html);
 
 Misalnya kita ingin mencari daftar artikel di `https://rizafahmi.com/2021/09/12/tentang-friction-log/`.
 
-![](/assets/images/web-scraping/Screenshot%202023-05-19%20at%2020.21.09.png)
+{% image "./assets/images/web-scraping/Screenshot 2023-05-19 at 20.21.09.png", "" %}
 
 ### `app.js`
 
@@ -264,9 +262,7 @@ async function getHtml(url) {
   }
 }
 
-const html = await getHtml(
-  "https://rizafahmi.com/2021/09/12/tentang-friction-log/",
-);
+const html = await getHtml("https://rizafahmi.com/2021/09/12/tentang-friction-log/");
 
 const $ = cheerio.load(html);
 
@@ -279,7 +275,7 @@ for (let i = 0; i < footer.length; i += 1) {
 
 ## Mencari keatas
 
-![](/assets/images/web-scraping/Screenshot%202023-05-19%20at%2020.28.08.png)
+{% image "./assets/images/web-scraping/Screenshot 2023-05-19 at 20.28.08.png", "" %}
 
 ### `app.js`
 
@@ -296,9 +292,7 @@ async function getHtml(url) {
   }
 }
 
-const html = await getHtml(
-  "https://rizafahmi.com/2021/09/12/tentang-friction-log/",
-);
+const html = await getHtml("https://rizafahmi.com/2021/09/12/tentang-friction-log/");
 
 const $ = cheerio.load(html);
 
@@ -386,8 +380,7 @@ async function getHtml(url) {
     await page.waitForNetworkIdle();
     // await page.screenshot({ path: 'screenshot.png' })
     const data = await page.evaluate(function () {
-      const followers = document.querySelectorAll('a[role="link"]>span>span')[2]
-        .innerText;
+      const followers = document.querySelectorAll('a[role="link"]>span>span')[2].innerText;
       return followers;
     });
 

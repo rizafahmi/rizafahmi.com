@@ -10,7 +10,6 @@ tags:
   - produktivitas
   - panduan
   - motivasi
-
 ---
 
 Artikel ini akan memaparkan beberapa tips buat teman-teman yang ingin belajar pemorgraman dengan efisien. Seluruh tips disini murni adalah pengalaman pribadi saya, baik yang saya alami sendiri dan juga hasil diskusi dan obrolan dengan teman sesama developer.
@@ -98,7 +97,7 @@ Langkah berikutnya ya tinggal _ngoding_ aja sesering mungkin. Tidak masalah baha
 
 Dengan melakukan latihan _coding_ setiap hari, kita menjaga momentum, *flow *dan disiplin. Layaknya latihan yang diberikan oleh [Mr. Miyagi](http://www.imdb.com/character/ch0007693/?ref_=tt_cl_t2) dalam film [Karate Kid](http://www.imdb.com/title/tt0087538/?ref_=nv_sr_1).
 
-![Wax on wax off](https://cdn-images-1.medium.com/max/2000/1*4hxId3stzepgLLv_GzAgFw.jpeg)
+{% image "https://cdn-images-1.medium.com/max/2000/1*4hxId3stzepgLLv_GzAgFw.jpeg", "Wax on wax off" %}
 
 _Wax on wax off_
 

@@ -2,44 +2,48 @@
 permalink: /llms.txt
 eleventyExcludeFromCollections: true
 ---
-# Riza Fahmi's Personal Website
+# Riza Fahmi — llms.txt
 
-> Personal site and blog of Riza Fahmi, a software developer, educator, and content creator focusing on web development, programming languages, and technology.
+This page is a machine-friendly index for LLMs and tools.
 
-This website contains my blog posts (catatan), projects, and contact information. I write about programming languages, web development, and technology in both Indonesian and English.
+## Notes
 
-## About Me
-- Founder of HACKTIV8 coding bootcamp (since 2016)
-- Content creator on YouTube and various platforms
-- Developer advocate and educator
-- Speaker and community builder
+- Canonical host: https://rizafahmi.com
+- Canonical URL style: trailing slash for HTML pages (e.g. `/catatan/foo/`), file extensions for feeds/sitemaps.
+- Language: Indonesian (mostly) with some English.
+- For citations, prefer linking the canonical URL.
 
-## Blog Posts
-- [All Articles](/articles): Complete list of all articles
-- [RSS/Atom Feed (excerpt)](/feed.xml): Subscribe to updates (short summary)
-- [RSS/Atom Feed (full content)](/feed/full.xml): Full post content in the feed
+## High-signal entry points
 
-## Recent Articles
-{% for post in collections.catatan | reverse | head(10) %}
-- [{{ post.data.title }}]({{ post.url }}): {% if post.data.tags %}{{ post.data.tags | join(", ") }}{% endif %}
+- Home: https://rizafahmi.com/
+- All articles index: https://rizafahmi.com/articles/
+- Tags index: https://rizafahmi.com/tags/
+- Topics index: https://rizafahmi.com/topik/
+- Atom feed (excerpt): https://rizafahmi.com/feed.xml
+- Atom feed (full content): https://rizafahmi.com/feed/full.xml
+- Sitemap: https://rizafahmi.com/sitemap.xml
+- Robots: https://rizafahmi.com/robots.txt
+
+## Recent articles
+
+{% for post in collections.catatan | reverse | head(10) %}- {{ post.data.title }} — https://rizafahmi.com{{ post.url }}{% if post.data.tags %} (tags: {{ post.data.tags | join(", ") }}){% endif %}
 {% endfor %}
 
-## Featured Content
-- [Bahasa Fungsional Elixir](/catatan/bahasa-fungsional-elixir): Introduction to Elixir programming language
-- [Ekosistem JavaScript](/catatan/ekosistemjs): Overview of the JavaScript ecosystem
-- [Machine Learning for Web Developers](/catatan/machine-learning-for-web-developers): Introduction to ML concepts for web developers
+## Featured / evergreen
+
+- Berkenalan dengan Bahasa Pemrograman Elixir: https://rizafahmi.com/catatan/bahasa-fungsional-elixir/
+- Ekosistem JavaScript: https://rizafahmi.com/catatan/ekosistemjs/
+- Machine Learning for Web Developers: https://rizafahmi.com/catatan/machine-learning-for-web-developers/
 
 ## Projects
-- [HACKTIV8](https://hacktiv8.com): Coding bootcamp founded in 2016
-- [Carikerja](https://carikerja.deeptech.id/): Platform for developers affected by COVID-19
-- [Awesome Speakers Indonesia](https://github.com/rizafahmi/awesome-speakers-id): List of Indonesian developer speakers
 
-## Podcasts & Videos
-- [Ngobrolin Web](https://youtube.com/playlist?list=PLTY2nW4jwtG8Sx2Bw6QShC271PzX31CtT): Weekly podcast about web development
-- [Live Coding Sessions](https://youtube.com/rizafahmi/live): Live coding and learning sessions
+- HACKTIV8: https://hacktiv8.com
+- Carikerja: https://carikerja.deeptech.id/
+- Awesome Speakers Indonesia: https://github.com/rizafahmi/awesome-speakers-id
 
 ## Contact
-- [Twitter/X](https://x.com/rizafahmi22)
-- [GitHub](https://github.com/rizafahmi)
-- [LinkedIn](https://linkedin.com/in/rizafahmi)
-- [Email](mailto:rizafahmi@gmail.com)
+
+- X: https://x.com/rizafahmi22
+- GitHub: https://github.com/rizafahmi
+- LinkedIn: https://linkedin.com/in/rizafahmi
+- Email: mailto:rizafahmi@gmail.com

@@ -7,15 +7,15 @@ eleventyExcludeFromCollections: true
 <html lang="id">
 <head>
   <title>{{ title }} - Riza Fahmi</title>
-  <link rel="stylesheet" href="/assets/global.css">
-  <link rel="stylesheet" href="/assets/home.css">
+  <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}">
+  <link rel="stylesheet" href="/assets/home.css?v={{ site.buildTime }}">
   {% include 'head.njk' %}
 
   <style>
     .search-container {
       max-width: 720px;
       margin: 0 auto;
-      padding: 2rem 1rem;
+      padding: 2rem 1.5rem;
     }
 
     .search-header {
@@ -23,18 +23,16 @@ eleventyExcludeFromCollections: true
     }
 
     .search-header h1 {
-      font-size: 2rem;
+      font-size: clamp(2rem, 5vw, 2.75rem);
       margin-bottom: 0.5rem;
+      font-family: var(--font-display);
+      font-weight: 800;
     }
 
     .search-header p {
       color: var(--meta-color);
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-bottom: 1rem;
       font-size: 1rem;
+      margin: 0;
     }
 
     .visually-hidden {
@@ -138,14 +136,17 @@ eleventyExcludeFromCollections: true
   </style>
 </head>
 <body>
-  <main class="search-container">
-    <nav style="display: flex; justify-content: space-between; align-items: center;">
-      <a class="back-link" href="/">&lt; Kembali</a>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background:none; border:none; cursor:pointer; font-size:1.5rem;">🌙</button>
+  <main class="search-container" id="main-content">
+    <nav class="articles-header" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-bottom: 4px solid var(--border-color); padding-bottom: 1.5rem; margin-bottom: 2.5rem;">
+      <h2 style="margin: 0; font-family: var(--font-display); font-weight: 800;">🔍 CARI</h2>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a class="back" href="/" style="border: 2px solid var(--border-color); padding: 0.5rem 1rem; text-transform: uppercase; font-family: var(--font-mono); font-size: 0.8125rem; font-weight: bold; border-bottom: 2px solid var(--border-color) !important; text-decoration: none;">&lt; BERANDA</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+      </div>
     </nav>
     
     <header class="search-header">
-      <h1>🔍 Cari Artikel</h1>
+      <h1>Cari Artikel</h1>
       <p>Temukan catatan dan artikel yang kamu cari</p>
     </header>
     
@@ -178,6 +179,7 @@ eleventyExcludeFromCollections: true
   <script type="module" src="/assets/search-autocomplete.js"></script>
 
   <script data-goatcounter="https://rizafahmi.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  {% include 'keyboard-shortcuts.njk' %}
   {% include 'theme-toggle.njk' %}
 </body>
 </html>

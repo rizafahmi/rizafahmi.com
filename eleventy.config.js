@@ -1,5 +1,74 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
+import Image from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
+import { generateOgImage } from "./src/libs/og-image.js";
+import { getRelatedPosts } from "./src/libs/related.js";
 import shikiPlugin from "./src/libs/shiki.js";
+
+const isDev = process.env.ELEVENTY_ENV === "dev";
+
+async function imageShortcode(
+  src,
+  alt,
+  className = "",
+  sizes = "100vw",
+  widths = [300, 600, 1200],
+) {
+  if (!src) {
+    console.error(`[11ty/img] Missing src attribute. Alt: ${alt}`);
+    return "";
+  }
+
+  if (isDev) {
+    const devSrc = src.startsWith("./") ? src.slice(1) : src;
+    return `<img src="${devSrc}" alt="${alt}"${className ? ` class="${className}"` : ""} loading="lazy" decoding="async">`;
+  }
+
+  if (path.extname(src).toLowerCase() === ".gif") {
+    const devSrc = src.startsWith("./") ? src.slice(1) : src;
+    return `<img src="${devSrc}" alt="${alt}"${className ? ` class="${className}"` : ""} loading="lazy" decoding="async">`;
+  }
+
+  try {
+    const metadata = await Image(src, {
+      widths: widths,
+      formats: ["webp", "png"],
+      outputDir: "./dist/img/",
+      urlPath: "/img/",
+      cacheOptions: {
+        duration: "1y",
+        directory: ".cache/eleventy-img",
+      },
+      filenameFormat: (_id, src, width, format, _options) => {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}-${width}w.${format}`;
+      },
+    });
+
+    const imageAttributes = {
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+    };
+
+    if (className) {
+      imageAttributes.class = className;
+    }
+
+    if (!metadata) {
+      console.warn(`[11ty/img] Warning: Metadata missing for ${src}. Fallback to default img.`);
+      return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
+    }
+
+    return Image.generateHTML(metadata, imageAttributes);
+  } catch (error) {
+    console.warn(`[11ty/img] Error processing ${src}: ${error.message}. Fallback to default img.`);
+    return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
+  }
+}
 
 function getRelativeTimeString(date) {
   const now = new Date();
@@ -30,19 +99,20 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(shikiPlugin);
 
+  eleventyConfig.addAsyncShortcode("image", imageShortcode);
+
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("src/_redirects");
-
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return getRelativeTimeString(dateObj);
   });
 
   eleventyConfig.addFilter("dateToISO", (date) => {
-    if (!date) return '';
+    if (!date) return "";
     const d = new Date(date);
-    if (isNaN(d.getTime())) return '';
-    return d.toISOString().split('T')[0];
+    if (Number.isNaN(d.getTime())) return "";
+    return d.toISOString().split("T")[0];
   });
 
   eleventyConfig.addFilter("head", (array, n) => {
@@ -52,16 +122,16 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter("readingTime", (content) => {
     if (!content) return "1 menit baca";
-    const text = content.replace(/<[^>]*>/g, '');
+    const text = content.replace(/<[^>]*>/g, "");
     const words = text.trim().split(/\s+/).length;
     const wordsPerMinute = 200;
     const minutes = Math.ceil(words / wordsPerMinute);
-    return minutes + " menit baca";
+    return `${minutes} menit baca`;
   });
 
   const HIDDEN_TAGS = new Set(["all", "nav", "post", "catatan"]);
 
-  function normalizeTags(tags) {
+  function _normalizeTags(tags) {
     if (!tags) return [];
     let arr = tags;
     if (typeof arr === "string") arr = [arr];
@@ -69,44 +139,22 @@ export default function (eleventyConfig) {
     return arr.filter((t) => t && !HIDDEN_TAGS.has(t));
   }
 
-  // Pick related posts by shared tags/topik.
-  // Deterministic ordering: shared tag count (desc), date (desc), url (asc).
+  // Related articles (build-time, deterministic):
+  // Combine signals: shared tags, content similarity, and recency.
+  //
+  // Usage (recommended):
+  //   collections.catatan | relatedArticles({ url, tags, title, excerpt, content }, 3)
+  eleventyConfig.addFilter("relatedArticles", (collection, current, limit = 3) => {
+    return getRelatedPosts(collection, current, { limit, hiddenTags: HIDDEN_TAGS });
+  });
+
+  // Backwards-compatible filter (previously tag-only).
   eleventyConfig.addFilter("relatedByTags", (collection, tags, currentUrl, limit = 3) => {
-    if (!Array.isArray(collection) || !collection.length) return [];
-
-    const currentTags = new Set(normalizeTags(tags));
-
-    const scored = [];
-    for (const item of collection) {
-      if (!item || item.url === currentUrl) continue;
-
-      const itemTags = normalizeTags(item.data && item.data.tags);
-      let shared = 0;
-      if (currentTags.size) {
-        for (const t of itemTags) {
-          if (currentTags.has(t)) shared++;
-        }
-      }
-
-      scored.push({
-        item,
-        shared,
-        date: item.data && item.data.date ? new Date(item.data.date).getTime() : 0,
-        url: item.url || "",
-      });
-    }
-
-    scored.sort((a, b) => {
-      if (b.shared !== a.shared) return b.shared - a.shared;
-      if (b.date !== a.date) return b.date - a.date;
-      return a.url.localeCompare(b.url);
-    });
-
-    // Prefer posts with at least 1 shared tag; otherwise fall back to latest.
-    const withShared = scored.filter((x) => x.shared > 0);
-    return (withShared.length ? withShared : scored)
-      .slice(0, limit)
-      .map((x) => x.item);
+    return getRelatedPosts(
+      collection,
+      { url: currentUrl, tags },
+      { limit, hiddenTags: HIDDEN_TAGS },
+    );
   });
 
   // Plain-text excerpt for meta description (social previews, SEO).
@@ -117,7 +165,7 @@ export default function (eleventyConfig) {
       .replace(/\s+/g, " ")
       .trim();
     if (text.length <= length) return text;
-    return text.slice(0, length).replace(/\s+\S*$/, "") + "…";
+    return `${text.slice(0, length).replace(/\s+\S*$/, "")}…`;
   });
 
   // Format number with locale string (e.g. 123456 -> "123.456" for id-ID).
@@ -134,40 +182,45 @@ export default function (eleventyConfig) {
 
     const getViews = (url) => {
       if (!url) return 0;
-      const v = views[url] ?? views[url.replace(/\/+$/, '')] ?? views[url + '/'];
+      const v = views[url] ?? views[url.replace(/\/+$/, "")] ?? views[`${url}/`];
       return Number.isFinite(Number(v)) ? Number(v) : 0;
     };
 
     return [...collection]
       .sort((a, b) => {
-        const av = getViews(a && a.url);
-        const bv = getViews(b && b.url);
+        const av = getViews(a?.url);
+        const bv = getViews(b?.url);
         if (bv !== av) return bv - av;
-        const ad = a && a.data && a.data.date ? new Date(a.data.date).getTime() : 0;
-        const bd = b && b.data && b.data.date ? new Date(b.data.date).getTime() : 0;
+        const ad = a?.data?.date ? new Date(a.data.date).getTime() : 0;
+        const bd = b?.data?.date ? new Date(b.data.date).getTime() : 0;
         return bd - ad;
       })
       .slice(0, limit);
   });
 
-  eleventyConfig.addCollection("catatan", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
-  });
+  eleventyConfig.addCollection("catatan", (collectionApi) =>
+    collectionApi.getFilteredByGlob("src/catatan/*.md").filter((item) => item.data.date),
+  );
 
-  eleventyConfig.addCollection("latestCatatan", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/catatan/*.md")
-      .filter(item => item.data.date)
+  eleventyConfig.addCollection("latestCatatan", (collectionApi) =>
+    collectionApi
+      .getFilteredByGlob("src/catatan/*.md")
+      .filter((item) => item.data.date)
       .sort((a, b) => b.data.date - a.data.date)
-      .slice(0, 4);
-  });
+      .slice(0, 4),
+  );
+
+  // Prompting journal: currently single-page. If we later switch to per-entry files,
+  // we can reintroduce a collection here.
+
 
   // Curated tag list for /tags and /tags/<tag>/ pages.
   // Eleventy automatically creates collections per tag; this collection
   // only defines which tags should be shown.
-  eleventyConfig.addCollection("tagList", function(collectionApi) {
+  eleventyConfig.addCollection("tagList", (collectionApi) => {
     const tagSet = new Set();
     for (const item of collectionApi.getAll()) {
-      let tags = item.data && item.data.tags;
+      let tags = item.data?.tags;
       if (!tags) continue;
       if (typeof tags === "string") tags = [tags];
       if (!Array.isArray(tags)) continue;
@@ -182,8 +235,33 @@ export default function (eleventyConfig) {
     return [...tagSet].sort((a, b) => a.localeCompare(b));
   });
 
-  eleventyConfig.addTransform("tableOfContents", function(content, outputPath) {
-    if (!outputPath || !outputPath.endsWith(".html")) return content;
+  // Generate series navigation HTML for articles with series frontmatter.
+  // Usage: {{ collections.catatan | seriesNav(series, series_index, page.url) }}
+  eleventyConfig.addFilter("seriesNav", (collection, series, seriesIndex, currentUrl) => {
+    if (!series || !seriesIndex) return "";
+
+    const articles = collection
+      .filter((item) => item.data && item.data.series === series && item.data.series_index)
+      .sort((a, b) => a.data.series_index - b.data.series_index);
+
+    if (articles.length < 2) return "";
+
+    let html = `<hr>\n<p><strong>Seri ${series}</strong></p>\n<ol>\n`;
+    for (const article of articles) {
+      const _idx = article.data.series_index;
+      const title = article.data.title;
+      if (article.url === currentUrl) {
+        html += `<li>➡︎ ${title}</li>\n`;
+      } else {
+        html += `<li><a href="${article.url}">${title}</a></li>\n`;
+      }
+    }
+    html += `</ol>\n<hr>`;
+    return html;
+  });
+
+  eleventyConfig.addTransform("tableOfContents", (content, outputPath) => {
+    if (!outputPath?.endsWith(".html")) return content;
     if (!content.includes('class="reading-progress"')) return content;
 
     const contentStart = content.indexOf('<div class="note-edit">');
@@ -197,10 +275,16 @@ export default function (eleventyConfig) {
     const headings = [];
     let match;
 
+    // biome-ignore lint/suspicious/noAssignInExpressions: standard regex loop pattern
     while ((match = headingRegex.exec(articleContent)) !== null) {
-      const level = parseInt(match[1]);
+      const level = parseInt(match[1], 10);
       const text = match[3].replace(/<[^>]*>/g, "").trim();
-      const id = match[2] || text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
+      const id =
+        match[2] ||
+        text
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-");
 
       if (!match[2]) {
         const oldTag = match[0];
@@ -255,27 +339,132 @@ export default function (eleventyConfig) {
     const markerRegex = /<div class="note-edit">\s*<\/div>/;
     const markerMatch = content.match(markerRegex);
     if (markerMatch) {
-      content = content.replace(markerRegex, markerMatch[0] + "\n" + seriBlock + "\n" + toc);
+      content = content.replace(markerRegex, `${markerMatch[0]}\n${seriBlock}\n${toc}`);
     }
 
     return content;
   });
 
-  eleventyConfig.addTransform("lazyImages", function(content, outputPath) {
-    if (outputPath && outputPath.endsWith(".html")) {
+  eleventyConfig.addTransform("lazyImages", (content, outputPath) => {
+    if (outputPath?.endsWith(".html")) {
       let first = true;
-      return content.replace(
-        /<img(?![^>]*loading=)([^>]*)>/gi,
-        (match, attrs) => {
-          if (first) {
-            first = false;
-            return match;
-          }
-          return `<img loading="lazy"${attrs}>`;
+      return content.replace(/<img(?![^>]*loading=)([^>]*)>/gi, (match, attrs) => {
+        if (first) {
+          first = false;
+          return match;
         }
-      );
+        return `<img loading="lazy"${attrs}>`;
+      });
     }
     return content;
+  });
+
+  // --- Generate dynamic OG images for articles after build (prod only) ---
+  eleventyConfig.on("eleventy.after", async ({ results }) => {
+    if (isDev) return;
+    const HIDDEN = new Set(["all", "nav", "post", "catatan"]);
+    const outputDir = "dist";
+
+    // Parse frontmatter from source files for articles that need OG images.
+    // We use `results` which includes ALL rendered pages (even those excluded
+    // from collections).
+    const jobs = [];
+    for (const result of results) {
+      if (!result.inputPath?.includes("src/catatan/")) continue;
+      if (!result.inputPath.endsWith(".md")) continue;
+
+      // Read frontmatter from the source file
+      const srcPath = result.inputPath;
+      const frontmatter = {};
+      try {
+        const { readFileSync } = await import("node:fs");
+        const raw = readFileSync(srcPath, "utf-8");
+        const fmMatch = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+        if (fmMatch) {
+          // Simple YAML-like parser for the fields we need
+          const fmText = fmMatch[1];
+          const titleMatch = fmText.match(/^title:\s*["']?(.+?)["']?\s*$/m);
+          const descMatch = fmText.match(/^description:\s*["']?(.+?)["']?\s*$/m);
+          const imageMatch = fmText.match(/^image:\s*["']?(.*?)["']?\s*$/m);
+          const coverMatch = fmText.match(/^cover:\s*["']?(.*?)["']?\s*$/m);
+
+          if (titleMatch) frontmatter.title = titleMatch[1];
+          if (descMatch) frontmatter.description = descMatch[1];
+          if (imageMatch) frontmatter.image = imageMatch[1];
+          if (coverMatch) frontmatter.cover = coverMatch[1];
+
+          // Parse tags
+          const tagsSection = fmText.match(/^tags:\s*\n((?:\s+-\s+.+\n?)*)/m);
+          if (tagsSection) {
+            frontmatter.tags = [...tagsSection[1].matchAll(/^\s+-\s+(.+)$/gm)].map((m) =>
+              m[1].trim(),
+            );
+          }
+        }
+
+        // Extract the markdown body (after frontmatter) for excerpt
+        const bodyStart = raw.indexOf("---", raw.indexOf("---") + 3);
+        if (bodyStart !== -1) {
+          frontmatter._body = raw.slice(bodyStart + 3).trim();
+        }
+      } catch {
+        // If we can't read the file, skip it
+        continue;
+      }
+
+      // Skip articles that already have a custom image or cover
+      if (frontmatter.image && frontmatter.image.length > 0) continue;
+      if (frontmatter.cover && frontmatter.cover.length > 0) continue;
+
+      const slug = path.basename(srcPath, path.extname(srcPath));
+
+      // Build excerpt from markdown body (strip markdown syntax + HTML)
+      const bodyText = (frontmatter._body || "")
+        .replace(/<[^>]*>/g, " ") // HTML tags first
+        .replace(/!\[.*?\]\(.*?\)/g, "") // images
+        .replace(/\[([^\]]*)\]\(.*?\)/g, "$1") // links -> text
+        .replace(/```[\s\S]*?```/g, " ") // fenced code blocks
+        .replace(/`[^`]+`/g, " ") // inline code
+        .replace(/^#{1,6}\s+/gm, "") // heading markers
+        .replace(/[*_~>]/g, "") // markdown emphasis chars
+        .replace(/\s+/g, " ")
+        .trim();
+
+      const excerpt =
+        frontmatter.description ||
+        (bodyText.length > 200
+          ? `${bodyText.slice(0, 200).replace(/\s+\S*$/, "")}\u2026`
+          : bodyText);
+
+      const tags = Array.isArray(frontmatter.tags)
+        ? frontmatter.tags.filter((t) => t && !HIDDEN.has(t))
+        : [];
+
+      const ogOutputPath = path.resolve(outputDir, "og", `${slug}.png`);
+
+      // Skip if the OG image already exists (avoid re-generating on every rebuild)
+      if (existsSync(ogOutputPath)) continue;
+
+      jobs.push({
+        title: frontmatter.title || slug,
+        excerpt,
+        tags,
+        outputPath: ogOutputPath,
+      });
+    }
+
+    if (jobs.length === 0) return;
+
+    console.log(`[og-image] Generating ${jobs.length} OG images\u2026`);
+    const start = Date.now();
+
+    // Generate in parallel (batches of 8 to avoid memory pressure)
+    const BATCH = 8;
+    for (let i = 0; i < jobs.length; i += BATCH) {
+      await Promise.all(jobs.slice(i, i + BATCH).map((job) => generateOgImage(job)));
+    }
+
+    console.log(`[og-image] Done in ${Date.now() - start}ms`);
   });
 
   return {
