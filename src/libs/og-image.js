@@ -1,7 +1,7 @@
-import sharp from "sharp";
 import { readFileSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
+import sharp from "sharp";
 
 // --- Font embedding (base64) for SVG rendering ---
 const FONTS_DIR = path.resolve("assets/fonts");
@@ -11,14 +11,14 @@ let jetbrainsB64 = null;
 
 function loadFonts() {
   if (!wotfardB64) {
-    wotfardB64 = readFileSync(
-      path.join(FONTS_DIR, "wotfard-regular-webfont.ttf")
-    ).toString("base64");
+    wotfardB64 = readFileSync(path.join(FONTS_DIR, "wotfard-regular-webfont.ttf")).toString(
+      "base64",
+    );
   }
   if (!jetbrainsB64) {
-    jetbrainsB64 = readFileSync(
-      path.join(FONTS_DIR, "JetBrainsMono-Regular.ttf")
-    ).toString("base64");
+    jetbrainsB64 = readFileSync(path.join(FONTS_DIR, "JetBrainsMono-Regular.ttf")).toString(
+      "base64",
+    );
   }
 }
 
@@ -85,7 +85,7 @@ function wrapText(text, maxChars, maxLines) {
   if (lines.length === maxLines && words.length > 0) {
     const lastLine = lines[maxLines - 1];
     if (lastLine && current !== lastLine) {
-      lines[maxLines - 1] = lastLine + "\u2026";
+      lines[maxLines - 1] = `${lastLine}\u2026`;
     }
   }
 
@@ -106,7 +106,7 @@ function buildSvg({ title, excerpt, tags }) {
   // Colors from the site's CSS variables (light theme)
   const BG = "#ffffff";
   const HEADING = "#211a1e";
-  const TEXT = "rgb(41, 38, 38)";
+  const _TEXT = "rgb(41, 38, 38)";
   const META = "rgba(33, 26, 30, 0.55)";
   const TAG_BG = "#292626";
   const TAG_TEXT = "#eaeaea";
@@ -121,8 +121,8 @@ function buildSvg({ title, excerpt, tags }) {
   const titleLines = wrapText(title || "Catatan Baru", titleMaxChars, titleMaxLines);
 
   const titleTspans = titleLines
-    .map((line, i) =>
-      `<tspan x="${PAD}" dy="${i === 0 ? 0 : titleLineHeight}">${esc(line)}</tspan>`
+    .map(
+      (line, i) => `<tspan x="${PAD}" dy="${i === 0 ? 0 : titleLineHeight}">${esc(line)}</tspan>`,
     )
     .join("\n      ");
 
@@ -135,8 +135,8 @@ function buildSvg({ title, excerpt, tags }) {
   const excerptLines = wrapText(excerpt || "", excerptMaxChars, excerptMaxLines);
 
   const excerptTspans = excerptLines
-    .map((line, i) =>
-      `<tspan x="${PAD}" dy="${i === 0 ? 0 : excerptLineHeight}">${esc(line)}</tspan>`
+    .map(
+      (line, i) => `<tspan x="${PAD}" dy="${i === 0 ? 0 : excerptLineHeight}">${esc(line)}</tspan>`,
     )
     .join("\n      ");
 

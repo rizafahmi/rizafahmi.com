@@ -1,3 +1,3 @@
 export default {
-  buildTime: Date.now()
+  buildTime: Date.now(),
 };

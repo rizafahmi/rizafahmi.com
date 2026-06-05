@@ -14,12 +14,12 @@ eleventyExcludeFromCollections: false
 series: "Asisten Ngoding"
 series_index: 4
 ---
+
 ---
 
 Setelah [bagian sebelumnya](asisten-ngoding-3.md) kita berhasil menghasilkan rencana yang matang dalam format _blueprint_, kini saatnya untuk melangkah ke tahap yang paling dinanti: eksekusi! Ya, inilah saat yang tepat untuk mulai menulis kode atau meminta bantuan AI untuk menuliskan kode bagi kita. Dalam artikel ini, saya akan membagikan pengalaman pribadi dan tips praktis yang bisa langsung teman-teman terapkan. Tentu saja, pilihan ada di tangan teman-teman dengan segala konsekuensi yang menyertainya 😉
 
 Berpikir tentang desain antarmuka yang menarik dan fungsional seringkali menjadi tantangan tersendiri. Mari kita mulai dengan pendekatan yang terbukti efektif!
-
 
 ```
     +----------+        +---------+        +----------+
@@ -38,11 +38,11 @@ Berpikir tentang desain antarmuka yang menarik dan fungsional seringkali menjadi
                                            +----------+
 ```
 
-## Mengapa HTML lebih baik daripada *mockup* statis
+## Mengapa HTML lebih baik daripada _mockup_ statis
 
-Sebelum menyelami berbagai logika dalam bentuk kode, langkah yang bijak adalah membuat _mockup_ desain dan alur aplikasi terlebih dahulu. Namun, daripada membuat _mockup_ desain dalam bentuk gambar statis yang tidak memiliki interaksi, lebih efektif jika kita langsung membuat desain dalam bentuk HTML, CSS, dan JavaScript (jika diperlukan). 
-+
-+**Mengapa pendekatan ini lebih unggul?** Pertama, kita bisa langsung menguji interaksi dan responsivitas desain. Kedua, kita menghemat waktu yang biasanya terbuang untuk membuat ulang desain statis menjadi kode. Ketiga, hasilnya bisa langsung digunakan sebagai fondasi pengembangan. Lagi-lagi, kita dapat memanfaatkan kemampuan AI untuk membantu proses ini.
+Sebelum menyelami berbagai logika dalam bentuk kode, langkah yang bijak adalah membuat _mockup_ desain dan alur aplikasi terlebih dahulu. Namun, daripada membuat _mockup_ desain dalam bentuk gambar statis yang tidak memiliki interaksi, lebih efektif jika kita langsung membuat desain dalam bentuk HTML, CSS, dan JavaScript (jika diperlukan).
+
+- +**Mengapa pendekatan ini lebih unggul?** Pertama, kita bisa langsung menguji interaksi dan responsivitas desain. Kedua, kita menghemat waktu yang biasanya terbuang untuk membuat ulang desain statis menjadi kode. Ketiga, hasilnya bisa langsung digunakan sebagai fondasi pengembangan. Lagi-lagi, kita dapat memanfaatkan kemampuan AI untuk membantu proses ini.
 
 ## Memilih Tools yang Tepat untuk Membangun Antarmuka
 
@@ -50,17 +50,17 @@ Berbagai alat bantu tersedia untuk membantu kita membangun antarmuka aplikasi ya
 
 ### Perbandingan Tools AI untuk Desain Antarmuka
 
-| Alat | Keunggulan | Cocok untuk | Tingkat Kesulitan |
-|------|------------|-------------|------------------|
-| GitHub Copilot | Integrasi dengan editor | Pengembangan kode harian | Menengah |
-| Cursor | AI-powered editing | Prototyping cepat | Mudah |
-| Bolt | Full-stack generation | Aplikasi lengkap | Menengah |
-| v0 | Component-focused | Desain komponen UI | Mudah |
-| Firebase Studio | Integrasi denga Firebase | Aplikasi dengan backend | Menengah |
+| Alat            | Keunggulan               | Cocok untuk              | Tingkat Kesulitan |
+| --------------- | ------------------------ | ------------------------ | ----------------- |
+| GitHub Copilot  | Integrasi dengan editor  | Pengembangan kode harian | Menengah          |
+| Cursor          | AI-powered editing       | Prototyping cepat        | Mudah             |
+| Bolt            | Full-stack generation    | Aplikasi lengkap         | Menengah          |
+| v0              | Component-focused        | Desain komponen UI       | Mudah             |
+| Firebase Studio | Integrasi denga Firebase | Aplikasi dengan backend  | Menengah          |
 
 Dari tabel di atas, terlihat bahwa masing-masing tools memiliki spesialisasi tersendiri. Pilihan yang tepat tergantung pada kebutuhan proyek dan tingkat kenyamanan teman-teman dengan teknologi tertentu.
 
-Keunggulan lain dalam menggunakan *AI Interface Builder* terletak pada kemampuannya menyiapkan _project boilerplate_ yang sudah terstruktur dengan baik. Hal ini sangat membantu, terutama jika teman-teman memilih platform Node.js sebagai basis pengembangan.
+Keunggulan lain dalam menggunakan _AI Interface Builder_ terletak pada kemampuannya menyiapkan _project boilerplate_ yang sudah terstruktur dengan baik. Hal ini sangat membantu, terutama jika teman-teman memilih platform Node.js sebagai basis pengembangan.
 
 ### Tantangan Integrasi dalam Proyek AI
 
@@ -69,6 +69,7 @@ Pengalaman pribadi sejauh ini, jika teknologi yang digunakan butuh integrasi man
 +**Masalah Utama:** AI seringkali mengalami kesulitan ketika harus melakukan integrasi dengan konfigurasi tambahan
 
 **Solusi yang Efektif:**
+
 1. Siapkan integrasi database dan otentikasi terlebih dahulu sebelum memulai development
 2. Gunakan _project boilerplate_ yang sudah terintegrasi
 3. Pilih _framework_ dengan fitur lengkap (_batteries included_) seperti Elixir Phoenix, Ruby on Rails, atau PHP Laravel
@@ -93,7 +94,7 @@ Berikut adalah contoh _prompt_ yang saya gunakan:
 ```text
 Objective:
     Develop a platform to store text-based ideas with search functionality and a minimalist neo-brutalist design.
-    
+
 Core Features:
     Text Note Storage: Users can store plain text notes.
     Search Functionality: Full-text search to locate notes.
@@ -128,13 +129,13 @@ Artikel ini telah membahas langkah krusial setelah perencanaan matang dalam peng
 
 Pembahasan kemudian beralih ke pemilihan _tools_ yang tepat. Meskipun asisten koding seperti GitHub Copilot, Cursor, atau Gemini Code Assist sangat membantu, layanan khusus seperti Bolt, v0, atau Firebase Studio direkomendasikan untuk antarmuka yang lebih menawan. Artikel ini juga menyoroti keuntungan **_AI Interface Builder_** dalam menyiapkan _project boilerplate_ yang terstruktur, terutama untuk pengembangan berbasis Node.js.
 
-Yang terpenting, jangan takut untuk bereksperimen! Setiap proyek adalah kesempatan untuk belajar dan menemukan *workflow* yang paling sesuai dengan gaya kerja teman-teman.
+Yang terpenting, jangan takut untuk bereksperimen! Setiap proyek adalah kesempatan untuk belajar dan menemukan _workflow_ yang paling sesuai dengan gaya kerja teman-teman.
 
 Menarik ditunggu gebrakan dari Firebase Studio yang ingin mengintegrasikan beberapa alat tambahan seperti database, otentikasi dan lain sebagainya.
 
-Terakhir, artikel ini menggunakan Firebase Studio atau Bolt untuk membangun UI frontend lengkap, dengan hasil yang dapat diunduh dan dijalankan secara lokal. 
+Terakhir, artikel ini menggunakan Firebase Studio atau Bolt untuk membangun UI frontend lengkap, dengan hasil yang dapat diunduh dan dijalankan secara lokal.
 
-Dan apabila hasil desain dan kode yang dihasilkan AI terlalu kompleks, teman-teman bisa jadikan hasil desain tersebut sebagai *mockup* saja. Lalu tiru desainnya dengan menulis kode versi kita sendiri.
+Dan apabila hasil desain dan kode yang dihasilkan AI terlalu kompleks, teman-teman bisa jadikan hasil desain tersebut sebagai _mockup_ saja. Lalu tiru desainnya dengan menulis kode versi kita sendiri.
 
 Saya sangat penasaran dengan pengalaman teman-teman dalam memanfaatkan AI:
 
@@ -147,8 +148,7 @@ Silakan bagikan pengalaman, pertanyaan, atau saran di kolom komentar di bawah. S
 ## Referensi selanjutnya
 
 - [Kumpulan artikel menarik seputar AI dan LLM dalam Bahasa Indonesia](https://dekontaminasi.substack.com)
--  [https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)
--  [https://danieldelaney.net/chat](https://danieldelaney.net/chat)
--  [https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agent](https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agent)
+- [https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)
+- [https://danieldelaney.net/chat](https://danieldelaney.net/chat)
+- [https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agent](https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agent)
 - [https://firebase.blog/posts/2025/05/whats-new-at-google-io](https://firebase.blog/posts/2025/05/whats-new-at-google-io)
-

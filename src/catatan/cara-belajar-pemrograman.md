@@ -10,7 +10,6 @@ tags:
   - produktivitas
   - panduan
   - motivasi
-
 ---
 
 Artikel ini akan memaparkan beberapa tips buat teman-teman yang ingin belajar pemorgraman dengan efisien. Seluruh tips disini murni adalah pengalaman pribadi saya, baik yang saya alami sendiri dan juga hasil diskusi dan obrolan dengan teman sesama developer.

@@ -15,4 +15,9 @@ dist/
 .DS_Store
 
 .envrc
+.env
 .agent-shell/
+
+# IDE
+.idea/
+.vscode/

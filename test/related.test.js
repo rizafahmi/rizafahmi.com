@@ -1,7 +1,7 @@
-import test from "node:test";
 import assert from "node:assert/strict";
+import test from "node:test";
 
-import { getRelatedPosts, __test } from "../src/libs/related.js";
+import { __test, getRelatedPosts } from "../src/libs/related.js";
 
 function mkItem({ url, title, tags = [], date, templateContent = "" }) {
   return {
@@ -18,9 +18,27 @@ test("tokenize strips html + stopwords", () => {
 
 test("prefers shared tags when available", () => {
   const collection = [
-    mkItem({ url: "/a/", title: "A", tags: ["catatan", "js"], date: "2024-01-01", templateContent: "Belajar JavaScript dasar" }),
-    mkItem({ url: "/b/", title: "B", tags: ["catatan", "js", "web"], date: "2024-02-01", templateContent: "JavaScript untuk web" }),
-    mkItem({ url: "/c/", title: "C", tags: ["catatan", "go"], date: "2024-03-01", templateContent: "Golang concurrency" }),
+    mkItem({
+      url: "/a/",
+      title: "A",
+      tags: ["catatan", "js"],
+      date: "2024-01-01",
+      templateContent: "Belajar JavaScript dasar",
+    }),
+    mkItem({
+      url: "/b/",
+      title: "B",
+      tags: ["catatan", "js", "web"],
+      date: "2024-02-01",
+      templateContent: "JavaScript untuk web",
+    }),
+    mkItem({
+      url: "/c/",
+      title: "C",
+      tags: ["catatan", "go"],
+      date: "2024-03-01",
+      templateContent: "Golang concurrency",
+    }),
   ];
 
   const current = { url: "/a/", tags: ["js"], title: "Belajar JS", content: "Dasar JavaScript" };
@@ -30,9 +48,27 @@ test("prefers shared tags when available", () => {
 
 test("falls back to similarity when no shared tags", () => {
   const collection = [
-    mkItem({ url: "/a/", title: "A", tags: ["catatan", "js"], date: "2024-01-01", templateContent: "Belajar JavaScript dasar" }),
-    mkItem({ url: "/b/", title: "B", tags: ["catatan", "go"], date: "2024-02-01", templateContent: "JavaScript tips and tricks" }),
-    mkItem({ url: "/c/", title: "C", tags: ["catatan", "python"], date: "2024-03-01", templateContent: "Python data analysis" }),
+    mkItem({
+      url: "/a/",
+      title: "A",
+      tags: ["catatan", "js"],
+      date: "2024-01-01",
+      templateContent: "Belajar JavaScript dasar",
+    }),
+    mkItem({
+      url: "/b/",
+      title: "B",
+      tags: ["catatan", "go"],
+      date: "2024-02-01",
+      templateContent: "JavaScript tips and tricks",
+    }),
+    mkItem({
+      url: "/c/",
+      title: "C",
+      tags: ["catatan", "python"],
+      date: "2024-03-01",
+      templateContent: "Python data analysis",
+    }),
   ];
 
   const current = { url: "/a/", tags: ["js"], title: "JavaScript tips", content: "" };
@@ -48,11 +84,36 @@ test("falls back to similarity when no shared tags", () => {
 
 test("deterministic tie-breakers: date then url", () => {
   const collection = [
-    mkItem({ url: "/current/", title: "Current", tags: ["catatan", "web"], date: "2024-01-01", templateContent: "web" }),
-    mkItem({ url: "/same-1/", title: "Same", tags: ["catatan", "web"], date: "2024-02-01", templateContent: "web" }),
-    mkItem({ url: "/same-0/", title: "Same", tags: ["catatan", "web"], date: "2024-02-01", templateContent: "web" }),
+    mkItem({
+      url: "/current/",
+      title: "Current",
+      tags: ["catatan", "web"],
+      date: "2024-01-01",
+      templateContent: "web",
+    }),
+    mkItem({
+      url: "/same-1/",
+      title: "Same",
+      tags: ["catatan", "web"],
+      date: "2024-02-01",
+      templateContent: "web",
+    }),
+    mkItem({
+      url: "/same-0/",
+      title: "Same",
+      tags: ["catatan", "web"],
+      date: "2024-02-01",
+      templateContent: "web",
+    }),
   ];
 
-  const related = getRelatedPosts(collection, { url: "/current/", tags: ["web"], title: "web", content: "web" }, { limit: 2 });
-  assert.deepEqual(related.map((i) => i.url), ["/same-0/", "/same-1/"]);
+  const related = getRelatedPosts(
+    collection,
+    { url: "/current/", tags: ["web"], title: "web", content: "web" },
+    { limit: 2 },
+  );
+  assert.deepEqual(
+    related.map((i) => i.url),
+    ["/same-0/", "/same-1/"],
+  );
 });

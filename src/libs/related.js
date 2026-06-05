@@ -93,7 +93,7 @@ function normalizeTags(tags, { hiddenTags = new Set() } = {}) {
 }
 
 function getItemDateMs(item) {
-  const d = item && item.data && item.data.date ? new Date(item.data.date) : null;
+  const d = item?.data?.date ? new Date(item.data.date) : null;
   return d && !Number.isNaN(d.getTime()) ? d.getTime() : 0;
 }
 
@@ -114,27 +114,25 @@ export function getRelatedPosts(collection, current, opts = {}) {
 
   if (!Array.isArray(collection) || !collection.length) return [];
 
-  const currentUrl = current && current.url ? String(current.url) : "";
-  const currentTags = new Set(normalizeTags(current && current.tags, { hiddenTags }));
+  const currentUrl = current?.url ? String(current.url) : "";
+  const currentTags = new Set(normalizeTags(current?.tags, { hiddenTags }));
 
-  const currentText = [current && current.title, current && current.excerpt, current && current.content]
+  const currentText = [current?.title, current?.excerpt, current?.content]
     .filter(Boolean)
     .join(" ");
   const currentTokens = tokenize(currentText);
 
   // Recency normalization based on collection min/max dates.
-  const dates = collection
-    .filter((i) => i && i.url && i.url !== currentUrl)
-    .map(getItemDateMs);
+  const dates = collection.filter((i) => i?.url && i.url !== currentUrl).map(getItemDateMs);
   const minDate = dates.length ? Math.min(...dates) : 0;
   const maxDate = dates.length ? Math.max(...dates) : 0;
   const span = maxDate - minDate;
 
   const scored = [];
   for (const item of collection) {
-    if (!item || !item.url || item.url === currentUrl) continue;
+    if (!item?.url || item.url === currentUrl) continue;
 
-    const itemTags = normalizeTags(item.data && item.data.tags, { hiddenTags });
+    const itemTags = normalizeTags(item.data?.tags, { hiddenTags });
     let shared = 0;
     if (currentTags.size) {
       for (const t of itemTags) {
@@ -142,11 +140,7 @@ export function getRelatedPosts(collection, current, opts = {}) {
       }
     }
 
-    const itemText = [
-      item.data && item.data.title,
-      item.data && item.data.description,
-      item.templateContent,
-    ]
+    const itemText = [item.data?.title, item.data?.description, item.templateContent]
       .filter(Boolean)
       .join(" ");
     const sim = jaccard(currentTokens, tokenize(itemText));

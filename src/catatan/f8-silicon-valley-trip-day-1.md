@@ -9,7 +9,6 @@ tags:
   - komunitas
   - konferensi
   - travel
-
 ---
 
 Ini adalah cerita berseri tentang perjalanan saya dan teman-teman Facebook Developer Circle Leads ke Silicon Valley dalam rangka mengikuti Facebook F8 Developer Conference. Ikuti dari bagian 0 supaya mendapatkan jalan ceritanya secara keseluruhan.

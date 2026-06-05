@@ -13,7 +13,6 @@ tags:
   - self-hosting
   - docker
   - tutorial
-
 ---
 
 > Ini adalah artikel dari materi yang dibawakan di acara Cloud Day Indonesia 2023 beberapa waktu yang lalu.
@@ -182,6 +181,7 @@ Jalankan perintah berikut di server.
 ```shell
 dokku apps:create dokku_express
 ```
+
 ```
 -----> Creating dokku_express…
 =====> Global server virtual host not set, disabling app host…
@@ -202,6 +202,7 @@ ini adalah sebuah aplikasi Node.js sederhana.
 ### Mengirimkan kode ke Dokku
 
 Kirimkan kode yang ingin digelar ke server Dokku via git.
+
 ```shell
 git remote add dokku dokku@<ip.addr>:landing
 git push dokku main
@@ -257,6 +258,7 @@ dokku domains:add dokku_express <ip.addr>
 ```shell
 dokku domains:report
 ```
+
 ```
 =====> dokku_express domains information
        Domains app enabled: true
@@ -339,7 +341,7 @@ dokku domains:set dokku_express express.wiraku.dev
 -----> Creating http nginx.conf
        Reloading nginx
 ```
-    
+
 ```shell
 dokku domains:report
 ```
@@ -365,15 +367,13 @@ curl http://express.wiraku.dev
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Deploy with dokku</title>
-</head>
-<body>
-
-  <h1>Deploy with dokku</h1>
-  <p>App version: 0.0.3</p>
-
-</body>
+  </head>
+  <body>
+    <h1>Deploy with dokku</h1>
+    <p>App version: 0.0.3</p>
+  </body>
 </html>
 ```
 

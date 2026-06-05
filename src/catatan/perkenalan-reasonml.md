@@ -8,7 +8,6 @@ tags:
   - catatan
   - javascript
   - functional-programming
-
 ---
 
 ReasonML adalah bahasa sintaks, ekstensi dan _toolchain_ yang berada diatas sebuah bahasa _jadul_ [OCaml](https://ocaml.org/). Selain dapat dikompilasi ke JavaScript dengan bantuan [BuckleScript](https://bucklescript.github.io/), Reason juga dapat dikompilasi menjadi aplikasi native melalui OCaml. Daripada membuat bahasa baru dari awal, tim Facebook memutuskan untuk membuat sintaks baru dan memperkaya _environment_ OCaml sehingga menjadi lebih modern dan kekinian. OCaml sendiri sudah digunakan lebih dari 20 tahun dan sudah teruji oleh industri sejak tahun 90-an.
@@ -116,6 +115,7 @@ Untuk mulai menggunakan Reason, ada beberapa package yang kita butuhkan. Pertama
 yarn global add reason-cli
 yarn global add bs-platform
 ```
+
 Untuk membuat aplikasi sederhana, kita sekarang bisa menggunakan perintah:
 
 ```shell
