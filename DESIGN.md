@@ -2,122 +2,123 @@
 name: rizafahmi.com
 description: Personal website, blog, and portfolio of Riza Fahmi
 colors:
-  neutral-light-bg: "#ffffff"
-  neutral-light-text: "#292626"
-  neutral-light-heading: "#211a1e"
-  neutral-dark-bg: "#0f1115"
-  neutral-dark-text: "#e6e6e6"
-  neutral-dark-heading: "#f5f5f5"
-  accent-sky: "#7dd3fc"
-  accent-charcoal: "#211a1e"
+  neutral-light-bg: "#f7f7f5"
+  neutral-light-text: "#0a0b0d"
+  neutral-light-heading: "#0a0b0d"
+  neutral-dark-bg: "#121519"
+  neutral-dark-text: "#c2cad6"
+  neutral-dark-heading: "#e7ecf2"
+  accent-acid: "#c5f82a"
+  accent-cobalt: "#1a3bf5"
 typography:
   display:
-    fontFamily: "Wotfard, Futura, -apple-system, sans-serif"
-    fontSize: "2.25rem"
-    fontWeight: 900
-    lineHeight: 1.2
+    fontFamily: "Unbounded, system-ui, sans-serif"
+    fontSize: "2.5rem"
+    fontWeight: 800
+    lineHeight: 1.1
   body:
-    fontFamily: "Wotfard, Futura, -apple-system, sans-serif"
-    fontSize: "1rem"
-    lineHeight: "1.5rem"
+    fontFamily: "Schibsted Grotesk, system-ui, sans-serif"
+    fontSize: "1.0625rem"
+    lineHeight: "1.6rem"
   mono:
-    fontFamily: "JetBrainsMono, monospace"
-    fontSize: "0.9rem"
+    fontFamily: "Martian Mono, JetBrains Mono, monospace"
+    fontSize: "0.875rem"
 rounded:
-  sm: "0.25rem"
-  md: "0.5rem"
-  pill: "2rem"
+  none: "0px"
+  sm: "2px"
+  md: "4px"
 components:
   button-primary:
-    backgroundColor: "{colors.accent-charcoal}"
-    textColor: "#fcfcfc"
-    rounded: "{rounded.sm}"
-    padding: "0.75rem 1rem"
-  button-pill:
-    backgroundColor: "{colors.neutral-dark-bg}"
-    textColor: "{colors.neutral-dark-text}"
-    rounded: "{rounded.pill}"
-    padding: "0.5rem 1rem"
+    backgroundColor: "{colors.neutral-light-text}"
+    textColor: "{colors.neutral-light-bg}"
+    rounded: "{rounded.none}"
+    padding: "0.875rem 1.25rem"
+    border: "2px solid {colors.neutral-light-text}"
+  card-brutalist:
+    backgroundColor: "transparent"
+    border: "2px solid {colors.neutral-light-text}"
+    padding: "1.5rem"
+    rounded: "{rounded.none}"
 ---
 
 # Design System: rizafahmi.com
 
 ## 1. Overview
 
-**Creative North Star: "The Minimalist Foundry"**
+**Creative North Star: "The Neo-Acid Gallery"**
 
-A design system that combines technical monospaced precision with clean, spacious, and highly readable editorial typography. It serves as the visual wrapper for Riza Fahmi's writing, programming notes (specifically Elixir and AI), and portfolio. The interface deliberately prioritizes editorial space, structure, and text legibility, avoiding generic tech clichés such as neon green-on-black or unnecessary glassmorphism overlays.
+An artistic, high-energy brutalist aesthetic inspired by modern gallery catalogs. It couples bold, ultra-wide typography with solid blocks of high-chroma accent colors and dynamic offsets. The design breaks standard structural grids in favor of strong asymmetrical layouts, thick solid borders, and intense hover interactions.
 
 ### Key Characteristics
-- **Editorial Contrast**: Big, bold display headings paired with clean, readable body copy.
-- **Developer Accents**: Monospaced font keys, inline tags, and custom typewriter effects for tech-oriented content.
-- **Intended Dark-First**: Defaulting to low-light comfort while preserving clean light/dark toggles.
-- **Refined Neutrality**: A monochromatic foundation tinted slightly toward Slate/Charcoal to keep colors harmonious.
+- **Ultra-Wide Presence**: Enormous, wide headlines (using Unbounded) that command attention.
+- **Solarized Energy**: Raw concrete white or obsidian dark canvases splashed with high-chroma Acid Lime (`#c5f82a`) and Electric Cobalt (`#1a3bf5`).
+- **Structured Asymmetry**: Off-grid column shifting, unequal margins, and heavy solid-color borders.
+- **Tactile Color Drenches**: Interactive elements fill with solid accent colors on hover rather than executing faint color shifts.
 
 ## 2. Colors
 
-A Restrained Monochromatic color palette with functional Sky Blue accents (in dark mode) or Deep Charcoal accents (in light mode) to preserve text hierarchy and readability.
+A high-contrast full palette based on raw geological tones and raw industrial colors.
 
-### Primary
-- **Accent Charcoal** (`#211a1e`): Used as the primary button background, focus outline, and text accent in light mode.
-- **Accent Sky** (`#7dd3fc`): Used for hyperlinks, tags, and interactive hover states in dark mode.
+### Base Colors
+- **Raw Gallery Plaster** (`#f7f7f5` / `oklch(97% 0.008 100)`): A warm, textured off-white light mode background.
+- **Ebony Ink** (`#0a0b0d` / `oklch(12% 0.01 280)`): High-contrast near-black for body copy and headings in light mode.
+- **Obsidian Clay** (`#121519` / `oklch(18% 0.01 250)`): A softened dark charcoal-blue background.
+- **Plaster Gray** (`#c2cad6` / `oklch(80% 0.015 250)`): Soft plaster gray body text to reduce eye fatigue.
+- **Silver White** (`#e7ecf2` / `oklch(92% 0.01 250)`): Soft silver-white for headings to prevent halo glare.
 
-### Neutral
-- **Light Background** (`#ffffff`): Canonical white canvas for light mode reading.
-- **Light Body Text** (`#292626` / `rgb(41, 38, 38)`): Low-strain dark grey body copy.
-- **Dark Background** (`#0f1115`): Low-glare dark canvas for comfortable reading at night.
-- **Dark Body Text** (`#e6e6e6`): High-contrast light grey text that prevents eye strain.
-- **Meta Color** (`rgba(33, 26, 30, 0.6)` / `rgba(230, 230, 230, 0.7)`): Secondary metadata and secondary text.
+### Accents (Solarized)
+- **Acid Lime** (`#c5f82a` / `oklch(86% 0.19 110)`): Intense yellow-green used for major interactive hovers, highlights, and status indicators.
+- **Electric Cobalt** (`#1a3bf5` / `oklch(45% 0.25 260)`): Radiant blue used for focus rings, secondary action states, and key dividers.
 
 ### Named Rules
-**The Content Contrast Rule.** Text links must always maintain at least 4.5:1 contrast against their background. Accent colors are reserved for interactive elements (links, buttons, tags) and must cover less than 10% of any page layout to maintain structural hierarchy.
+**The Color Structure Rule.** Color must define structure and action. Static layouts are predominantly black-and-white (or plaster-on-obsidian). Accent colors are reserved for interactive events (hover, active focus, toggle selections) or layout boundaries.
 
 ## 3. Typography
 
-**Display Font:** Wotfard (with Futura, -apple-system, sans-serif fallback)
-**Body Font:** Wotfard (with Futura, -apple-system, sans-serif fallback)
-**Label/Mono Font:** JetBrainsMono (with monospace fallback)
+**Display Font:** Unbounded (Expressive, ultra-wide geometric sans-serif)
+**Body Font:** Schibsted Grotesk (Precise, editorial-inspired high-legibility sans-serif)
+**Label/Mono Font:** Martian Mono (Utilitarian, condensed monospaced sans)
 
 ### Hierarchy
-- **Display** (Extra Bold 900, `2.25rem`, Line-height `1.2`): Page titles, section headings, major callouts.
-- **Headline** (Bold 800, `1.5rem`, Line-height `1.25`): Article titles, secondary section headings.
-- **Body** (Regular, `1rem`, Line-height `1.5rem`): Paragraph body text, lists. Body text line length is capped at a maximum of `65-75ch` in article views to prevent line-wrapping fatigue.
-- **Label** (Regular / Bold, `0.875rem` / `0.9rem`): Metadata, table headers, breadcrumbs, inline tags.
+- **Hero Title** (Extra Bold 800, `clamp(2rem, 5vw, 3.5rem)`, Line-height `1.1`): Main branding hero titles.
+- **Section Heading** (Bold 700, `1.75rem`, Line-height `1.2`): Primary navigation/sub-sections.
+- **Body Text** (Regular 400, `1.0625rem`, Line-height `1.6`): Article blocks, capped at `65ch` width.
+- **Monospace Labels** (Medium 500, `0.875rem`, Line-height `1.4`): Technical categories, date stamps, and tags.
 
 ### Named Rules
-**The Editorial Width Rule.** Article body blocks (`.container` wrapper) must never exceed a maximum width of `720px` to keep line lengths short, scannable, and comfortable.
+**The Bold Proximity Rule.** Headings must have compact line-heights and sit tight above their corresponding text blocks to maintain typographic integrity.
 
-## 4. Elevation
+## 4. Elevation & Borders
 
-The design system utilizes a flat-by-default visual approach. Depth is conveyed using clear background container shifts (e.g. darker neutral cards on light/dark backgrounds) and border divisions rather than decorative drop shadows.
+We reject shadows. The canvas is strictly flat. Division is created through line weights.
+
+- **Divider lines:** Thick solid black/white lines (`2px` default, `4px` or `8px` for major section splits).
+- **No Rounded Corners:** Rounded components are set to `0px` or very tight `2px/4px` to preserve the blocky, brutalist feel.
 
 ### Named Rules
-**The Flat Elevation Rule.** Containers, badges, cards, and input fields remain visually flat at rest. Interactive states such as hover, focus, and active triggers communicate change via subtle scale, background color transitions, or underline transitions rather than shadow offsets.
+**The Line Weight Rule.** Structural hierarchy is represented by border weight, not depth. A `4px` border indicates a major page split, `2px` separates columns or groups, and `1px dashed` is used for list items.
 
 ## 5. Components
 
-### Buttons
-- **Shape:** Rounded corners (sm: `0.25rem` / `4px`)
-- **Primary:** Dark background (`var(--button-bg)`), white text (`var(--button-text)`), padding `0.75rem 1rem`, transition `background-color 0.3s ease`.
-- **Navigation Pill:** Large rounded pill (`2rem`), background `var(--nav-btn-bg)`, text `var(--nav-btn-text)`. Interactive hover state shifts to hover-background (`var(--nav-btn-hover-bg)`) and hover-text (`var(--nav-btn-hover-text)`).
+### Navigation & Header
+- **Dynamic Header Block:** Instead of a floating bar, the header is bounded by a thick `4px` bottom border with asymmetrical vertical spacing.
+- **Tactile Pills:** Flat rectangle items with `2px` border, filling completely with `Acid Lime` and black text when hovered.
 
-### Cards
-- **Shape:** Soft rounded corners (md: `0.5rem` / `8px`)
-- **Structure:** Flat container with light background fill (`#f5f5f5` in light mode, `#2b2f38` in dark mode). Title, description, and meta category tags are stacked vertically. Nesting cards is strictly prohibited.
+### Brutalist Cards
+- **Structure:** Flat container with a thick `2px` solid border. No shadow.
+- **Interactive State:** Hovering transforms the background to `Electric Cobalt` (with white text) or `Acid Lime` (with black text), creating an instantaneous tactile switch.
 
 ### Links
-- **Article Link:** Text link uses `text-decoration: underline` with a high offset (`text-underline-offset: 0.18em`) to prevent overlapping text elements, and no border-bottom.
-- **Hero/Nav Link:** Flat hover with no underlines, transitioning backgrounds or text color.
+- **In-Text Links:** Bold with a solid highlight underline (`text-decoration-thickness: 3px`) using `Electric Cobalt` (in light mode) or `Acid Lime` (in dark mode).
 
 ## 6. Do's and Don'ts
 
 ### Do's
-- Do use `JetBrainsMono` for all inline code blocks and typewriter-like accents.
-- Do keep the body line length strictly under `75ch` for article pages.
-- Do ensure the light/dark theme switchers transition colors smoothly using `transition: background-color 0.3s ease, color 0.3s ease`.
+- Do use high-contrast text alignments and offset grids.
+- Do drench sections with solid background fills on hover.
+- Do keep borders sharp, thick, and black/white.
 
 ### Don'ts
-- Don't use bright neon backgrounds or text colors; keep neutrals tinted for comfort.
-- Don't use decorative drop shadows or complex gradients as structural accents.
-- Don't use side-stripe borders as card accents.
-- Don't nest cards inside each other.
+- Don't use soft drop shadows, blurs, or gradients.
+- Don't use rounded pill badges; keep them square-edged or slightly boxed.
+- Don't center-align body content; align left to preserve the brutalist edge.
