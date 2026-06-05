@@ -9,165 +9,129 @@ eleventyExcludeFromCollections: true
   <title>{{ title }} - Riza Fahmi</title>
   <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}">
   <link rel="stylesheet" href="/assets/home.css?v={{ site.buildTime }}">
-  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
   {% include 'head.njk' %}
-  
+
   <style>
     .search-container {
       max-width: 720px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
     }
+
     .search-header {
-      margin-bottom: 3rem;
+      margin-bottom: 1.5rem;
     }
+
     .search-header h1 {
       font-size: clamp(2rem, 5vw, 2.75rem);
       margin-bottom: 0.5rem;
       font-family: var(--font-display);
       font-weight: 800;
     }
+
     .search-header p {
       color: var(--meta-color);
       font-size: 1rem;
       margin: 0;
     }
-    :root {
-      --pagefind-ui-scale: 1;
-      --pagefind-ui-primary: #1a3bf5; /* Cobalt */
-      --pagefind-ui-text: #0a0b0d;
-      --pagefind-ui-background: #f7f7f5;
-      --pagefind-ui-border: #0a0b0d;
-      --pagefind-ui-tag: #f7f7f5;
-      --pagefind-ui-font: "Schibsted Grotesk", sans-serif;
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
-    [data-theme="dark"] {
-      --pagefind-ui-primary: #c5f82a; /* Acid Chartreuse */
-      --pagefind-ui-text: #c2cad6;
-      --pagefind-ui-background: #121519;
-      --pagefind-ui-border: #383d47;
-      --pagefind-ui-tag: #121519;
+
+    .search-box {
+      position: relative;
     }
-    
-    /* Pagefind Brutalist Overrides */
-    .pagefind-ui__form {
-      position: relative !important;
+
+    .search-input {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      color: var(--text-color);
     }
-    .pagefind-ui__form::before {
-      background-color: var(--pagefind-ui-text) !important;
-      opacity: 0.8 !important;
-      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") !important;
-      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") !important;
-      background-image: none !important;
-      width: 20px !important;
-      height: 20px !important;
-      top: 1.65rem !important;
-      left: 1.25rem !important;
-      z-index: 1;
+
+    .search-help {
+      margin-top: 0.5rem;
+      color: var(--meta-color);
+      font-size: 0.95rem;
     }
-    .pagefind-ui__search-input {
-      border: 3px solid var(--pagefind-ui-border) !important;
-      border-radius: 0 !important;
-      background-color: transparent !important;
-      font-family: var(--font-mono) !important;
-      font-weight: bold !important;
-      font-size: 1.25rem !important;
-      padding: 1.25rem 2rem 1.25rem 3.5rem !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      color: var(--pagefind-ui-text) !important;
+
+    .search-panel {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 8px);
+      z-index: 50;
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
     }
-    .pagefind-ui__search-input::placeholder {
-      color: var(--meta-color) !important;
-      opacity: 0.5 !important;
+
+    .search-suggestions {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 340px;
+      overflow: auto;
     }
-    .pagefind-ui__search-input:focus {
-      outline: none !important;
-      border-color: var(--pagefind-ui-primary) !important;
-      box-shadow: 6px 6px 0 var(--border-color) !important;
-      transform: translate(-2px, -2px) !important;
+
+    .search-suggestion {
+      border-top: 1px solid var(--border-color);
     }
-    .pagefind-ui__search-clear {
-      top: 1.25rem !important;
-      right: 1.25rem !important;
-      background-color: var(--accent-acid) !important;
-      color: #0a0b0d !important;
-      border: 2px solid var(--border-color) !important;
-      border-radius: 0 !important;
-      font-family: var(--font-mono) !important;
-      font-weight: bold !important;
-      font-size: 0.75rem !important;
-      text-transform: uppercase !important;
-      padding: 0.25rem 0.5rem !important;
-      height: auto !important;
-      transition: all 0.2s ease !important;
+
+    .search-suggestion:first-child {
+      border-top: none;
     }
-    [data-theme="dark"] .pagefind-ui__search-clear {
-      background-color: var(--accent-cobalt) !important;
-      color: #ffffff !important;
+
+    .search-suggestion__link {
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: inherit;
     }
-    .pagefind-ui__search-clear:hover {
-      background-color: var(--pagefind-ui-text) !important;
-      color: var(--pagefind-ui-background) !important;
+
+    .search-suggestion[aria-selected="true"] .search-suggestion__link {
+      background: rgba(138, 180, 248, 0.18);
     }
-    .pagefind-ui__result {
-      border-bottom: 2px solid var(--pagefind-ui-border) !important;
-      padding: 1.5rem 0 !important;
+
+    .search-suggestion__title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
     }
-    .pagefind-ui__result-link {
-      font-family: var(--font-display) !important;
-      font-weight: 800 !important;
-      font-size: 1.25rem !important;
-      text-decoration: none !important;
-      border-bottom: 3px solid var(--pagefind-ui-primary) !important;
-      transition: all 0.2s ease !important;
-      color: var(--pagefind-ui-text) !important;
-      display: inline-block !important;
+
+    .search-suggestion__excerpt {
+      color: var(--meta-color);
+      font-size: 0.95rem;
+      line-height: 1.3;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
-    .pagefind-ui__result-link:hover {
-      background-color: var(--accent-acid) !important;
-      color: #0a0b0d !important;
-      border-bottom-color: var(--accent-acid) !important;
+
+    .search-status {
+      padding: 0.6rem 1rem;
+      font-size: 0.95rem;
+      color: var(--meta-color);
+      border-bottom: 1px solid var(--border-color);
     }
-    [data-theme="dark"] .pagefind-ui__result-link:hover {
-      background-color: var(--accent-cobalt) !important;
-      color: #ffffff !important;
-      border-bottom-color: var(--accent-cobalt) !important;
-    }
-    .pagefind-ui__result-excerpt {
-      font-family: var(--font-body) !important;
-      font-size: 1rem !important;
-      line-height: 1.6 !important;
-      margin-top: 0.75rem !important;
-      color: var(--meta-color) !important;
-    }
-    .pagefind-ui__result-excerpt mark {
-      background-color: var(--accent-acid) !important;
-      color: #0a0b0d !important;
-      font-weight: bold;
-      padding: 0 0.25rem;
-    }
-    [data-theme="dark"] .pagefind-ui__result-excerpt mark {
-      background-color: var(--accent-cobalt) !important;
-      color: #ffffff !important;
-    }
-    .pagefind-ui__button {
-      border: 3px solid var(--pagefind-ui-border) !important;
-      border-radius: 0 !important;
-      background-color: var(--pagefind-ui-border) !important;
-      color: var(--pagefind-ui-background) !important;
-      font-family: var(--font-mono) !important;
-      font-weight: bold !important;
-      text-transform: uppercase !important;
-      padding: 0.875rem 1.5rem !important;
-      transition: all 0.25s ease !important;
-    }
-    .pagefind-ui__button:hover {
-      background-color: var(--accent-acid) !important;
-      color: #0a0b0d !important;
-    }
-    [data-theme="dark"] .pagefind-ui__button:hover {
-      background-color: var(--accent-cobalt) !important;
-      color: #ffffff !important;
+
+    @media (prefers-reduced-motion: reduce) {
+      .search-panel { box-shadow: none; }
     }
   </style>
 </head>
@@ -181,25 +145,39 @@ eleventyExcludeFromCollections: true
       </div>
     </nav>
     
-    <div id="search"></div>
+    <header class="search-header">
+      <h1>Cari Artikel</h1>
+      <p>Temukan catatan dan artikel yang kamu cari</p>
+    </header>
+    
+    <div class="search-box">
+      <label for="search-input" class="visually-hidden">Cari artikel</label>
+      <input
+        id="search-input"
+        class="search-input"
+        type="search"
+        inputmode="search"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Ketik untuk mencari…"
+        data-search-input
+        role="combobox"
+        aria-autocomplete="list"
+        aria-expanded="false"
+        aria-controls="search-panel"
+      />
+
+      <div id="search-panel" class="search-panel" data-search-panel hidden>
+        <div class="search-status" data-search-status aria-live="polite"></div>
+        <ul class="search-suggestions" data-search-list role="listbox"></ul>
+      </div>
+
+      <p class="search-help">Tips: ketik minimal 2 huruf, lalu gunakan ↑ ↓ dan Enter.</p>
+    </div>
   </main>
-  
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script>
-    new PagefindUI({
-      element: "#search",
-      showSubResults: true,
-      showImages: false,
-      translations: {
-        placeholder: "Ketik untuk mencari...",
-        zero_results: "Tidak ditemukan hasil untuk [SEARCH_TERM]",
-        many_results: "[COUNT] hasil ditemukan",
-        one_result: "1 hasil ditemukan",
-        searching: "Mencari..."
-      }
-    });
-  </script>
-  
+
+  <script type="module" src="/assets/search-autocomplete.js"></script>
+
   <script data-goatcounter="https://rizafahmi.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   {% include 'keyboard-shortcuts.njk' %}
   {% include 'theme-toggle.njk' %}
