@@ -22,6 +22,7 @@ Make sure you have these installed:
 ### Installation
 
 1. Clone the repository:
+
    ```sh
    git clone https://github.com/your-username/rizafahmi.com.git
    cd rizafahmi.com
@@ -53,6 +54,28 @@ To build the site for development or production:
   npm run build:prod
   ```
 
+### Search (Pagefind)
+
+This site uses [Pagefind](https://pagefind.app/) for full-text search.
+
+- The search page lives at `/search/` (source: `src/search.njk`).
+- Autocomplete/suggestions are powered by Pagefind’s JS API and a small custom script (`assets/search-autocomplete.js`).
+- The Pagefind index is generated **after** Eleventy builds the HTML, during the production build.
+
+#### Testing search locally
+
+1. Build the site + generate the Pagefind index:
+   ```sh
+   npm run build:prod
+   ```
+2. Serve the generated `dist/` folder (any static server works):
+   ```sh
+   npx serve dist
+   # or: npx http-server dist -p 3000
+   ```
+3. Open:
+   - http://localhost:3000/search/
+
 ### GoatCounter (Article Popularity)
 
 This site can optionally show article popularity (view counts) by querying the GoatCounter API **at build time** (no client-side API calls).
@@ -70,8 +93,24 @@ export GOATCOUNTER_CACHE_TTL_HOURS="12"                                # default
 ```
 
 Notes:
+
 - Data is cached in `.cache/goatcounter/views.json` to keep builds fast and avoid rate limits.
 - If the env vars are not set, the site will build normally and simply hide the view counts.
+
+### Image Optimization (WebP/AVIF)
+
+This repo keeps original images (e.g. PNG) and can generate modern formats alongside them.
+
+1. Generate optimized variants (writes `*.webp` and `*.avif` next to each `*.png`):
+   ```sh
+   npm run images:optimize
+   ```
+
+   Notes:
+   - The script skips tiny files/icons by default.
+   - It only regenerates outputs when the source PNG is newer (use `--force` to regenerate everything).
+
+2. During build, HTML output will automatically prefer AVIF/WebP when available by wrapping PNG `<img>` tags with a `<picture>` element (PNG remains as fallback).
 
 ### Debugging
 
@@ -125,9 +164,10 @@ Canonical URLs are set in `src/_includes/head.njk` and use `https://rizafahmi.co
 
 ## Contribution Guidelines
 
-We welcome contributions! Whether it's fixing a bug, adding a feature, or improving documentation, your help is appreciated.  
+We welcome contributions! Whether it's fixing a bug, adding a feature, or improving documentation, your help is appreciated.
 
 ### Steps to Contribute:
+
 1. Fork this repository.
 2. Create a new branch:
    ```sh

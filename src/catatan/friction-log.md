@@ -7,7 +7,6 @@ layout: tulisan
 tags:
   - catatan
   - produktivitas
-
 ---
 
 Friction log adalah sebuah cara untuk mengevaluasi sebuah produk, atau

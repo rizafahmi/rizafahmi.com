@@ -10,9 +10,17 @@
     "start": "ELEVENTY_ENV=dev npx @11ty/eleventy --serve",
     "prebuild": "npm run clean",
     "build": "ELEVENTY_ENV=prod npx @11ty/eleventy && npx pagefind --site dist",
+    "build:prod": "npm run build",
     "debug": "DEBUG=* npx @11ty/eleventy",
+    "images:optimize": "node scripts/optimize-images.mjs",
     "test": "node --test test/*.test.js",
-    "new:catatan": "node scripts/new-catatan.mjs"
+    "new:catatan": "node scripts/new-catatan.mjs",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint . --write",
+    "format": "biome format .",
+    "format:fix": "biome format . --write",
+    "check": "biome check . && npm test",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -28,7 +36,9 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "@biomejs/biome": "^2.4.16",
     "@shikijs/transformers": "^3.22.0",
+    "husky": "^9.1.7",
     "pagefind": "^1.4.0",
     "rimraf": "5.0.5",
     "sharp": "^0.34.5",

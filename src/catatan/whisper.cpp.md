@@ -12,14 +12,17 @@ tags:
 
 eleventyExcludeFromCollections: true
 ---
-* git clone https://github.com/ggerganov/whisper.cpp.git
-* download the model
-	* sh ./models/download-ggml-model.sh medium
-* fatal error: 'Accelerate/Accelerate.h' file not found
+
+- git clone https://github.com/ggerganov/whisper.cpp.git
+- download the model
+  - sh ./models/download-ggml-model.sh medium
+- fatal error: 'Accelerate/Accelerate.h' file not found
+
 ```
 #   include <Accelerate/Accelerate.h>
             ^~~~~~~~~~~~~~~~~~~~~~~~~
 1 error generated.
 make: *** [ggml/src/ggml-blas.o] Error 1
 ```
-* Ternyata ada nix package nya, ya install nix package nya saja lah kalau begitu ^_^
+
+- Ternyata ada nix package nya, ya install nix package nya saja lah kalau begitu ^\_^

@@ -8,23 +8,23 @@
  *   node scripts/new-catatan.mjs "Judul" slug # Uses custom slug
  */
 
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import fs from "node:fs/promises";
+import path from "node:path";
 
-function formatDate (d) {
+function formatDate(d) {
   return d.toISOString().slice(0, 10);
 }
 
-function slugify (str) {
+function slugify(str) {
   return str
     .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
-function getFrontmatter (title, date) {
+function getFrontmatter(title, date) {
   return `---
 title: ${title}
 date: ${date}
@@ -40,7 +40,7 @@ eleventyExcludeFromCollections: true
 `;
 }
 
-async function main () {
+async function main() {
   const today = formatDate(new Date());
   const titleArg = process.argv[2];
   const slugArg = process.argv[3];
@@ -52,11 +52,11 @@ async function main () {
     title = titleArg;
     slug = slugArg || slugify(titleArg) || `catatan-${today}`;
   } else {
-    title = 'Catatan';
+    title = "Catatan";
     slug = `catatan-${today}`;
   }
 
-  const dir = path.join(process.cwd(), 'src', 'catatan');
+  const dir = path.join(process.cwd(), "src", "catatan");
   const filePath = path.join(dir, `${slug}.md`);
 
   try {
@@ -68,7 +68,7 @@ async function main () {
   }
 
   const content = getFrontmatter(title, today);
-  await fs.writeFile(filePath, content, 'utf8');
+  await fs.writeFile(filePath, content, "utf8");
   console.log(`Created ${filePath}`);
 }
 

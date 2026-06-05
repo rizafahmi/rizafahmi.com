@@ -9,10 +9,10 @@ eleventyExcludeFromCollections: true
 <head>
   <title>{{ title }}</title>
   <meta name="description" content="{{ description }}">
-  <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
-  <link rel="preload" as="style" href="/assets/home.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/assets/home.css" type="text/css" media="screen" />
+  <link rel="preload" as="style" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+  <link rel="preload" as="style" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
   {% include 'head.njk' %}
 
   <script type="application/ld+json">
@@ -38,120 +38,129 @@ eleventyExcludeFromCollections: true
 
 <body>
   <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
-  <div style="position: absolute; top: 1rem; right: 1rem; z-index: 100;">
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">🌙</button>
-  </div>
+  <div class="home-container">
+    <div class="theme-toggle-container">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+    </div>
 
-  <header class="hero">
-    <div class="hero-content">
-      <img src="/assets/images/riza-transparent.png" alt="Foto Riza Fahmi" class="hero-avatar" width="120" height="120" fetchpriority="high" />
-      <div class="hero-text">
-        <h1>👋 Saya Riza!</h1>
+    <header class="hero">
+      <div class="hero-content">
+        <img src="/assets/images/riza-transparent.png" alt="Foto Riza Fahmi" class="hero-avatar" width="110" height="110" fetchpriority="high" />
+        <div class="hero-text">
+          <h1>👋 Saya Riza!</h1>
         <p class="hero-tagline">Co-Founder <a href="https://hacktiv8.com" target="_blank" rel="noopener noreferrer">HACKTIV8</a> · Content Creator · AI & Elixir Enthusiast</p>
-        
-        <div class="typewriter-container" style="font-size: 0.9rem; margin-top: 0.5rem; margin-bottom: 2rem; color: var(--meta-color); font-family: 'JetBrainsMono', monospace;">
-          🚀 <span id="typewriter"></span><span class="cursor">|</span>
-        </div>
 
         <nav class="hero-nav">
-          <a href="#catatan">📰 Catatan</a>
-          <a href="/topik/">🧭 Mulai</a>
-          <a href="/tags">🏷️ Topik</a>
-          <a href="#karya">🎨 Karya</a>
-          <a href="#kontak">💬 Kontak</a>
-          <a href="/search">🔍 Cari</a>
+          <a href="#catatan">Catatan</a>
+          <a href="/topik/">Mulai</a>
+          <a href="/tags">Topik</a>
+          <a href="#karya">Karya</a>
+          <a href="#kontak">Kontak</a>
+          <a href="/search">Cari</a>
         </nav>
       </div>
     </div>
   </header>
 
   <main id="main-content">
-    <section class="articles-section" id="catatan">
-      <h2>📰 10 Catatan Terbaru · <a href="/feed.xml">RSS</a> / <a href="/feed/full.xml">Full</a></h2>
-      <div class="articles">
-        {%- for t in collections.catatan | reverse %}
-        {%- if loop.index0 < 10 %}
-        <div class="article">
-          <h6><a href="{{t.url}}">&gt;&nbsp;&nbsp; {{ t.data.title }}</a></h6>
-        </div>
-        {%- endif %}
-        {%- endfor %}
-        <div class="article">
-          <a href="/articles"><h6>Lihat semua...</h6></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="articles-section">
-      <h2>🔥 10 Catatan Favorit</h2>
-      <div class="articles">
-        {%- set popular = collections.catatan | popularByViews(goatcounterViews, 10) -%}
-
-        {%- if popular.length %}
-          {%- for t in popular %}
-          <div class="article">
-            <h6><a href="{{t.url}}">&gt;&nbsp;&nbsp; {{ t.data.title }}</a></h6>
-            {%- if goatcounterViews and goatcounterViews[t.url] %}
-            <span class="view-count">🔥 {{ goatcounterViews[t.url] | localeString }} dibaca</span>
-            {%- endif %}
-          </div>
+    <div class="catatan-grid">
+      <!-- 3 Catatan Terbaru -->
+      <section class="catatan-section" id="catatan">
+        <h2>CATATAN TERBARU</h2>
+        <ul class="catatan-list">
+          {%- for t in collections.catatan | reverse %}
+          {%- if loop.index0 < 3 %}
+          <li class="catatan-item">
+            <span class="catatan-item-title">
+              <a href="{{ t.url }}">{{ t.data.title }}</a>
+            </span>
+            <div class="catatan-meta">
+              <span>📅 {{ t.date | dateToISO }}</span>
+              <span>⏱️ {{ t.content | readingTime }}</span>
+            </div>
+          </li>
+          {%- endif %}
           {%- endfor %}
-        {%- else %}
-          <div class="article">
-            <h6><a href="/catatan/bahasa-fungsional-elixir/">&gt;&nbsp;&nbsp; Berkenalan dengan Bahasa Pemrograman Elixir</a></h6>
-          </div>
-          <div class="article">
-            <h6><a href="/catatan/asisten-ngoding">&gt;&nbsp;&nbsp; Produktif dengan Asisten Ngoding</a></h6>
-          </div>
-          <div class="article">
-            <h6><a href="/catatan/paradigma-pemrograman">&gt;&nbsp;&nbsp; Catatan tentang Paradigma Pemrograman</a></h6>
-          </div>
-          <div class="article">
-            <h6><a href="/catatan/rekursi-atau-recursion">&gt;&nbsp;&nbsp; Rekursi: Fungsi Yang Memanggil Dirinya Sendiri</a></h6>
-          </div>
-          <div class="article">
-            <h6><a href="/catatan/notasi-o-besar-big-o-notation">&gt;&nbsp;&nbsp; Notasi O Besar atau Big-O Notation</a></h6>
-          </div>
-          <div class="article">
-            <h6><a href="/catatan/elixir-phoenix-rest-api">&gt;&nbsp;&nbsp; Membangun REST API dengan Elixir dan Phoenix</a></h6>
-          </div>
-          <div class="article">
-            <h6><a href="/catatan/5-kebiasaan-coding">&gt;&nbsp;&nbsp; 5 Kebiasaan Coding yang Menjadikan Kamu Super Developer</a></h6>
-          </div>
-          <div class="article">
-            <h6><a href="/catatan/cara-belajar-pemrograman">&gt;&nbsp;&nbsp; Cara Belajar Pemrograman yang Benar</a></h6>
-          </div>
-          <div class="article">
-            <h6><a href="/catatan/membangun-permainan-balap-kode-dgn-ai">&gt;&nbsp;&nbsp; Membangun Permainan Balap Kode dengan AI</a></h6>
-          </div>
-          <div class="article">
-            <h6><a href="/catatan/panduan-menulis">&gt;&nbsp;&nbsp; Panduan Menulis Artikel Pemrograman</a></h6>
-          </div>
-        {%- endif %}
-
-        <div class="article">
-          <a href="/articles"><h6>Lihat semua...</h6></a>
+        </ul>
+        <div class="catatan-more">
+          <a href="/articles">Semua catatan →</a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="karya">
-      <h2>Karya</h2>
+      <!-- 3 Catatan Favorit -->
+      <section class="catatan-section">
+        <h2>CATATAN POPULER</h2>
+        <ul class="catatan-list">
+          {%- set popular = collections.catatan | popularByViews(goatcounterViews, 3) -%}
+          {%- if popular.length %}
+            {%- for t in popular %}
+            <li class="catatan-item">
+              <span class="catatan-item-title">
+                <a href="{{ t.url }}">{{ t.data.title }}</a>
+              </span>
+              <div class="catatan-meta">
+                {%- if goatcounterViews and goatcounterViews[t.url] %}
+                <span>🔥 {{ goatcounterViews[t.url] | localeString }} dibaca</span>
+                {%- endif %}
+                <span>⏱️ {{ t.content | readingTime }}</span>
+              </div>
+            </li>
+            {%- endfor %}
+          {%- else %}
+            <!-- Fallback Static Favorites (Top 3) -->
+            <li class="catatan-item">
+              <span class="catatan-item-title">
+                <a href="/catatan/bahasa-fungsional-elixir/">Berkenalan dengan Bahasa Pemrograman Elixir</a>
+              </span>
+              <div class="catatan-meta">
+                <span>⏱️ 5 menit baca</span>
+              </div>
+            </li>
+            <li class="catatan-item">
+              <span class="catatan-item-title">
+                <a href="/catatan/asisten-ngoding">Produktif dengan Asisten Ngoding</a>
+              </span>
+              <div class="catatan-meta">
+                <span>⏱️ 4 menit baca</span>
+              </div>
+            </li>
+            <li class="catatan-item">
+              <span class="catatan-item-title">
+                <a href="/catatan/paradigma-pemrograman">Catatan tentang Paradigma Pemrograman</a>
+              </span>
+              <div class="catatan-meta">
+                <span>⏱️ 6 menit baca</span>
+              </div>
+            </li>
+          {%- endif %}
+        </ul>
+        <div class="catatan-more">
+          <a href="/articles">Semua catatan →</a>
+        </div>
+      </section>
+    </div>
 
-      <h3>Karya Utama</h3>
-      <div class="card-grid">
-        <div class="card">
-          <h3><a href="https://hacktiv8.com" target="_blank" rel="noopener noreferrer">HACKTIV8</a></h3>
-          <p>Coding bootcamp untuk melatih talenta developer di Indonesia (dirintis sejak 2016).</p>
+    <!-- Karya Section -->
+    <section class="karya-section" id="karya">
+      <h2>KARYA UTAMA</h2>
+
+      <div class="karya-featured">
+        <div class="featured-project-card">
+          <div>
+            <h3><a href="https://hacktiv8.com" target="_blank" rel="noopener noreferrer">HACKTIV8</a></h3>
+            <p>Coding bootcamp untuk melatih talenta developer di Indonesia (dirintis sejak 2016).</p>
+          </div>
           <div class="badges" aria-label="Kategori">
             <span class="badge">Edukasi</span>
             <span class="badge">Bootcamp</span>
           </div>
         </div>
 
-        <div class="card">
-          <h3><a href="https://youtube.com/playlist?list=PLTY2nW4jwtG8Sx2Bw6QShC271PzX31CtT&feature=shared" target="_blank" rel="noopener noreferrer">Ngobrolin Web</a></h3>
-          <p>Podcast mingguan membahas segala hal tentang web: teknologi, karier, dan komunitas.</p>
+        <div class="featured-project-card">
+          <div>
+            <h3><a href="https://youtube.com/playlist?list=PLTY2nW4jwtG8Sx2Bw6QShC271PzX31CtT&feature=shared" target="_blank" rel="noopener noreferrer">Ngobrolin Web</a></h3>
+            <p>Podcast mingguan membahas segala hal tentang web: teknologi, karier, dan komunitas.</p>
+          </div>
           <div class="badges" aria-label="Kategori">
             <span class="badge">Podcast</span>
             <span class="badge">Web</span>
@@ -159,239 +168,58 @@ eleventyExcludeFromCollections: true
         </div>
       </div>
 
-      <h3>Open Source (pilihan)</h3>
-      <div class="card-grid">
-        <div class="card">
-          <h3><a href="https://github.com/rizafahmi/slopcase" target="_blank" rel="noopener noreferrer">slopcase</a></h3>
-          <p>Showcase untuk proyek AI-generated: submit & voting, “slop atau bukan?”</p>
-          <div class="badges" aria-label="Tech stack">
-            <span class="badge">Elixir</span>
-            <span class="badge">Phoenix LiveView</span>
-            <span class="badge">SQLite</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3><a href="https://github.com/rizafahmi/mbb" target="_blank" rel="noopener noreferrer">mbb</a></h3>
-          <p>CLI assistant sederhana untuk prompt tools & agentic loop di terminal.</p>
-          <div class="badges" aria-label="Tech stack">
-            <span class="badge">Elixir</span>
-            <span class="badge">CLI</span>
-            <span class="badge">Anthropic</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3><a href="https://github.com/rizafahmi/gemini-for-web-dev" target="_blank" rel="noopener noreferrer">gemini-for-web-dev</a></h3>
-          <p>Contoh app Gemini API untuk kebutuhan web developer (#geminisprint).</p>
-          <div class="badges" aria-label="Tech stack">
-            <span class="badge">Node.js</span>
-            <span class="badge">Gemini API</span>
-            <span class="badge">Turso</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3><a href="https://github.com/rizafahmi/workspresso" target="_blank" rel="noopener noreferrer">workspresso</a></h3>
-          <p>Cari coffee shop yang work-friendly, dengan data Wi‑Fi, colokan, noise, dll.</p>
-          <div class="badges" aria-label="Tech stack">
-            <span class="badge">Astro</span>
-            <span class="badge">Node.js</span>
-            <span class="badge">SQLite</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3><a href="https://github.com/rizafahmi/ai-workshop-material" target="_blank" rel="noopener noreferrer">ai-workshop-material</a></h3>
-          <p>Materi workshop AI (DevFest GDG Jogja 2025): skenario AI di luar chatbot.</p>
-          <div class="badges" aria-label="Tech stack">
-            <span class="badge">Workshop</span>
-            <span class="badge">JavaScript</span>
-            <span class="badge">LLM</span>
-          </div>
-        </div>
-      </div>
-        <div class="article">
-          <h6>
-            <a href="https://youtube.com/playlist?list=PLTY2nW4jwtG8Sx2Bw6QShC271PzX31CtT&feature=shared" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; Ngobrolin Web — Podcast mingguan membahas segala hal tentang WEB.
-            </a>
-          </h6>
-        </div>
-      </div>
-
-      <p style="margin: 0.75rem 0.5rem; font-size: 1rem;">
-        <a href="/showcase">Lihat semua karya →</a>
-      </p>
-    </section>
-
-    <section class="featured-section">
-      <h2>🎙️ Highlight & Interview</h2>
-      <div class="articles">
-        <div class="article">
-          <h6>
-            <a href="https://medium.com/startup-frontier/how-i-met-10-entrepreneurs-in-asia-and-what-can-we-learn-from-them-f0193b632176" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; 10 Entrepreneurs in Asia — Startup Frontier
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://www.youtube.com/watch?v=wCo_EThV858" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; Progressive Web Apps — Tech in Asia
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://id.techinasia.com/hacktiv8-pendanaan-pra-seri-a" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; HACKTIV8 Raises Pre-Series A — Tech in Asia
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://blog.google/intl/id-id/company-news/outreach-initiatives/2021_01_membangun-talenta-developer-indonesia/" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; Membangun Talenta Developer Indonesia — Google
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://www.youtube.com/watch?v=ohL5VIHs36s" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; Awal Mula Ngoding, Perjalanan Karir, sampai ngobrolin SVELTE — WPU
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://www.youtube.com/watch?v=2NOZJn1BQtA" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; Riza Fahmi, Curriculum Director HACKTIV8
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://www.youtube.com/watch?v=tDZ3DPH4DEc" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; Riza Fahmi: Co-founder, Komunitas, dan Talenta Digital | Cakap Startup Ep. 6
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://www.youtube.com/watch?v=k1KrbaIzg30" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; Krisis Talenta Digital di Indonesia bersama Riza Fahmi | Co-Founder Hacktiv8 & DeepTech
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://www.youtube.com/watch?v=o6P9RMQ2cOo" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; WebAssembly, Paradigma baru membangun aplikasi web
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://www.youtube.com/watch?v=7j04qtSvhE4" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; All About Elixir: Riza Fahmi Introduces Phoenix Web Framework - Lambda Indonesia
-            </a>
-          </h6>
-        </div>
-        <div class="article">
-          <h6>
-            <a href="https://www.youtube.com/watch?v=xrccfxgLWTo" target="_blank" rel="noopener noreferrer">
-              &gt;&nbsp;&nbsp; Co-Founder Hacktiv8 Ini Diundang ke Silicon Valley hingga Jadi Google Developer Expert
-            </a>
-          </h6>
-        </div>
+      <div class="catatan-more">
+        <a href="/showcase">Semua karya & open source →</a>
       </div>
     </section>
 
-  <section id="kontak">
-    <h2>Kontak</h2>
-    <div class="articles">
-      <div class="article">
-        <h6><a href="https://youtube.com/rizafahmi" target="_blank" rel="noopener noreferrer">
-          ▶️ &nbsp; YouTube</a></h6>
-      </div>
-      <div class="article">
-        <h6><a href="https://x.com/rizafahmi22" target="_blank" rel="noopener noreferrer">
-          🐤 &nbsp; Twitter/X</a></h6>
-      </div>
-      <div class="article">
-        <h6><a href="https://github.com/rizafahmi" target="_blank" rel="noopener noreferrer">
-          🐙 &nbsp; GitHub</a></h6>
-      </div>
+    <!-- Highlight & Interview -->
+    <section class="highlight-section">
+      <h2>SOROTAN</h2>
+      <ul class="highlight-list">
+        <li class="highlight-item">
+          <a href="https://blog.google/intl/id-id/company-news/outreach-initiatives/2021_01_membangun-talenta-developer-indonesia/" target="_blank" rel="noopener noreferrer">
+            Membangun Talenta Developer Indonesia · Google Blog
+          </a>
+        </li>
+        <li class="highlight-item">
+          <a href="https://www.youtube.com/watch?v=ohL5VIHs36s" target="_blank" rel="noopener noreferrer">
+            Awal Mula Ngoding, Perjalanan Karir, sampai ngobrolin SVELTE · WPU Youtube
+          </a>
+        </li>
+        <li class="highlight-item">
+          <a href="https://id.techinasia.com/hacktiv8-pendanaan-pra-seri-a" target="_blank" rel="noopener noreferrer">
+            HACKTIV8 Raises Pre-Series A · Tech in Asia
+          </a>
+        </li>
+      </ul>
+    </section>
 
-      <div class="article">
-        <h6><a href="https://linkedin.com/in/rizafahmi" target="_blank" rel="noopener noreferrer">
-          🔗 &nbsp; LinkedIn</a></h6>
+    <!-- Kontak Section -->
+    <section class="kontak-section" id="kontak">
+      <h2>HUBUNGI SAYA</h2>
+      <div class="kontak-links">
+        <a href="https://youtube.com/rizafahmi" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://x.com/rizafahmi22" target="_blank" rel="noopener noreferrer">Twitter/X</a>
+        <a href="https://github.com/rizafahmi" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/rizafahmi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:rizafahmi@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+        <a href="/uses/">Uses</a>
+        <a href="/now/">Now</a>
       </div>
-      <div class="article">
-        <h6><a href="https://instagram.com/rizafahmi" target="_blank" rel="noopener noreferrer">
-          🏞️ &nbsp; Instagram</a></h6>
-      </div>
-      <div class="article">
-        <h6><a href="mailto:rizafahmi@gmail.com" target="_blank" rel="noopener noreferrer">
-          💌 &nbsp; Email</a></h6>
-      </div>
-      <div class="article">
-        <h6><a href="/uses/">
-          🧰 &nbsp; Uses</a></h6>
-      </div>
-      <div class="article">
-        <h6><a href="/now/">
-          ⏰ &nbsp; Now</a></h6>
-      </div>
-    </div>
-  </section>
+    </section>
   </main>
 
   <script data-goatcounter="https://rizafahmi.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
   {% include 'theme-toggle.njk' %}
 
-  <script>
-    (function() {
-      const text = "Baru rilis artikel tentang cara kerja coding agent. Bisa diintip di rizafahmi.com/catatan/agentic-coding";
-      const typewriterElement = document.getElementById('typewriter');
-
-      function linkify(str) {
-        return str.replace(
-          /rizafahmi\.com\/catatan\/agentic-coding/g,
-          '<a href="https://rizafahmi.com/catatan/agentic-coding" style="border-bottom: 1px dashed;">rizafahmi.com/catatan/agentic-coding</a>'
-        );
-      }
-
-      if (sessionStorage.getItem('typewriterShown')) {
-        typewriterElement.innerHTML = linkify(text);
-        return;
-      }
-
-      let i = 0;
-
-      function typeWriter() {
-        if (i < text.length) {
-          typewriterElement.innerHTML += text.charAt(i);
-          i++;
-          setTimeout(typeWriter, 50);
-        } else {
-          typewriterElement.innerHTML = linkify(typewriterElement.innerHTML);
-          sessionStorage.setItem('typewriterShown', 'true');
-        }
-      }
-
-      setTimeout(typeWriter, 1000);
-    })();
-  </script>
-
   <footer>
     <hr />
     <p>
-      Konten ditulis oleh manusia, dengan <a href="/ai">bantuan AI</a>.
+      Konten ditulis oleh manusia, dengan <a href="/ai" style="text-decoration: underline;">bantuan AI</a>.
     </p>
   </footer>
-</body>
+  {% include 'keyboard-shortcuts.njk' %}
 
 </html>

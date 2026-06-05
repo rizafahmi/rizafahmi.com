@@ -1,11 +1,15 @@
 ---
-title: Memberi LLM Akses ke Dunia Nyata - Tool Calling di Elixir
+title: Memberi LLM Akses - Tool Calling
 date: 2026-02-19
-modified: 2026-03-05
+modified: 2026-04-13
 layout: tulisan
 tags:
   - catatan
 eleventyExcludeFromCollections: false
+series: "Agentic Coding"
+series_index: 3
+---
+
 ---
 
 Aplikasi `mbb` yang kita kembangkan sejauh ini sudah mampu menjawab pertanyaan seputar sejarah, menjelaskan konsep, dan berdebat soal tab vs whitespace.
@@ -18,7 +22,6 @@ Aplikasi `mbb` yang kita kembangkan sejauh ini sudah mampu menjawab pertanyaan s
 Sekarang adalah hari **Rabu, 22 Mei 2024**.
 Jam menunjukkan pukul **10:19** WIB.
 ```
-
 
 ```shell
 ./mbb "baca file `mix.exs` dan beritahu dependencies apa saja yang digunakan proyek ini?"
@@ -34,7 +37,7 @@ Bukan karena LLM bodoh. Karena LLM buta: tidak punya akses ke dunia di luar teks
 
 ## _Tool Calling_
 
-Sebelum terjun langsung menulis kode, penting untuk memahami bagaimana *tool calling* bekerja secara keseluruhan. Alurnya selalu sama untuk semua penyedia jasa LLM. Baik itu Gemini, Claude, GPT, da lain sebagainya:
+Sebelum terjun langsung menulis kode, penting untuk memahami bagaimana _tool calling_ bekerja secara keseluruhan. Alurnya selalu sama untuk semua penyedia jasa LLM. Baik itu Gemini, Claude, GPT, da lain sebagainya:
 
 1. Kita definisikan tool dan kirim daftarnya ke LLM bersama pertanyaan pengguna.
 2. LLM memutuskan apakah perlu memanggil tool atau bisa menjawab langsung.
@@ -80,7 +83,7 @@ defmodule Mbb.Tools do
       }
     }
   end
-  
+
   def all_tools do
     [
       get_current_datetime()
@@ -90,6 +93,7 @@ end
 ```
 
 LLM tool didefinisikan dalam tiga bagian:
+
 - `name`: Nama unik untuk perkakas ini, yang akan digunakan untuk memanggil perkakas ini.
 - `description`: **Bagian terpenting**. LLM akan membaca deskripsi ini untuk memutuskan kapan harus menggunakan perkakas ini. Deskripsi yang bagus artinya LLM mengerti kapan harus menggunakan perkakas ini.
 - `input_schema`: JSON schema yang mendefinisikan parameter yang dibutuhkan ketika memanggil perkakas ini. Dalam kasus ini, tidak ada parameter yang dibutuhkan, jadi kita bisa menggunakan objek kosong.
@@ -126,7 +130,7 @@ end
 defmodule Mbb do
    def main([question]) do
      print_thinking()
- 
+
 -    case call(question) do
 +    tools = Mbb.Tools.all_tools()
 +
@@ -235,7 +239,7 @@ Kemudian fungsi yang diinginkan beserta argumen yang dibutuhkan dikirimkan denga
  defmodule Mbb do
    def main([question]) do
      print_thinking()
- 
+
 -    case call(question) do
 +    tools = Mbb.Tools.all_tools()
 +
@@ -251,7 +255,7 @@ Kemudian fungsi yang diinginkan beserta argumen yang dibutuhkan dikirimkan denga
 +
        {:ok, text} ->
          print_response(text)
- 
+
        {:error, reason} ->
          print_error(reason)
      end

@@ -1,11 +1,11 @@
-export default function(eleventyConfig, options) {
+export default function (eleventyConfig, _options) {
   eleventyConfig.amendLibrary("md", () => {});
 
   eleventyConfig.on("eleventy.before", async () => {
     const shiki = await import("shiki");
 
     const highlighter = await shiki.createHighlighter({
-      themes: ["light-plus", "dark-plus"],
+      themes: ["monokai"],
       langs: [
         "shell",
         "html",
@@ -38,10 +38,8 @@ export default function(eleventyConfig, options) {
               line(node) {
                 const firstChild = node.children[0];
                 const textNode =
-                  firstChild?.type === "text"
-                    ? firstChild
-                    : firstChild?.children?.[0];
-                if (!textNode || textNode.type !== "text") return;
+                  firstChild?.type === "text" ? firstChild : firstChild?.children?.[0];
+                if (textNode?.type !== "text") return;
 
                 const match = textNode.value.match(/^([+-])/);
                 if (!match) return;
@@ -62,57 +60,59 @@ export default function(eleventyConfig, options) {
 
           if (shellLangs.includes(lang)) {
             transformers.push(
-                  (() => {
-                    let continuation = false;
-                    let inQuote = null;
-                    return {
-                      line(node, line) {
-                        const isEmpty = node.children.every(
-                          (child) =>
-                            child.type === "text" && child.value.trim() === "" ||
-                            child.type === "element" && child.children.every(
-                              (c) => c.type === "text" && c.value.trim() === ""
-                            )
-                        );
-                        if (isEmpty) return;
+              (() => {
+                let continuation = false;
+                let inQuote = null;
+                return {
+                  line(node, _line) {
+                    const isEmpty = node.children.every(
+                      (child) =>
+                        (child.type === "text" && child.value.trim() === "") ||
+                        (child.type === "element" &&
+                          child.children.every((c) => c.type === "text" && c.value.trim() === "")),
+                    );
+                    if (isEmpty) return;
 
-                        const textContent = node.children
-                          .flatMap((child) =>
-                            child.type === "text"
-                              ? child.value
-                              : (child.children || []).map((c) => c.value || "").join("")
-                          )
-                          .join("");
+                    const textContent = node.children
+                      .flatMap((child) =>
+                        child.type === "text"
+                          ? child.value
+                          : (child.children || []).map((c) => c.value || "").join(""),
+                      )
+                      .join("");
 
-                        if (!continuation && !inQuote) {
-                          const prefix = {
-                            type: "element",
-                            tagName: "span",
-                            properties: { class: "line-prefix" },
-                            children: [{ type: "text", value: "$ " }],
-                          };
-                          node.children.unshift(prefix);
-                        }
+                    if (!continuation && !inQuote) {
+                      const prefix = {
+                        type: "element",
+                        tagName: "span",
+                        properties: { class: "line-prefix" },
+                        children: [{ type: "text", value: "$ " }],
+                      };
+                      node.children.unshift(prefix);
+                    }
 
-                        continuation = textContent.trimEnd().endsWith("\\");
+                    continuation = textContent.trimEnd().endsWith("\\");
 
-                        const unescaped = textContent.replace(/\\'/g, "").replace(/\\"/g, "");
-                        for (const ch of unescaped) {
-                          if (inQuote === ch) {
-                            inQuote = null;
-                          } else if (!inQuote && (ch === "'" || ch === '"')) {
-                            inQuote = ch;
-                          }
-                        }
-                      },
-                    };
-                  })(),
+                    const unescaped = textContent.replace(/\\'/g, "").replace(/\\"/g, "");
+                    for (const ch of unescaped) {
+                      if (inQuote === ch) {
+                        inQuote = null;
+                      } else if (!inQuote && (ch === "'" || ch === '"')) {
+                        inQuote = ch;
+                      }
+                    }
+                  },
+                };
+              })(),
             );
           }
 
           const html = highlighter.codeToHtml(code, {
             lang: lang,
-            theme: "dark-plus",
+            themes: {
+              light: "monokai",
+              dark: "monokai",
+            },
             meta: { __raw: meta },
             transformers,
           });

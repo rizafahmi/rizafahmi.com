@@ -39,6 +39,7 @@ Berkembanglah konsep _concurrent programming_ atau _parallel programming_ dalam 
 Kode berikut merupakan gambaran perbedaan antara kode yang belum menggunakan _concurrency_ dan kode yang memanfaatkkan _concurrency_ sehingga semua inti prosesor digunakan saat eksekusi kode.
 
 #### Kode Tanpa _Concurrency_
+
 Mari kita coba kode tanpa memanfaatkan _concurrency_ lalu dibandingkan dengan _concurrency_. Kedua kode dibawah dikembangkan menggunakan bahasa Elixir.
 
 ```elixir

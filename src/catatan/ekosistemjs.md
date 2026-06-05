@@ -12,7 +12,6 @@ tags:
   - konferensi
   - frontend
   - framework
-
 ---
 
 This article also available in [ Engilish ](/ekosistemjs/en/).
@@ -279,10 +278,7 @@ Kemudian tambahkan CDN jQuery dan dapat segera digunakan.
   <head>
     <meta charset="UTF-8" />
     <title>JSDay 2019!!</title>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-    ></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   </head>
   <body>
     <div id="app"></div>
@@ -320,14 +316,8 @@ Gunakan CDN untuk pustaka react dan react-dom didalam file `index.html`. Kodenya
   <head>
     <meta charset="UTF-8" />
     <title>JSDay 2019</title>
-    <script
-      src="https://unpkg.com/react@16/umd/react.development.js"
-      crossorigin
-    ></script>
-    <script
-      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-      crossorigin
-    ></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
   </head>
   <body>
     <div id="root"></div>

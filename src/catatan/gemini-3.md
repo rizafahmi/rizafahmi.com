@@ -19,10 +19,10 @@ Gemini 3 memiliki karakteristik serupa dengan pendahulunya, Gemini 2.5. Pengetah
 
 ## Mengakses Gemini 3
 
-Untuk mendapatkan API Key Gemini 3 bisa didapatkan dengan dua cara: dari AIStudio dan gcp vertex ai. Vertex cocok digunakan untuk *production* dan *enterprise*, yang tentunya berbayar (kecuali punya kode voucher). Sedangkan untuk eksperimen, bisa menggunakan AIStudio yang dapat diakses secara gratis, dengan batasan tertentu pastinya.
+Untuk mendapatkan API Key Gemini 3 bisa didapatkan dengan dua cara: dari AIStudio dan gcp vertex ai. Vertex cocok digunakan untuk _production_ dan _enterprise_, yang tentunya berbayar (kecuali punya kode voucher). Sedangkan untuk eksperimen, bisa menggunakan AIStudio yang dapat diakses secara gratis, dengan batasan tertentu pastinya.
 
 Silakan login dengan akun Google terlebih dahulu ke [https://aistudio.google.com/](https://aistudio.google.com/) lalu menuju ke [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) atau pilih menu "Get API Key" untuk membuat API Key baru yang akan kita gunakan di kode nantinya.
 
-Lalu pilih "Create API Key" dan pilih proyek dari GCP sebelumnya. Dan salin API Key untuk nantinya akan dimasukkan kedalam *environment variable* atau file `.env`.
+Lalu pilih "Create API Key" dan pilih proyek dari GCP sebelumnya. Dan salin API Key untuk nantinya akan dimasukkan kedalam _environment variable_ atau file `.env`.
 
 Jika baru pertama kali mengakses halaman ini, maka API Key akan otomatis dibuatkan dan teman-teman tinggal tekan tombol "Copy" saja di sebelah kanan dan masukkan ke file `.env`.

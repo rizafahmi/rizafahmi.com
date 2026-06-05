@@ -5,10 +5,10 @@ title: Judul
 <html lang="id">
   <head>
     <title>{{ title }} - Halo, Saya Riza!</title>
-    <link rel="preload" as="style" href="/assets/global.css" type="text/css" />
-    <link rel="stylesheet" href="/assets/global.css" type="text/css">
-    <link rel="preload" as="style" href="/assets/tulisan.css" type="text/css" />
-    <link rel="stylesheet" href="/assets/tulisan.css" type="text/css">
+    <link rel="preload" as="style" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" />
+    <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css">
+    <link rel="preload" as="style" href="/assets/tulisan.css?v={{ site.buildTime }}" type="text/css" />
+    <link rel="stylesheet" href="/assets/tulisan.css?v={{ site.buildTime }}" type="text/css">
     {% include 'head.njk' %}
     <meta property="og:type" content="article" />
     <meta property="article:published_time" content="{{ (date or created) | dateToISO }}" />
@@ -68,7 +68,7 @@ title: Judul
       {%- set xShareHref = "https://twitter.com/intent/tweet?text=" + (title | urlencode) + "&url=" + (canonicalUrl | urlencode) -%}
       {%- set liShareHref = "https://www.linkedin.com/shareArticle?mini=true&url=" + (canonicalUrl | urlencode) + "&title=" + (title | urlencode) + "&summary=" + ((description or title) | urlencode) -%}
 
-      <h2>{{ title }}</h2>
+      <h1>{{ title }}</h1>
       <div class="article-meta">
         {%- if created -%}
         <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
@@ -124,13 +124,17 @@ title: Judul
 
       {{ content | safe }}
 
+      {%- if series and series_index %}
+      {{ collections.catatan | seriesNav(series, series_index, page.url) | safe }}
+      {%- endif %}
+
       <section class="follow-cta" aria-label="Ikuti saya">
-        <p>
-          Jika kamu suka tulisan ini, ikuti saya di
-          <a href="https://x.com/rizafahmi22" target="_blank" rel="noopener noreferrer">X</a>
-          dan
-          <a href="https://linkedin.com/in/rizafahmi" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
-        </p>
+        <div class="follow-cta-title">📢 IKUTI SAYA</div>
+        <p>Jika kamu suka tulisan ini, mari terhubung untuk obrolan seputar pemrograman, Elixir, dan AI:</p>
+        <div class="follow-cta-links">
+          <a href="https://x.com/rizafahmi22" target="_blank" rel="noopener noreferrer" class="follow-btn">X / Twitter</a>
+          <a href="https://linkedin.com/in/rizafahmi" target="_blank" rel="noopener noreferrer" class="follow-btn">LinkedIn</a>
+        </div>
       </section>
 
       {%- if tags and 'catatan' in tags %}
@@ -260,8 +264,50 @@ title: Judul
         });
       });
     </script>
+    <script>
+      (function() {
+        var url = window.location.pathname;
+        if (!url) return;
+
+        // Restore scroll position on load
+        var saved = localStorage.getItem('scrollPos:' + url);
+        if (saved) {
+          var pos = parseInt(saved, 10);
+          if (pos > 0) {
+            setTimeout(function() { window.scrollTo(0, pos); }, 50);
+          }
+        }
+
+        // Debounced scroll position save
+        var scrollTimer;
+        window.addEventListener('scroll', function() {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(function() {
+            localStorage.setItem('scrollPos:' + url, window.scrollY);
+          }, 300);
+        }, { passive: true });
+
+        // Mark article as completed when footer becomes visible
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              var completed = JSON.parse(localStorage.getItem('completedArticles') || '[]');
+              if (completed.indexOf(url) === -1) {
+                completed.push(url);
+                localStorage.setItem('completedArticles', JSON.stringify(completed));
+              }
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0 });
+
+        var footer = document.querySelector('footer.container');
+        if (footer) observer.observe(footer);
+      })();
+    </script>
     {% include 'analytics.njk' %}
     {% include 'webvitals.njk' %}
+    {% include 'keyboard-shortcuts.njk' %}
     {% include 'theme-toggle.njk' %}
   </body>
 </html>

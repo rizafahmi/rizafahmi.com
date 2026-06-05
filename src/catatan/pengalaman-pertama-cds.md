@@ -10,7 +10,6 @@ tags:
   - konferensi
   - rangkuman
   - web
-
 ---
 
 Berikut cerita pengalaman pertama saya menghadiri [Chrome Dev Summit 2018](https://developer.chrome.com/devsummit/) atas undangan Google untuk para [Google Developers Expert](https://developers.google.com/experts/people/riza-fahmi.html) yang fokus di [Web Technologies](https://developers.google.com/experts/all/technology/web-technologies). Setelah sehari sebelumnya, di tanggal 10–11 November 2018 juga ada perhelatan akbar Developers Experts Summit dimana GDE atau [Google Developers Experts](https://developers.google.com/experts/) seluruh dunia berkumpul dan ber-_summit_-ria.
@@ -117,7 +116,7 @@ Framework berikutnya, [Vue](https://vuejs.org/) yang memperkenalkan _modern mode
 
 [Polymer](https://www.polymer-project.org/), akan bertransformasi menjadi [lit-element](https://lit-element.polymer-project.org/) dalam rangka menerapkan web component yang sangat _slim_. Dan, kabar gembiranya, _web component_ sekarang sudah didukung secara _native_ di firefox!
 
-[Kompatibilitas Web Components. Dikutip dari https://www.webcomponents.org/](https://www.webcomponents.org/)](/assets/images/cds/1_YFeztoPNMcKP-Q808mgZQg.png)_Kompatibilitas Web Components. Dikutip dari [https://www.webcomponents.org/](https://www.webcomponents.org/)_
+[Kompatibilitas Web Components. Dikutip dari https://www.webcomponents.org/](https://www.webcomponents.org/)](/assets/images/cds/1*YFeztoPNMcKP-Q808mgZQg.png)\_Kompatibilitas Web Components. Dikutip dari [https://www.webcomponents.org/](https://www.webcomponents.org/)*
 
 {% image "./assets/images/cds/0_otRMcCbm0f6_rNdY.jpg", "Svelte" %}
 

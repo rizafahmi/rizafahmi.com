@@ -11,6 +11,7 @@ tags:
 
 eleventyExcludeFromCollections: false
 ---
+
 Observer adalah tampilan grafis untuk observasi sistem Erlang dan Elixir. Menampilkan beberapa informasi penting seperti sistem, aplikasi, supervisor, proses dan lainnya. Untuk menjalankan observer, biasanya dilakukan melalui REPL yaitu iEX.
 
 ```text
