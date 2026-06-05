@@ -8,7 +8,6 @@ tags:
   - catatan
   - komunitas
   - rangkuman
-
 ---
 
 ## Meetup DeveloperCircles Jakarta Build Day 2018

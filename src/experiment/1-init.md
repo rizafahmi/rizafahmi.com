@@ -1,7 +1,7 @@
 ---
-title: 'Bikin Journaling App Sederhana'
+title: "Bikin Journaling App Sederhana"
 date: 2024-01-12
-permalink: '/1-bikin-journaling-app-sederhana/'
+permalink: "/1-bikin-journaling-app-sederhana/"
 layout: serial
 eleventyExcludeFromCollections: true
 tags:

@@ -17,8 +17,7 @@ series_index: 3
 
 ---
 
-
-Setelah [di bagian sebelumnya](asisten-ngoding-2.md) kita membahas penggunaan AI sebagai asisten untuk diskusi ide dan pembuatan spesifikasi aplikasi, kali ini kita akan fokus memanfaatkan AI untuk menyusun rencana. 
+Setelah [di bagian sebelumnya](asisten-ngoding-2.md) kita membahas penggunaan AI sebagai asisten untuk diskusi ide dan pembuatan spesifikasi aplikasi, kali ini kita akan fokus memanfaatkan AI untuk menyusun rencana.
 
 Sering kali, kita tergoda untuk langsung membuka kode editor dan mulai menulis tanpa mempersiapkan rencana terlebih dahulu. Padahal, rencana yang matang adalah kunci keberhasilan pembangunan sebuah aplikasi. Tanpa rencana yang jelas, kita berisiko mengalami kebingungan atau kesalahan di tengah jalan. Bahkan dengan strategi yang sudah matang sekalipun, hasilnya bisa saja meleset. Bayangkan apa yang terjadi jika kita menulis tanpa rencana!
 
@@ -45,7 +44,7 @@ Kini dengan bantuan AI, proses menyusun rencana dapat dilakukan secara lebih efe
 
 ### Menyusun Rencana dengan AI
 
-Dengan bekal spesifikasi hasil dari proses diskusi ide di artikel sebelumnya, kita dapat meminta bantuan AI untuk menyusun rencana beserta berbagai tahapannya. Untuk tugas ini, disarankan menggunakan model AI yang unggul dalam *reasoning*, seperti **ChatGPT-01**, **DeepSeek DeepThink**, **Qwen Thinking**, atau **Gemini Pro 2.5**. Sepertinya saat ini hampir semua model AI modern memiliki kemampuan ini.
+Dengan bekal spesifikasi hasil dari proses diskusi ide di artikel sebelumnya, kita dapat meminta bantuan AI untuk menyusun rencana beserta berbagai tahapannya. Untuk tugas ini, disarankan menggunakan model AI yang unggul dalam _reasoning_, seperti **ChatGPT-01**, **DeepSeek DeepThink**, **Qwen Thinking**, atau **Gemini Pro 2.5**. Sepertinya saat ini hampir semua model AI modern memiliki kemampuan ini.
 
 {% image "./assets/asisten/deepseek-r1.png", "DeepSeek DeepThink" %}
 
@@ -62,11 +61,11 @@ Separate each prompt section using markdown. Each prompt should be tagged as tex
 < SPEC >
 ```
 
-**Inti dari perintah diatas** adalah meminta AI menyusun _blueprint_ secara terstruktur, memecah rencana menjadi langkah-langkah kecil, lalu menghasilkan *prompt* untuk tiap langkah. Prompt ini kemudian dapat digunakan oleh AI Code Editor seperti *Copilot*.
+**Inti dari perintah diatas** adalah meminta AI menyusun _blueprint_ secara terstruktur, memecah rencana menjadi langkah-langkah kecil, lalu menghasilkan _prompt_ untuk tiap langkah. Prompt ini kemudian dapat digunakan oleh AI Code Editor seperti _Copilot_.
 
 Hasil dari langkah ini dapat disimpan ke dalam file sebagai panduan. Namun, pastikan untuk membaca dan melakukan penyuntingan jika diperlukan, mengingat AI cenderung memiliki sifat **halusinasi**.
 
-Sebagai contoh, hasil dokumen yang dihasilkan oleh model AI *reasoning* dapat ditemukan di tautan berikut:
+Sebagai contoh, hasil dokumen yang dihasilkan oleh model AI _reasoning_ dapat ditemukan di tautan berikut:
 [Contoh Dokumen Prompt](/assets/asisten/prompt_plan.md)
 
 Setelah memiliki rencana dan strategi, kita siap melangkah ke tahap eksekusi dan membangun aplikasi. Tunggu bagian selanjutnya di artikel mendatang!

@@ -11,7 +11,7 @@ export default {
       if (data.cover && data.cover.length > 0) return data.cover;
 
       // Derive slug from the page fileSlug (filename without extension).
-      const slug = data.page && data.page.fileSlug;
+      const slug = data.page?.fileSlug;
       if (!slug) return "/assets/images/og-twitter.png";
 
       return `/og/${slug}.png`;

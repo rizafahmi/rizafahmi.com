@@ -12,18 +12,20 @@ series_index: 2
 ---
 
 ---
+
 Setelah membedah konsep AI Agent di [bagian pertama](/catatan/agentic-coding), kini saatnya kita mempraktikkan teori dalam barisan kode. Kita akan membangun `mbb`, sebuah aplikasi CLI fungsional menggunakan Elixir, bahasa yang sangat ideal untuk Agentic AI karena kemampuan konkurensi dan fault tolerance.
 Kita akan belajar langkah demi langkah cara memanggil LLM melalui REST API dan menterjemahkan responsnya agar bisa dipahami oleh pengguna.
 
 Sedikit demi sedikit kita akan mengembangkan mbb mulai nol sampai menjadi agentic coding sederhana.
 
-> *"Perjalanan membangun AI agent dimulai dengan satu API call."*
+> _"Perjalanan membangun AI agent dimulai dengan satu API call."_
 
 Berikut adalah cuplikan aplikasi yang akan kita kembangkan di artikel ini. Setelah membaca artikel ini, kita akan sama-sama belajar bagaimana memanggil LLM lewat REST API dan menterjemahkan respons.
 
 <video src="/assets/images/agentic/demo-opt.mp4" autoplay loop muted playsinline></video>
 
 ## Persiapan Proyek
+
 Kita akan membangun aplikasi mbb ini dengan Elixir. Elixir adalah bahasa pemrograman fungsional yang elegan. Jika teman-teman ingin melihat implementasi dengan bahasa lain boleh tulis di kolom komentar.
 
 Pertama, buat proyeknya dulu dengan `mix` dan jalankan `mix test` untuk memastikan semuanya berjalan sesuai harapan.
@@ -44,6 +46,7 @@ Finished in 0.03 seconds (0.03s async, 0.00s sync)
 ```
 
 ### Konfigurasi aplikasi CLI dengan Escript
+
 Agar aplikasi kita bisa dijalankan dari command line, kita akan mengemasnya sebagai escript. Tambahkan konfigurasi escript di dalam `mix.exs`. Escript melakukan kompilasi seluruh kode Elixir beserta pustaka tambahan menjadi satu file binary mandiri. Ini memudahkan distribusi aplikasi. Pengguna hanya memerlukan Erlang Runtime (ERTS) di sistem mereka tanpa harus mengunduh source code atau menjalankan mix secara manual.
 
 #### `mix.exs`
@@ -107,7 +110,7 @@ defmodule Mbb do
 end
 ```
 
-Kode diatas mendemonstrasikan penggunaan *pattern matching* di Elixir, salah satu fitur menarik dari bahasa ini. Meski memiliki nama yang sama, fungsi `main/1` memiliki dua definisi fungsi yang berbeda. Elixir akan otomatis memilih definisi mana yang cocok berdasarkan struktur argumen yang diterima. Jika argumen berupa list/array dengan satu elemen `[question]`, definisi pertama yang akan dieksekusi. Jika list kosong `[]`, definisi kedua dipanggil. Ini membuat kode lebih deklaratif dibanding menggunakan `if/else`.
+Kode diatas mendemonstrasikan penggunaan _pattern matching_ di Elixir, salah satu fitur menarik dari bahasa ini. Meski memiliki nama yang sama, fungsi `main/1` memiliki dua definisi fungsi yang berbeda. Elixir akan otomatis memilih definisi mana yang cocok berdasarkan struktur argumen yang diterima. Jika argumen berupa list/array dengan satu elemen `[question]`, definisi pertama yang akan dieksekusi. Jika list kosong `[]`, definisi kedua dipanggil. Ini membuat kode lebih deklaratif dibanding menggunakan `if/else`.
 
 Jalankan kembali escript-nya dengan argumen.
 
@@ -140,7 +143,7 @@ Berikutnya kita akan mengganti pesan "Hello, <question>!" dengan respons dari LL
 
 Untuk berinteraksi dengan LLM, kita akan menggunakan pendekatan REST API. Selain lebih familiar bagi sebagian besar teman-teman developer, cara ini bersifat lebih agnostik dan tidak mengikat kita dibandingkan menggunakan pustak atau SDK pihak ketiga tertentu. Hari ini Gemini, besok bisa Claude atau GPT-5 dengan perubahan minimal.
 
-Untuk menangani pemanggilan REST API, kita akan menggunakan pustaka `Req`. `Req` adalah HTTP client Elixir modern dengan penggunaan yang lebih sederhana. Alternatif lain ada HTTPoison yang lebih *mature* tapi *verbose* atau Finch yang lebih *low-level*. Req cocok untuk proyek ini karena sederhana penggunaannya dibandingkan pustaka lain. Req juga mendukung `retry` otomatis, konfigurasi timeout, dan sudah dilengkapi dengan penanganan format JSON, yang akan berguna sepanjang pengembangan aplikasi.
+Untuk menangani pemanggilan REST API, kita akan menggunakan pustaka `Req`. `Req` adalah HTTP client Elixir modern dengan penggunaan yang lebih sederhana. Alternatif lain ada HTTPoison yang lebih _mature_ tapi _verbose_ atau Finch yang lebih _low-level_. Req cocok untuk proyek ini karena sederhana penggunaannya dibandingkan pustaka lain. Req juga mendukung `retry` otomatis, konfigurasi timeout, dan sudah dilengkapi dengan penanganan format JSON, yang akan berguna sepanjang pengembangan aplikasi.
 
 Buka `mix.exs` dan tambahkan `:req` di dalam daftar dependensi.
 
@@ -176,7 +179,7 @@ New:
 
 Kali ini kita akan menggunakan model Gemini dari Google. Tenang saja, semua konsep yang kita bahas di sini bisa diterapkan ke model lain seperti Claude, GPT-5, atau lainnya. Hanya berbeda di endpoint, data yang dikirim dan data yang diterima.
 
-Sebelum kita mengirim permintaan ke API, kita perlu mendapatkan API key dari penyedia layanan LLM. Saya contohkan menggunakan [AIStudio](https://aistudio.google.com/) dari Google. Silakan daftar dan dapatkan API key-nya. Tenang saja, ada *free tier*-nya kok sehingga tidak perlu mengeluarkan biaya. 
+Sebelum kita mengirim permintaan ke API, kita perlu mendapatkan API key dari penyedia layanan LLM. Saya contohkan menggunakan [AIStudio](https://aistudio.google.com/) dari Google. Silakan daftar dan dapatkan API key-nya. Tenang saja, ada _free tier_-nya kok sehingga tidak perlu mengeluarkan biaya.
 
 Setelah mendapatkan API key, simpan di file `.env`.
 
@@ -283,19 +286,25 @@ Menyebut bahasa fungsional (seperti Haskell, Elixir, Scala, atau Clojure) "lebih
 Berikut adalah alasan mengapa paradigma fungsional dianggap lebih unggul dalam banyak aspek:
 
 ### 1. Immutability (Kekekalan Data)
-Dalam FP, data bersifat *immutable* (tidak dapat diubah setelah dibuat). Jika Anda ingin mengubah nilai, Anda membuat data baru, bukan memodifikasi yang lama.
-*   **Keunggulan:** Ini menghilangkan bug yang disebabkan oleh perubahan status (*state*) yang tidak terduga. Anda tidak perlu khawatir variabel "A" tiba-tiba berubah nilainya di tengah eksekusi karena dipengaruhi oleh fungsi lain.
+
+Dalam FP, data bersifat _immutable_ (tidak dapat diubah setelah dibuat). Jika Anda ingin mengubah nilai, Anda membuat data baru, bukan memodifikasi yang lama.
+
+- **Keunggulan:** Ini menghilangkan bug yang disebabkan oleh perubahan status (_state_) yang tidak terduga. Anda tidak perlu khawatir variabel "A" tiba-tiba berubah nilainya di tengah eksekusi karena dipengaruhi oleh fungsi lain.
 
 ### 2. Pure Functions (Fungsi Murni)
+
 Fungsi murni adalah fungsi yang:
+
 1. Menghasilkan output yang sama untuk input yang sama.
 2. Tidak memiliki **Side Effects** (tidak mengubah variabel global, tidak menulis ke database, dll. secara tersembunyi).
-*   **Keunggulan:** Kode menjadi sangat mudah diprediksi, diuji (*unit testing*), dan di-*debug*. Anda cukup melihat input dan output tanpa harus melacak status seluruh aplikasi.
+
+- **Keunggulan:** Kode menjadi sangat mudah diprediksi, diuji (_unit testing_), dan di-_debug_. Anda cukup melihat input dan output tanpa harus melacak status seluruh aplikasi.
 
 ### 3. Kemudahan Concurrency dan Parallelism
-Ini adalah alasan utama mengapa FP populer di era prosesor multi-core. Dalam paradigma OO, menjalankan banyak *thread* secara bersamaan sangat sulit karena adanya "Shared State" (data yang diakses bersama), yang sering menyebabkan *race conditions*.
-*   **Keunggulan:** Karena data dalam FP bersifat *immutable*, tidak ada risiko dua *thread* mengubah data yang
 
+Ini adalah alasan utama mengapa FP populer di era prosesor multi-core. Dalam paradigma OO, menjalankan banyak _thread_ secara bersamaan sangat sulit karena adanya "Shared State" (data yang diakses bersama), yang sering menyebabkan _race conditions_.
+
+- **Keunggulan:** Karena data dalam FP bersifat _immutable_, tidak ada risiko dua _thread_ mengubah data yang
 ```
 
 Selamat! Kita sudah berhasil memanggil API pertama ke Gemini. Berikutnya kita akan mengintip sedikit ke dalam respons API untuk memahami data apa saja yang kita dapatkan selain jawaban teks sehingga nantinya bisa kita manfaatkan untuk mengembangkan program kita lebih lanjut.
@@ -339,8 +348,9 @@ Biasanya LLM seperti Gemini tidak hanya mengirimkan jawaban teks. API biasanya j
 ```
 
 Memahami struktur JSON ini krusial untuk pengembangan lebih lanjut:
+
 - `content`: Objek yang berisi array. Ada respons dari LLM, tool_use untuk dibahas artikel berikutnya.
-- `finishReason`: Alasan model berhenti. `STOP` berarti selesai secara normal, sementara `MAX_TOKEN` menandakan jawaban terpotong karena *rate limit*.
+- `finishReason`: Alasan model berhenti. `STOP` berarti selesai secara normal, sementara `MAX_TOKEN` menandakan jawaban terpotong karena _rate limit_.
 - `totalTokenCount`: Total konsumsi token keseluruhan, input dan output. Perhatikan bagian `thoughtsTokenCount` karena kita mengaktifkan `thinkingLevel: "MEDIUM"` di konfigurasi, yang memungkinkan model melakukan penalaran internal sebelum menjawab.
 
 Setelah kita memahami apa yang API kirimkan, mari kita pastikan aplikasi kita handle error dengan graceful ketika sesuatu tidak berjalan sesuai rencana."
@@ -385,11 +395,11 @@ defmodule Mbb do
 +        IO.puts(reason)
 +    end
    end
- 
+
    def main([]) do
      IO.puts("Usage: ./mbb \"<your question>\"")
    end
- 
+
    def call(message) do
 -    api_key = System.fetch_env!("API_KEY")
 +    api_key = System.get_env("API_KEY")
@@ -461,7 +471,7 @@ Berikutnya kita akan menangani input dari pengguna. Jika instruksi atau pertanya
    @model "gemini-3-flash-preview"
    @system_prompt "You are a helpful assistant."
 +  @help_message "Usage: ./mbb \"<your question>\""
- 
+
    def main([question]) do
      case call(question) do
        {:ok, response} ->
@@ -471,12 +481,12 @@ Berikutnya kita akan menangani input dari pengguna. Jika instruksi atau pertanya
          IO.puts(reason)
      end
    end
- 
+
    def main([]) do
 -    IO.puts("Usage: ./mbb \"<your question>\"")
 +    IO.puts(@help_message)
    end
- 
+
    def call(message) do
      api_key = System.get_env("API_KEY")
 
@@ -490,7 +500,7 @@ Berikutnya kita akan menangani input dari pengguna. Jika instruksi atau pertanya
          do_call(api_key, message)
      end
    end
- 
+
    # Kode lainnya...
  end
 ```
@@ -499,7 +509,7 @@ Pertama, kita menambahkan variabel `@help_message` untuk menyimpan pesan bantuan
 
 ### Validasi HTTP Error
 
-Kita juga akan menangani beberapa HTTP error seperti 401 jika `API_KEY` keliru, 429 jika kena *rate limit*, 500 jika kesalahan terjadi di sisi server penyedia LLM, dan juga penanganan jika koneksi lambat, terputus dsb.
+Kita juga akan menangani beberapa HTTP error seperti 401 jika `API_KEY` keliru, 429 jika kena _rate limit_, 500 jika kesalahan terjadi di sisi server penyedia LLM, dan juga penanganan jika koneksi lambat, terputus dsb.
 
 #### `lib/mbb.ex`
 
@@ -508,12 +518,12 @@ Kita juga akan menangani beberapa HTTP error seperti 401 jika `API_KEY` keliru, 
    @model "gemini-3-flash-preview"
    @system_prompt "You are a helpful assistant."
    @help_message "Usage: ./mbb \"<your question>\""
-   
+
    # Kode lainnya...
- 
+
    defp do_call(api_key, message) do
      url = api_url(api_key)
- 
+
      body = %{
        system_instruction: %{parts: [%{text: @system_prompt}]},
        contents: [%{role: "user", parts: [%{text: message}]}],
@@ -525,11 +535,11 @@ Kita juga akan menangani beberapa HTTP error seperti 401 jika `API_KEY` keliru, 
          }
        }
      }
- 
+
      case Req.post(url, json: body) do
        {:ok, %{status: 200, body: body}} ->
          parse_response(body)
- 
+
 +      {:ok, %{status: 401}} ->
 +        {:error, "401 Unauthorized: Periksa kembali API_KEY anda."}
 +
@@ -545,12 +555,12 @@ Kita juga akan menangani beberapa HTTP error seperti 401 jika `API_KEY` keliru, 
 +
 +      {:error, %{reason: :timeout}} ->
 +        {:error, "Request timeout. Koneksi lambat atau terputus."}
- 
+
        {:error, reason} ->
          {:error, "Request failed: #{inspect(reason)}"}
      end
    end
- 
+
 +  defp get_error_message(%{"error" => %{"message" => msg}}), do: msg
 +  defp get_error_message(body), do: inspect(body)
 
@@ -580,7 +590,7 @@ Sekarang kita akan menambahkan indikator "Berpikir..." supaya pengguna tidak keb
 +  @red "\e[31m"
 +  @cyan "\e[36m"
 +  @reset "\e[0m"
- 
+
    def main([question]) do
 +    print_thinking()
 +
@@ -589,37 +599,37 @@ Sekarang kita akan menambahkan indikator "Berpikir..." supaya pengguna tidak keb
 -        IO.puts(response)
 +      {:ok, text} ->
 +        print_response(text)
- 
+
        {:error, reason} ->
 -        IO.puts(reason)
 +        print_error(reason)
      end
    end
- 
+
    def main([]) do
 -    IO.puts(@help_message)
 +    IO.puts(help_message())
    end
- 
+
  def call(message) do
      api_key = System.get_env("API_KEY")
- 
+
      cond do
        is_nil(api_key) or api_key == "" ->
          {:error,
-          "API_KEY tidak ditemukan. Jalankan: export API_KEY=\"AIsKantT...\" terlebih dahulu sebelum menjalankan ./mbb."} 
+          "API_KEY tidak ditemukan. Jalankan: export API_KEY=\"AIsKantT...\" terlebih dahulu sebelum menjalankan ./mbb."}
 
        String.trim(message) == "" ->
 -        {:error, @help_message}
 +        {:error, help_message()}
- 
+
        true ->
          do_call(api_key, message)
      end
    end
 
    # Kode lainnya...
- 
+
 +  defp print_thinking() do
 +    IO.write("#{@cyan}🤖 Sedang berpikir...#{@reset}\r")
 +  end
@@ -649,7 +659,7 @@ Sekarang kita akan menambahkan indikator "Berpikir..." supaya pengguna tidak keb
 +
    defp get_error_message(%{"error" => %{"message" => msg}}), do: msg
    defp get_error_message(body), do: inspect(body)
-   
+
    # Kode lainnya...
  end
 ```
@@ -680,11 +690,11 @@ Kita mulai pengembangan aplikasi dari awal dengan program sederhana yang menceta
 - ✅ Menangani 5 jenis error berbeda (API_KEY, validation, HTTP errors, timeout, malformed response)
 - ✅ Memberikan feedback visual dengan status indicator dan color coding
 
-*Pattern matching* Elixir membuat kode kita deklaratif dan mudah dipahami. *Error handling* yang tadinya bisa menjadi potensial `if/else` bercabang, dapat ditangani dengan lebih elegan.
+_Pattern matching_ Elixir membuat kode kita deklaratif dan mudah dipahami. _Error handling_ yang tadinya bisa menjadi potensial `if/else` bercabang, dapat ditangani dengan lebih elegan.
 
 **Tapi ini baru fondasi awal.**
 
-Aplikasi kita saat ini *stateless*. Setiap pertanyaan adalah *fresh start*. LLM tidak "mengingat" apa yang baru saja kita tanyakan. Akan kita lanjut di artikel berikutnya.
+Aplikasi kita saat ini _stateless_. Setiap pertanyaan adalah _fresh start_. LLM tidak "mengingat" apa yang baru saja kita tanyakan. Akan kita lanjut di artikel berikutnya.
 
 **Eksperimen mandiri**
 

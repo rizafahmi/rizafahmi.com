@@ -9,7 +9,6 @@ tags:
   - komunitas
   - konferensi
   - travel
-
 ---
 
 Berikut adalah rekap perjalanan saya ketika diundang menghadiri F8 Developer Conference sebagai salah satu Facebook Developer Circle yang beruntung.

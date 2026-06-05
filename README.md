@@ -22,6 +22,7 @@ Make sure you have these installed:
 ### Installation
 
 1. Clone the repository:
+
    ```sh
    git clone https://github.com/your-username/rizafahmi.com.git
    cd rizafahmi.com
@@ -70,6 +71,7 @@ export GOATCOUNTER_CACHE_TTL_HOURS="12"                                # default
 ```
 
 Notes:
+
 - Data is cached in `.cache/goatcounter/views.json` to keep builds fast and avoid rate limits.
 - If the env vars are not set, the site will build normally and simply hide the view counts.
 
@@ -125,9 +127,10 @@ Canonical URLs are set in `src/_includes/head.njk` and use `https://rizafahmi.co
 
 ## Contribution Guidelines
 
-We welcome contributions! Whether it's fixing a bug, adding a feature, or improving documentation, your help is appreciated.  
+We welcome contributions! Whether it's fixing a bug, adding a feature, or improving documentation, your help is appreciated.
 
 ### Steps to Contribute:
+
 1. Fork this repository.
 2. Create a new branch:
    ```sh

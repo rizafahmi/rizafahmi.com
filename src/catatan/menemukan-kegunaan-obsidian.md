@@ -11,6 +11,7 @@ tags:
 
 eleventyExcludeFromCollections: true
 ---
+
 - Maksudnya kegunaan selain menyimpan catatan pribadi ya
 - Karena saya biasa mencatat di buku atau logseq saat ini
 - Sudah lama ingin mencoba bujo tapi agak males kalau pakai buku, sulit dicari

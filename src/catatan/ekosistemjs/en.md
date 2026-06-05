@@ -8,7 +8,6 @@ tags:
   - catatan
   - javascript
   - frontend
-
 ---
 
 Original article in [ Bahasa Indonesia ](/2020/02/03/ekosistemjs/).
@@ -275,10 +274,7 @@ Then add CDN jQuery and it’s ready to go.
   <head>
     <meta charset="UTF-8" />
     <title>JSDay 2019!!</title>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-    ></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   </head>
   <body>
     <div id="app"></div>
@@ -315,14 +311,8 @@ Use CDN to import react and react-dom into index.html. But we’re going to writ
   <head>
     <meta charset="UTF-8" />
     <title>JSDay 2019</title>
-    <script
-      src="https://unpkg.com/react@16/umd/react.development.js"
-      crossorigin
-    ></script>
-    <script
-      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-      crossorigin
-    ></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
   </head>
   <body>
     <div id="root"></div>

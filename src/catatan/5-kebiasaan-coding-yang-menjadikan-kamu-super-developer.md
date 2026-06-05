@@ -9,7 +9,6 @@ tags:
   - produktivitas
   - belajar
   - developer
-
 ---
 
 > "Genius is 1% talent and 99% percent hard work…" — Albert Einstein

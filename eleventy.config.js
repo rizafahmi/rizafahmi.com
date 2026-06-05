@@ -1,14 +1,20 @@
-import path from "node:path";
 import { existsSync } from "node:fs";
-import pluginRss from "@11ty/eleventy-plugin-rss";
-import shikiPlugin from "./src/libs/shiki.js";
+import path from "node:path";
 import Image from "@11ty/eleventy-img";
-import { getRelatedPosts } from "./src/libs/related.js";
+import pluginRss from "@11ty/eleventy-plugin-rss";
 import { generateOgImage } from "./src/libs/og-image.js";
+import { getRelatedPosts } from "./src/libs/related.js";
+import shikiPlugin from "./src/libs/shiki.js";
 
 const isDev = process.env.ELEVENTY_ENV === "dev";
 
-async function imageShortcode(src, alt, className = "", sizes = "100vw", widths = [300, 600, 1200]) {
+async function imageShortcode(
+  src,
+  alt,
+  className = "",
+  sizes = "100vw",
+  widths = [300, 600, 1200],
+) {
   if (!src) {
     console.error(`[11ty/img] Missing src attribute. Alt: ${alt}`);
     return "";
@@ -25,7 +31,7 @@ async function imageShortcode(src, alt, className = "", sizes = "100vw", widths 
   }
 
   try {
-    let metadata = await Image(src, {
+    const metadata = await Image(src, {
       widths: widths,
       formats: ["webp", "png"],
       outputDir: "./dist/img/",
@@ -34,14 +40,14 @@ async function imageShortcode(src, alt, className = "", sizes = "100vw", widths 
         duration: "1y",
         directory: ".cache/eleventy-img",
       },
-      filenameFormat: function (id, src, width, format, options) {
+      filenameFormat: (_id, src, width, format, _options) => {
         const extension = path.extname(src);
         const name = path.basename(src, extension);
         return `${name}-${width}w.${format}`;
-      }
+      },
     });
 
-    let imageAttributes = {
+    const imageAttributes = {
       alt,
       sizes,
       loading: "lazy",
@@ -53,18 +59,16 @@ async function imageShortcode(src, alt, className = "", sizes = "100vw", widths 
     }
 
     if (!metadata) {
-       console.warn(`[11ty/img] Warning: Metadata missing for ${src}. Fallback to default img.`);
-       return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
+      console.warn(`[11ty/img] Warning: Metadata missing for ${src}. Fallback to default img.`);
+      return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
     }
 
     return Image.generateHTML(metadata, imageAttributes);
-
   } catch (error) {
     console.warn(`[11ty/img] Error processing ${src}: ${error.message}. Fallback to default img.`);
     return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" decoding="async">`;
   }
 }
-
 
 function getRelativeTimeString(date) {
   const now = new Date();
@@ -100,16 +104,15 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("src/_redirects");
 
-
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return getRelativeTimeString(dateObj);
   });
 
   eleventyConfig.addFilter("dateToISO", (date) => {
-    if (!date) return '';
+    if (!date) return "";
     const d = new Date(date);
-    if (isNaN(d.getTime())) return '';
-    return d.toISOString().split('T')[0];
+    if (Number.isNaN(d.getTime())) return "";
+    return d.toISOString().split("T")[0];
   });
 
   eleventyConfig.addFilter("head", (array, n) => {
@@ -119,16 +122,16 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter("readingTime", (content) => {
     if (!content) return "1 menit baca";
-    const text = content.replace(/<[^>]*>/g, '');
+    const text = content.replace(/<[^>]*>/g, "");
     const words = text.trim().split(/\s+/).length;
     const wordsPerMinute = 200;
     const minutes = Math.ceil(words / wordsPerMinute);
-    return minutes + " menit baca";
+    return `${minutes} menit baca`;
   });
 
   const HIDDEN_TAGS = new Set(["all", "nav", "post", "catatan"]);
 
-  function normalizeTags(tags) {
+  function _normalizeTags(tags) {
     if (!tags) return [];
     let arr = tags;
     if (typeof arr === "string") arr = [arr];
@@ -150,7 +153,7 @@ export default function (eleventyConfig) {
     return getRelatedPosts(
       collection,
       { url: currentUrl, tags },
-      { limit, hiddenTags: HIDDEN_TAGS }
+      { limit, hiddenTags: HIDDEN_TAGS },
     );
   });
 
@@ -162,7 +165,7 @@ export default function (eleventyConfig) {
       .replace(/\s+/g, " ")
       .trim();
     if (text.length <= length) return text;
-    return text.slice(0, length).replace(/\s+\S*$/, "") + "…";
+    return `${text.slice(0, length).replace(/\s+\S*$/, "")}…`;
   });
 
   // Format number with locale string (e.g. 123456 -> "123.456" for id-ID).
@@ -179,40 +182,41 @@ export default function (eleventyConfig) {
 
     const getViews = (url) => {
       if (!url) return 0;
-      const v = views[url] ?? views[url.replace(/\/+$/, '')] ?? views[url + '/'];
+      const v = views[url] ?? views[url.replace(/\/+$/, "")] ?? views[`${url}/`];
       return Number.isFinite(Number(v)) ? Number(v) : 0;
     };
 
     return [...collection]
       .sort((a, b) => {
-        const av = getViews(a && a.url);
-        const bv = getViews(b && b.url);
+        const av = getViews(a?.url);
+        const bv = getViews(b?.url);
         if (bv !== av) return bv - av;
-        const ad = a && a.data && a.data.date ? new Date(a.data.date).getTime() : 0;
-        const bd = b && b.data && b.data.date ? new Date(b.data.date).getTime() : 0;
+        const ad = a?.data?.date ? new Date(a.data.date).getTime() : 0;
+        const bd = b?.data?.date ? new Date(b.data.date).getTime() : 0;
         return bd - ad;
       })
       .slice(0, limit);
   });
 
-  eleventyConfig.addCollection("catatan", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/catatan/*.md").filter(item => item.data.date);
-  });
+  eleventyConfig.addCollection("catatan", (collectionApi) =>
+    collectionApi.getFilteredByGlob("src/catatan/*.md").filter((item) => item.data.date),
+  );
 
-  eleventyConfig.addCollection("latestCatatan", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/catatan/*.md")
-      .filter(item => item.data.date)
+  eleventyConfig.addCollection("latestCatatan", (collectionApi) =>
+    collectionApi
+      .getFilteredByGlob("src/catatan/*.md")
+      .filter((item) => item.data.date)
       .sort((a, b) => b.data.date - a.data.date)
-      .slice(0, 4);
-  });
+      .slice(0, 4),
+  );
 
   // Curated tag list for /tags and /tags/<tag>/ pages.
   // Eleventy automatically creates collections per tag; this collection
   // only defines which tags should be shown.
-  eleventyConfig.addCollection("tagList", function(collectionApi) {
+  eleventyConfig.addCollection("tagList", (collectionApi) => {
     const tagSet = new Set();
     for (const item of collectionApi.getAll()) {
-      let tags = item.data && item.data.tags;
+      let tags = item.data?.tags;
       if (!tags) continue;
       if (typeof tags === "string") tags = [tags];
       if (!Array.isArray(tags)) continue;
@@ -229,18 +233,18 @@ export default function (eleventyConfig) {
 
   // Generate series navigation HTML for articles with series frontmatter.
   // Usage: {{ collections.catatan | seriesNav(series, series_index, page.url) }}
-  eleventyConfig.addFilter("seriesNav", function(collection, series, seriesIndex, currentUrl) {
+  eleventyConfig.addFilter("seriesNav", (collection, series, seriesIndex, currentUrl) => {
     if (!series || !seriesIndex) return "";
 
     const articles = collection
-      .filter(item => item.data && item.data.series === series && item.data.series_index)
+      .filter((item) => item.data && item.data.series === series && item.data.series_index)
       .sort((a, b) => a.data.series_index - b.data.series_index);
 
     if (articles.length < 2) return "";
 
     let html = `<hr>\n<p><strong>Seri ${series}</strong></p>\n<ol>\n`;
     for (const article of articles) {
-      const idx = article.data.series_index;
+      const _idx = article.data.series_index;
       const title = article.data.title;
       if (article.url === currentUrl) {
         html += `<li>➡︎ ${title}</li>\n`;
@@ -252,8 +256,8 @@ export default function (eleventyConfig) {
     return html;
   });
 
-  eleventyConfig.addTransform("tableOfContents", function(content, outputPath) {
-    if (!outputPath || !outputPath.endsWith(".html")) return content;
+  eleventyConfig.addTransform("tableOfContents", (content, outputPath) => {
+    if (!outputPath?.endsWith(".html")) return content;
     if (!content.includes('class="reading-progress"')) return content;
 
     const contentStart = content.indexOf('<div class="note-edit">');
@@ -267,10 +271,16 @@ export default function (eleventyConfig) {
     const headings = [];
     let match;
 
+    // biome-ignore lint/suspicious/noAssignInExpressions: standard regex loop pattern
     while ((match = headingRegex.exec(articleContent)) !== null) {
-      const level = parseInt(match[1]);
+      const level = parseInt(match[1], 10);
       const text = match[3].replace(/<[^>]*>/g, "").trim();
-      const id = match[2] || text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
+      const id =
+        match[2] ||
+        text
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-");
 
       if (!match[2]) {
         const oldTag = match[0];
@@ -325,25 +335,22 @@ export default function (eleventyConfig) {
     const markerRegex = /<div class="note-edit">\s*<\/div>/;
     const markerMatch = content.match(markerRegex);
     if (markerMatch) {
-      content = content.replace(markerRegex, markerMatch[0] + "\n" + seriBlock + "\n" + toc);
+      content = content.replace(markerRegex, `${markerMatch[0]}\n${seriBlock}\n${toc}`);
     }
 
     return content;
   });
 
-  eleventyConfig.addTransform("lazyImages", function(content, outputPath) {
-    if (outputPath && outputPath.endsWith(".html")) {
+  eleventyConfig.addTransform("lazyImages", (content, outputPath) => {
+    if (outputPath?.endsWith(".html")) {
       let first = true;
-      return content.replace(
-        /<img(?![^>]*loading=)([^>]*)>/gi,
-        (match, attrs) => {
-          if (first) {
-            first = false;
-            return match;
-          }
-          return `<img loading="lazy"${attrs}>`;
+      return content.replace(/<img(?![^>]*loading=)([^>]*)>/gi, (match, attrs) => {
+        if (first) {
+          first = false;
+          return match;
         }
-      );
+        return `<img loading="lazy"${attrs}>`;
+      });
     }
     return content;
   });
@@ -359,12 +366,12 @@ export default function (eleventyConfig) {
     // from collections).
     const jobs = [];
     for (const result of results) {
-      if (!result.inputPath || !result.inputPath.includes("src/catatan/")) continue;
+      if (!result.inputPath?.includes("src/catatan/")) continue;
       if (!result.inputPath.endsWith(".md")) continue;
 
       // Read frontmatter from the source file
       const srcPath = result.inputPath;
-      let frontmatter = {};
+      const frontmatter = {};
       try {
         const { readFileSync } = await import("node:fs");
         const raw = readFileSync(srcPath, "utf-8");
@@ -385,8 +392,9 @@ export default function (eleventyConfig) {
           // Parse tags
           const tagsSection = fmText.match(/^tags:\s*\n((?:\s+-\s+.+\n?)*)/m);
           if (tagsSection) {
-            frontmatter.tags = [...tagsSection[1].matchAll(/^\s+-\s+(.+)$/gm)]
-              .map((m) => m[1].trim());
+            frontmatter.tags = [...tagsSection[1].matchAll(/^\s+-\s+(.+)$/gm)].map((m) =>
+              m[1].trim(),
+            );
           }
         }
 
@@ -408,19 +416,21 @@ export default function (eleventyConfig) {
 
       // Build excerpt from markdown body (strip markdown syntax + HTML)
       const bodyText = (frontmatter._body || "")
-        .replace(/<[^>]*>/g, " ")             // HTML tags first
-        .replace(/!\[.*?\]\(.*?\)/g, "")      // images
+        .replace(/<[^>]*>/g, " ") // HTML tags first
+        .replace(/!\[.*?\]\(.*?\)/g, "") // images
         .replace(/\[([^\]]*)\]\(.*?\)/g, "$1") // links -> text
-        .replace(/```[\s\S]*?```/g, " ")      // fenced code blocks
-        .replace(/`[^`]+`/g, " ")             // inline code
-        .replace(/^#{1,6}\s+/gm, "")          // heading markers
-        .replace(/[*_~>]/g, "")               // markdown emphasis chars
+        .replace(/```[\s\S]*?```/g, " ") // fenced code blocks
+        .replace(/`[^`]+`/g, " ") // inline code
+        .replace(/^#{1,6}\s+/gm, "") // heading markers
+        .replace(/[*_~>]/g, "") // markdown emphasis chars
         .replace(/\s+/g, " ")
         .trim();
 
-      const excerpt = frontmatter.description || (bodyText.length > 200
-        ? bodyText.slice(0, 200).replace(/\s+\S*$/, "") + "\u2026"
-        : bodyText);
+      const excerpt =
+        frontmatter.description ||
+        (bodyText.length > 200
+          ? `${bodyText.slice(0, 200).replace(/\s+\S*$/, "")}\u2026`
+          : bodyText);
 
       const tags = Array.isArray(frontmatter.tags)
         ? frontmatter.tags.filter((t) => t && !HIDDEN.has(t))
@@ -447,9 +457,7 @@ export default function (eleventyConfig) {
     // Generate in parallel (batches of 8 to avoid memory pressure)
     const BATCH = 8;
     for (let i = 0; i < jobs.length; i += BATCH) {
-      await Promise.all(
-        jobs.slice(i, i + BATCH).map((job) => generateOgImage(job))
-      );
+      await Promise.all(jobs.slice(i, i + BATCH).map((job) => generateOgImage(job)));
     }
 
     console.log(`[og-image] Done in ${Date.now() - start}ms`);
