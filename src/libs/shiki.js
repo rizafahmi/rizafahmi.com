@@ -5,7 +5,7 @@ export default function(eleventyConfig, options) {
     const shiki = await import("shiki");
 
     const highlighter = await shiki.createHighlighter({
-      themes: ["light-plus", "dark-plus"],
+      themes: ["monokai"],
       langs: [
         "shell",
         "html",
@@ -112,7 +112,10 @@ export default function(eleventyConfig, options) {
 
           const html = highlighter.codeToHtml(code, {
             lang: lang,
-            theme: "dark-plus",
+            themes: {
+              light: "monokai",
+              dark: "monokai",
+            },
             meta: { __raw: meta },
             transformers,
           });
