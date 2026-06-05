@@ -22,6 +22,7 @@ Make sure you have these installed:
 ### Installation
 
 1. Clone the repository:
+
    ```sh
    git clone https://github.com/your-username/rizafahmi.com.git
    cd rizafahmi.com
@@ -53,6 +54,28 @@ To build the site for development or production:
   npm run build:prod
   ```
 
+### Search (Pagefind)
+
+This site uses [Pagefind](https://pagefind.app/) for full-text search.
+
+- The search page lives at `/search/` (source: `src/search.njk`).
+- Autocomplete/suggestions are powered by Pagefind’s JS API and a small custom script (`assets/search-autocomplete.js`).
+- The Pagefind index is generated **after** Eleventy builds the HTML, during the production build.
+
+#### Testing search locally
+
+1. Build the site + generate the Pagefind index:
+   ```sh
+   npm run build:prod
+   ```
+2. Serve the generated `dist/` folder (any static server works):
+   ```sh
+   npx serve dist
+   # or: npx http-server dist -p 3000
+   ```
+3. Open:
+   - http://localhost:3000/search/
+
 ### GoatCounter (Article Popularity)
 
 This site can optionally show article popularity (view counts) by querying the GoatCounter API **at build time** (no client-side API calls).
@@ -70,6 +93,7 @@ export GOATCOUNTER_CACHE_TTL_HOURS="12"                                # default
 ```
 
 Notes:
+
 - Data is cached in `.cache/goatcounter/views.json` to keep builds fast and avoid rate limits.
 - If the env vars are not set, the site will build normally and simply hide the view counts.
 
@@ -120,6 +144,16 @@ npm run build
 ls -lah dist/feed.xml dist/feed/full.xml
 ```
 
+## SEO + LLM discovery
+
+The site publishes a few well-known machine-readable endpoints:
+
+- `https://rizafahmi.com/robots.txt` (generated from `src/robots.njk`, links to the sitemap)
+- `https://rizafahmi.com/sitemap.xml` (generated from `src/sitemap.njk`)
+- `https://rizafahmi.com/llms.txt` (generated from `src/llms.njk`)
+
+Canonical URLs are set in `src/_includes/head.njk` and use `https://rizafahmi.com{{ page.url }}`.
+
 ## Project Structure
 
 - `src/`: Contains source files for pages, templates, styles, and assets.
@@ -130,9 +164,10 @@ ls -lah dist/feed.xml dist/feed/full.xml
 
 ## Contribution Guidelines
 
-We welcome contributions! Whether it's fixing a bug, adding a feature, or improving documentation, your help is appreciated.  
+We welcome contributions! Whether it's fixing a bug, adding a feature, or improving documentation, your help is appreciated.
 
 ### Steps to Contribute:
+
 1. Fork this repository.
 2. Create a new branch:
    ```sh

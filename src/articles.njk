@@ -5,20 +5,30 @@ layout: main
 eleventyExcludeFromCollections: true
 ---
 
-<main id="main-content">
-    <h2>Catatan · <a href="/feed.xml">RSS</a> / <a href="/feed/full.xml">Full</a></h2>
+<main id="main-content" class="container">
+    <div class="articles-header">
+      <h2>CATATAN</h2>
+      <div class="rss-pill">
+        🔔 FEED: <a href="/feed.xml" target="_blank">RSS</a> / <a href="/feed/full.xml" target="_blank">FULL</a>
+      </div>
+    </div>
+    
     <div class="articles">
       {% for article in collections.catatan | reverse %}
-      <div class="article">
-        <a href="{{article.url}}">
-          <h6>&gt;&nbsp;&nbsp; {{ article.data.title }}</h6>
-        </a>
-        <span class="reading-time">⏱️ {{ article.content | readingTime }}</span>
-        {%- if goatcounterViews and goatcounterViews[article.url] %}
-        <span class="view-count">🔥 {{ goatcounterViews[article.url] | localeString }} dibaca</span>
-        {%- endif %}
-      </div>
+      <article class="article">
+        <div class="article-meta-row">
+          <span>📅 {{ article.date | dateToISO }}</span>
+          <span>⏱️ {{ article.content | readingTime }}</span>
+          {%- if goatcounterViews and goatcounterViews[article.url] %}
+          <span>🔥 {{ goatcounterViews[article.url] | localeString }} DIBACA</span>
+          {%- endif %}
+        </div>
+        <h3>
+          <a href="{{article.url}}">{{ article.data.title }}</a>
+        </h3>
+      </article>
       {% endfor %}
     </div>
-    <a class="back" href="/">&lt; Kembali ke halaman utama</a>
+    
+    <a class="back" href="/">&lt; KEMBALI KE BERANDA</a>
 </main>

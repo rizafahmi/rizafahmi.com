@@ -10,8 +10,8 @@ tags:
   - catatan
   - ai
   - tools
-
 ---
+
 Gemini adalah model Generative AI andalan Google. Sudah dilatih dengan banyak teks, audio dan video dengan berbagai bahasa. Berbeda dengan model lainnya, Gemini dibangun dari awal dengan fitur multimodal, artinya dapat menerima beberapa jenis masukan seperti teks, gambar, kode, dan berbagai jenis file lainnya.
 
 Ada tiga cara menggunakan Gemini: melalui interface [gemini.google.com](https://gemini.google.com/), Gemini API via Google AI Studio. Cara ketiga dengan menggunakan Vertex AI jika ingin melakukan penggelaran atau _deployment_ model sendiri via [Google Cloud Platform](https://cloud.google.com/vertex-ai?hl=en).
@@ -24,7 +24,7 @@ Tutorial kali ini kita akan membuat aplikasi dengan AI sebagai bahan utamanya. K
 
 Hasil perbandingan akan dihasilkan oleh AI, dalam hal ini Gemini API.
 
-![](/assets/images/gemini-web-dev/mendang-mending.png)
+{% image "./assets/images/gemini-web-dev/mendang-mending.png", "" %}
 
 ## Persiapan
 
@@ -133,171 +133,173 @@ Sebagian besar kode JavaScript bertugas untuk menangani _form_, _state_ dan DOM.
 ```html
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplikasi buat kaum mendang-mending</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aplikasi buat kaum mendang-mending</title>
+    <style>
+      @import url("https://fonts.upset.dev/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-  <style>
-    @import url('https://fonts.upset.dev/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+      html {
+        background-color: #232946;
+        font-family: Montserrat, proxima-nova, sans-serif;
+      }
 
-    html {
-      background-color: #232946;
-      font-family: Montserrat, proxima-nova, sans-serif;
-    }
+      body {
+        font-size: 18px;
+        line-height: 1.8;
+        font-weight: 400;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
 
-    body {
-      font-size: 18px;
-      line-height: 1.8;
-      font-weight: 400;
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-    }
+      section {
+        background-color: #eebbc3;
+        color: #232946;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
 
-    section {
-      background-color: #eebbc3;
-      color: #232946;
-      font-size: 1.5rem;
-      font-weight: 600;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
+      input[type="text"] {
+        font-family: Montserrat, proxima-nova, sans-serif;
+        font-size: 1.5rem;
+        background-color: transparent;
+        border-color: #fffffe;
+        color: #232946;
+        height: 2.5rem;
+        margin-bottom: 0px;
+        padding-left: 20px;
+        border: 0;
+        border-bottom: 3px dashed #232323;
+        border-radius: 3px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.4;
+        vertical-align: middle;
+      }
 
-    input[type="text"] {
-      font-family: Montserrat, proxima-nova, sans-serif;
-      font-size: 1.5rem;
-      background-color: transparent;
-      border-color: #fffffe;
-      color: #232946;
-      height: 2.5rem;
-      margin-bottom: 0px;
-      padding-left: 20px;
-      border: 0;
-      border-bottom: 3px dashed #232323;
-      border-radius: 3px;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 1.4;
-      vertical-align: middle;
-    }
+      input[type="text"]:focus {
+        outline: 0;
+      }
 
-    input[type="text"]:focus {
-      outline: 0;
-    }
+      #topic {
+        width: 36rem;
+      }
 
-    #topic {
-      width: 36rem;
-    }
+      button {
+        font-size: 1.25rem;
+        background-color: #232946;
+        color: #fffffe;
+        width: 80%;
+        padding: 0.7rem;
+        margin: 1rem;
+        border: 0;
+        cursor: pointer;
+        border-radius: 3px;
+      }
 
-    button {
-      font-size: 1.25rem;
-      background-color: #232946;
-      color: #fffffe;
-      width: 80%;
-      padding: 0.7rem;
-      margin: 1rem;
-      border: 0;
-      cursor: pointer;
-      border-radius: 3px;
-    }
+      button:disabled {
+        background-color: #b8c1ec;
+      }
 
-    button:disabled {
-      background-color: #b8c1ec;
-    }
+      .topic {
+        padding-bottom: 0.5rem;
+      }
 
-    .topic {
-      padding-bottom: 0.5rem;
-    }
+      #topicText {
+        text-transform: uppercase;
+      }
 
-    #topicText {
-      text-transform: uppercase;
-    }
+      .options {
+        padding-bottom: 0.5rem;
+      }
 
-    .options {
-      padding-bottom: 0.5rem;
-    }
+      main {
+        margin: 6rem 3rem;
+        padding: 2.5rem;
+        border-radius: 3px;
+        background-color: #fffffe;
+        opacity: 1;
+        transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
+          rotateZ(0deg) skew(0deg, 0deg);
+        transform-style: preserve-3d;
+      }
+    </style>
+  </head>
 
-    main {
-      margin: 6rem 3rem;
-      padding: 2.5rem;
-      border-radius: 3px;
-      background-color: #fffffe;
-      opacity: 1;
-      transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-      transform-style: preserve-3d;
-    }
-  </style>
-</head>
+  <body>
+    <section>
+      <div class="topic">
+        <input
+          type="text"
+          id="topic"
+          name="topic"
+          placeholder="Topik untuk dibandingkan..."
+          required
+        />
+      </div>
 
-<body>
-  <section>
-    <div class="topic"><input type="text" id="topic" name="topic" placeholder="Topik untuk dibandingkan..." required />
-    </div>
+      <div class="options">
+        <span>mending</span> <input type="text" name="option1" id="option1" required /> atau
+        <input type="text" name="option2" id="option2" required />
+      </div>
 
-    <div class="options">
-      <span>mending</span> <input type="text" name="option1" id="option1" required />
-      atau <input type="text" name="option2" id="option2" required />
-    </div>
+      <div class="action">
+        <button id="compareButton">👇 mending mana?</button>
+      </div>
+    </section>
 
-    <div class="action">
-      <button id="compareButton"> 👇 mending mana? </button>
-    </div>
+    <main id="suggestion">
+      <h3 id="topicText">Topic</h3>
+      <div id="responseText"></div>
+    </main>
 
-  </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Client side");
+        suggestion.hidden = true;
+        topic.focus();
+        compareButton.disabled = true;
 
-  <main id="suggestion">
-    <h3 id="topicText">Topic</h3>
-    <div id="responseText"></div>
-  </main>
+        option2.addEventListener("keydown", async function (e) {
+          compareButton.disabled = false;
+          if (e.key === "Enter") {
+            await runComparison();
+          }
+        });
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      console.log("Client side");
-      suggestion.hidden = true;
-      topic.focus();
-      compareButton.disabled = true;
-
-      option2.addEventListener('keydown', async function (e) {
-        compareButton.disabled = false;
-        if (e.key === 'Enter') {
+        compareButton.addEventListener("click", async function (e) {
           await runComparison();
-        }
+        });
       });
 
-      compareButton.addEventListener('click', async function (e) {
-        await runComparison();
-      });
+      async function runComparison() {
+        compareButton.textContent = "🤔 mikir dulu...";
+        compareButton.disabled = true;
+        await compare(topic.value.trim(), option1.value.trim(), option2.value.trim());
+        compareButton.textContent = "👇 mending mana?";
+        topic.focus();
+        compareButton.disabled = true;
+      }
 
-    });
+      async function compare(topic, opt1, opt2) {
+        option2.blur();
+        // get something from backend here...
+      }
 
-    async function runComparison() {
-      compareButton.textContent = "🤔 mikir dulu..."
-      compareButton.disabled = true;
-      await compare(topic.value.trim(), option1.value.trim(), option2.value.trim());
-      compareButton.textContent = "👇 mending mana?"
-      topic.focus();
-      compareButton.disabled = true;
-    }
+      function resetForm() {
+        topic.value = "";
+        option1.value = "";
+        option2.value = "";
 
-    async function compare(topic, opt1, opt2) {
-      option2.blur();
-      // get something from backend here...
-
-    }
-
-    function resetForm() {
-      topic.value = '';
-      option1.value = '';
-      option2.value = '';
-
-      topic.focus();
-    }
-
-  </script>
-</body>
-
+        topic.focus();
+      }
+    </script>
+  </body>
 </html>
 ```
 
@@ -312,22 +314,19 @@ async function compare(topic, opt1, opt2) {
     const response = await fetch(url);
 
     if (response.status !== 200) {
-      throw new Error('Unable to get an answer!');
+      throw new Error("Unable to get an answer!");
     }
     const result = await response.text();
     if (result) {
       topicText.textContent = topic;
-      responseText.insertAdjacentHTML('beforeend', result);
+      responseText.insertAdjacentHTML("beforeend", result);
       suggestion.hidden = false;
       resetForm();
     }
-
   } catch (err) {
     console.error(err);
   }
-
 }
-
 ```
 
 Dari sisi frontend, lakukan pemanggilan ke server dengan menggunakan `fetch` ke _route_ `/compare` dengan parameter `topic`, `opt1` dan `opt2`. Hasil dari permintaan ini akan ditampilkan di halaman web.
@@ -385,7 +384,7 @@ Untuk mulai menggunakan silakan login dengan akun GCP terlebih dahulu ke [https:
 
 Lalu pilih "Create API Key" dan pilih proyek dari GCP sebelumnya. Dan salin API Key untuk nantinya akan dimasukkan kedalam _environment variable_ atau file `.env`
 
-![api key](/assets/images/gemini-web-dev/api-key.png)
+{% image "./assets/images/gemini-web-dev/api-key.png", "api key" %}
 
 #### `.env`
 
@@ -560,11 +559,7 @@ Mari kita bahas beberapa bagian penting dari kode diatas satu-per-satu.
 #### Import `@google/generative-ai`
 
 ```javascript
-import {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} from "@google/generative-ai";
+import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 ```
 
 #### Fungsi `compare`
@@ -572,10 +567,10 @@ import {
 ```javascript
 async function compare(topic, opt1, opt2) {
   // Generate suggestion
-  const MODEL_NAME = 'gemini-1.0-pro';
+  const MODEL_NAME = "gemini-1.0-pro";
   const { API_KEY } = process.env;
   if (!API_KEY) {
-    console.error('Please provide the API_KEY..');
+    console.error("Please provide the API_KEY..");
     return;
   }
   const genAI = new GoogleGenerativeAI(API_KEY);
@@ -608,14 +603,12 @@ async function compare(topic, opt1, opt2) {
 
   let prompt = `Please choose your answer given by user delimited by triple dash below and give short reason why. You will answer in Bahasa Indonesia.\n\nExample:\nUser: Mending laptop atau rakit pc?\nAsisten: Mending merakit PC, karena:\n\n* Lebih hemat biaya\n* Lebih fleksibel dalam memilih komponen\n* Dapat di-upgrade dengan mudah\n* Lebih cocok untuk kebutuhan spesifik\n\n\n\n---\n\nUser: ${topic} mending belajar ${opt1} atau ${opt2}?`;
 
-  const parts = [
-      { text: prompt },
-  ];
+  const parts = [{ text: prompt }];
 
   const result = await model.generateContent({
-    contents: [{role: 'user', parts}],
+    contents: [{ role: "user", parts }],
     generationConfig,
-    safetySettings
+    safetySettings,
   });
 
   const { response } = result;
@@ -631,7 +624,7 @@ Berikut langkah-langkah yang dilakukan oleh fungsi `compare`:
 - Lalu di baris ke-37 hingga baris ke-41 untuk mempersiapkan teks yang akan dikirim ke Gemini API dengan instruksi spesifik untuk membandingkan dua hal disertai dengan contoh. Salah satu cara efektif untuk _prompting_ dengan memberikan contoh keluarang yang diinginkan.
 - Di baris ke-43 hingga baris ke-47, eksekusi fungsi `generateContent` dengan berbagai parameter yang sudah disiapkan dan hasilnya dikembalikan ke _frontend_.
 
-![hasil mentah](/assets/images/gemini-web-dev/render-raw.png)
+{% image "./assets/images/gemini-web-dev/render-raw.png", "hasil mentah" %}
 
 ### Menampilkan Hasil sebagai HTML
 
@@ -743,7 +736,7 @@ function parse_options(options) {
 
 ```
 
-![render html](/assets/images/gemini-web-dev/render-html.png)
+{% image "./assets/images/gemini-web-dev/render-html.png", "render html" %}
 
 Jauh lebih baik, kan?! Dan aplikasi kita pun selesai.
 

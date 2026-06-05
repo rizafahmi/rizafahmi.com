@@ -10,10 +10,10 @@
  *   YOUTUBE_HANDLE     (optional) e.g. rizafahmi (without @)
  */
 
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import fs from "node:fs/promises";
+import path from "node:path";
 
-const API = 'https://www.googleapis.com/youtube/v3';
+const API = "https://www.googleapis.com/youtube/v3";
 
 function must(name) {
   const v = process.env[name];
@@ -22,13 +22,13 @@ function must(name) {
 }
 
 function opt(name) {
-  return process.env[name] || '';
+  return process.env[name] || "";
 }
 
 async function getJson(url) {
   const res = await fetch(url);
   if (!res.ok) {
-    const text = await res.text().catch(() => '');
+    const text = await res.text().catch(() => "");
     throw new Error(`HTTP ${res.status} for ${url}\n${text}`);
   }
   return res.json();
@@ -36,7 +36,7 @@ async function getJson(url) {
 
 async function resolveChannelId({ apiKey, channelId, handle }) {
   if (channelId) return channelId;
-  if (!handle) throw new Error('Provide YOUTUBE_CHANNEL_ID or YOUTUBE_HANDLE');
+  if (!handle) throw new Error("Provide YOUTUBE_CHANNEL_ID or YOUTUBE_HANDLE");
 
   // Newer API supports forHandle.
   const byHandle = `${API}/channels?part=id&forHandle=${encodeURIComponent(handle)}&key=${apiKey}`;
@@ -60,39 +60,43 @@ function num(n) {
 }
 
 async function main() {
-  const apiKey = must('YOUTUBE_API_KEY');
-  const channelId = opt('YOUTUBE_CHANNEL_ID');
-  const handle = opt('YOUTUBE_HANDLE');
+  const apiKey = must("YOUTUBE_API_KEY");
+  const channelId = opt("YOUTUBE_CHANNEL_ID");
+  const handle = opt("YOUTUBE_HANDLE");
 
   const id = await resolveChannelId({ apiKey, channelId, handle });
 
   const channelUrl = `${API}/channels?part=snippet,statistics&id=${encodeURIComponent(id)}&key=${apiKey}`;
   const channel = await getJson(channelUrl);
   const item = channel?.items?.[0];
-  if (!item) throw new Error('Channel not found');
+  if (!item) throw new Error("Channel not found");
 
   // Latest 12 videos: compute views range + avg views.
-  const uploadsPlaylistId = item?.contentDetails?.relatedPlaylists?.uploads;
+  const _uploadsPlaylistId = item?.contentDetails?.relatedPlaylists?.uploads;
   // contentDetails not included; use search list instead (reliable for public).
   const searchUrl = `${API}/search?part=id&channelId=${encodeURIComponent(id)}&order=date&type=video&maxResults=12&key=${apiKey}`;
   const search = await getJson(searchUrl);
-  const videoIds = (search?.items || []).map(it => it?.id?.videoId).filter(Boolean);
+  const videoIds = (search?.items || []).map((it) => it?.id?.videoId).filter(Boolean);
 
   let videos = [];
   if (videoIds.length) {
-    const vidsUrl = `${API}/videos?part=snippet,statistics&id=${encodeURIComponent(videoIds.join(','))}&key=${apiKey}`;
+    const vidsUrl = `${API}/videos?part=snippet,statistics&id=${encodeURIComponent(videoIds.join(","))}&key=${apiKey}`;
     const vids = await getJson(vidsUrl);
-    videos = (vids?.items || []).map(v => ({
-      id: v.id,
-      title: v?.snippet?.title,
-      publishedAt: v?.snippet?.publishedAt,
-      url: `https://www.youtube.com/watch?v=${v.id}`,
-      views: num(v?.statistics?.viewCount) || 0,
-    })).sort((a,b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''));
+    videos = (vids?.items || [])
+      .map((v) => ({
+        id: v.id,
+        title: v?.snippet?.title,
+        publishedAt: v?.snippet?.publishedAt,
+        url: `https://www.youtube.com/watch?v=${v.id}`,
+        views: num(v?.statistics?.viewCount) || 0,
+      }))
+      .sort((a, b) => (b.publishedAt || "").localeCompare(a.publishedAt || ""));
   }
 
-  const viewCounts = videos.map(v => v.views).filter(v => typeof v === 'number');
-  const avgViewsLast12 = viewCounts.length ? Math.round(viewCounts.reduce((a,b)=>a+b,0) / viewCounts.length) : null;
+  const viewCounts = videos.map((v) => v.views).filter((v) => typeof v === "number");
+  const avgViewsLast12 = viewCounts.length
+    ? Math.round(viewCounts.reduce((a, b) => a + b, 0) / viewCounts.length)
+    : null;
   const minViewsLast12 = viewCounts.length ? Math.min(...viewCounts) : null;
   const maxViewsLast12 = viewCounts.length ? Math.max(...viewCounts) : null;
 
@@ -102,7 +106,8 @@ async function main() {
       title: item?.snippet?.title || null,
       url: `https://www.youtube.com/channel/${id}`,
       handle: handle ? `@${handle}` : null,
-      thumbnail: item?.snippet?.thumbnails?.high?.url || item?.snippet?.thumbnails?.default?.url || null,
+      thumbnail:
+        item?.snippet?.thumbnails?.high?.url || item?.snippet?.thumbnails?.default?.url || null,
     },
     stats: {
       subscribers: num(item?.statistics?.subscriberCount),
@@ -110,19 +115,22 @@ async function main() {
       videoCount: num(item?.statistics?.videoCount),
       // A few helpful, “ratecard-friendly” computed stats
       avgViewsLast12,
-      viewsLast12Range: (minViewsLast12 != null && maxViewsLast12 != null) ? { min: minViewsLast12, max: maxViewsLast12 } : null,
+      viewsLast12Range:
+        minViewsLast12 != null && maxViewsLast12 != null
+          ? { min: minViewsLast12, max: maxViewsLast12 }
+          : null,
     },
     recentVideos: videos.slice(0, 6),
     updatedAt: new Date().toISOString(),
     source: {
-      api: 'YouTube Data API v3',
-      note: 'Public stats only. For geo/demographics, use YouTube Analytics API + OAuth.',
-    }
+      api: "YouTube Data API v3",
+      note: "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth.",
+    },
   };
 
-  const outPath = path.join(process.cwd(), 'src', '_data', 'youtube.json');
+  const outPath = path.join(process.cwd(), "src", "_data", "youtube.json");
   await fs.mkdir(path.dirname(outPath), { recursive: true });
-  await fs.writeFile(outPath, JSON.stringify(out, null, 2) + '\n', 'utf8');
+  await fs.writeFile(outPath, `${JSON.stringify(out, null, 2)}\n`, "utf8");
   console.log(`Wrote ${outPath}`);
 }
 

@@ -9,7 +9,6 @@ tags:
   - machine-learning
   - ai
   - tutorial
-
 ---
 
 Tensorflow.js adalah sebuah library yang dibangun diatas deeplearn.js untuk membuat modul deep learninglangsung dari web browser! Deep learning sendiri adalah sebuah cabang dari machine learning dan juga artificial intelligence. Dengan Tensorflow.js kita dapat membuat implementasi Convolutional Neural Network (CNN), Recurrent Neural Network (RNN) dan lain sebagainya.
@@ -41,9 +40,7 @@ model.fit(xs, ys).then(() => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     // Use the model to predict or to inference
-    const output = model.predict(
-      tf.tensor2d([parseFloat(inputText.value) / 10], [1, 1]),
-    );
+    const output = model.predict(tf.tensor2d([parseFloat(inputText.value) / 10], [1, 1]));
     predictPlaceholder.innerHTML = formatting(Array.from(output.dataSync())[0]);
   });
 });

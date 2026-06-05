@@ -11,7 +11,8 @@ tags:
 
 eleventyExcludeFromCollections: true
 ---
-Elixir memiliki struktur data koleksi atau *collection types* yang biasanya dapat digunakan untuk mengoleksi berbagai bentuk data: List dan Tuple. Tulisan kali ini kita akan membahas tentang struktur data di bahasa pemrograman Elixir melanjutkan [perkenalan bahasa Elixir di artikel sebelumnya](https://rizafahmi.com/catatan/bahasa-fungsional-elixir/).
+
+Elixir memiliki struktur data koleksi atau _collection types_ yang biasanya dapat digunakan untuk mengoleksi berbagai bentuk data: List dan Tuple. Tulisan kali ini kita akan membahas tentang struktur data di bahasa pemrograman Elixir melanjutkan [perkenalan bahasa Elixir di artikel sebelumnya](https://rizafahmi.com/catatan/bahasa-fungsional-elixir/).
 
 Setelah membaca tulisan ini, teman-teman akan mendapat gambaran lebih jelas dan lebih lancar menggunakan bahasa pemrograman Elixir. Karena bahasa fungsional seperti Elixir sangat menekankan transformasi data, sehingga pemilihan struktur data yang tepat akan sangat krusial.
 
@@ -37,7 +38,6 @@ Sedangkan untuk mengubah isi List dapat dilakukan dengan beberapa cara, salah sa
 List.replace_at(numbers, 1, 2)        # [1, 2, 3, :four]
 ```
 
-
 Jika ingin menambahkan item diawal bisa menggunakan notasi `|`. Namun jika ingin menambahkan item selain awal list, bisa menggunakan `List.insert_at`.
 
 ```elixir
@@ -60,7 +60,7 @@ List.delete_at(numbers, 3)        # [1, "two", 3]
 List.delete(numbers, 3)           # [1, "two", :four]
 ```
 
-Namun berbeda dengan struktur data Array, List berkaitan satu dengan item berikutnya, atau istilahnya *linked list*. List terdiri dari item pertama (head) dan List sisanya (tail).
+Namun berbeda dengan struktur data Array, List berkaitan satu dengan item berikutnya, atau istilahnya _linked list_. List terdiri dari item pertama (head) dan List sisanya (tail).
 
 TODO: Ilustrasi `[head | tail]`
 
@@ -71,7 +71,7 @@ IO.puts(tail)                      # [1, 2, 3]
 [1 | [2 | [3 | []]]]               # [1, 2, 3]
 ```
 
-Karena menggunakan format *linked list*, untuk menambah item diawal List merupakan operasi yang ringan sebaliknya menambahkan item diakhir merupakan operasi yang berat karena harus melakukan iterasi satu per satu sampai mendapatkan item terakhir (traversal).
+Karena menggunakan format _linked list_, untuk menambah item diawal List merupakan operasi yang ringan sebaliknya menambahkan item diakhir merupakan operasi yang berat karena harus melakukan iterasi satu per satu sampai mendapatkan item terakhir (traversal).
 
 TODO: Ilustrasi linked list traverse ke item terakhir
 
@@ -84,7 +84,9 @@ numbers = numbers ++ [4]           # slow
 
 ## Struktur data Tuple
 
-Struktur data Tuple menyimpan data secara *contiguously* dalam memori komputer. Hal ini memungkinkan kita untuk mengakses item dalam Tuple lebih cepat. Namun penggunaan Tuple lebih banyak memakan memori karena cara penyimpanan datanya yang *contiguously* tadi. Tuple cocok digunakan u
+Struktur data Tuple menyimpan data secara _contiguously_ dalam memori komputer. Hal ini memungkinkan kita untuk mengakses item dalam Tuple lebih cepat. Namun penggunaan Tuple lebih banyak memakan memori karena cara penyimpanan datanya yang _contiguously_ tadi. Tuple cocok digunakan u
+
 ## Referensi
+
 - [Elixir Full Course: 27 - Working with Lists, Shopping cart example](https://youtu.be/pUMgpFEbTBw?feature=shared)
-- 
+-

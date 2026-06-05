@@ -5,10 +5,10 @@ title: Judul
 <html lang="id">
   <head>
     <title>{{ title }}</title>
-    <link rel="preload" as="style" href="/assets/global.css" type="text/css" media="screen" />
-    <link rel="preload" as="style" href="/assets/home.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="/assets/global.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="/assets/home.css" type="text/css" media="screen" />
+    <link rel="preload" as="style" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+    <link rel="preload" as="style" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
     {% include 'head.njk' %}
   </head>
   <body>
@@ -17,9 +17,9 @@ title: Judul
       <div style="display:flex; align-items:center; gap: 0.75rem;">
         <h1 style="margin:0;"><a href="/">👋 Saya Riza!</a></h1>
         <nav class="hero-nav" style="margin-left: .25rem;">
-          <a href="/articles">📰 Catatan</a>
-          <a href="/tags">🏷️ Topik</a>
-          <a href="/search">🔍 Cari</a>
+          <a href="/articles">Catatan</a>
+          <a href="/tags">Topik</a>
+          <a href="/search">Cari</a>
         </nav>
       </div>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
@@ -27,6 +27,7 @@ title: Judul
     {{ content | safe }}
     {% include 'analytics.njk' %}
     {% include 'webvitals.njk' %}
+    {% include 'keyboard-shortcuts.njk' %}
     {% include 'theme-toggle.njk' %}
   </body>
 </html>

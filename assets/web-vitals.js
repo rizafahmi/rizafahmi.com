@@ -1,0 +1,1 @@
+Redirecting to /web-vitals@4.2.4/dist/web-vitals.attribution.js?module
