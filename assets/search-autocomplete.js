@@ -59,9 +59,7 @@ if (!input || !panel || !list) {
   // Pagefind excerpts contain <mark> tags. Allow only <mark> and escape the rest.
   function sanitizeExcerpt(html) {
     const escaped = escapeHtml(html || "");
-    return escaped
-      .replaceAll("&lt;mark&gt;", "<mark>")
-      .replaceAll("&lt;/mark&gt;", "</mark>");
+    return escaped.replaceAll("&lt;mark&gt;", "<mark>").replaceAll("&lt;/mark&gt;", "</mark>");
   }
 
   function render() {
@@ -152,7 +150,7 @@ if (!input || !panel || !list) {
             title: data.meta?.title || data.meta?.name || data.title,
             excerpt: data.excerpt,
           };
-        })
+        }),
       );
 
       if (signal.aborted) return;

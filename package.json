@@ -12,6 +12,7 @@
     "build": "ELEVENTY_ENV=prod npx @11ty/eleventy && npx pagefind --site dist",
     "build:prod": "npm run build",
     "debug": "DEBUG=* npx @11ty/eleventy",
+    "images:optimize": "node scripts/optimize-images.mjs",
     "test": "node --test test/*.test.js",
     "new:catatan": "node scripts/new-catatan.mjs",
     "lint": "biome lint .",

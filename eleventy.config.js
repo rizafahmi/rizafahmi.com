@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import fs, { existsSync } from "node:fs";
 import path from "node:path";
 import Image from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
@@ -213,7 +213,6 @@ export default function (eleventyConfig) {
   // Prompting journal: currently single-page. If we later switch to per-entry files,
   // we can reintroduce a collection here.
 
-
   // Curated tag list for /tags and /tags/<tag>/ pages.
   // Eleventy automatically creates collections per tag; this collection
   // only defines which tags should be shown.
@@ -357,6 +356,40 @@ export default function (eleventyConfig) {
       });
     }
     return content;
+  });
+
+  // Prefer modern formats when available by wrapping PNG <img> tags with <picture>.
+  // Original PNG remains in place as the <img> fallback (non-destructive).
+  eleventyConfig.addTransform("modernPictures", (content, outputPath) => {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+
+    return content.replace(
+      /<img\b[^>]*?src=("|')([^"']+?\.png(?:\?[^"']*)?)(\1)[^>]*?>/gi,
+      (imgTag, _quote, srcRaw) => {
+        if (imgTag.includes("data-no-picture")) return imgTag;
+        if (/^https?:\/\//i.test(srcRaw) || srcRaw.startsWith("data:")) return imgTag;
+
+        const [srcPathOnly, srcQuery = ""] = srcRaw.split("?");
+        const absSrc = path.join(process.cwd(), srcPathOnly.replace(/^\//, ""));
+
+        const hasAvif = fs.existsSync(absSrc.replace(/\.png$/i, ".avif"));
+        const hasWebp = fs.existsSync(absSrc.replace(/\.png$/i, ".webp"));
+        if (!hasAvif && !hasWebp) return imgTag;
+
+        const withQuery = (base) => base + (srcQuery ? `?${srcQuery}` : "");
+        const avifSrc = withQuery(srcPathOnly.replace(/\.png$/i, ".avif"));
+        const webpSrc = withQuery(srcPathOnly.replace(/\.png$/i, ".webp"));
+
+        const sources = [
+          hasAvif ? `<source type="image/avif" srcset="${avifSrc}">` : "",
+          hasWebp ? `<source type="image/webp" srcset="${webpSrc}">` : "",
+        ]
+          .filter(Boolean)
+          .join("");
+
+        return `<picture>${sources}${imgTag}</picture>`;
+      },
+    );
   });
 
   // --- Generate dynamic OG images for articles after build (prod only) ---
