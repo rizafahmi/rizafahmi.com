@@ -1,6 +1,8 @@
 ---
 title: "Perkenalan ReasonML, Sintaks Baru untuk OCaml"
+description: "Perkenalan ReasonML sebagai sintaks modern untuk OCaml dengan type system, type inference, tooling JavaScript, dan ergonomi adopsi."
 date: 2018-12-10
+created: 2018-12-10
 permalink: /2018/12/10/perkenalan-reasonml/
 cover: "./reason.jpeg"
 layout: tulisan

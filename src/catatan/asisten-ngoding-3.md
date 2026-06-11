@@ -1,5 +1,6 @@
 ---
 title: Menyusun Rencana dengan Asisten Ngoding
+description: "Menggunakan AI untuk menyusun rencana aplikasi yang jelas sebelum eksekusi, termasuk cara mengubah ide menjadi blueprint kerja."
 created: 2025-05-03
 modified: 2025-06-10
 date: 2025-06-10
@@ -13,8 +14,6 @@ tags:
 eleventyExcludeFromCollections: false
 series: "Asisten Ngoding"
 series_index: 3
----
-
 ---
 
 Setelah [di bagian sebelumnya](asisten-ngoding-2.md) kita membahas penggunaan AI sebagai asisten untuk diskusi ide dan pembuatan spesifikasi aplikasi, kali ini kita akan fokus memanfaatkan AI untuk menyusun rencana.

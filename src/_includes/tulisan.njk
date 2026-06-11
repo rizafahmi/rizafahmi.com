@@ -10,33 +10,49 @@ title: Judul
     <link rel="preload" as="style" href="/assets/tulisan.css?v={{ site.buildTime }}" type="text/css" />
     <link rel="stylesheet" href="/assets/tulisan.css?v={{ site.buildTime }}" type="text/css">
     {% include 'head.njk' %}
-    <meta property="og:type" content="article" />
-    <meta property="article:published_time" content="{{ (date or created) | dateToISO }}" />
+    {%- set isPublishedArticle = tags and 'catatan' in tags and date and not eleventyExcludeFromCollections -%}
+    {%- set publishedDate = date or created -%}
+    {%- set updatedDate = modified or date or created -%}
+    <meta property="article:published_time" content="{{ publishedDate | dateToISOString }}" />
     {%- if modified %}
-    <meta property="article:modified_time" content="{{ modified | dateToISO }}" />
+    <meta property="article:modified_time" content="{{ updatedDate | dateToISOString }}" />
     {%- endif %}
     <meta property="article:author" content="Riza Fahmi" />
+    {%- if isPublishedArticle %}
+      {%- for tag in tags %}
+        {%- if tag and tag != 'catatan' and tag != 'all' and tag != 'post' and tag != 'nav' %}
+    <meta property="article:tag" content="{{ tag | escape }}" />
+        {%- endif %}
+      {%- endfor %}
+    {%- endif %}
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": "{{ title | escape }}",
-      "description": "{{ description or title | escape }}",
+      "headline": {{ title | jsonify | safe }},
+      "description": {{ (description or (content | excerpt(220)) or title) | jsonify | safe }},
+      "image": {{ ("https://rizafahmi.com" + (image or cover or ("/og/" + page.fileSlug + ".png"))) | jsonify | safe }},
+      "inLanguage": "id-ID",
       "author": {
         "@type": "Person",
-        "name": "Riza Fahmi",
-        "url": "https://rizafahmi.com"
+        "name": {{ site.author.name | jsonify | safe }},
+        "url": {{ site.author.url | jsonify | safe }}
       },
-      "datePublished": "{{ (date or created) | dateToISO }}",
-      "dateModified": "{{ modified | dateToISO }}",
+      "datePublished": {{ (publishedDate | dateToISOString) | jsonify | safe }},
+      "dateModified": {{ (updatedDate | dateToISOString) | jsonify | safe }},
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://rizafahmi.com{{ page.url }}"
+        "@id": {{ ("https://rizafahmi.com" + page.url) | jsonify | safe }}
       },
       "publisher": {
         "@type": "Person",
-        "name": "Riza Fahmi"
+        "name": {{ site.author.name | jsonify | safe }}
+      },
+      "isPartOf": {
+        "@type": "Blog",
+        "name": {{ site.title | jsonify | safe }},
+        "url": {{ site.url | jsonify | safe }}
       }
     }
     </script>
@@ -71,10 +87,10 @@ title: Judul
       <h1>{{ title }}</h1>
       <div class="article-meta">
         {%- if created -%}
-        <small>🌱 Dibuat <time datetime="{{ created | readableDate }}">{{ created | readableDate }}</time>.</small>
+        <small>🌱 Dibuat <time datetime="{{ created | dateToISO }}">{{ created | readableDate }}</time>.</small>
         {%- endif -%}
         {%- if modified -%}
-        <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | readableDate }}">{{ modified | readableDate }}</time>.</small>
+        <small class="note-modified">🪴 Diperbarui <time datetime="{{ modified | dateToISO }}">{{ modified | readableDate }}</time>.</small>
         {%- endif -%}
         <small class="reading-time">⏱️ {{ content | readingTime }}</small>
         {%- if goatcounterViews and goatcounterViews[page.url] %}
@@ -99,7 +115,7 @@ title: Judul
           </span>
         </small>
 
-        {%- if tags %}
+        {%- if isPublishedArticle %}
           {%- set _tags = tags %}
           {%- if _tags is string %}{% set _tags = [_tags] %}{% endif %}
           {%- set visibleTags = [] %}
@@ -128,16 +144,30 @@ title: Judul
       {{ collections.catatan | seriesNav(series, series_index, page.url) | safe }}
       {%- endif %}
 
-      <section class="follow-cta" aria-label="Ikuti saya">
-        <div class="follow-cta-title">📢 IKUTI SAYA</div>
-        <p>Jika kamu suka tulisan ini, mari terhubung untuk obrolan seputar pemrograman, Elixir, dan AI:</p>
-        <div class="follow-cta-links">
-          <a href="https://x.com/rizafahmi22" target="_blank" rel="noopener noreferrer" class="follow-btn">X / Twitter</a>
-          <a href="https://linkedin.com/in/rizafahmi" target="_blank" rel="noopener noreferrer" class="follow-btn">LinkedIn</a>
+      {%- set neighbors = collections.catatan | articleNeighbors(page.url) %}
+      {%- if neighbors.newer or neighbors.older %}
+      <nav class="article-next" aria-label="Lanjut membaca">
+        <h3>LANJUT MEMBACA</h3>
+        <div class="article-next-grid">
+          {%- if neighbors.older %}
+          <a href="{{ neighbors.older.url }}" class="article-next-card">
+            <span class="article-next-label">Sebelumnya</span>
+            <strong>{{ neighbors.older.data.title }}</strong>
+            <span>{{ neighbors.older.content | readingTime }}</span>
+          </a>
+          {%- endif %}
+          {%- if neighbors.newer %}
+          <a href="{{ neighbors.newer.url }}" class="article-next-card">
+            <span class="article-next-label">Lebih baru</span>
+            <strong>{{ neighbors.newer.data.title }}</strong>
+            <span>{{ neighbors.newer.content | readingTime }}</span>
+          </a>
+          {%- endif %}
         </div>
-      </section>
+      </nav>
+      {%- endif %}
 
-      {%- if tags and 'catatan' in tags %}
+      {%- if isPublishedArticle %}
       <section class="related-articles">
         <h3>📚 Artikel Terkait</h3>
         <div class="related-grid">
@@ -151,10 +181,19 @@ title: Judul
       </section>
       {%- endif %}
 
+      <section class="follow-cta" aria-label="Ikuti saya">
+        <div class="follow-cta-title">📢 IKUTI SAYA</div>
+        <p>Jika kamu suka tulisan ini, mari terhubung untuk obrolan seputar pemrograman, Elixir, dan AI:</p>
+        <div class="follow-cta-links">
+          <a href="https://x.com/rizafahmi22" target="_blank" rel="noopener noreferrer" class="follow-btn">X / Twitter</a>
+          <a href="https://linkedin.com/in/rizafahmi" target="_blank" rel="noopener noreferrer" class="follow-btn">LinkedIn</a>
+        </div>
+      </section>
+
       <hr />
 
       {%- set show_comments = false %}
-      {%- if tags and 'catatan' in tags %}{% set show_comments = true %}{%- endif %}
+      {%- if isPublishedArticle %}{% set show_comments = true %}{%- endif %}
       {%- if page.url == '/now/' %}{% set show_comments = true %}{%- endif %}
       {%- if page.url == '/uses/' %}{% set show_comments = true %}{%- endif %}
 

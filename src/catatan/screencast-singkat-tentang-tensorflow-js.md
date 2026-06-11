@@ -1,6 +1,8 @@
 ---
 title: "Tutorial Singkat Tentang Tensorflow.js"
+description: "Tutorial singkat TensorFlow.js untuk menjalankan model machine learning di browser dan contoh prediksi harga rumah dengan JavaScript."
 date: 2018-07-25
+created: 2018-07-25
 permalink: /2018/07/25/screencast-singkat-tentang-tensorflow-js/
 layout: tulisan
 tags:

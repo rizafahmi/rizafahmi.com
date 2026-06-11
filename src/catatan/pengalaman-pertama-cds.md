@@ -1,6 +1,8 @@
 ---
 title: "Menjadi GDE dan Pengalaman Pertama Menghadiri Chrome Dev Summit"
+description: "Cerita menjadi Google Developers Expert dan pengalaman pertama menghadiri Chrome Dev Summit 2018 bersama komunitas web global."
 date: "2018-12-22"
+created: 2018-12-22
 permalink: /2018/12/22/pengalaman-pertama-cds/
 cover: "./cds.jpeg"
 layout: tulisan

@@ -1,5 +1,7 @@
 ---
 title: Menulis Kode dengan Asisten Ngoding
+description: "Cara menulis dan mengelola kode dengan bantuan AI coding assistant, mulai dari prompt plan sampai iterasi pengembangan aplikasi."
+date: 2025-11-13
 created: 2025-05-03
 modified: 2025-11-13
 layout: tulisan
@@ -12,8 +14,6 @@ tags:
 eleventyExcludeFromCollections: false
 series: "Asisten Ngoding"
 series_index: 5
----
-
 ---
 
 Setelah [bagian sebelumnya](asisten-ngoding-4.md) kita sudah mendapatkan desain yang dihasilkan _AI Interface Generator_, dalam hal ini menggunakan [Firebase Studio](https://studio.firebase.google.com/studio-9374311499). Sekarang saatnya menciptakan kode logika. Lalu kemudian kita akan melihat beberapa opsi untuk mengelola kode yang sudah dibuatkan AI. Tentu saja dengan bantuan AI.

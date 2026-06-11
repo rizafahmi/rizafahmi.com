@@ -1,13 +1,16 @@
 ---
 title: Konsep Pemrograman Fungsional dengan Elixir
+description: "Memahami konsep pemrograman fungsional dengan Elixir, termasuk first-class function, pure function, immutability, dan transformasi data."
 created: 2024-12-30
 modified: 2025-01-06
+date: 2025-01-06
 layout: tulisan
 tags:
   - catatan
-  - ide
-  - fungsional-elixir
-eleventyExcludeFromCollections: true
+  - elixir
+  - functional-programming
+  - paradigma
+eleventyExcludeFromCollections: false
 ---
 
 Dalam dunia pengembangan perangkat lunak yang semakin kompleks, pemrograman fungsional bisa menjadi udara segar bagi para developer. Fungsional adalah sebuah paradigma pemrograman yang menekankan penggunaan **fungsi** sebagai konsep utama. Berbeda dengan paradigma lain yang fokus pada langkah-langkah untuk mengubah _state_ atau data, **pemrograman fungsional fokus pada transformasi data** melalui fungsi.

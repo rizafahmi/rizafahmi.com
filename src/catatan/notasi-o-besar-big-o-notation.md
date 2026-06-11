@@ -1,5 +1,6 @@
 ---
 title: "Notasi O Besar atau Big-O Notation"
+description: "Penjelasan Big-O Notation untuk memahami kompleksitas algoritma, efisiensi kode, dan contoh O(1), O(n), sampai O(n^2)."
 date: 2020-03-21
 created: 2020-03-21
 permalink: /2020/03/21/notasi-o-besar-big-o-notation/

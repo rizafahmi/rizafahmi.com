@@ -2,8 +2,9 @@
 title: "Panduan Menulis Artikel Pemrograman"
 permalink: "/panduan-menulis/"
 date: 2021-01-28
+created: 2021-01-28
 layout: tulisan
-description: Panduan singkat dalam menulis artikel pemrograman
+description: Panduan praktis menulis artikel pemrograman yang jelas, terstruktur, bermanfaat, dan mudah diikuti pembaca.
 image: ""
 tags:
   - catatan

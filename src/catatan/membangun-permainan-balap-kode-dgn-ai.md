@@ -1,5 +1,7 @@
 ---
 title: Membangun permainan balap kode dengan AI
+description: "Catatan membangun Balap Kode dengan Elixir, Phoenix, Docker, SQLite, deployment, dan fitur AI dari ide sampai peluncuran."
+date: 2025-06-13
 created: 2025-06-13
 modified: 2025-06-13
 layout: tulisan

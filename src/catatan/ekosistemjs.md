@@ -1,6 +1,8 @@
 ---
 title: "Ekosistem JavaScript Di Indonesia"
+description: "Rangkuman ekosistem JavaScript di Indonesia dari sudut pandang pemula, profesional, dan pengambil keputusan, berdasarkan keynote JSDay 2019."
 date: 2020-02-03
+created: 2020-02-03
 permalink: /2020/02/03/ekosistemjs/
 cover: "./JSDAy.jpg"
 layout: tulisan

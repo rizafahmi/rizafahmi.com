@@ -1,6 +1,8 @@
 ---
 title: "Rekursi: Fungsi Yang Memanggil Dirinya Sendiri"
+description: "Pengantar rekursi dalam JavaScript: base case, recursive case, call stack, dan contoh fungsi yang memanggil dirinya sendiri."
 date: 2020-03-26
+created: 2020-03-26
 permalink: /2020/03/26/rekursi-atau-recursion/
 cover: "./martin-adams-lxujDxNigL4-unsplash.jpg"
 layout: tulisan

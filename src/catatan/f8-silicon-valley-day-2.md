@@ -1,6 +1,8 @@
 ---
 title: "F8 Silicon Valley Trip Day 2"
+description: "Catatan hari kedua F8 Developer Conference tentang AI, PyTorch, React Native, React VR, dan program komunitas developer."
 date: 2018-05-21
+created: 2018-05-21
 permalink: /2018/05/21/f8-san-jose-trip-day-2/
 cover: ""
 layout: tulisan

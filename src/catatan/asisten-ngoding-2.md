@@ -1,5 +1,6 @@
 ---
 title: Diskusi dan Menulis Spesifikasi dengan AI
+description: "Cara memakai AI untuk berdiskusi tentang ide aplikasi dan menyusun spesifikasi awal sebelum mulai menulis kode."
 modified: 2025-06-13
 created: 2025-04-11
 date: 2025-06-13
@@ -13,8 +14,6 @@ tags:
 eleventyExcludeFromCollections: false
 series: "Asisten Ngoding"
 series_index: 2
----
-
 ---
 
 Setelah di [bagian sebelumnya](asisten-ngoding.md) kita sudah melihat berbagai jenis AI yang dapat digunakan untuk membangun aplikasi—seperti AI Chatbot, AI Code Completion, AI Code Editor, dan AI Interface Builder—tulisan berikut akan mengajak teman-teman semua melakukan eksplorasi dan melihat sejauh mana AI dapat "diajak" untuk membangun aplikasi.

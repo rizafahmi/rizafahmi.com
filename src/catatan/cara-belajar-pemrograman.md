@@ -1,6 +1,8 @@
 ---
 title: "Cara Belajar Pemrograman Yang Cepat dan Efisien"
+description: "Panduan belajar pemrograman yang lebih efisien, mulai dari motivasi, problem solving, latihan, kebiasaan belajar, sampai cara menjaga momentum."
 date: 2018-09-17
+created: 2018-09-17
 permalink: /2018/09/17/cara-belajar-pemrograman/
 cover: "./goku.png"
 layout: tulisan

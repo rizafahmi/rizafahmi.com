@@ -1,6 +1,8 @@
 ---
 title: "F8 Silicon Valley Trip Day 1"
+description: "Cerita hari pertama F8 Developer Conference: keynote Mark Zuckerberg, update produk Facebook, Oculus Go, dan booth open source."
 date: 2018-05-14
+created: 2018-05-14
 permalink: /2018/05/14/f8-san-jose-trip-day-1/
 cover: ""
 layout: tulisan

@@ -1,5 +1,6 @@
 ---
 title: Produktif dengan Asisten Ngoding
+description: "Panduan mengenal jenis asisten ngoding berbasis AI, dari chatbot dan code completion sampai AI code editor dan interface builder."
 date: 2025-06-13
 modified: 2025-06-13
 created: 2025-04-03

@@ -8,7 +8,6 @@ eleventyExcludeFromCollections: true
 
 <head>
   <title>{{ title }}</title>
-  <meta name="description" content="{{ description }}">
   <link rel="preload" as="style" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
   <link rel="preload" as="style" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
   <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
@@ -19,18 +18,18 @@ eleventyExcludeFromCollections: true
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Riza Fahmi",
-    "url": "https://rizafahmi.com",
+    "name": {{ site.author.name | jsonify | safe }},
+    "url": {{ site.author.url | jsonify | safe }},
     "jobTitle": "Co-Founder",
     "worksFor": {
       "@type": "Organization",
       "name": "HACKTIV8"
     },
     "sameAs": [
-      "https://twitter.com/rizafahmi22",
-      "https://github.com/rizafahmi",
-      "https://linkedin.com/in/rizafahmi",
-      "https://youtube.com/rizafahmi"
+      {{ site.social.x | jsonify | safe }},
+      {{ site.social.github | jsonify | safe }},
+      {{ site.social.linkedin | jsonify | safe }},
+      {{ site.social.youtube | jsonify | safe }}
     ]
   }
   </script>

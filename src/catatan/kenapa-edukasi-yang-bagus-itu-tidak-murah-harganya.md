@@ -1,6 +1,8 @@
 ---
 title: "Kenapa Edukasi Yang Bagus Itu Tidak Murah Harganya"
+description: "Opini tentang perbedaan bisnis produk informasi dan bisnis edukasi, biaya bootcamp, tanggung jawab hasil belajar, dan cara memilih jalur belajar."
 date: 2018-04-06
+created: 2018-04-06
 permalink: "/2018/04/06/kenapa-edukasi-yang-bagus-itu-tidak-murah-harganya/"
 cover: "./4.jpg"
 layout: tulisan

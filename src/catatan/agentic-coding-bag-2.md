@@ -1,16 +1,19 @@
 ---
 title: Fondasi Agentic Coding - Integrasi LLM
+description: Praktik membangun fondasi agentic coding dengan Elixir, mulai dari membuat CLI sederhana sampai memanggil LLM melalui REST API.
 date: 2026-02-08
 created: 2026-02-08
 modified: 2026-03-09
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - agentic-coding
+  - elixir
+  - tutorial
 eleventyExcludeFromCollections: false
 series: "Agentic Coding"
 series_index: 2
----
-
 ---
 
 Setelah membedah konsep AI Agent di [bagian pertama](/catatan/agentic-coding), kini saatnya kita mempraktikkan teori dalam barisan kode. Kita akan membangun `mbb`, sebuah aplikasi CLI fungsional menggunakan Elixir, bahasa yang sangat ideal untuk Agentic AI karena kemampuan konkurensi dan fault tolerance.

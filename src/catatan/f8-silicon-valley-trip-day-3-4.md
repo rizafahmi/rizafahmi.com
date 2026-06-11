@@ -1,6 +1,8 @@
 ---
 title: "F8 Silicon Valley Trip Day 3–4"
+description: "Bagian akhir perjalanan F8 Silicon Valley tentang Googleplex, Golden Gate Bridge, Bay Area, dan cerita komunitas developer Indonesia."
 date: 2018-05-28
+created: 2018-05-28
 permalink: /2018/05/28/f8-san-jose-trip-day-3-4/
 cover: ""
 layout: tulisan
