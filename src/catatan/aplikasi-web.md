@@ -1,5 +1,6 @@
 ---
 title: "Membangun Tampilan Web dengan HTML, CSS & JS"
+description: "Materi workshop membangun tampilan web dengan HTML, CSS, JavaScript, Node.js, dan pengenalan framework untuk pemula."
 permalink: "/tampilan-web/"
 date: 2023-05-26
 created: 2023-05-26

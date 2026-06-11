@@ -1,7 +1,9 @@
 ---
 title: Struktur Data di Bahasa Pemrograman Elixir
+description: "Pengenalan struktur data di Elixir seperti List dan Tuple, termasuk cara mengakses, mengubah, dan memilih koleksi yang tepat."
 created: 2024-12-21
 modified: 2024-12-21
+date: 2024-12-21
 layout: tulisan
 tags:
   - catatan
@@ -9,7 +11,7 @@ tags:
   - struktur-data
   - computer-science
 
-eleventyExcludeFromCollections: true
+eleventyExcludeFromCollections: false
 ---
 
 Elixir memiliki struktur data koleksi atau _collection types_ yang biasanya dapat digunakan untuk mengoleksi berbagai bentuk data: List dan Tuple. Tulisan kali ini kita akan membahas tentang struktur data di bahasa pemrograman Elixir melanjutkan [perkenalan bahasa Elixir di artikel sebelumnya](https://rizafahmi.com/catatan/bahasa-fungsional-elixir/).

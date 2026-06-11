@@ -1,15 +1,19 @@
 ---
 title: Memberi LLM Akses - Tool Calling
+description: Melanjutkan fondasi agentic coding dengan tool calling agar LLM bisa membaca waktu, mengakses file, dan memakai kemampuan eksternal secara terkontrol.
 date: 2026-02-19
+created: 2026-02-19
 modified: 2026-04-13
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - agentic-coding
+  - elixir
+  - tutorial
 eleventyExcludeFromCollections: false
 series: "Agentic Coding"
 series_index: 3
----
-
 ---
 
 Aplikasi `mbb` yang kita kembangkan sejauh ini sudah mampu menjawab pertanyaan seputar sejarah, menjelaskan konsep, dan berdebat soal tab vs whitespace.

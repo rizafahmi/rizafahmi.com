@@ -8,6 +8,17 @@ import shikiPlugin from "./src/libs/shiki.js";
 
 const isDev = process.env.ELEVENTY_ENV === "dev";
 
+function imageOutputName(src) {
+  const extension = path.extname(src);
+  const name = path.basename(src, extension);
+  return name
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 async function imageShortcode(
   src,
   alt,
@@ -41,8 +52,7 @@ async function imageShortcode(
         directory: ".cache/eleventy-img",
       },
       filenameFormat: (_id, src, width, format, _options) => {
-        const extension = path.extname(src);
-        const name = path.basename(src, extension);
+        const name = imageOutputName(src);
         return `${name}-${width}w.${format}`;
       },
     });
@@ -115,6 +125,17 @@ export default function (eleventyConfig) {
     return d.toISOString().split("T")[0];
   });
 
+  eleventyConfig.addFilter("dateToISOString", (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    if (Number.isNaN(d.getTime())) return "";
+    return d.toISOString();
+  });
+
+  eleventyConfig.addFilter("jsonify", (value) => {
+    return JSON.stringify(value ?? "");
+  });
+
   eleventyConfig.addFilter("head", (array, n) => {
     if (!Array.isArray(array)) return [];
     return array.slice(0, n);
@@ -139,6 +160,8 @@ export default function (eleventyConfig) {
     return arr.filter((t) => t && !HIDDEN_TAGS.has(t));
   }
 
+  eleventyConfig.addFilter("publicTags", _normalizeTags);
+
   // Related articles (build-time, deterministic):
   // Combine signals: shared tags, content similarity, and recency.
   //
@@ -155,6 +178,22 @@ export default function (eleventyConfig) {
       { url: currentUrl, tags },
       { limit, hiddenTags: HIDDEN_TAGS },
     );
+  });
+
+  eleventyConfig.addFilter("articleNeighbors", (collection, currentUrl) => {
+    if (!Array.isArray(collection) || !currentUrl) return {};
+
+    const articles = [...collection]
+      .filter((item) => item?.url && item?.data?.date)
+      .sort((a, b) => b.data.date - a.data.date);
+
+    const index = articles.findIndex((item) => item.url === currentUrl);
+    if (index === -1) return {};
+
+    return {
+      newer: articles[index - 1] || null,
+      older: articles[index + 1] || null,
+    };
   });
 
   // Plain-text excerpt for meta description (social previews, SEO).
@@ -264,10 +303,16 @@ export default function (eleventyConfig) {
     if (!content.includes('class="reading-progress"')) return content;
 
     const contentStart = content.indexOf('<div class="note-edit">');
-    const contentEnd = content.indexOf('<section class="follow-cta"');
+    const contentEnd = [
+      content.indexOf('<nav class="article-next"'),
+      content.indexOf('<section class="related-articles"'),
+      content.indexOf('<section class="follow-cta"'),
+    ]
+      .filter((position) => position !== -1)
+      .sort((a, b) => a - b)[0];
     if (contentStart === -1) return content;
 
-    const endPos = contentEnd !== -1 ? contentEnd : content.length;
+    const endPos = contentEnd ?? content.length;
     const articleContent = content.slice(contentStart, endPos);
 
     const headingRegex = /<h([23])\b[^>]*(?:\s+id="([^"]*)")?[^>]*>(.*?)<\/h[23]>/gi;
@@ -361,7 +406,7 @@ export default function (eleventyConfig) {
   // Prefer modern formats when available by wrapping PNG <img> tags with <picture>.
   // Original PNG remains in place as the <img> fallback (non-destructive).
   eleventyConfig.addTransform("modernPictures", (content, outputPath) => {
-    if (!outputPath || !outputPath.endsWith(".html")) return content;
+    if (!outputPath?.endsWith(".html")) return content;
 
     return content.replace(
       /<img\b[^>]*?src=("|')([^"']+?\.png(?:\?[^"']*)?)(\1)[^>]*?>/gi,

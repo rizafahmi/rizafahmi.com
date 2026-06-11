@@ -1,6 +1,8 @@
 ---
 title: "F8 Silicon Valley Trip Day 0"
+description: "Rekap hari awal perjalanan ke F8 Developer Conference, gathering Developer Circle Leads, tur Facebook HQ, dan obrolan komunitas."
 date: 2018-05-08
+created: 2018-05-08
 permalink: /2018/05/08/f8-san-jose-trip-day-0/
 cover: "./1_J7TJO5VQfndtn3cyjF4flg.jpeg"
 layout: tulisan

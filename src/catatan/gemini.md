@@ -4,7 +4,7 @@ permalink: "/gemini-web-dev/"
 date: 2023-10-22
 created: 2023-10-22
 layout: tulisan
-description: Contoh penggunaan Gemini API untuk web developer
+description: Tutorial memakai Gemini API untuk web developer dengan Node.js, Google AI Studio, dan contoh aplikasi web berbasis AI.
 image: "/assets/images/gemini-web-dev/mendang-mending.png"
 tags:
   - catatan

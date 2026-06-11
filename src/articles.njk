@@ -6,15 +6,20 @@ eleventyExcludeFromCollections: true
 ---
 
 <main id="main-content" class="container">
-    <div class="articles-header">
-      <h2>CATATAN</h2>
-      <div class="rss-pill">
-        🔔 FEED: <a href="/feed.xml" target="_blank">RSS</a> / <a href="/feed/full.xml" target="_blank">FULL</a>
-      </div>
+  <div class="articles-header">
+    <h2>CATATAN</h2>
+    <div class="rss-pill">
+      🔔 FEED: <a href="/feed.xml" target="_blank">RSS</a> / <a href="/feed/full.xml" target="_blank">FULL</a>
     </div>
-    
-    <div class="articles">
-      {% for article in collections.catatan | reverse %}
+  </div>
+
+  <p class="articles-intro">
+    Arsip tulisan tentang pemrograman, AI, Elixir, web development, produktivitas, dan catatan membangun developer.
+    Untuk jalur baca yang lebih terarah, mulai dari <a href="/topik/">topik pilihan</a>.
+  </p>
+
+  <div class="articles">
+    {% for article in collections.catatan | reverse %}
       <article class="article">
         <div class="article-meta-row">
           <span>📅 {{ article.date | dateToISO }}</span>
@@ -26,9 +31,20 @@ eleventyExcludeFromCollections: true
         <h3>
           <a href="{{article.url}}">{{ article.data.title }}</a>
         </h3>
+        <p class="article-excerpt">
+          {{ article.data.description or (article.templateContent | excerpt(180)) }}
+        </p>
+        {%- set visibleTags = article.data.tags | publicTags %}
+        {%- if visibleTags.length %}
+        <div class="article-topics" aria-label="Topik artikel">
+          {%- for tag in visibleTags | head(4) %}
+          <a href="/tags/{{ tag | url }}/">{{ tag }}</a>
+          {%- endfor %}
+        </div>
+        {%- endif %}
       </article>
-      {% endfor %}
-    </div>
-    
-    <a class="back" href="/">&lt; KEMBALI KE BERANDA</a>
+    {% endfor %}
+  </div>
+
+  <a class="back" href="/">&lt; KEMBALI KE BERANDA</a>
 </main>

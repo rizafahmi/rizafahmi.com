@@ -1,11 +1,15 @@
 ---
 title: "Memahami Sistem Konkurensi BEAM Melalui Elixir"
+description: "Membahas cara kerja konkurensi di BEAM melalui Elixir, mulai dari proses ringan, spawn, message passing, scheduler, sampai actor model."
 date: 2019-04-29
+created: 2019-04-29
 permalink: /2019/04/29/memahami-beam/
 layout: tulisan
 tags:
   - catatan
   - elixir
+  - beam
+  - concurrency
   - otp
 ---
 

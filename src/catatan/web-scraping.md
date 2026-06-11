@@ -1,5 +1,6 @@
 ---
 title: "Web Scraping dengan Node"
+description: "Tutorial web scraping dengan Node.js, mulai dari setup proyek, request halaman web, parsing HTML, ekstraksi data, sampai menyimpan hasil scraping."
 permalink: "/web-scraping/"
 date: 2023-05-25
 created: 2023-05-25
@@ -7,6 +8,7 @@ layout: tulisan
 tags:
   - catatan
   - javascript
+  - nodejs
   - web-scraping
   - tutorial
 ---

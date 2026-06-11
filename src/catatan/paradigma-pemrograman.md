@@ -1,5 +1,6 @@
 ---
 title: Catatan Tentang Paradigma Pemrograman
+description: "Catatan tentang paradigma pemrograman, pergeseran bahasa modern, concurrency, dan contoh Elixir untuk memahami model eksekusi."
 date: 2024-10-01
 created: 2024-09-22
 layout: tulisan

@@ -1,6 +1,8 @@
 ---
 title: "Rangkuman Acara Developer Circles Jakarta Build Day 2018"
+description: "Rangkuman Developer Circles Jakarta Build Day 2018, sesi engineer Facebook, chatbot Messenger, ideation, dan tantangan komunitas."
 date: 2018-07-12
+created: 2018-07-12
 permalink: /2018/07/12/rangkuman-acara-devc-jakarta-build-day-2018/
 cover: "./devc.jpeg"
 layout: tulisan

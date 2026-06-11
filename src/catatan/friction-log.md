@@ -1,5 +1,6 @@
 ---
 title: "Tentang Friction Log"
+description: "Penjelasan friction log untuk mengevaluasi pengalaman produk, onboarding, peluncuran fitur, dan dokumentasi temuan pengguna."
 permalink: "/2021/09/12/tentang-friction-log/"
 date: 2021-09-12
 created: 2021-09-12

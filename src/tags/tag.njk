@@ -7,6 +7,7 @@ permalink: "/tags/{{ tag | url }}/"
 layout: main
 eleventyComputed:
   title: "Topik: {{ tag }}"
+  description: "Kumpulan tulisan Riza Fahmi tentang {{ tag }}. Jelajahi artikel, catatan, dan panduan praktis berdasarkan topik ini."
 ---
 
 <main class="container" id="main-content">
@@ -16,6 +17,11 @@ eleventyComputed:
       📄 {{ collections[tag] | length }} TULISAN
     </div>
   </div>
+
+  <p class="articles-intro">
+    Arsip tulisan bertopik <strong>{{ tag }}</strong>. Baca dari artikel terbaru, atau kembali ke
+    <a href="/topik/">topik pilihan</a> untuk jalur belajar yang lebih terkurasi.
+  </p>
 
   <div class="articles">
     {%- for article in collections[tag] | reverse %}
@@ -27,6 +33,17 @@ eleventyComputed:
         <h3>
           <a href="{{article.url}}">{{ article.data.title }}</a>
         </h3>
+        <p class="article-excerpt">
+          {{ article.data.description or (article.templateContent | excerpt(180)) }}
+        </p>
+        {%- set visibleTags = article.data.tags | publicTags %}
+        {%- if visibleTags.length %}
+        <div class="article-topics" aria-label="Topik artikel">
+          {%- for t in visibleTags | head(4) %}
+          <a href="/tags/{{ t | url }}/">{{ t }}</a>
+          {%- endfor %}
+        </div>
+        {%- endif %}
       </article>
     {%- endfor %}
   </div>

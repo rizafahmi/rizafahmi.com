@@ -25,7 +25,11 @@ function parseArgs(argv) {
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--dir") args.dir = argv[++i];
-    else if (a === "--formats") args.formats = argv[++i].split(",").map((x) => x.trim()).filter(Boolean);
+    else if (a === "--formats")
+      args.formats = argv[++i]
+        .split(",")
+        .map((x) => x.trim())
+        .filter(Boolean);
     else if (a === "--force") args.force = true;
     else if (a === "--dry-run") args.dryRun = true;
     else if (a === "--min-bytes") args.minBytes = Number(argv[++i]);
@@ -127,7 +131,9 @@ async function main() {
       }
 
       if (args.dryRun) {
-        console.log(`[dry-run] ${path.relative(process.cwd(), srcPath)} -> ${path.relative(process.cwd(), outPath)}`);
+        console.log(
+          `[dry-run] ${path.relative(process.cwd(), srcPath)} -> ${path.relative(process.cwd(), outPath)}`,
+        );
         continue;
       }
 

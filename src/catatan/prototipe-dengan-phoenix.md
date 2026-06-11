@@ -1,5 +1,6 @@
 ---
 title: Membangun Prototipe Aplikasi dengan Elixir Phoenix
+description: "Membangun prototipe aplikasi komunitas dengan Elixir Phoenix, mulai dari ide EventFlow, desain layar, autentikasi, event, RSVP, sampai attendance."
 created: 2025-09-04
 modified: 2025-09-22
 layout: tulisan

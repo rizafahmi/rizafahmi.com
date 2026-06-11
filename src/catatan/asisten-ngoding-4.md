@@ -1,5 +1,6 @@
 ---
 title: Desain Antarmuka dengan Asisten Ngoding
+description: "Pengalaman memakai AI untuk membuat desain antarmuka interaktif dengan HTML, CSS, dan JavaScript sebagai fondasi pengembangan aplikasi."
 date: 2025-08-19
 created: 2025-06-13
 modified: 2025-08-19
@@ -13,8 +14,6 @@ tags:
 eleventyExcludeFromCollections: false
 series: "Asisten Ngoding"
 series_index: 4
----
-
 ---
 
 Setelah [bagian sebelumnya](asisten-ngoding-3.md) kita berhasil menghasilkan rencana yang matang dalam format _blueprint_, kini saatnya untuk melangkah ke tahap yang paling dinanti: eksekusi! Ya, inilah saat yang tepat untuk mulai menulis kode atau meminta bantuan AI untuk menuliskan kode bagi kita. Dalam artikel ini, saya akan membagikan pengalaman pribadi dan tips praktis yang bisa langsung teman-teman terapkan. Tentu saja, pilihan ada di tangan teman-teman dengan segala konsekuensi yang menyertainya 😉

@@ -1,5 +1,6 @@
 ---
 title: Berkenalan dengan Bahasa Pemrograman Elixir
+description: "Pengenalan bahasa pemrograman Elixir, sejarah singkat, keunggulan BEAM, paradigma fungsional, tipe data, pattern matching, dan ekosistemnya."
 created: 2024-11-08
 date: 2025-01-10
 layout: tulisan
@@ -8,6 +9,7 @@ tags:
   - elixir
   - functional-programming
   - paradigma
+  - beam
 
 eleventyExcludeFromCollections: false
 ---

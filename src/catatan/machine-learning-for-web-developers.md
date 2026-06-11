@@ -1,11 +1,14 @@
 ---
 title: "Machine Learning for Web Developers"
+description: "Catatan dan materi Machine Learning for Web Developers dari sesi Tech in Asia Product Development Conference, termasuk video, slide, repo, dan referensi belajar."
 date: 2018-08-20
+created: 2018-08-20
 permalink: /2018/08/20/machine-learning-for-web-developers/
 cover: "./IMG20180705162500.jpg"
 layout: tulisan
 tags:
   - catatan
+  - ai
   - machine-learning
   - web
   - javascript

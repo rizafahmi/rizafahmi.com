@@ -1,6 +1,8 @@
 ---
 title: "5 Kebiasaan Coding Yang Menjadikan Kamu Super Developer"
+description: "Lima kebiasaan praktis untuk menjadi developer yang lebih baik: latihan coding rutin, mencoba hal baru, membaca kode, menulis, dan berbagi."
 date: 2017-05-11
+created: 2017-05-11
 permalink: "/2017/05/11/5-kebiasaan-coding/"
 cover: "./1_JaLmTHV3SDIqTNaczZdhCQ.png"
 layout: tulisan

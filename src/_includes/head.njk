@@ -13,16 +13,34 @@
 <link rel="preload" href="/assets/fonts/wotfard-regular-webfont.woff2" type="font/woff2" as="font" crossorigin="anonymous" />
 
 {# --- Social + SEO helpers --- #}
-{%- set _desc = description or (content | excerpt(180)) or title -%}
-{%- set _ogPath = image or cover or "/assets/images/og-twitter.png" -%}
+{%- set _desc = description or (content | excerpt(180)) or site.description or title -%}
+{%- set _ogPath = image or cover -%}
+{%- if not _ogPath and tags and 'catatan' in tags and page.fileSlug -%}
+  {%- set _ogPath = "/og/" + page.fileSlug + ".png" -%}
+{%- endif -%}
+{%- if not _ogPath -%}
+  {%- set _ogPath = "/assets/images/og-twitter.png" -%}
+{%- endif -%}
 {%- if _ogPath and _ogPath.startsWith('./') -%}
   {%- set _ogPath = page.url + (_ogPath | replace('./', '')) -%}
 {%- endif -%}
 
 <link rel="canonical" href="https://rizafahmi.com{{ page.url | escape }}" />
-<meta name="description" content="{{ _desc | escape }}" property="og:description">
+<meta name="description" content="{{ _desc | escape }}">
+{%- set _isExcludedArticle = tags and 'catatan' in tags and eleventyExcludeFromCollections -%}
+{%- if noindex or _isExcludedArticle %}
+<meta name="robots" content="noindex,nofollow,noarchive">
+{%- else %}
+<meta name="robots" content="index,follow,max-image-preview:large">
+{%- endif %}
+<meta property="og:site_name" content="{{ site.name | escape }}" />
+<meta property="og:locale" content="id_ID" />
+<meta property="og:title" content="{{ title | escape }}" />
+<meta property="og:type" content="{% if tags and 'catatan' in tags %}article{% else %}website{% endif %}" />
+<meta property="og:description" content="{{ _desc | escape }}" />
 <meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />
 <meta property="og:image" content="https://rizafahmi.com{{ _ogPath }}" />
+<meta property="og:image:alt" content="{{ title | escape }}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@rizafahmi22" />
 <meta name="twitter:title" content="{{ title | escape }}" />

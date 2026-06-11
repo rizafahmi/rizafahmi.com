@@ -1,5 +1,6 @@
 ---
 title: "TIL: Menjalankan Observer di Proyek Elixir"
+description: "Catatan singkat menjalankan Erlang Observer di proyek Elixir dengan menambahkan aplikasi observer ke konfigurasi mix.exs."
 date: 2024-12-03
 created: 2024-12-03
 layout: tulisan

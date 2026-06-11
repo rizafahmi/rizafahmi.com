@@ -1,11 +1,15 @@
 ---
 title: Fondasi Agentic Coding - Apa itu Agent?
+description: Memahami konsep AI agent dan agentic coding, dari evolusi asisten ngoding sampai cara kerja agent yang bisa merencanakan dan mengeksekusi tugas.
 date: 2026-02-06
 modified: 2026-03-09
 created: 2026-01-25
 layout: tulisan
 tags:
   - catatan
+  - ai
+  - agentic-coding
+  - workflow
 eleventyExcludeFromCollections: false
 series: "Agentic Coding"
 series_index: 1

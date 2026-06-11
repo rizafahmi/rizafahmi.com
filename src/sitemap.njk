@@ -4,14 +4,36 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- set staticPages = [
+    "/",
+    "/articles/",
+    "/search/",
+    "/tags/",
+    "/topik/",
+    "/topik/ai/",
+    "/topik/elixir/",
+    "/topik/web/",
+    "/topik/produktivitas/",
+    "/showcase/",
+    "/now/",
+    "/uses/",
+    "/ai/"
+  ] %}
+  {%- for url in staticPages %}
   <url>
-    <loc>https://rizafahmi.com/</loc>
+    <loc>https://rizafahmi.com{{ url }}</loc>
   </url>
+  {%- endfor %}
+  {%- for tag in collections.tagList %}
+  <url>
+    <loc>https://rizafahmi.com/tags/{{ tag | url }}/</loc>
+  </url>
+  {%- endfor %}
   {%- for post in collections.catatan %}
   <url>
     <loc>https://rizafahmi.com{{ post.url }}</loc>
-    {%- if post.date %}
-    <lastmod>{{ post.date | dateToISO }}</lastmod>
+    {%- if post.data.modified or post.date %}
+    <lastmod>{{ (post.data.modified or post.date) | dateToISO }}</lastmod>
     {%- endif %}
   </url>
   {%- endfor %}

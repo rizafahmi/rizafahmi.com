@@ -1,5 +1,6 @@
 ---
 title: Catatan tentang NotebookLM
+description: "Catatan pengalaman memakai NotebookLM untuk membuat RAG sederhana dari dokumen, tautan, dan YouTube, termasuk fitur Audio Overview."
 date: 2024-10-01
 created: 2024-10-01
 layout: tulisan
