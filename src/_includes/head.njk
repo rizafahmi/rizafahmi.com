@@ -67,3 +67,56 @@
 
 <link rel="alternate" type="application/atom+xml" href="https://rizafahmi.com/feed.xml" title="Catatan (excerpt)" />
 <link rel="alternate" type="application/atom+xml" href="https://rizafahmi.com/feed/full.xml" title="Catatan (full content)" />
+<link rel="alternate" type="text/plain" href="https://rizafahmi.com/llms.txt" title="LLM-readable site map" />
+<link rel="alternate" type="text/plain" href="https://rizafahmi.com/llms-full.txt" title="Full LLM content index" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ site.url }}/#person",
+      "name": {{ site.author.name | jsonify | safe }},
+      "url": {{ site.author.url | jsonify | safe }},
+      "email": {{ site.author.email | jsonify | safe }},
+      "sameAs": [
+        {{ site.social.x | jsonify | safe }},
+        {{ site.social.github | jsonify | safe }},
+        {{ site.social.linkedin | jsonify | safe }},
+        {{ site.social.youtube | jsonify | safe }}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": {{ site.url | jsonify | safe }},
+      "name": {{ site.title | jsonify | safe }},
+      "description": {{ site.description | jsonify | safe }},
+      "inLanguage": "id-ID",
+      "publisher": {
+        "@id": "{{ site.url }}/#person"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ site.url }}/search/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{{ site.url }}{{ page.url }}#webpage",
+      "url": "{{ site.url }}{{ page.url }}",
+      "name": {{ title | jsonify | safe }},
+      "description": {{ _desc | jsonify | safe }},
+      "inLanguage": "id-ID",
+      "isPartOf": {
+        "@id": "{{ site.url }}/#website"
+      },
+      "about": {
+        "@id": "{{ site.url }}/#person"
+      }
+    }
+  ]
+}
+</script>

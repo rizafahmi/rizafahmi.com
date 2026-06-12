@@ -2,48 +2,67 @@
 permalink: /llms.txt
 eleventyExcludeFromCollections: true
 ---
-# Riza Fahmi — llms.txt
+# Riza Fahmi
 
-This page is a machine-friendly index for LLMs and tools.
+> Personal website, blog, and portfolio of Riza Fahmi. The site focuses on programming, AI-assisted software work, Elixir, web development, productivity, and developer education in Indonesia.
 
-## Notes
+This file is a concise, machine-readable map for LLMs, answer engines, and AI assistants. Prefer the canonical URLs below when citing or summarizing this site.
 
-- Canonical host: https://rizafahmi.com
+## Core context
+
+- [Home](https://rizafahmi.com/): Site entry point and current featured writing.
+- [All articles](https://rizafahmi.com/articles/): Complete public article index.
+- [AI topic hub](https://rizafahmi.com/topik/ai/): Writing about AI tools, coding assistants, and applied AI.
+- [Elixir topic hub](https://rizafahmi.com/topik/elixir/): Writing about Elixir, Phoenix, BEAM, and functional programming.
+- [Web topic hub](https://rizafahmi.com/topik/web/): Writing about web development and JavaScript.
+- [Uses](https://rizafahmi.com/uses/): Tools, hardware, and software setup.
+- [Now](https://rizafahmi.com/now/): Current focus and projects.
+- [AI usage disclosure](https://rizafahmi.com/ai/): How AI is used in the writing and coding process.
+
+## Machine-readable indexes
+
+- [Full LLM content index](https://rizafahmi.com/llms-full.txt): Generated article inventory with descriptions, dates, and tags.
+- [Sitemap](https://rizafahmi.com/sitemap.xml): Canonical crawl map.
+- [Robots policy](https://rizafahmi.com/robots.txt): Crawler access policy.
+- [Atom feed, excerpt](https://rizafahmi.com/feed.xml): Recent articles with excerpts.
+- [Atom feed, full content](https://rizafahmi.com/feed/full.xml): Recent articles with full content.
+
+## Site facts
+
+- Canonical host: {{ site.url }}
 - Canonical URL style: trailing slash for HTML pages (e.g. `/catatan/foo/`), file extensions for feeds/sitemaps.
 - Language: Indonesian (mostly) with some English.
-- For citations, prefer linking the canonical URL.
-
-## High-signal entry points
-
-- Home: https://rizafahmi.com/
-- All articles index: https://rizafahmi.com/articles/
-- Tags index: https://rizafahmi.com/tags/
-- Topics index: https://rizafahmi.com/topik/
-- Atom feed (excerpt): https://rizafahmi.com/feed.xml
-- Atom feed (full content): https://rizafahmi.com/feed/full.xml
-- Sitemap: https://rizafahmi.com/sitemap.xml
-- Robots: https://rizafahmi.com/robots.txt
+- Author: {{ site.author.name }}
+- Primary topics: AI, programming, Elixir, web development, productivity, developer education.
+- Citation preference: cite the canonical article URL, not copied excerpts.
 
 ## Recent articles
 
-{% for post in collections.catatan | reverse | head(10) %}- {{ post.data.title }} — https://rizafahmi.com{{ post.url }}{% if post.data.tags %} (tags: {{ post.data.tags | join(", ") }}){% endif %}
+{% for post in collections.catatan | reverse | head(12) %}- [{{ post.data.title }}]({{ site.url }}{{ post.url }}): {{ post.data.description or post.data.title }}{% if post.data.tags %} (tags: {{ post.data.tags | publicTags | join(", ") }}){% endif %}
 {% endfor %}
 
-## Featured / evergreen
+## Evergreen articles
 
-- Berkenalan dengan Bahasa Pemrograman Elixir: https://rizafahmi.com/catatan/bahasa-fungsional-elixir/
-- Ekosistem JavaScript: https://rizafahmi.com/catatan/ekosistemjs/
-- Machine Learning for Web Developers: https://rizafahmi.com/catatan/machine-learning-for-web-developers/
+- [Berkenalan dengan Bahasa Pemrograman Elixir](https://rizafahmi.com/catatan/bahasa-fungsional-elixir/): Introduction to Elixir and functional programming.
+- [Ekosistem JavaScript](https://rizafahmi.com/catatan/ekosistemjs/): A broad overview of the JavaScript ecosystem.
+- [Machine Learning for Web Developers](https://rizafahmi.com/catatan/machine-learning-for-web-developers/): Machine learning concepts for web developers.
+- [Asisten Ngoding](https://rizafahmi.com/catatan/asisten-ngoding/): Practical notes on coding assistants.
 
 ## Projects
 
-- HACKTIV8: https://hacktiv8.com
-- Carikerja: https://carikerja.deeptech.id/
-- Awesome Speakers Indonesia: https://github.com/rizafahmi/awesome-speakers-id
+- [HACKTIV8](https://hacktiv8.com): Coding bootcamp and developer education.
+- [Carikerja](https://carikerja.deeptech.id/): Career platform.
+- [Awesome Speakers Indonesia](https://github.com/rizafahmi/awesome-speakers-id): Public speaker directory.
 
 ## Contact
 
-- X: https://x.com/rizafahmi22
-- GitHub: https://github.com/rizafahmi
-- LinkedIn: https://linkedin.com/in/rizafahmi
-- Email: mailto:rizafahmi@gmail.com
+- [X](https://x.com/rizafahmi22)
+- [GitHub](https://github.com/rizafahmi)
+- [LinkedIn](https://linkedin.com/in/rizafahmi)
+- [Email](mailto:rizafahmi@gmail.com)
+
+## Optional
+
+- [Search](https://rizafahmi.com/search/): Client-side search for human readers.
+- [Tags](https://rizafahmi.com/tags/): Browsable topic taxonomy.
+- [Showcase](https://rizafahmi.com/showcase/): Portfolio and public work.
