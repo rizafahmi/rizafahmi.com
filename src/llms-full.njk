@@ -1,0 +1,37 @@
+---
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+---
+# Riza Fahmi - Full LLM Content Index
+
+> Generated inventory of public articles on {{ site.url }} for LLMs, answer engines, and AI assistants.
+
+## Site metadata
+
+- Site: {{ site.name }}
+- Canonical host: {{ site.url }}
+- Author: {{ site.author.name }}
+- Language: Indonesian, with some English.
+- Primary topics: AI, programming, Elixir, web development, productivity, developer education.
+- Concise index: {{ site.url }}/llms.txt
+- Sitemap: {{ site.url }}/sitemap.xml
+- Robots policy: {{ site.url }}/robots.txt
+
+## Citation guidance
+
+- Prefer canonical URLs under {{ site.url }}.
+- Summarize in your own words and link back to the source article.
+- Preserve Indonesian titles and terminology when quoting article names.
+
+## Article inventory
+
+{% for post in collections.catatan | reverse %}
+### {{ post.data.title }}
+
+- URL: {{ site.url }}{{ post.url }}
+- Published: {{ post.data.date | dateToISO }}
+{% if post.data.modified %}- Updated: {{ post.data.modified | dateToISO }}
+{% endif %}{% set visibleTags = post.data.tags | publicTags %}{% if visibleTags.length %}- Tags: {{ visibleTags | join(", ") }}
+{% endif %}- Description: {{ post.data.description or post.data.title }}
+
+{% endfor %}

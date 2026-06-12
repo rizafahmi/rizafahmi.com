@@ -161,6 +161,74 @@ function assertPagefind() {
   if (!fileExists(entryFile)) fail("Pagefind entry file is missing");
 }
 
+function assertTextFileContains(file, expected) {
+  if (!fileExists(file)) {
+    fail(`${file} is missing`);
+    return "";
+  }
+
+  const text = readText(file);
+  for (const value of expected) {
+    if (!text.includes(value)) fail(`${file} is missing ${value}`);
+  }
+  return text;
+}
+
+function assertRobotsTxt() {
+  const robots = assertTextFileContains(path.join(DIST_DIR, "robots.txt"), [
+    "User-agent: *",
+    "Sitemap: https://rizafahmi.com/sitemap.xml",
+    "User-agent: OAI-SearchBot",
+    "User-agent: GPTBot",
+    "User-agent: Claude-SearchBot",
+    "User-agent: Claude-User",
+    "User-agent: PerplexityBot",
+    "User-agent: Google-Extended",
+    "User-agent: Applebot-Extended",
+  ]);
+
+  if (!robots) return;
+
+  const disallowAll = [...robots.matchAll(/User-agent:\s*([^\n]+)\nDisallow:\s*\/\s*(?:\n|$)/g)];
+  if (disallowAll.length) {
+    fail(`robots.txt blocks public crawlers: ${disallowAll.map((match) => match[1]).join(", ")}`);
+  }
+}
+
+function assertLlmsTxt() {
+  const llms = assertTextFileContains(path.join(DIST_DIR, "llms.txt"), [
+    "# Riza Fahmi",
+    "## Core context",
+    "## Machine-readable indexes",
+    "https://rizafahmi.com/llms-full.txt",
+    "https://rizafahmi.com/sitemap.xml",
+    "https://rizafahmi.com/topik/ai/",
+  ]);
+
+  if (llms) {
+    if (llms.includes("{%") || llms.includes("{{"))
+      fail("llms.txt contains unrendered template syntax");
+    if ((llms.match(/https:\/\/rizafahmi\.com\/catatan\//g) || []).length < 10) {
+      fail("llms.txt should expose at least 10 article links");
+    }
+  }
+
+  const full = assertTextFileContains(path.join(DIST_DIR, "llms-full.txt"), [
+    "# Riza Fahmi - Full LLM Content Index",
+    "## Article inventory",
+    "Concise index: https://rizafahmi.com/llms.txt",
+  ]);
+
+  if (full) {
+    if (full.includes("{%") || full.includes("{{")) {
+      fail("llms-full.txt contains unrendered template syntax");
+    }
+    if ((full.match(/^### /gm) || []).length < 20) {
+      fail("llms-full.txt should expose the public article inventory");
+    }
+  }
+}
+
 function parseFrontmatter(text) {
   const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return {};
@@ -213,6 +281,7 @@ for (const file of [
 ].map((file) => path.join(DIST_DIR, file))) {
   assertRobots(file, INDEXABLE);
   assertMetaDescription(file);
+  assertJsonLd(file);
 }
 
 assertRobots(path.join(DIST_DIR, "catatan/gemini-3/index.html"), NOINDEX);
@@ -222,6 +291,8 @@ assertFeed(path.join(DIST_DIR, "feed", "full.xml"));
 assertSitemap();
 assertInternalLinks();
 assertPagefind();
+assertRobotsTxt();
+assertLlmsTxt();
 assertPublishedFrontmatter();
 
 if (failures.length) {

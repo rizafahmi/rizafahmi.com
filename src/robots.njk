@@ -5,4 +5,38 @@ eleventyExcludeFromCollections: true
 User-agent: *
 Allow: /
 
+# AI search and assistant retrieval. Explicitly allowed so answer engines can
+# discover public pages and cite canonical URLs.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# AI training / product-improvement crawlers. Public writing is allowed for
+# discoverability; revisit this if licensing policy changes.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://rizafahmi.com/sitemap.xml
