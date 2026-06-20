@@ -14,6 +14,8 @@
     "debug": "DEBUG=* npx @11ty/eleventy",
     "images:optimize": "node scripts/optimize-images.mjs",
     "audit:site": "node scripts/audit-site.mjs",
+    "og:default": "node scripts/generate-default-og.mjs",
+    "og:force": "OG_IMAGE_FORCE=1 npm run build",
     "test": "node --test test/*.test.js",
     "new:catatan": "node scripts/new-catatan.mjs",
     "lint": "biome lint .",

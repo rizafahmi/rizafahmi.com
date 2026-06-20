@@ -3,37 +3,51 @@ import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
-// --- Font embedding (base64) for SVG rendering ---
 const FONTS_DIR = path.resolve("assets/fonts");
+const NODE_FONTS = path.resolve("node_modules/@fontsource");
 
-let wotfardB64 = null;
-let jetbrainsB64 = null;
-
-function loadFonts() {
-  if (!wotfardB64) {
-    wotfardB64 = readFileSync(path.join(FONTS_DIR, "wotfard-regular-webfont.ttf")).toString(
-      "base64",
-    );
-  }
-  if (!jetbrainsB64) {
-    jetbrainsB64 = readFileSync(path.join(FONTS_DIR, "JetBrainsMono-Regular.ttf")).toString(
-      "base64",
-    );
-  }
-}
-
-// --- Helpers ---
+const ID_MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "Mei",
+  "Jun",
+  "Jul",
+  "Agu",
+  "Sep",
+  "Okt",
+  "Nov",
+  "Des",
+];
 
 const HIDDEN_TAGS = new Set(["all", "nav", "post", "catatan"]);
 
-function visibleTags(tags) {
+let fontCache = null;
+
+function loadFonts() {
+  if (fontCache) return fontCache;
+
+  fontCache = {
+    unbounded: readFileSync(
+      path.join(NODE_FONTS, "unbounded/files/unbounded-latin-800-normal.woff2"),
+    ).toString("base64"),
+    schibsted: readFileSync(
+      path.join(NODE_FONTS, "schibsted-grotesk/files/schibsted-grotesk-latin-400-normal.woff2"),
+    ).toString("base64"),
+    mono: readFileSync(path.join(FONTS_DIR, "JetBrainsMono-Regular.ttf")).toString("base64"),
+  };
+
+  return fontCache;
+}
+
+export function visibleTags(tags) {
   if (!tags) return [];
   const arr = typeof tags === "string" ? [tags] : tags;
   if (!Array.isArray(arr)) return [];
   return arr.filter((t) => t && !HIDDEN_TAGS.has(t));
 }
 
-/** Escape XML special chars */
 function esc(str) {
   if (!str) return "";
   return str
@@ -44,7 +58,6 @@ function esc(str) {
     .replace(/'/g, "&apos;");
 }
 
-/** Strip HTML tags, emoji, and collapse whitespace */
 function stripHtml(html) {
   if (!html) return "";
   return html
@@ -57,10 +70,6 @@ function stripHtml(html) {
     .trim();
 }
 
-/**
- * Naive word-wrap: split text into lines that fit within `maxChars`.
- * Returns an array of strings (lines).
- */
 function wrapText(text, maxChars, maxLines) {
   const words = text.split(/\s+/);
   const lines = [];
@@ -81,42 +90,51 @@ function wrapText(text, maxChars, maxLines) {
     lines.push(current);
   }
 
-  // If we hit maxLines and there's still text, add ellipsis to last line
-  if (lines.length === maxLines && words.length > 0) {
-    const lastLine = lines[maxLines - 1];
-    if (lastLine && current !== lastLine) {
-      lines[maxLines - 1] = `${lastLine}\u2026`;
+  if (lines.length === maxLines) {
+    const consumed = lines.join(" ").split(/\s+/).length;
+    if (consumed < words.length) {
+      const lastLine = lines[maxLines - 1];
+      lines[maxLines - 1] = lastLine.endsWith("\u2026") ? lastLine : `${lastLine}\u2026`;
     }
   }
 
   return lines;
 }
 
-// --- SVG Template ---
-// Matches the site's clean, white aesthetic with Wotfard + JetBrainsMono,
-// dark heading color (#211a1e), subtle borders, and pill-shaped tags.
+export function formatOgDate(dateInput) {
+  if (!dateInput) return "catatan";
+  const d = new Date(dateInput);
+  if (Number.isNaN(d.getTime())) return "catatan";
+  return `catatan · ${ID_MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+}
 
-function buildSvg({ title, excerpt, tags }) {
-  loadFonts();
+function titleFontSize(title) {
+  const len = (title || "").length;
+  if (len <= 36) return 52;
+  if (len <= 52) return 44;
+  return 38;
+}
+
+export function buildSvg({ title, excerpt, tags, date }) {
+  const fonts = loadFonts();
 
   const WIDTH = 1200;
   const HEIGHT = 630;
-  const PAD = 72;
+  const PAD = 64;
+  const ACCENT_W = 48;
 
-  // Colors from the site's CSS variables (light theme)
-  const BG = "#ffffff";
-  const HEADING = "#211a1e";
-  const _TEXT = "rgb(41, 38, 38)";
-  const META = "rgba(33, 26, 30, 0.55)";
-  const TAG_BG = "#292626";
-  const TAG_TEXT = "#eaeaea";
-  const BORDER = "rgba(33, 26, 30, 0.12)";
+  const BG = "#f7f7f5";
+  const HEADING = "#0a0b0d";
+  const META = "#55585d";
+  const TAG_BG = "#0a0b0d";
+  const TAG_TEXT = "#f7f7f5";
+  const BORDER = "#0a0b0d";
+  const ACCENT = "#c5f82a";
 
-  // --- Title ---
-  const titleFontSize = 48;
-  const titleLineHeight = 62;
-  const titleY = 88;
-  const titleMaxChars = 36;
+  const titleFontSizePx = titleFontSize(title);
+  const titleLineHeight = Math.round(titleFontSizePx * 1.15);
+  const titleY = 108;
+  const titleMaxChars = titleFontSizePx >= 52 ? 28 : titleFontSizePx >= 44 ? 34 : 40;
   const titleMaxLines = 3;
   const titleLines = wrapText(title || "Catatan Baru", titleMaxChars, titleMaxLines);
 
@@ -126,11 +144,10 @@ function buildSvg({ title, excerpt, tags }) {
     )
     .join("\n      ");
 
-  // --- Excerpt ---
-  const excerptFontSize = 21;
-  const excerptLineHeight = 32;
-  const excerptY = titleY + titleLines.length * titleLineHeight + 24;
-  const excerptMaxChars = 56;
+  const excerptFontSize = 22;
+  const excerptLineHeight = 34;
+  const excerptY = titleY + titleLines.length * titleLineHeight + 28;
+  const excerptMaxChars = 58;
   const excerptMaxLines = 3;
   const excerptLines = wrapText(excerpt || "", excerptMaxChars, excerptMaxLines);
 
@@ -140,94 +157,77 @@ function buildSvg({ title, excerpt, tags }) {
     )
     .join("\n      ");
 
-  // --- Tags (pill-shaped, matching site's span.tags style) ---
   const tagList = visibleTags(tags).slice(0, 4);
-  const tagsY = HEIGHT - 90;
+  const tagsY = HEIGHT - 132;
   let tagsSvg = "";
   if (tagList.length > 0) {
     let tagX = PAD;
-    const tagParts = tagList.map((t) => {
-      const label = t;
-      // Approximate width: ~8.5px per char + 20px horizontal padding
-      const w = label.length * 8.5 + 24;
-      const h = 28;
-      const part = `
-      <rect x="${tagX}" y="${tagsY}" width="${w}" height="${h}" rx="14" fill="${TAG_BG}" />
-      <text x="${tagX + w / 2}" y="${tagsY + 19}" font-family="Wotfard, sans-serif" font-size="14" fill="${TAG_TEXT}" text-anchor="middle">${esc(label)}</text>`;
-      tagX += w + 10;
-      return part;
-    });
-    tagsSvg = tagParts.join("");
+    tagsSvg = tagList
+      .map((label) => {
+        const w = label.length * 9 + 28;
+        const h = 32;
+        const part = `
+      <rect x="${tagX}" y="${tagsY}" width="${w}" height="${h}" fill="${TAG_BG}" stroke="${BORDER}" stroke-width="2" />
+      <text x="${tagX + w / 2}" y="${tagsY + 22}" font-family="SchibstedGrotesk, sans-serif" font-size="14" font-weight="500" fill="${TAG_TEXT}" text-anchor="middle">${esc(label)}</text>`;
+        tagX += w + 12;
+        return part;
+      })
+      .join("");
   }
 
-  // --- Footer branding ---
-  const footerY = HEIGHT - 36;
+  const footerY = HEIGHT - 56;
+  const footerLabel = formatOgDate(date);
+  const contentRight = WIDTH - PAD - ACCENT_W - 16;
 
   return `<svg width="${WIDTH}" height="${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       @font-face {
-        font-family: 'Wotfard';
-        src: url('data:font/ttf;base64,${wotfardB64}') format('truetype');
-        font-weight: normal;
+        font-family: 'Unbounded';
+        src: url('data:font/woff2;base64,${fonts.unbounded}') format('woff2');
+        font-weight: 800;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'SchibstedGrotesk';
+        src: url('data:font/woff2;base64,${fonts.schibsted}') format('woff2');
+        font-weight: 400;
         font-style: normal;
       }
       @font-face {
         font-family: 'JetBrainsMono';
-        src: url('data:font/ttf;base64,${jetbrainsB64}') format('truetype');
+        src: url('data:font/ttf;base64,${fonts.mono}') format('truetype');
         font-weight: normal;
         font-style: normal;
       }
     </style>
   </defs>
 
-  <!-- White background -->
   <rect width="${WIDTH}" height="${HEIGHT}" fill="${BG}" />
+  <rect x="0" y="0" width="${WIDTH}" height="8" fill="${ACCENT}" />
+  <rect x="0" y="0" width="${WIDTH}" height="${HEIGHT}" fill="none" stroke="${BORDER}" stroke-width="2" />
+  <rect x="${WIDTH - ACCENT_W}" y="8" width="${ACCENT_W}" height="${HEIGHT - 8}" fill="${ACCENT}" />
 
-  <!-- Thin top border line (like the reading-progress bar) -->
-  <rect x="0" y="0" width="${WIDTH}" height="4" fill="${HEADING}" />
-
-  <!-- Outer frame (subtle border like the existing OG image) -->
-  <rect x="16" y="16" width="${WIDTH - 32}" height="${HEIGHT - 32}" rx="0" fill="none" stroke="${BORDER}" stroke-width="2" />
-
-  <!-- Title -->
-  <text x="${PAD}" y="${titleY}" font-family="Wotfard, sans-serif" font-size="${titleFontSize}" font-weight="bold" fill="${HEADING}">
+  <text x="${PAD}" y="${titleY}" font-family="Unbounded, sans-serif" font-size="${titleFontSizePx}" font-weight="800" fill="${HEADING}">
       ${titleTspans}
   </text>
 
-  <!-- Excerpt -->
-  <text x="${PAD}" y="${excerptY}" font-family="Wotfard, sans-serif" font-size="${excerptFontSize}" fill="${META}">
+  <text x="${PAD}" y="${excerptY}" font-family="SchibstedGrotesk, sans-serif" font-size="${excerptFontSize}" fill="${META}">
       ${excerptTspans}
   </text>
 
-  <!-- Tags -->
   ${tagsSvg}
 
-  <!-- Bottom separator -->
-  <line x1="${PAD}" y1="${footerY - 16}" x2="${WIDTH - PAD}" y2="${footerY - 16}" stroke="${BORDER}" stroke-width="1" />
+  <line x1="${PAD}" y1="${footerY - 20}" x2="${contentRight}" y2="${footerY - 20}" stroke="${BORDER}" stroke-width="2" />
 
-  <!-- Footer: site name (monospace, like the site's h2 style) -->
-  <text x="${PAD}" y="${footerY + 4}" font-family="JetBrainsMono, monospace" font-size="16" fill="${META}">rizafahmi.com</text>
-
-  <!-- Footer: catatan label on the right -->
-  <text x="${WIDTH - PAD}" y="${footerY + 4}" font-family="JetBrainsMono, monospace" font-size="16" fill="${META}" text-anchor="end">catatan</text>
+  <text x="${PAD}" y="${footerY + 6}" font-family="JetBrainsMono, monospace" font-size="15" fill="${HEADING}">RIZA FAHMI · rizafahmi.com</text>
+  <text x="${contentRight}" y="${footerY + 6}" font-family="JetBrainsMono, monospace" font-size="15" fill="${META}" text-anchor="end">${esc(footerLabel)}</text>
 </svg>`;
 }
 
-// --- Public API ---
-
-/**
- * Generate an OG image PNG for an article.
- *
- * @param {object} opts
- * @param {string} opts.title     - Article title
- * @param {string} opts.excerpt   - Plain-text excerpt (HTML will be stripped)
- * @param {string[]} opts.tags    - Article tags
- * @param {string} opts.outputPath - Absolute path for the output PNG
- */
-export async function generateOgImage({ title, excerpt, tags, outputPath }) {
+export async function generateOgImage({ title, excerpt, tags, date, outputPath }) {
   const cleanExcerpt = stripHtml(excerpt);
-  const svg = buildSvg({ title, excerpt: cleanExcerpt, tags });
+  const svg = buildSvg({ title, excerpt: cleanExcerpt, tags, date });
 
   await mkdir(path.dirname(outputPath), { recursive: true });
 
