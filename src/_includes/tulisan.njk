@@ -9,6 +9,7 @@ title: Judul
     <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css">
     <link rel="preload" as="style" href="/assets/tulisan.css?v={{ site.buildTime }}" type="text/css" />
     <link rel="stylesheet" href="/assets/tulisan.css?v={{ site.buildTime }}" type="text/css">
+    {%- set ogType = "article" -%}
     {% include 'head.njk' %}
     {%- set isPublishedArticle = tags and 'catatan' in tags and date and not eleventyExcludeFromCollections -%}
     {%- set publishedDate = date or created -%}
@@ -32,7 +33,7 @@ title: Judul
       "@type": "BlogPosting",
       "headline": {{ title | jsonify | safe }},
       "description": {{ (description or (content | excerpt(220)) or title) | jsonify | safe }},
-      "image": {{ ("https://rizafahmi.com" + (image or cover or ("/og/" + page.fileSlug + ".png"))) | jsonify | safe }},
+      "image": {{ _ogImageUrl | jsonify | safe }},
       "inLanguage": "id-ID",
       "author": {
         "@type": "Person",
