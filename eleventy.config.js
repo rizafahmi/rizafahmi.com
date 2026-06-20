@@ -437,11 +437,11 @@ export default function (eleventyConfig) {
     );
   });
 
-  // --- Generate dynamic OG images for articles after build (prod only) ---
+  // --- Generate dynamic OG images for articles after build ---
   eleventyConfig.on("eleventy.after", async ({ results }) => {
-    if (isDev) return;
     const HIDDEN = new Set(["all", "nav", "post", "catatan"]);
     const outputDir = "dist";
+    const forceOg = process.env.OG_IMAGE_FORCE === "1";
 
     // Parse frontmatter from source files for articles that need OG images.
     // We use `results` which includes ALL rendered pages (even those excluded
@@ -463,11 +463,13 @@ export default function (eleventyConfig) {
           const fmText = fmMatch[1];
           const titleMatch = fmText.match(/^title:\s*["']?(.+?)["']?\s*$/m);
           const descMatch = fmText.match(/^description:\s*["']?(.+?)["']?\s*$/m);
+          const dateMatch = fmText.match(/^date:\s*(\S+)/m);
           const imageMatch = fmText.match(/^image:\s*["']?(.*?)["']?\s*$/m);
           const coverMatch = fmText.match(/^cover:\s*["']?(.*?)["']?\s*$/m);
 
           if (titleMatch) frontmatter.title = titleMatch[1];
           if (descMatch) frontmatter.description = descMatch[1];
+          if (dateMatch) frontmatter.date = dateMatch[1];
           if (imageMatch) frontmatter.image = imageMatch[1];
           if (coverMatch) frontmatter.cover = coverMatch[1];
 
@@ -520,13 +522,13 @@ export default function (eleventyConfig) {
 
       const ogOutputPath = path.resolve(outputDir, "og", `${slug}.png`);
 
-      // Skip if the OG image already exists (avoid re-generating on every rebuild)
-      if (existsSync(ogOutputPath)) continue;
+      if (!forceOg && existsSync(ogOutputPath)) continue;
 
       jobs.push({
         title: frontmatter.title || slug,
         excerpt,
         tags,
+        date: frontmatter.date,
         outputPath: ogOutputPath,
       });
     }
