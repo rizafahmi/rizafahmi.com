@@ -342,3 +342,5 @@ Sekarang `mbb` sudah tidak sepenuhnya buta. Dengan menambahkan perkakas pertama,
 Tapi loop-nya belum tertutup. LLM meminta `get_current_datetime` dipanggil, kita menjalankannya, tapi hasilnya tidak pernah sampai ke LLM. Artinya LLM tidak bisa merangkai jawaban dari hasil perkakas itu.
 
 Di bagian berikutnya, kita tutup loop ini: kirim hasil eksekusi perkakas kembali ke LLM, biarkan ia merangkai jawaban final, lalu tambahkan perkakas kedua yang lebih kompleks karena menerima argumen dari pengguna.
+
+{% include 'kelas_agentic.njk' %}
