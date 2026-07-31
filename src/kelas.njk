@@ -1,0 +1,100 @@
+---
+layout: main
+title: Kelas Agentic Engineering
+permalink: /kelas/
+description: Kelas online self-paced tentang agentic engineering untuk developer Indonesia. Prinsip tool-agnostic supaya kode dari AI beneran layak ship. Masuk waitlist untuk harga early access.
+---
+
+<div class="prose">
+  <h1>Agentic Engineering</h1>
+
+  <p>
+    <strong>Nyuruh AI nulis kode itu gampang. Bikin hasilnya layak ship, itu cerita lain.</strong>
+  </p>
+
+  <p>
+    Kelas online self-paced tentang cara kerja serius bareng AI coding agent:
+    nulis spec yang bisa dieksekusi agent, mengatur context, orkestrasi multi-agent,
+    dan quality gate supaya kode dari AI tidak berhenti di "jalan sih, tapi...".
+  </p>
+
+  <h2>Yang dipelajari</h2>
+  <ul>
+    <li>
+      <strong>Prinsip, bukan tutorial tool.</strong>
+      Tool AI ganti hampir tiap bulan. Materi kelas ini tool-agnostic:
+      tetap kepakai walau tool favorit kamu ganti.
+    </li>
+    <li>
+      <strong>Dari eksperimen nyata.</strong>
+      Materi dibangun dari eksperimen live di stream Senin
+      <a href="{{ site.social.youtube }}">Eksperimen Pemrograman</a>, bukan teori slide.
+    </li>
+    <li>
+      <strong>Video + teks, full self-paced.</strong>
+      Tanpa jadwal, tanpa deadline. Belajar kapan saja.
+    </li>
+    <li>
+      <strong>Pertanyaan dijawab publik.</strong>
+      Tidak ada support privat. Pertanyaan dijawab di livestream Senin
+      dan masuk jadi materi FAQ, jadi semua orang ikut belajar.
+    </li>
+  </ul>
+
+  <h2>Harga</h2>
+  <ul>
+    <li><strong>Early access (khusus waitlist): Rp149.000</strong> sekali bayar</li>
+    <li>Harga normal: Rp199.000</li>
+    <li>Paket patungan resmi: 5 kursi Rp500.000. Biasa patungan? Sekarang ada jalur resminya.</li>
+  </ul>
+
+  <h2>Jujur dari awal</h2>
+  <p>
+    Kelas ini <strong>belum dibuat</strong>. Halaman ini untuk mengukur peminat.
+    Kalau peminat cukup, presale dibuka duluan ke waitlist dengan harga early access,
+    dan modul pertama rilis sekitar sebulan setelahnya.
+    Kalau peminat tidak cukup, kelasnya tidak jadi dibuat dan email kamu tidak diapa-apakan.
+    Fair, kan?
+  </p>
+
+  <h2>Masuk waitlist</h2>
+  <form
+    name="kelas-waitlist"
+    method="POST"
+    action="/kelas/terima-kasih/"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    style="max-width: 28rem;"
+  >
+    <input type="hidden" name="form-name" value="kelas-waitlist" />
+    <p hidden aria-hidden="true">
+      <label>Jangan diisi kalau kamu manusia: <input name="bot-field" /></label>
+    </p>
+    <p>
+      <label for="nama">Nama</label><br />
+      <input
+        type="text"
+        id="nama"
+        name="nama"
+        autocomplete="name"
+        style="width: 100%; padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 0; background: transparent; color: inherit; font-size: 1rem;"
+      />
+    </p>
+    <p>
+      <label for="email">Email</label><br />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        autocomplete="email"
+        style="width: 100%; padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 0; background: transparent; color: inherit; font-size: 1rem;"
+      />
+    </p>
+    <button type="submit" class="button">Masuk Waitlist</button>
+  </form>
+
+  <p style="opacity: 0.7; font-size: 0.875rem;">
+    Email cuma dipakai untuk kabar kelas ini. Tanpa spam, tanpa newsletter mingguan.
+  </p>
+</div>
