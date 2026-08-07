@@ -46,7 +46,7 @@
     "husky": "^9.1.7",
     "pagefind": "^1.4.0",
     "rimraf": "5.0.5",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.0",
     "shiki": "1.23.1"
   },
   "dependencies": {
