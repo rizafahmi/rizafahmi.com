@@ -706,3 +706,5 @@ Aplikasi kita saat ini _stateless_. Setiap pertanyaan adalah _fresh start_. LLM 
 3. Coba tanyakan pertanyaan pemrograman kompleks dan lihat bagaimana model merespons
 
 Tulis di kolom komentar jika menemukan bug atau punya ide fitur baru.
+
+{% include 'kelas_agentic.njk' %}

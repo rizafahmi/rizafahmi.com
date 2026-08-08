@@ -151,3 +151,5 @@ Silakan bagikan pengalaman, pertanyaan, atau saran di kolom komentar di bawah. S
 - [https://danieldelaney.net/chat](https://danieldelaney.net/chat)
 - [https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agent](https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agent)
 - [https://firebase.blog/posts/2025/05/whats-new-at-google-io](https://firebase.blog/posts/2025/05/whats-new-at-google-io)
+
+{% include 'kelas_agentic.njk' %}

@@ -78,3 +78,5 @@ Setelah memiliki rencana dan strategi, kita siap melangkah ke tahap eksekusi dan
 - [My LLM Codegen Workflow ATM](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)
 - [Daniel Delaney's Chat Workflow](https://danieldelaney.net/chat)
 - [Build Apps with Windsurf's AI Coding Agent](https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agent)
+
+{% include 'kelas_agentic.njk' %}

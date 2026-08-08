@@ -206,3 +206,5 @@ Perkakas yang diberikan bisa apa saja, namun untuk "menyulap" LLM agar menjadi l
 - 🐦 [How to work with coding agent by @tyohan](https://x.com/tyohan/status/1992940420322799693)
 - 📺 [Ngobrolin Web Episode Agentic AI](https://ngobrol.in/episodes/ZcYNuHirHOA-agentic-ai-ngobrolin-web/)
 - 🎶 [Syntax.fm Episode Pi - The AI Harness That Powers OpenClaw W/ Armin Ronacher & Mario Zechner](https://syntax.fm/show/976/pi-the-ai-harness-that-powers-openclaw-w-armin-ronacher-and-mario-zechner/transcript)
+
+{% include 'kelas_agentic.njk' %}

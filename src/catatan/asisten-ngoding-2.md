@@ -157,3 +157,5 @@ Selanjutnya kita fokus pada tahap pertama, yaitu diskusi ide dengan AI beserta c
 Kita akan membahas bagaimana AI dapat membantu dalam penyusunan rencana pengembangan, eksekusi kode, dan pengelolaan basis kode di artikel berikutnya. Umpan balik sangat berharga bagi saya sebagai pertanda apakah topik ini menarik atau tidak. Silakan tulis pendapat atau saran di kolom komentar di bawah.
 
 Catatan tambahan, semua contoh _prompt_ saya catut dari [artikel super keren dari Pak Harper Reed](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/).
+
+{% include 'kelas_agentic.njk' %}
