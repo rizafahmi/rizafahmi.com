@@ -5,6 +5,9 @@ layout: main
 eleventyExcludeFromCollections: true
 ---
 
+{% import "karya_open_source.njk" as karyaCards %}
+{% set openSourceProjects = karya | karyaProjects %}
+
 <main id="main-content">
   <h2>Karya</h2>
   <p style="font-size: 1rem; margin: 0.5rem;">
@@ -12,57 +15,7 @@ eleventyExcludeFromCollections: true
   </p>
 
   <h3 style="margin: 1.5rem 0.5rem 0;">Open Source</h3>
-  <div class="card-grid">
-    <div class="card">
-      <h3><a href="https://github.com/rizafahmi/slopcase" target="_blank" rel="noopener noreferrer">slopcase</a></h3>
-      <p>Showcase untuk proyek AI-generated: submit & voting, “slop atau bukan?”</p>
-      <div class="badges" aria-label="Tech stack">
-        <span class="badge">Elixir</span>
-        <span class="badge">Phoenix LiveView</span>
-        <span class="badge">SQLite</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3><a href="https://github.com/rizafahmi/mbb" target="_blank" rel="noopener noreferrer">mbb</a></h3>
-      <p>CLI assistant sederhana untuk prompt tools & agentic loop di terminal.</p>
-      <div class="badges" aria-label="Tech stack">
-        <span class="badge">Elixir</span>
-        <span class="badge">CLI</span>
-        <span class="badge">Anthropic</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3><a href="https://github.com/rizafahmi/gemini-for-web-dev" target="_blank" rel="noopener noreferrer">gemini-for-web-dev</a></h3>
-      <p>Contoh app Gemini API untuk kebutuhan web developer (#geminisprint).</p>
-      <div class="badges" aria-label="Tech stack">
-        <span class="badge">Node.js</span>
-        <span class="badge">Gemini API</span>
-        <span class="badge">Turso</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3><a href="https://github.com/rizafahmi/workspresso" target="_blank" rel="noopener noreferrer">workspresso</a></h3>
-      <p>Cari coffee shop yang work-friendly, dengan data Wi‑Fi, colokan, noise, dll.</p>
-      <div class="badges" aria-label="Tech stack">
-        <span class="badge">Astro</span>
-        <span class="badge">Node.js</span>
-        <span class="badge">SQLite</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3><a href="https://github.com/rizafahmi/ai-workshop-material" target="_blank" rel="noopener noreferrer">ai-workshop-material</a></h3>
-      <p>Materi workshop AI (DevFest GDG Jogja 2025): skenario AI di luar chatbot.</p>
-      <div class="badges" aria-label="Tech stack">
-        <span class="badge">Workshop</span>
-        <span class="badge">JavaScript</span>
-        <span class="badge">LLM</span>
-      </div>
-    </div>
-  </div>
+  {{ karyaCards.openSourceCards(openSourceProjects) }}
 
   <hr style="margin: 2rem 0.5rem;" />
 

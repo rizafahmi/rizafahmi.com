@@ -111,6 +111,12 @@ See `DESIGN.md` for the full design spec. Key rules:
 - Series articles use `series` and `series_index` frontmatter
 - Custom `image` or `cover` frontmatter disables auto-generated OG images for that article
 
+## Curated Data
+
+- The "Open Source" cards on `/showcase` (Karya) are rendered from `src/_data/karya.js`,
+  a hand-curated list with an Indonesian header comment explaining how to edit it.
+  The "Lainnya" section on that page is still hand-written HTML in `src/showcase.njk`.
+
 ## Deployment
 
 - Hosted on **Netlify** with auto-deploy on merge to `main`
@@ -128,3 +134,10 @@ See `DESIGN.md` for the full design spec. Key rules:
 | `GOATCOUNTER_CACHE_TTL_HOURS` | No       | Cache TTL for views (default: 12)     |
 
 The site builds fine without these — view counts are simply hidden.
+
+## Maintaining this file
+
+Keep this file for knowledge useful to almost every future agent session in this project.
+Do not repeat what the codebase already shows; point to the authoritative file or command instead.
+Prefer rewriting or pruning existing entries over appending new ones.
+When updating this file, preserve this bar for all agents and keep entries concise.
