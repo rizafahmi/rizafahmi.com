@@ -70,4 +70,47 @@ export default [
     url: "https://vote.rizafahmi.com",
     tags: ["Astro", "TypeScript", "Local-first"],
   },
+  {
+    name: "Ngobrolin Web",
+    description: "Landing page podcast Ngobrolin Web: daftar episode dan tautan dengarnya.",
+    repo: "https://github.com/ngobrolin/landing",
+    url: "https://ngobrol.in",
+    tags: ["Astro", "TypeScript", "Podcast"],
+  },
+  {
+    name: "notable",
+    description: "Kotak masukan & tip QRIS buat streamer, lengkap dengan overlay alert untuk OBS.",
+    repo: "https://github.com/rizafahmi/notable",
+    url: "https://feedback.rizafahmi.com",
+    tags: ["Elixir", "Phoenix LiveView", "SQLite"],
+  },
+  {
+    name: "samarin",
+    description:
+      "Samarkan NIK, NPWP, dan data pribadi lain sebelum ditempel ke ChatGPT atau Claude.",
+    repo: "https://github.com/rizafahmi/samarin",
+    url: "https://samarin.rizafahmi.com",
+    tags: ["Astro", "TypeScript", "Local-first"],
+  },
+  {
+    name: "clawdex",
+    description:
+      "Gateway asisten AI pribadi di atas BEAM: ngobrol lewat Telegram, riwayat aman di SQLite.",
+    repo: "https://github.com/rizafahmi/clawdex",
+    tags: ["Elixir", "OTP", "Telegram"],
+  },
+  {
+    name: "evalcode",
+    description:
+      "Contoh utuh bikin eval coding sendiri, dinilai pakai test yang belum pernah dilihat model.",
+    repo: "https://github.com/rizafahmi/evalcode",
+    tags: ["Elixir", "Bash", "LLM Eval"],
+  },
+  {
+    name: "maal",
+    description: "Kalkulator zakat maal dengan harga emas real-time sebagai acuan nisab.",
+    repo: "https://github.com/rizafahmi/maal",
+    url: "https://maal.rizafahmi.com",
+    tags: ["Astro", "TypeScript", "Zakat"],
+  },
 ];

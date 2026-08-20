@@ -93,3 +93,22 @@ test("never renders undefined or null leaking from a missing optional field", ()
 
   assert.doesNotMatch(html, /undefined|\bnull\b/);
 });
+
+test("a repo under a different GitHub org renders exactly like any other card", () => {
+  const html = render([
+    {
+      name: "Ngobrolin Web",
+      description: "Situs Ngobrolin Web.",
+      repo: "https://github.com/ngobrolin/landing",
+      url: "https://ngobrol.in",
+      tags: ["Astro", "TypeScript"],
+    },
+  ]);
+
+  assert.match(
+    html,
+    /<h3><a href="https:\/\/github\.com\/ngobrolin\/landing"[^>]*>Ngobrolin Web<\/a><\/h3>/,
+  );
+  assert.match(html, /href="https:\/\/ngobrol\.in"/);
+  assert.match(html, /class="card-link"/);
+});
