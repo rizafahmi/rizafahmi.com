@@ -2,9 +2,7 @@
 // Loads Pagefind lazily (only when the input is used).
 
 const version = new URL(import.meta.url).search;
-const { createPagefindLoader, toSuggestions } = await import(
-  `./search-client.js${version}`
-);
+const { createPagefindLoader, toSuggestions } = await import(`./search-client.js${version}`);
 
 const input = document.querySelector("[data-search-input]");
 const panel = document.querySelector("[data-search-panel]");
