@@ -116,9 +116,11 @@ See `DESIGN.md` for the full design spec. Key rules:
 
 ## Curated Data
 
-- The "Open Source" cards on `/showcase` (Karya) are rendered from `src/_data/karya.js`,
-  a hand-curated list with an Indonesian header comment explaining how to edit it.
-  The "Lainnya" section on that page is still hand-written HTML in `src/showcase.njk`.
+- Open source projects are curated in `src/_data/karya.js` (see its Indonesian header
+  for how to edit). That list drives the `/showcase` Open Source cards and the
+  generated project entries in `/llms.txt` and `/llms-full.txt` (via
+  `src/_includes/karya_llms.njk`). The "Lainnya" section on `/showcase` is still
+  hand-written HTML in `src/showcase.njk`.
 
 ## Deployment
 

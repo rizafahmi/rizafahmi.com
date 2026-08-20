@@ -3,7 +3,8 @@
  * ==========================================================================
  *
  * File ini murni daftar, tidak ada logika apa pun. Cukup edit isinya lalu
- * jalankan `npm run build` (atau `npm start`), halaman Karya langsung ikut.
+ * jalankan `npm run build` (atau `npm start`): kartu Open Source di halaman
+ * Karya, plus entri proyek di `/llms.txt` dan `/llms-full.txt`, ikut berubah.
  *
  * CARA MENAMBAH PROYEK
  *   Salin satu blok `{ ... }` di bawah, tempel di posisi yang diinginkan,

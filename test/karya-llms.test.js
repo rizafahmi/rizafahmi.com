@@ -69,9 +69,7 @@ test("concise: a name-only project prints a plain name, never an empty link", ()
 });
 
 test("concise: non-http(s) repo/url are nulled and never become empty links", () => {
-  const concise = renderConcise([
-    { name: "bare", repo: "github.com/x/y", url: "example.com/app" },
-  ]);
+  const concise = renderConcise([{ name: "bare", repo: "github.com/x/y", url: "example.com/app" }]);
   const inventory = renderInventory([
     { name: "bare", repo: "github.com/x/y", url: "example.com/app" },
   ]);

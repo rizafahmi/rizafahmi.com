@@ -1,5 +1,5 @@
 /**
- * Helpers behind the "Open Source" section of /showcase (Karya).
+ * Helpers for curated open source projects (showcase cards and LLM indexes).
  *
  * The content itself is hand-curated in src/_data/karya.js — this module only
  * cleans the entries up. No fetching and no inferring: whatever the data file

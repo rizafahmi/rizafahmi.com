@@ -133,7 +133,7 @@ export default function (eleventyConfig) {
     return d.toISOString();
   });
 
-  // "Open Source" cards on /showcase come from the hand-curated src/_data/karya.js;
+  // Curated projects from src/_data/karya.js (showcase cards + LLM indexes);
   // this only cleans the entries up, it never reorders them.
   eleventyConfig.addFilter("karyaProjects", (projects) => selectProjects(projects));
 
