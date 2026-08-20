@@ -8,7 +8,7 @@
    /llms.txt. Tautannya ke tempat proyek bisa langsung dipakai kalau ada,
    selebihnya ke repo. #}
 {%- macro projectLines(projects) -%}
-{% for project in projects %}- [{{ project.name | safe }}]({{ (project.url or project.repo) | safe }}): {{ (project.description or project.name) | safe }}{% if project.tags.length %} (tags: {{ project.tags | join(", ") | safe }}){% endif %}
+{% for project in projects %}- {% if project.url or project.repo %}[{{ project.name | safe }}]({{ (project.url or project.repo) | safe }}){% else %}{{ project.name | safe }}{% endif %}: {{ (project.description or project.name) | safe }}{% if project.tags.length %} (tags: {{ project.tags | join(", ") | safe }}){% endif %}
 {% endfor %}
 {%- endmacro -%}
 

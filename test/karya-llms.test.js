@@ -58,6 +58,29 @@ test("concise: a project with no access url still renders one working link, neve
   assert.equal(line.match(/\]\(/g).length, 1);
 });
 
+test("concise: a name-only project prints a plain name, never an empty link", () => {
+  const concise = renderConcise([{ name: "solo" }]);
+  const inventory = renderInventory([{ name: "solo" }]);
+
+  assert.match(concise.trim(), /^- solo: solo$/);
+  assert.doesNotMatch(concise, /\[|\]|\(\)/);
+  assert.match(inventory, /^### solo$/m);
+  assert.doesNotMatch(inventory, /\[|\]|\(\)/);
+});
+
+test("concise: non-http(s) repo/url are nulled and never become empty links", () => {
+  const concise = renderConcise([
+    { name: "bare", repo: "github.com/x/y", url: "example.com/app" },
+  ]);
+  const inventory = renderInventory([
+    { name: "bare", repo: "github.com/x/y", url: "example.com/app" },
+  ]);
+
+  assert.match(concise.trim(), /^- bare: bare$/);
+  assert.doesNotMatch(concise, /\[|\]|\(\)/);
+  assert.doesNotMatch(inventory, /Repository:|Access URL:|\[|\]|\(\)/);
+});
+
 test("concise: tags are appended in the same style the article entries use", () => {
   const line = renderConcise([{ ...BASE, tags: ["Astro", "Node.js", "SQLite"] }]).trim();
 
