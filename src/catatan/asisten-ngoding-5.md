@@ -192,3 +192,5 @@ Menggunakan AI untuk membangun aplikasi atau mengembangkan fitur, akan lebih efe
 - [Kumpulan artikel menarik seputar AI dan LLM dalam Bahasa Indonesia](https://dekontaminasi.substack.com)
 - [https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)
 - [https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agent](https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agent)
+
+{% include 'kelas_agentic.njk' %}
