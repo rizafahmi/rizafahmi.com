@@ -36,35 +36,38 @@ export default [
     name: "slopcase",
     description: "Showcase untuk proyek AI-generated: submit & voting, “slop atau bukan?”",
     repo: "https://github.com/rizafahmi/slopcase",
-    // TODO(riza): isi `url` kalau slopcase sudah bisa diakses online.
     tags: ["Elixir", "Phoenix LiveView", "SQLite"],
   },
   {
     name: "mbb",
     description: "CLI assistant sederhana untuk prompt tools & agentic loop di terminal.",
     repo: "https://github.com/rizafahmi/mbb",
-    // TODO(riza): isi `url` kalau mbb punya halaman/dokumentasi yang bisa dibuka.
     tags: ["Elixir", "CLI", "Anthropic"],
   },
   {
     name: "gemini-for-web-dev",
     description: "Contoh app Gemini API untuk kebutuhan web developer (#geminisprint).",
     repo: "https://github.com/rizafahmi/gemini-for-web-dev",
-    // TODO(riza): isi `url` kalau demo app-nya sudah di-deploy.
     tags: ["Node.js", "Gemini API", "Turso"],
   },
   {
     name: "workspresso",
     description: "Cari coffee shop yang work-friendly, dengan data Wi‑Fi, colokan, noise, dll.",
     repo: "https://github.com/rizafahmi/workspresso",
-    // TODO(riza): isi `url` kalau workspresso sudah online.
     tags: ["Astro", "Node.js", "SQLite"],
   },
   {
     name: "ai-workshop-material",
     description: "Materi workshop AI (DevFest GDG Jogja 2025): skenario AI di luar chatbot.",
     repo: "https://github.com/rizafahmi/ai-workshop-material",
-    // TODO(riza): isi `url` kalau materinya dipublikasikan di web.
+    url: "https://workshop.rizafahmi.com",
     tags: ["Workshop", "JavaScript", "LLM"],
+  },
+  {
+    name: "makan-dimana",
+    description: "Voting bareng buat nentuin “mau makan di mana?”, dibangun local-first.",
+    repo: "https://github.com/rizafahmi/makan-dimana",
+    url: "https://vote.rizafahmi.com",
+    tags: ["Astro", "TypeScript", "Local-first"],
   },
 ];
