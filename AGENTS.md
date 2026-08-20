@@ -24,7 +24,7 @@ npm test         # run unit tests
 | ---------------------- | ---------------------------------------------------------------------- |
 | `npm run clean`        | Remove the `dist/` directory                                           |
 | `npm start`            | Clean + start dev server with hot reload                               |
-| `npm run build`        | Production build + Pagefind search index                               |
+| `npm run build`        | Production build + Pagefind + site audit (see Testing)                 |
 | `npm run build:prod`   | Alias for `npm run build` (Netlify compat)                             |
 | `npm run debug`        | Dev server with `DEBUG=*` output                                       |
 | `npm test`             | Run unit tests via `node --test test/*.test.js`                        |
@@ -52,7 +52,7 @@ src/
   catatan/          # Blog articles in Markdown
   _data/            # Global data files (goatcounter views, etc.)
   _includes/        # Shared Nunjucks partials and layouts
-  libs/             # Custom libraries (shiki config, related posts, OG images)
+  libs/             # Custom libraries (shiki, related posts, OG images, internal links)
   tags/             # Tag listing pages
   topik/            # Topic hub pages
   index.njk          # Homepage
@@ -68,8 +68,8 @@ assets/
   fonts/             # Self-hosted fonts
   images/            # Static images
 test/
-  related.test.js    # Unit tests for related-posts algorithm
-scripts/             # Utility scripts (new article scaffold, etc.)
+  *.test.js          # Unit tests; see Testing
+scripts/             # Utility scripts (new article scaffold, audit-site, etc.)
 docs/                # Improvement notes and ideation
 ```
 
