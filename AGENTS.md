@@ -42,7 +42,10 @@ npm test         # run unit tests
 - **Markdown** (`.md`) — Content authoring
 - **Shiki** — Syntax highlighting with Monokai theme
 - **Sharp** + `@11ty/eleventy-img` — Image optimization (WebP output)
-- **Pagefind** — Client-side search index
+- **Pagefind** — Client-side search index. It runs in **opt-in mode**: because some pages
+  carry `data-pagefind-body`, Pagefind silently skips every page without it. A new page is
+  unsearchable until its `<main>`/`<article>` gets that attribute (plus
+  `data-pagefind-meta="title:…"` when the indexed region has no `<h1>`).
 - **GoatCounter** — Privacy-friendly analytics (build-time, no client-side API calls)
 
 ## Project Structure
