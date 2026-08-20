@@ -47,10 +47,10 @@
     "nunjucks": "3.2.4",
     "pagefind": "^1.4.0",
     "rimraf": "5.0.5",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.3",
     "shiki": "1.23.1"
   },
   "dependencies": {
-    "@11ty/eleventy-img": "^6.0.4"
+    "@11ty/eleventy-img": "^7.0.0"
   }
 }
