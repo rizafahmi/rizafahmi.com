@@ -2,6 +2,7 @@ import fs, { existsSync } from "node:fs";
 import path from "node:path";
 import Image from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
+import { selectProjects } from "./src/libs/karya.js";
 import { generateOgImage } from "./src/libs/og-image.js";
 import { getRelatedPosts } from "./src/libs/related.js";
 import shikiPlugin from "./src/libs/shiki.js";
@@ -131,6 +132,10 @@ export default function (eleventyConfig) {
     if (Number.isNaN(d.getTime())) return "";
     return d.toISOString();
   });
+
+  // "Open Source" cards on /showcase come from the hand-curated src/_data/karya.js;
+  // this only cleans the entries up, it never reorders them.
+  eleventyConfig.addFilter("karyaProjects", (projects) => selectProjects(projects));
 
   eleventyConfig.addFilter("jsonify", (value) => {
     return JSON.stringify(value ?? "");

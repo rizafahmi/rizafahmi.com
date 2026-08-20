@@ -433,9 +433,26 @@ blockquote {
   transform: translateY(-2px);
 }
 
+/* Second link on a card: where the project can actually be used, as opposed to
+   the card title, which points at the source on GitHub. */
+.card-links {
+  margin: 0.75rem 0 0 !important;
+}
+
+.card-link {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: bold;
+  color: var(--link-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid currentColor;
+}
+
 .card:hover h3,
 .card:hover h3 a,
 .card:hover p,
+.card:hover .card-link,
 .card:hover .badge {
   color: #ffffff !important;
 }
