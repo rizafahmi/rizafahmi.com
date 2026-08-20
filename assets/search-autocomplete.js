@@ -1,7 +1,10 @@
 // Lightweight Pagefind-powered search autocomplete
 // Loads Pagefind lazily (only when the input is used).
 
-import { createPagefindLoader, toSuggestions } from "./search-client.js";
+const version = new URL(import.meta.url).search;
+const { createPagefindLoader, toSuggestions } = await import(
+  `./search-client.js${version}`
+);
 
 const input = document.querySelector("[data-search-input]");
 const panel = document.querySelector("[data-search-panel]");
