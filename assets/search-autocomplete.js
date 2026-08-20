@@ -1,6 +1,8 @@
 // Lightweight Pagefind-powered search autocomplete
 // Loads Pagefind lazily (only when the input is used).
 
+import { createPagefindLoader, toSuggestions } from "./search-client.js";
+
 const input = document.querySelector("[data-search-input]");
 const panel = document.querySelector("[data-search-panel]");
 const list = document.querySelector("[data-search-list]");
@@ -11,7 +13,8 @@ if (!input || !panel || !list) {
   // eslint-disable-next-line no-console
   console.warn("search-autocomplete: missing required DOM elements");
 } else {
-  let pagefindPromise;
+  // Pagefind is generated at build time into /pagefind/pagefind.js
+  const ensurePagefind = createPagefindLoader();
   let lastQuery = "";
   let activeIndex = -1;
   let items = [];
@@ -32,19 +35,6 @@ if (!input || !panel || !list) {
     list.innerHTML = "";
     if (status) status.textContent = "";
     setExpanded(false);
-  }
-
-  function ensurePagefind() {
-    if (!pagefindPromise) {
-      // Pagefind is generated at build time into /pagefind/pagefind.js
-      pagefindPromise = import("/pagefind/pagefind.js").then(() => {
-        if (!window.pagefind) {
-          throw new Error("Pagefind failed to load: window.pagefind is missing");
-        }
-        return window.pagefind;
-      });
-    }
-    return pagefindPromise;
   }
 
   function escapeHtml(str) {
@@ -142,16 +132,7 @@ if (!input || !panel || !list) {
       if (signal.aborted) return;
 
       // Fetch per-result data (title, url, excerpt)
-      const results = await Promise.all(
-        search.results.slice(0, MAX_RESULTS).map(async (r) => {
-          const data = await r.data();
-          return {
-            url: data.url,
-            title: data.meta?.title || data.meta?.name || data.title,
-            excerpt: data.excerpt,
-          };
-        }),
-      );
+      const results = await toSuggestions(search, MAX_RESULTS);
 
       if (signal.aborted) return;
 
