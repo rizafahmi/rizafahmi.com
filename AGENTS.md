@@ -83,6 +83,12 @@ npm test                        # Run all tests
 node --test test/related.test.js # Run a specific file
 ```
 
+`npm run build` also runs `scripts/audit-site.mjs`, which fails the build on SEO,
+feed, frontmatter, and broken-internal-link regressions. It checks links in both the
+rendered `dist/` pages and the `src/_includes/` partials, so a dead link is caught
+even in a partial no layout currently renders. Link resolution lives in
+`src/libs/internal-links.js` and is shared by that script and `test/internal-links.test.js`.
+
 ## Code Conventions
 
 - 2-space indentation

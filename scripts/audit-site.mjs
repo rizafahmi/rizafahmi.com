@@ -2,8 +2,11 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { findBrokenLinks, htmlPathForUrl as resolveHtmlPath } from "../src/libs/internal-links.js";
+
 const DIST_DIR = "dist";
 const CONTENT_DIR = path.join("src", "catatan");
+const INCLUDES_DIR = path.join("src", "_includes");
 const SITE_URL = "https://rizafahmi.com";
 const INDEXABLE = "index,follow,max-image-preview:large";
 const NOINDEX = "noindex,nofollow,noarchive";
@@ -23,33 +26,8 @@ function fileExists(file) {
   return fs.existsSync(file);
 }
 
-function walk(dir) {
-  const files = [];
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) files.push(...walk(full));
-    else if (entry.isFile()) files.push(full);
-  }
-  return files;
-}
-
 function htmlPathForUrl(urlPath) {
-  const clean = urlPath.split("#")[0].split("?")[0];
-  if (!clean || clean === "/") return path.join(DIST_DIR, "index.html");
-
-  const decoded = decodeURIComponent(clean);
-  const target = path.join(DIST_DIR, decoded.replace(/^\/+/, ""));
-  if (decoded.endsWith("/")) return path.join(target, "index.html");
-
-  if (fileExists(target)) return target;
-  if (fileExists(`${target}.html`)) return `${target}.html`;
-  return path.join(target, "index.html");
-}
-
-function internalHrefExists(href) {
-  const clean = href.split("#")[0].split("?")[0];
-  if (!clean) return true;
-  return fileExists(htmlPathForUrl(clean));
+  return resolveHtmlPath(urlPath, DIST_DIR);
 }
 
 function robotsMeta(html) {
@@ -131,22 +109,25 @@ function assertSitemap() {
 }
 
 function assertInternalLinks() {
-  const htmlFiles = walk(DIST_DIR).filter((file) => file.endsWith(".html"));
+  for (const { file, href } of findBrokenLinks({
+    dir: DIST_DIR,
+    distDir: DIST_DIR,
+    extensions: [".html"],
+  })) {
+    fail(`${file} links to missing ${href}`);
+  }
+}
 
-  for (const file of htmlFiles) {
-    const html = readText(file);
-    for (const match of html.matchAll(/href="([^"]+)"/g)) {
-      const href = match[1];
-      if (!href.startsWith("/") || href.startsWith("//")) continue;
-      if (
-        href.startsWith("/assets/") ||
-        href.startsWith("/img/") ||
-        href.startsWith("/pagefind/")
-      ) {
-        continue;
-      }
-      if (!internalHrefExists(href)) fail(`${file} links to missing ${href}`);
-    }
+// Rendered pages only reveal links that something actually includes. Partials
+// that no layout renders stay invisible there, which is how /service and
+// /experiment sat dead in footer.njk from 2024 until they were removed.
+function assertPartialLinks() {
+  for (const { file, href } of findBrokenLinks({
+    dir: INCLUDES_DIR,
+    distDir: DIST_DIR,
+    extensions: [".njk"],
+  })) {
+    fail(`${file} links to missing ${href}`);
   }
 }
 
@@ -290,6 +271,7 @@ assertFeed(path.join(DIST_DIR, "feed.xml"));
 assertFeed(path.join(DIST_DIR, "feed", "full.xml"));
 assertSitemap();
 assertInternalLinks();
+assertPartialLinks();
 assertPagefind();
 assertRobotsTxt();
 assertLlmsTxt();
