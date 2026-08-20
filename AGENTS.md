@@ -28,11 +28,11 @@ npm test         # run unit tests
 | `npm run build:prod`   | Alias for `npm run build` (Netlify compat)                             |
 | `npm run debug`        | Dev server with `DEBUG=*` output                                       |
 | `npm test`             | Run unit tests via `node --test test/*.test.js`                        |
-| `npm run lint`         | Run ESLint on all source files                                         |
-| `npm run lint:fix`     | Auto-fix ESLint issues                                                 |
-| `npm run format`       | Check formatting with Prettier                                         |
-| `npm run format:fix`   | Auto-format all files with Prettier                                    |
-| `npm run check`        | Run lint + format + test (full CI verification)                        |
+| `npm run lint`         | Run Biome linter on source files                                       |
+| `npm run lint:fix`     | Auto-fix Biome lint issues                                              |
+| `npm run format`       | Check formatting with Biome                                            |
+| `npm run format:fix`   | Auto-format files with Biome                                           |
+| `npm run check`        | Run `biome check` + unit tests (full CI verification)                  |
 | `npm run new:catatan`  | Scaffold a new article under `src/catatan/`                            |
 
 ## Tech Stack
