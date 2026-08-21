@@ -4,11 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Build Commands
 
-- `npm run clean` - Remove the dist directory
-- `npm start` - Clean and start dev server with hot reload
-- `npm run build` - Build site for development
-- `npm run build:prod` - Build site for production
-- `npm run debug` - Run with debug output enabled
+- `pnpm run clean` - Remove the dist directory
+- `pnpm start` - Clean and start dev server with hot reload
+- `pnpm run build` - Build site for development
+- `pnpm run build:prod` - Build site for production
+- `pnpm run debug` - Run with debug output enabled
+
+The only supported package manager is pnpm (pinned via `packageManager` in `package.json`).
 
 ## Technology Stack
 

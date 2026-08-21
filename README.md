@@ -16,8 +16,9 @@ Follow these steps to set up the project locally.
 
 Make sure you have these installed:
 
-- [Node.js](https://nodejs.org/) (16.x or higher recommended)
-- [npm](https://www.npmjs.com/) (bundled with Node.js)
+- [Node.js](https://nodejs.org/) — see `.nvmrc` for the version this project builds against
+- [pnpm](https://pnpm.io/) — the only supported package manager. The version is pinned in
+  the `packageManager` field of `package.json`, so `corepack enable` gives you the right one.
 
 ### Installation
 
@@ -30,7 +31,7 @@ Make sure you have these installed:
 
 2. Install dependencies:
    ```sh
-   npm install
+   pnpm install
    ```
 
 ### Development
@@ -38,7 +39,7 @@ Make sure you have these installed:
 To start the development server with hot reload:
 
 ```sh
-npm start
+pnpm start
 ```
 
 ### Build
@@ -47,11 +48,11 @@ To build the site for development or production:
 
 - Development build:
   ```sh
-  npm run build
+  pnpm run build
   ```
 - Production build:
   ```sh
-  npm run build:prod
+  pnpm run build:prod
   ```
 
 ### Search (Pagefind)
@@ -66,12 +67,12 @@ This site uses [Pagefind](https://pagefind.app/) for full-text search.
 
 1. Build the site + generate the Pagefind index:
    ```sh
-   npm run build:prod
+   pnpm run build:prod
    ```
 2. Serve the generated `dist/` folder (any static server works):
    ```sh
-   npx serve dist
-   # or: npx http-server dist -p 3000
+   pnpm dlx serve dist
+   # or: pnpm dlx http-server dist -p 3000
    ```
 3. Open:
    - http://localhost:3000/search/
@@ -103,7 +104,7 @@ This repo keeps original images (e.g. PNG) and can generate modern formats along
 
 1. Generate optimized variants (writes `*.webp` and `*.avif` next to each `*.png`):
    ```sh
-   npm run images:optimize
+   pnpm run images:optimize
    ```
 
    Notes:
@@ -117,7 +118,7 @@ This repo keeps original images (e.g. PNG) and can generate modern formats along
 Run the project with debug output enabled:
 
 ```sh
-npm run debug
+pnpm run debug
 ```
 
 ## Feeds (RSS/Atom)
@@ -131,7 +132,7 @@ This site generates two Atom feeds:
 
 1. Run the dev server:
    ```sh
-   npm start
+   pnpm start
    ```
 2. Open:
    - http://localhost:3000/feed.xml
@@ -140,7 +141,7 @@ This site generates two Atom feeds:
 Or build and inspect the output files in `dist/`:
 
 ```sh
-npm run build
+pnpm run build
 ls -lah dist/feed.xml dist/feed/full.xml
 ```
 

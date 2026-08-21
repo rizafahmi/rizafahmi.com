@@ -1,4 +1,4 @@
 STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|mjs|cjs|json|css)$' || true)
 if [ -n "$STAGED" ]; then
-  npx biome check --write --staged
+  pnpm exec biome check --write --staged
 fi

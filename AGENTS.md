@@ -12,28 +12,37 @@ See `PRODUCT.md` for product context and `DESIGN.md` for the full design system.
 ## Quick Start
 
 ```sh
-npm install
-npm start        # dev server at http://localhost:3000
-npm run build    # production build into dist/
-npm test         # run unit tests
+pnpm install
+pnpm start        # dev server at http://localhost:3000
+pnpm run build    # production build into dist/
+pnpm test         # run unit tests
 ```
+
+This project uses **pnpm** as its only package manager. The version is pinned via the
+`packageManager` field in `package.json`, so `corepack enable` is enough to get the right
+one. Do not use `npm` or `bun`: `pnpm-lock.yaml` is the single lockfile.
+
+pnpm blocks dependency install scripts by default, and an unapproved one makes
+`pnpm install --frozen-lockfile` exit non-zero, which fails the Netlify build. Approved
+packages live in `pnpm-workspace.yaml` (`sharp` is there for its native binary); add new
+ones with `pnpm approve-builds <pkg>`. pnpm 11 ignores the `pnpm` field in `package.json`.
 
 ## Build & Development Commands
 
-| Command                | Purpose                                                                |
-| ---------------------- | ---------------------------------------------------------------------- |
-| `npm run clean`        | Remove the `dist/` directory                                           |
-| `npm start`            | Clean + start dev server with hot reload                               |
-| `npm run build`        | Production build + Pagefind + site audit (see Testing)                 |
-| `npm run build:prod`   | Alias for `npm run build` (Netlify compat)                             |
-| `npm run debug`        | Dev server with `DEBUG=*` output                                       |
-| `npm test`             | Run unit tests via `node --test test/*.test.js`                        |
-| `npm run lint`         | Run Biome linter on source files                                       |
-| `npm run lint:fix`     | Auto-fix Biome lint issues                                              |
-| `npm run format`       | Check formatting with Biome                                            |
-| `npm run format:fix`   | Auto-format files with Biome                                           |
-| `npm run check`        | Run `biome check` + unit tests (full CI verification)                  |
-| `npm run new:catatan`  | Scaffold a new article under `src/catatan/`                            |
+| Command                | Purpose                                                |
+| ---------------------- | ------------------------------------------------------ |
+| `pnpm run clean`       | Remove the `dist/` directory                           |
+| `pnpm start`           | Clean + start dev server with hot reload               |
+| `pnpm run build`       | Production build + Pagefind + site audit (see Testing) |
+| `pnpm run build:prod`  | Alias for `pnpm run build` (Netlify compat)            |
+| `pnpm run debug`       | Dev server with `DEBUG=*` output                       |
+| `pnpm test`            | Run unit tests via `node --test test/*.test.js`        |
+| `pnpm run lint`        | Run Biome linter on source files                       |
+| `pnpm run lint:fix`    | Auto-fix Biome lint issues                             |
+| `pnpm run format`      | Check formatting with Biome                            |
+| `pnpm run format:fix`  | Auto-format files with Biome                           |
+| `pnpm run check`       | Run `biome check` + unit tests (full CI verification)  |
+| `pnpm run new:catatan` | Scaffold a new article under `src/catatan/`            |
 
 ## Tech Stack
 
@@ -82,11 +91,11 @@ Tests use Node.js built-in test runner (`node:test` and `node:assert/strict`).
 Test files follow the `*.test.js` pattern under `test/`.
 
 ```sh
-npm test                        # Run all tests
+pnpm test                       # Run all tests
 node --test test/related.test.js # Run a specific file
 ```
 
-`npm run build` also runs `scripts/audit-site.mjs`, which fails the build on SEO,
+`pnpm run build` also runs `scripts/audit-site.mjs`, which fails the build on SEO,
 feed, frontmatter, and broken-internal-link regressions. It checks links in both the
 rendered `dist/` pages and the `src/_includes/` partials, so a dead link is caught
 even in a partial no layout currently renders. Link resolution lives in
@@ -101,7 +110,7 @@ even in a partial no layout currently renders. Link resolution lives in
 - Dates and time-related UI text in **Indonesian** (e.g., "2 hari yang lalu")
 - Markdown frontmatter required for all content files
 - Alt text required for all images
-- **Pre-commit hooks**: Biome (lint + format) runs automatically on staged files via Husky. Run `npm run check` before pushing to verify everything passes.
+- **Pre-commit hooks**: Biome (lint + format) runs automatically on staged files via Husky. Run `pnpm run check` before pushing to verify everything passes.
 
 ## Design System
 
