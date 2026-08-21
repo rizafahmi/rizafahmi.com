@@ -64,18 +64,32 @@ test("sedang dipelajari keeps the two entries that are still current", () => {
   assert.match(learning, /LLM Model/);
 });
 
-// Sedang Ditonton moved on from High Potential. Sedang Dibaca deliberately did
-// not: the captain was asked about the shows, not the books.
-test("sedang ditonton tracks the current show", () => {
-  const watching = source.match(/<h3>📺 Sedang Ditonton<\/h3>\s*<ul>([\s\S]*?)<\/ul>/)?.[1];
-  assert.ok(watching, "expected a Sedang Ditonton list on the now page");
-  assert.match(watching, /Alice in Borderland/);
-  assert.doesNotMatch(watching, /High Potential/);
-  assert.doesNotMatch(watching, /<a /, "that section links nothing; keep it that way");
+// Addendum 4 pins the definitive contents of both sections after four rounds
+// of captain revisions, so these assert exact lists and order, not just presence.
+const listItems = (heading) => {
+  const body = source.match(new RegExp(`<h3>${heading}</h3>\\s*<ul>([\\s\\S]*?)</ul>`))?.[1];
+  assert.ok(body, `expected a ${heading} list on the now page`);
+  return [...body.matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) => m[1].trim());
+};
+
+test("sedang ditonton is exactly the two current shows, in order", () => {
+  const items = listItems("\u{1F4FA} Sedang Ditonton");
+  assert.equal(items.length, 2);
+  assert.match(items[0], /<strong>Alice in Borderland<\/strong>/);
+  assert.match(items[1], /<strong>Outer Banks<\/strong>/);
+  assert.doesNotMatch(source, /High Potential/);
 });
 
-test("sedang dibaca is left exactly as it was", () => {
-  const reading = source.match(/<h3>📖 Sedang Dibaca<\/h3>\s*<ul>([\s\S]*?)<\/ul>/)?.[1];
-  assert.match(reading, /Purple Cow<\/strong> oleh Seth Godin/);
-  assert.match(reading, /Storytelling with Data<\/strong> oleh Cole Nussbaumer Knaflic/);
+test("sedang dibaca is exactly the two current books, in order", () => {
+  const items = listItems("\u{1F4D6} Sedang Dibaca");
+  assert.equal(items.length, 2);
+  assert.match(items[0], /<strong>Purple Cow<\/strong> oleh Seth Godin/);
+  assert.match(items[1], /<strong>The Alchemist<\/strong> oleh Paulo Coelho/);
+  assert.doesNotMatch(source, /Storytelling with Data/);
+});
+
+test("neither list section links anything, matching how they already read", () => {
+  for (const h of ["\u{1F4FA} Sedang Ditonton", "\u{1F4D6} Sedang Dibaca"]) {
+    for (const item of listItems(h)) assert.doesNotMatch(item, /<a /);
+  }
 });
