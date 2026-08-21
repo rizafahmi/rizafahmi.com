@@ -56,14 +56,6 @@ test("MBB is gone from the whole now page, not just one section", () => {
   assert.doesNotMatch(source, /rizafahmi\/mbb/i);
 });
 
-test("sedang dipelajari keeps the two entries that are still current", () => {
-  const learning = source.match(/<h3>📚 Sedang Dipelajari<\/h3>\s*<ul>([\s\S]*?)<\/ul>/)?.[1];
-  assert.ok(learning, "expected a Sedang Dipelajari list on the now page");
-  assert.equal([...learning.matchAll(/<li>/g)].length, 2);
-  assert.match(learning, /Agentic Coding/);
-  assert.match(learning, /LLM Model/);
-});
-
 // Addendum 4 pins the definitive contents of both sections after four rounds
 // of captain revisions, so these assert exact lists and order, not just presence.
 const listItems = (heading) => {
@@ -92,4 +84,26 @@ test("neither list section links anything, matching how they already read", () =
   for (const h of ["\u{1F4FA} Sedang Ditonton", "\u{1F4D6} Sedang Dibaca"]) {
     for (const item of listItems(h)) assert.doesNotMatch(item, /<a /);
   }
+});
+
+// Sedang Dipelajari was reworked once MBB left it: the Amp line became Loop
+// Engineering, a build-from-scratch line was added, and the Agent Router entry
+// (which carried an affiliate link) was removed.
+test("sedang dipelajari is exactly the two current entries, in order", () => {
+  const items = listItems("\u{1F4DA} Sedang Dipelajari");
+  assert.equal(items.length, 2);
+  assert.match(items[0], /<strong>.*>Loop Engineering<\/a><\/strong>/);
+  assert.match(items[0], /https:\/\/www\.youtube\.com\/playlist\?list=PLUwP2tpG_l6s/);
+  assert.match(items[1], /dari awal/);
+});
+
+test("the retired sedang dipelajari entries do not come back", () => {
+  for (const retired of [/Agent Router/i, /agentrouter\.org/i, /ampcode\.com/i]) {
+    assert.doesNotMatch(source, retired);
+  }
+});
+
+// Removing the Agent Router line removed the site's only affiliate link.
+test("the now page carries no affiliate link", () => {
+  assert.doesNotMatch(source, /[?&]aff=/);
 });
