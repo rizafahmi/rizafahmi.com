@@ -2,7 +2,7 @@ import fs, { existsSync } from "node:fs";
 import path from "node:path";
 import Image from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
-import { formatMonth, formatPeriod, translate } from "./src/libs/cv.js";
+import { formatMonth, formatPeriod, orderedChannels, translate } from "./src/libs/cv.js";
 import { selectProjects } from "./src/libs/karya.js";
 import { generateOgImage } from "./src/libs/og-image.js";
 import { getRelatedPosts } from "./src/libs/related.js";
@@ -143,6 +143,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("translate", translate);
   eleventyConfig.addFilter("cvPeriod", formatPeriod);
   eleventyConfig.addFilter("cvMonth", formatMonth);
+  eleventyConfig.addFilter("orderedChannels", orderedChannels);
 
   eleventyConfig.addFilter("jsonify", (value) => {
     return JSON.stringify(value ?? "");

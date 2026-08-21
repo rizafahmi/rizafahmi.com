@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import cv from "../src/_data/cv.js";
-import { formatMonth, formatPeriod, skillItems, translate } from "../src/libs/cv.js";
+import { formatMonth, formatPeriod, orderedChannels, skillItems, translate } from "../src/libs/cv.js";
 
 test("formatMonth renders month precision in the page language", () => {
   assert.equal(formatMonth("2018-11", "id"), "November 2018");
@@ -160,4 +160,45 @@ test("education lists both degrees, most recent first", () => {
   assert.equal(cv.education.length, 2);
   assert.match(cv.education[0].school, /University of Indonesia/);
   assert.match(cv.education[1].school, /BINUS/);
+});
+
+// Captain-confirmed 2026-08-21: only Ngobrolin Web and YouTube are still running.
+// Status lives as a machine value on each channel so flipping one is a one-word edit.
+test("every content channel carries a current or retired status", () => {
+  assert.ok(cv.content.channels.length >= 5);
+  for (const channel of cv.content.channels) {
+    assert.ok(
+      channel.status === "current" || channel.status === "retired",
+      `${channel.name} needs status "current" or "retired"`,
+    );
+  }
+});
+
+test("exactly Ngobrolin Web and YouTube are current channels", () => {
+  const current = cv.content.channels
+    .filter((channel) => channel.status === "current")
+    .map((channel) => channel.name);
+  assert.deepEqual(current, ["Ngobrolin Web", "YouTube"]);
+});
+
+test("exactly AppsCoast, Ceritanya Developer, and Hikayat are retired", () => {
+  const retired = cv.content.channels
+    .filter((channel) => channel.status === "retired")
+    .map((channel) => channel.name);
+  assert.deepEqual(
+    new Set(retired),
+    new Set(["AppsCoast", "Ceritanya Developer", "Hikayat Punggawa Teknologi"]),
+  );
+  assert.equal(retired.length, 3);
+});
+
+test("current channels keep their relative order ahead of retired ones", () => {
+  const ordered = orderedChannels(cv.content.channels).map((channel) => channel.name);
+  assert.deepEqual(ordered, [
+    "Ngobrolin Web",
+    "YouTube",
+    "Ceritanya Developer",
+    "Hikayat Punggawa Teknologi",
+    "AppsCoast",
+  ]);
 });

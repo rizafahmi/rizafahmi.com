@@ -4,7 +4,7 @@ import test from "node:test";
 import nunjucks from "nunjucks";
 import cv from "../src/_data/cv.js";
 import karya from "../src/_data/karya.js";
-import { formatMonth, formatPeriod, translate } from "../src/libs/cv.js";
+import { formatMonth, formatPeriod, orderedChannels, translate } from "../src/libs/cv.js";
 import { selectProjects } from "../src/libs/karya.js";
 
 const env = new nunjucks.Environment(new nunjucks.FileSystemLoader("src/_includes"), {
@@ -13,6 +13,7 @@ const env = new nunjucks.Environment(new nunjucks.FileSystemLoader("src/_include
 env.addFilter("translate", translate);
 env.addFilter("cvPeriod", formatPeriod);
 env.addFilter("cvMonth", formatMonth);
+env.addFilter("orderedChannels", orderedChannels);
 
 function render(lang) {
   return env.renderString(
@@ -99,4 +100,40 @@ test("profile links read as their own address, so they survive being printed", (
       );
     }
   }
+});
+
+test("both languages render a visible status for every content channel", () => {
+  const channelCount = cv.content.channels.length;
+  for (const [lang, html] of Object.entries(pages)) {
+    assert.equal(
+      count(html, /class="cv-status"/g),
+      channelCount,
+      `${lang} must show a status badge for every channel`,
+    );
+  }
+  assert.match(pages.id, /Berjalan/);
+  assert.match(pages.id, /Arsip/);
+  assert.match(pages.en, /Running/);
+  assert.match(pages.en, /Archive/);
+  assert.doesNotMatch(pages.en, /Berjalan|Arsip/);
+  assert.doesNotMatch(pages.id, /Running|Archive/);
+});
+
+function renderedChannelNames(html) {
+  return [...html.matchAll(/>([^<]+)<\/a>\s*<span class="cv-status">/g)].map((match) => match[1]);
+}
+
+test("current channels render before retired ones on both language pages", () => {
+  const expected = [
+    ...cv.content.channels.filter((channel) => channel.status === "current").map((c) => c.name),
+    ...cv.content.channels.filter((channel) => channel.status === "retired").map((c) => c.name),
+  ];
+
+  for (const [lang, html] of Object.entries(pages)) {
+    assert.deepEqual(renderedChannelNames(html), expected, `${lang} channel order`);
+  }
+});
+
+test("channel status count stays aligned across languages", () => {
+  assert.equal(count(pages.en, /class="cv-status"/g), count(pages.id, /class="cv-status"/g));
 });

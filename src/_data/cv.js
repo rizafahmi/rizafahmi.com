@@ -34,6 +34,14 @@
  * DAFTAR PROYEK
  *   13 proyek open source di halaman CV diambil langsung dari src/_data/karya.js,
  *   tidak disalin ke sini. Tambah proyek di sana, CV ikut terisi.
+ *
+ * STATUS KANAL
+ *   Tiap entri di `content.channels` wajib punya `status`: "current" atau
+ *   "retired". Label yang tampil (Berjalan/Running, Arsip/Archive) hidup di
+ *   template, bukan di sini — jadi membalik status satu kanal cukup mengganti
+ *   satu kata di file ini. Halaman menampilkan yang masih berjalan dulu,
+ *   lalu yang sudah diarsip, dengan urutan relatif di dalam tiap kelompok
+ *   tetap seperti di sini.
  */
 
 export default {
@@ -247,7 +255,7 @@ export default {
         en: "Led and developed news portals and internal applications using PHP, XML, MySQL, and Django/Python.",
       },
       highlights: [
-        { id: "Mendesain ulang kanal-kanal portal.", en: "Redesigned the portal canals." },
+        { id: "Mendesain ulang kanal-kanal portal.", en: "Redesigned the portal channels." },
         { id: "Mengembangkan www.sindonews.com.", en: "Developed www.sindonews.com." },
         {
           id: "Membangun versi mobile sindonews dengan Django/Python.",
@@ -374,6 +382,7 @@ export default {
       {
         name: "Ngobrolin Web",
         url: "https://ngobrol.in",
+        status: "current",
         note: {
           id: "Podcast mingguan yang membahas segala hal tentang web.",
           en: "A weekly podcast about everything web.",
@@ -382,6 +391,7 @@ export default {
       {
         name: "YouTube",
         url: "https://youtube.com/rizafahmi",
+        status: "current",
         note: {
           id: "Tutorial dan sesi livestream ngoding bareng seputar AI, Elixir, dan web.",
           en: "Tutorials and live coding streams on AI, Elixir, and the web.",
@@ -390,16 +400,19 @@ export default {
       {
         name: "Ceritanya Developer",
         url: "https://open.spotify.com/show/6grT1c7jDkhK4skm1YIsTs",
+        status: "retired",
         note: { id: "Podcast.", en: "Podcast." },
       },
       {
         name: "Hikayat Punggawa Teknologi",
         url: "https://www.youtube.com/playlist?list=PLTY2nW4jwtG9IEUCDspLH0tAuF450DZz-",
+        status: "retired",
         note: { id: "Serial podcast.", en: "Podcast series." },
       },
       {
         name: "AppsCoast",
         url: "https://open.spotify.com/show/6wjIRrIQ8yvAgCwXCUXKXI",
+        status: "retired",
         note: {
           id: "Podcast tentang startup teknologi Indonesia.",
           en: "A podcast about Indonesian tech startups.",

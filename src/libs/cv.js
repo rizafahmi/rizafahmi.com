@@ -104,3 +104,19 @@ export function skillItems(cv, lang = DEFAULT_LANG) {
     .flatMap((group) => (Array.isArray(group.items) ? group.items : []))
     .map((item) => translate(item, lang));
 }
+
+/**
+ * Content channels with current shows first, then retired, keeping the relative
+ * order inside each group. Flipping a channel's status in the data file is
+ * enough — this helper reorders at render time.
+ */
+export function orderedChannels(channels) {
+  if (!Array.isArray(channels)) return [];
+  const current = [];
+  const retired = [];
+  for (const channel of channels) {
+    if (channel?.status === "current") current.push(channel);
+    else if (channel?.status === "retired") retired.push(channel);
+  }
+  return [...current, ...retired];
+}

@@ -37,7 +37,11 @@
   certifications: { id: "Sertifikasi", en: "Certifications" },
   awards: { id: "Penghargaan", en: "Honours" },
   publications: { id: "Publikasi", en: "Publications" },
-  updated: { id: "Diperbarui", en: "Updated" }
+  updated: { id: "Diperbarui", en: "Updated" },
+  channelStatus: {
+    current: { id: "Berjalan", en: "Running" },
+    retired: { id: "Arsip", en: "Archive" }
+  }
 } %}
 
 {% macro render(cv, lang, projects) %}
@@ -154,9 +158,10 @@
 
     <h3 class="cv-subhead">{{ L.channels | translate(lang) }}</h3>
     <ul class="cv-list">
-      {%- for channel in cv.content.channels %}
+      {%- for channel in cv.content.channels | orderedChannels %}
       <li>
         <a href="{{ channel.url }}" rel="noopener">{{ channel.name | translate(lang) }}</a>
+        <span class="cv-status">{{ L.channelStatus[channel.status] | translate(lang) }}</span>
         — {{ channel.note | translate(lang) }}
       </li>
       {%- endfor %}
