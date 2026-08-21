@@ -35,13 +35,15 @@
  *   Proyek open source di halaman CV diambil langsung dari src/_data/karya.js,
  *   tidak disalin ke sini. Tambah proyek di sana, CV ikut terisi.
  *
- * STATUS KANAL
- *   Tiap entri di `content.channels` wajib punya `status`: "current" atau
- *   "retired". Label yang tampil (Berjalan/Running, Arsip/Archive) hidup di
- *   template, bukan di sini — jadi membalik status satu kanal cukup mengganti
- *   satu kata di file ini. Halaman menampilkan yang masih berjalan dulu,
- *   lalu yang sudah diarsip, dengan urutan relatif di dalam tiap kelompok
- *   tetap seperti di sini.
+ * STATUS (KANAL & KREDENSIAL)
+ *   Label `status` ("current" / "retired") dipakai bersama: map-nya satu
+ *   (`L.status` di cv_body.njk → Berjalan/Running, Arsip/Archive), jangan
+ *   invent marker lain. Tiap entri di `content.channels` WAJIB punya status;
+ *   halaman menampilkan yang masih berjalan dulu, lalu yang diarsip, dengan
+ *   urutan relatif di dalam tiap kelompok tetap seperti di sini. Entri di
+ *   `teaching` BOLEH opsional membawa `status: "retired"` untuk kredensial
+ *   yang sudah tidak aktif (tetap dicantumkan karena pernah digapai) — tanpa
+ *   tanggal masa aktif; podcast yang diarsip juga tanpa tanggal.
  */
 
 export default {
@@ -117,8 +119,8 @@ export default {
       en: "Before that I had been shipping software since 2003, moving from programmer to team leader, head of R&D, and CTO across news portals, online education, and civic technology. Mostly back-end work, plus infrastructure and leading small teams.",
     },
     {
-      id: "Bagian yang paling saya nikmati adalah membagikan ulang apa yang saya pelajari: bikin konten pemrograman sejak 2012, ngobrol di podcast sejak 2015, dan ikut mengurus komunitas sejak 2014. Sekarang saya Google Developer Expert dan AWS Community Builder, dan sebagian besar tulisan serta eksperimen saya berkutat di Elixir dan AI untuk ngoding.",
-      en: "The part I enjoy most is handing back what I learn: programming content since 2012, podcasting since 2015, and community organising since 2014. I am a Google Developer Expert and an AWS Community Builder, and most of my current writing and side projects sit where Elixir meets AI-assisted development.",
+      id: "Bagian yang paling saya nikmati adalah membagikan ulang apa yang saya pelajari: bikin konten pemrograman sejak 2012, ngobrol di podcast sejak 2015, dan ikut mengurus komunitas sejak 2014. Sekarang saya Google Developer Expert, pernah juga jadi AWS Community Builder, dan sebagian besar tulisan serta eksperimen saya berkutat di Elixir dan AI untuk ngoding.",
+      en: "The part I enjoy most is handing back what I learn: programming content since 2012, podcasting since 2015, and community organising since 2014. I am a Google Developer Expert and a former AWS Community Builder, and most of my current writing and side projects sit where Elixir meets AI-assisted development.",
     },
   ],
 
@@ -323,8 +325,13 @@ export default {
       en: "Lecturer at Universitas Budi Luhur.",
     },
     {
-      id: "Google Developer Expert (GDE) dan AWS Community Builder.",
-      en: "Google Developer Expert (GDE) and AWS Community Builder.",
+      id: "Google Developer Expert (GDE).",
+      en: "Google Developer Expert (GDE).",
+    },
+    {
+      id: "AWS Community Builder",
+      en: "AWS Community Builder",
+      status: "retired",
     },
     {
       id: "Organizer JakartaJS dan Meteor Jakarta.",

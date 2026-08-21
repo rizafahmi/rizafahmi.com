@@ -104,10 +104,11 @@ test("profile links read as their own address, so they survive being printed", (
 
 test("both languages render a visible status for every content channel", () => {
   const channelCount = cv.content.channels.length;
+  const retiredTeaching = cv.teaching.filter((item) => item.status === "retired").length;
   for (const [lang, html] of Object.entries(pages)) {
     assert.equal(
       count(html, /class="cv-status"/g),
-      channelCount,
+      channelCount + retiredTeaching,
       `${lang} must show a status badge for every channel`,
     );
   }
@@ -136,4 +137,25 @@ test("current channels render before retired ones on both language pages", () =>
 
 test("channel status count stays aligned across languages", () => {
   assert.equal(count(pages.en, /class="cv-status"/g), count(pages.id, /class="cv-status"/g));
+});
+
+// The captain stopped being an AWS Community Builder in July 2026. The credential
+// was genuinely earned so it stays on the record — but nothing on the page may
+// still assert it in the present tense.
+test("the CV marks the AWS credential as past, in prose and in structure", () => {
+  for (const [lang, html] of Object.entries(pages)) {
+    assert.match(html, /AWS Community Builder/, `${lang} should keep the earned credential`);
+    assert.match(html, /Google Developer Expert/, `${lang} should keep the current credential`);
+  }
+
+  // Prose: a badge cannot fix a sentence, so the summary has to say it.
+  assert.match(pages.id, /pernah\s+\w*\s*(jadi|menjadi)\s+AWS Community Builder/i);
+  assert.match(pages.en, /former AWS Community Builder/i);
+  assert.doesNotMatch(pages.id, /saya Google Developer Expert dan AWS Community Builder/);
+  assert.doesNotMatch(pages.en, /a Google Developer Expert and an AWS Community Builder/);
+
+  // Structure: the credentials line reuses the same retired marker as the
+  // archived podcasts rather than inventing a second convention.
+  assert.match(pages.id, /AWS Community Builder[^<]*<span class="cv-status">Arsip<\/span>/);
+  assert.match(pages.en, /AWS Community Builder[^<]*<span class="cv-status">Archive<\/span>/);
 });
