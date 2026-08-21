@@ -64,7 +64,7 @@ src/
   catatan/          # Blog articles in Markdown
   _data/            # Global data files (goatcounter views, etc.)
   _includes/        # Shared Nunjucks partials and layouts
-  libs/             # Custom libraries (shiki, related posts, OG images, internal links)
+  libs/             # Shared JS helpers (cv, karya, shiki, related posts, OG, internal links)
   tags/             # Tag listing pages
   topik/            # Topic hub pages
   index.njk          # Homepage
@@ -141,8 +141,8 @@ See `DESIGN.md` for the full design spec. Key rules:
 - CV content is curated in `src/_data/cv.js` (Indonesian header explains the editing
   rules). One template, `src/cv.njk`, paginates over `cv.languages` to emit `/cv/` and
   `/cv/en/` from that single file, so the two languages cannot drift; the shared markup
-  is `src/_includes/cv_body.njk` and the formatting helpers are `src/libs/cv.js`. The 13
-  open source entries are pulled live from `karya.js`, not copied.
+  is `src/_includes/cv_body.njk` and the formatting helpers are `src/libs/cv.js`. Open
+  source entries are pulled live from `karya.js`, not copied.
 
 ## Page Language
 

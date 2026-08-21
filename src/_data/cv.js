@@ -32,7 +32,7 @@
  *   memajang tautan mati lebih buruk daripada CV tanpa tautan sama sekali.
  *
  * DAFTAR PROYEK
- *   13 proyek open source di halaman CV diambil langsung dari src/_data/karya.js,
+ *   Proyek open source di halaman CV diambil langsung dari src/_data/karya.js,
  *   tidak disalin ke sini. Tambah proyek di sana, CV ikut terisi.
  *
  * STATUS KANAL
@@ -451,7 +451,7 @@ export default {
   },
 
   /**
-   * Proyek di luar 13 karya open source yang sudah diambil dari karya.js.
+   * Proyek di luar daftar open source yang sudah diambil dari karya.js.
    */
   projectsExtra: [
     {

@@ -2,7 +2,13 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import cv from "../src/_data/cv.js";
-import { formatMonth, formatPeriod, orderedChannels, skillItems, translate } from "../src/libs/cv.js";
+import {
+  formatMonth,
+  formatPeriod,
+  orderedChannels,
+  skillItems,
+  translate,
+} from "../src/libs/cv.js";
 
 test("formatMonth renders month precision in the page language", () => {
   assert.equal(formatMonth("2018-11", "id"), "November 2018");
