@@ -1,0 +1,478 @@
+/*
+ * Halaman CV (/cv/ dan /cv/en/).
+ *
+ * Dua tampilan dari satu markup:
+ *   - di layar, mengikuti sistem desain situs (font, warna, mode gelap) lewat
+ *     custom property di assets/global.css;
+ *   - di kertas, jadi dokumen sendiri: hitam di atas putih, tanpa chrome situs,
+ *     dan dijaga supaya satu entri tidak terbelah antar halaman.
+ *
+ * Blok @media print di bawah adalah bagian yang sebenarnya dikirim ke PDF, jadi
+ * perlakukan dia sebagai deliverable, bukan tambahan.
+ */
+
+/* ---------------------------------------------------------------- layar --- */
+
+.cv-main {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cv-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.cv-button {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.625rem 1rem;
+  border: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.cv-button:hover {
+  background-color: var(--accent-acid);
+  color: #0a0b0d;
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .cv-button:hover {
+  background-color: var(--accent-cobalt);
+  color: #ffffff;
+}
+
+.cv-header {
+  border-bottom: 4px solid var(--border-color);
+  padding-bottom: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.cv-name {
+  margin: 0 0 0.5rem;
+}
+
+.cv-headline {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  color: var(--meta-color);
+  margin: 0 0 1.25rem;
+}
+
+.cv-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.375rem 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.cv-contact li {
+  display: flex;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.cv-contact a {
+  overflow-wrap: anywhere;
+}
+
+.cv-contact-label,
+.cv-inline-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--meta-color);
+  flex: 0 0 5.5rem;
+  padding-top: 0.25rem;
+}
+
+.cv-section {
+  border-top: 2px solid var(--border-color);
+  padding-top: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+/* Bagian pertama menempel langsung di bawah garis tebal kepala CV, jadi tidak
+   perlu garis sendiri — kalau tidak, ada dua garis bertumpuk. */
+.cv-header + .cv-section {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 2rem;
+}
+
+.cv-section > h2 {
+  font-size: clamp(1.25rem, 3vw, 1.625rem);
+  margin: 0 0 1.25rem;
+}
+
+.cv-subhead {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--meta-color);
+  margin: 1.75rem 0 0.75rem;
+}
+
+.cv-entry {
+  margin-bottom: 1.75rem;
+}
+
+.cv-entry:last-child {
+  margin-bottom: 0;
+}
+
+.cv-org {
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.25rem;
+}
+
+.cv-role {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin: 0 0 0.25rem;
+  font-size: 0.9375rem;
+}
+
+.cv-role-title {
+  font-weight: 700;
+}
+
+.cv-period {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--meta-color);
+  white-space: nowrap;
+}
+
+.cv-summary {
+  margin: 0.5rem 0 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.cv-highlights,
+.cv-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  font-size: 0.9375rem;
+}
+
+.cv-highlights li,
+.cv-list li {
+  margin-bottom: 0.375rem;
+}
+
+.cv-skills {
+  margin: 0;
+  display: grid;
+  gap: 0.625rem;
+}
+
+.cv-skill-group {
+  display: grid;
+  grid-template-columns: minmax(0, 12.5rem) minmax(0, 1fr);
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+}
+
+@media (max-width: 600px) {
+  .cv-skill-group {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cv-contact-label,
+  .cv-inline-label {
+    flex-basis: 4.5rem;
+  }
+}
+
+.cv-skills dt {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--meta-color);
+}
+
+.cv-skills dd {
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.cv-tally {
+  font-size: 0.9375rem;
+  margin-bottom: 0.75rem;
+}
+
+.cv-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  font-size: 0.9375rem;
+  margin-bottom: 0.75rem;
+}
+
+.cv-inline-label {
+  flex: 0 0 auto;
+}
+
+.cv-projects .cv-project {
+  margin-bottom: 0.5rem;
+}
+
+.cv-tags {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--meta-color);
+  margin-left: 0.5rem;
+}
+
+.cv-updated {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--meta-color);
+  margin: 2.5rem 0 0;
+}
+
+a.back {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  border-bottom: 2px solid var(--link-color);
+}
+
+/* ---------------------------------------------------------------- cetak --- */
+
+@media print {
+  /*
+   * A4 dengan margin 15mm: cukup lebar untuk dipegang printer mana pun,
+   * dan tetap masuk akal kalau yang tersedia justru kertas Letter (Letter
+   * lebih pendek tapi lebih lebar, jadi isinya tidak pernah terpotong).
+   */
+  @page {
+    size: A4;
+    /* Longhand, bukan shorthand: linter menganggap `margin` di @page menimpa
+       margin-top milik aturan lain di atasnya. */
+    margin-top: 15mm;
+    margin-right: 15mm;
+    margin-bottom: 15mm;
+    margin-left: 15mm;
+  }
+
+  /*
+   * Banyak printer mematikan warna latar secara bawaan, jadi halaman ini
+   * memang dirancang hitam di atas putih — bukan sekadar versi gelap yang
+   * dibalik. Tidak ada informasi yang cuma dibedakan lewat warna.
+   */
+  html,
+  body.cv-page {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 10pt;
+    line-height: 1.42;
+  }
+
+  /* Semua yang sifatnya navigasi, bukan isi. */
+  .skip-link,
+  .site-header,
+  .theme-toggle,
+  .cv-toolbar,
+  a.back,
+  footer,
+  #utterances-container {
+    display: none !important;
+  }
+
+  .cv-main {
+    max-width: none;
+    margin: 0;
+  }
+
+  .cv h1,
+  .cv h2,
+  .cv h3,
+  .cv dt,
+  .cv strong {
+    color: #000000 !important;
+  }
+
+  /* Di kertas tautan tidak bisa diklik, jadi jangan bergaya seperti tautan. */
+  .cv a {
+    color: #000000 !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    background: none !important;
+  }
+
+  /* Kecuali tautan profil: teksnya memang alamatnya sendiri, biarkan menonjol. */
+  .cv-contact a.print-url {
+    text-decoration: underline !important;
+    text-underline-offset: 2px;
+  }
+
+  .cv-name {
+    font-size: 22pt;
+    margin-bottom: 0.15rem;
+  }
+
+  .cv-headline {
+    font-size: 10pt;
+    color: #000000 !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .cv-header {
+    border-bottom: 1.5pt solid #000000;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .cv-contact {
+    font-size: 9pt;
+    gap: 0.15rem 1.5rem;
+    /* Dua kolom, bukan tiga: alamat sepanjang linkedin.com/in/rizafahmi harus
+       muat utuh dalam satu baris, karena di kertas tidak bisa diklik. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cv-contact a {
+    overflow-wrap: normal;
+  }
+
+  .cv-contact-label {
+    flex-basis: 4.5rem;
+    padding-top: 0;
+  }
+
+  .cv-contact-label,
+  .cv-inline-label,
+  .cv-period,
+  .cv-tags,
+  .cv-subhead,
+  .cv-skills dt,
+  .cv-updated {
+    color: #333333 !important;
+  }
+
+  /*
+   * Paginasi. Judul bagian tidak boleh tertinggal sendirian di kaki halaman,
+   * dan satu entri pekerjaan tidak boleh terbelah di tengah.
+   */
+  .cv-section {
+    border-top: 1pt solid #000000;
+    margin-top: 12pt;
+    padding-top: 4pt;
+    break-inside: auto;
+  }
+
+  .cv-section > h2 {
+    font-size: 12pt;
+    margin: 0 0 6pt;
+    break-after: avoid;
+    break-inside: avoid;
+  }
+
+  .cv-subhead {
+    margin: 10pt 0 4pt;
+    break-after: avoid;
+  }
+
+  .cv-entry,
+  .cv-skill-group,
+  .cv-inline {
+    break-inside: avoid;
+  }
+
+  /*
+   * Daftar open source pendek-pendek tapi banyak. Kalau dibiarkan, tiga
+   * baris pertama nyangkut di kaki halaman sebelumnya. Kalau memang tidak
+   * muat sehalaman pun, browser tetap memecahnya — ini preferensi, bukan
+   * paksaan.
+   */
+  .cv-projects,
+  .cv-projects-extra {
+    break-inside: avoid;
+  }
+
+  .cv-entry {
+    margin-bottom: 10pt;
+  }
+
+  .cv-org {
+    font-size: 11pt;
+    break-after: avoid;
+  }
+
+  .cv-role {
+    font-size: 10pt;
+    margin-bottom: 1pt;
+    break-after: avoid;
+    break-inside: avoid;
+  }
+
+  .cv-summary,
+  .cv-highlights,
+  .cv-list,
+  .cv-skills dd,
+  .cv-tally,
+  .cv-inline {
+    font-size: 9.5pt;
+  }
+
+  .cv-summary {
+    margin: 2pt 0;
+  }
+
+  .cv-highlights,
+  .cv-list {
+    margin-top: 2pt;
+  }
+
+  .cv-highlights li,
+  .cv-list li {
+    margin-bottom: 1pt;
+    break-inside: avoid;
+  }
+
+  .cv-skills {
+    gap: 3pt;
+  }
+
+  /* Kolom label diberi lebar tetap supaya "DATA & INFRASTRUCTURE" muat sebaris. */
+  .cv-skill-group {
+    grid-template-columns: 42mm minmax(0, 1fr);
+  }
+
+  .cv-updated {
+    margin-top: 12pt;
+    font-size: 8pt;
+  }
+
+  /* Baris tunggal yang terdampar di ujung halaman. */
+  .cv p,
+  .cv li {
+    orphans: 3;
+    widows: 3;
+  }
+}

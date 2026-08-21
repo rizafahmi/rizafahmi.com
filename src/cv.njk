@@ -1,0 +1,41 @@
+---
+# Halaman CV — SATU berkas ini menghasilkan DUA halaman:
+#
+#   /cv/     Bahasa Indonesia
+#   /cv/en/  Bahasa Inggris
+#
+# Isi CV-nya ada di src/_data/cv.js, tampilannya di src/_includes/cv_body.njk,
+# dan kerangka halamannya di src/_includes/cv.njk. Jadi tidak ada satu kalimat
+# pun yang ditulis dua kali — menambah bahasa cukup dengan menambahkannya di
+# `languages` dan `meta` pada src/_data/cv.js.
+#
+# `pagination` di bawah adalah cara bawaan Eleventy untuk membuat satu halaman
+# per item daftar: daftarnya `cv.languages` (["id", "en"]), diambil satu-satu,
+# dan tiap giliran tersedia sebagai variabel `lang`.
+pagination:
+  data: cv.languages
+  size: 1
+  alias: lang
+layout: cv
+eleventyExcludeFromCollections: true
+
+# Alamat dan metadata tiap versi diambil dari cv.meta[lang], bukan ditulis ulang.
+eleventyComputed:
+  permalink: "{{ cv.meta[lang].permalink }}"
+  title: "{{ cv.meta[lang].title }}"
+  description: "{{ cv.meta[lang].description }}"
+  pageLang: "{{ cv.meta[lang].htmlLang }}"
+  pageLocale: "{{ cv.meta[lang].ogLocale }}"
+  pageLangTag: "{{ cv.meta[lang].langTag }}"
+
+# Sama di kedua halaman: keduanya mengumumkan seluruh versi yang ada.
+alternates:
+  - hreflang: id
+    href: /cv/
+  - hreflang: en
+    href: /cv/en/
+  - hreflang: x-default
+    href: /cv/
+---
+{% import "cv_body.njk" as cvBody %}
+{{ cvBody.render(cv, lang, karya | karyaProjects) }}

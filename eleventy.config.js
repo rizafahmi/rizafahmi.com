@@ -2,6 +2,7 @@ import fs, { existsSync } from "node:fs";
 import path from "node:path";
 import Image from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
+import { formatMonth, formatPeriod, translate } from "./src/libs/cv.js";
 import { selectProjects } from "./src/libs/karya.js";
 import { generateOgImage } from "./src/libs/og-image.js";
 import { getRelatedPosts } from "./src/libs/related.js";
@@ -136,6 +137,12 @@ export default function (eleventyConfig) {
   // Curated projects from src/_data/karya.js (showcase cards + LLM indexes);
   // this only cleans the entries up, it never reorders them.
   eleventyConfig.addFilter("karyaProjects", (projects) => selectProjects(projects));
+
+  // CV pages (/cv/ and /cv/en/). Both languages render from src/_data/cv.js
+  // through src/_includes/cv_body.njk, so these only format what is already there.
+  eleventyConfig.addFilter("translate", translate);
+  eleventyConfig.addFilter("cvPeriod", formatPeriod);
+  eleventyConfig.addFilter("cvMonth", formatMonth);
 
   eleventyConfig.addFilter("jsonify", (value) => {
     return JSON.stringify(value ?? "");

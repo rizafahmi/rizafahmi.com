@@ -1,0 +1,64 @@
+{#
+  Layout khusus halaman CV (/cv/ dan /cv/en/).
+
+  Kenapa tidak numpang main.njk: halaman ini butuh dua hal yang tidak dipunyai
+  layout lain — atribut lang yang mengikuti bahasa halaman (main.njk, tulisan.njk,
+  dan serial.njk semuanya menulis lang="id" secara tetap, dan itu benar untuk
+  mereka), plus stylesheet cetaknya sendiri. Dengan layout terpisah, halaman
+  Indonesia yang sudah ada tidak tersentuh sama sekali.
+
+  Chrome situs (header, tombol tema, tombol cetak, pengalih bahasa) sengaja
+  dipisah dari isi CV: semuanya hilang saat dicetak lewat assets/cv.css.
+#}
+<!DOCTYPE html>
+<html lang="{{ pageLang or 'id' }}">
+  <head>
+    {# Judul ini juga jadi nama berkas PDF ketika halaman dicetak dari browser. #}
+    <title>{{ title }}</title>
+    <link rel="preload" as="style" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" />
+    <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" />
+    <link rel="preload" as="style" href="/assets/cv.css?v={{ site.buildTime }}" type="text/css" />
+    <link rel="stylesheet" href="/assets/cv.css?v={{ site.buildTime }}" type="text/css" />
+    {% include 'head.njk' %}
+  </head>
+  <body class="cv-page">
+    {%- set meta = cv.meta[pageLang] -%}
+    {%- set otherMeta = cv.meta["en" if pageLang == "id" else "id"] -%}
+    {# Chrome situs ditulis dalam bahasa Indonesia apa pun bahasa halamannya,
+       jadi ditandai lang="id" supaya pembaca layar tidak salah melafalkan. #}
+    <a href="#main-content" class="skip-link" lang="id">Langsung ke konten utama</a>
+    <header class="site-header" lang="id" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+      <div style="display:flex; align-items:center; gap: 0.75rem;">
+        <h1 style="margin:0;"><a href="/">👋 Saya Riza!</a></h1>
+        <nav class="hero-nav" style="margin-left: .25rem;">
+          <a href="/articles">Catatan</a>
+          <a href="/tags">Topik</a>
+          <a href="/search">Cari</a>
+        </nav>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+    </header>
+
+    <main id="main-content" class="cv-main"{% if pageLang != 'en' %} data-pagefind-body data-pagefind-meta="title:{{ meta.title }}"{% else %} data-pagefind-ignore{% endif %}>
+      <div class="cv-toolbar" role="group" aria-label="{{ meta.ui.toolbar }}">
+        <button type="button" class="cv-button" data-cv-print>{{ meta.ui.print }}</button>
+        <a class="cv-button" href="{{ otherMeta.permalink }}" hreflang="{{ otherMeta.htmlLang }}" lang="{{ otherMeta.htmlLang }}">{{ otherMeta.languageName }}</a>
+      </div>
+
+      {{ content | safe }}
+
+      <a class="back" href="/">&lt; {{ meta.ui.back }}</a>
+    </main>
+
+    <script>
+      (function () {
+        var button = document.querySelector('[data-cv-print]');
+        if (button) button.addEventListener('click', function () { window.print(); });
+      })();
+    </script>
+    {% include 'analytics.njk' %}
+    {% include 'webvitals.njk' %}
+    {% include 'keyboard-shortcuts.njk' %}
+    {% include 'theme-toggle.njk' %}
+  </body>
+</html>

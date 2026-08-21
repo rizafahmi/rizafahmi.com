@@ -1,0 +1,234 @@
+{#
+  Isi halaman CV. Dipakai dua kali — /cv/ dan /cv/en/ — dengan data yang sama
+  dari src/_data/cv.js, jadi kedua bahasa tidak mungkin melenceng strukturnya.
+
+  Judul bagian ditulis di `L` di bawah karena itu teks antarmuka, bukan isi CV;
+  isi CV-nya diedit di src/_data/cv.js.
+
+  Yang perlu dijaga saat mengedit:
+    - setiap <section> punya id yang sama di kedua bahasa (dipakai untuk
+      pengecekan kesejajaran di test/cv-page.test.js dan untuk tautan jangkar);
+    - satu entri pengalaman = satu .cv-entry, supaya CSS cetak bisa menjaga
+      entrinya tidak terbelah antar halaman;
+    - teks tautan profil sengaja berupa alamatnya sendiri (tanpa "https://"),
+      bukan kata seperti "GitHub". Di kertas tautan tidak bisa diklik, jadi
+      alamatnya harus ikut terbaca. Tautan lain di halaman ini tetap memakai
+      nama biasa: satu CV yang penuh URL panjang lebih buruk daripada tanpa URL.
+#}
+
+{% set L = {
+  summary: { id: "Ringkasan", en: "Summary" },
+  skills: { id: "Keahlian", en: "Skills" },
+  experience: { id: "Pengalaman Kerja", en: "Work Experience" },
+  education: { id: "Pendidikan", en: "Education" },
+  teaching: { id: "Mengajar & Komunitas", en: "Teaching & Community" },
+  speaking: { id: "Berbicara & Workshop", en: "Speaking & Workshops" },
+  content: { id: "Konten & Podcast", en: "Content & Podcasting" },
+  projects: { id: "Karya Terpilih", en: "Selected Work" },
+  honours: { id: "Penghargaan & Publikasi", en: "Honours & Publications" },
+  languages: { id: "Bahasa", en: "Languages" },
+  email: { id: "Email", en: "Email" },
+  openSource: { id: "Open source", en: "Open source" },
+  otherWork: { id: "Lainnya", en: "Other work" },
+  channels: { id: "Kanal", en: "Channels" },
+  courses: { id: "Kursus", en: "Courses" },
+  stages: { id: "Panggung terpilih", en: "Selected stages" },
+  collaborations: { id: "Pernah berkolaborasi dengan", en: "Collaborated with" },
+  certifications: { id: "Sertifikasi", en: "Certifications" },
+  awards: { id: "Penghargaan", en: "Honours" },
+  publications: { id: "Publikasi", en: "Publications" },
+  updated: { id: "Diperbarui", en: "Updated" }
+} %}
+
+{% macro render(cv, lang, projects) %}
+<article class="cv">
+
+  <header class="cv-header">
+    <h1 class="cv-name">{{ cv.identity.name }}</h1>
+    <p class="cv-headline">{{ cv.identity.headline | translate(lang) }}</p>
+    <ul class="cv-contact">
+      <li>
+        <span class="cv-contact-label">{{ L.email | translate(lang) }}</span>
+        <a href="mailto:{{ cv.identity.email }}">{{ cv.identity.email }}</a>
+      </li>
+      {%- for profile in cv.identity.profiles %}
+      <li>
+        <span class="cv-contact-label">{{ profile.label | translate(lang) }}</span>
+        <a class="print-url" href="{{ profile.url }}" rel="me noopener">{{ profile.url | replace("https://", "") }}</a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </header>
+
+  <section id="summary" class="cv-section">
+    <h2>{{ L.summary | translate(lang) }}</h2>
+    {%- for paragraph in cv.summary %}
+    <p>{{ paragraph | translate(lang) }}</p>
+    {%- endfor %}
+  </section>
+
+  <section id="skills" class="cv-section">
+    <h2>{{ L.skills | translate(lang) }}</h2>
+    <dl class="cv-skills">
+      {%- for group in cv.skills %}
+      <div class="cv-skill-group">
+        <dt>{{ group.group | translate(lang) }}</dt>
+        <dd>
+          {%- for item in group.items %}{{ item | translate(lang) }}{% if not loop.last %} · {% endif %}{% endfor -%}
+        </dd>
+      </div>
+      {%- endfor %}
+    </dl>
+  </section>
+
+  <section id="experience" class="cv-section">
+    <h2>{{ L.experience | translate(lang) }}</h2>
+    {%- for entry in cv.experience %}
+    <div class="cv-entry">
+      <h3 class="cv-org">
+        {%- if entry.url %}<a href="{{ entry.url }}" rel="noopener">{{ entry.org }}</a>{% else %}{{ entry.org }}{% endif -%}
+      </h3>
+      {%- for role in entry.roles %}
+      <p class="cv-role">
+        <span class="cv-role-title">{{ role.title | translate(lang) }}</span>
+        <span class="cv-period">{{ role | cvPeriod(lang) }}</span>
+      </p>
+      {%- endfor %}
+      <p class="cv-summary">{{ entry.summary | translate(lang) }}</p>
+      {%- if entry.highlights.length %}
+      <ul class="cv-highlights">
+        {%- for highlight in entry.highlights %}
+        <li>{{ highlight | translate(lang) }}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+    {%- endfor %}
+  </section>
+
+  <section id="education" class="cv-section">
+    <h2>{{ L.education | translate(lang) }}</h2>
+    {%- for item in cv.education %}
+    <div class="cv-entry">
+      <h3 class="cv-org">{{ item.school }}</h3>
+      <p class="cv-role">
+        <span class="cv-role-title">{{ item.degree | translate(lang) }}</span>
+        <span class="cv-period">{{ item | cvPeriod(lang) }}</span>
+      </p>
+    </div>
+    {%- endfor %}
+  </section>
+
+  <section id="teaching" class="cv-section">
+    <h2>{{ L.teaching | translate(lang) }}</h2>
+    <ul class="cv-list">
+      {%- for item in cv.teaching %}
+      <li>{{ item | translate(lang) }}</li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section id="speaking" class="cv-section">
+    <h2>{{ L.speaking | translate(lang) }}</h2>
+    <p class="cv-tally">
+      {%- for item in cv.speaking.tally %}<strong>{{ item.count }}</strong> {{ item.label | translate(lang) }}{% if not loop.last %} · {% endif %}{% endfor -%}
+    </p>
+    <p>{{ cv.speaking.topics | translate(lang) }}</p>
+    <p class="cv-inline">
+      <span class="cv-inline-label">{{ L.stages | translate(lang) }}</span>
+      {{ cv.speaking.stages | join(" · ") }}
+    </p>
+    <p class="cv-inline">
+      <span class="cv-inline-label">{{ L.collaborations | translate(lang) }}</span>
+      {{ cv.speaking.collaborations | join(" · ") }}
+    </p>
+  </section>
+
+  <section id="content" class="cv-section">
+    <h2>{{ L.content | translate(lang) }}</h2>
+    <ul class="cv-list">
+      {%- for item in cv.content.since %}
+      <li>{{ item | translate(lang) }}</li>
+      {%- endfor %}
+    </ul>
+
+    <h3 class="cv-subhead">{{ L.channels | translate(lang) }}</h3>
+    <ul class="cv-list">
+      {%- for channel in cv.content.channels %}
+      <li>
+        <a href="{{ channel.url }}" rel="noopener">{{ channel.name | translate(lang) }}</a>
+        — {{ channel.note | translate(lang) }}
+      </li>
+      {%- endfor %}
+    </ul>
+
+    <h3 class="cv-subhead">{{ L.courses | translate(lang) }}</h3>
+    <ul class="cv-list">
+      {%- for course in cv.content.courses %}
+      <li>
+        <a href="{{ course.url }}" rel="noopener">{{ course.name | translate(lang) }}</a>
+        — {{ course.note | translate(lang) }}
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section id="projects" class="cv-section">
+    <h2>{{ L.projects | translate(lang) }}</h2>
+
+    <h3 class="cv-subhead">{{ L.openSource | translate(lang) }}</h3>
+    <ul class="cv-list cv-projects">
+      {%- for project in projects %}
+      <li class="cv-project">
+        <a href="{{ project.url or project.repo }}" rel="noopener">{{ project.name }}</a>
+        {%- if project.tags.length %}
+        <span class="cv-tags">{{ project.tags | join(" · ") }}</span>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+
+    <h3 class="cv-subhead">{{ L.otherWork | translate(lang) }}</h3>
+    <ul class="cv-list cv-projects-extra">
+      {%- for item in cv.projectsExtra %}
+      <li>
+        <a href="{{ item.url }}" rel="noopener">{{ item.name }}</a>
+        — {{ item.note | translate(lang) }}
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section id="honours" class="cv-section">
+    <h2>{{ L.honours | translate(lang) }}</h2>
+    <p class="cv-inline">
+      <span class="cv-inline-label">{{ L.certifications | translate(lang) }}</span>
+      {{ cv.honours.certifications | join(" · ") }}
+    </p>
+    <p class="cv-inline">
+      <span class="cv-inline-label">{{ L.awards | translate(lang) }}</span>
+      {{ cv.honours.awards | join(" · ") }}
+    </p>
+    <h3 class="cv-subhead">{{ L.publications | translate(lang) }}</h3>
+    <ul class="cv-list">
+      {%- for publication in cv.honours.publications %}
+      <li>{{ publication }}</li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section id="languages" class="cv-section">
+    <h2>{{ L.languages | translate(lang) }}</h2>
+    <dl class="cv-skills">
+      {%- for item in cv.spokenLanguages %}
+      <div class="cv-skill-group">
+        <dt>{{ item.name | translate(lang) }}</dt>
+        <dd>{{ item.level | translate(lang) }}</dd>
+      </div>
+      {%- endfor %}
+    </dl>
+  </section>
+
+  <p class="cv-updated">{{ L.updated | translate(lang) }} {{ cv.updated | cvMonth(lang) }}</p>
+</article>
+{% endmacro %}
