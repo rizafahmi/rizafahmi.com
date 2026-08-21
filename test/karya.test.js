@@ -104,3 +104,16 @@ test("every curated repo url points at github.com, whatever the owner", () => {
   assert.ok(owners.has("rizafahmi"));
   assert.ok(owners.has("ngobrolin"), "the list is not limited to the captain's own account");
 });
+
+test("the curated list carries an entry whose display name differs from its repo name", () => {
+  const projects = selectProjects(karya);
+  const balapKode = projects.find((p) => p.name === "Balap Kode");
+
+  assert.ok(balapKode, "Balap Kode must be in the curated list");
+  assert.equal(balapKode.repo, "https://github.com/rizafahmi/coderacer");
+  assert.equal(
+    balapKode.url,
+    null,
+    "balapkode.com no longer resolves, so the entry stays repo-link-only",
+  );
+});

@@ -114,4 +114,10 @@ export default [
     url: "https://maal.rizafahmi.com",
     tags: ["Astro", "TypeScript", "Zakat"],
   },
+  {
+    name: "Balap Kode",
+    description: "Permainan adu cepat mengetik buat developer, dengan soal potongan kode dari AI.",
+    repo: "https://github.com/rizafahmi/coderacer",
+    tags: ["Elixir", "Phoenix LiveView", "AI"],
+  },
 ];
