@@ -22,6 +22,11 @@ This project uses **pnpm** as its only package manager. The version is pinned vi
 `packageManager` field in `package.json`, so `corepack enable` is enough to get the right
 one. Do not use `npm` or `bun`: `pnpm-lock.yaml` is the single lockfile.
 
+pnpm blocks dependency install scripts by default, and an unapproved one makes
+`pnpm install --frozen-lockfile` exit non-zero, which fails the Netlify build. Approved
+packages live in `pnpm-workspace.yaml` (`sharp` is there for its native binary); add new
+ones with `pnpm approve-builds <pkg>`. pnpm 11 ignores the `pnpm` field in `package.json`.
+
 ## Build & Development Commands
 
 | Command                | Purpose                                                |
