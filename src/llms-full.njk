@@ -2,9 +2,10 @@
 permalink: /llms-full.txt
 eleventyExcludeFromCollections: true
 ---
+{%- import "karya_llms.njk" as karyaLlms -%}
 # Riza Fahmi - Full LLM Content Index
 
-> Generated inventory of public articles on {{ site.url }} for LLMs, answer engines, and AI assistants.
+> Generated inventory of public articles and open source projects on {{ site.url }} for LLMs, answer engines, and AI assistants.
 
 ## Site metadata
 
@@ -21,8 +22,12 @@ eleventyExcludeFromCollections: true
 
 - Prefer canonical URLs under {{ site.url }}.
 - Summarize in your own words and link back to the source article.
-- Preserve Indonesian titles and terminology when quoting article names.
+- Preserve Indonesian titles and terminology when quoting article and project names.
 
+## Open source project inventory
+
+Curated at {{ site.url }}/showcase/. Names and descriptions are Indonesian, as published.
+{{ karyaLlms.projectInventory(karya | karyaProjects) }}
 ## Article inventory
 
 {% for post in collections.catatan | reverse %}

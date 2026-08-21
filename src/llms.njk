@@ -2,6 +2,7 @@
 permalink: /llms.txt
 eleventyExcludeFromCollections: true
 ---
+{%- import "karya_llms.njk" as karyaLlms -%}
 # Riza Fahmi
 
 > Personal website, blog, and portfolio of Riza Fahmi. The site focuses on programming, AI-assisted software work, Elixir, web development, productivity, and developer education in Indonesia.
@@ -21,7 +22,7 @@ This file is a concise, machine-readable map for LLMs, answer engines, and AI as
 
 ## Machine-readable indexes
 
-- [Full LLM content index](https://rizafahmi.com/llms-full.txt): Generated article inventory with descriptions, dates, and tags.
+- [Full LLM content index](https://rizafahmi.com/llms-full.txt): Generated article and open source project inventory with descriptions, dates, and tags.
 - [Sitemap](https://rizafahmi.com/sitemap.xml): Canonical crawl map.
 - [Robots policy](https://rizafahmi.com/robots.txt): Crawler access policy.
 - [Atom feed, excerpt](https://rizafahmi.com/feed.xml): Recent articles with excerpts.
@@ -53,6 +54,7 @@ This file is a concise, machine-readable map for LLMs, answer engines, and AI as
 - [HACKTIV8](https://hacktiv8.com): Coding bootcamp and developer education.
 - [Carikerja](https://carikerja.deeptech.id/): Career platform.
 - [Awesome Speakers Indonesia](https://github.com/rizafahmi/awesome-speakers-id): Public speaker directory.
+{{ karyaLlms.projectLines(karya | karyaProjects) }}
 
 ## Contact
 
