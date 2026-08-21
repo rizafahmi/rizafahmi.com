@@ -35,13 +35,15 @@
  *   Proyek open source di halaman CV diambil langsung dari src/_data/karya.js,
  *   tidak disalin ke sini. Tambah proyek di sana, CV ikut terisi.
  *
- * STATUS KANAL
- *   Tiap entri di `content.channels` wajib punya `status`: "current" atau
- *   "retired". Label yang tampil (Berjalan/Running, Arsip/Archive) hidup di
- *   template, bukan di sini — jadi membalik status satu kanal cukup mengganti
- *   satu kata di file ini. Halaman menampilkan yang masih berjalan dulu,
- *   lalu yang sudah diarsip, dengan urutan relatif di dalam tiap kelompok
- *   tetap seperti di sini.
+ * STATUS (KANAL & KREDENSIAL)
+ *   Label `status` ("current" / "retired") dipakai bersama: map-nya satu
+ *   (`L.status` di cv_body.njk → Berjalan/Running, Arsip/Archive), jangan
+ *   invent marker lain. Tiap entri di `content.channels` WAJIB punya status;
+ *   halaman menampilkan yang masih berjalan dulu, lalu yang diarsip, dengan
+ *   urutan relatif di dalam tiap kelompok tetap seperti di sini. Entri di
+ *   `teaching` BOLEH opsional membawa `status: "retired"` untuk kredensial
+ *   yang sudah tidak aktif (tetap dicantumkan karena pernah digapai) — tanpa
+ *   tanggal masa aktif; podcast yang diarsip juga tanpa tanggal.
  */
 
 export default {
