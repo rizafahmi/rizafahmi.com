@@ -64,19 +64,21 @@ src/
   catatan/          # Blog articles in Markdown
   _data/            # Global data files (goatcounter views, etc.)
   _includes/        # Shared Nunjucks partials and layouts
-  libs/             # Custom libraries (shiki, related posts, OG images, internal links)
+  libs/             # Shared JS helpers (cv, karya, shiki, related posts, OG, internal links)
   tags/             # Tag listing pages
   topik/            # Topic hub pages
   index.njk          # Homepage
   articles.njk       # Articles listing with pagination
   search.njk         # Search page
   showcase.njk       # Portfolio showcase
+  cv.njk             # CV; one template, two pages (/cv/ and /cv/en/)
   now.njk            # /now page
   uses.njk           # /uses page
 assets/
   global.css         # Site-wide styles
   home.css           # Homepage-specific styles
   tulisan.css        # Article page styles
+  cv.css             # CV screen styles + the @media print rules for /cv/
   fonts/             # Self-hosted fonts
   images/            # Static images
 test/
@@ -136,6 +138,27 @@ See `DESIGN.md` for the full design spec. Key rules:
   generated project entries in `/llms.txt` and `/llms-full.txt` (via
   `src/_includes/karya_llms.njk`). The "Lainnya" section on `/showcase` is still
   hand-written HTML in `src/showcase.njk`.
+- CV content is curated in `src/_data/cv.js` (Indonesian header explains the editing
+  rules). One template, `src/cv.njk`, paginates over `cv.languages` to emit `/cv/` and
+  `/cv/en/` from that single file, so the two languages cannot drift; the shared markup
+  is `src/_includes/cv_body.njk` and the formatting helpers are `src/libs/cv.js`. Open
+  source entries are pulled live from `karya.js`, not copied.
+
+## Page Language
+
+The site is Indonesian-first: `main.njk`, `tulisan.njk`, and `serial.njk` all hardcode
+`<html lang="id">`, which is correct for every page they serve. A page in another
+language needs its own layout (see `src/_includes/cv.njk`) and should set these page-data
+fields, which `head.njk` reads with Indonesian defaults:
+
+| Field         | Effect                                            |
+| ------------- | ------------------------------------------------- |
+| `pageLocale`  | `og:locale` (default `id_ID`)                     |
+| `pageLangTag` | `inLanguage` on the WebPage JSON-LD node          |
+| `alternates`  | List of `{ hreflang, href }` for `rel="alternate"` |
+
+Site chrome stays in Indonesian on those pages; mark the wrapper `lang="id"` so screen
+readers do not read it as English.
 
 ## Search
 
