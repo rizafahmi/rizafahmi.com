@@ -63,3 +63,19 @@ test("sedang dipelajari keeps the two entries that are still current", () => {
   assert.match(learning, /Agentic Coding/);
   assert.match(learning, /LLM Model/);
 });
+
+// Sedang Ditonton moved on from High Potential. Sedang Dibaca deliberately did
+// not: the captain was asked about the shows, not the books.
+test("sedang ditonton tracks the current show", () => {
+  const watching = source.match(/<h3>📺 Sedang Ditonton<\/h3>\s*<ul>([\s\S]*?)<\/ul>/)?.[1];
+  assert.ok(watching, "expected a Sedang Ditonton list on the now page");
+  assert.match(watching, /Alice in Borderland/);
+  assert.doesNotMatch(watching, /High Potential/);
+  assert.doesNotMatch(watching, /<a /, "that section links nothing; keep it that way");
+});
+
+test("sedang dibaca is left exactly as it was", () => {
+  const reading = source.match(/<h3>📖 Sedang Dibaca<\/h3>\s*<ul>([\s\S]*?)<\/ul>/)?.[1];
+  assert.match(reading, /Purple Cow<\/strong> oleh Seth Godin/);
+  assert.match(reading, /Storytelling with Data<\/strong> oleh Cole Nussbaumer Knaflic/);
+});
