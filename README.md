@@ -59,7 +59,7 @@ To build the site for development or production:
 This site uses [Pagefind](https://pagefind.app/) for full-text search.
 
 - The search page lives at `/search/` (source: `src/search.njk`).
-- Autocomplete/suggestions are powered by Pagefind’s JS API and a small custom script (`assets/search-autocomplete.js`).
+- Autocomplete/suggestions are powered by Pagefind’s JS API (entry: `assets/search-autocomplete.js`). Loader contract and regression coverage: `AGENTS.md` § Search.
 - The Pagefind index is generated **after** Eleventy builds the HTML, during the production build.
 
 #### Testing search locally

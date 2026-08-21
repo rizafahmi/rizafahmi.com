@@ -128,6 +128,16 @@ See `DESIGN.md` for the full design spec. Key rules:
   `src/_includes/karya_llms.njk`). The "Lainnya" section on `/showcase` is still
   hand-written HTML in `src/showcase.njk`.
 
+## Search
+
+- Pagefind indexes **only** elements marked `data-pagefind-body`. Once that attribute exists
+  anywhere on the site, pages without it are not searchable at all. Grep for
+  `data-pagefind-body` to see what is currently opted in.
+- Pagefind's browser API is an ES module that **exports** `search`/`init`; it does not assign
+  `window.pagefind`. `assets/search-client.js` owns loading it, `assets/search-autocomplete.js`
+  is the DOM layer. `test/search-client.test.js` builds a real Pagefind index and runs a real
+  query, so an upgrade that moves the API fails CI instead of silently breaking search.
+
 ## Deployment
 
 - Hosted on **Netlify** with auto-deploy on merge to `main`
