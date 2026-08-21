@@ -48,3 +48,18 @@ test("every side project links somewhere and opens safely", () => {
     assert.match(attrs, /rel="noopener noreferrer"/);
   }
 });
+
+// The captain retired MBB from the page entirely: it left Side Projects first,
+// then "Building MBB" left Sedang Dipelajari once it was the only mention left.
+test("MBB is gone from the whole now page, not just one section", () => {
+  assert.doesNotMatch(source, /\bMBB\b/);
+  assert.doesNotMatch(source, /rizafahmi\/mbb/i);
+});
+
+test("sedang dipelajari keeps the two entries that are still current", () => {
+  const learning = source.match(/<h3>📚 Sedang Dipelajari<\/h3>\s*<ul>([\s\S]*?)<\/ul>/)?.[1];
+  assert.ok(learning, "expected a Sedang Dipelajari list on the now page");
+  assert.equal([...learning.matchAll(/<li>/g)].length, 2);
+  assert.match(learning, /Agentic Coding/);
+  assert.match(learning, /LLM Model/);
+});
