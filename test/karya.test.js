@@ -82,3 +82,25 @@ test("the curated Karya data file is a non-empty, valid list", () => {
     assert.ok(project.repo, `"${project.name}" needs a usable GitHub URL`);
   }
 });
+
+test("the curated list carries an entry whose repo lives under another GitHub org", () => {
+  const projects = selectProjects(karya);
+  const ngobrolin = projects.find((p) => p.name === "Ngobrolin Web");
+
+  assert.ok(ngobrolin, "Ngobrolin Web must be in the curated list");
+  assert.equal(ngobrolin.repo, "https://github.com/ngobrolin/landing");
+  assert.equal(ngobrolin.url, "https://ngobrol.in");
+});
+
+test("every curated repo url points at github.com, whatever the owner", () => {
+  for (const project of selectProjects(karya)) {
+    const { hostname } = new URL(project.repo);
+    assert.equal(hostname, "github.com", `"${project.name}" must link to github.com`);
+  }
+
+  const owners = new Set(
+    selectProjects(karya).map((p) => new URL(p.repo).pathname.split("/").filter(Boolean)[0]),
+  );
+  assert.ok(owners.has("rizafahmi"));
+  assert.ok(owners.has("ngobrolin"), "the list is not limited to the captain's own account");
+});
