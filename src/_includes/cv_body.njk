@@ -38,7 +38,7 @@
   awards: { id: "Penghargaan", en: "Honours" },
   publications: { id: "Publikasi", en: "Publications" },
   updated: { id: "Diperbarui", en: "Updated" },
-  channelStatus: {
+  status: {
     current: { id: "Berjalan", en: "Running" },
     retired: { id: "Arsip", en: "Archive" }
   }
@@ -127,7 +127,7 @@
     <h2>{{ L.teaching | translate(lang) }}</h2>
     <ul class="cv-list">
       {%- for item in cv.teaching %}
-      <li>{{ item | translate(lang) }}</li>
+      <li>{{ item | translate(lang) }}{% if item.status %} <span class="cv-status">{{ L.status[item.status] | translate(lang) }}</span>{% endif %}</li>
       {%- endfor %}
     </ul>
   </section>
@@ -161,7 +161,7 @@
       {%- for channel in cv.content.channels | orderedChannels %}
       <li>
         <a href="{{ channel.url }}" rel="noopener">{{ channel.name | translate(lang) }}</a>
-        <span class="cv-status">{{ L.channelStatus[channel.status] | translate(lang) }}</span>
+        <span class="cv-status">{{ L.status[channel.status] | translate(lang) }}</span>
         — {{ channel.note | translate(lang) }}
       </li>
       {%- endfor %}
