@@ -53,13 +53,50 @@ function renderTagNav(rawTips, activeTag = null) {
 
 // --- the tip page ----------------------------------------------------------
 
-test("a tip page embeds the Short itself, not just a link to it", () => {
+// The player is a click-to-play facade rather than an eager <iframe>: the embed
+// pulled ~1.3MB of YouTube into a 46KB page and pushed `load` out to 10.3s.
+// These tests pin the part that is easy to regress — that the facade still
+// carries everything tip_player.njk needs to build the real player on click.
+test("a tip page ships a click-to-play facade, not an eager iframe", () => {
   const html = renderTip({});
 
-  assert.match(html, /<iframe/);
-  assert.match(html, /src="https:\/\/www\.youtube-nocookie\.com\/embed\/abc123"/);
-  assert.match(html, /allowfullscreen/);
-  assert.match(html, /title="Tips Elixir"/);
+  assert.doesNotMatch(html, /<iframe/);
+  assert.match(html, /class="tip-facade"/);
+  assert.match(html, /data-tip-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/abc123"/);
+  assert.match(html, /data-tip-title="Tips Elixir"/);
+});
+
+test("the facade is a real button a keyboard can reach, with an accessible name", () => {
+  const html = renderTip({});
+
+  assert.match(html, /<button\b[\s\S]*?class="tip-facade"/);
+  assert.match(html, /type="button"/);
+  assert.match(html, /aria-label="Putar video: Tips Elixir"/);
+  // The button carries the name, so the poster must not repeat it to a
+  // screen reader.
+  assert.match(html, /<img src="[^"]*" alt=""/);
+});
+
+// The poster fills a 9/16 box up to 340 CSS px, so it wants the big frame —
+// but in WebP, which is the same pixels for roughly 60% fewer bytes.
+test("the facade poster is the full-size frame in webp", () => {
+  const html = renderTip({});
+
+  assert.match(html, /<img src="https:\/\/i\.ytimg\.com\/vi_webp\/abc123\/maxresdefault\.webp"/);
+  assert.doesNotMatch(html, /<img src="[^"]*\.jpg"/);
+});
+
+test("the player script starts playback on the first click", () => {
+  const script = readFileSync("src/_includes/tip_player.njk", "utf8");
+
+  // autoplay=1 is what makes the tap that dismisses the facade also the tap
+  // that plays; the allow-list must permit it or the player loads paused.
+  assert.match(script, /autoplay=1/);
+  assert.match(script, /allow\s*=[\s\S]*?autoplay/);
+  assert.match(script, /replaceChild/);
+  // Focus has to follow the player, or a keyboard visitor is dropped back to
+  // the top of the document when the button they were on disappears.
+  assert.match(script, /\.focus\(\)/);
 });
 
 test("a tip page shows the title, description, tags, and a link to YouTube", () => {
@@ -144,8 +181,27 @@ test("the index links each thumbnail to its own page rather than embedding a pla
   const html = renderGrid([BASE]);
 
   assert.match(html, /href="\/tips\/tips-elixir\/"/);
-  assert.match(html, /<img src="https:\/\/i\.ytimg\.com\/vi\/abc123\/maxresdefault\.jpg"/);
   assert.doesNotMatch(html, /<iframe/);
+});
+
+// The grid asks for a much smaller frame than the OG tag does. maxresdefault
+// cost 732KB for the ten above-fold cards to fill boxes 159x89 CSS px wide.
+test("the grid requests the small 4:3 webp frame, not the full-size thumbnail", () => {
+  const html = renderGrid([BASE]);
+
+  assert.match(html, /<img src="https:\/\/i\.ytimg\.com\/vi_webp\/abc123\/sddefault\.webp"/);
+  assert.match(html, /width="640" height="480"/);
+  assert.doesNotMatch(html, /maxresdefault/);
+});
+
+// sddefault only exists when maxresdefault does. A tip whose stored thumbnail
+// is already hqdefault is one YouTube never built the bigger frames for, and
+// asking for sddefault there would ship a broken card.
+test("a tip with no maxresdefault falls back to the frame every video has", () => {
+  const html = renderGrid([{ ...BASE, thumbnail: "https://i.ytimg.com/vi/abc123/hqdefault.jpg" }]);
+
+  assert.match(html, /<img src="https:\/\/i\.ytimg\.com\/vi_webp\/abc123\/hqdefault\.webp"/);
+  assert.match(html, /width="480" height="360"/);
 });
 
 test("every thumbnail carries alt text and lazy loading", () => {

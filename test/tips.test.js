@@ -7,6 +7,7 @@ import test from "node:test";
 import {
   assertTipsOverlap,
   assignSlugs,
+  cardThumbnailFor,
   cleanDescription,
   deriveTags,
   formatDuration,
@@ -16,6 +17,7 @@ import {
   metaDescriptionFor,
   normalizeTipTag,
   parseIsoDuration,
+  posterThumbnailFor,
   readExistingTips,
   selectTips,
   slugifyTitle,
@@ -279,6 +281,79 @@ test("selectTips falls back to a generated thumbnail URL when the field is missi
   const { thumbnail, ...withoutThumb } = RAW_TIP;
   const [tip] = selectTips([withoutThumb]);
   assert.equal(tip.thumbnail, "https://i.ytimg.com/vi/abc123/hqdefault.jpg");
+});
+
+// --- cardThumbnailFor: the grid's frame, not the OG image ------------------
+//
+// The /tips grid renders cards at 159x89 CSS px (477x268 device px at DPR 3).
+// maxresdefault is 1280x720 and cost 732KB for the ten above-fold cards, so
+// the grid asks for a smaller frame while tip.thumbnail stays big for OG.
+
+test("a maxresdefault thumbnail becomes the small 4:3 webp frame", () => {
+  assert.deepEqual(cardThumbnailFor("https://i.ytimg.com/vi/abc123/maxresdefault.jpg"), {
+    url: "https://i.ytimg.com/vi_webp/abc123/sddefault.webp",
+    width: 640,
+    height: 480,
+  });
+});
+
+// sddefault exists only for sources big enough to also have maxresdefault, so
+// a stored hqdefault means the bigger frames were never built. Asking for
+// sddefault there would 404 and ship a broken card.
+test("a thumbnail YouTube only built at hqdefault stays at hqdefault", () => {
+  assert.deepEqual(cardThumbnailFor("https://i.ytimg.com/vi/abc123/hqdefault.jpg"), {
+    url: "https://i.ytimg.com/vi_webp/abc123/hqdefault.webp",
+    width: 480,
+    height: 360,
+  });
+});
+
+test("an id with the hyphens and underscores YouTube uses is not mangled", () => {
+  const { url } = cardThumbnailFor("https://i.ytimg.com/vi/xdBCV-qpIWU/hqdefault.jpg");
+  assert.equal(url, "https://i.ytimg.com/vi_webp/xdBCV-qpIWU/hqdefault.webp");
+});
+
+// We cannot know which variants a hand-edited or off-site URL has, and a
+// broken card is worse than a big one.
+test("a non-YouTube thumbnail is passed through untouched", () => {
+  assert.deepEqual(cardThumbnailFor("https://example.com/cover.png"), {
+    url: "https://example.com/cover.png",
+    width: 1280,
+    height: 720,
+  });
+});
+
+// The poster behind the tip-page facade keeps the stored frame and only
+// changes container. Whatever variant YouTube stored, it has the WebP of it,
+// so this needs no guess about which sizes exist.
+test("the poster keeps the stored frame and only swaps in webp", () => {
+  assert.deepEqual(posterThumbnailFor("https://i.ytimg.com/vi/abc123/maxresdefault.jpg"), {
+    url: "https://i.ytimg.com/vi_webp/abc123/maxresdefault.webp",
+    width: 1280,
+    height: 720,
+  });
+});
+
+test("a poster for a video with only hqdefault stays at hqdefault", () => {
+  assert.deepEqual(posterThumbnailFor("https://i.ytimg.com/vi/abc123/hqdefault.jpg"), {
+    url: "https://i.ytimg.com/vi_webp/abc123/hqdefault.webp",
+    width: 480,
+    height: 360,
+  });
+});
+
+test("a non-YouTube poster is passed through untouched", () => {
+  assert.deepEqual(posterThumbnailFor("https://example.com/cover.png"), {
+    url: "https://example.com/cover.png",
+    width: 1280,
+    height: 720,
+  });
+});
+
+test("selectTips exposes the card frame alongside the full-size thumbnail", () => {
+  const [tip] = selectTips([RAW_TIP]);
+  assert.equal(tip.thumbnail, "https://i.ytimg.com/vi/abc123/hqdefault.jpg");
+  assert.equal(tip.cardThumbnail.url, "https://i.ytimg.com/vi_webp/abc123/hqdefault.webp");
 });
 
 test("selectTips never leaks null into text fields", () => {

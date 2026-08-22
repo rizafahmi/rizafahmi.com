@@ -122,6 +122,11 @@ We reject shadows. The canvas is strictly flat. Division is created through line
 - **In-Text Links:** Bold with a solid highlight underline (`text-decoration-thickness: 3px`) using `Electric Cobalt` (in light mode) or `Acid Lime` (in dark mode).
 - **Card-wrapping links:** When an `<a>` wraps a whole card (`.tip-card-link`, `.article`, `.featured-project-card`, `.related-card`, and nested `.tip-card-tags a`), it must opt out of the global `a:hover` solid background — otherwise title/tag text that also uses `--link-color` becomes invisible. Override group and rationale: `assets/global.css`; WCAG ratios pinned by `test/tips-hover-contrast.test.js`. Signal hover with underline/border instead.
 
+### Tip player facade
+
+- Tip pages use a click-to-play `<button class="tip-facade">` (not an eager iframe). Markup and behaviour: `src/_includes/tip_body.njk`, `src/_includes/tip_player.njk`.
+- **Play chrome exception:** `.tip-facade-play` keeps a `12px` radius so the control reads as YouTube's play affordance. That is the only intentional departure from the site-wide sharp-corner rule; do not spread that radius to site chrome or cards.
+
 ## 6. Do's and Don'ts
 
 ### Do's

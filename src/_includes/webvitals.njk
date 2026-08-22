@@ -1,5 +1,9 @@
+{# Real-user Web Vitals → GoatCounter events (`web-vitals/<name>`).
+   `assets/web-vitals.js` is the vendored web-vitals@4.2.4 *standard* build
+   (not attribution): this include only sends metric name + value. Excluded
+   from Biome in biome.json; bump `?v=` via site.buildTime when replacing it. #}
 <script type="module">
-  import {onCLS, onINP, onLCP, onFCP, onTTFB} from '/assets/web-vitals.js';
+  import {onCLS, onINP, onLCP, onFCP, onTTFB} from '/assets/web-vitals.js?v={{ site.buildTime }}';
 
   function waitForGoatCounter(callback, attempts) {
     attempts = attempts || 0;

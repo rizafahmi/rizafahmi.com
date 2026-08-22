@@ -6,7 +6,10 @@
     <li class="tip-card">
       <a class="tip-card-link" href="{{ tip.url }}">
         <span class="tip-thumb">
-          <img src="{{ tip.thumbnail }}" alt="Cuplikan video: {{ tip.title }}" width="1280" height="720" loading="lazy" decoding="async" />
+          {#- cardThumbnail is the small 4:3 frame, not tip.thumbnail: see
+              cardThumbnailFor() in src/libs/tips.js. tip.thumbnail stays the
+              big 16:9 one because the tip page uses it as its OG image. -#}
+          <img src="{{ tip.cardThumbnail.url }}" alt="Cuplikan video: {{ tip.title }}" width="{{ tip.cardThumbnail.width }}" height="{{ tip.cardThumbnail.height }}" loading="lazy" decoding="async" />
           {%- if tip.durationLabel %}
           <span class="tip-duration">{{ tip.durationLabel }}</span>
           {%- endif %}

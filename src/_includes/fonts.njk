@@ -1,0 +1,17 @@
+{# Google Fonts for the whole site — include this FIRST inside every <head>.
+
+   These must be <link> elements, not an @import inside assets/global.css. An
+   @import in a render-blocking stylesheet is invisible to the preload scanner,
+   so the font CSS could not start downloading until global.css had finished:
+   a whole extra round trip on the critical path of every page. Measured at
+   -631ms LCP (2,143ms -> 1,512ms) when it moved out of the stylesheet.
+
+   Keep this above the global.css links so the request goes out first, and keep
+   display=swap so the swap behaviour matches what the site already shipped.
+
+   Every layout with its own <head> includes this: main.njk, index.njk,
+   tulisan.njk, serial.njk, cv.njk, search.njk. If you add another layout, add
+   it here too, or that page loses its webfonts. #}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;500;700&amp;family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Unbounded:wght@700;800;900&amp;display=swap" />
