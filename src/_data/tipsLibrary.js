@@ -26,7 +26,11 @@
  *               diubah; skrip fetch selalu mempertahankan yang sudah ada.
  *
  *   title, description, publishedAt, duration, thumbnail diambil ulang dari
- *   YouTube setiap kali skrip dijalankan, jadi jangan diedit tangan.
+ *   YouTube setiap kali skrip dijalankan, jadi jangan diedit tangan. Variant
+ *   di URL `thumbnail` (mis. maxresdefault vs hqdefault) menentukan frame
+ *   kartu grid lewat `cardThumbnailFor()` di `src/libs/tips.js`; jangan ganti
+ *   URL-nya "supaya lebih ringan" — grid sudah menurunkan ukurannya sendiri,
+ *   dan `thumbnail` tetap dipakai sebagai gambar OG halaman tip.
  *
  * File ini hanya merapikan: mengurutkan dari yang terbaru, membuang embel-embel
  * tautan di deskripsi YouTube, dan menghitung daftar tag untuk navigasi.

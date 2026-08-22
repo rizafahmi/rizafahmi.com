@@ -133,7 +133,8 @@ See `DESIGN.md` for the full design spec. Key rules:
 
 - **Creative North Star**: "The Neo-Acid Gallery" — brutalist, high-contrast, solarized
 - **Colors**: Raw Gallery Plaster (`#f7f7f5`) / Obsidian Clay (`#121519`) backgrounds, Acid Lime (`#c5f82a`) and Electric Cobalt (`#1a3bf5`) accents
-- **Bans**: No shadows, no gradients, no rounded corners, no glassmorphism, no neon-on-black
+- **Bans**: No shadows, no gradients, no glassmorphism, no neon-on-black; sharp
+  corners by default (narrow tip-facade play-chrome exception in `DESIGN.md`)
 - **Line length**: Article views capped at `65ch`; article/detail containers under
   `720px` (`/tips` index and tag grids use `1080px` for density — `.tips-index`)
 - **Borders**: Flat, thick, solid black/white (`2px` default, `4px` or `8px` for major splits)
@@ -164,7 +165,9 @@ See `DESIGN.md` for the full design spec. Key rules:
   limit is 3 minutes now), so the script confirms each candidate with a HEAD on
   `youtube.com/shorts/<id>`; answers are cached in `.cache/youtube-shorts/`.
   Tip pages set `image` to the YouTube thumbnail for OG (not the build-time OG
-  generator). Tip tags deliberately do **not** feed `/tags` or `/topik`.
+  generator). The `/tips` grid uses derived `cardThumbnail` from `src/libs/tips.js`
+  — leave `thumbnail` as the full-size OG frame; do not point the grid at it.
+  Tip tags deliberately do **not** feed `/tags` or `/topik`.
   `tipsLibrary` also drives Recent tips in `/llms.txt` and the Tips inventory in
   `/llms-full.txt` (`src/llms.njk`, `src/llms-full.njk`). `tips.json` is generated,
   so it is excluded from Biome in `biome.json` — the fetch script's

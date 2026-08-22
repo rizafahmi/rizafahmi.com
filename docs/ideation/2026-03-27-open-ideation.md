@@ -122,17 +122,17 @@ focus: Reader Experience & Discovery (quick wins, new capabilities)
 
 ---
 
-### 6. Web Vitals Activation
+### 6. Web Vitals Dashboard
 
-**Description:** Activate prepared Web Vitals tracking (`src/_includes/webvitals.njk`) and create a performance dashboard to monitor Core Web Vitals across all pages.
+**Description:** Build a readable performance dashboard over the Core Web Vitals already reported to GoatCounter (`src/_includes/webvitals.njk` + vendored `assets/web-vitals.js`, events under `web-vitals/<name>`).
 
-**Rationale:** Tracking is already prepared - just needs activation. Performance is core to reader experience and SEO. Provides data-driven insights for optimization. Listed as high priority in docs/IMPROVEMENTS.md.
+**Rationale:** RUM is live (standard web-vitals build; name + value only). A dashboard would make those GoatCounter events actionable instead of only queryable in the analytics UI. Tracking itself is no longer the open work — see `webvitals.njk`.
 
-**Downsides:** Requires GoatCounter integration or alternative analytics, dashboard adds maintenance overhead.
+**Downsides:** Dashboard adds maintenance overhead; GoatCounter's own UI may already be enough.
 
 **Confidence:** 80%
 **Complexity:** Low
-**Status:** Unexplored
+**Status:** Tracking done; dashboard unexplored
 
 ---
 
