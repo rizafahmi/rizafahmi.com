@@ -94,7 +94,11 @@ test("sedang dipelajari is exactly the two current entries, in order", () => {
   assert.equal(items.length, 2);
   assert.match(items[0], /<strong>.*>Loop Engineering<\/a><\/strong>/);
   assert.match(items[0], /https:\/\/www\.youtube\.com\/playlist\?list=PLUwP2tpG_l6s/);
-  assert.match(items[1], /dari awal/);
+  assert.match(items[1], /<strong>Coding Agent from Scratch<\/strong>/);
+  // The captain moved from learning this to preparing teaching material about
+  // it. A loose /dari awal/ match passes on either wording, so pin the verb.
+  assert.match(items[1], /Sedang mempersiapkan materi membangun agentic coding dari awal/);
+  assert.doesNotMatch(items[1], /Belajar membangun agentic coding/);
 });
 
 test("the retired sedang dipelajari entries do not come back", () => {
