@@ -90,6 +90,12 @@ scripts/             # Utility scripts (new article scaffold, audit-site, etc.)
 docs/                # Improvement notes and ideation
 ```
 
+Six templates own a `<head>` of their own rather than sharing one: `_includes/main.njk`,
+`_includes/tulisan.njk`, `_includes/serial.njk`, `_includes/cv.njk`, `index.njk`, and
+`search.njk`. Anything that has to be on every page goes in a partial included by all six
+(`_includes/head.njk` for metadata, `_includes/fonts.njk` for the webfont links) — editing
+one layout silently skips the other five.
+
 ## Testing
 
 Tests use Node.js built-in test runner (`node:test` and `node:assert/strict`).

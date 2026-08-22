@@ -14,14 +14,26 @@
     {%- endif %}
   </div>
 
+  {#- Click-to-play facade, not an eager <iframe>. The embed pulled ~1.3MB of
+      YouTube player into a 46KB page and pushed the load event out to 10.3s.
+      This ships the poster frame and swaps in the real player on first click —
+      one extra tap before playback, which the video then starts by itself.
+
+      It is a real <button> so it is focusable, keyboard-operable, and picks up
+      the site's button:focus-visible ring. Without JS the button does nothing,
+      so the "Tonton di YouTube" link below stays the no-JS path. -#}
   <div class="tip-player">
-    <iframe
-      src="{{ tip.embedUrl }}"
-      title="{{ tip.title }}"
-      loading="lazy"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen></iframe>
+    <button
+      type="button"
+      class="tip-facade"
+      aria-label="Putar video: {{ tip.title }}"
+      data-tip-embed="{{ tip.embedUrl }}"
+      data-tip-title="{{ tip.title }}">
+      {#- posterThumbnail is the same frame as tip.thumbnail in WebP: identical
+          pixels, roughly 60% fewer bytes. -#}
+      <img src="{{ tip.posterThumbnail.url }}" alt="" width="{{ tip.posterThumbnail.width }}" height="{{ tip.posterThumbnail.height }}" fetchpriority="high" decoding="async" />
+      <span class="tip-facade-play" aria-hidden="true"></span>
+    </button>
   </div>
 
   {%- if tip.description %}

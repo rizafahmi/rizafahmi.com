@@ -341,6 +341,93 @@ function cleanText(value) {
   return trimmed.length > 0 ? trimmed : null;
 }
 
+const YT_THUMB_URL = /^https:\/\/i\.ytimg\.com\/vi(?:_webp)?\/([\w-]+)\/(\w+)\.(?:jpg|webp)$/;
+
+/** The frame sizes YouTube publishes, by variant name. */
+const VARIANT_SIZE = {
+  maxresdefault: { width: 1280, height: 720 },
+  sddefault: { width: 640, height: 480 },
+  hqdefault: { width: 480, height: 360 },
+  mqdefault: { width: 320, height: 180 },
+};
+
+const CARD_VARIANTS = {
+  sddefault: { name: "sddefault", ...VARIANT_SIZE.sddefault },
+  hqdefault: { name: "hqdefault", ...VARIANT_SIZE.hqdefault },
+};
+
+/**
+ * The poster frame behind the click-to-play facade on a tip page.
+ *
+ * Same frame as `thumbnail`, asked for in WebP — about 60% fewer bytes for
+ * identical pixels. Only the container changes, so this needs no guess about
+ * which sizes exist: whatever variant YouTube stored, it has the WebP of it.
+ *
+ * The poster is not the card frame. It fills a 9/16 box at up to 340 CSS px,
+ * where the card's small 4:3 frame would be a heavy upscale.
+ */
+export function posterThumbnailFor(thumbnail) {
+  const match = typeof thumbnail === "string" ? thumbnail.match(YT_THUMB_URL) : null;
+  if (!match) {
+    return thumbnail ? { url: thumbnail, width: 1280, height: 720 } : null;
+  }
+
+  const [, urlId, variant] = match;
+  const size = VARIANT_SIZE[variant] || VARIANT_SIZE.maxresdefault;
+
+  return {
+    url: `https://i.ytimg.com/vi_webp/${urlId}/${variant}.webp`,
+    width: size.width,
+    height: size.height,
+  };
+}
+
+/**
+ * The thumbnail the /tips grid should request, derived from the stored one.
+ *
+ * `thumbnail` stays as YouTube gave it (1280×720) because it is also the tip
+ * page's OG image, where a big frame is the right answer. The grid is not: it
+ * renders cards at 159×89 CSS px, which is 477×268 device px on a DPR-3 phone,
+ * and maxresdefault cost 732KB for the ten above-fold cards — 94% of the
+ * page's bytes.
+ *
+ * YouTube's 16:9 ladder has nothing between mqdefault (320×180, a visible 1.5×
+ * upscale at DPR 3) and maxresdefault (1280×720), so anything smaller and
+ * still crisp has to come from the 4:3 frames. For a Short those are *not*
+ * letterboxed — they are the same blurred-fill composition at a taller crop —
+ * so `object-fit: cover` in the 16:9 card trims the fill and leaves the
+ * subject larger and sharper than the 16:9 frame did.
+ *
+ * sddefault (640×480) is the smallest variant with real margin over 477px. It
+ * exists only for sources big enough to also have maxresdefault, so the stored
+ * URL tells us offline which to ask for — the build never calls YouTube.
+ * hqdefault (480×360) exists for every video and is the fallback; both are 4:3,
+ * so the card framing is identical either way.
+ */
+export function cardThumbnailFor(thumbnail) {
+  const match = typeof thumbnail === "string" ? thumbnail.match(YT_THUMB_URL) : null;
+
+  // A hand-edited or non-YouTube URL is left exactly as it is: we cannot know
+  // which variants exist for it, and a broken card is worse than a big one.
+  if (!match) {
+    return thumbnail ? { url: thumbnail, width: 1280, height: 720 } : null;
+  }
+
+  const [, urlId, storedVariant] = match;
+  // maxresdefault present means the source cleared 1280×720, so sddefault is
+  // there too. Anything else (hqdefault, mqdefault) means it did not.
+  const variant =
+    storedVariant === "maxresdefault" || storedVariant === "sddefault"
+      ? CARD_VARIANTS.sddefault
+      : CARD_VARIANTS.hqdefault;
+
+  return {
+    url: `https://i.ytimg.com/vi_webp/${urlId}/${variant.name}.webp`,
+    width: variant.width,
+    height: variant.height,
+  };
+}
+
 /**
  * Data-file entries to what the templates render. Newest first, and every
  * optional field is either a real value or null — never the string "null".
@@ -353,6 +440,7 @@ export function selectTips(rawTips) {
       const id = cleanText(raw?.id);
       const slug = cleanText(raw?.slug);
       if (!id || !slug) return null;
+      const thumbnail = cleanText(raw?.thumbnail) || `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
       const durationSeconds = Number.isFinite(raw?.durationSeconds)
         ? raw.durationSeconds
@@ -373,7 +461,9 @@ export function selectTips(rawTips) {
         duration: cleanText(raw?.duration) || null,
         durationSeconds,
         durationLabel: formatDuration(durationSeconds),
-        thumbnail: cleanText(raw?.thumbnail) || `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+        thumbnail,
+        cardThumbnail: cardThumbnailFor(thumbnail),
+        posterThumbnail: posterThumbnailFor(thumbnail),
         watchUrl: `https://www.youtube.com/shorts/${id}`,
         embedUrl: `https://www.youtube-nocookie.com/embed/${id}`,
         tags: (Array.isArray(raw?.tags) ? raw.tags : []).map(normalizeTipTag).filter(Boolean),

@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;500;700&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Unbounded:wght@700;800;900&display=swap");
-
 @font-face {
   font-family: "Wotfard";
   font-display: swap;
@@ -728,6 +726,66 @@ blockquote {
   height: 100%;
   border: 0;
   display: block;
+}
+
+/* Click-to-play facade: fills the same 9/16 box the player will take, so
+   swapping the iframe in on click shifts nothing. See src/_includes/tip_player.njk. */
+.tip-facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--code-bg);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* The poster is a 16:9 frame in a 9:16 box. Cropping to the centre is not a
+   compromise here: YouTube builds a Short's 16:9 thumbnail by centring the
+   vertical frame on a blurred copy of itself, so the centre column is exactly
+   the original video frame. */
+.tip-facade img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tip-facade-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgb(0 0 0 / 65%);
+  transition: background 120ms ease-in-out;
+}
+
+/* The triangle, drawn with borders so the facade needs no extra request. */
+.tip-facade-play::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  border-style: solid;
+  border-width: 10px 0 10px 17px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.tip-facade:hover .tip-facade-play,
+.tip-facade:focus-visible .tip-facade-play {
+  background: rgb(204 0 0 / 90%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tip-facade-play {
+    transition: none;
+  }
 }
 
 .tip-description p,

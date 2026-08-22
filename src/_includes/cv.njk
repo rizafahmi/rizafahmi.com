@@ -15,6 +15,7 @@
   <head>
     {# Judul ini juga jadi nama berkas PDF ketika halaman dicetak dari browser. #}
     <title>{{ title }}</title>
+    {% include 'fonts.njk' %}
     <link rel="preload" as="style" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" />
     <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" />
     <link rel="preload" as="style" href="/assets/cv.css?v={{ site.buildTime }}" type="text/css" />
