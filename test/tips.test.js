@@ -344,7 +344,10 @@ test("readExistingTips returns a valid tips array unchanged", async () => {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), "tips-read-"));
   const file = path.join(dir, "tips.json");
   try {
-    await fs.writeFile(file, `${JSON.stringify([{ id: "abc123", slug: "a", tags: ["elixir"] }], null, 2)}\n`);
+    await fs.writeFile(
+      file,
+      `${JSON.stringify([{ id: "abc123", slug: "a", tags: ["elixir"] }], null, 2)}\n`,
+    );
     const tips = await readExistingTips(file);
     assert.equal(tips.length, 1);
     assert.equal(tips[0].id, "abc123");
@@ -370,7 +373,10 @@ test("readExistingTips aborts when the file is not a JSON array", async () => {
   const file = path.join(dir, "tips.json");
   try {
     await fs.writeFile(file, `${JSON.stringify({ tips: [] }, null, 2)}\n`);
-    await assert.rejects(() => readExistingTips(file), /must be a JSON array|refusing to overwrite/i);
+    await assert.rejects(
+      () => readExistingTips(file),
+      /must be a JSON array|refusing to overwrite/i,
+    );
   } finally {
     await fs.rm(dir, { recursive: true, force: true });
   }
@@ -402,9 +408,7 @@ test("assertTipsOverlap allows a few legitimate drops when most ids still confir
     { id: "c", slug: "c" },
     { id: "gone", slug: "d" },
   ];
-  assert.doesNotThrow(() =>
-    assertTipsOverlap(existing, [{ id: "a" }, { id: "b" }, { id: "c" }]),
-  );
+  assert.doesNotThrow(() => assertTipsOverlap(existing, [{ id: "a" }, { id: "b" }, { id: "c" }]));
 });
 
 test("assertTipsOverlap refuses a zero-overlap wipe of hand-edited tips", () => {
@@ -425,7 +429,8 @@ test("assertTipsOverlap refuses a zero-overlap wipe of hand-edited tips", () => 
 test("assertTipsOverlap refuses when kept ids are under half of existing", () => {
   const existing = Array.from({ length: 10 }, (_, i) => ({ id: `id-${i}`, slug: `s-${i}` }));
   assert.throws(
-    () => assertTipsOverlap(existing, [{ id: "id-0" }, { id: "id-1" }, { id: "id-2" }, { id: "id-3" }]),
+    () =>
+      assertTipsOverlap(existing, [{ id: "id-0" }, { id: "id-1" }, { id: "id-2" }, { id: "id-3" }]),
     /only 4 of 10|at least half|Delete \.cache\/youtube-shorts\/|TIPS_ALLOW_MASS_REMOVAL=1/i,
   );
   assert.doesNotThrow(() =>
@@ -468,10 +473,10 @@ test("interpretShortsProbe keeps 200 true and 404/410 false", () => {
 
 test("interpretShortsProbe treats a watch redirect as definitive not-a-Short", () => {
   const id = "regVid99";
-  assert.deepEqual(
-    interpretShortsProbe(303, `https://www.youtube.com/watch?v=${id}`, id),
-    { resolved: true, isShort: false },
-  );
+  assert.deepEqual(interpretShortsProbe(303, `https://www.youtube.com/watch?v=${id}`, id), {
+    resolved: true,
+    isShort: false,
+  });
 });
 
 test("consent-style redirect is unresolved and is not cached as false", () => {
@@ -482,7 +487,11 @@ test("consent-style redirect is unresolved and is not cached as false", () => {
     "https://consent.youtube.com/m?continue=https://www.youtube.com/shorts/shortPoison",
     id,
   );
-  const login = interpretShortsProbe(302, "https://accounts.google.com/ServiceLogin?continue=1", id);
+  const login = interpretShortsProbe(
+    302,
+    "https://accounts.google.com/ServiceLogin?continue=1",
+    id,
+  );
   const missing = interpretShortsProbe(303, null, id);
 
   assert.equal(consent.resolved, false);

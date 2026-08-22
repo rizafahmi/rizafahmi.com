@@ -25,6 +25,11 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**/*.{js,mjs,cjs,css,json,md}", "!dist", "!assets/web-vitals.js"]
+    "includes": [
+      "**/*.{js,mjs,cjs,css,json,md}",
+      "!dist",
+      "!assets/web-vitals.js",
+      "!src/_data/tips.json"
+    ]
   }
 }

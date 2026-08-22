@@ -8,7 +8,9 @@
     "duration": "PT43S",
     "durationSeconds": 43,
     "thumbnail": "https://i.ytimg.com/vi/GzduB5COpKA/maxresdefault.jpg",
-    "tags": ["konferensi"]
+    "tags": [
+      "konferensi"
+    ]
   },
   {
     "id": "V5TiHKrGVr0",
@@ -19,7 +21,9 @@
     "duration": "PT1M29S",
     "durationSeconds": 89,
     "thumbnail": "https://i.ytimg.com/vi/V5TiHKrGVr0/maxresdefault.jpg",
-    "tags": ["agentic-coding"]
+    "tags": [
+      "agentic-coding"
+    ]
   },
   {
     "id": "sV581caU4og",
@@ -30,7 +34,9 @@
     "duration": "PT1M12S",
     "durationSeconds": 72,
     "thumbnail": "https://i.ytimg.com/vi/sV581caU4og/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "UeQKVCv55cg",
@@ -41,7 +47,10 @@
     "duration": "PT1M5S",
     "durationSeconds": 65,
     "thumbnail": "https://i.ytimg.com/vi/UeQKVCv55cg/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "-Ze6ujyynaI",
@@ -52,7 +61,10 @@
     "duration": "PT53S",
     "durationSeconds": 53,
     "thumbnail": "https://i.ytimg.com/vi/-Ze6ujyynaI/maxresdefault.jpg",
-    "tags": ["ai", "review"]
+    "tags": [
+      "ai",
+      "review"
+    ]
   },
   {
     "id": "8R4Zre46OOU",
@@ -63,7 +75,10 @@
     "duration": "PT1M5S",
     "durationSeconds": 65,
     "thumbnail": "https://i.ytimg.com/vi/8R4Zre46OOU/maxresdefault.jpg",
-    "tags": ["ai", "karier"]
+    "tags": [
+      "ai",
+      "karier"
+    ]
   },
   {
     "id": "2yOLNXn082U",
@@ -74,7 +89,11 @@
     "duration": "PT53S",
     "durationSeconds": 53,
     "thumbnail": "https://i.ytimg.com/vi/2yOLNXn082U/maxresdefault.jpg",
-    "tags": ["ai", "karier", "review"]
+    "tags": [
+      "ai",
+      "karier",
+      "review"
+    ]
   },
   {
     "id": "yYP_Tjpj9wI",
@@ -85,7 +104,10 @@
     "duration": "PT1M20S",
     "durationSeconds": 80,
     "thumbnail": "https://i.ytimg.com/vi/yYP_Tjpj9wI/maxresdefault.jpg",
-    "tags": ["ai", "karier"]
+    "tags": [
+      "ai",
+      "karier"
+    ]
   },
   {
     "id": "1In24Jvvdgo",
@@ -96,7 +118,10 @@
     "duration": "PT1M26S",
     "durationSeconds": 86,
     "thumbnail": "https://i.ytimg.com/vi/1In24Jvvdgo/maxresdefault.jpg",
-    "tags": ["ai", "karier"]
+    "tags": [
+      "ai",
+      "karier"
+    ]
   },
   {
     "id": "OYVOv4r8XLc",
@@ -107,7 +132,10 @@
     "duration": "PT51S",
     "durationSeconds": 51,
     "thumbnail": "https://i.ytimg.com/vi/OYVOv4r8XLc/maxresdefault.jpg",
-    "tags": ["ai", "karier"]
+    "tags": [
+      "ai",
+      "karier"
+    ]
   },
   {
     "id": "iewWiJLqTmU",
@@ -118,7 +146,10 @@
     "duration": "PT1M22S",
     "durationSeconds": 82,
     "thumbnail": "https://i.ytimg.com/vi/iewWiJLqTmU/maxresdefault.jpg",
-    "tags": ["ai", "review"]
+    "tags": [
+      "ai",
+      "review"
+    ]
   },
   {
     "id": "x9altdy_-d0",
@@ -129,7 +160,10 @@
     "duration": "PT1M27S",
     "durationSeconds": 87,
     "thumbnail": "https://i.ytimg.com/vi/x9altdy_-d0/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "_vgSqHXwUeY",
@@ -140,7 +174,10 @@
     "duration": "PT1M39S",
     "durationSeconds": 99,
     "thumbnail": "https://i.ytimg.com/vi/_vgSqHXwUeY/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "hDKYy5N_dGw",
@@ -151,7 +188,9 @@
     "duration": "PT1M24S",
     "durationSeconds": 84,
     "thumbnail": "https://i.ytimg.com/vi/hDKYy5N_dGw/maxresdefault.jpg",
-    "tags": ["agentic-coding"]
+    "tags": [
+      "agentic-coding"
+    ]
   },
   {
     "id": "UM8coy1bUS0",
@@ -162,7 +201,10 @@
     "duration": "PT2M43S",
     "durationSeconds": 163,
     "thumbnail": "https://i.ytimg.com/vi/UM8coy1bUS0/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "0nBo-_zH6Qs",
@@ -173,7 +215,9 @@
     "duration": "PT1M17S",
     "durationSeconds": 77,
     "thumbnail": "https://i.ytimg.com/vi/0nBo-_zH6Qs/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "EoV1bMKoTq0",
@@ -184,7 +228,9 @@
     "duration": "PT1M53S",
     "durationSeconds": 113,
     "thumbnail": "https://i.ytimg.com/vi/EoV1bMKoTq0/maxresdefault.jpg",
-    "tags": ["agentic-coding"]
+    "tags": [
+      "agentic-coding"
+    ]
   },
   {
     "id": "OsVA680gRWA",
@@ -206,7 +252,9 @@
     "duration": "PT1M47S",
     "durationSeconds": 107,
     "thumbnail": "https://i.ytimg.com/vi/Gu9I_WLmAns/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "KphWpQDV7Gk",
@@ -217,7 +265,9 @@
     "duration": "PT42S",
     "durationSeconds": 42,
     "thumbnail": "https://i.ytimg.com/vi/KphWpQDV7Gk/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "mh24A3b6KNI",
@@ -228,7 +278,9 @@
     "duration": "PT1M35S",
     "durationSeconds": 95,
     "thumbnail": "https://i.ytimg.com/vi/mh24A3b6KNI/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "krsEUV-FixM",
@@ -239,7 +291,9 @@
     "duration": "PT1M13S",
     "durationSeconds": 73,
     "thumbnail": "https://i.ytimg.com/vi/krsEUV-FixM/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "wL2FlmVt0z0",
@@ -250,7 +304,9 @@
     "duration": "PT1M23S",
     "durationSeconds": 83,
     "thumbnail": "https://i.ytimg.com/vi/wL2FlmVt0z0/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "hvU__oEMOa8",
@@ -261,7 +317,9 @@
     "duration": "PT49S",
     "durationSeconds": 49,
     "thumbnail": "https://i.ytimg.com/vi/hvU__oEMOa8/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "_kN7NE6hFu0",
@@ -272,7 +330,9 @@
     "duration": "PT26S",
     "durationSeconds": 26,
     "thumbnail": "https://i.ytimg.com/vi/_kN7NE6hFu0/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "Z91F0Z3LrBk",
@@ -283,7 +343,11 @@
     "duration": "PT36S",
     "durationSeconds": 36,
     "thumbnail": "https://i.ytimg.com/vi/Z91F0Z3LrBk/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding", "review"]
+    "tags": [
+      "ai",
+      "agentic-coding",
+      "review"
+    ]
   },
   {
     "id": "cpupH8UFPts",
@@ -294,7 +358,10 @@
     "duration": "PT19S",
     "durationSeconds": 19,
     "thumbnail": "https://i.ytimg.com/vi/cpupH8UFPts/maxresdefault.jpg",
-    "tags": ["ai", "belajar"]
+    "tags": [
+      "ai",
+      "belajar"
+    ]
   },
   {
     "id": "cPbFVv_Kmew",
@@ -305,7 +372,9 @@
     "duration": "PT27S",
     "durationSeconds": 27,
     "thumbnail": "https://i.ytimg.com/vi/cPbFVv_Kmew/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "hBLfwHClLeA",
@@ -316,7 +385,9 @@
     "duration": "PT51S",
     "durationSeconds": 51,
     "thumbnail": "https://i.ytimg.com/vi/hBLfwHClLeA/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "mxvYvMOUvg8",
@@ -327,7 +398,9 @@
     "duration": "PT1M5S",
     "durationSeconds": 65,
     "thumbnail": "https://i.ytimg.com/vi/mxvYvMOUvg8/maxresdefault.jpg",
-    "tags": ["agentic-coding"]
+    "tags": [
+      "agentic-coding"
+    ]
   },
   {
     "id": "qTcRLduetKg",
@@ -338,7 +411,9 @@
     "duration": "PT1M13S",
     "durationSeconds": 73,
     "thumbnail": "https://i.ytimg.com/vi/qTcRLduetKg/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "N3roU-_zN6s",
@@ -349,7 +424,10 @@
     "duration": "PT25S",
     "durationSeconds": 25,
     "thumbnail": "https://i.ytimg.com/vi/N3roU-_zN6s/maxresdefault.jpg",
-    "tags": ["ai", "review"]
+    "tags": [
+      "ai",
+      "review"
+    ]
   },
   {
     "id": "22jUxO7mUtU",
@@ -360,7 +438,9 @@
     "duration": "PT1M30S",
     "durationSeconds": 90,
     "thumbnail": "https://i.ytimg.com/vi/22jUxO7mUtU/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "ZsI2bFp_de4",
@@ -371,7 +451,9 @@
     "duration": "PT36S",
     "durationSeconds": 36,
     "thumbnail": "https://i.ytimg.com/vi/ZsI2bFp_de4/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "hOiQSexoVpE",
@@ -382,7 +464,10 @@
     "duration": "PT1M10S",
     "durationSeconds": 70,
     "thumbnail": "https://i.ytimg.com/vi/hOiQSexoVpE/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "_1AdNAZidgY",
@@ -393,7 +478,9 @@
     "duration": "PT51S",
     "durationSeconds": 51,
     "thumbnail": "https://i.ytimg.com/vi/_1AdNAZidgY/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "1HO9KARIb_E",
@@ -404,7 +491,10 @@
     "duration": "PT2M18S",
     "durationSeconds": 138,
     "thumbnail": "https://i.ytimg.com/vi/1HO9KARIb_E/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "dJRPfNDr-ik",
@@ -415,7 +505,10 @@
     "duration": "PT2M56S",
     "durationSeconds": 176,
     "thumbnail": "https://i.ytimg.com/vi/dJRPfNDr-ik/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "ezW-IEQj4ok",
@@ -426,7 +519,9 @@
     "duration": "PT24S",
     "durationSeconds": 24,
     "thumbnail": "https://i.ytimg.com/vi/ezW-IEQj4ok/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "e91WjhPpHtE",
@@ -437,7 +532,10 @@
     "duration": "PT41S",
     "durationSeconds": 41,
     "thumbnail": "https://i.ytimg.com/vi/e91WjhPpHtE/maxresdefault.jpg",
-    "tags": ["agentic-coding", "tools"]
+    "tags": [
+      "agentic-coding",
+      "tools"
+    ]
   },
   {
     "id": "J5HX9I6yQkQ",
@@ -448,7 +546,9 @@
     "duration": "PT47S",
     "durationSeconds": 47,
     "thumbnail": "https://i.ytimg.com/vi/J5HX9I6yQkQ/maxresdefault.jpg",
-    "tags": ["agentic-coding"]
+    "tags": [
+      "agentic-coding"
+    ]
   },
   {
     "id": "5C-4C_9XI58",
@@ -459,7 +559,9 @@
     "duration": "PT1M14S",
     "durationSeconds": 74,
     "thumbnail": "https://i.ytimg.com/vi/5C-4C_9XI58/maxresdefault.jpg",
-    "tags": ["agentic-coding"]
+    "tags": [
+      "agentic-coding"
+    ]
   },
   {
     "id": "aq_o23NxExc",
@@ -470,7 +572,10 @@
     "duration": "PT2M15S",
     "durationSeconds": 135,
     "thumbnail": "https://i.ytimg.com/vi/aq_o23NxExc/maxresdefault.jpg",
-    "tags": ["ai", "belajar"]
+    "tags": [
+      "ai",
+      "belajar"
+    ]
   },
   {
     "id": "AkfWSQofH7A",
@@ -492,7 +597,9 @@
     "duration": "PT22S",
     "durationSeconds": 22,
     "thumbnail": "https://i.ytimg.com/vi/KiT68O3XQUE/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "9GygUnXWMbA",
@@ -503,7 +610,10 @@
     "duration": "PT28S",
     "durationSeconds": 28,
     "thumbnail": "https://i.ytimg.com/vi/9GygUnXWMbA/maxresdefault.jpg",
-    "tags": ["ai", "produktivitas"]
+    "tags": [
+      "ai",
+      "produktivitas"
+    ]
   },
   {
     "id": "upVDf49vT1c",
@@ -514,7 +624,10 @@
     "duration": "PT41S",
     "durationSeconds": 41,
     "thumbnail": "https://i.ytimg.com/vi/upVDf49vT1c/maxresdefault.jpg",
-    "tags": ["ai", "git"]
+    "tags": [
+      "ai",
+      "git"
+    ]
   },
   {
     "id": "U2QEMc_CXEg",
@@ -525,7 +638,10 @@
     "duration": "PT51S",
     "durationSeconds": 51,
     "thumbnail": "https://i.ytimg.com/vi/U2QEMc_CXEg/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "_zgThztSWqA",
@@ -536,7 +652,9 @@
     "duration": "PT51S",
     "durationSeconds": 51,
     "thumbnail": "https://i.ytimg.com/vi/_zgThztSWqA/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "nAZe1AcNPt0",
@@ -547,7 +665,9 @@
     "duration": "PT28S",
     "durationSeconds": 28,
     "thumbnail": "https://i.ytimg.com/vi/nAZe1AcNPt0/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "r2H4ePT1dbk",
@@ -558,7 +678,9 @@
     "duration": "PT1M34S",
     "durationSeconds": 94,
     "thumbnail": "https://i.ytimg.com/vi/r2H4ePT1dbk/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "DdglsyRcZ8A",
@@ -569,7 +691,9 @@
     "duration": "PT21S",
     "durationSeconds": 21,
     "thumbnail": "https://i.ytimg.com/vi/DdglsyRcZ8A/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "Njk9cUUlsUU",
@@ -580,7 +704,11 @@
     "duration": "PT38S",
     "durationSeconds": 38,
     "thumbnail": "https://i.ytimg.com/vi/Njk9cUUlsUU/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding", "tools"]
+    "tags": [
+      "ai",
+      "agentic-coding",
+      "tools"
+    ]
   },
   {
     "id": "npj0xyHhRdY",
@@ -591,7 +719,10 @@
     "duration": "PT44S",
     "durationSeconds": 44,
     "thumbnail": "https://i.ytimg.com/vi/npj0xyHhRdY/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "qFWBzDBrSxw",
@@ -602,7 +733,10 @@
     "duration": "PT30S",
     "durationSeconds": 30,
     "thumbnail": "https://i.ytimg.com/vi/qFWBzDBrSxw/maxresdefault.jpg",
-    "tags": ["frontend", "ai"]
+    "tags": [
+      "frontend",
+      "ai"
+    ]
   },
   {
     "id": "y9TarNXVfB4",
@@ -613,7 +747,10 @@
     "duration": "PT1M11S",
     "durationSeconds": 71,
     "thumbnail": "https://i.ytimg.com/vi/y9TarNXVfB4/maxresdefault.jpg",
-    "tags": ["ai", "produktivitas"]
+    "tags": [
+      "ai",
+      "produktivitas"
+    ]
   },
   {
     "id": "zPsDnTJMpw8",
@@ -624,7 +761,10 @@
     "duration": "PT13S",
     "durationSeconds": 13,
     "thumbnail": "https://i.ytimg.com/vi/zPsDnTJMpw8/maxresdefault.jpg",
-    "tags": ["ai", "agentic-coding"]
+    "tags": [
+      "ai",
+      "agentic-coding"
+    ]
   },
   {
     "id": "D-ngxrSqgUU",
@@ -646,7 +786,9 @@
     "duration": "PT57S",
     "durationSeconds": 57,
     "thumbnail": "https://i.ytimg.com/vi/nGwCCP_SyNE/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "RDw8f_kzYoI",
@@ -657,7 +799,9 @@
     "duration": "PT55S",
     "durationSeconds": 55,
     "thumbnail": "https://i.ytimg.com/vi/RDw8f_kzYoI/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "8MZS4-7eBGU",
@@ -668,7 +812,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/8MZS4-7eBGU/maxresdefault.jpg",
-    "tags": ["devops"]
+    "tags": [
+      "devops"
+    ]
   },
   {
     "id": "Han7XwHe0-I",
@@ -679,7 +825,9 @@
     "duration": "PT56S",
     "durationSeconds": 56,
     "thumbnail": "https://i.ytimg.com/vi/Han7XwHe0-I/maxresdefault.jpg",
-    "tags": ["devops"]
+    "tags": [
+      "devops"
+    ]
   },
   {
     "id": "McJzVJmzlcY",
@@ -690,7 +838,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/McJzVJmzlcY/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "U3WEJl4uLdA",
@@ -701,7 +851,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/U3WEJl4uLdA/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "_1aPGMkcbu8",
@@ -712,7 +864,9 @@
     "duration": "PT48S",
     "durationSeconds": 48,
     "thumbnail": "https://i.ytimg.com/vi/_1aPGMkcbu8/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "aJ7rlsLmRZI",
@@ -723,7 +877,10 @@
     "duration": "PT56S",
     "durationSeconds": 56,
     "thumbnail": "https://i.ytimg.com/vi/aJ7rlsLmRZI/maxresdefault.jpg",
-    "tags": ["javascript", "belajar"]
+    "tags": [
+      "javascript",
+      "belajar"
+    ]
   },
   {
     "id": "JnKD-lyw0NQ",
@@ -734,7 +891,10 @@
     "duration": "PT33S",
     "durationSeconds": 33,
     "thumbnail": "https://i.ytimg.com/vi/JnKD-lyw0NQ/maxresdefault.jpg",
-    "tags": ["public-speaking", "belajar"]
+    "tags": [
+      "public-speaking",
+      "belajar"
+    ]
   },
   {
     "id": "iWnGHxI3AbI",
@@ -745,7 +905,9 @@
     "duration": "PT34S",
     "durationSeconds": 34,
     "thumbnail": "https://i.ytimg.com/vi/iWnGHxI3AbI/maxresdefault.jpg",
-    "tags": ["public-speaking"]
+    "tags": [
+      "public-speaking"
+    ]
   },
   {
     "id": "1Ku9knavAzI",
@@ -756,7 +918,9 @@
     "duration": "PT41S",
     "durationSeconds": 41,
     "thumbnail": "https://i.ytimg.com/vi/1Ku9knavAzI/maxresdefault.jpg",
-    "tags": ["public-speaking"]
+    "tags": [
+      "public-speaking"
+    ]
   },
   {
     "id": "uoHNxOn1wE4",
@@ -767,7 +931,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/uoHNxOn1wE4/maxresdefault.jpg",
-    "tags": ["public-speaking"]
+    "tags": [
+      "public-speaking"
+    ]
   },
   {
     "id": "5XQ6xA-WCTA",
@@ -778,7 +944,9 @@
     "duration": "PT41S",
     "durationSeconds": 41,
     "thumbnail": "https://i.ytimg.com/vi/5XQ6xA-WCTA/maxresdefault.jpg",
-    "tags": ["public-speaking"]
+    "tags": [
+      "public-speaking"
+    ]
   },
   {
     "id": "XuLjJiid_ZQ",
@@ -789,7 +957,9 @@
     "duration": "PT51S",
     "durationSeconds": 51,
     "thumbnail": "https://i.ytimg.com/vi/XuLjJiid_ZQ/maxresdefault.jpg",
-    "tags": ["public-speaking"]
+    "tags": [
+      "public-speaking"
+    ]
   },
   {
     "id": "8yiEVa-Xzxk",
@@ -800,7 +970,11 @@
     "duration": "PT31S",
     "durationSeconds": 31,
     "thumbnail": "https://i.ytimg.com/vi/8yiEVa-Xzxk/maxresdefault.jpg",
-    "tags": ["public-speaking", "komunitas", "belajar"]
+    "tags": [
+      "public-speaking",
+      "komunitas",
+      "belajar"
+    ]
   },
   {
     "id": "7LhOyS7r3t8",
@@ -811,7 +985,10 @@
     "duration": "PT55S",
     "durationSeconds": 55,
     "thumbnail": "https://i.ytimg.com/vi/7LhOyS7r3t8/maxresdefault.jpg",
-    "tags": ["public-speaking", "komunitas"]
+    "tags": [
+      "public-speaking",
+      "komunitas"
+    ]
   },
   {
     "id": "oPRqLe90caY",
@@ -822,7 +999,9 @@
     "duration": "PT47S",
     "durationSeconds": 47,
     "thumbnail": "https://i.ytimg.com/vi/oPRqLe90caY/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "medHu-dZCbA",
@@ -833,7 +1012,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/medHu-dZCbA/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "6x2ieGDT8Jo",
@@ -855,7 +1036,9 @@
     "duration": "PT42S",
     "durationSeconds": 42,
     "thumbnail": "https://i.ytimg.com/vi/3irKPMcSbXM/maxresdefault.jpg",
-    "tags": ["komunitas"]
+    "tags": [
+      "komunitas"
+    ]
   },
   {
     "id": "QLO2q98X9BE",
@@ -877,7 +1060,9 @@
     "duration": "PT35S",
     "durationSeconds": 35,
     "thumbnail": "https://i.ytimg.com/vi/l5ua4N8MT80/maxresdefault.jpg",
-    "tags": ["javascript"]
+    "tags": [
+      "javascript"
+    ]
   },
   {
     "id": "XF9RNkyrKc8",
@@ -888,7 +1073,9 @@
     "duration": "PT45S",
     "durationSeconds": 45,
     "thumbnail": "https://i.ytimg.com/vi/XF9RNkyrKc8/maxresdefault.jpg",
-    "tags": ["belajar"]
+    "tags": [
+      "belajar"
+    ]
   },
   {
     "id": "8ncPngLahWo",
@@ -899,7 +1086,9 @@
     "duration": "PT57S",
     "durationSeconds": 57,
     "thumbnail": "https://i.ytimg.com/vi/8ncPngLahWo/maxresdefault.jpg",
-    "tags": ["javascript"]
+    "tags": [
+      "javascript"
+    ]
   },
   {
     "id": "bwnoUKkZ2GI",
@@ -910,7 +1099,9 @@
     "duration": "PT53S",
     "durationSeconds": 53,
     "thumbnail": "https://i.ytimg.com/vi/bwnoUKkZ2GI/maxresdefault.jpg",
-    "tags": ["review"]
+    "tags": [
+      "review"
+    ]
   },
   {
     "id": "fAz6XRUr5jY",
@@ -921,7 +1112,10 @@
     "duration": "PT39S",
     "durationSeconds": 39,
     "thumbnail": "https://i.ytimg.com/vi/fAz6XRUr5jY/maxresdefault.jpg",
-    "tags": ["public-speaking", "review"]
+    "tags": [
+      "public-speaking",
+      "review"
+    ]
   },
   {
     "id": "03RoFysG-bs",
@@ -932,7 +1126,9 @@
     "duration": "PT40S",
     "durationSeconds": 40,
     "thumbnail": "https://i.ytimg.com/vi/03RoFysG-bs/maxresdefault.jpg",
-    "tags": ["review"]
+    "tags": [
+      "review"
+    ]
   },
   {
     "id": "4yf3Qu99v5M",
@@ -943,7 +1139,9 @@
     "duration": "PT50S",
     "durationSeconds": 50,
     "thumbnail": "https://i.ytimg.com/vi/4yf3Qu99v5M/maxresdefault.jpg",
-    "tags": ["review"]
+    "tags": [
+      "review"
+    ]
   },
   {
     "id": "13h5gwNOBzM",
@@ -954,7 +1152,9 @@
     "duration": "PT45S",
     "durationSeconds": 45,
     "thumbnail": "https://i.ytimg.com/vi/13h5gwNOBzM/maxresdefault.jpg",
-    "tags": ["review"]
+    "tags": [
+      "review"
+    ]
   },
   {
     "id": "56nxmUnRIEE",
@@ -965,7 +1165,9 @@
     "duration": "PT59S",
     "durationSeconds": 59,
     "thumbnail": "https://i.ytimg.com/vi/56nxmUnRIEE/maxresdefault.jpg",
-    "tags": ["javascript"]
+    "tags": [
+      "javascript"
+    ]
   },
   {
     "id": "Q8hcNRIyBXY",
@@ -976,7 +1178,9 @@
     "duration": "PT55S",
     "durationSeconds": 55,
     "thumbnail": "https://i.ytimg.com/vi/Q8hcNRIyBXY/maxresdefault.jpg",
-    "tags": ["javascript"]
+    "tags": [
+      "javascript"
+    ]
   },
   {
     "id": "5ratIAAUiuM",
@@ -987,7 +1191,9 @@
     "duration": "PT43S",
     "durationSeconds": 43,
     "thumbnail": "https://i.ytimg.com/vi/5ratIAAUiuM/maxresdefault.jpg",
-    "tags": ["karier"]
+    "tags": [
+      "karier"
+    ]
   },
   {
     "id": "ZFFtKmK5GFU",
@@ -1009,7 +1215,9 @@
     "duration": "PT47S",
     "durationSeconds": 47,
     "thumbnail": "https://i.ytimg.com/vi/fdPzzUSk3w8/maxresdefault.jpg",
-    "tags": ["javascript"]
+    "tags": [
+      "javascript"
+    ]
   },
   {
     "id": "7pcoWzId8xs",
@@ -1020,7 +1228,9 @@
     "duration": "PT35S",
     "durationSeconds": 35,
     "thumbnail": "https://i.ytimg.com/vi/7pcoWzId8xs/maxresdefault.jpg",
-    "tags": ["javascript"]
+    "tags": [
+      "javascript"
+    ]
   },
   {
     "id": "EhC50cMlmL4",
@@ -1031,7 +1241,9 @@
     "duration": "PT45S",
     "durationSeconds": 45,
     "thumbnail": "https://i.ytimg.com/vi/EhC50cMlmL4/maxresdefault.jpg",
-    "tags": ["review"]
+    "tags": [
+      "review"
+    ]
   },
   {
     "id": "6RKruEfIsGQ",
@@ -1042,7 +1254,10 @@
     "duration": "PT55S",
     "durationSeconds": 55,
     "thumbnail": "https://i.ytimg.com/vi/6RKruEfIsGQ/maxresdefault.jpg",
-    "tags": ["elixir", "computer-science"]
+    "tags": [
+      "elixir",
+      "computer-science"
+    ]
   },
   {
     "id": "3OIO-7QNkpI",
@@ -1053,7 +1268,9 @@
     "duration": "PT56S",
     "durationSeconds": 56,
     "thumbnail": "https://i.ytimg.com/vi/3OIO-7QNkpI/maxresdefault.jpg",
-    "tags": ["elixir"]
+    "tags": [
+      "elixir"
+    ]
   },
   {
     "id": "tBe4EriGEDk",
@@ -1064,7 +1281,9 @@
     "duration": "PT48S",
     "durationSeconds": 48,
     "thumbnail": "https://i.ytimg.com/vi/tBe4EriGEDk/maxresdefault.jpg",
-    "tags": ["karier"]
+    "tags": [
+      "karier"
+    ]
   },
   {
     "id": "W3K9C6B-l0I",
@@ -1075,7 +1294,9 @@
     "duration": "PT59S",
     "durationSeconds": 59,
     "thumbnail": "https://i.ytimg.com/vi/W3K9C6B-l0I/maxresdefault.jpg",
-    "tags": ["karier"]
+    "tags": [
+      "karier"
+    ]
   },
   {
     "id": "FntUXYPLWK8",
@@ -1086,7 +1307,10 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/FntUXYPLWK8/maxresdefault.jpg",
-    "tags": ["karier", "motivasi"]
+    "tags": [
+      "karier",
+      "motivasi"
+    ]
   },
   {
     "id": "NdFpXYTi9kU",
@@ -1097,7 +1321,9 @@
     "duration": "PT59S",
     "durationSeconds": 59,
     "thumbnail": "https://i.ytimg.com/vi/NdFpXYTi9kU/maxresdefault.jpg",
-    "tags": ["devops"]
+    "tags": [
+      "devops"
+    ]
   },
   {
     "id": "X6NyteSBnMc",
@@ -1108,7 +1334,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/X6NyteSBnMc/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "cPcusyHLvHk",
@@ -1119,7 +1347,10 @@
     "duration": "PT52S",
     "durationSeconds": 52,
     "thumbnail": "https://i.ytimg.com/vi/cPcusyHLvHk/maxresdefault.jpg",
-    "tags": ["web", "devops"]
+    "tags": [
+      "web",
+      "devops"
+    ]
   },
   {
     "id": "oKkrFpwB5qA",
@@ -1130,7 +1361,9 @@
     "duration": "PT45S",
     "durationSeconds": 45,
     "thumbnail": "https://i.ytimg.com/vi/oKkrFpwB5qA/maxresdefault.jpg",
-    "tags": ["docker"]
+    "tags": [
+      "docker"
+    ]
   },
   {
     "id": "qS4mBdunG4c",
@@ -1141,7 +1374,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/qS4mBdunG4c/maxresdefault.jpg",
-    "tags": ["docker"]
+    "tags": [
+      "docker"
+    ]
   },
   {
     "id": "wug2AoDtAkk",
@@ -1152,7 +1387,9 @@
     "duration": "PT47S",
     "durationSeconds": 47,
     "thumbnail": "https://i.ytimg.com/vi/wug2AoDtAkk/maxresdefault.jpg",
-    "tags": ["docker"]
+    "tags": [
+      "docker"
+    ]
   },
   {
     "id": "GjdlwEFsiqA",
@@ -1163,7 +1400,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/GjdlwEFsiqA/maxresdefault.jpg",
-    "tags": ["docker"]
+    "tags": [
+      "docker"
+    ]
   },
   {
     "id": "IX_IneZgPEE",
@@ -1174,7 +1413,10 @@
     "duration": "PT45S",
     "durationSeconds": 45,
     "thumbnail": "https://i.ytimg.com/vi/IX_IneZgPEE/maxresdefault.jpg",
-    "tags": ["devops", "docker"]
+    "tags": [
+      "devops",
+      "docker"
+    ]
   },
   {
     "id": "ZLyXYZy7_N8",
@@ -1185,7 +1427,9 @@
     "duration": "PT47S",
     "durationSeconds": 47,
     "thumbnail": "https://i.ytimg.com/vi/ZLyXYZy7_N8/maxresdefault.jpg",
-    "tags": ["devops"]
+    "tags": [
+      "devops"
+    ]
   },
   {
     "id": "sPIZEoO8INE",
@@ -1196,7 +1440,9 @@
     "duration": "PT51S",
     "durationSeconds": 51,
     "thumbnail": "https://i.ytimg.com/vi/sPIZEoO8INE/maxresdefault.jpg",
-    "tags": ["docker"]
+    "tags": [
+      "docker"
+    ]
   },
   {
     "id": "xdBCV-qpIWU",
@@ -1207,7 +1453,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/xdBCV-qpIWU/hqdefault.jpg",
-    "tags": ["docker"]
+    "tags": [
+      "docker"
+    ]
   },
   {
     "id": "OJJ6UQVt6pM",
@@ -1218,7 +1466,9 @@
     "duration": "PT48S",
     "durationSeconds": 48,
     "thumbnail": "https://i.ytimg.com/vi/OJJ6UQVt6pM/maxresdefault.jpg",
-    "tags": ["karier"]
+    "tags": [
+      "karier"
+    ]
   },
   {
     "id": "W94MmrfCAkY",
@@ -1251,7 +1501,10 @@
     "duration": "PT30S",
     "durationSeconds": 30,
     "thumbnail": "https://i.ytimg.com/vi/A5mq11cLUO0/maxresdefault.jpg",
-    "tags": ["karier", "motivasi"]
+    "tags": [
+      "karier",
+      "motivasi"
+    ]
   },
   {
     "id": "9L-AANbBqGM",
@@ -1262,7 +1515,9 @@
     "duration": "PT33S",
     "durationSeconds": 33,
     "thumbnail": "https://i.ytimg.com/vi/9L-AANbBqGM/maxresdefault.jpg",
-    "tags": ["karier"]
+    "tags": [
+      "karier"
+    ]
   },
   {
     "id": "dwS8uic93a0",
@@ -1273,7 +1528,9 @@
     "duration": "PT34S",
     "durationSeconds": 34,
     "thumbnail": "https://i.ytimg.com/vi/dwS8uic93a0/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "NPe1-lZsVQk",
@@ -1284,7 +1541,9 @@
     "duration": "PT59S",
     "durationSeconds": 59,
     "thumbnail": "https://i.ytimg.com/vi/NPe1-lZsVQk/maxresdefault.jpg",
-    "tags": ["produk-manajemen"]
+    "tags": [
+      "produk-manajemen"
+    ]
   },
   {
     "id": "btqX03f2-sg",
@@ -1295,7 +1554,9 @@
     "duration": "PT45S",
     "durationSeconds": 45,
     "thumbnail": "https://i.ytimg.com/vi/btqX03f2-sg/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "a-jS9FVe1jA",
@@ -1317,7 +1578,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/D_2EGey9Ud4/maxresdefault.jpg",
-    "tags": ["karier"]
+    "tags": [
+      "karier"
+    ]
   },
   {
     "id": "s3z-P6Qk4-M",
@@ -1328,7 +1591,10 @@
     "duration": "PT54S",
     "durationSeconds": 54,
     "thumbnail": "https://i.ytimg.com/vi/s3z-P6Qk4-M/maxresdefault.jpg",
-    "tags": ["belajar", "tutorial"]
+    "tags": [
+      "belajar",
+      "tutorial"
+    ]
   },
   {
     "id": "yVe3bdbiSgY",
@@ -1339,7 +1605,9 @@
     "duration": "PT55S",
     "durationSeconds": 55,
     "thumbnail": "https://i.ytimg.com/vi/yVe3bdbiSgY/maxresdefault.jpg",
-    "tags": ["motivasi"]
+    "tags": [
+      "motivasi"
+    ]
   },
   {
     "id": "pt0CLjisbv8",
@@ -1361,7 +1629,9 @@
     "duration": "PT35S",
     "durationSeconds": 35,
     "thumbnail": "https://i.ytimg.com/vi/Xk-pVdOoIx8/maxresdefault.jpg",
-    "tags": ["tutorial"]
+    "tags": [
+      "tutorial"
+    ]
   },
   {
     "id": "BDcnPvWykto",
@@ -1405,7 +1675,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/iDosahl-doM/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "bSSadOTj-X0",
@@ -1416,7 +1688,9 @@
     "duration": "PT52S",
     "durationSeconds": 52,
     "thumbnail": "https://i.ytimg.com/vi/bSSadOTj-X0/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "MCdPgNbmINI",
@@ -1438,7 +1712,9 @@
     "duration": "PT57S",
     "durationSeconds": 57,
     "thumbnail": "https://i.ytimg.com/vi/5qzK6AsHMio/maxresdefault.jpg",
-    "tags": ["web"]
+    "tags": [
+      "web"
+    ]
   },
   {
     "id": "aIueMxzVgq0",
@@ -1504,7 +1780,9 @@
     "duration": "PT59S",
     "durationSeconds": 59,
     "thumbnail": "https://i.ytimg.com/vi/Hf9sQHFkMks/maxresdefault.jpg",
-    "tags": ["motivasi"]
+    "tags": [
+      "motivasi"
+    ]
   },
   {
     "id": "IU52umNzvvo",
@@ -1548,7 +1826,9 @@
     "duration": "PT57S",
     "durationSeconds": 57,
     "thumbnail": "https://i.ytimg.com/vi/ado8gudf9hg/maxresdefault.jpg",
-    "tags": ["ai"]
+    "tags": [
+      "ai"
+    ]
   },
   {
     "id": "5HAYBHgFo84",
@@ -1592,7 +1872,9 @@
     "duration": "PT59S",
     "durationSeconds": 59,
     "thumbnail": "https://i.ytimg.com/vi/SjJg0txjR3w/maxresdefault.jpg",
-    "tags": ["devops"]
+    "tags": [
+      "devops"
+    ]
   },
   {
     "id": "JSe41QbFDBc",
@@ -1603,7 +1885,9 @@
     "duration": "PT41S",
     "durationSeconds": 41,
     "thumbnail": "https://i.ytimg.com/vi/JSe41QbFDBc/maxresdefault.jpg",
-    "tags": ["belajar"]
+    "tags": [
+      "belajar"
+    ]
   },
   {
     "id": "j-ZLL-v1NoU",
@@ -1614,7 +1898,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/j-ZLL-v1NoU/maxresdefault.jpg",
-    "tags": ["tutorial"]
+    "tags": [
+      "tutorial"
+    ]
   },
   {
     "id": "NpRGE_XhjtA",
@@ -1680,7 +1966,9 @@
     "duration": "PT51S",
     "durationSeconds": 51,
     "thumbnail": "https://i.ytimg.com/vi/95dm5xO16J4/maxresdefault.jpg",
-    "tags": ["devops"]
+    "tags": [
+      "devops"
+    ]
   },
   {
     "id": "gurKINM9kho",
@@ -1702,7 +1990,9 @@
     "duration": "PT55S",
     "durationSeconds": 55,
     "thumbnail": "https://i.ytimg.com/vi/6NDefMmLG8A/maxresdefault.jpg",
-    "tags": ["belajar"]
+    "tags": [
+      "belajar"
+    ]
   },
   {
     "id": "IeA1b2C1SjU",
@@ -1735,7 +2025,9 @@
     "duration": "PT1M1S",
     "durationSeconds": 61,
     "thumbnail": "https://i.ytimg.com/vi/1aLgt8PKbI0/maxresdefault.jpg",
-    "tags": ["frontend"]
+    "tags": [
+      "frontend"
+    ]
   },
   {
     "id": "EiFLPErLc8A",
@@ -1790,7 +2082,9 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/QHw4_fctnso/maxresdefault.jpg",
-    "tags": ["belajar"]
+    "tags": [
+      "belajar"
+    ]
   },
   {
     "id": "asJkYRO_S0E",
@@ -1801,7 +2095,10 @@
     "duration": "PT1M",
     "durationSeconds": 60,
     "thumbnail": "https://i.ytimg.com/vi/asJkYRO_S0E/maxresdefault.jpg",
-    "tags": ["produktivitas", "belajar"]
+    "tags": [
+      "produktivitas",
+      "belajar"
+    ]
   },
   {
     "id": "0ZH3I82muBg",

@@ -149,7 +149,11 @@ See `DESIGN.md` for the full design spec. Key rules:
   map are in `src/libs/tips.js`. Duration alone cannot identify a Short (the
   limit is 3 minutes now), so the script confirms each candidate with a HEAD on
   `youtube.com/shorts/<id>`; answers are cached in `.cache/youtube-shorts/`.
-  Tip tags deliberately do **not** feed `/tags` or `/topik`.
+  Tip tags deliberately do **not** feed `/tags` or `/topik`. `tips.json` is
+  generated, so it is excluded from Biome in `biome.json`: the script's
+  `JSON.stringify(..., null, 2)` is the single authority on its formatting, and
+  without that exclusion every re-run produced a spurious whole-file diff and a
+  failing `pnpm run check`.
 - CV content is curated in `src/_data/cv.js` (Indonesian header explains the editing
   rules). One template, `src/cv.njk`, paginates over `cv.languages` to emit `/cv/` and
   `/cv/en/` from that single file, so the two languages cannot drift; the shared markup
