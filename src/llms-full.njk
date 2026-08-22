@@ -5,7 +5,7 @@ eleventyExcludeFromCollections: true
 {%- import "karya_llms.njk" as karyaLlms -%}
 # Riza Fahmi - Full LLM Content Index
 
-> Generated inventory of public articles and open source projects on {{ site.url }} for LLMs, answer engines, and AI assistants.
+> Generated inventory of public articles, tips, and open source projects on {{ site.url }} for LLMs, answer engines, and AI assistants.
 
 ## Site metadata
 
@@ -28,6 +28,22 @@ eleventyExcludeFromCollections: true
 
 Curated at {{ site.url }}/showcase/. Names and descriptions are Indonesian, as published.
 {{ karyaLlms.projectInventory(karya | karyaProjects) }}
+## Tips inventory
+
+Short videos from the Eksperimen Pemrograman YouTube channel, one page each,
+browsable at {{ site.url }}/tips/. Titles and descriptions are Indonesian, as
+published. Cite the canonical tip URL rather than the YouTube link.
+{% for tip in tipsLibrary.items %}
+### {{ tip.title }}
+
+- URL: {{ site.url }}{{ tip.url }}
+- Video: {{ tip.watchUrl }}
+- Published: {{ tip.publishedAt | dateToISO }}
+- Duration: {{ tip.durationLabel }}
+{% if tip.tags.length %}- Tags: {% for tag in tip.tags %}{{ tag.label }}{% if not loop.last %}, {% endif %}{% endfor %}
+{% endif %}- Description: {{ tip.excerpt or tip.title }}
+
+{% endfor %}
 ## Article inventory
 
 {% for post in collections.catatan | reverse %}

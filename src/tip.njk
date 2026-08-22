@@ -1,0 +1,25 @@
+---
+pagination:
+  data: tipsLibrary.items
+  size: 1
+  alias: tip
+permalink: "/tips/{{ tip.slug }}/"
+layout: main
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  title: "{{ tip.title }}"
+  description: "{{ tip.metaDescription }}"
+  ogType: video.other
+  image: "{{ tip.thumbnail }}"
+  ogImageWidth: 1280
+  ogImageHeight: 720
+  ogImageAlt: "Cuplikan video: {{ tip.title }}"
+---
+
+{% import "tip_body.njk" as tipPage %}
+
+<main id="main-content" class="container tip-page" data-pagefind-body data-pagefind-meta="title:{{ tip.title }}">
+  {{ tipPage.tipBody(tip, pagination.href.previous, pagination.href.next) }}
+
+  <a class="back" href="/tips/">&lt; SEMUA TIPS</a>
+</main>

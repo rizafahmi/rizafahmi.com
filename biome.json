@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.16/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.9/schema.json",
   "formatter": {
     "indentStyle": "space",
     "indentWidth": 2,
@@ -25,6 +25,11 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**/*.{js,mjs,cjs,css,json,md}", "!dist", "!assets/web-vitals.js"]
+    "includes": [
+      "**/*.{js,mjs,cjs,css,json,md}",
+      "!dist",
+      "!assets/web-vitals.js",
+      "!src/_data/tips.json"
+    ]
   }
 }

@@ -1,0 +1,35 @@
+---
+pagination:
+  data: tipsLibrary.tags
+  size: 1
+  alias: tipTag
+permalink: "/tips/topik/{{ tipTag.slug | url }}/"
+layout: main
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  title: "Tips: {{ tipTag.tag }}"
+  description: "Kumpulan video pendek Riza Fahmi bertag {{ tipTag.tag }}. Satu tips satu halaman, lengkap dengan videonya, dari kanal Eksperimen Pemrograman."
+---
+
+{% import "tips_grid.njk" as tips %}
+{% set taggedTips = tipsLibrary.items | tipsWithTag(tipTag.tag) %}
+
+<main id="main-content" class="container tips-index" data-pagefind-body data-pagefind-meta="title:Tips: {{ tipTag.tag }}">
+  <div class="articles-header">
+    <h2>TIPS: {{ tipTag.tag | upper }}</h2>
+    <div class="rss-pill">
+      🎬 {{ taggedTips | length }} VIDEO
+    </div>
+  </div>
+
+  <p class="articles-intro">
+    Video pendek bertag <strong>{{ tipTag.tag }}</strong>. Kembali ke
+    <a href="/tips/">semua tips</a> untuk melihat daftar lengkapnya.
+  </p>
+
+  {{ tips.tagNav(tipsLibrary.tags, tipTag.tag) }}
+
+  {{ tips.tipCards(taggedTips) }}
+
+  <a class="back" href="/tips/">&lt; SEMUA TIPS</a>
+</main>

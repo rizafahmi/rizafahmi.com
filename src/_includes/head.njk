@@ -27,7 +27,13 @@
   {%- set _ogPath = page.url + (_ogPath | replace('./', '')) -%}
 {%- endif -%}
 {%- set _ogImageAlt = ogImageAlt or (_ogTitle ~ " — rizafahmi.com") -%}
-{%- set _ogImageUrl = "https://rizafahmi.com" ~ _ogPath -%}
+{# /tips uses the YouTube thumbnail as its OG image, which is already absolute.
+   Generating ~165 more images at build time would cost every build for nothing. #}
+{%- if _ogPath.startsWith('http') -%}
+  {%- set _ogImageUrl = _ogPath -%}
+{%- else -%}
+  {%- set _ogImageUrl = "https://rizafahmi.com" ~ _ogPath -%}
+{%- endif -%}
 
 <link rel="canonical" href="https://rizafahmi.com{{ page.url | escape }}" />
 {%- for alternate in (alternates or []) %}
@@ -47,8 +53,8 @@
 <meta property="og:description" content="{{ _desc | escape }}" />
 <meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />
 <meta property="og:image" content="{{ _ogImageUrl }}" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="{{ ogImageWidth or 1200 }}" />
+<meta property="og:image:height" content="{{ ogImageHeight or 630 }}" />
 <meta property="og:image:alt" content="{{ _ogImageAlt | escape }}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@rizafahmi22" />

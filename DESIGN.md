@@ -120,6 +120,7 @@ We reject shadows. The canvas is strictly flat. Division is created through line
 ### Links
 
 - **In-Text Links:** Bold with a solid highlight underline (`text-decoration-thickness: 3px`) using `Electric Cobalt` (in light mode) or `Acid Lime` (in dark mode).
+- **Card-wrapping links:** When an `<a>` wraps a whole card (`.tip-card-link`, `.article`, `.featured-project-card`, `.related-card`, and nested `.tip-card-tags a`), it must opt out of the global `a:hover` solid background — otherwise title/tag text that also uses `--link-color` becomes invisible. Override group and rationale: `assets/global.css`; WCAG ratios pinned by `test/tips-hover-contrast.test.js`. Signal hover with underline/border instead.
 
 ## 6. Do's and Don'ts
 

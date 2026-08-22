@@ -1,0 +1,30 @@
+---
+title: Tips
+description: Kumpulan video pendek Riza Fahmi tentang pemrograman, AI, agentic coding, karier developer, dan public speaking. Satu tips, satu halaman, bisa ditelusuri lewat tag.
+layout: main
+permalink: /tips/
+eleventyExcludeFromCollections: true
+---
+
+{% import "tips_grid.njk" as tips %}
+
+<main id="main-content" class="container tips-index" data-pagefind-body data-pagefind-meta="title:Tips">
+  <div class="articles-header">
+    <h2>TIPS</h2>
+    <div class="rss-pill">
+      🎬 {{ tipsLibrary.items | length }} VIDEO PENDEK
+    </div>
+  </div>
+
+  <p class="articles-intro">
+    Kumpulan video pendek dari kanal <a href="https://www.youtube.com/@rizafahmi" target="_blank" rel="noopener noreferrer">Eksperimen Pemrograman</a>.
+    Isinya satu ide kecil per video: soal ngoding, AI, karier, sampai public speaking.
+    Urutannya dari yang terbaru. Kalau mau yang lebih panjang, mampir ke <a href="/articles/">catatan</a>.
+  </p>
+
+  {{ tips.tagNav(tipsLibrary.tags) }}
+
+  {{ tips.tipCards(tipsLibrary.items) }}
+
+  <a class="back" href="/">&lt; KEMBALI KE BERANDA</a>
+</main>

@@ -108,6 +108,30 @@ function assertSitemap() {
   }
 }
 
+// The homepage is the entry point, and it does NOT use src/_includes/main.njk —
+// it is standalone with its own hero nav. A section added to main.njk therefore
+// reaches /articles and /tags but not /. That is how /tips shipped unreachable
+// from the homepage, and how footer.njk sat dead for two years. Assert against
+// the built page: a link in a template is not a link on a page.
+function assertHomepageReachesSections() {
+  const file = path.join(DIST_DIR, "index.html");
+  if (!fileExists(file)) {
+    fail("dist/index.html is missing");
+    return;
+  }
+
+  const html = readText(file);
+  const hrefs = new Set(
+    [...html.matchAll(/<a[^>]+href="([^"]+)"/g)].map((m) => m[1].replace(/\/$/, "")),
+  );
+
+  for (const section of ["/articles", "/tags", "/topik", "/tips", "/showcase", "/search"]) {
+    if (!hrefs.has(section)) {
+      fail(`homepage has no anchor to ${section}/ — readers cannot navigate to it`);
+    }
+  }
+}
+
 function assertInternalLinks() {
   for (const { file, href } of findBrokenLinks({
     dir: DIST_DIR,
@@ -270,6 +294,7 @@ assertJsonLd(path.join(DIST_DIR, "catatan/asisten-ngoding-5/index.html"));
 assertFeed(path.join(DIST_DIR, "feed.xml"));
 assertFeed(path.join(DIST_DIR, "feed", "full.xml"));
 assertSitemap();
+assertHomepageReachesSections();
 assertInternalLinks();
 assertPartialLinks();
 assertPagefind();

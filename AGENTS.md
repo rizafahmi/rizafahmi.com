@@ -64,13 +64,16 @@ src/
   catatan/          # Blog articles in Markdown
   _data/            # Global data files (goatcounter views, etc.)
   _includes/        # Shared Nunjucks partials and layouts
-  libs/             # Shared JS helpers (cv, karya, shiki, related posts, OG, internal links)
+  libs/             # Shared JS helpers (cv, karya, tips, shiki, related posts, OG, internal links)
   tags/             # Tag listing pages
   topik/            # Topic hub pages
   index.njk          # Homepage
   articles.njk       # Articles listing with pagination
   search.njk         # Search page
   showcase.njk       # Portfolio showcase
+  tips.njk           # /tips Shorts library index
+  tip.njk            # /tips/<slug>/ one page per Short
+  tips-tag.njk       # /tips/topik/<tag>/ tag filter pages
   cv.njk             # CV; one template, two pages (/cv/ and /cv/en/)
   now.njk            # /now page
   uses.njk           # /uses page
@@ -98,9 +101,13 @@ node --test test/related.test.js # Run a specific file
 ```
 
 `pnpm run build` also runs `scripts/audit-site.mjs`, which fails the build on SEO,
-feed, frontmatter, and broken-internal-link regressions. It checks links in both the
-rendered `dist/` pages and the `src/_includes/` partials, so a dead link is caught
-even in a partial no layout currently renders. Link resolution lives in
+feed, frontmatter, broken-internal-link, and homepage-reachability regressions. It
+checks links in both the rendered `dist/` pages and the `src/_includes/` partials,
+so a dead link is caught even in a partial no layout currently renders. The homepage
+(`src/index.njk`) is standalone — it does not use `main.njk` — so browsable sections
+need a link in both site navs; the audit asserts the built `dist/index.html` anchors
+`/articles`, `/tags`, `/topik`, `/tips`, `/showcase`, and `/search`. Chromes and which
+carry a site nav: `test/tips-nav.test.js`. Link resolution lives in
 `src/libs/internal-links.js` and is shared by that script and `test/internal-links.test.js`.
 
 ## Code Conventions
@@ -121,7 +128,8 @@ See `DESIGN.md` for the full design spec. Key rules:
 - **Creative North Star**: "The Neo-Acid Gallery" — brutalist, high-contrast, solarized
 - **Colors**: Raw Gallery Plaster (`#f7f7f5`) / Obsidian Clay (`#121519`) backgrounds, Acid Lime (`#c5f82a`) and Electric Cobalt (`#1a3bf5`) accents
 - **Bans**: No shadows, no gradients, no rounded corners, no glassmorphism, no neon-on-black
-- **Line length**: Article views capped at `65ch`, container widths under `720px`
+- **Line length**: Article views capped at `65ch`; article/detail containers under
+  `720px` (`/tips` index and tag grids use `1080px` for density — `.tips-index`)
 - **Borders**: Flat, thick, solid black/white (`2px` default, `4px` or `8px` for major splits)
 
 ## Content Guidelines
@@ -138,6 +146,23 @@ See `DESIGN.md` for the full design spec. Key rules:
   generated project entries in `/llms.txt` and `/llms-full.txt` (via
   `src/_includes/karya_llms.njk`). The "Lainnya" section on `/showcase` is still
   hand-written HTML in `src/showcase.njk`.
+- Tips (`/tips`) are the channel's YouTube Shorts, one page each. The data file
+  `src/_data/tips.json` is produced by `node --env-file=.env
+  scripts/fetch-youtube-shorts.mjs`, run **by hand and committed** — never by
+  `pnpm run build`, so a slow or rate-limited YouTube cannot break a deploy.
+  Re-running is idempotent and preserves hand-edited fields (`tags`,
+  `transcript`, `slug`, anything else you add); only title, description,
+  publishedAt, duration, and thumbnail are refreshed. Editing rules are in the
+  Indonesian header of `src/_data/tipsLibrary.js`; the logic and the tag keyword
+  map are in `src/libs/tips.js`. Duration alone cannot identify a Short (the
+  limit is 3 minutes now), so the script confirms each candidate with a HEAD on
+  `youtube.com/shorts/<id>`; answers are cached in `.cache/youtube-shorts/`.
+  Tip pages set `image` to the YouTube thumbnail for OG (not the build-time OG
+  generator). Tip tags deliberately do **not** feed `/tags` or `/topik`.
+  `tipsLibrary` also drives Recent tips in `/llms.txt` and the Tips inventory in
+  `/llms-full.txt` (`src/llms.njk`, `src/llms-full.njk`). `tips.json` is generated,
+  so it is excluded from Biome in `biome.json` — the fetch script's
+  `JSON.stringify(..., null, 2)` owns that file's formatting.
 - CV content is curated in `src/_data/cv.js` (Indonesian header explains the editing
   rules). One template, `src/cv.njk`, paginates over `cv.languages` to emit `/cv/` and
   `/cv/en/` from that single file, so the two languages cannot drift; the shared markup
@@ -185,6 +210,7 @@ readers do not read it as English.
 | `GOATCOUNTER_API_TOKEN`       | No       | API token for GoatCounter stats API   |
 | `GOATCOUNTER_API_BASE`        | No       | Override API base URL                 |
 | `GOATCOUNTER_CACHE_TTL_HOURS` | No       | Cache TTL for views (default: 12)     |
+| `YOUTUBE_API_KEY`             | No       | Only for the two `scripts/fetch-youtube-*.mjs` scripts, never the build |
 
 The site builds fine without these — view counts are simply hidden.
 
