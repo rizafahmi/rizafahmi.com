@@ -5,6 +5,7 @@ import path from "node:path";
 import test from "node:test";
 
 import {
+  assertTipsOverlap,
   assignSlugs,
   cleanDescription,
   deriveTags,
@@ -385,6 +386,60 @@ test("writeTipsAtomic leaves a readable tips.json after a successful write", asy
   } finally {
     await fs.rm(dir, { recursive: true, force: true });
   }
+});
+
+test("assertTipsOverlap allows the first run when tips.json is empty", () => {
+  assert.doesNotThrow(() => assertTipsOverlap([], [{ id: "new" }]));
+  assert.doesNotThrow(() => assertTipsOverlap([], []));
+});
+
+test("assertTipsOverlap allows a few legitimate drops when most ids still confirm", () => {
+  const existing = [
+    { id: "a", slug: "a", transcript: "keep" },
+    { id: "b", slug: "b", tags: ["elixir"] },
+    { id: "c", slug: "c" },
+    { id: "gone", slug: "d" },
+  ];
+  assert.doesNotThrow(() =>
+    assertTipsOverlap(existing, [{ id: "a" }, { id: "b" }, { id: "c" }]),
+  );
+});
+
+test("assertTipsOverlap refuses a zero-overlap wipe of hand-edited tips", () => {
+  const existing = [
+    { id: "a", slug: "a", transcript: "jangan hapus" },
+    { id: "b", slug: "b", tags: ["elixir"] },
+  ];
+  assert.throws(
+    () => assertTipsOverlap(existing, []),
+    /Refusing to write tips\.json|TIPS_ALLOW_MASS_REMOVAL=1|cookie wall|YOUTUBE_CHANNEL_ID/i,
+  );
+  assert.throws(
+    () => assertTipsOverlap(existing, [{ id: "foreign-1" }, { id: "foreign-2" }]),
+    /only 0 of 2|TIPS_ALLOW_MASS_REMOVAL=1/i,
+  );
+});
+
+test("assertTipsOverlap refuses when kept ids are under half of existing", () => {
+  const existing = Array.from({ length: 10 }, (_, i) => ({ id: `id-${i}`, slug: `s-${i}` }));
+  assert.throws(
+    () => assertTipsOverlap(existing, [{ id: "id-0" }, { id: "id-1" }, { id: "id-2" }, { id: "id-3" }]),
+    /only 4 of 10|at least half|TIPS_ALLOW_MASS_REMOVAL=1/i,
+  );
+  assert.doesNotThrow(() =>
+    assertTipsOverlap(
+      existing,
+      Array.from({ length: 5 }, (_, i) => ({ id: `id-${i}` })),
+    ),
+  );
+});
+
+test("assertTipsOverlap force flag allows a deliberate mass removal", () => {
+  const existing = [
+    { id: "a", slug: "a", transcript: "ok to drop" },
+    { id: "b", slug: "b" },
+  ];
+  assert.doesNotThrow(() => assertTipsOverlap(existing, [], { force: true }));
 });
 
 test("mergeTips drops a video that is no longer a Short, and says which", () => {

@@ -440,6 +440,37 @@ export function tipsWithTag(tips, tag) {
 }
 
 /**
+ * Refuse a merge that would drop most of an existing tips.json.
+ *
+ * Kept must be at least half of the prior tip ids. Zero overlap (empty
+ * confirmation, cookie-wall 3xx probes, wrong channel) and any other wipe
+ * larger than that fail closed — a fetch that erases hand edits is worse than
+ * no fetch. Pass `force: true` (TIPS_ALLOW_MASS_REMOVAL=1) for a deliberate
+ * mass removal.
+ */
+export function assertTipsOverlap(existing, confirmed, { force = false } = {}) {
+  if (force) return;
+
+  const previous = (Array.isArray(existing) ? existing : []).filter((tip) => tip?.id);
+  if (previous.length === 0) return;
+
+  const confirmedIds = new Set(
+    (Array.isArray(confirmed) ? confirmed : []).map((tip) => tip?.id).filter(Boolean),
+  );
+  const kept = previous.filter((tip) => confirmedIds.has(tip.id)).length;
+  if (kept * 2 >= previous.length) return;
+
+  throw new Error(
+    `Refusing to write tips.json: only ${kept} of ${previous.length} existing tip id(s) ` +
+      `appear in this run's confirmed Shorts (need at least half). ` +
+      `Likely causes: every /shorts/<id> probe answered 3xx behind a cookie wall, ` +
+      `a cleared probe cache that then recorded false negatives, or a wrong YOUTUBE_CHANNEL_ID. ` +
+      `tips.json was left untouched. To allow a deliberate mass removal, set ` +
+      `TIPS_ALLOW_MASS_REMOVAL=1 (or pass --allow-mass-removal) and re-run.`,
+  );
+}
+
+/**
  * Load the committed tips.json ahead of a merge. Missing file → first run ([]).
  * Anything else wrong aborts: a corrupt or non-array file must never look like
  * "no tips yet", or the next write would re-seed and erase hand edits.

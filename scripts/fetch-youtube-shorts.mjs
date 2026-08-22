@@ -17,15 +17,19 @@
  * through untouched. See mergeTips() in src/libs/tips.js.
  *
  * Env:
- *   YOUTUBE_API_KEY     (required)
- *   YOUTUBE_CHANNEL_ID  (optional) defaults to the channel below
- *   YOUTUBE_HANDLE      (optional) used only when no channel id is given
+ *   YOUTUBE_API_KEY          (required)
+ *   YOUTUBE_CHANNEL_ID       (optional) defaults to the channel below
+ *   YOUTUBE_HANDLE           (optional) used only when no channel id is given
+ *   TIPS_ALLOW_MASS_REMOVAL  (optional) set to 1 to allow a write that would
+ *                            drop more than half of the existing tip ids
+ *                            (also accepted as --allow-mass-removal)
  */
 
 import fs from "node:fs/promises";
 import path from "node:path";
 
 import {
+  assertTipsOverlap,
   mergeTips,
   parseIsoDuration,
   readExistingTips,
@@ -252,6 +256,10 @@ async function main() {
   console.log(`[tips] ${shorts.length} confirmed Short(s).`);
 
   const existing = await readExistingTips(OUT_PATH);
+  const allowMassRemoval =
+    opt("TIPS_ALLOW_MASS_REMOVAL") === "1" || process.argv.includes("--allow-mass-removal");
+  assertTipsOverlap(existing, shorts, { force: allowMassRemoval });
+
   const removed = [];
   const merged = mergeTips(shorts, existing, { onRemoved: (tip) => removed.push(tip) });
 
