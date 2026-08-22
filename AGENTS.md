@@ -64,13 +64,16 @@ src/
   catatan/          # Blog articles in Markdown
   _data/            # Global data files (goatcounter views, etc.)
   _includes/        # Shared Nunjucks partials and layouts
-  libs/             # Shared JS helpers (cv, karya, shiki, related posts, OG, internal links)
+  libs/             # Shared JS helpers (cv, karya, tips, shiki, related posts, OG, internal links)
   tags/             # Tag listing pages
   topik/            # Topic hub pages
   index.njk          # Homepage
   articles.njk       # Articles listing with pagination
   search.njk         # Search page
   showcase.njk       # Portfolio showcase
+  tips.njk           # /tips Shorts library index
+  tip.njk            # /tips/<slug>/ one page per Short
+  tips-tag.njk       # /tips/topik/<tag>/ tag filter pages
   cv.njk             # CV; one template, two pages (/cv/ and /cv/en/)
   now.njk            # /now page
   uses.njk           # /uses page
@@ -121,7 +124,8 @@ See `DESIGN.md` for the full design spec. Key rules:
 - **Creative North Star**: "The Neo-Acid Gallery" — brutalist, high-contrast, solarized
 - **Colors**: Raw Gallery Plaster (`#f7f7f5`) / Obsidian Clay (`#121519`) backgrounds, Acid Lime (`#c5f82a`) and Electric Cobalt (`#1a3bf5`) accents
 - **Bans**: No shadows, no gradients, no rounded corners, no glassmorphism, no neon-on-black
-- **Line length**: Article views capped at `65ch`, container widths under `720px`
+- **Line length**: Article views capped at `65ch`; article/detail containers under
+  `720px` (`/tips` index and tag grids use `1080px` for density — `.tips-index`)
 - **Borders**: Flat, thick, solid black/white (`2px` default, `4px` or `8px` for major splits)
 
 ## Content Guidelines
@@ -149,11 +153,10 @@ See `DESIGN.md` for the full design spec. Key rules:
   map are in `src/libs/tips.js`. Duration alone cannot identify a Short (the
   limit is 3 minutes now), so the script confirms each candidate with a HEAD on
   `youtube.com/shorts/<id>`; answers are cached in `.cache/youtube-shorts/`.
-  Tip tags deliberately do **not** feed `/tags` or `/topik`. `tips.json` is
-  generated, so it is excluded from Biome in `biome.json`: the script's
-  `JSON.stringify(..., null, 2)` is the single authority on its formatting, and
-  without that exclusion every re-run produced a spurious whole-file diff and a
-  failing `pnpm run check`.
+  Tip pages set `image` to the YouTube thumbnail for OG (not the build-time OG
+  generator). Tip tags deliberately do **not** feed `/tags` or `/topik`.
+  `tips.json` is generated, so it is excluded from Biome in `biome.json` — the
+  fetch script's `JSON.stringify(..., null, 2)` owns that file's formatting.
 - CV content is curated in `src/_data/cv.js` (Indonesian header explains the editing
   rules). One template, `src/cv.njk`, paginates over `cv.languages` to emit `/cv/` and
   `/cv/en/` from that single file, so the two languages cannot drift; the shared markup
