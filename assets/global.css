@@ -168,6 +168,17 @@ body {
     align-items: flex-start !important;
     gap: 1.5rem !important;
   }
+
+  /* Beri nav satu baris penuh di layar sempit. Tanpa ini judulnya memakan
+     separuh lebar dan tiap tautan nav jatuh ke barisnya sendiri. */
+  .site-header > div {
+    flex-wrap: wrap;
+  }
+
+  .site-header .hero-nav {
+    flex: 1 1 100%;
+    margin-left: 0 !important;
+  }
 }
 
 a {
@@ -516,4 +527,234 @@ blockquote {
 .footer a {
   display: inline-block;
   padding: 0.5rem 0.75rem;
+}
+
+/* ==========================================================================
+   /tips — pustaka video pendek (grid thumbnail + halaman per tips)
+   ========================================================================== */
+
+/* Kisi tips itu galeri, bukan artikel: 720px cuma muat dua kolom untuk 165
+   video. Halaman satu tips tetap selebar artikel (lihat .tip-page). */
+.tips-index {
+  max-width: 1080px;
+}
+
+.tips-tagnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.tips-tagnav a {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-color);
+  border: 1px solid var(--border-color) !important;
+  padding: 0.3rem 0.5rem;
+  text-decoration: none;
+}
+
+.tips-tagnav a span {
+  color: var(--meta-color);
+  margin-left: 0.25rem;
+}
+
+.tips-tagnav a:hover,
+.tips-tagnav a[aria-current="page"] {
+  background: var(--accent-acid);
+  color: #0a0b0d;
+}
+
+.tips-tagnav a:hover span,
+.tips-tagnav a[aria-current="page"] span {
+  color: #0a0b0d;
+}
+
+[data-theme="dark"] .tips-tagnav a:hover,
+[data-theme="dark"] .tips-tagnav a[aria-current="page"] {
+  background: var(--accent-cobalt);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .tips-tagnav a:hover span,
+[data-theme="dark"] .tips-tagnav a[aria-current="page"] span {
+  color: #ffffff;
+}
+
+.tips-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.tip-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tip-card-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: var(--heading-color);
+  text-decoration: none;
+  border-bottom: none !important;
+}
+
+.tip-thumb {
+  position: relative;
+  display: block;
+  border: 2px solid var(--border-color);
+  background: var(--code-bg);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.tip-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tip-card-link:hover .tip-thumb {
+  border-color: var(--accent-cobalt);
+}
+
+.tip-duration {
+  position: absolute;
+  right: 0.35rem;
+  bottom: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  background: #0a0b0d;
+  color: #f7f7f5;
+}
+
+.tip-card-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.tip-card-link:hover .tip-card-title {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 2px;
+  color: var(--link-color);
+}
+
+.tip-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tip-card-tags a {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  color: var(--meta-color);
+  border-bottom: none !important;
+}
+
+.tip-card-tags a:hover {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+/* --- satu halaman per tips --- */
+
+.tip-page {
+  max-width: 720px;
+}
+
+.tip-breadcrumb {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--meta-color);
+  margin: 0 0 0.5rem;
+}
+
+.tip-page h2 {
+  margin: 0 0 0.75rem;
+  max-width: 20ch;
+}
+
+.tip-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--meta-color);
+  margin-bottom: 1.5rem;
+}
+
+.tip-player {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 9 / 16;
+  border: 2px solid var(--border-color);
+  margin: 0 0 1.5rem;
+}
+
+.tip-player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.tip-description p,
+.tip-transcript p {
+  max-width: 65ch;
+  white-space: pre-line;
+}
+
+.tip-watch {
+  margin: 1.5rem 0;
+}
+
+.tip-transcript {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.tip-transcript h3 {
+  margin-top: 0;
+}
+
+.tip-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.5rem 0 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+  .tips-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
 }

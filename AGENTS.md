@@ -138,6 +138,18 @@ See `DESIGN.md` for the full design spec. Key rules:
   generated project entries in `/llms.txt` and `/llms-full.txt` (via
   `src/_includes/karya_llms.njk`). The "Lainnya" section on `/showcase` is still
   hand-written HTML in `src/showcase.njk`.
+- Tips (`/tips`) are the channel's YouTube Shorts, one page each. The data file
+  `src/_data/tips.json` is produced by `node --env-file=.env
+  scripts/fetch-youtube-shorts.mjs`, run **by hand and committed** — never by
+  `pnpm run build`, so a slow or rate-limited YouTube cannot break a deploy.
+  Re-running is idempotent and preserves hand-edited fields (`tags`,
+  `transcript`, `slug`, anything else you add); only title, description,
+  publishedAt, duration, and thumbnail are refreshed. Editing rules are in the
+  Indonesian header of `src/_data/tipsLibrary.js`; the logic and the tag keyword
+  map are in `src/libs/tips.js`. Duration alone cannot identify a Short (the
+  limit is 3 minutes now), so the script confirms each candidate with a HEAD on
+  `youtube.com/shorts/<id>`; answers are cached in `.cache/youtube-shorts/`.
+  Tip tags deliberately do **not** feed `/tags` or `/topik`.
 - CV content is curated in `src/_data/cv.js` (Indonesian header explains the editing
   rules). One template, `src/cv.njk`, paginates over `cv.languages` to emit `/cv/` and
   `/cv/en/` from that single file, so the two languages cannot drift; the shared markup
@@ -185,6 +197,7 @@ readers do not read it as English.
 | `GOATCOUNTER_API_TOKEN`       | No       | API token for GoatCounter stats API   |
 | `GOATCOUNTER_API_BASE`        | No       | Override API base URL                 |
 | `GOATCOUNTER_CACHE_TTL_HOURS` | No       | Cache TTL for views (default: 12)     |
+| `YOUTUBE_API_KEY`             | No       | Only for the two `scripts/fetch-youtube-*.mjs` scripts, never the build |
 
 The site builds fine without these — view counts are simply hidden.
 

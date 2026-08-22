@@ -1,0 +1,70 @@
+{# Isi satu halaman /tips/<slug>/.
+   Datanya dari src/_data/tips.json lewat src/_data/tipsLibrary.js. #}
+{% macro tipBody(tip, newerHref, olderHref) %}
+  <p class="tip-breadcrumb"><a href="/tips/">Tips</a> / <span>{{ tip.durationLabel }}</span></p>
+
+  <h2>{{ tip.title }}</h2>
+
+  <div class="tip-meta">
+    {%- if tip.publishedAt %}
+    <span>📅 {{ tip.publishedAt | dateToISO }}</span>
+    {%- endif %}
+    {%- if tip.durationLabel %}
+    <span>⏱️ {{ tip.durationLabel }}</span>
+    {%- endif %}
+  </div>
+
+  <div class="tip-player">
+    <iframe
+      src="{{ tip.embedUrl }}"
+      title="{{ tip.title }}"
+      loading="lazy"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+  </div>
+
+  {%- if tip.description %}
+  <div class="tip-description">
+    {%- for paragraph in tip.description.split("\n\n") %}
+    <p>{{ paragraph }}</p>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+
+  {%- if tip.tags.length %}
+  <div class="article-topics" aria-label="Tag tips">
+    {%- for tag in tip.tags %}
+    <a href="/tips/topik/{{ tag | url }}/">{{ tag }}</a>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+
+  <p class="tip-watch">
+    <a class="button" href="{{ tip.watchUrl }}" target="_blank" rel="noopener noreferrer">Tonton di YouTube &rarr;</a>
+  </p>
+
+  {#- Transkrip itu opsional dan diisi tangan di src/_data/tips.json.
+      Kalau belum ada, halaman tidak menampilkan apa pun soal transkrip. #}
+  {%- if tip.transcript %}
+  <section class="tip-transcript">
+    <h3>Transkrip</h3>
+    {%- for paragraph in tip.transcript.split("\n\n") %}
+    <p>{{ paragraph }}</p>
+    {%- endfor %}
+  </section>
+  {%- endif %}
+
+  {%- if newerHref or olderHref %}
+  <nav class="tip-nav" aria-label="Tips lainnya">
+    {%- if newerHref %}
+    <a href="{{ newerHref }}">&larr; Tips lebih baru</a>
+    {%- else %}
+    <span></span>
+    {%- endif %}
+    {%- if olderHref %}
+    <a href="{{ olderHref }}">Tips lebih lama &rarr;</a>
+    {%- endif %}
+  </nav>
+  {%- endif %}
+{% endmacro %}

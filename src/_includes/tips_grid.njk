@@ -1,0 +1,36 @@
+{# Kisi thumbnail untuk /tips dan /tips/topik/<tag>/.
+   Isinya diatur dari src/_data/tips.json — jangan tulis tips langsung di sini. #}
+{% macro tipCards(tips) %}
+  <ul class="tips-grid">
+    {%- for tip in tips %}
+    <li class="tip-card">
+      <a class="tip-card-link" href="{{ tip.url }}">
+        <span class="tip-thumb">
+          <img src="{{ tip.thumbnail }}" alt="Cuplikan video: {{ tip.title }}" width="1280" height="720" loading="lazy" decoding="async" />
+          {%- if tip.durationLabel %}
+          <span class="tip-duration">{{ tip.durationLabel }}</span>
+          {%- endif %}
+        </span>
+        <span class="tip-card-title">{{ tip.title }}</span>
+      </a>
+      {%- if tip.tags.length %}
+      <span class="tip-card-tags" aria-label="Tag tips">
+        {%- for tag in tip.tags %}
+        <a href="/tips/topik/{{ tag | url }}/">{{ tag }}</a>
+        {%- endfor %}
+      </span>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ul>
+{% endmacro %}
+
+{# Navigasi tag: satu baris pill, seperti daftar tag di elixirstreams. #}
+{% macro tagNav(tags, activeTag) %}
+  <nav class="tips-tagnav" aria-label="Telusuri tips berdasarkan tag">
+    <a href="/tips/"{% if not activeTag %} aria-current="page"{% endif %}>semua</a>
+    {%- for entry in tags %}
+    <a href="/tips/topik/{{ entry.slug | url }}/"{% if entry.tag == activeTag %} aria-current="page"{% endif %}>{{ entry.tag }} <span>{{ entry.count }}</span></a>
+    {%- endfor %}
+  </nav>
+{% endmacro %}

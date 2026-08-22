@@ -16,6 +16,7 @@ This file is a concise, machine-readable map for LLMs, answer engines, and AI as
 - [AI topic hub](https://rizafahmi.com/topik/ai/): Writing about AI tools, coding assistants, and applied AI.
 - [Elixir topic hub](https://rizafahmi.com/topik/elixir/): Writing about Elixir, Phoenix, BEAM, and functional programming.
 - [Web topic hub](https://rizafahmi.com/topik/web/): Writing about web development and JavaScript.
+- [Tips](https://rizafahmi.com/tips/): Browsable library of short videos from the Eksperimen Pemrograman YouTube channel. Each tip has its own page with the video, its description, and its tags.
 - [Uses](https://rizafahmi.com/uses/): Tools, hardware, and software setup.
 - [Now](https://rizafahmi.com/now/): Current focus and projects.
 - [CV, Indonesian](https://rizafahmi.com/cv/): Work history, education, speaking, and public work. Print-ready.
@@ -70,3 +71,8 @@ This file is a concise, machine-readable map for LLMs, answer engines, and AI as
 - [Search](https://rizafahmi.com/search/): Client-side search for human readers.
 - [Tags](https://rizafahmi.com/tags/): Browsable topic taxonomy.
 - [Showcase](https://rizafahmi.com/showcase/): Portfolio and public work.
+
+## Recent tips
+
+{% for tip in tipsLibrary.items | head(12) %}- [{{ tip.title }}]({{ site.url }}{{ tip.url }}): {{ tip.excerpt or tip.title }}{% if tip.tags.length %} (tags: {{ tip.tags | join(", ") }}){% endif %}
+{% endfor %}

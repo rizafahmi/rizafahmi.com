@@ -15,6 +15,7 @@ eleventyExcludeFromCollections: true
     "/topik/web/",
     "/topik/produktivitas/",
     "/showcase/",
+    "/tips/",
     "/cv/",
     "/cv/en/",
     "/now/",
@@ -29,6 +30,19 @@ eleventyExcludeFromCollections: true
   {%- for tag in collections.tagList %}
   <url>
     <loc>https://rizafahmi.com/tags/{{ tag | url }}/</loc>
+  </url>
+  {%- endfor %}
+  {%- for entry in tipsLibrary.tags %}
+  <url>
+    <loc>https://rizafahmi.com/tips/topik/{{ entry.slug | url }}/</loc>
+  </url>
+  {%- endfor %}
+  {%- for tip in tipsLibrary.items %}
+  <url>
+    <loc>https://rizafahmi.com{{ tip.url }}</loc>
+    {%- if tip.publishedAt %}
+    <lastmod>{{ tip.publishedAt | dateToISO }}</lastmod>
+    {%- endif %}
   </url>
   {%- endfor %}
   {%- for post in collections.catatan %}

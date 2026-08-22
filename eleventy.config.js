@@ -7,6 +7,7 @@ import { selectProjects } from "./src/libs/karya.js";
 import { generateOgImage } from "./src/libs/og-image.js";
 import { getRelatedPosts } from "./src/libs/related.js";
 import shikiPlugin from "./src/libs/shiki.js";
+import { tipsWithTag } from "./src/libs/tips.js";
 
 const isDev = process.env.ELEVENTY_ENV === "dev";
 
@@ -144,6 +145,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("cvPeriod", formatPeriod);
   eleventyConfig.addFilter("cvMonth", formatMonth);
   eleventyConfig.addFilter("orderedChannels", orderedChannels);
+
+  // /tips — the Shorts library. Content comes from src/_data/tips.json via
+  // src/_data/tipsLibrary.js; this only narrows the list to one tag.
+  eleventyConfig.addFilter("tipsWithTag", tipsWithTag);
 
   eleventyConfig.addFilter("jsonify", (value) => {
     return JSON.stringify(value ?? "");
