@@ -1,5 +1,5 @@
 <script type="module">
-  import {onCLS, onINP, onLCP, onFCP, onTTFB} from '/assets/web-vitals.js';
+  import {onCLS, onINP, onLCP, onFCP, onTTFB} from '/assets/web-vitals.js?v={{ site.buildTime }}';
 
   function waitForGoatCounter(callback, attempts) {
     attempts = attempts || 0;

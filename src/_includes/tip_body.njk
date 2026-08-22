@@ -31,7 +31,9 @@
       data-tip-title="{{ tip.title }}">
       {#- posterThumbnail is the same frame as tip.thumbnail in WebP: identical
           pixels, roughly 60% fewer bytes. -#}
-      <img src="{{ tip.posterThumbnail.url }}" alt="" width="{{ tip.posterThumbnail.width }}" height="{{ tip.posterThumbnail.height }}" fetchpriority="high" decoding="async" />
+      <span class="tip-facade-media">
+        <img src="{{ tip.posterThumbnail.url }}" alt="" width="{{ tip.posterThumbnail.width }}" height="{{ tip.posterThumbnail.height }}" fetchpriority="high" decoding="async" />
+      </span>
       <span class="tip-facade-play" aria-hidden="true"></span>
     </button>
   </div>
