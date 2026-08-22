@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
 import test from "node:test";
 
 import {
@@ -9,10 +12,12 @@ import {
   mergeTips,
   metaDescriptionFor,
   parseIsoDuration,
+  readExistingTips,
   selectTips,
   slugifyTitle,
   tipsWithTag,
   tipTagList,
+  writeTipsAtomic,
 } from "../src/libs/tips.js";
 
 test("parseIsoDuration reads the ISO 8601 durations the YouTube API returns", () => {
@@ -319,6 +324,67 @@ test("mergeTips is idempotent: merging its own output changes nothing", () => {
   const twice = mergeTips([{ ...FETCHED, title: "Pattern matching di Elixir" }], once);
 
   assert.deepEqual(twice, once);
+});
+
+// --- tips.json I/O: fail closed so a bad read cannot wipe hand edits --------
+
+test("readExistingTips treats a missing file as the first run", async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "tips-read-"));
+  try {
+    assert.deepEqual(await readExistingTips(path.join(dir, "tips.json")), []);
+  } finally {
+    await fs.rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("readExistingTips returns a valid tips array unchanged", async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "tips-read-"));
+  const file = path.join(dir, "tips.json");
+  try {
+    await fs.writeFile(file, `${JSON.stringify([{ id: "abc123", slug: "a", tags: ["elixir"] }], null, 2)}\n`);
+    const tips = await readExistingTips(file);
+    assert.equal(tips.length, 1);
+    assert.equal(tips[0].id, "abc123");
+    assert.deepEqual(tips[0].tags, ["elixir"]);
+  } finally {
+    await fs.rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("readExistingTips aborts on corrupt JSON instead of falling back to []", async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "tips-read-"));
+  const file = path.join(dir, "tips.json");
+  try {
+    await fs.writeFile(file, "<<<<<<< HEAD\n[{broken\n");
+    await assert.rejects(() => readExistingTips(file), /Could not parse|refusing to overwrite/i);
+  } finally {
+    await fs.rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("readExistingTips aborts when the file is not a JSON array", async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "tips-read-"));
+  const file = path.join(dir, "tips.json");
+  try {
+    await fs.writeFile(file, `${JSON.stringify({ tips: [] }, null, 2)}\n`);
+    await assert.rejects(() => readExistingTips(file), /must be a JSON array|refusing to overwrite/i);
+  } finally {
+    await fs.rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("writeTipsAtomic leaves a readable tips.json after a successful write", async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "tips-write-"));
+  const file = path.join(dir, "tips.json");
+  try {
+    const tips = [{ id: "abc123", slug: "a", tags: ["elixir"], transcript: "keep me" }];
+    await writeTipsAtomic(file, tips);
+    assert.deepEqual(await readExistingTips(file), tips);
+    const leftovers = await fs.readdir(dir);
+    assert.deepEqual(leftovers, ["tips.json"]);
+  } finally {
+    await fs.rm(dir, { recursive: true, force: true });
+  }
 });
 
 test("mergeTips drops a video that is no longer a Short, and says which", () => {

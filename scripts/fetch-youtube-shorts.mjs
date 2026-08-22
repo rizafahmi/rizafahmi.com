@@ -25,7 +25,12 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import { mergeTips, parseIsoDuration } from "../src/libs/tips.js";
+import {
+  mergeTips,
+  parseIsoDuration,
+  readExistingTips,
+  writeTipsAtomic,
+} from "../src/libs/tips.js";
 
 const API = "https://www.googleapis.com/youtube/v3";
 
@@ -246,7 +251,7 @@ async function main() {
   const shorts = await confirmShorts(candidates);
   console.log(`[tips] ${shorts.length} confirmed Short(s).`);
 
-  const existing = await readJson(OUT_PATH, []);
+  const existing = await readExistingTips(OUT_PATH);
   const removed = [];
   const merged = mergeTips(shorts, existing, { onRemoved: (tip) => removed.push(tip) });
 
@@ -262,8 +267,7 @@ async function main() {
     );
   }
 
-  await fs.mkdir(path.dirname(OUT_PATH), { recursive: true });
-  await fs.writeFile(OUT_PATH, `${JSON.stringify(merged, null, 2)}\n`, "utf8");
+  await writeTipsAtomic(OUT_PATH, merged);
   console.log(`Wrote ${OUT_PATH}`);
 }
 

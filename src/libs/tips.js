@@ -3,9 +3,12 @@
  *
  * The content lives in src/_data/tips.json, seeded by
  * scripts/fetch-youtube-shorts.mjs and then owned by hand (see `tags` and
- * `transcript` there). This module only parses, slugs, and cleans up; it never
- * fetches anything, so `pnpm run build` stays offline.
+ * `transcript` there). This module never calls YouTube, so `pnpm run build`
+ * stays offline; the only I/O here is reading and writing that data file.
  */
+
+import fs from "node:fs/promises";
+import path from "node:path";
 
 /** ISO 8601 duration, as returned by the YouTube API, to whole seconds. */
 export function parseIsoDuration(value) {
@@ -434,4 +437,53 @@ export function mergeTips(fetched, existing, { onRemoved } = {}) {
 export function tipsWithTag(tips, tag) {
   if (!Array.isArray(tips) || typeof tag !== "string") return [];
   return tips.filter((tip) => Array.isArray(tip?.tags) && tip.tags.includes(tag));
+}
+
+/**
+ * Load the committed tips.json ahead of a merge. Missing file → first run ([]).
+ * Anything else wrong aborts: a corrupt or non-array file must never look like
+ * "no tips yet", or the next write would re-seed and erase hand edits.
+ */
+export async function readExistingTips(file) {
+  let raw;
+  try {
+    raw = await fs.readFile(file, "utf8");
+  } catch (error) {
+    if (error?.code === "ENOENT") return [];
+    throw new Error(`Could not read ${file}: ${error.message}`);
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (error) {
+    throw new Error(
+      `Could not parse ${file}: ${error.message}. Fix or restore the file before re-running; refusing to overwrite hand-edited tips.`,
+    );
+  }
+
+  if (!Array.isArray(parsed)) {
+    throw new Error(
+      `${file} must be a JSON array of tips, got ${parsed === null ? "null" : typeof parsed}. Refusing to overwrite hand-edited tips.`,
+    );
+  }
+
+  return parsed;
+}
+
+/**
+ * Write tips.json via temp + rename so a crash cannot leave a truncated file
+ * that the next run would then refuse to read (or, previously, treat as []).
+ */
+export async function writeTipsAtomic(file, tips) {
+  const dir = path.dirname(file);
+  await fs.mkdir(dir, { recursive: true });
+  const tmp = path.join(dir, `.${path.basename(file)}.${process.pid}.tmp`);
+  try {
+    await fs.writeFile(tmp, `${JSON.stringify(tips, null, 2)}\n`, "utf8");
+    await fs.rename(tmp, file);
+  } catch (error) {
+    await fs.unlink(tmp).catch(() => {});
+    throw error;
+  }
 }
