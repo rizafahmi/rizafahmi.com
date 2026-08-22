@@ -197,10 +197,16 @@ a:hover {
   border-bottom-color: var(--link-color);
 }
 
-/* Card link overrides to prevent double-hover backgrounds */
+/* Card link overrides to prevent double-hover backgrounds.
+   `a:hover` above swaps in a solid var(--link-color) background. A link that
+   wraps a whole card would paint that across the card, and any text inside it
+   that also turns var(--link-color) would then be invisible. Card links opt
+   out here and signal hover with an underline and a border instead. */
 .article a:hover,
 .featured-project-card a:hover,
-.related-card a:hover {
+.related-card a:hover,
+.tip-card-link:hover,
+.tip-card-tags a:hover {
   background-color: transparent !important;
   border-bottom: none !important;
 }
@@ -627,8 +633,12 @@ blockquote {
   display: block;
 }
 
+/* Follows the theme rather than pinning cobalt: on the dark background cobalt
+   measures 2.61:1, under the 3:1 WCAG 1.4.11 asks of a non-text indicator.
+   --link-color is cobalt in light (6.55:1) and acid in dark (14.68:1), and
+   keeps this border in step with the title colour below. */
 .tip-card-link:hover .tip-thumb {
-  border-color: var(--accent-cobalt);
+  border-color: var(--link-color);
 }
 
 .tip-duration {
