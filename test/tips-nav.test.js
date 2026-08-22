@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
-// This site has THREE separate page chromes, not one. A nav link added to
+// This site has FIVE separate page chromes, not one. A nav link added to
 // src/_includes/main.njk reaches only the pages that use that layout — and the
 // homepage is not one of them. /tips shipped in #186 with a nav link that
 // rendered on /articles, /tags and /showcase but was absent from the very page

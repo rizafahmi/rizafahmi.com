@@ -101,9 +101,13 @@ node --test test/related.test.js # Run a specific file
 ```
 
 `pnpm run build` also runs `scripts/audit-site.mjs`, which fails the build on SEO,
-feed, frontmatter, and broken-internal-link regressions. It checks links in both the
-rendered `dist/` pages and the `src/_includes/` partials, so a dead link is caught
-even in a partial no layout currently renders. Link resolution lives in
+feed, frontmatter, broken-internal-link, and homepage-reachability regressions. It
+checks links in both the rendered `dist/` pages and the `src/_includes/` partials,
+so a dead link is caught even in a partial no layout currently renders. The homepage
+(`src/index.njk`) is standalone — it does not use `main.njk` — so browsable sections
+need a link in both site navs; the audit asserts the built `dist/index.html` anchors
+`/articles`, `/tags`, `/topik`, `/tips`, `/showcase`, and `/search`. Chromes and which
+carry a site nav: `test/tips-nav.test.js`. Link resolution lives in
 `src/libs/internal-links.js` and is shared by that script and `test/internal-links.test.js`.
 
 ## Code Conventions
@@ -155,8 +159,10 @@ See `DESIGN.md` for the full design spec. Key rules:
   `youtube.com/shorts/<id>`; answers are cached in `.cache/youtube-shorts/`.
   Tip pages set `image` to the YouTube thumbnail for OG (not the build-time OG
   generator). Tip tags deliberately do **not** feed `/tags` or `/topik`.
-  `tips.json` is generated, so it is excluded from Biome in `biome.json` — the
-  fetch script's `JSON.stringify(..., null, 2)` owns that file's formatting.
+  `tipsLibrary` also drives Recent tips in `/llms.txt` and the Tips inventory in
+  `/llms-full.txt` (`src/llms.njk`, `src/llms-full.njk`). `tips.json` is generated,
+  so it is excluded from Biome in `biome.json` — the fetch script's
+  `JSON.stringify(..., null, 2)` owns that file's formatting.
 - CV content is curated in `src/_data/cv.js` (Indonesian header explains the editing
   rules). One template, `src/cv.njk`, paginates over `cv.languages` to emit `/cv/` and
   `/cv/en/` from that single file, so the two languages cannot drift; the shared markup

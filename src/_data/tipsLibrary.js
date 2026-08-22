@@ -8,7 +8,9 @@
  *   node --env-file=.env scripts/fetch-youtube-shorts.mjs
  *
  * Skrip itu sengaja tidak ikut `pnpm run build`, jadi build tidak pernah
- * menyentuh YouTube. Jalankan manual, lalu commit hasilnya.
+ * menyentuh YouTube. Jalankan manual, lalu commit hasilnya. Setelah build,
+ * daftar yang sama mengisi Recent tips di `/llms.txt` dan Tips inventory di
+ * `/llms-full.txt`.
  *
  * CARA MENGUBAH ISI SATU TIPS
  *   Buka `src/_data/tips.json`, cari entri berdasarkan `slug`, lalu edit.
