@@ -14,6 +14,7 @@ import {
   isWatchRedirectForId,
   mergeTips,
   metaDescriptionFor,
+  normalizeTipTag,
   parseIsoDuration,
   readExistingTips,
   selectTips,
@@ -199,6 +200,38 @@ const RAW_TIP = {
   thumbnail: "https://i.ytimg.com/vi/abc123/hqdefault.jpg",
   tags: ["elixir"],
 };
+
+test("selectTips pairs each human-owned tag with the same slug tipTagList uses", () => {
+  const [tip] = selectTips([
+    {
+      ...RAW_TIP,
+      tags: ["Public Speaking", "Café Coding!", "  "],
+    },
+  ]);
+
+  assert.deepEqual(tip.tags, [
+    { label: "Public Speaking", slug: "public-speaking" },
+    { label: "Café Coding!", slug: "cafe-coding" },
+  ]);
+
+  assert.deepEqual(tipTagList([tip]), [
+    { tag: "Café Coding!", slug: "cafe-coding", count: 1 },
+    { tag: "Public Speaking", slug: "public-speaking", count: 1 },
+  ]);
+});
+
+test("normalizeTipTag slugifies spaces, capitals, accents, and punctuation", () => {
+  assert.deepEqual(normalizeTipTag("Public Speaking"), {
+    label: "Public Speaking",
+    slug: "public-speaking",
+  });
+  assert.deepEqual(normalizeTipTag("Café: Coding?!"), {
+    label: "Café: Coding?!",
+    slug: "cafe-coding",
+  });
+  assert.equal(normalizeTipTag("   "), null);
+  assert.equal(normalizeTipTag(null), null);
+});
 
 test("selectTips normalizes an entry and derives the URLs the pages need", () => {
   const [tip] = selectTips([RAW_TIP]);
@@ -647,6 +680,18 @@ test("tipsWithTag narrows the list without reordering it", () => {
   );
   assert.deepEqual(tipsWithTag(list, "tidak-ada"), []);
   assert.deepEqual(tipsWithTag(null, "ai"), []);
+});
+
+test("tipsWithTag matches the display label on selectTips tag objects", () => {
+  const tips = selectTips([
+    { ...RAW_TIP, id: "a", slug: "a", tags: ["Public Speaking"] },
+    { ...RAW_TIP, id: "b", slug: "b", tags: ["elixir"] },
+  ]);
+
+  assert.deepEqual(
+    tipsWithTag(tips, "Public Speaking").map((tip) => tip.slug),
+    ["a"],
+  );
 });
 
 // --- meta description ------------------------------------------------------

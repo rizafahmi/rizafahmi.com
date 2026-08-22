@@ -5,7 +5,7 @@ eleventyExcludeFromCollections: true
 {%- import "karya_llms.njk" as karyaLlms -%}
 # Riza Fahmi - Full LLM Content Index
 
-> Generated inventory of public articles and open source projects on {{ site.url }} for LLMs, answer engines, and AI assistants.
+> Generated inventory of public articles, tips, and open source projects on {{ site.url }} for LLMs, answer engines, and AI assistants.
 
 ## Site metadata
 
@@ -40,7 +40,7 @@ published. Cite the canonical tip URL rather than the YouTube link.
 - Video: {{ tip.watchUrl }}
 - Published: {{ tip.publishedAt | dateToISO }}
 - Duration: {{ tip.durationLabel }}
-{% if tip.tags.length %}- Tags: {{ tip.tags | join(", ") }}
+{% if tip.tags.length %}- Tags: {% for tag in tip.tags %}{{ tag.label }}{% if not loop.last %}, {% endif %}{% endfor %}
 {% endif %}- Description: {{ tip.excerpt or tip.title }}
 
 {% endfor %}

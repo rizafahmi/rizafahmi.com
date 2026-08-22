@@ -189,6 +189,34 @@ test("tag navigation marks the index itself when no tag is active", () => {
   assert.match(html, /href="\/tips\/" aria-current="page"/);
 });
 
+test("card and detail tag hrefs match the tipTagList permalink for non-slug tags", () => {
+  const raw = {
+    ...BASE,
+    tags: ["Public Speaking", "Café: Coding?!"],
+  };
+  const tips = selectTips([raw]);
+  const tagPages = tipTagList(tips);
+  const byLabel = Object.fromEntries(tagPages.map((entry) => [entry.tag, entry.slug]));
+
+  assert.equal(byLabel["Public Speaking"], "public-speaking");
+  assert.equal(byLabel["Café: Coding?!"], "cafe-coding");
+
+  const card = renderGrid([raw]);
+  const detail = renderTip({ tags: raw.tags });
+
+  for (const entry of tagPages) {
+    const href = `/tips/topik/${entry.slug}/`;
+    assert.ok(card.includes(`href="${href}"`), `card missing ${href}`);
+    assert.ok(detail.includes(`href="${href}"`), `detail missing ${href}`);
+    assert.ok(card.includes(`>${entry.tag}<`), `card missing label ${entry.tag}`);
+    assert.ok(detail.includes(`>${entry.tag}<`), `detail missing label ${entry.tag}`);
+  }
+
+  assert.ok(!card.includes("/tips/topik/Public Speaking/"));
+  assert.ok(!card.includes("/tips/topik/Public%20Speaking/"));
+  assert.ok(!detail.includes("/tips/topik/Café"));
+});
+
 // --- search ----------------------------------------------------------------
 // Pagefind runs in opt-in mode on this site: a page without data-pagefind-body
 // is silently skipped. /showcase sat unsearchable for exactly this reason.

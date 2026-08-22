@@ -25,7 +25,7 @@ This file is a concise, machine-readable map for LLMs, answer engines, and AI as
 
 ## Machine-readable indexes
 
-- [Full LLM content index](https://rizafahmi.com/llms-full.txt): Generated article and open source project inventory with descriptions, dates, and tags.
+- [Full LLM content index](https://rizafahmi.com/llms-full.txt): Generated article, tips, and open source project inventory with descriptions, dates, and tags.
 - [Sitemap](https://rizafahmi.com/sitemap.xml): Canonical crawl map.
 - [Robots policy](https://rizafahmi.com/robots.txt): Crawler access policy.
 - [Atom feed, excerpt](https://rizafahmi.com/feed.xml): Recent articles with excerpts.
@@ -74,5 +74,5 @@ This file is a concise, machine-readable map for LLMs, answer engines, and AI as
 
 ## Recent tips
 
-{% for tip in tipsLibrary.items | head(12) %}- [{{ tip.title }}]({{ site.url }}{{ tip.url }}): {{ tip.excerpt or tip.title }}{% if tip.tags.length %} (tags: {{ tip.tags | join(", ") }}){% endif %}
+{% for tip in tipsLibrary.items | head(12) %}- [{{ tip.title }}]({{ site.url }}{{ tip.url }}): {{ tip.excerpt or tip.title }}{% if tip.tags.length %} (tags: {% for tag in tip.tags %}{{ tag.label }}{% if not loop.last %}, {% endif %}{% endfor %}){% endif %}
 {% endfor %}

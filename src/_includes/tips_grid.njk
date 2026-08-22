@@ -16,7 +16,7 @@
       {%- if tip.tags.length %}
       <span class="tip-card-tags" aria-label="Tag tips">
         {%- for tag in tip.tags %}
-        <a href="/tips/topik/{{ tag | url }}/">{{ tag }}</a>
+        <a href="/tips/topik/{{ tag.slug | url }}/">{{ tag.label }}</a>
         {%- endfor %}
       </span>
       {%- endif %}

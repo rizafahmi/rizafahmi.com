@@ -301,20 +301,38 @@ export function deriveTags(title, description) {
   return found;
 }
 
+/**
+ * Human-owned tip tag text → display label + URL slug.
+ *
+ * `tags` in tips.json is edited by hand; a space or capital must not break
+ * `/tips/topik/<slug>/`. Every consumer (cards, detail, tipTagList) reads from
+ * this shape so the href and the permalink cannot drift.
+ */
+export function normalizeTipTag(raw) {
+  const label = cleanText(
+    typeof raw === "string" ? raw : typeof raw?.label === "string" ? raw.label : null,
+  );
+  if (!label) return null;
+  return { label, slug: slugifyTitle(label) || label };
+}
+
 /** Tag navigation for /tips: most-used first, alphabetical within a count. */
 export function tipTagList(tips) {
   const counts = new Map();
   for (const tip of Array.isArray(tips) ? tips : []) {
     for (const tag of Array.isArray(tip?.tags) ? tip.tags : []) {
-      if (typeof tag !== "string" || !tag.trim()) continue;
-      const key = tag.trim();
-      counts.set(key, (counts.get(key) || 0) + 1);
+      const normalized = normalizeTipTag(tag);
+      if (!normalized) continue;
+      const prev = counts.get(normalized.label);
+      if (prev) {
+        prev.count += 1;
+      } else {
+        counts.set(normalized.label, { tag: normalized.label, slug: normalized.slug, count: 1 });
+      }
     }
   }
 
-  return [...counts.entries()]
-    .map(([tag, count]) => ({ tag, slug: slugifyTitle(tag) || tag, count }))
-    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+  return [...counts.values()].sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
 }
 
 function cleanText(value) {
@@ -358,7 +376,7 @@ export function selectTips(rawTips) {
         thumbnail: cleanText(raw?.thumbnail) || `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
         watchUrl: `https://www.youtube.com/shorts/${id}`,
         embedUrl: `https://www.youtube-nocookie.com/embed/${id}`,
-        tags: (Array.isArray(raw?.tags) ? raw.tags : []).map(cleanText).filter(Boolean),
+        tags: (Array.isArray(raw?.tags) ? raw.tags : []).map(normalizeTipTag).filter(Boolean),
         transcript: cleanText(raw?.transcript),
       };
     })
@@ -433,10 +451,16 @@ export function mergeTips(fetched, existing, { onRemoved } = {}) {
     );
 }
 
-/** Every tip carrying `tag`, in the order the list already has them. */
+/** Every tip carrying `tag` (display label), in the order the list already has them. */
 export function tipsWithTag(tips, tag) {
   if (!Array.isArray(tips) || typeof tag !== "string") return [];
-  return tips.filter((tip) => Array.isArray(tip?.tags) && tip.tags.includes(tag));
+  return tips.filter((tip) => {
+    if (!Array.isArray(tip?.tags)) return false;
+    return tip.tags.some((entry) => {
+      if (typeof entry === "string") return entry === tag;
+      return entry?.label === tag;
+    });
+  });
 }
 
 /**
