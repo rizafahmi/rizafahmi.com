@@ -10,6 +10,8 @@ import {
   cleanDescription,
   deriveTags,
   formatDuration,
+  interpretShortsProbe,
+  isWatchRedirectForId,
   mergeTips,
   metaDescriptionFor,
   parseIsoDuration,
@@ -412,11 +414,11 @@ test("assertTipsOverlap refuses a zero-overlap wipe of hand-edited tips", () => 
   ];
   assert.throws(
     () => assertTipsOverlap(existing, []),
-    /Refusing to write tips\.json|TIPS_ALLOW_MASS_REMOVAL=1|cookie wall|YOUTUBE_CHANNEL_ID/i,
+    /Delete \.cache\/youtube-shorts\/|TIPS_ALLOW_MASS_REMOVAL=1|YOUTUBE_CHANNEL_ID/i,
   );
   assert.throws(
     () => assertTipsOverlap(existing, [{ id: "foreign-1" }, { id: "foreign-2" }]),
-    /only 0 of 2|TIPS_ALLOW_MASS_REMOVAL=1/i,
+    /only 0 of 2|Delete \.cache\/youtube-shorts\/|TIPS_ALLOW_MASS_REMOVAL=1/i,
   );
 });
 
@@ -424,7 +426,7 @@ test("assertTipsOverlap refuses when kept ids are under half of existing", () =>
   const existing = Array.from({ length: 10 }, (_, i) => ({ id: `id-${i}`, slug: `s-${i}` }));
   assert.throws(
     () => assertTipsOverlap(existing, [{ id: "id-0" }, { id: "id-1" }, { id: "id-2" }, { id: "id-3" }]),
-    /only 4 of 10|at least half|TIPS_ALLOW_MASS_REMOVAL=1/i,
+    /only 4 of 10|at least half|Delete \.cache\/youtube-shorts\/|TIPS_ALLOW_MASS_REMOVAL=1/i,
   );
   assert.doesNotThrow(() =>
     assertTipsOverlap(
@@ -440,6 +442,60 @@ test("assertTipsOverlap force flag allows a deliberate mass removal", () => {
     { id: "b", slug: "b" },
   ];
   assert.doesNotThrow(() => assertTipsOverlap(existing, [], { force: true }));
+});
+
+// --- shorts probe classification -------------------------------------------
+// HEAD /shorts/<id> answers 200 for a Short and 303→watch for a regular video.
+// Consent walls also 3xx, but must never be cached as false.
+
+test("isWatchRedirectForId accepts only the watch URL for that exact id", () => {
+  const id = "abc123XYZ";
+  assert.equal(isWatchRedirectForId(`https://www.youtube.com/watch?v=${id}`, id), true);
+  assert.equal(isWatchRedirectForId(`/watch?v=${id}`, id), true);
+  assert.equal(isWatchRedirectForId(`https://youtube.com/watch?v=${id}&feature=share`, id), true);
+  assert.equal(isWatchRedirectForId(`https://www.youtube.com/watch?v=other`, id), false);
+  assert.equal(isWatchRedirectForId("https://consent.youtube.com/m?continue=1", id), false);
+  assert.equal(isWatchRedirectForId("https://accounts.google.com/ServiceLogin", id), false);
+  assert.equal(isWatchRedirectForId(null, id), false);
+});
+
+test("interpretShortsProbe keeps 200 true and 404/410 false", () => {
+  const id = "vid1";
+  assert.deepEqual(interpretShortsProbe(200, null, id), { resolved: true, isShort: true });
+  assert.deepEqual(interpretShortsProbe(404, null, id), { resolved: true, isShort: false });
+  assert.deepEqual(interpretShortsProbe(410, null, id), { resolved: true, isShort: false });
+});
+
+test("interpretShortsProbe treats a watch redirect as definitive not-a-Short", () => {
+  const id = "regVid99";
+  assert.deepEqual(
+    interpretShortsProbe(303, `https://www.youtube.com/watch?v=${id}`, id),
+    { resolved: true, isShort: false },
+  );
+});
+
+test("consent-style redirect is unresolved and is not cached as false", () => {
+  const id = "shortPoison";
+  const cache = { keepMe: true };
+  const consent = interpretShortsProbe(
+    303,
+    "https://consent.youtube.com/m?continue=https://www.youtube.com/shorts/shortPoison",
+    id,
+  );
+  const login = interpretShortsProbe(302, "https://accounts.google.com/ServiceLogin?continue=1", id);
+  const missing = interpretShortsProbe(303, null, id);
+
+  assert.equal(consent.resolved, false);
+  assert.equal(login.resolved, false);
+  assert.equal(missing.resolved, false);
+  assert.match(consent.reason, /unresolved redirect/i);
+
+  // Mirror confirmShorts: only persist a boolean after a resolved probe.
+  for (const answer of [consent, login, missing]) {
+    if (answer.resolved) cache[id] = answer.isShort;
+  }
+  assert.equal(Object.hasOwn(cache, id), false);
+  assert.equal(cache.keepMe, true);
 });
 
 test("mergeTips drops a video that is no longer a Short, and says which", () => {

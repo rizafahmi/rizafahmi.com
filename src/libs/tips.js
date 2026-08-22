@@ -440,6 +440,49 @@ export function tipsWithTag(tips, tag) {
 }
 
 /**
+ * True when a /shorts/<id> redirect's Location is the watch URL for that same
+ * video. That is the definitive "not a Short" answer. Consent / login hosts
+ * and any other target are not.
+ */
+export function isWatchRedirectForId(location, videoId) {
+  if (typeof location !== "string" || !location || typeof videoId !== "string" || !videoId) {
+    return false;
+  }
+
+  try {
+    const url = new URL(location, `https://www.youtube.com/shorts/${videoId}`);
+    if (!/^(www\.)?youtube\.com$/i.test(url.hostname)) return false;
+    if (url.pathname !== "/watch") return false;
+    return url.searchParams.get("v") === videoId;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Classify one HEAD /shorts/<id> response.
+ *
+ * 200 → Short. 404/410 → gone, not a Short. A 3xx is only "not a Short" when
+ * Location is the watch URL for that exact id; every other redirect (consent
+ * walls, login, missing/unknown Location) is unresolved so the caller can
+ * retry and must not cache a false negative.
+ */
+export function interpretShortsProbe(status, location, videoId) {
+  if (status === 200) return { resolved: true, isShort: true };
+  if (status === 404 || status === 410) return { resolved: true, isShort: false };
+
+  if (status >= 300 && status < 400) {
+    if (isWatchRedirectForId(location, videoId)) {
+      return { resolved: true, isShort: false };
+    }
+    const target = typeof location === "string" && location ? location : "(missing Location)";
+    return { resolved: false, reason: `unresolved redirect to ${target}` };
+  }
+
+  return { resolved: false, reason: `unexpected HTTP ${status}` };
+}
+
+/**
  * Refuse a merge that would drop most of an existing tips.json.
  *
  * Kept must be at least half of the prior tip ids. Zero overlap (empty
@@ -463,8 +506,8 @@ export function assertTipsOverlap(existing, confirmed, { force = false } = {}) {
   throw new Error(
     `Refusing to write tips.json: only ${kept} of ${previous.length} existing tip id(s) ` +
       `appear in this run's confirmed Shorts (need at least half). ` +
-      `Likely causes: every /shorts/<id> probe answered 3xx behind a cookie wall, ` +
-      `a cleared probe cache that then recorded false negatives, or a wrong YOUTUBE_CHANNEL_ID. ` +
+      `Delete .cache/youtube-shorts/ and re-run — a cookie-wall 3xx may have been ` +
+      `cached as a false negative. If overlap is still too low, check YOUTUBE_CHANNEL_ID. ` +
       `tips.json was left untouched. To allow a deliberate mass removal, set ` +
       `TIPS_ALLOW_MASS_REMOVAL=1 (or pass --allow-mass-removal) and re-run.`,
   );

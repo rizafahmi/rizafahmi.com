@@ -30,6 +30,7 @@ import path from "node:path";
 
 import {
   assertTipsOverlap,
+  interpretShortsProbe,
   mergeTips,
   parseIsoDuration,
   readExistingTips,
@@ -44,8 +45,9 @@ const DEFAULT_CHANNEL_ID = "UCHhAlFGFCGgIusQkQIqJLYw";
 /**
  * Duration alone cannot identify a Short: YouTube raised the limit to three
  * minutes, so anything up to 180s is only a *candidate*. Each candidate is
- * confirmed with a HEAD on /shorts/<id>, which answers 200 for a real Short
- * and redirects (303) for a regular video.
+ * confirmed with a HEAD on /shorts/<id>: 200 means a real Short; a redirect
+ * (typically 303) to that video's /watch?v=<id> URL means a regular upload.
+ * Other 3xx targets (consent / login) are not answers — see probeIsShort.
  */
 const CANDIDATE_MAX_SECONDS = 180;
 const SHORTS_URL = "https://www.youtube.com/shorts";
@@ -156,9 +158,11 @@ async function fetchVideoDetails({ apiKey, ids }) {
 /**
  * Ask YouTube whether one video is really a Short.
  *
- * Returns true/false, or throws when the answer could not be established. A
- * throw is deliberate: guessing "not a Short" on a flaky network would silently
- * delete a published tip page and the transcript attached to it.
+ * Returns true/false only for definitive answers (200, 404/410, or a 3xx whose
+ * Location is the watch URL for this same id). Consent and login interstitials
+ * also answer 3xx, but to another host — those are unresolved: retry, then
+ * throw. Never treat them as "not a Short", or the probe cache would poison
+ * real tips and a later merge would drop their hand-edited fields.
  */
 async function probeIsShort(id) {
   let lastError = null;
@@ -170,11 +174,10 @@ async function probeIsShort(id) {
         redirect: "manual",
       });
 
-      if (res.status === 200) return true;
-      if (res.status >= 300 && res.status < 400) return false;
-      if (res.status === 404 || res.status === 410) return false;
+      const answer = interpretShortsProbe(res.status, res.headers.get("location"), id);
+      if (answer.resolved) return answer.isShort;
 
-      lastError = new Error(`unexpected HTTP ${res.status}`);
+      lastError = new Error(answer.reason);
     } catch (error) {
       lastError = error;
     }
