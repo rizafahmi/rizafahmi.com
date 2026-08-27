@@ -127,6 +127,19 @@ We reject shadows. The canvas is strictly flat. Division is created through line
 - Tip pages use a click-to-play `<button class="tip-facade">` (not an eager iframe). Markup and behaviour: `src/_includes/tip_body.njk`, `src/_includes/tip_player.njk`.
 - **Play chrome exception:** `.tip-facade-play` keeps a `12px` radius so the control reads as YouTube's play affordance. That is the only intentional departure from the site-wide sharp-corner rule; do not spread that radius to site chrome or cards.
 
+### Media kit (`.kerjasama-*`)
+
+- The sponsorship media kit at `/kerjasama/` (`src/ratecard.njk`, markup in `src/_includes/kerjasama_body.njk`, rules in `assets/kerjasama.css`). Every rule is namespaced under `.kerjasama-page`, so nothing here reaches the rest of the site.
+- **Stat cards** (`.kerjasama-stats` / `.kerjasama-stat`): an auto-fit grid of `2px`-bordered flat cards that stack to one column. The figure is Unbounded at `clamp(1.75rem, 4vw, 2.5rem)`; its label and note are Martian Mono. Hover drenches Electric Cobalt with white text.
+- **Brand pills** (`.kerjasama-brands li`): square-edged `2px` Martian Mono pills that drench Acid Lime with Ebony Ink on hover, matching the Tactile Pills in the header.
+- **Video lists** (`.kerjasama-videos li`): separated by `1px dashed`, per the Line Weight Rule. Titles arrive from the YouTube API, so they carry `overflow-wrap: anywhere` — never assume fetched text breaks cleanly.
+- **Figures carry their evidence.** Sponsors read this page to decide whether to spend money, so a median never appears without its sample size and range beside it (`.kerjasama-table`, `.kerjasama-note`). That is a content rule the layout has to keep room for, and `test/kerjasama-page.test.js` holds every rendered row to it.
+
+### Page-specific stylesheets
+
+- `assets/global.css` and `assets/home.css` load on every page. A page needing rules nobody else does declares `pageCss: <name>.css` in its front matter; `src/_includes/main.njk` then preloads and links `/assets/<name>.css` after the globals. Pages without the key load nothing extra.
+- **The Page Stylesheet Rule.** A component group used by exactly one page belongs in its own stylesheet behind `pageCss`, not appended to `global.css`. Namespace it under a page-level class (`.kerjasama-page`) so its rules cannot escape, and keep it built from the tokens above rather than new values — the hook exists to scope weight, not to fork the design system.
+
 ## 6. Do's and Don'ts
 
 ### Do's

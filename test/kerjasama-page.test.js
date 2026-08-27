@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import test from "node:test";
 
 import nunjucks from "nunjucks";
@@ -243,4 +245,42 @@ test("degrades gracefully when formats are present but the analysis window is no
   );
   assert.doesNotMatch(html, /NaN/);
   assert.doesNotMatch(html, /undefined/);
+});
+
+// --- The pageCss hook ------------------------------------------------------
+//
+// /kerjasama/ is the first page to use `pageCss`, the front-matter hook in
+// src/_includes/main.njk that loads one page-specific stylesheet after the
+// globals. A typo in the key ships a silently unstyled page behind a 404
+// stylesheet, and an undocumented hook gets reinvented by the next page that
+// needs one — so both the wiring and its DESIGN.md entry are pinned here.
+
+test("every page declaring pageCss ships the stylesheet it names", () => {
+  const pages = readdirSync("src", { recursive: true, withFileTypes: true })
+    .filter((e) => e.isFile() && /\.(njk|md|html)$/.test(e.name))
+    .map((e) => join(e.parentPath ?? e.path, e.name));
+
+  const declared = pages
+    .map((file) => [file, readFileSync(file, "utf8").match(/^pageCss:\s*(\S+)\s*$/m)?.[1]])
+    .filter(([, css]) => css);
+
+  assert.ok(declared.length > 0, "at least /kerjasama/ should be using the hook");
+  for (const [file, css] of declared) {
+    assert.ok(
+      existsSync(join("assets", css)),
+      `${file} declares pageCss: ${css}, which is missing`,
+    );
+  }
+});
+
+test("the main layout actually links a declared pageCss", () => {
+  const layout = readFileSync("src/_includes/main.njk", "utf8");
+  assert.match(layout, /\{% if pageCss %\}/, "the hook must be opt-in, not always-on");
+  assert.match(layout, /rel="stylesheet" href="\/assets\/\{\{ pageCss \}\}/);
+});
+
+test("DESIGN.md documents the pageCss hook and the media kit component group", () => {
+  const design = readFileSync("DESIGN.md", "utf8");
+  assert.match(design, /pageCss/, "the next page-specific stylesheet must not reinvent the hook");
+  assert.match(design, /\.kerjasama-\*/, "the media kit is a component group, so it is documented");
 });
