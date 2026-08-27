@@ -880,6 +880,56 @@ In `package.json`, add to `"scripts"` immediately after `"og:force"`:
     "fetch:youtube": "node scripts/fetch-youtube-stats.mjs",
 ```
 
+- [ ] **Step 2b: Narrow the build-safety test so it states its real invariant**
+
+`test/tips.test.js` currently forbids the string `fetch-youtube` in *every* `package.json`
+script. Its own comment gives the actual intent — "YouTube being slow or rate-limited must never
+break a Netlify deploy" — and a standalone script that no build invokes cannot do that. Replace
+the body of `test("the Shorts fetch is not wired into any build script", …)` with:
+
+```js
+  const { readFile } = await import("node:fs/promises");
+  const pkg = JSON.parse(await readFile("package.json", "utf8"));
+
+  // Only the build path matters. A fetch script a human or CI runs deliberately
+  // cannot break a deploy; one chained into a build can. Both the file name and
+  // the pnpm alias are banned here, so `prebuild: pnpm run fetch:youtube` is
+  // caught too.
+  const BUILD_SCRIPTS = ["prebuild", "build", "build:prod", "postbuild", "prestart", "start"];
+  for (const name of BUILD_SCRIPTS) {
+    const command = pkg.scripts[name];
+    if (!command) continue;
+    assert.doesNotMatch(
+      command,
+      /fetch-youtube|fetch:youtube/,
+      `package.json script "${name}" would fetch YouTube during a build`,
+    );
+  }
+
+  const config = await readFile("eleventy.config.js", "utf8");
+  assert.doesNotMatch(config, /fetch-youtube/);
+```
+
+- [ ] **Step 2c: Convert the curated file to the id-only shape**
+
+The script reads `p.id` from each entry, so this must happen before the script runs. Replace
+`src/_data/ratecardBestVideos.json` — ids and tags only. Titles and view counts now come from
+`youtube.json`, fetched by id, so these can stay as old as they like:
+
+```json
+[
+  { "id": "5FMZMB9_Aqs", "tag": "DevTools" },
+  { "id": "JsWtmdTPSzs", "tag": "Review" },
+  { "id": "vufuDf7MrmA", "tag": "Elixir" },
+  { "id": "jxW4wishA8s", "tag": "Web" },
+  { "id": "5P6heS1ZtPw", "tag": "Web" },
+  { "id": "NCcxyUGmzT4", "tag": "Edukasi" }
+]
+```
+
+Note the ordering constraint this creates: `ratecardBestVideos.json` is read by the fetch script,
+so **re-run `pnpm run fetch:youtube` after editing it** or the page renders the previous set.
+
 - [ ] **Step 3: Run it against the live channel**
 
 The key and handle are already exported by `.envrc` (gitignored, untracked).
@@ -1350,23 +1400,8 @@ description: Statistik YouTube terkini dan bentuk kerjasama untuk sponsorship be
 </main>
 ```
 
-Replace `src/_data/ratecardBestVideos.json` — ids and tags only. Titles and view counts now come
-from `youtube.json`, fetched by id, so these can stay as old as they like. Keep Riza's existing
-six picks:
-
-```json
-[
-  { "id": "5FMZMB9_Aqs", "tag": "DevTools" },
-  { "id": "JsWtmdTPSzs", "tag": "Review" },
-  { "id": "vufuDf7MrmA", "tag": "Elixir" },
-  { "id": "jxW4wishA8s", "tag": "Web" },
-  { "id": "5P6heS1ZtPw", "tag": "Web" },
-  { "id": "NCcxyUGmzT4", "tag": "Edukasi" }
-]
-```
-
-Note the ordering constraint this creates: `ratecardBestVideos.json` is read by the fetch script,
-so **re-run `pnpm run fetch:youtube` after editing it** or the page will render the previous set.
+`src/_data/ratecardBestVideos.json` was already converted to the id-only shape in Task 3 Step 2c,
+because the fetch script reads `p.id` and therefore depends on it. Nothing to change here.
 
 - [ ] **Step 6: Add the `renderableFormats` filter**
 
