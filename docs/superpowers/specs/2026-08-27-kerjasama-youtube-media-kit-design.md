@@ -87,6 +87,13 @@ ceiling is 29.060 (Ainun Najib, 2020).
 Note the `recorded` bucket holds exactly one video in this window. See "Small-sample
 suppression" below.
 
+> **Note on the sample bounds.** The figures above are a point-in-time record and are left as
+> measured. The "last 150 uploads" / "n = 133 of 150" counts describe how the sample was bounded
+> *then*: by upload count, because the fetch size and the statistics window were the same number.
+> They no longer describe current behaviour. The fetch is now 300 uploads, and the medians are
+> bounded by recency (`STATS_MAX_AGE_DAYS`, 456 days) rather than by count — see Computation
+> rules and Risks.
+
 The honest pitch these numbers support: a niche Indonesian developer audience, output tripled
 since May 2026, and a format that is currently working. Not a large channel.
 
@@ -117,8 +124,10 @@ date.
 
 ### `scripts/fetch-youtube-stats.mjs` (rewritten)
 
-Walks the uploads playlist and fetches full video records for the most recent 150 uploads —
-three `playlistItems` calls plus three `videos` calls. Emits an extended `src/_data/youtube.json`:
+Walks the uploads playlist and fetches full video records for the most recent 300 uploads —
+six `playlistItems` calls plus six `videos` calls. That fetch size serves `momentum`, which needs
+to reach well past 365 days to be measured rather than capped; it is **not** the window the
+medians describe (see "Recency filter" under Computation rules). Emits an extended `src/_data/youtube.json`:
 
 - `channel` — id, title, url, handle, thumbnail (unchanged shape)
 - `stats` — `subscribers`, `totalViews`, `videoCount`
@@ -127,6 +136,10 @@ three `playlistItems` calls plus three `videos` calls. Emits an extended `src/_d
 - `ngobrolinWeb` — `episodes`, `median`, `min`, `max`
 - `topVideos` — top performers with id, title, url, views, publishedAt
 - `recentVideos` — unchanged shape
+- `window` — two ranges, deliberately distinct. `videosAnalyzed`, `from`, `to` describe
+  everything fetched, which is what `momentum` is measured over; `videosSummarized`,
+  `statsFrom`, `statsTo` describe the recency-bounded set the medians came from, and are what
+  the page renders in its disclosure. Plus `matureMinDays` and `statsMaxAgeDays`.
 - `updatedAt`, `source`
 
 `avgViewsLast12` and `viewsLast12Range` are removed from the emitted shape and from the template.
@@ -174,7 +187,11 @@ only fetching and file writing.
 Stays curated — the selection is a human judgment. Entries drop their hardcoded `title` and keep
 `{ id, tag }` only. Title and view count are hydrated at build time from the video records in
 `youtube.json`, so a curated entry can no longer display a stale title or go silently missing.
-Curated ids not present in the fetched window are dropped from render rather than shown blank.
+Curated records are fetched by id in a separate call, not looked up in the recent window — the
+videos that best show what a sponsorship looks like are years old, and the window is bounded. A
+pick whose record cannot be fetched at all (deleted, or gone private) is no longer dropped with a
+warning: the fetch script refuses to write the file, because a silently shorter "Video terbaik"
+on a sponsor-facing page is worse than a stale one.
 
 ### Graceful degradation
 
