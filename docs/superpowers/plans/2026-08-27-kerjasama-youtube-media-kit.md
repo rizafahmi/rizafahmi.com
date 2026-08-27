@@ -1701,8 +1701,10 @@ permissions:
   contents: write
 
 concurrency:
+  # Deliberately false: this job ends in a commit and a push, and letting a run
+  # finish beats cancelling it partway through one.
   group: youtube-stats
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -1728,7 +1730,7 @@ jobs:
 
       - name: Commit if the numbers moved
         run: |
-          if git diff --quiet -- src/_data/youtube.json; then
+          if git diff --quiet HEAD -- src/_data/youtube.json; then
             echo "No change."
             exit 0
           fi
