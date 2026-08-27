@@ -3,10 +3,14 @@ import test from "node:test";
 
 import {
   bucketFormat,
+  buildYoutubeStats,
+  computeMomentum,
+  hydrateCurated,
   isMature,
   MATURE_MIN_DAYS,
   MIN_FORMAT_SAMPLE,
   normalizeVideo,
+  renderableFormats,
   summarize,
 } from "../src/libs/youtube-stats.js";
 
@@ -116,4 +120,206 @@ test("normalizeVideo: an item with no id is rejected", () => {
 test("thresholds are the values the spec fixed", () => {
   assert.equal(MATURE_MIN_DAYS, 21);
   assert.equal(MIN_FORMAT_SAMPLE, 5);
+});
+
+const NOW = new Date("2026-08-27T00:00:00Z");
+
+/** A mature video, `daysAgo` old, so tests read as intent not arithmetic. */
+function vid({ id = "v", title = "T", daysAgo = 100, views = 100, seconds = 60, live = false }) {
+  const publishedAt = new Date(NOW.getTime() - daysAgo * 86_400_000).toISOString();
+  return {
+    id,
+    title,
+    publishedAt,
+    url: `https://www.youtube.com/watch?v=${id}`,
+    views,
+    durationSeconds: seconds,
+    isLive: live,
+  };
+}
+
+test("computeMomentum: counts uploads and views inside the 12-month window", () => {
+  const m = computeMomentum(
+    [
+      vid({ id: "a", daysAgo: 10, views: 100 }),
+      vid({ id: "b", daysAgo: 200, views: 200 }),
+      vid({ id: "c", daysAgo: 400, views: 999 }), // outside the window
+    ],
+    NOW,
+  );
+  assert.equal(m.videosLast12Months, 2);
+  assert.equal(m.viewsLast12Months, 300);
+});
+
+test("computeMomentum: uploads per month divides by months actually present", () => {
+  // Six videos across two calendar months -> 3.0, not 6/12.
+  const m = computeMomentum(
+    [
+      vid({ id: "a", daysAgo: 5 }),
+      vid({ id: "b", daysAgo: 6 }),
+      vid({ id: "c", daysAgo: 7 }),
+      vid({ id: "d", daysAgo: 40 }),
+      vid({ id: "e", daysAgo: 41 }),
+      vid({ id: "f", daysAgo: 42 }),
+    ],
+    NOW,
+  );
+  assert.equal(m.monthsCovered, 2);
+  assert.equal(m.uploadsPerMonth, 3);
+});
+
+test("computeMomentum: counts a brand-new video, unlike the medians", () => {
+  const m = computeMomentum([vid({ id: "fresh", daysAgo: 2, views: 0 })], NOW);
+  assert.equal(m.videosLast12Months, 1);
+});
+
+test("computeMomentum: empty input is all zeros, never NaN", () => {
+  const m = computeMomentum([], NOW);
+  assert.deepEqual(m, {
+    videosLast12Months: 0,
+    viewsLast12Months: 0,
+    uploadsPerMonth: 0,
+    monthsCovered: 0,
+  });
+});
+
+test("renderableFormats: suppresses a bucket with 4 mature videos, keeps one with 5", () => {
+  const formats = { shorts: { n: 5 }, episode: { n: 4 }, recorded: null };
+  assert.deepEqual(renderableFormats(formats), ["shorts"]);
+});
+
+test("renderableFormats: orders episode before shorts before recorded", () => {
+  const formats = { shorts: { n: 9 }, episode: { n: 9 }, recorded: { n: 9 } };
+  assert.deepEqual(renderableFormats(formats), ["episode", "shorts", "recorded"]);
+});
+
+test("buildYoutubeStats: a young video is counted in cadence but excluded from medians", () => {
+  const videos = [
+    ...Array.from({ length: 5 }, (_, i) =>
+      vid({ id: `s${i}`, daysAgo: 100, views: 300, seconds: 60 }),
+    ),
+    vid({ id: "fresh", daysAgo: 2, views: 0, seconds: 60 }),
+  ];
+  const out = buildYoutubeStats({ videos, now: NOW });
+  assert.equal(out.formats.shorts.n, 5, "the 2-day-old video must not be summarised");
+  assert.equal(out.formats.shorts.median, 300, "a 0-view newborn must not drag the median down");
+  assert.equal(out.momentum.videosLast12Months, 6, "but it still counts as output");
+});
+
+test("buildYoutubeStats: buckets by duration and liveness", () => {
+  const videos = [
+    vid({ id: "s", seconds: 60, views: 500 }),
+    vid({ id: "e", seconds: 5400, views: 250 }),
+    vid({ id: "r", seconds: 600, views: 161 }),
+  ];
+  const out = buildYoutubeStats({ videos, now: NOW });
+  assert.equal(out.formats.shorts.n, 1);
+  assert.equal(out.formats.episode.n, 1);
+  assert.equal(out.formats.recorded.n, 1);
+});
+
+test("buildYoutubeStats: Ngobrolin WEB is matched case-insensitively on title", () => {
+  const videos = [
+    vid({ id: "n1", title: "Ngobrolin Elixir - Ngobrolin WEB", seconds: 5400, views: 889 }),
+    vid({ id: "n2", title: "ngobrolin database", seconds: 5400, views: 565 }),
+    vid({ id: "other", title: "Sesuatu yang lain", seconds: 5400, views: 100 }),
+  ];
+  const out = buildYoutubeStats({ videos, now: NOW });
+  assert.equal(out.ngobrolinWeb.episodes, 2);
+  assert.equal(out.ngobrolinWeb.median, 727);
+  assert.equal(out.ngobrolinWeb.min, 565);
+  assert.equal(out.ngobrolinWeb.max, 889);
+});
+
+test("buildYoutubeStats: no Ngobrolin episodes yields null, not a zero summary", () => {
+  const out = buildYoutubeStats({ videos: [vid({ id: "x", title: "Lain" })], now: NOW });
+  assert.equal(out.ngobrolinWeb, null);
+});
+
+test("buildYoutubeStats: topVideos are mature, view-sorted, and capped", () => {
+  const videos = [
+    vid({ id: "low", views: 10 }),
+    vid({ id: "high", views: 9000 }),
+    vid({ id: "mid", views: 500 }),
+    vid({ id: "newborn", daysAgo: 1, views: 99999 }),
+  ];
+  const out = buildYoutubeStats({ videos, now: NOW, topCount: 2 });
+  assert.deepEqual(
+    out.topVideos.map((v) => v.id),
+    ["high", "mid"],
+  );
+});
+
+test("buildYoutubeStats: recentVideos are newest-first and capped", () => {
+  const videos = [
+    vid({ id: "old", daysAgo: 300 }),
+    vid({ id: "newest", daysAgo: 1 }),
+    vid({ id: "middle", daysAgo: 50 }),
+  ];
+  const out = buildYoutubeStats({ videos, now: NOW, recentCount: 2 });
+  assert.deepEqual(
+    out.recentVideos.map((v) => v.id),
+    ["newest", "middle"],
+  );
+});
+
+test("buildYoutubeStats: window reports the analysed range", () => {
+  const videos = [vid({ id: "a", daysAgo: 400 }), vid({ id: "b", daysAgo: 1 })];
+  const out = buildYoutubeStats({ videos, now: NOW });
+  assert.equal(out.window.videosAnalyzed, 2);
+  assert.equal(out.window.from, "2025-07-23");
+  assert.equal(out.window.to, "2026-08-26");
+  assert.equal(out.window.matureMinDays, 21);
+});
+
+test("hydrateCurated: joins picks to records and keeps the curated order", () => {
+  const videos = [
+    vid({ id: "b", title: "Kedua", views: 200 }),
+    vid({ id: "a", title: "Pertama", views: 100 }),
+  ];
+  const out = hydrateCurated(
+    [
+      { id: "a", tag: "Elixir" },
+      { id: "b", tag: "Web" },
+    ],
+    videos,
+  );
+  assert.deepEqual(
+    out.map((v) => [v.id, v.title, v.tag]),
+    [
+      ["a", "Pertama", "Elixir"],
+      ["b", "Kedua", "Web"],
+    ],
+  );
+});
+
+test("hydrateCurated: drops a pick with no matching record rather than rendering a blank", () => {
+  const out = hydrateCurated([{ id: "gone", tag: "Lama" }], [vid({ id: "a" })]);
+  assert.deepEqual(out, []);
+});
+
+test("hydrateCurated: an old curated video hydrates fine, regardless of age", () => {
+  // The curated list points at 2022-2024 videos on purpose; age must not matter.
+  const out = hydrateCurated(
+    [{ id: "old", tag: "DevTools" }],
+    [vid({ id: "old", title: "AWS Free Tier", daysAgo: 1500, views: 1473 })],
+  );
+  assert.equal(out.length, 1);
+  assert.equal(out[0].views, 1473);
+});
+
+test("hydrateCurated: tolerates empty or missing inputs", () => {
+  assert.deepEqual(hydrateCurated([], []), []);
+  assert.deepEqual(hydrateCurated(undefined, undefined), []);
+});
+
+test("buildYoutubeStats: empty input produces a well-formed empty result", () => {
+  const out = buildYoutubeStats({ videos: [], now: NOW });
+  assert.equal(out.formats.shorts, null);
+  assert.equal(out.ngobrolinWeb, null);
+  assert.deepEqual(out.topVideos, []);
+  assert.deepEqual(out.recentVideos, []);
+  assert.equal(out.momentum.videosLast12Months, 0);
+  assert.equal(out.window.videosAnalyzed, 0);
+  assert.equal(out.window.from, null);
 });

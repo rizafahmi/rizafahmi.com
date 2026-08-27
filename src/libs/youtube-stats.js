@@ -83,3 +83,103 @@ export function summarize(viewCounts) {
     max: sorted[sorted.length - 1],
   };
 }
+
+/** Buckets, widest format first, as the page lists them. */
+const FORMAT_ORDER = ["episode", "shorts", "recorded"];
+
+/** `YYYY-MM-DD` for an ISO timestamp, or null when it will not parse. */
+function isoDate(value) {
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? null : d.toISOString().slice(0, 10);
+}
+
+/**
+ * Output over the last twelve months. This measures how much gets published,
+ * so unlike the medians it deliberately counts videos of any age — a video
+ * posted yesterday is still a video posted.
+ */
+export function computeMomentum(videos, now) {
+  const cutoff = now.getTime() - 365 * MS_PER_DAY;
+  const recent = (videos || []).filter((v) => {
+    const t = new Date(v.publishedAt).getTime();
+    return Number.isFinite(t) && t >= cutoff;
+  });
+  const months = new Set(recent.map((v) => v.publishedAt.slice(0, 7)));
+  const monthsCovered = months.size;
+  return {
+    videosLast12Months: recent.length,
+    viewsLast12Months: recent.reduce((sum, v) => sum + v.views, 0),
+    uploadsPerMonth: monthsCovered ? Math.round((recent.length / monthsCovered) * 10) / 10 : 0,
+    monthsCovered,
+  };
+}
+
+/**
+ * Which format buckets have earned the right to show a median. A "typical"
+ * figure drawn from one or two videos is not a typical figure, and this page
+ * is read by people deciding whether to spend money.
+ */
+export function renderableFormats(formats) {
+  return FORMAT_ORDER.filter((key) => (formats?.[key]?.n ?? 0) >= MIN_FORMAT_SAMPLE);
+}
+
+/**
+ * Join the hand-curated picks to their full video records.
+ *
+ * The curated list is deliberately allowed to reach back years — the videos
+ * that best show what a sponsorship looks like are not the newest ones — so
+ * these records are fetched by id rather than taken from the recent window.
+ * A pick with no record is dropped, because a blank row on this page is worse
+ * than a shorter list.
+ */
+export function hydrateCurated(picks, videos) {
+  const byId = new Map((videos || []).map((v) => [v.id, v]));
+  return (picks || [])
+    .map((pick) => {
+      const video = byId.get(pick?.id);
+      return video ? { ...video, tag: pick.tag || "" } : null;
+    })
+    .filter(Boolean);
+}
+
+/** Everything the template needs, assembled from normalized videos. */
+export function buildYoutubeStats({ videos, now, topCount = 6, recentCount = 6 }) {
+  const all = videos || [];
+  const mature = all.filter((v) => isMature(v.publishedAt, now));
+
+  const formats = { shorts: null, episode: null, recorded: null };
+  for (const key of Object.keys(formats)) {
+    const views = mature.filter((v) => bucketFormat(v) === key).map((v) => v.views);
+    formats[key] = summarize(views);
+  }
+
+  const ngobrolin = mature.filter((v) => v.title.toLowerCase().includes("ngobrolin"));
+  const ngobrolinSummary = summarize(ngobrolin.map((v) => v.views));
+
+  const byDateDesc = [...all].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  const dates = all
+    .map((v) => v.publishedAt)
+    .filter(Boolean)
+    .sort();
+
+  return {
+    momentum: computeMomentum(all, now),
+    formats,
+    ngobrolinWeb: ngobrolinSummary
+      ? {
+          episodes: ngobrolinSummary.n,
+          median: ngobrolinSummary.median,
+          min: ngobrolinSummary.min,
+          max: ngobrolinSummary.max,
+        }
+      : null,
+    topVideos: [...mature].sort((a, b) => b.views - a.views).slice(0, topCount),
+    recentVideos: byDateDesc.slice(0, recentCount),
+    window: {
+      videosAnalyzed: all.length,
+      from: dates.length ? isoDate(dates[0]) : null,
+      to: dates.length ? isoDate(dates[dates.length - 1]) : null,
+      matureMinDays: MATURE_MIN_DAYS,
+    },
+  };
+}
