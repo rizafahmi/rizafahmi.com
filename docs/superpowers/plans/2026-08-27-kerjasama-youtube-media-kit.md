@@ -735,11 +735,19 @@ function opt(name) {
   return process.env[name] || "";
 }
 
+/**
+ * A request URL or response body safe to put in an error. The API key is the
+ * one secret here, and these errors reach stderr and CI logs.
+ */
+function redactKey(text) {
+  return String(text).replace(/([?&]key=)[^&\s]*/g, "$1REDACTED");
+}
+
 async function getJson(url) {
   const res = await fetch(url);
   if (!res.ok) {
     const text = await res.text().catch(() => "");
-    throw new Error(`HTTP ${res.status} for ${url}\n${text}`);
+    throw new Error(`HTTP ${res.status} for ${redactKey(url)}\n${redactKey(text)}`);
   }
   return res.json();
 }
@@ -772,6 +780,7 @@ async function fetchUploadIds({ apiKey, uploadsPlaylistId, limit }) {
   const ids = [];
   let pageToken = "";
   while (ids.length < limit) {
+    const before = ids.length;
     const url =
       `${API}/playlistItems?part=contentDetails&playlistId=${encodeURIComponent(uploadsPlaylistId)}` +
       `&maxResults=50&key=${apiKey}${pageToken ? `&pageToken=${pageToken}` : ""}`;
@@ -780,6 +789,9 @@ async function fetchUploadIds({ apiKey, uploadsPlaylistId, limit }) {
       const id = item?.contentDetails?.videoId;
       if (id) ids.push(id);
     }
+    // A page that added nothing means the walk is not progressing; without this
+    // a non-empty nextPageToken beside an empty items array would loop forever.
+    if (ids.length === before) break;
     pageToken = page?.nextPageToken || "";
     if (!pageToken) break;
   }
@@ -821,6 +833,25 @@ async function main() {
 
   const ids = await fetchUploadIds({ apiKey, uploadsPlaylistId, limit: WINDOW_SIZE });
   const videos = await fetchVideos({ apiKey, ids });
+
+  // Fail loudly rather than committing an empty page. A 200 with no items —
+  // wrong playlist id, a transient backend hiccup — would otherwise write
+  // all-null stats, exit 0, and let the weekly workflow commit them over good
+  // data. Throwing leaves the previous JSON in place and the page keeps its
+  // last known figures under a visibly older updatedAt.
+  if (videos.length === 0) {
+    throw new Error(
+      "No videos returned for the uploads playlist — refusing to overwrite " +
+        "src/_data/youtube.json with empty statistics.",
+    );
+  }
+  if (!(num(item?.statistics?.subscriberCount) > 0)) {
+    throw new Error(
+      "Channel statistics came back empty — refusing to overwrite " +
+        "src/_data/youtube.json with empty statistics.",
+    );
+  }
+
   const derived = buildYoutubeStats({ videos, now: new Date() });
 
   // Curated picks are fetched by id, not looked up in the window above: the
