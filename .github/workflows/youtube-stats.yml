@@ -1,0 +1,52 @@
+# Refreshes the figures behind /kerjasama/ once a week and commits the result,
+# which is what triggers a Netlify rebuild. The site build itself never calls
+# the YouTube API, so if this job fails the numbers go stale but nothing breaks
+# — and the page renders `updatedAt`, so stale is visible rather than silent.
+name: Refresh YouTube stats
+
+on:
+  schedule:
+    # 21:00 UTC Sunday — 04:00 Monday in WIB.
+    - cron: "0 21 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: youtube-stats
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Fetch stats
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_CHANNEL_ID: ${{ vars.YOUTUBE_CHANNEL_ID }}
+        run: pnpm run fetch:youtube
+
+      - name: Commit if the numbers moved
+        run: |
+          if git diff --quiet -- src/_data/youtube.json; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/_data/youtube.json
+          git commit -m "chore(data): refresh YouTube stats"
+          git push
