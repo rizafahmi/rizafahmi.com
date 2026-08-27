@@ -66,7 +66,16 @@ const YOUTUBE = {
       tag: "DevTools",
     },
   ],
-  window: { videosAnalyzed: 150, from: "2025-06-11", to: "2026-08-26", matureMinDays: 21 },
+  window: {
+    videosAnalyzed: 300,
+    from: "2023-10-30",
+    to: "2026-08-26",
+    videosSummarized: 133,
+    statsFrom: "2025-05-29",
+    statsTo: "2026-08-05",
+    matureMinDays: 21,
+    statsMaxAgeDays: 456,
+  },
   updatedAt: "2026-08-27T09:00:00.000Z",
 };
 
@@ -137,6 +146,22 @@ test("shows sample size and range beside every median", () => {
     assert.match(row, new RegExp(`${id(f.min)}\\s*–\\s*${id(f.max)}`), `${key}: range as a unit`);
     assert.match(row, new RegExp(`<td>${f.n}</td>`), `${key}: sample size`);
   }
+});
+
+// The medians are drawn from a recency-bounded slice of the fetched uploads
+// (STATS_MAX_AGE_DAYS), while momentum is measured over everything fetched.
+// The note under the table is the page's only disclosure of which sample the
+// medians came from, so it must name that slice and not the wider fetch.
+test("the format note discloses the summarised sample, not the fetched one", () => {
+  const html = render();
+  const note = html.match(/<p class="kerjasama-note">([\s\S]*?)<\/p>/);
+  assert.ok(note, "the format section note should render for this fixture");
+
+  assert.match(note[1], /133/, "the count of videos the medians came from");
+  assert.match(note[1], /2025-05-29\s*–\s*2026-08-05/, "the range they came from");
+
+  assert.doesNotMatch(note[1], /300/, "the fetch size describes momentum, not the medians");
+  assert.doesNotMatch(note[1], /2023-10-30/, "the fetch range must not be claimed as the sample");
 });
 
 test("renders Ngobrolin WEB as a named series", () => {

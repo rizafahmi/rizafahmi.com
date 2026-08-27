@@ -53,13 +53,17 @@
       </div>
     {% endif %}
 
-    {% if formatKeys.length and youtube.window %}
+    {# The range named here must be the range the medians came from, not the
+       wider set that was fetched for the momentum figures — a disclosure
+       pointing at the wrong sample is worse than none. Hence statsFrom/statsTo
+       and videosSummarized rather than from/to and videosAnalyzed. #}
+    {% if formatKeys.length and youtube.window and youtube.window.statsFrom %}
       <h2>Performa per format</h2>
       <p class="kerjasama-note">
         Angka tengah (median) dari video yang sudah tayang minimal
         {{ youtube.window.matureMinDays }} hari, diambil dari
-        {{ youtube.window.videosAnalyzed }} unggahan terakhir
-        ({{ youtube.window.from }} – {{ youtube.window.to }}). Format dengan sampel
+        {{ youtube.window.videosSummarized }} video terbaru
+        ({{ youtube.window.statsFrom }} – {{ youtube.window.statsTo }}). Format dengan sampel
         terlalu sedikit tidak ditampilkan.
       </p>
       <table class="kerjasama-table">

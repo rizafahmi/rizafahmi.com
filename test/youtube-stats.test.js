@@ -9,10 +9,12 @@ import {
   computeMomentum,
   hydrateCurated,
   isMature,
+  isRecentEnough,
   MATURE_MIN_DAYS,
   MIN_FORMAT_SAMPLE,
   normalizeVideo,
   renderableFormats,
+  STATS_MAX_AGE_DAYS,
   summarize,
 } from "../src/libs/youtube-stats.js";
 
@@ -122,6 +124,20 @@ test("normalizeVideo: an item with no id is rejected", () => {
 test("thresholds are the values the spec fixed", () => {
   assert.equal(MATURE_MIN_DAYS, 21);
   assert.equal(MIN_FORMAT_SAMPLE, 5);
+  // The spec commits to this under Risks: "Medians describe roughly the last
+  // fifteen months, not all time. This is intended - recent performance is what
+  // a sponsor is buying." 456 days is that commitment in code.
+  assert.equal(STATS_MAX_AGE_DAYS, 456);
+});
+
+test("isRecentEnough: the 456-day boundary is inclusive", () => {
+  const now = new Date("2026-08-27T00:00:00Z");
+  assert.equal(isRecentEnough("2025-05-28T00:00:00Z", now), true); // exactly 456 days
+  assert.equal(isRecentEnough("2025-05-27T00:00:00Z", now), false); // 457 days
+});
+
+test("isRecentEnough: rejects unparseable dates", () => {
+  assert.equal(isRecentEnough("not-a-date", new Date("2026-08-27T00:00:00Z")), false);
 });
 
 const NOW = new Date("2026-08-27T00:00:00Z");
@@ -355,6 +371,100 @@ test("buildYoutubeStats: recentVideos are newest-first and capped", () => {
     out.recentVideos.map((v) => v.id),
     ["newest", "middle"],
   );
+});
+
+// The fetch window and the statistics window are different things. The fetch
+// reaches back far enough that momentum is measured rather than capped by the
+// page size; the medians stay bounded to recent output, because a sponsor is
+// buying what the channel does now. Collapsing the two lets a wider fetch
+// silently inflate every published median with an era the channel has left.
+
+test("buildYoutubeStats: an upload past the recency bound is counted but not summarised", () => {
+  const videos = [
+    ...Array.from({ length: 5 }, (_, i) =>
+      vid({ id: `recent${i}`, daysAgo: 100, views: 300, seconds: 60 }),
+    ),
+    vid({ id: "ancient", daysAgo: 900, views: 9000, seconds: 60 }),
+  ];
+  const out = buildYoutubeStats({ videos, now: NOW });
+
+  assert.equal(out.formats.shorts.n, 5, "the old video must not be summarised");
+  assert.equal(out.formats.shorts.max, 300, "nor may it stretch the published range");
+  assert.ok(!out.topVideos.some((v) => v.id === "ancient"), "nor top the best-performers list");
+  assert.equal(out.window.videosAnalyzed, 6, "but it was still fetched and analysed");
+  assert.equal(out.window.videosSummarized, 5);
+});
+
+test("buildYoutubeStats: the recency bound is inclusive at exactly STATS_MAX_AGE_DAYS", () => {
+  const at = buildYoutubeStats({
+    videos: [vid({ id: "edge", daysAgo: STATS_MAX_AGE_DAYS, views: 500, seconds: 60 })],
+    now: NOW,
+  });
+  assert.equal(at.window.videosSummarized, 1, "exactly at the bound still counts");
+
+  const past = buildYoutubeStats({
+    videos: [vid({ id: "edge", daysAgo: STATS_MAX_AGE_DAYS + 1, views: 500, seconds: 60 })],
+    now: NOW,
+  });
+  assert.equal(past.window.videosSummarized, 0, "one day older does not");
+});
+
+test("buildYoutubeStats: Ngobrolin WEB is summarised over the recent window only", () => {
+  const recent = Array.from({ length: 5 }, (_, i) =>
+    vid({
+      id: `n${i}`,
+      title: "Ngobrolin X - Ngobrolin WEB",
+      daysAgo: 100,
+      views: 200 + i,
+      seconds: 5400,
+    }),
+  );
+  const ancient = Array.from({ length: 5 }, (_, i) =>
+    vid({
+      id: `o${i}`,
+      title: "Ngobrolin Y - Ngobrolin WEB",
+      daysAgo: 900,
+      views: 4000,
+      seconds: 5400,
+    }),
+  );
+  const out = buildYoutubeStats({ videos: [...recent, ...ancient], now: NOW });
+
+  assert.equal(out.ngobrolinWeb.episodes, 5, "a bigger fetch must not grow the episode count");
+  assert.equal(out.ngobrolinWeb.median, 202, "nor lift the median the series is priced on");
+  assert.equal(out.ngobrolinWeb.max, 204);
+});
+
+test("buildYoutubeStats: statsFrom/statsTo describe the summarised set, not the fetch", () => {
+  const videos = [
+    vid({ id: "ancient", daysAgo: 900 }), // fetched, too old to summarise
+    vid({ id: "oldest-summarised", daysAgo: 400 }),
+    vid({ id: "newest-summarised", daysAgo: 30 }),
+    vid({ id: "newborn", daysAgo: 2 }), // fetched, too young to summarise
+  ];
+  const out = buildYoutubeStats({ videos, now: NOW });
+
+  assert.equal(out.window.from, "2024-03-10", "the fetch range starts at the oldest upload");
+  assert.equal(out.window.to, "2026-08-25", "and ends at the newest");
+  assert.equal(out.window.statsFrom, "2025-07-23", "the stats range excludes the too-old video");
+  assert.equal(out.window.statsTo, "2026-07-28", "and the too-young one");
+  assert.equal(out.window.videosAnalyzed, 4);
+  assert.equal(out.window.videosSummarized, 2);
+});
+
+test("buildYoutubeStats: momentum still sees every fetched upload", () => {
+  // Cadence measures output, not performance, so neither age bound applies:
+  // a 2-day-old video and a 400-day-old one both count as videos posted.
+  const out = buildYoutubeStats({
+    videos: [
+      vid({ id: "newborn", daysAgo: 2 }),
+      vid({ id: "old", daysAgo: 300 }),
+      vid({ id: "ancient", daysAgo: 900 }), // outside the 12-month window entirely
+    ],
+    now: NOW,
+  });
+  assert.equal(out.momentum.videosLast12Months, 2);
+  assert.equal(out.window.videosSummarized, 1, "only the 300-day-old one is summarisable");
 });
 
 test("buildYoutubeStats: window reports the analysed range", () => {

@@ -32,11 +32,16 @@ import {
 const API = "https://www.googleapis.com/youtube/v3";
 
 /**
- * How far back the medians look. Six playlist pages, six video pages — cheap
- * enough for a weekly job, and deliberately far wider than the 365-day momentum
- * window so cadence is measured rather than capped. At 150 the two were only
- * thirteen videos apart; see assertMomentumWindowCovered, which fails the run
- * rather than let an undercount be published if that headroom is ever used up.
+ * How many uploads to fetch. Six playlist pages, six video pages — cheap enough
+ * for a weekly job, and deliberately far wider than the 365-day momentum window
+ * so cadence is measured rather than capped. At 150 the two were only thirteen
+ * videos apart; see assertMomentumWindowCovered, which fails the run rather than
+ * let an undercount be published if that headroom is ever used up.
+ *
+ * This is NOT the window the medians describe. Widening the fetch must never
+ * widen the published medians — reaching further back would flatter the channel
+ * with an era it can no longer reproduce — so buildYoutubeStats bounds the
+ * summarised set separately at STATS_MAX_AGE_DAYS.
  */
 const WINDOW_SIZE = 300;
 

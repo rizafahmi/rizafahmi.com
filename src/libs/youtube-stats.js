@@ -5,17 +5,32 @@
  * they have to be reproducible and testable without a network round trip —
  * scripts/fetch-youtube-stats.mjs owns the I/O and calls into this module.
  *
- * Two rules drive the shape of this file. Views are summarised with a median
+ * Three rules drive the shape of this file. Views are summarised with a median
  * rather than a mean, because one breakout Short should not speak for a year of
- * uploads. And a video younger than MATURE_MIN_DAYS is excluded from every
- * summary, because a video published on Tuesday has not had time to earn its
- * views and would otherwise drag the figure down.
+ * uploads. A video younger than MATURE_MIN_DAYS is excluded from every summary,
+ * because a video published on Tuesday has not had time to earn its views and
+ * would otherwise drag the figure down. And a video older than
+ * STATS_MAX_AGE_DAYS is excluded too, because a sponsor is buying what the
+ * channel does now, not what it did three years ago.
+ *
+ * Those last two bound the *summaries* only. `momentum` and `window` measure
+ * output and coverage rather than performance, so they see every fetched video.
+ * The fetch window (scripts/fetch-youtube-stats.mjs) is deliberately wider than
+ * all of them, so cadence is measured rather than capped.
  */
 
 import { parseIsoDuration } from "./tips.js";
 
 /** A video needs this many days before its view count means anything. */
 export const MATURE_MIN_DAYS = 21;
+
+/**
+ * How far back the published medians look. A sponsor is buying recent
+ * performance, so summarising four years of uploads would flatter the channel
+ * with videos it can no longer reproduce. The fetch window is deliberately
+ * larger than this — momentum needs the extra headroom.
+ */
+export const STATS_MAX_AGE_DAYS = 456; // ~15 months
 
 /**
  * Below this many mature videos, a summary gets no median rendered. It governs
@@ -73,6 +88,17 @@ export function isMature(publishedAt, now, minDays = MATURE_MIN_DAYS) {
   const published = new Date(publishedAt);
   if (Number.isNaN(published.getTime())) return false;
   return (now.getTime() - published.getTime()) / MS_PER_DAY >= minDays;
+}
+
+/**
+ * Is this video recent enough to speak for the channel a sponsor would be
+ * buying? The boundary is inclusive: at exactly STATS_MAX_AGE_DAYS a video
+ * still counts, and one day older does not.
+ */
+export function isRecentEnough(publishedAt, now, maxDays = STATS_MAX_AGE_DAYS) {
+  const published = new Date(publishedAt);
+  if (Number.isNaN(published.getTime())) return false;
+  return (now.getTime() - published.getTime()) / MS_PER_DAY <= maxDays;
 }
 
 /** Nearest-rank quantile over an ascending array. */
@@ -177,7 +203,12 @@ export function hydrateCurated(picks, videos) {
  */
 export function buildYoutubeStats({ videos, now, topCount = 6, recentCount = 6 }) {
   const all = (videos || []).filter((v) => v.durationSeconds > 0);
-  const mature = all.filter((v) => isMature(v.publishedAt, now));
+
+  // The summarised set is bounded at both ends: old enough to have earned its
+  // views, recent enough to describe the channel a sponsor would be buying.
+  const mature = all.filter(
+    (v) => isMature(v.publishedAt, now) && isRecentEnough(v.publishedAt, now),
+  );
 
   const formats = { shorts: null, episode: null, recorded: null };
   for (const key of Object.keys(formats)) {
@@ -195,10 +226,13 @@ export function buildYoutubeStats({ videos, now, topCount = 6, recentCount = 6 }
     ngobrolin.length >= MIN_FORMAT_SAMPLE ? summarize(ngobrolin.map((v) => v.views)) : null;
 
   const byDateDesc = [...all].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
-  const dates = all
-    .map((v) => v.publishedAt)
-    .filter(Boolean)
-    .sort();
+  const sortedDates = (list) =>
+    list
+      .map((v) => v.publishedAt)
+      .filter(Boolean)
+      .sort();
+  const dates = sortedDates(all);
+  const statsDates = sortedDates(mature);
 
   return {
     momentum: computeMomentum(all, now),
@@ -213,11 +247,21 @@ export function buildYoutubeStats({ videos, now, topCount = 6, recentCount = 6 }
       : null,
     topVideos: [...mature].sort((a, b) => b.views - a.views).slice(0, topCount),
     recentVideos: byDateDesc.slice(0, recentCount),
+    // Two ranges, because they answer two different questions. `videosAnalyzed`
+    // / `from` / `to` describe everything fetched, which is what momentum is
+    // measured over. `videosSummarized` / `statsFrom` / `statsTo` describe the
+    // set the medians actually came from — and that is the pair the page
+    // renders, because a disclosure that names the wrong sample is worse than
+    // no disclosure at all.
     window: {
       videosAnalyzed: all.length,
       from: dates.length ? isoDate(dates[0]) : null,
       to: dates.length ? isoDate(dates[dates.length - 1]) : null,
+      videosSummarized: mature.length,
+      statsFrom: statsDates.length ? isoDate(statsDates[0]) : null,
+      statsTo: statsDates.length ? isoDate(statsDates[statsDates.length - 1]) : null,
       matureMinDays: MATURE_MIN_DAYS,
+      statsMaxAgeDays: STATS_MAX_AGE_DAYS,
     },
   };
 }
@@ -272,9 +316,11 @@ export function assertNoStatsRegression(previous, next, { curatedCount = 0 } = {
   throw new Error(
     `Refusing to write src/_data/youtube.json: ${problems.join("; ")}. ` +
       `A drop this size is far more likely to be a bad fetch than a real change — ` +
-      `check the API quota and key, and whether a curated video in ` +
-      `src/_data/ratecardBestVideos.json has gone private or been deleted. ` +
-      `The committed figures were left untouched.`,
+      `check the API quota and key, whether a curated video in ` +
+      `src/_data/ratecardBestVideos.json has gone private or been deleted, and ` +
+      `whether WINDOW_SIZE in scripts/fetch-youtube-stats.mjs was lowered (a smaller ` +
+      `fetch window reads here as a truncated one). The committed figures were left ` +
+      `untouched; if the drop is real and intended, commit the new file by hand.`,
   );
 }
 
