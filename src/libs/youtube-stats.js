@@ -17,7 +17,11 @@ import { parseIsoDuration } from "./tips.js";
 /** A video needs this many days before its view count means anything. */
 export const MATURE_MIN_DAYS = 21;
 
-/** Below this many mature videos, a format gets no median rendered. */
+/**
+ * Below this many mature videos, a summary gets no median rendered. It governs
+ * the format buckets and the Ngobrolin WEB block alike: a "typical episode"
+ * drawn from one paused-series leftover is not a typical episode.
+ */
 export const MIN_FORMAT_SAMPLE = 5;
 
 /** Longest a video can be and still count as a Short. */
@@ -26,7 +30,17 @@ const SHORTS_MAX_SECONDS = 180;
 /** Shortest a video can be and still count as a full episode. */
 const EPISODE_MIN_SECONDS = 2700;
 
+/** The series the page sells per episode. Every real title ends "- Ngobrolin WEB". */
+const NGOBROLIN_WEB_TITLE = "ngobrolin web";
+
 const MS_PER_DAY = 86_400_000;
+
+/** How far back momentum looks, and how many months it divides cadence by. */
+export const MOMENTUM_WINDOW_DAYS = 365;
+const MOMENTUM_WINDOW_MONTHS = 12;
+
+/** How far a figure may fall between runs before a refresh is refused. */
+export const MAX_REGRESSION = 0.3;
 
 /** One raw YouTube API `videos.list` item to the shape this module works in. */
 export function normalizeVideo(item) {
@@ -97,20 +111,27 @@ function isoDate(value) {
  * Output over the last twelve months. This measures how much gets published,
  * so unlike the medians it deliberately counts videos of any age — a video
  * posted yesterday is still a video posted.
+ *
+ * `uploadsPerMonth` divides by the twelve ELAPSED months of the window, not by
+ * the months that happen to contain an upload. Dividing by active months makes
+ * the average rise when output stops — a three-month break would raise the
+ * figure at the moment there was less to sell — and the page prints it as
+ * "rata-rata" beside a card labelled "12 bulan terakhir", which a reader takes
+ * as elapsed time. `monthsCovered` is still emitted, and now says something the
+ * divisor does not: how much of the year actually had an upload in it.
  */
 export function computeMomentum(videos, now) {
-  const cutoff = now.getTime() - 365 * MS_PER_DAY;
+  const cutoff = now.getTime() - MOMENTUM_WINDOW_DAYS * MS_PER_DAY;
   const recent = (videos || []).filter((v) => {
     const t = new Date(v.publishedAt).getTime();
     return Number.isFinite(t) && t >= cutoff;
   });
   const months = new Set(recent.map((v) => v.publishedAt.slice(0, 7)));
-  const monthsCovered = months.size;
   return {
     videosLast12Months: recent.length,
     viewsLast12Months: recent.reduce((sum, v) => sum + v.views, 0),
-    uploadsPerMonth: monthsCovered ? Math.round((recent.length / monthsCovered) * 10) / 10 : 0,
-    monthsCovered,
+    uploadsPerMonth: Math.round((recent.length / MOMENTUM_WINDOW_MONTHS) * 10) / 10,
+    monthsCovered: months.size,
   };
 }
 
@@ -142,9 +163,20 @@ export function hydrateCurated(picks, videos) {
     .filter(Boolean);
 }
 
-/** Everything the template needs, assembled from normalized videos. */
+/**
+ * Everything the template needs, assembled from normalized videos.
+ *
+ * Zero-duration items are dropped before anything is counted. YouTube reports
+ * `contentDetails.duration = "P0D"` for a stream that is live or still merely
+ * scheduled, and such an item is poison to every figure here: it has no views
+ * yet, it is short enough to bucket as a Short, and a premiere scheduled weeks
+ * out carries an old enough `publishedAt` to pass the maturity check — so one
+ * unaired stream is enough to print `min` as 0 in the Shorts range. It is
+ * excluded from cadence too: an unaired premiere is not output, and counting it
+ * would overstate the channel. A real published video always has a duration.
+ */
 export function buildYoutubeStats({ videos, now, topCount = 6, recentCount = 6 }) {
-  const all = videos || [];
+  const all = (videos || []).filter((v) => v.durationSeconds > 0);
   const mature = all.filter((v) => isMature(v.publishedAt, now));
 
   const formats = { shorts: null, episode: null, recorded: null };
@@ -153,8 +185,14 @@ export function buildYoutubeStats({ videos, now, topCount = 6, recentCount = 6 }
     formats[key] = summarize(views);
   }
 
-  const ngobrolin = mature.filter((v) => v.title.toLowerCase().includes("ngobrolin"));
-  const ngobrolinSummary = summarize(ngobrolin.map((v) => v.views));
+  // Both halves matter. "ngobrolin" alone also catches Shorts cut from the show
+  // and spin-offs like "Ngobrolin AI", and the page sells this as a specific
+  // sponsorable series priced per episode.
+  const ngobrolin = mature.filter(
+    (v) => v.title.toLowerCase().includes(NGOBROLIN_WEB_TITLE) && bucketFormat(v) === "episode",
+  );
+  const ngobrolinSummary =
+    ngobrolin.length >= MIN_FORMAT_SAMPLE ? summarize(ngobrolin.map((v) => v.views)) : null;
 
   const byDateDesc = [...all].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   const dates = all
