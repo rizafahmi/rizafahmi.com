@@ -35,6 +35,7 @@ on this site, so it is silently excluded from the search index.
 
 - **No prices.** The Canva deck ("Rate Card v2") carries starting prices; the page does not.
   Pricing stays by-request over email. This is a media kit, not a price list.
+<<<<<<< HEAD
 - **No Instagram or X follower counts.** Neither platform is on the page, with or without
   numbers. Automatic collection was evaluated and rejected on evidence, measured 2026-08-27:
   `instagram.com/rizafahmi/` returns a 616 KB login-walled JS shell with zero `og:` meta tags
@@ -47,6 +48,9 @@ on this site, so it is silently excluded from the search index.
   days) and the X API (user lookup is paid-tier only). Neither is worth its maintenance for a
   single slow-moving number, and 4,5rb IG followers at 0,5% engagement would weaken the page
   beside 7.170 subscribers and 364.431 views.
+=======
+- **No Instagram section.** Deferred to a later pass.
+>>>>>>> fddcc3a (docs: design spec for dynamic YouTube media kit at /kerjasama/)
 - **No separate Ngobrolin WEB channel stats.** Ngobrolin WEB is a format within YouTube and is
   measured with YouTube data, not as a standalone channel with its own metrics.
 - **No Narasumber/Acara (speaking) section.** Removed from this page entirely.
@@ -87,6 +91,7 @@ ceiling is 29.060 (Ainun Najib, 2020).
 Note the `recorded` bucket holds exactly one video in this window. See "Small-sample
 suppression" below.
 
+<<<<<<< HEAD
 > **Note on the sample bounds.** The figures above are a point-in-time record and are left as
 > measured. The "last 150 uploads" / "n = 133 of 150" counts describe how the sample was bounded
 > *then*: by upload count, because the fetch size and the statistics window were the same number.
@@ -94,6 +99,8 @@ suppression" below.
 > bounded by recency (`STATS_MAX_AGE_DAYS`, 456 days) rather than by count — see Computation
 > rules and Risks.
 
+=======
+>>>>>>> fddcc3a (docs: design spec for dynamic YouTube media kit at /kerjasama/)
 The honest pitch these numbers support: a niche Indonesian developer audience, output tripled
 since May 2026, and a format that is currently working. Not a large channel.
 
@@ -124,10 +131,15 @@ date.
 
 ### `scripts/fetch-youtube-stats.mjs` (rewritten)
 
+<<<<<<< HEAD
 Walks the uploads playlist and fetches full video records for the most recent 300 uploads —
 six `playlistItems` calls plus six `videos` calls. That fetch size serves `momentum`, which needs
 to reach well past 365 days to be measured rather than capped; it is **not** the window the
 medians describe (see "Recency filter" under Computation rules). Emits an extended `src/_data/youtube.json`:
+=======
+Walks the uploads playlist and fetches full video records for the most recent 150 uploads —
+three `playlistItems` calls plus three `videos` calls. Emits an extended `src/_data/youtube.json`:
+>>>>>>> fddcc3a (docs: design spec for dynamic YouTube media kit at /kerjasama/)
 
 - `channel` — id, title, url, handle, thumbnail (unchanged shape)
 - `stats` — `subscribers`, `totalViews`, `videoCount`
@@ -136,10 +148,13 @@ medians describe (see "Recency filter" under Computation rules). Emits an extend
 - `ngobrolinWeb` — `episodes`, `median`, `min`, `max`
 - `topVideos` — top performers with id, title, url, views, publishedAt
 - `recentVideos` — unchanged shape
+<<<<<<< HEAD
 - `window` — two ranges, deliberately distinct. `videosAnalyzed`, `from`, `to` describe
   everything fetched, which is what `momentum` is measured over; `videosSummarized`,
   `statsFrom`, `statsTo` describe the recency-bounded set the medians came from, and are what
   the page renders in its disclosure. Plus `matureMinDays` and `statsMaxAgeDays`.
+=======
+>>>>>>> fddcc3a (docs: design spec for dynamic YouTube media kit at /kerjasama/)
 - `updatedAt`, `source`
 
 `avgViewsLast12` and `viewsLast12Range` are removed from the emitted shape and from the template.
@@ -149,6 +164,7 @@ medians describe (see "Recency filter" under Computation rules). Emits an extend
 - **Maturity filter.** Videos younger than 21 days are excluded from every median, percentile,
   and range. They are still counted in `momentum.videosLast12Months` and in cadence, because
   those measure output rather than performance.
+<<<<<<< HEAD
 - **Recency filter.** Videos older than `STATS_MAX_AGE_DAYS` (456, ~15 months) are likewise
   excluded from every median, percentile and range, and from `topVideos` — but not from cadence
   or `window.videosAnalyzed`. See the Risks note: this bound is what keeps the medians describing
@@ -169,6 +185,14 @@ medians describe (see "Recency filter" under Computation rules). Emits an extend
   contain an upload makes the average *rise* when output stops, and the page renders it as
   "rata-rata" beside a card labelled "12 bulan terakhir". `monthsCovered` is still emitted, and
   now reports something the divisor does not: how much of the year had an upload in it.
+=======
+- **Median, not mean**, for all per-format performance figures.
+- **Format bucketing**, in this order: duration ≤ 180s → `shorts`; else `liveStreamingDetails`
+  present or duration ≥ 2700s → `episode`; else → `recorded`.
+- **Ngobrolin WEB** is identified by case-insensitive `"ngobrolin"` in the video title.
+- **Uploads per month** is `videosLast12Months` divided by the number of distinct calendar
+  months present in that cohort, rounded to one decimal.
+>>>>>>> fddcc3a (docs: design spec for dynamic YouTube media kit at /kerjasama/)
 - **Small-sample suppression.** A format bucket with fewer than 5 mature videos does not get a
   median rendered; the section omits that format rather than publishing a one-sample "median".
   This is not hypothetical — as of 2026-08-27 the `recorded` bucket holds a single video, so
@@ -187,11 +211,15 @@ only fetching and file writing.
 Stays curated — the selection is a human judgment. Entries drop their hardcoded `title` and keep
 `{ id, tag }` only. Title and view count are hydrated at build time from the video records in
 `youtube.json`, so a curated entry can no longer display a stale title or go silently missing.
+<<<<<<< HEAD
 Curated records are fetched by id in a separate call, not looked up in the recent window — the
 videos that best show what a sponsorship looks like are years old, and the window is bounded. A
 pick whose record cannot be fetched at all (deleted, or gone private) is no longer dropped with a
 warning: the fetch script refuses to write the file, because a silently shorter "Video terbaik"
 on a sponsor-facing page is worse than a stale one.
+=======
+Curated ids not present in the fetched window are dropped from render rather than shown blank.
+>>>>>>> fddcc3a (docs: design spec for dynamic YouTube media kit at /kerjasama/)
 
 ### Graceful degradation
 
@@ -286,6 +314,7 @@ is now their source of record. No CV output changes.
 
 - **API quota or key rotation.** Contained by design: the build never calls the API, so the
   failure mode is stale numbers with a visible stale date, not a broken site.
+<<<<<<< HEAD
 - **Recency-bounded medians.** Medians describe roughly the last fifteen months, not all time.
   This is intended — recent performance is what a sponsor is buying — and the page labels the
   window. The bound is a *time* bound (`STATS_MAX_AGE_DAYS`), deliberately separate from how many
@@ -293,6 +322,10 @@ is now their source of record. No CV output changes.
   measured rather than capped. Do not collapse the two again. Tying the medians to the fetch size
   is how this commitment was briefly lost — widening the fetch to 300 lifted the Ngobrolin WEB
   median 29% by reaching back into an era the channel no longer reproduces.
+=======
+- **150-video window.** Medians describe roughly the last fifteen months, not all time. This is
+  intended — recent performance is what a sponsor is buying — and the page labels the window.
+>>>>>>> fddcc3a (docs: design spec for dynamic YouTube media kit at /kerjasama/)
 - **Modest absolute numbers.** Recent per-video medians are in the low hundreds. The design
   answers this with framing rather than inflation: lifetime reach, output momentum, format
   specificity, named past sponsors, and audience niche. No metric is selected purely because it
