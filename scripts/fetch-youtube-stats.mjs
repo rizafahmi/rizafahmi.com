@@ -38,11 +38,16 @@ function opt(name) {
   return process.env[name] || "";
 }
 
+/** A request URL safe to put in an error: the API key is the one secret here. */
+function redactKey(text) {
+  return String(text).replace(/([?&]key=)[^&\s]*/g, "$1REDACTED");
+}
+
 async function getJson(url) {
   const res = await fetch(url);
   if (!res.ok) {
     const text = await res.text().catch(() => "");
-    throw new Error(`HTTP ${res.status} for ${url}\n${text}`);
+    throw new Error(`HTTP ${res.status} for ${redactKey(url)}\n${redactKey(text)}`);
   }
   return res.json();
 }
@@ -75,6 +80,7 @@ async function fetchUploadIds({ apiKey, uploadsPlaylistId, limit }) {
   const ids = [];
   let pageToken = "";
   while (ids.length < limit) {
+    const before = ids.length;
     const url =
       `${API}/playlistItems?part=contentDetails&playlistId=${encodeURIComponent(uploadsPlaylistId)}` +
       `&maxResults=50&key=${apiKey}${pageToken ? `&pageToken=${pageToken}` : ""}`;
@@ -85,6 +91,7 @@ async function fetchUploadIds({ apiKey, uploadsPlaylistId, limit }) {
     }
     pageToken = page?.nextPageToken || "";
     if (!pageToken) break;
+    if (ids.length === before) break;
   }
   return ids.slice(0, limit);
 }
@@ -124,6 +131,20 @@ async function main() {
 
   const ids = await fetchUploadIds({ apiKey, uploadsPlaylistId, limit: WINDOW_SIZE });
   const videos = await fetchVideos({ apiKey, ids });
+
+  if (videos.length === 0) {
+    throw new Error(
+      "No videos returned for the uploads playlist — refusing to overwrite " +
+        "src/_data/youtube.json with empty statistics.",
+    );
+  }
+  if (!(num(item?.statistics?.subscriberCount) > 0)) {
+    throw new Error(
+      "Channel statistics came back empty — refusing to overwrite " +
+        "src/_data/youtube.json with empty statistics.",
+    );
+  }
+
   const derived = buildYoutubeStats({ videos, now: new Date() });
 
   // Curated picks are fetched by id, not looked up in the window above: the

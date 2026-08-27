@@ -13,7 +13,7 @@
   },
   "momentum": {
     "videosLast12Months": 137,
-    "viewsLast12Months": 48451,
+    "viewsLast12Months": 48452,
     "uploadsPerMonth": 11.4,
     "monthsCovered": 12
   },
@@ -229,7 +229,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-08-27T14:02:16.206Z",
+  "updatedAt": "2026-08-27T14:17:31.073Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
