@@ -8,6 +8,7 @@ import { generateOgImage } from "./src/libs/og-image.js";
 import { getRelatedPosts } from "./src/libs/related.js";
 import shikiPlugin from "./src/libs/shiki.js";
 import { tipsWithTag } from "./src/libs/tips.js";
+import { renderableFormats } from "./src/libs/youtube-stats.js";
 
 const isDev = process.env.ELEVENTY_ENV === "dev";
 
@@ -231,6 +232,19 @@ export default function (eleventyConfig) {
     if (!Number.isFinite(n)) return String(num);
     return n.toLocaleString(locale);
   });
+
+  // A date a person can read, for the "last updated" line on /kerjasama/.
+  eleventyConfig.addFilter("localeDate", (value, locale = "id-ID") => {
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return "";
+    return d.toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" });
+  });
+
+  // Format buckets with a large enough sample to show a median. See
+  // src/libs/youtube-stats.js — the threshold is deliberate, not cosmetic.
+  eleventyConfig.addFilter("renderableFormats", (youtube) =>
+    youtube?.formats ? renderableFormats(youtube.formats) : [],
+  );
 
   // Sort a collection by view counts (descending) using GoatCounter data.
   // Usage: collections.catatan | popularByViews(goatcounterViews, 10)

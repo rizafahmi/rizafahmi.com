@@ -20,6 +20,7 @@
     "audit:site": "node scripts/audit-site.mjs",
     "og:default": "node scripts/generate-default-og.mjs",
     "og:force": "OG_IMAGE_FORCE=1 pnpm run build",
+    "fetch:youtube": "node scripts/fetch-youtube-stats.mjs",
     "test": "node --test test/*.test.js",
     "new:catatan": "node scripts/new-catatan.mjs",
     "lint": "biome lint .",

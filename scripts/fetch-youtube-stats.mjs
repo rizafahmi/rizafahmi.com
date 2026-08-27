@@ -1,11 +1,19 @@
 #!/usr/bin/env node
 /**
- * Fetch basic public YouTube channel stats using YouTube Data API v3.
+ * Refresh the YouTube figures behind /kerjasama/.
  *
  * Writes: src/_data/youtube.json
  *
+ * This is the only place that talks to YouTube. `pnpm run build` reads the
+ * committed JSON and never calls the API, so a quota error or an expired key
+ * can leave the numbers stale but can never fail a deploy. The page renders
+ * `updatedAt`, which is what makes staleness visible rather than silent.
+ *
+ * All arithmetic lives in src/libs/youtube-stats.js so it can be tested
+ * offline; this file only fetches, maps, and writes.
+ *
  * Env:
- *   YOUTUBE_API_KEY   (required)
+ *   YOUTUBE_API_KEY    (required)
  *   YOUTUBE_CHANNEL_ID (optional) e.g. UCxxxx
  *   YOUTUBE_HANDLE     (optional) e.g. rizafahmi (without @)
  */
@@ -13,7 +21,29 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
+import {
+  assertMomentumWindowCovered,
+  assertNoStatsRegression,
+  buildYoutubeStats,
+  hydrateCurated,
+  normalizeVideo,
+} from "../src/libs/youtube-stats.js";
+
 const API = "https://www.googleapis.com/youtube/v3";
+
+/**
+ * How many uploads to fetch. Six playlist pages, six video pages — cheap enough
+ * for a weekly job, and deliberately far wider than the 365-day momentum window
+ * so cadence is measured rather than capped. At 150 the two were only thirteen
+ * videos apart; see assertMomentumWindowCovered, which fails the run rather than
+ * let an undercount be published if that headroom is ever used up.
+ *
+ * This is NOT the window the medians describe. Widening the fetch must never
+ * widen the published medians — reaching further back would flatter the channel
+ * with an era it can no longer reproduce — so buildYoutubeStats bounds the
+ * summarised set separately at STATS_MAX_AGE_DAYS.
+ */
+const WINDOW_SIZE = 300;
 
 function must(name) {
   const v = process.env[name];
@@ -25,26 +55,34 @@ function opt(name) {
   return process.env[name] || "";
 }
 
+/** A request URL safe to put in an error: the API key is the one secret here. */
+function redactKey(text) {
+  return String(text).replace(/([?&]key=)[^&\s]*/g, "$1REDACTED");
+}
+
 async function getJson(url) {
   const res = await fetch(url);
   if (!res.ok) {
     const text = await res.text().catch(() => "");
-    throw new Error(`HTTP ${res.status} for ${url}\n${text}`);
+    throw new Error(`HTTP ${res.status} for ${redactKey(url)}\n${redactKey(text)}`);
   }
   return res.json();
+}
+
+function num(n) {
+  const x = Number(n);
+  return Number.isFinite(x) ? x : null;
 }
 
 async function resolveChannelId({ apiKey, channelId, handle }) {
   if (channelId) return channelId;
   if (!handle) throw new Error("Provide YOUTUBE_CHANNEL_ID or YOUTUBE_HANDLE");
 
-  // Newer API supports forHandle.
   const byHandle = `${API}/channels?part=id&forHandle=${encodeURIComponent(handle)}&key=${apiKey}`;
   const j1 = await getJson(byHandle);
   const id = j1?.items?.[0]?.id;
   if (id) return id;
 
-  // Fallback: search for channel by handle/username.
   const q = `@${handle}`;
   const search = `${API}/search?part=snippet&type=channel&maxResults=1&q=${encodeURIComponent(q)}&key=${apiKey}`;
   const j2 = await getJson(search);
@@ -54,52 +92,111 @@ async function resolveChannelId({ apiKey, channelId, handle }) {
   throw new Error(`Could not resolve channel id for handle ${handle}`);
 }
 
-function num(n) {
-  const x = Number(n);
-  return Number.isFinite(x) ? x : null;
+/** Video ids from the channel's uploads playlist, newest first. */
+async function fetchUploadIds({ apiKey, uploadsPlaylistId, limit }) {
+  const ids = [];
+  let pageToken = "";
+  while (ids.length < limit) {
+    const before = ids.length;
+    const url =
+      `${API}/playlistItems?part=contentDetails&playlistId=${encodeURIComponent(uploadsPlaylistId)}` +
+      `&maxResults=50&key=${apiKey}${pageToken ? `&pageToken=${pageToken}` : ""}`;
+    const page = await getJson(url);
+    for (const item of page?.items || []) {
+      const id = item?.contentDetails?.videoId;
+      if (id) ids.push(id);
+    }
+    pageToken = page?.nextPageToken || "";
+    if (!pageToken) break;
+    if (ids.length === before) break;
+  }
+  return ids.slice(0, limit);
+}
+
+/** Full records for those ids, 50 at a time — the API's per-call ceiling. */
+async function fetchVideos({ apiKey, ids }) {
+  const out = [];
+  for (let i = 0; i < ids.length; i += 50) {
+    const chunk = ids.slice(i, i + 50).join(",");
+    const url =
+      `${API}/videos?part=snippet,statistics,contentDetails,liveStreamingDetails` +
+      `&id=${encodeURIComponent(chunk)}&key=${apiKey}`;
+    const page = await getJson(url);
+    for (const item of page?.items || []) {
+      const v = normalizeVideo(item);
+      if (v) out.push(v);
+    }
+  }
+  return out;
+}
+
+/**
+ * The committed figures, for the regression guard to compare against.
+ *
+ * Missing file → null, meaning "first run, nothing to compare". Anything else
+ * wrong throws: a corrupt file must never be mistaken for a first run, or the
+ * guard would wave through exactly the bad write it exists to stop.
+ */
+async function readExistingStats(file) {
+  let raw;
+  try {
+    raw = await fs.readFile(file, "utf8");
+  } catch (error) {
+    if (error?.code === "ENOENT") return null;
+    throw new Error(`Could not read ${file}: ${error.message}`);
+  }
+  try {
+    return JSON.parse(raw);
+  } catch (error) {
+    throw new Error(
+      `${file} is not valid JSON, so this run cannot be checked against it: ${error.message}`,
+    );
+  }
 }
 
 async function main() {
   const apiKey = must("YOUTUBE_API_KEY");
-  const channelId = opt("YOUTUBE_CHANNEL_ID");
-  const handle = opt("YOUTUBE_HANDLE");
+  const now = new Date();
+  const id = await resolveChannelId({
+    apiKey,
+    channelId: opt("YOUTUBE_CHANNEL_ID"),
+    handle: opt("YOUTUBE_HANDLE"),
+  });
 
-  const id = await resolveChannelId({ apiKey, channelId, handle });
-
-  const channelUrl = `${API}/channels?part=snippet,statistics&id=${encodeURIComponent(id)}&key=${apiKey}`;
+  const channelUrl = `${API}/channels?part=snippet,statistics,contentDetails&id=${encodeURIComponent(id)}&key=${apiKey}`;
   const channel = await getJson(channelUrl);
   const item = channel?.items?.[0];
   if (!item) throw new Error("Channel not found");
 
-  // Latest 12 videos: compute views range + avg views.
-  const _uploadsPlaylistId = item?.contentDetails?.relatedPlaylists?.uploads;
-  // contentDetails not included; use search list instead (reliable for public).
-  const searchUrl = `${API}/search?part=id&channelId=${encodeURIComponent(id)}&order=date&type=video&maxResults=12&key=${apiKey}`;
-  const search = await getJson(searchUrl);
-  const videoIds = (search?.items || []).map((it) => it?.id?.videoId).filter(Boolean);
+  const uploadsPlaylistId = item?.contentDetails?.relatedPlaylists?.uploads;
+  if (!uploadsPlaylistId) throw new Error("Channel has no uploads playlist");
 
-  let videos = [];
-  if (videoIds.length) {
-    const vidsUrl = `${API}/videos?part=snippet,statistics&id=${encodeURIComponent(videoIds.join(","))}&key=${apiKey}`;
-    const vids = await getJson(vidsUrl);
-    videos = (vids?.items || [])
-      .map((v) => ({
-        id: v.id,
-        title: v?.snippet?.title,
-        publishedAt: v?.snippet?.publishedAt,
-        url: `https://www.youtube.com/watch?v=${v.id}`,
-        views: num(v?.statistics?.viewCount) || 0,
-      }))
-      .sort((a, b) => (b.publishedAt || "").localeCompare(a.publishedAt || ""));
+  const ids = await fetchUploadIds({ apiKey, uploadsPlaylistId, limit: WINDOW_SIZE });
+  const videos = await fetchVideos({ apiKey, ids });
+
+  if (videos.length === 0) {
+    throw new Error(
+      "No videos returned for the uploads playlist — refusing to overwrite " +
+        "src/_data/youtube.json with empty statistics.",
+    );
+  }
+  if (!(num(item?.statistics?.subscriberCount) > 0)) {
+    throw new Error(
+      "Channel statistics came back empty — refusing to overwrite " +
+        "src/_data/youtube.json with empty statistics.",
+    );
   }
 
-  const viewCounts = videos.map((v) => v.views).filter((v) => typeof v === "number");
-  const avgViewsLast12 = viewCounts.length
-    ? Math.round(viewCounts.reduce((a, b) => a + b, 0) / viewCounts.length)
-    : null;
-  const minViewsLast12 = viewCounts.length ? Math.min(...viewCounts) : null;
-  const maxViewsLast12 = viewCounts.length ? Math.max(...viewCounts) : null;
+  const derived = buildYoutubeStats({ videos, now });
 
+  // Curated picks are fetched by id, not looked up in the window above: the
+  // videos that best show what a sponsorship looks like are years old.
+  const curatedPath = path.join(process.cwd(), "src", "_data", "ratecardBestVideos.json");
+  const picks = JSON.parse(await fs.readFile(curatedPath, "utf8"));
+  const curatedRecords = await fetchVideos({ apiKey, ids: picks.map((p) => p.id) });
+  const bestVideos = hydrateCurated(picks, curatedRecords);
+
+  const handle = opt("YOUTUBE_HANDLE");
   const out = {
     channel: {
       id,
@@ -113,15 +210,10 @@ async function main() {
       subscribers: num(item?.statistics?.subscriberCount),
       totalViews: num(item?.statistics?.viewCount),
       videoCount: num(item?.statistics?.videoCount),
-      // A few helpful, “ratecard-friendly” computed stats
-      avgViewsLast12,
-      viewsLast12Range:
-        minViewsLast12 != null && maxViewsLast12 != null
-          ? { min: minViewsLast12, max: maxViewsLast12 }
-          : null,
     },
-    recentVideos: videos.slice(0, 6),
-    updatedAt: new Date().toISOString(),
+    ...derived,
+    bestVideos,
+    updatedAt: now.toISOString(),
     source: {
       api: "YouTube Data API v3",
       note: "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth.",
@@ -129,9 +221,21 @@ async function main() {
   };
 
   const outPath = path.join(process.cwd(), "src", "_data", "youtube.json");
+
+  // Last gate before the write. The guards above only catch total failure;
+  // these catch the quiet kind — a truncated playlist, a cadence figure the
+  // fetch size has started capping, a curated video gone private. Throwing
+  // leaves the committed JSON in place and fails the weekly workflow loudly,
+  // which is the whole point: stale figures are visible, wrong ones are not.
+  assertMomentumWindowCovered(derived.window, now, {
+    fetched: videos.length,
+    windowSize: WINDOW_SIZE,
+  });
+  assertNoStatsRegression(await readExistingStats(outPath), out, { curatedCount: picks.length });
+
   await fs.mkdir(path.dirname(outPath), { recursive: true });
   await fs.writeFile(outPath, `${JSON.stringify(out, null, 2)}\n`, "utf8");
-  console.log(`Wrote ${outPath}`);
+  console.log(`Wrote ${outPath} — ${out.stats.subscribers} subs, ${videos.length} videos analysed`);
 }
 
 main().catch((err) => {

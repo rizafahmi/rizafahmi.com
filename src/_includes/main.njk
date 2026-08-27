@@ -10,6 +10,10 @@ title: Judul
     <link rel="preload" as="style" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
     <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
     <link rel="stylesheet" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+    {% if pageCss %}
+    <link rel="preload" as="style" href="/assets/{{ pageCss }}?v={{ site.buildTime }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/{{ pageCss }}?v={{ site.buildTime }}" type="text/css" media="screen" />
+    {% endif %}
     {% include 'head.njk' %}
   </head>
   <body>
@@ -21,6 +25,7 @@ title: Judul
           <a href="/articles">Catatan</a>
           <a href="/tips/">Tips</a>
           <a href="/tags">Topik</a>
+          <a href="/kerjasama/">Kerjasama</a>
           <a href="/search">Cari</a>
         </nav>
       </div>

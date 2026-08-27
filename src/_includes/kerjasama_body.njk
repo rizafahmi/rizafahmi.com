@@ -1,0 +1,164 @@
+{#
+  /kerjasama/ — the sponsorship media kit.
+
+  Every figure here is rendered beside its sample size and range on purpose.
+  The channel's per-video numbers are modest, and a median presented without
+  its `n` invites exactly the doubt this page exists to remove.
+
+  `formatKeys` arrives pre-filtered by renderableFormats() so the small-sample
+  suppression rule stays in tested JavaScript rather than in this template.
+#}
+
+{% macro statCard(figure, label, note) %}
+  <div class="kerjasama-stat">
+    <span class="kerjasama-stat-figure">{{ figure }}</span>
+    <span class="kerjasama-stat-label">{{ label }}</span>
+    {% if note %}<span class="kerjasama-stat-note">{{ note }}</span>{% endif %}
+  </div>
+{% endmacro %}
+
+{% macro kerjasamaBody(youtube, formatKeys) %}
+  {% set formatLabels = { episode: "Livestream / episode penuh", shorts: "Shorts", recorded: "Video rekaman" } %}
+
+  <h1>Kerjasama &amp; Sponsorship</h1>
+  <p class="kerjasama-lede">
+    Saya membuat konten pemrograman untuk developer Indonesia — AI dan agentic coding,
+    Elixir, dan web. Halaman ini berisi angka apa adanya, supaya Anda bisa menilai
+    kecocokan sebelum kita bicara.
+  </p>
+  <p><a class="kerjasama-cta" href="#request">Ajukan kerjasama</a></p>
+
+  <h2>Rekam jejak</h2>
+  <ul>
+    <li>Membuat konten pemrograman sejak <strong>2012</strong></li>
+    <li>Memulai podcast sejak <strong>2015</strong></li>
+    <li>Kontribusi ke komunitas pemrograman sejak <strong>2014</strong></li>
+  </ul>
+
+  {% if youtube.stats and youtube.stats.subscribers %}
+    <h2>Jangkauan</h2>
+    <div class="kerjasama-stats">
+      {{ statCard(youtube.stats.subscribers | localeString, "subscriber") }}
+      {{ statCard(youtube.stats.totalViews | localeString, "total penonton") }}
+      {{ statCard(youtube.stats.videoCount | localeString, "video terbit") }}
+    </div>
+
+    {% if youtube.momentum %}
+      <h2>Momentum</h2>
+      <div class="kerjasama-stats">
+        {{ statCard(youtube.momentum.videosLast12Months | localeString, "video", "12 bulan terakhir") }}
+        {{ statCard(youtube.momentum.viewsLast12Months | localeString, "penonton", "dari video 12 bulan terakhir") }}
+        {# localeString matters here: uploadsPerMonth is a decimal, and id-ID writes it 10,6 #}
+        {{ statCard(youtube.momentum.uploadsPerMonth | localeString, "video per bulan", "rata-rata") }}
+      </div>
+    {% endif %}
+
+    {# The range named here must be the range the medians came from, not the
+       wider set that was fetched for the momentum figures — a disclosure
+       pointing at the wrong sample is worse than none. Hence statsFrom/statsTo
+       and videosSummarized rather than from/to and videosAnalyzed. #}
+    {% if formatKeys.length and youtube.window and youtube.window.statsFrom %}
+      <h2>Performa per format</h2>
+      <p class="kerjasama-note">
+        Angka tengah (median) dari video yang sudah tayang minimal
+        {{ youtube.window.matureMinDays }} hari, diambil dari
+        {{ youtube.window.videosSummarized }} video terbaru
+        ({{ youtube.window.statsFrom }} – {{ youtube.window.statsTo }}). Format dengan sampel
+        terlalu sedikit tidak ditampilkan.
+      </p>
+      <table class="kerjasama-table">
+        <thead>
+          <tr><th>Format</th><th>Median penonton</th><th>Rentang</th><th>Jumlah video</th></tr>
+        </thead>
+        <tbody>
+          {% for key in formatKeys %}
+            {% set f = youtube.formats[key] %}
+            <tr>
+              <td>{{ formatLabels[key] }}</td>
+              <td><strong>{{ f.median | localeString }}</strong></td>
+              <td>{{ f.min | localeString }} – {{ f.max | localeString }}</td>
+              <td>{{ f.n }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+    {% if youtube.ngobrolinWeb %}
+      <h2>Ngobrolin WEB</h2>
+      <p>
+        Serial rutin yang bisa disponsori per episode maupun per musim.
+        <strong>{{ youtube.ngobrolinWeb.episodes }}</strong> episode dalam rentang di atas,
+        dengan median <strong>{{ youtube.ngobrolinWeb.median | localeString }}</strong> penonton
+        per episode ({{ youtube.ngobrolinWeb.min | localeString }} – {{ youtube.ngobrolinWeb.max | localeString }}).
+      </p>
+    {% endif %}
+
+    {% if youtube.bestVideos and youtube.bestVideos.length %}
+      <h2>Video terbaik</h2>
+      <p class="kerjasama-note">Dipilih manual untuk menunjukkan format konten dan kecocokan untuk kolaborasi.</p>
+      <ul class="kerjasama-videos">
+        {% for v in youtube.bestVideos %}
+          <li>
+            <a href="{{ v.url }}">{{ v.title }}</a>
+            <span class="kerjasama-video-meta">
+              {{ v.views | localeString }} penonton{% if v.tag %} · {{ v.tag }}{% endif %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if youtube.recentVideos.length %}
+      <h2>Video terbaru</h2>
+      <ul class="kerjasama-videos">
+        {% for v in youtube.recentVideos %}
+          <li><a href="{{ v.url }}">{{ v.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {# updatedAt needs no guard: scripts/fetch-youtube-stats.mjs always stamps it
+       alongside `stats`, so the two arrive together in practice. If that ever stops
+       being true, localeDate renders an empty string rather than throwing. #}
+    <p class="kerjasama-updated">Angka diperbarui otomatis. Terakhir diperbarui: {{ youtube.updatedAt | localeDate }}</p>
+  {% else %}
+    <h2>Jangkauan</h2>
+    <p class="kerjasama-note">
+      Statistik kanal sedang belum tersedia. Silakan hubungi saya lewat surel di bawah
+      dan saya kirimkan angka terbarunya.
+    </p>
+  {% endif %}
+
+  <h2>Pernah dipercaya oleh</h2>
+  <ul class="kerjasama-brands">
+    <li>AWS Indonesia</li>
+    <li>BenQ Indonesia</li>
+    <li>Meta / Facebook</li>
+    <li>Google Indonesia</li>
+    <li>Domainesia</li>
+    <li>Niagahoster</li>
+    <li>Feedloop</li>
+    <li>DeepTech</li>
+  </ul>
+
+  <h2>Bentuk kerjasama</h2>
+  <ul>
+    <li><strong>Recorded video</strong> — video dengan topik dari klien</li>
+    <li><strong>Shorts</strong> — video pendek, format yang paling tumbuh saat ini</li>
+    <li><strong>Community post</strong> — unggahan di tab komunitas</li>
+    <li><strong>Pre-stream</strong> — video 30 detik sebelum sesi livestream</li>
+    <li><strong>Placement</strong> — logo atau gambar tampil selama livestream</li>
+    <li><strong>Shoutout</strong> — pesan sponsor dibacakan atau dinarasikan</li>
+    <li><strong>Amplifier</strong> — dukungan di X dan LinkedIn (opsional)</li>
+  </ul>
+
+  <h2 id="request">Request kerjasama</h2>
+  <p>
+    Harga mengikuti objective, timeline, dan bentuk deliverables. Kirimkan brief singkat
+    dan saya balas dengan penawaran yang sesuai.
+  </p>
+  <p>
+    <a class="kerjasama-cta" href="mailto:rizafahmi@gmail.com?subject=Kerjasama%20%2F%20Sponsorship&body=Halo%20Riza%2C%0A%0ASaya%20%5BNama%5D%20dari%20%5BBrand%5D.%0A%0AObjective%3A%20%5Bawareness%2Flead%20gen%2Fhiring%5D%0ATimeline%3A%20%5Btanggal%5D%0ADeliverables%3A%20%5Byoutube%2Fshorts%2Flivestream%5D%0ABudget%20range%3A%20%5Brange%5D%0ANotes%3A%20%5Bopsional%5D%0A%0ATerima%20kasih">rizafahmi@gmail.com</a>
+  </p>
+{% endmacro %}

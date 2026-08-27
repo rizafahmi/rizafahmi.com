@@ -344,7 +344,10 @@ export default {
   ],
 
   speaking: {
-    /** Angka diambil dari halaman /kerjasama/ (src/ratecard.njk). */
+    /**
+     * Sumber angka ini. Dulu diambil dari /kerjasama/, tapi halaman itu kini
+     * khusus statistik YouTube dan tidak lagi memuat bagian narasumber.
+     */
     tally: [
       { count: 41, label: { id: "acara seminar", en: "talks and seminars" } },
       { count: 19, label: { id: "workshop", en: "workshops" } },

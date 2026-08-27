@@ -843,11 +843,17 @@ test("the Shorts fetch is not wired into any build script", async () => {
   const { readFile } = await import("node:fs/promises");
   const pkg = JSON.parse(await readFile("package.json", "utf8"));
 
-  for (const [name, command] of Object.entries(pkg.scripts)) {
-    if (name === "test" || name === "check") continue;
+  // Only the build path matters. A fetch script a human or CI runs deliberately
+  // cannot break a deploy; one chained into a build can. Both the file name and
+  // the pnpm alias are banned here, so `prebuild: pnpm run fetch:youtube` is
+  // caught too.
+  const BUILD_SCRIPTS = ["prebuild", "build", "build:prod", "postbuild", "prestart", "start"];
+  for (const name of BUILD_SCRIPTS) {
+    const command = pkg.scripts[name];
+    if (!command) continue;
     assert.doesNotMatch(
       command,
-      /fetch-youtube/,
+      /fetch-youtube|fetch:youtube/,
       `package.json script "${name}" would fetch YouTube during a build`,
     );
   }
