@@ -13,43 +13,52 @@
   },
   "momentum": {
     "videosLast12Months": 137,
-    "viewsLast12Months": 48455,
+    "viewsLast12Months": 48462,
     "uploadsPerMonth": 11.4,
     "monthsCovered": 12
   },
   "formats": {
     "shorts": {
-      "n": 54,
-      "median": 257,
+      "n": 63,
+      "median": 274,
       "p25": 137,
-      "p75": 614,
-      "min": 84,
+      "p75": 583,
+      "min": 72,
       "max": 2406
     },
     "episode": {
-      "n": 78,
-      "median": 253,
-      "p25": 193,
-      "p75": 384,
-      "min": 109,
-      "max": 755
+      "n": 217,
+      "median": 277,
+      "p25": 210,
+      "p75": 414,
+      "min": 83,
+      "max": 3952
     },
     "recorded": {
-      "n": 1,
+      "n": 3,
       "median": 161,
-      "p25": 161,
-      "p75": 161,
-      "min": 161,
-      "max": 161
+      "p25": 158,
+      "p75": 555,
+      "min": 158,
+      "max": 555
     }
   },
   "ngobrolinWeb": {
-    "episodes": 58,
-    "median": 243,
+    "episodes": 128,
+    "median": 323,
     "min": 109,
-    "max": 575
+    "max": 3952
   },
   "topVideos": [
+    {
+      "id": "jxW4wishA8s",
+      "title": "Ngobrolin Pengalaman Frontend @imrenagi -  Ngobrolin WEB",
+      "publishedAt": "2024-12-11T02:37:51Z",
+      "url": "https://www.youtube.com/watch?v=jxW4wishA8s",
+      "views": 3952,
+      "durationSeconds": 5375,
+      "isLive": true
+    },
     {
       "id": "Han7XwHe0-I",
       "title": "Cuplikan obrolan dengan pemilik platform sumopod",
@@ -58,6 +67,15 @@
       "views": 2406,
       "durationSeconds": 56,
       "isLive": false
+    },
+    {
+      "id": "5P6heS1ZtPw",
+      "title": "Ngobrolin PHP - Ngobrolin WEB & @sandhikagalihWPU",
+      "publishedAt": "2024-03-13T05:49:54Z",
+      "url": "https://www.youtube.com/watch?v=5P6heS1ZtPw",
+      "views": 1755,
+      "durationSeconds": 4624,
+      "isLive": true
     },
     {
       "id": "zPsDnTJMpw8",
@@ -78,30 +96,12 @@
       "isLive": false
     },
     {
-      "id": "upVDf49vT1c",
-      "title": "Salah satu alat untuk menghemat token: RTK",
-      "publishedAt": "2026-06-10T13:00:14Z",
-      "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
-      "views": 1299,
-      "durationSeconds": 41,
-      "isLive": false
-    },
-    {
-      "id": "9GygUnXWMbA",
-      "title": "Produktif di era AI",
-      "publishedAt": "2026-06-11T13:00:21Z",
-      "url": "https://www.youtube.com/watch?v=9GygUnXWMbA",
-      "views": 1198,
-      "durationSeconds": 28,
-      "isLive": false
-    },
-    {
-      "id": "_zgThztSWqA",
-      "title": "Pecah tugas besar menjadi lebih kecil dengan #AI #skills",
-      "publishedAt": "2026-06-06T13:00:11Z",
-      "url": "https://www.youtube.com/watch?v=_zgThztSWqA",
-      "views": 1143,
-      "durationSeconds": 51,
+      "id": "aJ7rlsLmRZI",
+      "title": "Kabar gembira buat teman-teman yang ingin bergabung ke bootcamp JavaScript @HACKTIV8!",
+      "publishedAt": "2024-04-24T13:00:03Z",
+      "url": "https://www.youtube.com/watch?v=aJ7rlsLmRZI",
+      "views": 1301,
+      "durationSeconds": 56,
       "isLive": false
     }
   ],
@@ -120,7 +120,7 @@
       "title": "Sekilas tentang #llm keluaran Tencent: HY3",
       "publishedAt": "2026-08-26T13:00:15Z",
       "url": "https://www.youtube.com/watch?v=HImXaz-93og",
-      "views": 67,
+      "views": 71,
       "durationSeconds": 56,
       "isLive": false
     },
@@ -162,8 +162,8 @@
     }
   ],
   "window": {
-    "videosAnalyzed": 150,
-    "from": "2025-06-18",
+    "videosAnalyzed": 300,
+    "from": "2023-10-30",
     "to": "2026-08-27",
     "matureMinDays": 21
   },
@@ -229,7 +229,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-08-27T14:29:41.430Z",
+  "updatedAt": "2026-08-27T15:58:03.199Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
