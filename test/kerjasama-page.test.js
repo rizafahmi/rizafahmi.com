@@ -111,11 +111,30 @@ test("suppresses a format bucket below the sample threshold", () => {
   assert.match(html, /273/);
 });
 
+// The page's central promise is that no median appears without its sample size
+// and range. Asserting that against one row leaves the others free to lose a
+// cell with the suite still green, so this walks every row the fixture renders
+// and holds each one to the whole rule.
 test("shows sample size and range beside every median", () => {
   const html = render();
-  assert.match(html, /79/, "episode sample size");
-  assert.match(html, /109\s*–\s*755/, "episode range renders as a unit");
-  assert.match(html, /755/, "episode range ceiling");
+  // id-ID groups thousands with a period, which is also a regex metacharacter.
+  const id = (n) => Number(n).toLocaleString("id-ID").replace(/\./g, "\\.");
+
+  const tbody = html.match(/<tbody>([\s\S]*?)<\/tbody>/);
+  assert.ok(tbody, "the format table should render for this fixture");
+  const rows = tbody[1].match(/<tr>[\s\S]*?<\/tr>/g) || [];
+
+  const expected = renderableFormats(YOUTUBE.formats);
+  assert.ok(expected.length > 1, "the fixture must render more than one row to be worth checking");
+  assert.equal(rows.length, expected.length, "every renderable format gets exactly one row");
+
+  for (const [i, key] of expected.entries()) {
+    const f = YOUTUBE.formats[key];
+    const row = rows[i];
+    assert.match(row, new RegExp(`<strong>${id(f.median)}</strong>`), `${key}: median`);
+    assert.match(row, new RegExp(`${id(f.min)}\\s*–\\s*${id(f.max)}`), `${key}: range as a unit`);
+    assert.match(row, new RegExp(`<td>${f.n}</td>`), `${key}: sample size`);
+  }
 });
 
 test("renders Ngobrolin WEB as a named series", () => {
