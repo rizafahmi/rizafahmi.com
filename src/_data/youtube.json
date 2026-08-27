@@ -19,46 +19,37 @@
   },
   "formats": {
     "shorts": {
-      "n": 63,
-      "median": 274,
+      "n": 54,
+      "median": 257,
       "p25": 137,
-      "p75": 583,
-      "min": 72,
+      "p75": 614,
+      "min": 84,
       "max": 2406
     },
     "episode": {
-      "n": 217,
-      "median": 277,
-      "p25": 210,
-      "p75": 414,
-      "min": 83,
-      "max": 3952
+      "n": 81,
+      "median": 253,
+      "p25": 198,
+      "p75": 379,
+      "min": 109,
+      "max": 755
     },
     "recorded": {
-      "n": 3,
+      "n": 1,
       "median": 161,
-      "p25": 158,
-      "p75": 555,
-      "min": 158,
-      "max": 555
+      "p25": 161,
+      "p75": 161,
+      "min": 161,
+      "max": 161
     }
   },
   "ngobrolinWeb": {
-    "episodes": 128,
-    "median": 323,
+    "episodes": 57,
+    "median": 250,
     "min": 109,
-    "max": 3952
+    "max": 575
   },
   "topVideos": [
-    {
-      "id": "jxW4wishA8s",
-      "title": "Ngobrolin Pengalaman Frontend @imrenagi -  Ngobrolin WEB",
-      "publishedAt": "2024-12-11T02:37:51Z",
-      "url": "https://www.youtube.com/watch?v=jxW4wishA8s",
-      "views": 3952,
-      "durationSeconds": 5375,
-      "isLive": true
-    },
     {
       "id": "Han7XwHe0-I",
       "title": "Cuplikan obrolan dengan pemilik platform sumopod",
@@ -67,15 +58,6 @@
       "views": 2406,
       "durationSeconds": 56,
       "isLive": false
-    },
-    {
-      "id": "5P6heS1ZtPw",
-      "title": "Ngobrolin PHP - Ngobrolin WEB & @sandhikagalihWPU",
-      "publishedAt": "2024-03-13T05:49:54Z",
-      "url": "https://www.youtube.com/watch?v=5P6heS1ZtPw",
-      "views": 1755,
-      "durationSeconds": 4624,
-      "isLive": true
     },
     {
       "id": "zPsDnTJMpw8",
@@ -96,12 +78,30 @@
       "isLive": false
     },
     {
-      "id": "aJ7rlsLmRZI",
-      "title": "Kabar gembira buat teman-teman yang ingin bergabung ke bootcamp JavaScript @HACKTIV8!",
-      "publishedAt": "2024-04-24T13:00:03Z",
-      "url": "https://www.youtube.com/watch?v=aJ7rlsLmRZI",
-      "views": 1301,
-      "durationSeconds": 56,
+      "id": "upVDf49vT1c",
+      "title": "Salah satu alat untuk menghemat token: RTK",
+      "publishedAt": "2026-06-10T13:00:14Z",
+      "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
+      "views": 1299,
+      "durationSeconds": 41,
+      "isLive": false
+    },
+    {
+      "id": "9GygUnXWMbA",
+      "title": "Produktif di era AI",
+      "publishedAt": "2026-06-11T13:00:21Z",
+      "url": "https://www.youtube.com/watch?v=9GygUnXWMbA",
+      "views": 1198,
+      "durationSeconds": 28,
+      "isLive": false
+    },
+    {
+      "id": "_zgThztSWqA",
+      "title": "Pecah tugas besar menjadi lebih kecil dengan #AI #skills",
+      "publishedAt": "2026-06-06T13:00:11Z",
+      "url": "https://www.youtube.com/watch?v=_zgThztSWqA",
+      "views": 1143,
+      "durationSeconds": 51,
       "isLive": false
     }
   ],
@@ -165,7 +165,11 @@
     "videosAnalyzed": 300,
     "from": "2023-10-30",
     "to": "2026-08-27",
-    "matureMinDays": 21
+    "videosSummarized": 136,
+    "statsFrom": "2025-06-02",
+    "statsTo": "2026-08-06",
+    "matureMinDays": 21,
+    "statsMaxAgeDays": 456
   },
   "bestVideos": [
     {
@@ -229,7 +233,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-08-27T15:58:03.199Z",
+  "updatedAt": "2026-08-27T16:07:16.560Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
