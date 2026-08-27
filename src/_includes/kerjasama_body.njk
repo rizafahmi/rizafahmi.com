@@ -43,13 +43,15 @@
       {{ statCard(youtube.stats.videoCount | localeString, "video terbit") }}
     </div>
 
-    <h2>Momentum</h2>
-    <div class="kerjasama-stats">
-      {{ statCard(youtube.momentum.videosLast12Months | localeString, "video", "12 bulan terakhir") }}
-      {{ statCard(youtube.momentum.viewsLast12Months | localeString, "penonton", "dari video 12 bulan terakhir") }}
-      {# localeString matters here: uploadsPerMonth is a decimal, and id-ID writes it 10,6 #}
-      {{ statCard(youtube.momentum.uploadsPerMonth | localeString, "video per bulan", "rata-rata") }}
-    </div>
+    {% if youtube.momentum %}
+      <h2>Momentum</h2>
+      <div class="kerjasama-stats">
+        {{ statCard(youtube.momentum.videosLast12Months | localeString, "video", "12 bulan terakhir") }}
+        {{ statCard(youtube.momentum.viewsLast12Months | localeString, "penonton", "dari video 12 bulan terakhir") }}
+        {# localeString matters here: uploadsPerMonth is a decimal, and id-ID writes it 10,6 #}
+        {{ statCard(youtube.momentum.uploadsPerMonth | localeString, "video per bulan", "rata-rata") }}
+      </div>
+    {% endif %}
 
     {% if formatKeys.length %}
       <h2>Performa per format</h2>
@@ -107,15 +109,12 @@
       <h2>Video terbaru</h2>
       <ul class="kerjasama-videos">
         {% for v in youtube.recentVideos %}
-          <li>
-            <a href="{{ v.url }}">{{ v.title }}</a>
-            <span class="kerjasama-video-meta">{{ v.views | localeString }} penonton</span>
-          </li>
+          <li><a href="{{ v.url }}">{{ v.title }}</a></li>
         {% endfor %}
       </ul>
     {% endif %}
 
-    <p class="kerjasama-updated">Angka diperbarui otomatis. Terakhir: {{ youtube.updatedAt }}</p>
+    <p class="kerjasama-updated">Angka diperbarui otomatis. Terakhir diperbarui: {{ youtube.updatedAt | localeDate }}</p>
   {% else %}
     <h2>Jangkauan</h2>
     <p class="kerjasama-note">

@@ -15,6 +15,11 @@ env.addFilter("localeString", (num, locale = "id-ID") => {
   if (!Number.isFinite(n)) return String(num);
   return n.toLocaleString(locale);
 });
+env.addFilter("localeDate", (value, locale = "id-ID") => {
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" });
+});
 
 const YOUTUBE = {
   channel: { url: "https://www.youtube.com/channel/UC123", handle: "@rizafahmi" },
@@ -109,7 +114,7 @@ test("suppresses a format bucket below the sample threshold", () => {
 test("shows sample size and range beside every median", () => {
   const html = render();
   assert.match(html, /79/, "episode sample size");
-  assert.match(html, /109/, "episode range floor");
+  assert.match(html, /109\s*–\s*755/, "episode range renders as a unit");
   assert.match(html, /755/, "episode range ceiling");
 });
 
@@ -131,6 +136,18 @@ test("omits the curated section entirely when nothing hydrated", () => {
   assert.doesNotMatch(html, /Video terbaik/);
 });
 
+// Video terbaru shows any recent upload, mature or not — it exists to
+// demonstrate cadence and topic mix. Showing its raw view count would
+// undercut the rest of the page, which never shows a view count without
+// maturity filtering and a sample size beside it.
+test("the recency section shows cadence, not view counts", () => {
+  const html = render();
+  const section = html.match(/<h2>Video terbaru<\/h2>[\s\S]*?<\/ul>/);
+  assert.ok(section, "the recency section should render for this fixture");
+  assert.doesNotMatch(section[0], /penonton/, "no view count belongs in this section");
+  assert.doesNotMatch(section[0], /378/, "the recent video's raw view count must not render");
+});
+
 test("lists Domainesia among past collaborators", () => {
   const html = render();
   for (const brand of ["AWS", "BenQ", "Domainesia", "Niagahoster", "Feedloop", "DeepTech"]) {
@@ -138,9 +155,15 @@ test("lists Domainesia among past collaborators", () => {
   }
 });
 
-test("dates the numbers", () => {
+test("dates the numbers as text a person can read, not a machine timestamp", () => {
   const html = render();
-  assert.match(html, /2026-08-27/);
+  assert.match(html, /27 Agustus 2026/, "the last-updated date must read as Indonesian text");
+  assert.doesNotMatch(html, /T14:/, "no raw ISO timestamp hour should leak onto the page");
+  assert.doesNotMatch(
+    html,
+    /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/,
+    "no raw ISO timestamp should leak onto the page",
+  );
 });
 
 test("falls back gracefully when statistics are missing", () => {
@@ -153,4 +176,29 @@ test("falls back gracefully when statistics are missing", () => {
 test("still renders the contact route with no statistics", () => {
   const html = render({ stats: {} });
   assert.match(html, /mailto:rizafahmi@gmail\.com/);
+});
+
+// The top-level `{% if youtube.stats.subscribers %}` gate is not the only
+// place data can go missing. Reach can be known while the rest of the
+// pipeline (momentum, formats, window, the curated/recent video lists) is
+// not — the fetch script does not guarantee they arrive together — and each
+// of those must degrade on its own rather than assume its neighbours exist.
+test("degrades gracefully when only some statistics are present", () => {
+  const partial = {
+    stats: { subscribers: 500, totalViews: 1000, videoCount: 20 },
+    // momentum, formats, window, ngobrolinWeb, bestVideos, recentVideos,
+    // and updatedAt are all deliberately absent.
+  };
+  const html = render(partial);
+  assert.doesNotMatch(html, /NaN/);
+  assert.doesNotMatch(html, /undefined/);
+  // Reach is known, so it still renders...
+  assert.match(html, /500/);
+  // ...but a section with no backing data must not appear at all, rather
+  // than rendering an empty or broken shell.
+  assert.doesNotMatch(html, /Momentum/);
+  assert.doesNotMatch(html, /Performa per format/);
+  assert.doesNotMatch(html, /Ngobrolin WEB/);
+  assert.doesNotMatch(html, /Video terbaik/);
+  assert.doesNotMatch(html, /Video terbaru/);
 });
