@@ -53,7 +53,7 @@
       </div>
     {% endif %}
 
-    {% if formatKeys.length %}
+    {% if formatKeys.length and youtube.window %}
       <h2>Performa per format</h2>
       <p class="kerjasama-note">
         Angka tengah (median) dari video yang sudah tayang minimal
@@ -114,6 +114,9 @@
       </ul>
     {% endif %}
 
+    {# updatedAt needs no guard: scripts/fetch-youtube-stats.mjs always stamps it
+       alongside `stats`, so the two arrive together in practice. If that ever stops
+       being true, localeDate renders an empty string rather than throwing. #}
     <p class="kerjasama-updated">Angka diperbarui otomatis. Terakhir diperbarui: {{ youtube.updatedAt | localeDate }}</p>
   {% else %}
     <h2>Jangkauan</h2>

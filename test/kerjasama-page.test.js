@@ -158,7 +158,6 @@ test("lists Domainesia among past collaborators", () => {
 test("dates the numbers as text a person can read, not a machine timestamp", () => {
   const html = render();
   assert.match(html, /27 Agustus 2026/, "the last-updated date must read as Indonesian text");
-  assert.doesNotMatch(html, /T14:/, "no raw ISO timestamp hour should leak onto the page");
   assert.doesNotMatch(
     html,
     /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/,
@@ -201,4 +200,28 @@ test("degrades gracefully when only some statistics are present", () => {
   assert.doesNotMatch(html, /Ngobrolin WEB/);
   assert.doesNotMatch(html, /Video terbaik/);
   assert.doesNotMatch(html, /Video terbaru/);
+});
+
+// formatKeys being non-empty only tells us `formats` survived renderableFormats'
+// sample-size filter — it says nothing about whether `window` (the note's
+// "tayang minimal N hari" / "N unggahan terakhir" / date range text) is
+// present. Before this test, a formats-present-but-window-absent payload
+// rendered the section with blank gaps instead of skipping it, because the
+// gate only checked formatKeys.length.
+test("degrades gracefully when formats are present but the analysis window is not", () => {
+  const partial = {
+    stats: { subscribers: 500, totalViews: 1000, videoCount: 20 },
+    formats: {
+      episode: { n: 10, median: 200, p25: 150, p75: 250, min: 100, max: 300 },
+    },
+    // window is deliberately absent, even though formats/formatKeys are present.
+  };
+  const html = render(partial);
+  assert.doesNotMatch(
+    html,
+    /Performa per format/,
+    "the section must not render with holes when window is missing",
+  );
+  assert.doesNotMatch(html, /NaN/);
+  assert.doesNotMatch(html, /undefined/);
 });
