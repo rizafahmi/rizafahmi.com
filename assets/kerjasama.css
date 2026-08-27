@@ -3,8 +3,8 @@
  *
  * Loaded via the `pageCss` front-matter hook in _includes/main.njk so the rest
  * of the site does not pay for these rules. Everything here follows DESIGN.md:
- * flat, sharp-cornered, 2px group borders and 4px section splits, with colour
- * reserved for hover and structure.
+ * flat, sharp-cornered, 2px group borders and 1px dashed list separators (no
+ * 4px splits here), with colour reserved for hover and structure.
  */
 
 .kerjasama-page h2 {
