@@ -114,6 +114,7 @@ test("isMature: rejects unparseable dates", () => {
 });
 
 test("summarize: odd-length set takes the middle value", () => {
+<<<<<<< HEAD
   assert.deepEqual(summarize([1, 5, 100]), { n: 3, median: 5, p25: 1, p75: 100, min: 1, max: 100 });
 });
 
@@ -126,6 +127,13 @@ test("summarize: even-length set averages the two middle values, rounded", () =>
     min: 10,
     max: 41,
   });
+=======
+  assert.deepEqual(summarize([1, 5, 100]), { n: 3, median: 5, p25: 5, p75: 100, min: 1, max: 100 });
+});
+
+test("summarize: even-length set averages the two middle values, rounded", () => {
+  assert.equal(summarize([10, 20, 30, 41]).median, 25);
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
 });
 
 test("summarize: single element", () => {
@@ -138,6 +146,7 @@ test("summarize: empty input returns null, never NaN", () => {
 });
 
 test("summarize: reproduces the measured Shorts distribution", () => {
+<<<<<<< HEAD
   // The real mature-Shorts view counts as measured on 2026-08-27. These are the
   // numbers the spec publishes, so this test pins them: n=53, median=273,
   // p25=139, p75=614, range 84-2406. Do not substitute invented values here —
@@ -155,6 +164,19 @@ test("summarize: reproduces the measured Shorts distribution", () => {
     min: 84,
     max: 2406,
   });
+=======
+  // Guards the numbers quoted in the spec: n=53, median=273, min=84, max=2406.
+  const views = [
+    84, 91, 96, 103, 110, 118, 122, 127, 131, 133, 136, 139, 141, 148, 152, 160, 168, 173, 179,
+    186, 194, 203, 211, 219, 228, 240, 251, 273, 288, 301, 318, 332, 349, 366, 382, 401, 428,
+    455, 487, 512, 548, 587, 614, 663, 712, 786, 853, 915, 941, 1096, 1198, 1574, 2406,
+  ];
+  const s = summarize(views);
+  assert.equal(s.n, 53);
+  assert.equal(s.median, 273);
+  assert.equal(s.min, 84);
+  assert.equal(s.max, 2406);
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
 });
 
 test("normalizeVideo: maps an API item and derives duration and liveness", () => {
@@ -735,6 +757,7 @@ function opt(name) {
   return process.env[name] || "";
 }
 
+<<<<<<< HEAD
 /**
  * A request URL or response body safe to put in an error. The API key is the
  * one secret here, and these errors reach stderr and CI logs.
@@ -743,11 +766,17 @@ function redactKey(text) {
   return String(text).replace(/([?&]key=)[^&\s]*/g, "$1REDACTED");
 }
 
+=======
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
 async function getJson(url) {
   const res = await fetch(url);
   if (!res.ok) {
     const text = await res.text().catch(() => "");
+<<<<<<< HEAD
     throw new Error(`HTTP ${res.status} for ${redactKey(url)}\n${redactKey(text)}`);
+=======
+    throw new Error(`HTTP ${res.status} for ${url}\n${text}`);
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
   }
   return res.json();
 }
@@ -780,7 +809,10 @@ async function fetchUploadIds({ apiKey, uploadsPlaylistId, limit }) {
   const ids = [];
   let pageToken = "";
   while (ids.length < limit) {
+<<<<<<< HEAD
     const before = ids.length;
+=======
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
     const url =
       `${API}/playlistItems?part=contentDetails&playlistId=${encodeURIComponent(uploadsPlaylistId)}` +
       `&maxResults=50&key=${apiKey}${pageToken ? `&pageToken=${pageToken}` : ""}`;
@@ -789,9 +821,12 @@ async function fetchUploadIds({ apiKey, uploadsPlaylistId, limit }) {
       const id = item?.contentDetails?.videoId;
       if (id) ids.push(id);
     }
+<<<<<<< HEAD
     // A page that added nothing means the walk is not progressing; without this
     // a non-empty nextPageToken beside an empty items array would loop forever.
     if (ids.length === before) break;
+=======
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
     pageToken = page?.nextPageToken || "";
     if (!pageToken) break;
   }
@@ -833,6 +868,7 @@ async function main() {
 
   const ids = await fetchUploadIds({ apiKey, uploadsPlaylistId, limit: WINDOW_SIZE });
   const videos = await fetchVideos({ apiKey, ids });
+<<<<<<< HEAD
 
   // Fail loudly rather than committing an empty page. A 200 with no items —
   // wrong playlist id, a transient backend hiccup — would otherwise write
@@ -852,6 +888,8 @@ async function main() {
     );
   }
 
+=======
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
   const derived = buildYoutubeStats({ videos, now: new Date() });
 
   // Curated picks are fetched by id, not looked up in the window above: the
@@ -911,6 +949,7 @@ In `package.json`, add to `"scripts"` immediately after `"og:force"`:
     "fetch:youtube": "node scripts/fetch-youtube-stats.mjs",
 ```
 
+<<<<<<< HEAD
 - [ ] **Step 2b: Narrow the build-safety test so it states its real invariant**
 
 `test/tips.test.js` currently forbids the string `fetch-youtube` in *every* `package.json`
@@ -961,6 +1000,8 @@ The script reads `p.id` from each entry, so this must happen before the script r
 Note the ordering constraint this creates: `ratecardBestVideos.json` is read by the fetch script,
 so **re-run `pnpm run fetch:youtube` after editing it** or the page renders the previous set.
 
+=======
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
 - [ ] **Step 3: Run it against the live channel**
 
 The key and handle are already exported by `.envrc` (gitignored, untracked).
@@ -1431,8 +1472,28 @@ description: Statistik YouTube terkini dan bentuk kerjasama untuk sponsorship be
 </main>
 ```
 
+<<<<<<< HEAD
 `src/_data/ratecardBestVideos.json` was already converted to the id-only shape in Task 3 Step 2c,
 because the fetch script reads `p.id` and therefore depends on it. Nothing to change here.
+=======
+Replace `src/_data/ratecardBestVideos.json` — ids and tags only. Titles and view counts now come
+from `youtube.json`, fetched by id, so these can stay as old as they like. Keep Riza's existing
+six picks:
+
+```json
+[
+  { "id": "5FMZMB9_Aqs", "tag": "DevTools" },
+  { "id": "JsWtmdTPSzs", "tag": "Review" },
+  { "id": "vufuDf7MrmA", "tag": "Elixir" },
+  { "id": "jxW4wishA8s", "tag": "Web" },
+  { "id": "5P6heS1ZtPw", "tag": "Web" },
+  { "id": "NCcxyUGmzT4", "tag": "Edukasi" }
+]
+```
+
+Note the ordering constraint this creates: `ratecardBestVideos.json` is read by the fetch script,
+so **re-run `pnpm run fetch:youtube` after editing it** or the page will render the previous set.
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
 
 - [ ] **Step 6: Add the `renderableFormats` filter**
 
@@ -1701,10 +1762,15 @@ permissions:
   contents: write
 
 concurrency:
+<<<<<<< HEAD
   # Deliberately false: this job ends in a commit and a push, and letting a run
   # finish beats cancelling it partway through one.
   group: youtube-stats
   cancel-in-progress: false
+=======
+  group: youtube-stats
+  cancel-in-progress: true
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
 
 jobs:
   refresh:
@@ -1730,7 +1796,11 @@ jobs:
 
       - name: Commit if the numbers moved
         run: |
+<<<<<<< HEAD
           if git diff --quiet HEAD -- src/_data/youtube.json; then
+=======
+          if git diff --quiet -- src/_data/youtube.json; then
+>>>>>>> 5e28392 (docs: implementation plan for the /kerjasama/ YouTube media kit)
             echo "No change."
             exit 0
           fi
