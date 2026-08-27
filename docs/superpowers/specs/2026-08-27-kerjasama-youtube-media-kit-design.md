@@ -36,6 +36,9 @@ on this site, so it is silently excluded from the search index.
 - **No prices.** The Canva deck ("Rate Card v2") carries starting prices; the page does not.
   Pricing stays by-request over email. This is a media kit, not a price list.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d2e4d98 (docs: record why IG/X follower counts stay off the media kit)
 - **No Instagram or X follower counts.** Neither platform is on the page, with or without
   numbers. Automatic collection was evaluated and rejected on evidence, measured 2026-08-27:
   `instagram.com/rizafahmi/` returns a 616 KB login-walled JS shell with zero `og:` meta tags
@@ -48,9 +51,12 @@ on this site, so it is silently excluded from the search index.
   days) and the X API (user lookup is paid-tier only). Neither is worth its maintenance for a
   single slow-moving number, and 4,5rb IG followers at 0,5% engagement would weaken the page
   beside 7.170 subscribers and 364.431 views.
+<<<<<<< HEAD
 =======
 - **No Instagram section.** Deferred to a later pass.
 >>>>>>> fddcc3a (docs: design spec for dynamic YouTube media kit at /kerjasama/)
+=======
+>>>>>>> d2e4d98 (docs: record why IG/X follower counts stay off the media kit)
 - **No separate Ngobrolin WEB channel stats.** Ngobrolin WEB is a format within YouTube and is
   measured with YouTube data, not as a standalone channel with its own metrics.
 - **No Narasumber/Acara (speaking) section.** Removed from this page entirely.
