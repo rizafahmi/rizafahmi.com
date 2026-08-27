@@ -221,3 +221,86 @@ export function buildYoutubeStats({ videos, now, topCount = 6, recentCount = 6 }
     },
   };
 }
+
+/** A finite positive number, or null — so a missing field never compares true. */
+function positive(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+/**
+ * Refuse to replace the committed figures with materially worse ones.
+ *
+ * The fetch script already refuses a wholly empty payload, but total failure is
+ * the easy case. Partial degradation is the dangerous one: a transient hiccup
+ * returning half a playlist, or a curated video going private, both produce a
+ * smaller yet perfectly well-formed result that would commit, deploy, and
+ * quietly publish a worse channel than the one that exists. Throwing leaves the
+ * good JSON in place and fails the weekly workflow loudly, which is the point.
+ *
+ * `previous` is the committed src/_data/youtube.json, or null on a first run.
+ */
+export function assertNoStatsRegression(previous, next, { curatedCount = 0 } = {}) {
+  if (!previous) return;
+
+  const problems = [];
+  const floor = 1 - MAX_REGRESSION;
+
+  const prevAnalyzed = positive(previous?.window?.videosAnalyzed);
+  const nextAnalyzed = Number(next?.window?.videosAnalyzed) || 0;
+  if (prevAnalyzed && nextAnalyzed < prevAnalyzed * floor) {
+    problems.push(`videos analysed fell from ${prevAnalyzed} to ${nextAnalyzed}`);
+  }
+
+  const prevRecent = positive(previous?.momentum?.videosLast12Months);
+  const nextRecent = Number(next?.momentum?.videosLast12Months) || 0;
+  if (prevRecent && nextRecent < prevRecent * floor) {
+    problems.push(`videos in the last 12 months fell from ${prevRecent} to ${nextRecent}`);
+  }
+
+  const prevBest = (previous?.bestVideos || []).length;
+  const nextBest = (next?.bestVideos || []).length;
+  if (nextBest < prevBest) {
+    problems.push(`curated "Video terbaik" fell from ${prevBest} to ${nextBest}`);
+  }
+  if (nextBest < curatedCount) {
+    problems.push(`only ${nextBest} of ${curatedCount} curated pick(s) hydrated`);
+  }
+
+  if (problems.length === 0) return;
+
+  throw new Error(
+    `Refusing to write src/_data/youtube.json: ${problems.join("; ")}. ` +
+      `A drop this size is far more likely to be a bad fetch than a real change — ` +
+      `check the API quota and key, and whether a curated video in ` +
+      `src/_data/ratecardBestVideos.json has gone private or been deleted. ` +
+      `The committed figures were left untouched.`,
+  );
+}
+
+/**
+ * Refuse to publish a cadence figure the fetch window has started truncating.
+ *
+ * `computeMomentum` counts a 365-day window out of an array capped at
+ * `windowSize` newest uploads. While the window reaches back further than 365
+ * days that is fine. Once cadence rises far enough that all `windowSize` videos
+ * fall inside the year, the count silently saturates and the page publishes an
+ * undercount as fact. Only the cap being reached can cause this, so a channel
+ * with fewer total uploads than the cap is never flagged.
+ */
+export function assertMomentumWindowCovered(window, now, { fetched, windowSize }) {
+  if (!(fetched >= windowSize)) return;
+
+  const from = new Date(window?.from ?? "").getTime();
+  const days = (now.getTime() - from) / MS_PER_DAY;
+  if (days > MOMENTUM_WINDOW_DAYS) return;
+
+  const age = Number.isFinite(days) ? `${Math.round(days)} days` : "an unreadable date";
+  throw new Error(
+    `Refusing to write src/_data/youtube.json: the ${windowSize}-video window starts at ` +
+      `${window?.from} (${age} ago), which no longer reaches past the ` +
+      `${MOMENTUM_WINDOW_DAYS}-day momentum window. videosLast12Months would be capped by ` +
+      `the fetch size rather than measured, and published as fact. ` +
+      `Raise WINDOW_SIZE in scripts/fetch-youtube-stats.mjs and re-run.`,
+  );
+}

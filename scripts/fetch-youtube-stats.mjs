@@ -21,12 +21,24 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import { buildYoutubeStats, hydrateCurated, normalizeVideo } from "../src/libs/youtube-stats.js";
+import {
+  assertMomentumWindowCovered,
+  assertNoStatsRegression,
+  buildYoutubeStats,
+  hydrateCurated,
+  normalizeVideo,
+} from "../src/libs/youtube-stats.js";
 
 const API = "https://www.googleapis.com/youtube/v3";
 
-/** How far back the medians look. Three playlist pages, three video pages. */
-const WINDOW_SIZE = 150;
+/**
+ * How far back the medians look. Six playlist pages, six video pages — cheap
+ * enough for a weekly job, and deliberately far wider than the 365-day momentum
+ * window so cadence is measured rather than capped. At 150 the two were only
+ * thirteen videos apart; see assertMomentumWindowCovered, which fails the run
+ * rather than let an undercount be published if that headroom is ever used up.
+ */
+const WINDOW_SIZE = 300;
 
 function must(name) {
   const v = process.env[name];
@@ -113,8 +125,33 @@ async function fetchVideos({ apiKey, ids }) {
   return out;
 }
 
+/**
+ * The committed figures, for the regression guard to compare against.
+ *
+ * Missing file → null, meaning "first run, nothing to compare". Anything else
+ * wrong throws: a corrupt file must never be mistaken for a first run, or the
+ * guard would wave through exactly the bad write it exists to stop.
+ */
+async function readExistingStats(file) {
+  let raw;
+  try {
+    raw = await fs.readFile(file, "utf8");
+  } catch (error) {
+    if (error?.code === "ENOENT") return null;
+    throw new Error(`Could not read ${file}: ${error.message}`);
+  }
+  try {
+    return JSON.parse(raw);
+  } catch (error) {
+    throw new Error(
+      `${file} is not valid JSON, so this run cannot be checked against it: ${error.message}`,
+    );
+  }
+}
+
 async function main() {
   const apiKey = must("YOUTUBE_API_KEY");
+  const now = new Date();
   const id = await resolveChannelId({
     apiKey,
     channelId: opt("YOUTUBE_CHANNEL_ID"),
@@ -145,7 +182,7 @@ async function main() {
     );
   }
 
-  const derived = buildYoutubeStats({ videos, now: new Date() });
+  const derived = buildYoutubeStats({ videos, now });
 
   // Curated picks are fetched by id, not looked up in the window above: the
   // videos that best show what a sponsorship looks like are years old.
@@ -153,10 +190,6 @@ async function main() {
   const picks = JSON.parse(await fs.readFile(curatedPath, "utf8"));
   const curatedRecords = await fetchVideos({ apiKey, ids: picks.map((p) => p.id) });
   const bestVideos = hydrateCurated(picks, curatedRecords);
-  const dropped = picks.length - bestVideos.length;
-  if (dropped > 0) {
-    console.warn(`${dropped} curated video(s) could not be fetched and will not render`);
-  }
 
   const handle = opt("YOUTUBE_HANDLE");
   const out = {
@@ -175,7 +208,7 @@ async function main() {
     },
     ...derived,
     bestVideos,
-    updatedAt: new Date().toISOString(),
+    updatedAt: now.toISOString(),
     source: {
       api: "YouTube Data API v3",
       note: "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth.",
@@ -183,6 +216,18 @@ async function main() {
   };
 
   const outPath = path.join(process.cwd(), "src", "_data", "youtube.json");
+
+  // Last gate before the write. The guards above only catch total failure;
+  // these catch the quiet kind — a truncated playlist, a cadence figure the
+  // fetch size has started capping, a curated video gone private. Throwing
+  // leaves the committed JSON in place and fails the weekly workflow loudly,
+  // which is the whole point: stale figures are visible, wrong ones are not.
+  assertMomentumWindowCovered(derived.window, now, {
+    fetched: videos.length,
+    windowSize: WINDOW_SIZE,
+  });
+  assertNoStatsRegression(await readExistingStats(outPath), out, { curatedCount: picks.length });
+
   await fs.mkdir(path.dirname(outPath), { recursive: true });
   await fs.writeFile(outPath, `${JSON.stringify(out, null, 2)}\n`, "utf8");
   console.log(`Wrote ${outPath} — ${out.stats.subscribers} subs, ${videos.length} videos analysed`);

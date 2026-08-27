@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  assertMomentumWindowCovered,
+  assertNoStatsRegression,
   bucketFormat,
   buildYoutubeStats,
   computeMomentum,
@@ -414,4 +416,115 @@ test("buildYoutubeStats: empty input produces a well-formed empty result", () =>
   assert.equal(out.momentum.videosLast12Months, 0);
   assert.equal(out.window.videosAnalyzed, 0);
   assert.equal(out.window.from, null);
+});
+
+// --- Refusing to publish materially worse figures -------------------------
+//
+// The script already refuses a wholly empty payload. These guard the harder
+// case: a smaller but well-formed result that would commit and deploy without
+// anyone noticing the channel got quietly smaller on the page.
+
+/** A committed youtube.json, healthy, with the fields the guard compares. */
+function committed(overrides = {}) {
+  return {
+    window: { videosAnalyzed: 300 },
+    momentum: { videosLast12Months: 137 },
+    bestVideos: [{ id: "a" }, { id: "b" }, { id: "c" }],
+    ...overrides,
+  };
+}
+
+test("assertNoStatsRegression: an ordinary week passes untouched", () => {
+  assert.doesNotThrow(() =>
+    assertNoStatsRegression(
+      committed(),
+      committed({ window: { videosAnalyzed: 300 }, momentum: { videosLast12Months: 141 } }),
+      { curatedCount: 3 },
+    ),
+  );
+});
+
+test("assertNoStatsRegression: the first run has nothing to compare against", () => {
+  assert.doesNotThrow(() => assertNoStatsRegression(null, committed(), { curatedCount: 3 }));
+});
+
+test("assertNoStatsRegression: a truncated fetch is refused", () => {
+  // Half a playlist came back — well-formed, and completely wrong to publish.
+  assert.throws(
+    () =>
+      assertNoStatsRegression(committed(), committed({ window: { videosAnalyzed: 150 } }), {
+        curatedCount: 3,
+      }),
+    /videos analysed fell from 300 to 150/,
+  );
+});
+
+test("assertNoStatsRegression: a small dip in the window is not a failure", () => {
+  // 30% is the line: deletions and privacy changes do happen.
+  assert.doesNotThrow(() =>
+    assertNoStatsRegression(committed(), committed({ window: { videosAnalyzed: 220 } }), {
+      curatedCount: 3,
+    }),
+  );
+});
+
+test("assertNoStatsRegression: a collapse in 12-month output is refused", () => {
+  assert.throws(
+    () =>
+      assertNoStatsRegression(committed(), committed({ momentum: { videosLast12Months: 40 } }), {
+        curatedCount: 3,
+      }),
+    /last 12 months fell from 137 to 40/,
+  );
+});
+
+test("assertNoStatsRegression: a curated video going private is refused, not warned about", () => {
+  // hydrateCurated drops it silently and "Video terbaik" shrinks on the page.
+  assert.throws(
+    () =>
+      assertNoStatsRegression(committed(), committed({ bestVideos: [{ id: "a" }, { id: "b" }] }), {
+        curatedCount: 3,
+      }),
+    /Video terbaik" fell from 3 to 2/,
+  );
+});
+
+test("assertNoStatsRegression: fewer hydrated picks than curated is refused on a first run too", () => {
+  assert.throws(
+    () =>
+      assertNoStatsRegression(committed({ bestVideos: [] }), committed({ bestVideos: [] }), {
+        curatedCount: 3,
+      }),
+    /only 0 of 3 curated pick\(s\) hydrated/,
+  );
+});
+
+test("assertMomentumWindowCovered: a window reaching past 12 months is fine", () => {
+  assert.doesNotThrow(() =>
+    assertMomentumWindowCovered({ from: "2025-06-18" }, NOW, { fetched: 300, windowSize: 300 }),
+  );
+});
+
+test("assertMomentumWindowCovered: a window the cap has pulled inside 12 months throws", () => {
+  // Cadence rose until all 300 fetched videos fit inside the year, so
+  // videosLast12Months is now measuring the fetch size, not the channel.
+  assert.throws(
+    () =>
+      assertMomentumWindowCovered({ from: "2026-03-01" }, NOW, { fetched: 300, windowSize: 300 }),
+    /Raise WINDOW_SIZE/,
+  );
+});
+
+test("assertMomentumWindowCovered: a channel smaller than the cap is never flagged", () => {
+  // Nothing was truncated: there simply are no older uploads to fetch.
+  assert.doesNotThrow(() =>
+    assertMomentumWindowCovered({ from: "2026-03-01" }, NOW, { fetched: 40, windowSize: 300 }),
+  );
+});
+
+test("assertMomentumWindowCovered: an unreadable window start cannot pass silently", () => {
+  assert.throws(
+    () => assertMomentumWindowCovered({ from: null }, NOW, { fetched: 300, windowSize: 300 }),
+    /unreadable date/,
+  );
 });
