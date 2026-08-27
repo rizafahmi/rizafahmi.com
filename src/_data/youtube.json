@@ -13,7 +13,7 @@
   },
   "momentum": {
     "videosLast12Months": 137,
-    "viewsLast12Months": 48452,
+    "viewsLast12Months": 48455,
     "uploadsPerMonth": 11.4,
     "monthsCovered": 12
   },
@@ -82,7 +82,7 @@
       "title": "Salah satu alat untuk menghemat token: RTK",
       "publishedAt": "2026-06-10T13:00:14Z",
       "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
-      "views": 1298,
+      "views": 1299,
       "durationSeconds": 41,
       "isLive": false
     },
@@ -229,7 +229,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-08-27T14:17:31.073Z",
+  "updatedAt": "2026-08-27T14:29:41.430Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."

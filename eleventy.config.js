@@ -8,6 +8,7 @@ import { generateOgImage } from "./src/libs/og-image.js";
 import { getRelatedPosts } from "./src/libs/related.js";
 import shikiPlugin from "./src/libs/shiki.js";
 import { tipsWithTag } from "./src/libs/tips.js";
+import { renderableFormats } from "./src/libs/youtube-stats.js";
 
 const isDev = process.env.ELEVENTY_ENV === "dev";
 
@@ -231,6 +232,12 @@ export default function (eleventyConfig) {
     if (!Number.isFinite(n)) return String(num);
     return n.toLocaleString(locale);
   });
+
+  // Format buckets with a large enough sample to show a median. See
+  // src/libs/youtube-stats.js — the threshold is deliberate, not cosmetic.
+  eleventyConfig.addFilter("renderableFormats", (youtube) =>
+    youtube && youtube.formats ? renderableFormats(youtube.formats) : [],
+  );
 
   // Sort a collection by view counts (descending) using GoatCounter data.
   // Usage: collections.catatan | popularByViews(goatcounterViews, 10)
