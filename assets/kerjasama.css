@@ -10,7 +10,7 @@
 .kerjasama-page h2 {
   margin-top: 3rem;
   padding-top: 1.25rem;
-  border-top: 4px solid var(--border-color);
+  border-top: 2px solid var(--border-color);
 }
 
 .kerjasama-lede {
@@ -109,9 +109,12 @@
   list-style: none;
 }
 
+/* Titles come from the YouTube API, so a long unbroken token (a URL, a
+   hashtag chain, a compound word) can't be assumed to break cleanly. */
 .kerjasama-videos li {
   padding: 0.75rem 0;
   border-bottom: 1px dashed var(--border-color);
+  overflow-wrap: anywhere;
 }
 
 .kerjasama-video-meta {
