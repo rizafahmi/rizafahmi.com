@@ -1,11 +1,19 @@
 #!/usr/bin/env node
 /**
- * Fetch basic public YouTube channel stats using YouTube Data API v3.
+ * Refresh the YouTube figures behind /kerjasama/.
  *
  * Writes: src/_data/youtube.json
  *
+ * This is the only place that talks to YouTube. `pnpm run build` reads the
+ * committed JSON and never calls the API, so a quota error or an expired key
+ * can leave the numbers stale but can never fail a deploy. The page renders
+ * `updatedAt`, which is what makes staleness visible rather than silent.
+ *
+ * All arithmetic lives in src/libs/youtube-stats.js so it can be tested
+ * offline; this file only fetches, maps, and writes.
+ *
  * Env:
- *   YOUTUBE_API_KEY   (required)
+ *   YOUTUBE_API_KEY    (required)
  *   YOUTUBE_CHANNEL_ID (optional) e.g. UCxxxx
  *   YOUTUBE_HANDLE     (optional) e.g. rizafahmi (without @)
  */
@@ -13,7 +21,12 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
+import { buildYoutubeStats, hydrateCurated, normalizeVideo } from "../src/libs/youtube-stats.js";
+
 const API = "https://www.googleapis.com/youtube/v3";
+
+/** How far back the medians look. Three playlist pages, three video pages. */
+const WINDOW_SIZE = 150;
 
 function must(name) {
   const v = process.env[name];
@@ -34,17 +47,20 @@ async function getJson(url) {
   return res.json();
 }
 
+function num(n) {
+  const x = Number(n);
+  return Number.isFinite(x) ? x : null;
+}
+
 async function resolveChannelId({ apiKey, channelId, handle }) {
   if (channelId) return channelId;
   if (!handle) throw new Error("Provide YOUTUBE_CHANNEL_ID or YOUTUBE_HANDLE");
 
-  // Newer API supports forHandle.
   const byHandle = `${API}/channels?part=id&forHandle=${encodeURIComponent(handle)}&key=${apiKey}`;
   const j1 = await getJson(byHandle);
   const id = j1?.items?.[0]?.id;
   if (id) return id;
 
-  // Fallback: search for channel by handle/username.
   const q = `@${handle}`;
   const search = `${API}/search?part=snippet&type=channel&maxResults=1&q=${encodeURIComponent(q)}&key=${apiKey}`;
   const j2 = await getJson(search);
@@ -54,52 +70,74 @@ async function resolveChannelId({ apiKey, channelId, handle }) {
   throw new Error(`Could not resolve channel id for handle ${handle}`);
 }
 
-function num(n) {
-  const x = Number(n);
-  return Number.isFinite(x) ? x : null;
+/** Video ids from the channel's uploads playlist, newest first. */
+async function fetchUploadIds({ apiKey, uploadsPlaylistId, limit }) {
+  const ids = [];
+  let pageToken = "";
+  while (ids.length < limit) {
+    const url =
+      `${API}/playlistItems?part=contentDetails&playlistId=${encodeURIComponent(uploadsPlaylistId)}` +
+      `&maxResults=50&key=${apiKey}${pageToken ? `&pageToken=${pageToken}` : ""}`;
+    const page = await getJson(url);
+    for (const item of page?.items || []) {
+      const id = item?.contentDetails?.videoId;
+      if (id) ids.push(id);
+    }
+    pageToken = page?.nextPageToken || "";
+    if (!pageToken) break;
+  }
+  return ids.slice(0, limit);
+}
+
+/** Full records for those ids, 50 at a time — the API's per-call ceiling. */
+async function fetchVideos({ apiKey, ids }) {
+  const out = [];
+  for (let i = 0; i < ids.length; i += 50) {
+    const chunk = ids.slice(i, i + 50).join(",");
+    const url =
+      `${API}/videos?part=snippet,statistics,contentDetails,liveStreamingDetails` +
+      `&id=${encodeURIComponent(chunk)}&key=${apiKey}`;
+    const page = await getJson(url);
+    for (const item of page?.items || []) {
+      const v = normalizeVideo(item);
+      if (v) out.push(v);
+    }
+  }
+  return out;
 }
 
 async function main() {
   const apiKey = must("YOUTUBE_API_KEY");
-  const channelId = opt("YOUTUBE_CHANNEL_ID");
-  const handle = opt("YOUTUBE_HANDLE");
+  const id = await resolveChannelId({
+    apiKey,
+    channelId: opt("YOUTUBE_CHANNEL_ID"),
+    handle: opt("YOUTUBE_HANDLE"),
+  });
 
-  const id = await resolveChannelId({ apiKey, channelId, handle });
-
-  const channelUrl = `${API}/channels?part=snippet,statistics&id=${encodeURIComponent(id)}&key=${apiKey}`;
+  const channelUrl = `${API}/channels?part=snippet,statistics,contentDetails&id=${encodeURIComponent(id)}&key=${apiKey}`;
   const channel = await getJson(channelUrl);
   const item = channel?.items?.[0];
   if (!item) throw new Error("Channel not found");
 
-  // Latest 12 videos: compute views range + avg views.
-  const _uploadsPlaylistId = item?.contentDetails?.relatedPlaylists?.uploads;
-  // contentDetails not included; use search list instead (reliable for public).
-  const searchUrl = `${API}/search?part=id&channelId=${encodeURIComponent(id)}&order=date&type=video&maxResults=12&key=${apiKey}`;
-  const search = await getJson(searchUrl);
-  const videoIds = (search?.items || []).map((it) => it?.id?.videoId).filter(Boolean);
+  const uploadsPlaylistId = item?.contentDetails?.relatedPlaylists?.uploads;
+  if (!uploadsPlaylistId) throw new Error("Channel has no uploads playlist");
 
-  let videos = [];
-  if (videoIds.length) {
-    const vidsUrl = `${API}/videos?part=snippet,statistics&id=${encodeURIComponent(videoIds.join(","))}&key=${apiKey}`;
-    const vids = await getJson(vidsUrl);
-    videos = (vids?.items || [])
-      .map((v) => ({
-        id: v.id,
-        title: v?.snippet?.title,
-        publishedAt: v?.snippet?.publishedAt,
-        url: `https://www.youtube.com/watch?v=${v.id}`,
-        views: num(v?.statistics?.viewCount) || 0,
-      }))
-      .sort((a, b) => (b.publishedAt || "").localeCompare(a.publishedAt || ""));
+  const ids = await fetchUploadIds({ apiKey, uploadsPlaylistId, limit: WINDOW_SIZE });
+  const videos = await fetchVideos({ apiKey, ids });
+  const derived = buildYoutubeStats({ videos, now: new Date() });
+
+  // Curated picks are fetched by id, not looked up in the window above: the
+  // videos that best show what a sponsorship looks like are years old.
+  const curatedPath = path.join(process.cwd(), "src", "_data", "ratecardBestVideos.json");
+  const picks = JSON.parse(await fs.readFile(curatedPath, "utf8"));
+  const curatedRecords = await fetchVideos({ apiKey, ids: picks.map((p) => p.id) });
+  const bestVideos = hydrateCurated(picks, curatedRecords);
+  const dropped = picks.length - bestVideos.length;
+  if (dropped > 0) {
+    console.warn(`${dropped} curated video(s) could not be fetched and will not render`);
   }
 
-  const viewCounts = videos.map((v) => v.views).filter((v) => typeof v === "number");
-  const avgViewsLast12 = viewCounts.length
-    ? Math.round(viewCounts.reduce((a, b) => a + b, 0) / viewCounts.length)
-    : null;
-  const minViewsLast12 = viewCounts.length ? Math.min(...viewCounts) : null;
-  const maxViewsLast12 = viewCounts.length ? Math.max(...viewCounts) : null;
-
+  const handle = opt("YOUTUBE_HANDLE");
   const out = {
     channel: {
       id,
@@ -113,14 +151,9 @@ async function main() {
       subscribers: num(item?.statistics?.subscriberCount),
       totalViews: num(item?.statistics?.viewCount),
       videoCount: num(item?.statistics?.videoCount),
-      // A few helpful, “ratecard-friendly” computed stats
-      avgViewsLast12,
-      viewsLast12Range:
-        minViewsLast12 != null && maxViewsLast12 != null
-          ? { min: minViewsLast12, max: maxViewsLast12 }
-          : null,
     },
-    recentVideos: videos.slice(0, 6),
+    ...derived,
+    bestVideos,
     updatedAt: new Date().toISOString(),
     source: {
       api: "YouTube Data API v3",
@@ -131,7 +164,7 @@ async function main() {
   const outPath = path.join(process.cwd(), "src", "_data", "youtube.json");
   await fs.mkdir(path.dirname(outPath), { recursive: true });
   await fs.writeFile(outPath, `${JSON.stringify(out, null, 2)}\n`, "utf8");
-  console.log(`Wrote ${outPath}`);
+  console.log(`Wrote ${outPath} — ${out.stats.subscribers} subs, ${videos.length} videos analysed`);
 }
 
 main().catch((err) => {
