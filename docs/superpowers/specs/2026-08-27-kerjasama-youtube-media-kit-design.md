@@ -136,12 +136,26 @@ three `playlistItems` calls plus three `videos` calls. Emits an extended `src/_d
 - **Maturity filter.** Videos younger than 21 days are excluded from every median, percentile,
   and range. They are still counted in `momentum.videosLast12Months` and in cadence, because
   those measure output rather than performance.
+- **Recency filter.** Videos older than `STATS_MAX_AGE_DAYS` (456, ~15 months) are likewise
+  excluded from every median, percentile and range, and from `topVideos` — but not from cadence
+  or `window.videosAnalyzed`. See the Risks note: this bound is what keeps the medians describing
+  recent performance, and it is deliberately independent of how many uploads get fetched.
+- **Zero-duration items are dropped entirely.** YouTube reports `P0D` for a stream that is live
+  or merely scheduled. Such an item has no views yet, is short enough to bucket as a Short, and
+  can be old enough to pass the maturity filter, so one unaired premiere is enough to print a
+  Shorts range floor of 0. It is excluded from cadence too: an unaired premiere is not output.
 - **Median, not mean**, for all per-format performance figures.
 - **Format bucketing**, in this order: duration ≤ 180s → `shorts`; else `liveStreamingDetails`
   present or duration ≥ 2700s → `episode`; else → `recorded`.
-- **Ngobrolin WEB** is identified by case-insensitive `"ngobrolin"` in the video title.
-- **Uploads per month** is `videosLast12Months` divided by the number of distinct calendar
-  months present in that cohort, rounded to one decimal.
+- **Ngobrolin WEB** is identified by case-insensitive `"ngobrolin web"` in the video title *and*
+  an `episode` format bucket. The bare `"ngobrolin"` substring also matched Shorts cut from the
+  show and spin-offs such as "Ngobrolin AI", which the page must not price as episodes. The block
+  obeys the same small-sample suppression threshold as the format buckets.
+- **Uploads per month** is `videosLast12Months` divided by the twelve elapsed months of the
+  window, rounded to one decimal. Dividing by the number of calendar months that happen to
+  contain an upload makes the average *rise* when output stops, and the page renders it as
+  "rata-rata" beside a card labelled "12 bulan terakhir". `monthsCovered` is still emitted, and
+  now reports something the divisor does not: how much of the year had an upload in it.
 - **Small-sample suppression.** A format bucket with fewer than 5 mature videos does not get a
   median rendered; the section omits that format rather than publishing a one-sample "median".
   This is not hypothetical — as of 2026-08-27 the `recorded` bucket holds a single video, so
@@ -255,8 +269,13 @@ is now their source of record. No CV output changes.
 
 - **API quota or key rotation.** Contained by design: the build never calls the API, so the
   failure mode is stale numbers with a visible stale date, not a broken site.
-- **150-video window.** Medians describe roughly the last fifteen months, not all time. This is
-  intended — recent performance is what a sponsor is buying — and the page labels the window.
+- **Recency-bounded medians.** Medians describe roughly the last fifteen months, not all time.
+  This is intended — recent performance is what a sponsor is buying — and the page labels the
+  window. The bound is a *time* bound (`STATS_MAX_AGE_DAYS`), deliberately separate from how many
+  uploads get fetched: the fetch window is larger, because momentum needs the headroom to be
+  measured rather than capped. Do not collapse the two again. Tying the medians to the fetch size
+  is how this commitment was briefly lost — widening the fetch to 300 lifted the Ngobrolin WEB
+  median 29% by reaching back into an era the channel no longer reproduces.
 - **Modest absolute numbers.** Recent per-video medians are in the low hundreds. The design
   answers this with framing rather than inflation: lifetime reach, output momentum, format
   specificity, named past sponsors, and audience niche. No metric is selected purely because it
