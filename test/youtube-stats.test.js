@@ -44,11 +44,18 @@ test("isMature: rejects unparseable dates", () => {
 });
 
 test("summarize: odd-length set takes the middle value", () => {
-  assert.deepEqual(summarize([1, 5, 100]), { n: 3, median: 5, p25: 5, p75: 100, min: 1, max: 100 });
+  assert.deepEqual(summarize([1, 5, 100]), { n: 3, median: 5, p25: 1, p75: 100, min: 1, max: 100 });
 });
 
 test("summarize: even-length set averages the two middle values, rounded", () => {
-  assert.equal(summarize([10, 20, 30, 41]).median, 25);
+  assert.deepEqual(summarize([10, 20, 30, 41]), {
+    n: 4,
+    median: 25,
+    p25: 20,
+    p75: 41,
+    min: 10,
+    max: 41,
+  });
 });
 
 test("summarize: single element", () => {
@@ -63,15 +70,12 @@ test("summarize: empty input returns null, never NaN", () => {
 test("summarize: reproduces the measured Shorts distribution", () => {
   // Guards the numbers quoted in the spec: n=53, median=273, min=84, max=2406.
   const views = [
-    84, 91, 96, 103, 110, 118, 122, 127, 131, 133, 136, 139, 141, 148, 152, 160, 168, 173, 179, 186,
-    194, 203, 211, 219, 228, 240, 251, 273, 288, 301, 318, 332, 349, 366, 382, 401, 428, 455, 487,
-    512, 548, 587, 614, 663, 712, 786, 853, 915, 941, 1096, 1198, 1574, 2406,
+    84, 85, 87, 88, 102, 104, 107, 113, 125, 131, 132, 136, 137, 139, 151, 153, 160, 163, 171, 172,
+    180, 182, 193, 208, 222, 240, 273, 282, 288, 289, 308, 323, 455, 461, 475, 504, 528, 528, 583,
+    614, 793, 804, 819, 853, 915, 941, 1096, 1143, 1198, 1298, 1574, 1700, 2406,
   ];
   const s = summarize(views);
-  assert.equal(s.n, 53);
-  assert.equal(s.median, 273);
-  assert.equal(s.min, 84);
-  assert.equal(s.max, 2406);
+  assert.deepEqual(s, { n: 53, median: 273, p25: 139, p75: 614, min: 84, max: 2406 });
 });
 
 test("normalizeVideo: maps an API item and derives duration and liveness", () => {

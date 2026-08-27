@@ -63,26 +63,17 @@ export function isMature(publishedAt, now, minDays = MATURE_MIN_DAYS) {
 
 /** Nearest-rank quantile over an ascending array. */
 function quantile(sorted, q) {
-  const index = Math.ceil(q * (sorted.length - 1));
-  return sorted[Math.min(sorted.length - 1, index)];
+  const index = Math.min(sorted.length - 1, Math.floor(sorted.length * q));
+  return sorted[index];
 }
 
 /** Median, percentiles and range for a set of view counts. */
 export function summarize(viewCounts) {
   if (!Array.isArray(viewCounts) || viewCounts.length === 0) return null;
   const sorted = [...viewCounts].sort((a, b) => a - b);
-  let median;
-  if (sorted.length % 2 === 1) {
-    // For odd arrays, use floor for small arrays, ceil for larger ones.
-    const medianIndex =
-      sorted.length > 10
-        ? Math.min(sorted.length - 1, Math.ceil(sorted.length * 0.5))
-        : Math.floor(sorted.length / 2);
-    median = sorted[medianIndex];
-  } else {
-    const mid = Math.floor(sorted.length / 2);
-    median = Math.round((sorted[mid - 1] + sorted[mid]) / 2);
-  }
+  const mid = Math.floor(sorted.length / 2);
+  const median =
+    sorted.length % 2 === 1 ? sorted[mid] : Math.round((sorted[mid - 1] + sorted[mid]) / 2);
   return {
     n: sorted.length,
     median,
