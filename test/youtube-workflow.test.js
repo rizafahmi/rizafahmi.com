@@ -19,9 +19,29 @@ import test from "node:test";
 const WORKFLOW = ".github/workflows/youtube-stats.yml";
 const yaml = readFileSync(WORKFLOW, "utf8");
 
+/**
+ * The body of one named step, from its `- name:` line to the next one.
+ *
+ * Searching the whole file for a key proves only that the key is somewhere in
+ * it: `YOUTUBE_HANDLE` on the checkout step, where it does nothing, reads the
+ * same as `YOUTUBE_HANDLE` on the step that actually runs the fetch. Placement
+ * is the entire point of these assertions, so they have to be scoped.
+ */
+function step(name) {
+  const chunks = yaml.split(/^ *- name: /m).slice(1);
+  const chunk = chunks.find((c) => c.startsWith(name));
+  assert.ok(chunk, `the workflow should have a step named "${name}"`);
+  return chunk;
+}
+
+/** Everything before the first step, i.e. `jobs:` and the job's own keys. */
+function jobHeader() {
+  return yaml.split(/^ *steps:$/m)[0];
+}
+
 /** The `node -e '...'` program the commit step uses to drop `updatedAt`. */
 function stripTimestampProgram() {
-  const match = yaml.match(/node -e '([^']*)'/);
+  const match = step("Commit if the numbers moved").match(/node -e '([^']*)'/);
   assert.ok(match, "the commit step should strip updatedAt with an inline node program");
   return match[1];
 }
@@ -60,19 +80,29 @@ test("the commit guard still sees a real change in the figures", () => {
 
 test("the commit guard no longer relies on a bare git diff", () => {
   assert.doesNotMatch(
-    yaml,
+    step("Commit if the numbers moved"),
     /git diff --quiet HEAD -- src\/_data\/youtube\.json/,
     "a raw diff can never be quiet while updatedAt is stamped every run",
   );
-  assert.match(yaml, /echo "No change\."/, "the skip path must survive");
+  assert.match(
+    step("Commit if the numbers moved"),
+    /echo "No change\."/,
+    "the skip path must survive",
+  );
 });
 
 test("the fetch step pins YOUTUBE_HANDLE, so channel.handle does not flip in CI", () => {
   // .envrc sets it locally; without it here CI writes `"handle": null` and the
-  // tracked file churns between the two on every run.
-  assert.match(yaml, /^\s+YOUTUBE_HANDLE: rizafahmi$/m);
+  // tracked file churns between the two on every run. It has to be on the step
+  // that runs the fetch -- anywhere else in the file it is inert.
+  const fetchStep = step("Fetch stats");
+  assert.match(fetchStep, /^\s+YOUTUBE_HANDLE: rizafahmi$/m);
+  assert.match(fetchStep, /^\s+YOUTUBE_CHANNEL_ID:/m, "and the channel id alongside it");
+  assert.match(fetchStep, /pnpm run fetch:youtube/, "this really is the step that fetches");
 });
 
 test("the job cannot hang for the 360-minute default while holding contents: write", () => {
-  assert.match(yaml, /^\s+timeout-minutes: 10$/m);
+  // A job-level key, so it must appear above `steps:` -- inside a step it is
+  // not a valid timeout and would silently leave the 360-minute default.
+  assert.match(jobHeader(), /^\s+timeout-minutes: 10$/m);
 });
