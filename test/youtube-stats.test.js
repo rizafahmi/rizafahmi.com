@@ -600,13 +600,18 @@ test("assertNoStatsRegression: a curated video going private is refused, not war
 });
 
 test("assertNoStatsRegression: fewer hydrated picks than curated is refused on a first run too", () => {
+  // `previous` is genuinely null here, as it is on a fresh checkout with no
+  // committed youtube.json. This check needs no baseline -- the curated list is
+  // its own expected value -- so it must run before the first-run early exit,
+  // or a half-length "Video terbaik" ships silently on a sponsor-facing page.
   assert.throws(
-    () =>
-      assertNoStatsRegression(committed({ bestVideos: [] }), committed({ bestVideos: [] }), {
-        curatedCount: 3,
-      }),
+    () => assertNoStatsRegression(null, committed({ bestVideos: [] }), { curatedCount: 3 }),
     /only 0 of 3 curated pick\(s\) hydrated/,
   );
+});
+
+test("assertNoStatsRegression: a first run with every pick hydrated still passes", () => {
+  assert.doesNotThrow(() => assertNoStatsRegression(null, committed(), { curatedCount: 3 }));
 });
 
 test("assertMomentumWindowCovered: a window reaching past 12 months is fine", () => {

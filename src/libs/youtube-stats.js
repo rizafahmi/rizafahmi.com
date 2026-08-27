@@ -285,10 +285,22 @@ function positive(value) {
  * `previous` is the committed src/_data/youtube.json, or null on a first run.
  */
 export function assertNoStatsRegression(previous, next, { curatedCount = 0 } = {}) {
-  if (!previous) return;
-
   const problems = [];
   const floor = 1 - MAX_REGRESSION;
+
+  // Checked before the first-run exit below, because it needs no baseline: the
+  // curated list is its own expected value. A fresh checkout with no committed
+  // youtube.json and three of six picks gone private would otherwise ship a
+  // half-length "Video terbaik" on a sponsor-facing page, silently.
+  const nextBest = (next?.bestVideos || []).length;
+  if (nextBest < curatedCount) {
+    problems.push(`only ${nextBest} of ${curatedCount} curated pick(s) hydrated`);
+  }
+
+  if (!previous) {
+    fail(problems);
+    return;
+  }
 
   const prevAnalyzed = positive(previous?.window?.videosAnalyzed);
   const nextAnalyzed = Number(next?.window?.videosAnalyzed) || 0;
@@ -303,14 +315,15 @@ export function assertNoStatsRegression(previous, next, { curatedCount = 0 } = {
   }
 
   const prevBest = (previous?.bestVideos || []).length;
-  const nextBest = (next?.bestVideos || []).length;
   if (nextBest < prevBest) {
     problems.push(`curated "Video terbaik" fell from ${prevBest} to ${nextBest}`);
   }
-  if (nextBest < curatedCount) {
-    problems.push(`only ${nextBest} of ${curatedCount} curated pick(s) hydrated`);
-  }
 
+  fail(problems);
+}
+
+/** Raise the collected problems as one actionable error, or return quietly. */
+function fail(problems) {
   if (problems.length === 0) return;
 
   throw new Error(
