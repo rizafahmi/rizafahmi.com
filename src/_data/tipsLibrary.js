@@ -36,9 +36,14 @@
  * tautan di deskripsi YouTube, dan menghitung daftar tag untuk navigasi.
  */
 import { selectTips, tipTagList } from "../libs/tips.js";
+/* Poster frames we host ourselves, written by scripts/fetch-tip-thumbnails.mjs (run by
+ * hand and committed, like tips.json). A tip missing from here falls back to YouTube's
+ * copy, so adding a tip never breaks the page -- it just misses the LCP win until the
+ * script is re-run. */
+import posters from "./tipPosters.json" with { type: "json" };
 import rawTips from "./tips.json" with { type: "json" };
 
-const items = selectTips(rawTips);
+const items = selectTips(rawTips, posters);
 
 export default {
   items,

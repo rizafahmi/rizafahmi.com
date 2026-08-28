@@ -366,15 +366,32 @@ const CARD_VARIANTS = {
  * The poster is not the card frame. It fills a 9/16 box at up to 340 CSS px,
  * where the card's small 4:3 frame would be a heavy upscale.
  */
-export function posterThumbnailFor(thumbnail) {
+export function posterThumbnailFor(thumbnail, posters = null) {
   const match = typeof thumbnail === "string" ? thumbnail.match(YT_THUMB_URL) : null;
   if (!match) {
     return thumbnail ? { url: thumbnail, width: 1280, height: 720 } : null;
   }
 
   const [, urlId, variant] = match;
-  const size = VARIANT_SIZE[variant] || VARIANT_SIZE.maxresdefault;
 
+  /* Prefer our own copy. The poster is the LCP element of every tip page, and serving
+   * it from i.ytimg.com cost 1.7s of LCP "load time" for 30KB: a cold handshake to a
+   * third-party origin plus ~153ms of their server latency, none of it overlapping
+   * anything on the page. `rel=preconnect` did not help. Same-origin, it rides the
+   * connection the HTML already opened. Files and the size manifest come from
+   * scripts/fetch-tip-thumbnails.mjs, run by hand and committed. */
+  const local = posters?.[urlId];
+  if (local) {
+    return {
+      url: `/assets/images/tips/${urlId}.webp`,
+      width: local.width,
+      height: local.height,
+    };
+  }
+
+  // No local copy yet (a tip added since the script last ran): fall back to YouTube so
+  // the page still renders rather than pointing at a file that is not there.
+  const size = VARIANT_SIZE[variant] || VARIANT_SIZE.maxresdefault;
   return {
     url: `https://i.ytimg.com/vi_webp/${urlId}/${variant}.webp`,
     width: size.width,
@@ -432,7 +449,7 @@ export function cardThumbnailFor(thumbnail) {
  * Data-file entries to what the templates render. Newest first, and every
  * optional field is either a real value or null — never the string "null".
  */
-export function selectTips(rawTips) {
+export function selectTips(rawTips, posters = null) {
   if (!Array.isArray(rawTips)) return [];
 
   return rawTips
@@ -463,7 +480,7 @@ export function selectTips(rawTips) {
         durationLabel: formatDuration(durationSeconds),
         thumbnail,
         cardThumbnail: cardThumbnailFor(thumbnail),
-        posterThumbnail: posterThumbnailFor(thumbnail),
+        posterThumbnail: posterThumbnailFor(thumbnail, posters),
         watchUrl: `https://www.youtube.com/shorts/${id}`,
         embedUrl: `https://www.youtube-nocookie.com/embed/${id}`,
         tags: (Array.isArray(raw?.tags) ? raw.tags : []).map(normalizeTipTag).filter(Boolean),
