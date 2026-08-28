@@ -695,7 +695,7 @@ small {
 
 .follow-cta-title {
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 1.125rem;
   letter-spacing: 0.05em;
   color: var(--heading-color);

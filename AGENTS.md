@@ -43,6 +43,7 @@ ones with `pnpm approve-builds <pkg>`. pnpm 11 ignores the `pnpm` field in `pack
 | `pnpm run format:fix`  | Auto-format files with Biome                           |
 | `pnpm run check`       | Run `biome check` + unit tests (full CI verification)  |
 | `pnpm run new:catatan` | Scaffold a new article under `src/catatan/`            |
+| `pnpm run fetch:tip-thumbnails` | Download tip poster frames (by hand; commit the result) |
 
 ## Tech Stack
 
@@ -51,6 +52,10 @@ ones with `pnpm approve-builds <pkg>`. pnpm 11 ignores the `pnpm` field in `pack
 - **Markdown** (`.md`) — Content authoring
 - **Shiki** — Syntax highlighting with Monokai theme
 - **Sharp** + `@11ty/eleventy-img` — Image optimization (WebP output)
+- **Webfonts** — Self-hosted from the `@fontsource` packages, never Google Fonts. One
+  manifest, `src/libs/webfonts.js`, drives the passthrough copy, the `@font-face` CSS
+  inlined into every `<head>`, and the preloads. See **Performance** below before
+  adding a face.
 - **Pagefind** — Client-side search index. It runs in **opt-in mode**: because some pages
   carry `data-pagefind-body`, Pagefind silently skips every page without it. A new page is
   unsearchable until its `<main>`/`<article>` gets that attribute (plus
@@ -82,8 +87,9 @@ assets/
   home.css           # Homepage-specific styles
   tulisan.css        # Article page styles
   cv.css             # CV screen styles + the @media print rules for /cv/
-  fonts/             # Self-hosted fonts
+  fonts/             # Legacy self-hosted fonts (the live webfonts come from @fontsource)
   images/            # Static images
+  images/tips/       # Tip poster frames; generated, see Curated Data
 test/
   *.test.js          # Unit tests; see Testing
 scripts/             # Utility scripts (new article scaffold, audit-site, etc.)
@@ -93,7 +99,7 @@ docs/                # Improvement notes and ideation
 Six templates own a `<head>` of their own rather than sharing one: `_includes/main.njk`,
 `_includes/tulisan.njk`, `_includes/serial.njk`, `_includes/cv.njk`, `index.njk`, and
 `search.njk`. Anything that has to be on every page goes in a partial included by all six
-(`_includes/head.njk` for metadata, `_includes/fonts.njk` for the webfont links) — editing
+(`_includes/head.njk` for metadata, `_includes/fonts.njk` for the webfonts) — editing
 one layout silently skips the other five.
 
 ## Testing
@@ -139,6 +145,40 @@ See `DESIGN.md` for the full design spec. Key rules:
   `720px` (`/tips` index and tag grids use `1080px` for density — `.tips-index`)
 - **Borders**: Flat, thick, solid black/white (`2px` default, `4px` or `8px` for major splits)
 
+## Performance
+
+Every page is held to a Lighthouse performance score >= 92 and LCP < 1.8s (mobile
+preset, simulated throttling). Two things dominate that budget, and both are easy to
+regress without noticing because neither shows up on a fast local connection:
+
+**1. Webfont bytes are the LCP budget.** Lighthouse's simulated mobile link charges
+roughly 6ms of LCP per KB of font, and fonts are usually the only thing on the critical
+path. Measured on identical markup: a page pulling 5 faces (87KB) scored LCP 1.50s, one
+pulling 9 faces (184KB) scored 2.11s. So `src/libs/webfonts.js` ships exactly five
+faces — Unbounded 800, Schibsted Grotesk 400/700, Martian Mono 400/700 — and three of
+them are preloaded. Before adding a face, check that an `assets/*.css` rule actually
+selects it, then re-measure. Two rules worth keeping:
+
+- Never preload a face the page does not paint. It costs the download *and* leaves the
+  real face to be discovered late. This site shipped that bug twice (a Wotfard file no
+  `font-family` referenced, then Unbounded 700 when every heading is 800).
+- `font-display` is not a lever here. Switching the non-critical faces to `optional`
+  changed the score by nothing; the bytes are charged either way.
+
+**2. Third-party requests on the critical path.** A cross-origin LCP resource pays a
+cold DNS+TCP+TLS handshake plus that origin's server latency, none of which overlaps
+anything — Lighthouse charged 1.7s of LCP "load time" to a 30KB YouTube thumbnail, and
+`rel=preconnect` did not help. Same-origin, the same image rides the connection the HTML
+already opened. Hence: tip posters are hosted here (see **Curated Data**), the webfonts
+are self-hosted, and the Twitter and utterances embeds are gated behind an
+`IntersectionObserver` (`_includes/analytics.njk`, `_includes/comments.njk`) so they
+cost nothing until scrolled to. A pasted Twitter embed carries its own eager
+`<script src=platform.twitter.com/widgets.js>`; the `lazyTweetWidget` transform in
+`eleventy.config.js` strips it so authors can keep pasting the stock embed code.
+
+There is no Lighthouse run in CI. To re-measure, build, serve `dist/` over a local
+static server, and run the Lighthouse CLI against the pages you changed.
+
 ## Content Guidelines
 
 - Tags use lowercase kebab-case, max 3-7 per article (see `TAGS.md` for canonical tag list)
@@ -172,6 +212,15 @@ See `DESIGN.md` for the full design spec. Key rules:
   `/llms-full.txt` (`src/llms.njk`, `src/llms-full.njk`). `tips.json` is generated,
   so it is excluded from Biome in `biome.json` — the fetch script's
   `JSON.stringify(..., null, 2)` owns that file's formatting.
+- Tip poster frames (the big image behind the play button on `/tips/<slug>/`) are
+  hosted here, not hotlinked: `assets/images/tips/<videoId>.webp` plus the size
+  manifest `src/_data/tipPosters.json`. Both come from `node
+  scripts/fetch-tip-thumbnails.mjs`, run **by hand and committed** — never by
+  `pnpm run build`, same rule as `tips.json`. Re-running is idempotent (pass
+  `--force` to re-download). The manifest records each file's real dimensions
+  because not every video has a maxres frame. A tip with no entry falls back to
+  YouTube's copy, so adding a tip never breaks the page — it just gives back the
+  LCP win until the script is re-run, which `test/tip-posters.test.js` catches.
 - CV content is curated in `src/_data/cv.js` (Indonesian header explains the editing
   rules). One template, `src/cv.njk`, paginates over `cv.languages` to emit `/cv/` and
   `/cv/en/` from that single file, so the two languages cannot drift; the shared markup

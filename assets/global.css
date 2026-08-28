@@ -1,13 +1,4 @@
 @font-face {
-  font-family: "Wotfard";
-  font-display: swap;
-  src:
-    local(""),
-    url("/assets/fonts/wotfard-regular-webfont.woff2") format("woff2"),
-    url("/assets/fonts/wotfard-regular-webfont.ttf") format("ttf");
-}
-
-@font-face {
   font-family: "JetBrainsMono";
   font-weight: bold;
   font-display: swap;

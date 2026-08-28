@@ -342,6 +342,47 @@ test("a poster for a video with only hqdefault stays at hqdefault", () => {
   });
 });
 
+/* The poster is the LCP element of every tip page. Served from i.ytimg.com it cost
+ * Lighthouse 1.7s of LCP "load time" for a 30KB image -- a cold cross-origin handshake
+ * plus ~153ms of YouTube's server latency, none of it overlapping anything, and a
+ * rel=preconnect did not help. Same-origin it rides the connection the HTML came on.
+ * Files and sizes come from scripts/fetch-tip-thumbnails.mjs, run by hand. */
+test("a poster we host ourselves wins over YouTube's copy", () => {
+  const posters = { abc123: { width: 1280, height: 720 } };
+  assert.deepEqual(posterThumbnailFor("https://i.ytimg.com/vi/abc123/maxresdefault.jpg", posters), {
+    url: "/assets/images/tips/abc123.webp",
+    width: 1280,
+    height: 720,
+  });
+});
+
+/* The manifest records the size actually on disk, because not every video has a maxres
+ * frame. Trusting the URL variant instead would put the wrong width/height on the <img>
+ * and reserve the wrong box, which shows up as layout shift. */
+test("a local poster reports its own dimensions, not the variant's", () => {
+  const posters = { abc123: { width: 480, height: 360 } };
+  const poster = posterThumbnailFor("https://i.ytimg.com/vi/abc123/maxresdefault.jpg", posters);
+  assert.equal(poster.width, 480);
+  assert.equal(poster.height, 360);
+});
+
+/* A tip added since the script last ran has no local file, so it must keep rendering
+ * from YouTube rather than pointing at a path that 404s. */
+test("a tip with no local poster falls back to YouTube", () => {
+  assert.deepEqual(posterThumbnailFor("https://i.ytimg.com/vi/abc123/maxresdefault.jpg", {}), {
+    url: "https://i.ytimg.com/vi_webp/abc123/maxresdefault.webp",
+    width: 1280,
+    height: 720,
+  });
+});
+
+test("selectTips threads local posters through to each tip", () => {
+  const [tip] = selectTips([RAW_TIP], { abc123: { width: 1280, height: 720 } });
+  assert.equal(tip.posterThumbnail.url, "/assets/images/tips/abc123.webp");
+  // The card frame is a different job and stays on YouTube's small variant.
+  assert.equal(tip.cardThumbnail.url, "https://i.ytimg.com/vi_webp/abc123/hqdefault.webp");
+});
+
 test("a non-YouTube poster is passed through untouched", () => {
   assert.deepEqual(posterThumbnailFor("https://example.com/cover.png"), {
     url: "https://example.com/cover.png",
