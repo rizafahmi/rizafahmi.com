@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 /* Pagefind runs in opt-in mode on this site: once any page carries
@@ -58,4 +58,23 @@ test("the budget select keeps its Belum tahu option", () => {
   const select = source.match(/<select[^>]*\sname="budget"[\s\S]*?<\/select>/)?.[0];
   assert.ok(select, "no budget select found");
   assert.match(select, /Belum tahu/);
+});
+
+/* This site has several separate page chromes, each owning its own <head> and
+ * nav. /tips shipped in #186 with a nav link that rendered on /articles and
+ * /tags but was absent from the homepage, which does not use main.njk.
+ * test/tips-nav.test.js documents that history. */
+test("the shared chrome nav links to /konsultasi/", () => {
+  const source = readFileSync("src/_includes/main.njk", "utf8");
+  assert.match(source, /<a href="\/konsultasi\/">/);
+});
+
+/* Source templates can lie about what renders; dist/ cannot. The homepage is
+ * standalone, so it needs its own link - here a body section rather than a
+ * ninth nav item. */
+test("the built homepage really renders an anchor to /konsultasi/", {
+  skip: !existsSync("dist/index.html") && "no dist/ - run pnpm run build",
+}, () => {
+  const html = readFileSync("dist/index.html", "utf8");
+  assert.match(html, /<a href="\/konsultasi\/"/);
 });

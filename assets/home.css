@@ -680,3 +680,28 @@
   color: var(--link-color);
   text-decoration: underline;
 }
+
+/* Homepage consultation block. The heading treatment is copied from
+   .highlight-section h2 so the homepage rhythm stays even: Unbounded 800,
+   uppercase, letter-spaced, with the 3px underline the other sections use.
+   Sections here separate with margin and that heading rule, not a border-top. */
+.konsultasi-section {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.konsultasi-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--heading-color);
+  border-bottom: 3px solid var(--border-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.konsultasi-section p {
+  max-width: 65ch;
+}

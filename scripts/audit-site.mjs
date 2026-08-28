@@ -125,7 +125,15 @@ function assertHomepageReachesSections() {
     [...html.matchAll(/<a[^>]+href="([^"]+)"/g)].map((m) => m[1].replace(/\/$/, "")),
   );
 
-  for (const section of ["/articles", "/tags", "/topik", "/tips", "/showcase", "/search"]) {
+  for (const section of [
+    "/articles",
+    "/tags",
+    "/topik",
+    "/tips",
+    "/showcase",
+    "/search",
+    "/konsultasi",
+  ]) {
     if (!hrefs.has(section)) {
       fail(`homepage has no anchor to ${section}/ — readers cannot navigate to it`);
     }
