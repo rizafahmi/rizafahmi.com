@@ -178,7 +178,7 @@ description: Sesi konsultasi sekali duduk untuk engineering lead dan CTO tim 5-5
     </li>
     <li>
       <strong>Nilai dulu sebelum bayar.</strong> Cara berpikir saya soal ini terkumpul gratis
-      di <a href="/topik/agentic-coding/">topik agentic coding</a>. Baca dulu, baru putuskan.
+      di <a href="/tags/agentic-coding/">topik agentic coding</a>. Baca dulu, baru putuskan.
     </li>
   </ul>
 
@@ -197,7 +197,7 @@ description: Sesi konsultasi sekali duduk untuk engineering lead dan CTO tim 5-5
   <p>
     Sesi ini disiapkan untuk yang memimpin tim engineering 5-50 orang. Kalau kamu developer
     yang ingin menata cara kerjamu sendiri, jangan bayar untuk ini dulu - materinya sudah
-    saya tulis gratis di <a href="/topik/agentic-coding/">topik agentic coding</a>, dan
+    saya tulis gratis di <a href="/tags/agentic-coding/">topik agentic coding</a>, dan
     pertanyaan dijawab langsung di
     <a href="{{ site.social.youtube }}" target="_blank" rel="noopener noreferrer">livestream Senin</a>.
   </p>
@@ -525,7 +525,7 @@ eleventyExcludeFromCollections: true
   <p>
     Kalau menurut saya kamu belum butuh sesi ini, saya bilang juga - lengkap dengan
     alasannya. Sementara menunggu, tulisan gratisnya ada di
-    <a href="/topik/agentic-coding/">topik agentic coding</a>.
+    <a href="/tags/agentic-coding/">topik agentic coding</a>.
   </p>
 
   <p><a class="button" href="/">Kembali ke beranda</a></p>

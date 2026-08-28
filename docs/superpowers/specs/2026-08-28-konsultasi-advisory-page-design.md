@@ -140,13 +140,13 @@ One page at `/konsultasi/`, in this order.
    (trained thousands of engineers — the single most relevant fact for someone whose problem is
    their team's skill), fourteen years building and teaching software, the weekly *Eksperimen
    Pemrograman* livestream as visible work rather than slides, and a link to
-   `/topik/agentic-coding/` so the thinking can be judged for free before anything is paid for.
+   `/tags/agentic-coding/` so the thinking can be judged for free before anything is paid for.
 4. **Jujur dari awal** — the honesty block, in the `/kelas/` voice: this is a new service, there
    are no clients yet, certainty is not on offer, pricing is per case because a five-person team
    and a fifty-person team are not the same problem, and if the session concludes they do not
    need him, he says so.
 5. **Bukan untuk siapa** — one short paragraph. Individual developers who are not leading a team
-   are pointed at `/topik/agentic-coding/` and the livestream. This protects the niche without
+   are pointed at `/tags/agentic-coding/` and the livestream. This protects the niche without
    sending anyone away empty-handed, and it must not reference `/kelas/`.
 6. **Ajukan brief** — the form. See below.
 7. **FAQ** — five entries: how pricing works and when a number arrives; what a session is not
