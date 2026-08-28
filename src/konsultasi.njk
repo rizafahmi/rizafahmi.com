@@ -138,7 +138,7 @@ description: Sesi konsultasi sekali duduk untuk engineering lead dan CTO tim 5-5
 
     <p>
       <label for="tim">Ukuran tim engineering</label>
-      <select id="tim" name="tim" required>
+      <select id="tim" name="tim">
         <option value="">Pilih salah satu</option>
         <option value="&lt;5">Di bawah 5 orang</option>
         <option value="5-15">5-15 orang</option>
@@ -149,8 +149,8 @@ description: Sesi konsultasi sekali duduk untuk engineering lead dan CTO tim 5-5
 
     <p>
       <label for="situasi">Apa yang sedang kamu hadapi? <span class="konsultasi-wajib">wajib</span></label>
-      <textarea id="situasi" name="situasi" rows="6" required></textarea>
-      <span class="konsultasi-bantuan">
+      <textarea id="situasi" name="situasi" rows="6" required aria-describedby="situasi-bantuan"></textarea>
+      <span id="situasi-bantuan" class="konsultasi-bantuan">
         Makin spesifik makin berguna. Contoh: sudah pakai tool apa, sejak kapan, dan apa
         yang bikin kamu ragu hasilnya.
       </span>
@@ -158,7 +158,7 @@ description: Sesi konsultasi sekali duduk untuk engineering lead dan CTO tim 5-5
 
     <p>
       <label for="sesi">Bentuk sesi yang dicari</label>
-      <select id="sesi" name="sesi" required>
+      <select id="sesi" name="sesi">
         <option value="">Pilih salah satu</option>
         <option value="arah">Arah - belum tahu mulai dari mana</option>
         <option value="pendapat-kedua">Pendapat kedua - rencana sudah ada</option>
@@ -168,8 +168,8 @@ description: Sesi konsultasi sekali duduk untuk engineering lead dan CTO tim 5-5
     </p>
 
     <p>
-      <label for="budget">Perkiraan budget untuk satu sesi</label>
-      <select id="budget" name="budget" required>
+      <label for="budget">Perkiraan budget untuk satu sesi <span class="konsultasi-wajib">wajib</span></label>
+      <select id="budget" name="budget" required aria-describedby="budget-bantuan">
         <option value="">Pilih salah satu</option>
         <option value="&lt;2jt">Di bawah Rp2 juta</option>
         <option value="2-5jt">Rp2-5 juta</option>
@@ -177,7 +177,7 @@ description: Sesi konsultasi sekali duduk untuk engineering lead dan CTO tim 5-5
         <option value="&gt;10jt">Di atas Rp10 juta</option>
         <option value="belum-tahu">Belum tahu</option>
       </select>
-      <span class="konsultasi-bantuan">
+      <span id="budget-bantuan" class="konsultasi-bantuan">
         Tidak mengikat, dan &ldquo;belum tahu&rdquo; jawaban yang sah. Ini cuma supaya saya
         tidak mengusulkan bentuk sesi yang jauh dari perkiraanmu.
       </span>
@@ -185,7 +185,7 @@ description: Sesi konsultasi sekali duduk untuk engineering lead dan CTO tim 5-5
 
     <p>
       <label for="kapan">Kapan butuhnya</label>
-      <select id="kapan" name="kapan" required>
+      <select id="kapan" name="kapan">
         <option value="">Pilih salah satu</option>
         <option value="minggu-ini">Minggu ini</option>
         <option value="bulan-ini">Bulan ini</option>

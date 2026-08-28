@@ -78,3 +78,31 @@ test("the built homepage really renders an anchor to /konsultasi/", {
   const html = readFileSync("dist/index.html", "utf8");
   assert.match(html, /<a href="\/konsultasi\/"/);
 });
+
+/* Without data-netlify="true" on the <form> element, Netlify never registers
+ * the form at build time - submissions vanish with no error on either end. */
+test('the form declares data-netlify="true"', () => {
+  const source = readFileSync("src/konsultasi.njk", "utf8");
+  const form = source.match(/<form[\s\S]*?>/)?.[0];
+  assert.ok(form, "no <form ...> found");
+  assert.match(form, /data-netlify="true"/);
+});
+
+/* A honeypot declared on the form but missing as an actual input means
+ * Netlify's spam check has nothing to inspect, which can misjudge legitimate
+ * submissions. The attribute and the field it names must both be present. */
+test("the honeypot is declared and paired with a matching input", () => {
+  const source = readFileSync("src/konsultasi.njk", "utf8");
+  const form = source.match(/<form[\s\S]*?>/)?.[0];
+  assert.ok(form, "no <form ...> found");
+  assert.match(form, /netlify-honeypot="bot-field"/);
+  assert.match(source, /<input[^>]*\sname="bot-field"/);
+});
+
+/* Netlify uses a field literally named "email" to set the notification's
+ * Reply-To header. Rename or drop it and replies go to a no-reply address
+ * instead of the sender. */
+test("a field named email exists", () => {
+  const source = readFileSync("src/konsultasi.njk", "utf8");
+  assert.match(source, /<input[^>]*\sname="email"/);
+});

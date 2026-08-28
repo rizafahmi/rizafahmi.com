@@ -281,7 +281,9 @@ bar without special handling. `pageCss` keeps `konsultasi.css` off every other p
 Measured over **60 days** from the distribution step below, not from deploy.
 
 A **qualified brief** is one where `tim` is 5–15 or 16–50, `situasi` runs longer than a single
-line, and `budget` is not "Belum tahu".
+line, and `budget` is not "Belum tahu". `tim` is optional on the form, so a brief that leaves it
+blank does not count toward the qualified threshold — it is still worth replying to, just not
+counted as evidence either way.
 
 Rows are evaluated top to bottom; the first one that matches decides.
 
