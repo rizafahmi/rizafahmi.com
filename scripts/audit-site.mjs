@@ -234,6 +234,82 @@ function assertLlmsTxt() {
   }
 }
 
+/* The critical-path rules from AGENTS.md > Performance. Every page is held to a
+ * Lighthouse score >= 92 and LCP < 1.8s, but nothing in CI runs Lighthouse, so these
+ * guard the specific regressions that produced the worst measurements: a render-blocking
+ * third-party stylesheet (~850ms of every page), eager third-party widgets, an
+ * autoplaying video (one clip took its article from 1.58s to 2.25s), and preloading a
+ * font face the page never paints. */
+function eachHtmlFile(dir, visit) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) eachHtmlFile(full, visit);
+    else if (entry.name.endsWith(".html")) visit(full);
+  }
+}
+
+const EXPECTED_FONT_PRELOADS = [
+  "martian-mono-latin-400-normal.woff2",
+  "schibsted-grotesk-latin-400-normal.woff2",
+  "unbounded-latin-800-normal.woff2",
+];
+
+function assertCriticalPath() {
+  let tweetPages = 0;
+  let checked = 0;
+
+  eachHtmlFile(DIST_DIR, (file) => {
+    // dist/pagefind ships vendored demo/search HTML that is not part of the site.
+    if (file.includes(`${path.sep}pagefind${path.sep}`)) return;
+    const html = readText(file);
+    checked += 1;
+
+    if (/<link[^>]+rel=["']stylesheet["'][^>]*href=["']https?:\/\//i.test(html)) {
+      fail(`${file} loads a render-blocking third-party stylesheet`);
+    }
+    if (/fonts\.(googleapis|gstatic)\.com/.test(html)) {
+      fail(`${file} requests a webfont from another origin; fonts ship from /assets/fonts/`);
+    }
+    if (
+      /<script[^>]+src=["']https:\/\/(platform\.twitter\.com\/widgets\.js|utteranc\.es\/client\.js)["']/i.test(
+        html,
+      )
+    ) {
+      fail(`${file} eagerly loads a third-party widget; it belongs behind lazy-media.njk`);
+    }
+    // (?<![-\w]) so the rewritten `data-autoplay` does not read as a live autoplay.
+    if (/<video\b[^>]*(?<![-\w])autoplay(?![-\w])/i.test(html)) {
+      fail(`${file} autoplays a video, which downloads it during page load`);
+    }
+    for (const [, attrs] of html.matchAll(/<video\b([^>]*)>/gi)) {
+      if (!/preload=["']none["']/i.test(attrs))
+        fail(`${file} has a <video> without preload="none"`);
+    }
+    // A pasted YouTube/TED embed boots a whole web app on load; one held an article's
+    // LCP at 1.80s. They live below the fold, so lazyIframe defers them.
+    for (const [, attrs] of html.matchAll(/<iframe\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi)) {
+      if (!/loading=["']lazy["']/i.test(attrs)) fail(`${file} has an <iframe> that is not lazy`);
+    }
+    if (/class="twitter-tweet"/.test(html)) tweetPages += 1;
+
+    const preloads = [...html.matchAll(/rel="preload"[^>]+href="([^"]+\.woff2)"/g)]
+      .map((match) => match[1].split("/").pop())
+      .sort();
+    if (preloads.length && preloads.join() !== EXPECTED_FONT_PRELOADS.join()) {
+      fail(
+        `${file} preloads ${preloads.join(", ") || "nothing"}; expected the three above-the-fold faces`,
+      );
+    }
+  });
+
+  if (checked === 0) fail("no HTML files found to audit");
+  // The eager <script> a pasted Twitter embed carries is stripped at build; the
+  // blockquotes it belongs to must survive.
+  if (tweetPages !== 3) {
+    fail(`expected 3 pages with a tweet blockquote, found ${tweetPages}`);
+  }
+}
+
 function parseFrontmatter(text) {
   const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return {};
@@ -301,6 +377,7 @@ assertPagefind();
 assertRobotsTxt();
 assertLlmsTxt();
 assertPublishedFrontmatter();
+assertCriticalPath();
 
 if (failures.length) {
   console.error("[site-audit] Failed:");
