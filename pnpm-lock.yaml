@@ -21,6 +21,9 @@ importers:
       '@biomejs/biome':
         specifier: ^2.4.16
         version: 2.5.9
+      '@fontsource/martian-mono':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource/schibsted-grotesk':
         specifier: ^5.2.8
         version: 5.3.0
@@ -157,6 +160,9 @@ packages:
 
   '@emnapi/runtime@1.11.3':
     resolution: {integrity: sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==}
+
+  '@fontsource/martian-mono@5.3.0':
+    resolution: {integrity: sha512-0iTnU6SZi6j5z4ymwlZGep6akvp/xWm+r+WyZO9hMfDJWX+dsFLipQp9zO02S0lkUQ+zAahcZNy3XLiNP+gVqQ==}
 
   '@fontsource/schibsted-grotesk@5.3.0':
     resolution: {integrity: sha512-9k+Fd2eg7umKxI2JV2HtDcOkXEM0iJx0u4Iu1b+QHikVU8Sl/MtozJ/mtZfsltR6xnVGSQjpcxXQeJPW0KGpIA==}
@@ -1348,6 +1354,8 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
+
+  '@fontsource/martian-mono@5.3.0': {}
 
   '@fontsource/schibsted-grotesk@5.3.0': {}
 

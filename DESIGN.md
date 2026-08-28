@@ -86,9 +86,27 @@ A high-contrast full palette based on raw geological tones and raw industrial co
 ### Hierarchy
 
 - **Hero Title** (Extra Bold 800, `clamp(2rem, 5vw, 3.5rem)`, Line-height `1.1`): Main branding hero titles.
-- **Section Heading** (Bold 700, `1.75rem`, Line-height `1.2`): Primary navigation/sub-sections.
+- **Section Heading** (Extra Bold 800, `1.75rem`, Line-height `1.2`): Primary navigation/sub-sections.
 - **Body Text** (Regular 400, `1.0625rem`, Line-height `1.6`): Article blocks, capped at `65ch` width.
-- **Monospace Labels** (Medium 500, `0.875rem`, Line-height `1.4`): Technical categories, date stamps, and tags.
+- **Monospace Labels** (Regular 400 / Bold 700, `0.875rem`, Line-height `1.4`): Technical categories, date stamps, and tags.
+
+### The Five Face Rule
+
+The site ships exactly five webfont faces, and that is a hard budget rather than a
+coincidence: **Unbounded 800**, **Schibsted Grotesk 400 and 700**, **Martian Mono 400
+and 700**. Webfont bytes are what decides LCP here — Lighthouse's simulated mobile link
+charges about 6ms per KB, and on identical markup a page pulling nine faces measured LCP
+2.11s against 1.50s for one pulling five. A sixth face costs roughly 130ms of LCP on
+every page that touches it.
+
+So the display family has **one** weight. Unbounded 900 (once used by the homepage hero
+and five section headings) and Unbounded 700 were dropped; 800 is the weight this
+section already specified. There are **no italic faces**: `font-style: italic` on
+blockquotes renders as a synthetic oblique of the roman, which is normal for a grotesk
+and saves 51KB. Weight 500 is not available in any family.
+
+Adding a face means changing `src/libs/webfonts.js`, and it needs a Lighthouse
+re-measure, not just a stylesheet rule. See **Performance** in `AGENTS.md`.
 
 ### Named Rules
 

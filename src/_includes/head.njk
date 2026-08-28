@@ -10,8 +10,6 @@
 <meta name="view-transition" content="same-origin">
 <meta name="generator" content="{{ eleventy.generator }}">
 
-<link rel="preload" href="/assets/fonts/wotfard-regular-webfont.woff2" type="font/woff2" as="font" crossorigin="anonymous" />
-
 {# --- Social + SEO helpers --- #}
 {%- set _desc = description or (content | excerpt(180)) or site.description or title -%}
 {%- set _ogTitle = ogTitle or title -%}

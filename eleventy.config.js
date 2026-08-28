@@ -8,6 +8,7 @@ import { generateOgImage } from "./src/libs/og-image.js";
 import { getRelatedPosts } from "./src/libs/related.js";
 import shikiPlugin from "./src/libs/shiki.js";
 import { tipsWithTag } from "./src/libs/tips.js";
+import { fontFaceCss, passthroughCopyMap, preloadLinks } from "./src/libs/webfonts.js";
 import { renderableFormats } from "./src/libs/youtube-stats.js";
 
 const isDev = process.env.ELEVENTY_ENV === "dev";
@@ -117,6 +118,14 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("src/_redirects");
+
+  // Self-hosted webfonts. The files live in the @fontsource packages rather than in
+  // assets/, so the version in package.json stays the single source of truth and no
+  // binaries are checked in. src/libs/webfonts.js derives this map, the inlined
+  // @font-face CSS and the preload tags from one manifest so they cannot drift.
+  eleventyConfig.addPassthroughCopy(passthroughCopyMap());
+  eleventyConfig.addGlobalData("webfontCss", fontFaceCss());
+  eleventyConfig.addGlobalData("webfontPreloads", preloadLinks());
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return getRelativeTimeString(dateObj);
