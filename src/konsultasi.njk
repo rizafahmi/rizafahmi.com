@@ -98,4 +98,141 @@ description: Sesi konsultasi sekali duduk untuk engineering lead dan CTO tim 5-5
     pertanyaan dijawab langsung di
     <a href="{{ site.social.youtube }}" target="_blank" rel="noopener noreferrer">livestream Senin</a>.
   </p>
+
+  <h2 id="brief">Ajukan brief</h2>
+
+  <p>
+    Isi sebentar, dan saya balas dalam 1x24 jam kerja dengan angka dan usulan bentuk sesi.
+    Belum tentu cocok, dan itu tidak apa-apa - kalau menurut saya kamu tidak butuh sesi ini,
+    saya bilang di balasan yang sama.
+  </p>
+
+  <form
+    class="konsultasi-form"
+    name="konsultasi-brief"
+    method="POST"
+    action="/konsultasi/terima-kasih/"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+  >
+    <input type="hidden" name="form-name" value="konsultasi-brief" />
+    <input type="hidden" name="subject" value="Brief konsultasi - rizafahmi.com" />
+    <p hidden aria-hidden="true">
+      <label>Jangan diisi kalau kamu manusia: <input name="bot-field" /></label>
+    </p>
+
+    <p>
+      <label for="nama">Nama</label>
+      <input type="text" id="nama" name="nama" autocomplete="name" />
+    </p>
+
+    <p>
+      <label for="email">Email <span class="konsultasi-wajib">wajib</span></label>
+      <input type="email" id="email" name="email" required autocomplete="email" />
+    </p>
+
+    <p>
+      <label for="perusahaan">Perusahaan</label>
+      <input type="text" id="perusahaan" name="perusahaan" autocomplete="organization" />
+    </p>
+
+    <p>
+      <label for="tim">Ukuran tim engineering</label>
+      <select id="tim" name="tim" required>
+        <option value="">Pilih salah satu</option>
+        <option value="&lt;5">Di bawah 5 orang</option>
+        <option value="5-15">5-15 orang</option>
+        <option value="16-50">16-50 orang</option>
+        <option value="&gt;50">Di atas 50 orang</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="situasi">Apa yang sedang kamu hadapi? <span class="konsultasi-wajib">wajib</span></label>
+      <textarea id="situasi" name="situasi" rows="6" required></textarea>
+      <span class="konsultasi-bantuan">
+        Makin spesifik makin berguna. Contoh: sudah pakai tool apa, sejak kapan, dan apa
+        yang bikin kamu ragu hasilnya.
+      </span>
+    </p>
+
+    <p>
+      <label for="sesi">Bentuk sesi yang dicari</label>
+      <select id="sesi" name="sesi" required>
+        <option value="">Pilih salah satu</option>
+        <option value="arah">Arah - belum tahu mulai dari mana</option>
+        <option value="pendapat-kedua">Pendapat kedua - rencana sudah ada</option>
+        <option value="review">Review cara kerja tim</option>
+        <option value="belum-tahu">Belum tahu, bantu pilihkan</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="budget">Perkiraan budget untuk satu sesi</label>
+      <select id="budget" name="budget" required>
+        <option value="">Pilih salah satu</option>
+        <option value="&lt;2jt">Di bawah Rp2 juta</option>
+        <option value="2-5jt">Rp2-5 juta</option>
+        <option value="5-10jt">Rp5-10 juta</option>
+        <option value="&gt;10jt">Di atas Rp10 juta</option>
+        <option value="belum-tahu">Belum tahu</option>
+      </select>
+      <span class="konsultasi-bantuan">
+        Tidak mengikat, dan &ldquo;belum tahu&rdquo; jawaban yang sah. Ini cuma supaya saya
+        tidak mengusulkan bentuk sesi yang jauh dari perkiraanmu.
+      </span>
+    </p>
+
+    <p>
+      <label for="kapan">Kapan butuhnya</label>
+      <select id="kapan" name="kapan" required>
+        <option value="">Pilih salah satu</option>
+        <option value="minggu-ini">Minggu ini</option>
+        <option value="bulan-ini">Bulan ini</option>
+        <option value="riset">Masih riset</option>
+      </select>
+    </p>
+
+    <p><button type="submit" class="button">Kirim brief</button></p>
+  </form>
+
+  <p class="konsultasi-bantuan">
+    Data ini cuma dipakai untuk membalas brief kamu. Tanpa newsletter, tanpa diteruskan
+    ke siapa pun.
+  </p>
+
+  <h2>Pertanyaan yang sering muncul</h2>
+
+  <h3>Berapa harganya?</h3>
+  <p>
+    Per kasus, dan angkanya saya kirim setelah baca brief kamu - dalam 1x24 jam kerja.
+    Belum ada harga yang dipajang karena layanan ini baru, dan memasang angka sebelum
+    satu sesi pun terjadi cuma jadi tebakan yang susah dikoreksi belakangan.
+  </p>
+
+  <h3>Apa yang tidak termasuk?</h3>
+  <p>
+    Saya tidak mengerjakan implementasinya untuk kamu, dan belum ada paket retainer
+    bulanan. Ini sesi sekali duduk. Kalau ternyata yang kamu butuhkan pendampingan
+    jangka panjang, saya bilang - dan itu obrolan terpisah.
+  </p>
+
+  <h3>Online atau harus ketemu?</h3>
+  <p>
+    Online, bahasa Indonesia. Kalau timmu di Jakarta dan lebih enak ketemu langsung,
+    tulis di brief.
+  </p>
+
+  <h3>Kalau ternyata kamu bukan orang yang tepat?</h3>
+  <p>
+    Saya bilang di balasan brief, sebelum ada uang berpindah. Kalau saya kenal orang yang
+    lebih cocok, saya rujuk.
+  </p>
+
+  <h3>Perlu menyiapkan apa sebelum sesi?</h3>
+  <p>
+    Untuk Arah dan Pendapat kedua: tidak ada, cukup brief yang jujur. Untuk Review cara
+    kerja: akses baca ke repo yang mau dilihat, plus contoh dua-tiga PR terakhir yang
+    prosesnya terasa berat.
+  </p>
 </main>

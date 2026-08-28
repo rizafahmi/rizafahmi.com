@@ -24,3 +24,38 @@ test("the page never references /kelas/", () => {
   const source = readFileSync("src/konsultasi.njk", "utf8");
   assert.doesNotMatch(source, /\/kelas\//);
 });
+
+/* Netlify pairs a submission to a form by the hidden form-name input, not by the
+ * form element's name attribute. When the two disagree it drops the submission
+ * silently - manufacturing exactly the "nobody wants this" false negative that
+ * this page exists to rule out. */
+test("the hidden form-name input matches the form's name attribute", () => {
+  const source = readFileSync("src/konsultasi.njk", "utf8");
+  const formName = source.match(/<form[^>]*\sname="([^"]+)"/)?.[1];
+  const hidden = source.match(/name="form-name"[^>]*value="([^"]+)"/)?.[1];
+  assert.ok(formName, "no <form name=...> found");
+  assert.ok(hidden, "no hidden form-name input found");
+  assert.equal(hidden, formName);
+});
+
+/* audit-site.mjs checks <a href> links but not <form action>, so a lead who
+ * converts and then hits a 404 is a gap nothing else catches. */
+test("the form action points at a page that is actually built", () => {
+  const source = readFileSync("src/konsultasi.njk", "utf8");
+  const action = source.match(/<form[^>]*\saction="([^"]+)"/)?.[1];
+  assert.ok(action, "no <form action=...> found");
+
+  const target = readFileSync("src/konsultasi-terima-kasih.njk", "utf8");
+  const frontmatter = target.split("---")[1] ?? "";
+  assert.match(frontmatter, new RegExp(`^permalink: ${action}$`, "m"));
+});
+
+/* A required budget select with no escape hatch is a known conversion killer,
+ * and making the field optional loses the willingness-to-pay signal entirely.
+ * "Belum tahu" is the deliberate compromise; this guards it from a later edit. */
+test("the budget select keeps its Belum tahu option", () => {
+  const source = readFileSync("src/konsultasi.njk", "utf8");
+  const select = source.match(/<select[^>]*\sname="budget"[\s\S]*?<\/select>/)?.[0];
+  assert.ok(select, "no budget select found");
+  assert.match(select, /Belum tahu/);
+});

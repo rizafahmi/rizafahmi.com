@@ -15,7 +15,7 @@
 
 .konsultasi-lede {
   max-width: 65ch;
-  font-size: 1.125rem; /* ignore-value design-system-font-size 1.125rem — brief-specified */
+  font-size: 1.125rem;
 }
 
 /* Three-up on desktop, one column on narrow screens. min-width:0 on the item
@@ -49,4 +49,57 @@
 
 .konsultasi-fakta li {
   margin-bottom: 0.75rem;
+}
+
+/* Form fields get real rules here rather than inline style attributes.
+   Square corners and 2px borders per DESIGN.md; the focus outline is thick
+   and high-visibility per the accessibility rules in PRODUCT.md. */
+.konsultasi-form {
+  max-width: 34rem;
+}
+
+.konsultasi-form label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 700;
+}
+
+.konsultasi-form input,
+.konsultasi-form select,
+.konsultasi-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.konsultasi-form textarea {
+  resize: vertical;
+}
+
+.konsultasi-form input:focus-visible,
+.konsultasi-form select:focus-visible,
+.konsultasi-form textarea:focus-visible {
+  outline: 3px solid var(--accent-cobalt);
+  outline-offset: 2px;
+}
+
+.konsultasi-wajib {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.konsultasi-bantuan {
+  display: block;
+  margin-top: 0.375rem;
+  max-width: 65ch;
+  font-size: 0.875rem;
+  color: var(--meta-color);
 }
