@@ -444,6 +444,48 @@ export default function (eleventyConfig) {
     return content;
   });
 
+  // A pasted Twitter embed ships its own <script src=platform.twitter.com/widgets.js>
+  // alongside the <blockquote class="twitter-tweet">. That script fetches eagerly on
+  // parse, which defeats the intersection-gated loader in _includes/analytics.njk and
+  // put ~130KB of third-party JS back on the critical path of the few article pages
+  // that quote a tweet. Strip it here so authors can keep pasting the stock embed
+  // code: analytics.njk injects the widget when a tweet nears the viewport.
+  eleventyConfig.addTransform("lazyTweetWidget", (content, outputPath) => {
+    if (!outputPath?.endsWith(".html")) return content;
+    return content.replace(
+      /<script\b[^>]*\bsrc=("|')https:\/\/platform\.twitter\.com\/widgets\.js\1[^>]*><\/script>/gi,
+      "",
+    );
+  });
+
+  // Third-party embeds (YouTube, TED) pasted into article bodies. Each one boots a whole
+  // web app on load: the single TED embed pulled ~150 requests, a 344KB webfont and
+  // subtitle tracks in 50 languages, holding that article's LCP at 1.80s against ~1.58s
+  // for its siblings. They all sit below the fold in an article, so `loading="lazy"`
+  // defers them until the reader scrolls near. Iframes the tip facade injects on click
+  // never pass through here -- they are not in the HTML.
+  eleventyConfig.addTransform("lazyIframe", (content, outputPath) => {
+    if (!outputPath?.endsWith(".html")) return content;
+    return content.replace(/<iframe\b((?:[^>"']|"[^"]*"|'[^']*')*)>/gi, (tag, attrs) =>
+      /\bloading=/i.test(attrs) ? tag : `<iframe${attrs} loading="lazy">`,
+    );
+  });
+
+  // An `autoplay` <video> is downloaded during page load whatever `preload` says --
+  // the browser cannot start playing without the data. One 100KB demo clip in an
+  // article measured LCP 2.25s against 1.58s for sibling articles without one. Hand
+  // playback to the IntersectionObserver in _includes/lazy-media.njk instead, so a
+  // decorative loop costs nothing until it is nearly on screen. Videos that are not
+  // autoplaying still get preload="none": the reader asks for those by pressing play.
+  eleventyConfig.addTransform("lazyVideo", (content, outputPath) => {
+    if (!outputPath?.endsWith(".html")) return content;
+    return content.replace(/<video\b([^>]*)>/gi, (_tag, attrs) => {
+      let next = attrs.replace(/\bautoplay(=(["'])[^"']*\2)?/gi, "data-autoplay");
+      if (!/\bpreload=/i.test(next)) next = `${next} preload="none"`;
+      return `<video${next}>`;
+    });
+  });
+
   // Prefer modern formats when available by wrapping PNG <img> tags with <picture>.
   // Original PNG remains in place as the <img> fallback (non-destructive).
   eleventyConfig.addTransform("modernPictures", (content, outputPath) => {

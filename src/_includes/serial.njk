@@ -36,14 +36,7 @@ title: Judul
         <a class="back" href="/">&lt; Kembali ke halaman utama</a>
       </nav>
 
-      <script src="https://utteranc.es/client.js"
-        repo="rizafahmi/rizafahmi.com"
-        issue-term="pathname"
-        label="💬 Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-      </script>
+      {% include 'comments.njk' %}
     </footer>
 
     <script>
@@ -64,6 +57,7 @@ title: Judul
       });
     </script>
     {% include 'analytics.njk' %}
+    {% include 'lazy-media.njk' %}
     {% include 'webvitals.njk' %}
     {% include 'keyboard-shortcuts.njk' %}
     {% include 'theme-toggle.njk' %}
