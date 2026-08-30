@@ -7,32 +7,32 @@
     "thumbnail": "https://yt3.ggpht.com/vFHuT39fHI70_X3pUZSj3Cne2Q9hLqMnSB5cApxUDt0rIixwlh3UgBXuRJZybXelbNzeP6G-99E=s800-c-k-c0x00ffffff-no-rj"
   },
   "stats": {
-    "subscribers": 7170,
-    "totalViews": 364431,
-    "videoCount": 847
+    "subscribers": 7180,
+    "totalViews": 365774,
+    "videoCount": 848
   },
   "momentum": {
-    "videosLast12Months": 137,
-    "viewsLast12Months": 48462,
-    "uploadsPerMonth": 11.4,
+    "videosLast12Months": 138,
+    "viewsLast12Months": 49575,
+    "uploadsPerMonth": 11.5,
     "monthsCovered": 12
   },
   "formats": {
     "shorts": {
-      "n": 54,
-      "median": 257,
-      "p25": 137,
-      "p75": 614,
+      "n": 57,
+      "median": 222,
+      "p25": 139,
+      "p75": 583,
       "min": 84,
       "max": 2406
     },
     "episode": {
       "n": 81,
-      "median": 253,
+      "median": 254,
       "p25": 198,
       "p75": 379,
       "min": 109,
-      "max": 755
+      "max": 769
     },
     "recorded": {
       "n": 1,
@@ -45,7 +45,7 @@
   },
   "ngobrolinWeb": {
     "episodes": 57,
-    "median": 250,
+    "median": 251,
     "min": 109,
     "max": 575
   },
@@ -73,7 +73,7 @@
       "title": "Ada yang merasa lebih cepat lelah ketika harus mengkaji kode dari AI?",
       "publishedAt": "2026-07-01T13:00:07Z",
       "url": "https://www.youtube.com/watch?v=N3roU-_zN6s",
-      "views": 1574,
+      "views": 1579,
       "durationSeconds": 25,
       "isLive": false
     },
@@ -82,7 +82,7 @@
       "title": "Salah satu alat untuk menghemat token: RTK",
       "publishedAt": "2026-06-10T13:00:14Z",
       "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
-      "views": 1299,
+      "views": 1300,
       "durationSeconds": 41,
       "isLive": false
     },
@@ -107,11 +107,20 @@
   ],
   "recentVideos": [
     {
+      "id": "XJHxSL4bdXo",
+      "title": "Tak mau kalah, Meta ikut meluncurkan LLM bernama Muse Spark",
+      "publishedAt": "2026-08-28T13:00:28Z",
+      "url": "https://www.youtube.com/watch?v=XJHxSL4bdXo",
+      "views": 212,
+      "durationSeconds": 59,
+      "isLive": false
+    },
+    {
       "id": "uU7I-0J0FFY",
       "title": "#LLM teranyar keluaran XAI yaitu Grok yang kali ini bekerjasama dengan Cursor untuk melatih modelnya",
       "publishedAt": "2026-08-27T13:00:16Z",
       "url": "https://www.youtube.com/watch?v=uU7I-0J0FFY",
-      "views": 4,
+      "views": 299,
       "durationSeconds": 61,
       "isLive": false
     },
@@ -120,7 +129,7 @@
       "title": "Sekilas tentang #llm keluaran Tencent: HY3",
       "publishedAt": "2026-08-26T13:00:15Z",
       "url": "https://www.youtube.com/watch?v=HImXaz-93og",
-      "views": 71,
+      "views": 183,
       "durationSeconds": 56,
       "isLive": false
     },
@@ -129,7 +138,7 @@
       "title": "Modern Web UI - Ngobrolin WEB",
       "publishedAt": "2026-08-26T02:44:30Z",
       "url": "https://www.youtube.com/watch?v=0RCXRNHhBfo",
-      "views": 231,
+      "views": 411,
       "durationSeconds": 5498,
       "isLive": true
     },
@@ -138,7 +147,7 @@
       "title": "✨🔴  Loop Engineering - Coding dengan AI bagian 9",
       "publishedAt": "2026-08-25T03:16:00Z",
       "url": "https://www.youtube.com/watch?v=O1X7zRtbT1E",
-      "views": 283,
+      "views": 334,
       "durationSeconds": 7512,
       "isLive": true
     },
@@ -147,27 +156,18 @@
       "title": "Punya cerita atau pengalaman untuk dibagikan? Boleh submit proposal talk di IDSW 2026",
       "publishedAt": "2026-08-19T12:30:37Z",
       "url": "https://www.youtube.com/watch?v=GzduB5COpKA",
-      "views": 231,
+      "views": 235,
       "durationSeconds": 43,
-      "isLive": false
-    },
-    {
-      "id": "V5TiHKrGVr0",
-      "title": "Apa bedanya chatbot/coding assistant dengan coding agent?",
-      "publishedAt": "2026-08-19T03:00:42Z",
-      "url": "https://www.youtube.com/watch?v=V5TiHKrGVr0",
-      "views": 178,
-      "durationSeconds": 89,
       "isLive": false
     }
   ],
   "window": {
     "videosAnalyzed": 300,
-    "from": "2023-10-30",
-    "to": "2026-08-27",
-    "videosSummarized": 136,
+    "from": "2023-11-01",
+    "to": "2026-08-28",
+    "videosSummarized": 139,
     "statsFrom": "2025-06-02",
-    "statsTo": "2026-08-06",
+    "statsTo": "2026-08-09",
     "matureMinDays": 21,
     "statsMaxAgeDays": 456
   },
@@ -177,7 +177,7 @@
       "title": "AWS Free Tier: Nikmati Servis Berkualitas Tanpa Biaya",
       "publishedAt": "2022-07-13T09:30:02Z",
       "url": "https://www.youtube.com/watch?v=5FMZMB9_Aqs",
-      "views": 1473,
+      "views": 1474,
       "durationSeconds": 1069,
       "isLive": false,
       "tag": "DevTools"
@@ -207,7 +207,7 @@
       "title": "Ngobrolin Pengalaman Frontend @imrenagi -  Ngobrolin WEB",
       "publishedAt": "2024-12-11T02:37:51Z",
       "url": "https://www.youtube.com/watch?v=jxW4wishA8s",
-      "views": 3952,
+      "views": 3953,
       "durationSeconds": 5375,
       "isLive": true,
       "tag": "Web"
@@ -233,7 +233,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-08-27T16:07:16.560Z",
+  "updatedAt": "2026-08-30T23:18:54.834Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
