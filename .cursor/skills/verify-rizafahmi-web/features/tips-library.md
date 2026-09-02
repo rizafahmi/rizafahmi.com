@@ -80,7 +80,7 @@ grep -q 'https://www.youtube.com/@rizafahmi' /tmp/verify-rizafahmi-web/tips-libr
 ### Step 5: Verify tag navigation exists
 
 ```bash
-grep -q 'class="tips-tag-nav"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tag navigation present" || echo "✗ Tag nav missing"
+grep -q 'class="tips-tagnav"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tag navigation present" || echo "✗ Tag nav missing"
 # Check for some expected tags
 grep -q 'href="/tips/topik/agentic-coding/"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tag: agentic-coding" || echo "⚠ Tag agentic-coding missing"
 grep -q 'href="/tips/topik/ai/"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tag: ai" || echo "⚠ Tag ai missing"
@@ -98,17 +98,18 @@ echo "Found $TIP_COUNT tip cards"
 
 **Expected result**: `✓ At least 1 tip card present` (count should match `src/_data/tips.json` length)
 
-### Step 7: Verify tip card structure (thumbnail, title, date, duration)
+### Step 7: Verify tip card structure (thumbnail, title, duration)
 
 ```bash
 # Check first tip card has expected structure
-grep -q 'class="tip-card__thumbnail"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip thumbnails present" || echo "✗ Thumbnails missing"
-grep -q 'class="tip-card__title"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip titles present" || echo "✗ Titles missing"
-grep -q 'class="tip-card__date"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip dates present" || echo "✗ Dates missing"
-grep -q 'class="tip-card__duration"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip durations present" || echo "✗ Durations missing"
+grep -q 'class="tip-thumb"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip thumbnails present" || echo "✗ Thumbnails missing"
+grep -q 'class="tip-card-title"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip titles present" || echo "✗ Titles missing"
+grep -q 'class="tip-duration"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip durations present" || echo "✗ Durations missing"
 ```
 
-**Expected result**: All 4 card elements present
+**Expected result**: All 3 card elements present
+
+**Note**: Date is NOT shown on tip cards in the grid - it only appears on the individual tip detail page.
 
 ### Step 8: Verify tips are searchable (data-pagefind-body)
 
@@ -129,8 +130,8 @@ grep -q 'href="/".*KEMBALI KE BERANDA' /tmp/verify-rizafahmi-web/tips-library/in
 ### Step 10: Pick a tip and verify its dedicated page
 
 ```bash
-# Extract first tip slug from the index page
-FIRST_TIP_SLUG=$(grep -o 'href="/tips/[^/]*/"' /tmp/verify-rizafahmi-web/tips-library/index.html | head -1 | sed 's/href="\/tips\///' | sed 's/\/"//')
+# Extract first tip slug from the index page (skip tag nav links)
+FIRST_TIP_SLUG=$(grep -oE 'class="tip-card-link" href="/tips/[^/"]+/"' /tmp/verify-rizafahmi-web/tips-library/index.html | head -1 | sed -E 's|.*href="/tips/([^/]+)/".*|\1|')
 
 if [ -n "$FIRST_TIP_SLUG" ]; then
   echo "Testing tip: $FIRST_TIP_SLUG"
@@ -154,25 +155,25 @@ fi
 if [ -n "$FIRST_TIP_SLUG" ]; then
   TIP_FILE="/tmp/verify-rizafahmi-web/tips-library/tip-$FIRST_TIP_SLUG.html"
   
-  # Check for YouTube embed
-  grep -q 'youtube.com/embed/' "$TIP_FILE" && echo "✓ YouTube embed present" || echo "✗ YouTube embed missing"
+  # Check for YouTube embed (uses youtube-nocookie.com for privacy)
+  grep -q 'youtube-nocookie.com/embed/' "$TIP_FILE" && echo "✓ YouTube embed present (privacy-enhanced)" || echo "✗ YouTube embed missing"
   
-  # Check for tip content container
-  grep -q 'class="tip-content"' "$TIP_FILE" && echo "✓ Tip content container" || echo "✗ Content container missing"
+  # Check for tip page container (tip-page class, not tip-content)
+  grep -q 'class="tip-page"' "$TIP_FILE" && echo "✓ Tip page container" || echo "⚠ Container class missing"
   
   # Check for play button facade (lazy load optimization)
   grep -q 'class="tip-facade"' "$TIP_FILE" && echo "✓ Play button facade present" || echo "⚠ Facade missing (might auto-embed)"
   
   # Check for metadata
-  grep -q '📅' "$TIP_FILE" && echo "✓ Date icon present" || echo "✗ Date missing"
-  grep -q '⏱' "$TIP_FILE" && echo "✓ Duration icon present" || echo "✗ Duration missing"
+  grep -q '📅' "$TIP_FILE" && echo "✓ Date present" || echo "✗ Date missing"
+  grep -q '⏱' "$TIP_FILE" && echo "✓ Duration present" || echo "✗ Duration missing"
   
   # Check for back links
   grep -q 'href="/tips/"' "$TIP_FILE" && echo "✓ Back to tips index link" || echo "✗ Tips index link missing"
 fi
 ```
 
-**Expected result**: All checks pass (or ⚠ for facade if implementation changed)
+**Expected result**: All checks pass
 
 ### Step 12: Verify tip tags link to tag filter pages
 
@@ -199,8 +200,8 @@ if [ "$STATUS" = "200" ]; then
   
   curl -s "$TAG_URL" > /tmp/verify-rizafahmi-web/tips-library/tag-$TAG.html
   
-  # Verify it shows only tips with that tag
-  grep -q "TIPS #$TAG" /tmp/verify-rizafahmi-web/tips-library/tag-$TAG.html && echo "✓ Tag page heading correct" || echo "⚠ Heading not found"
+  # Verify it shows only tips with that tag (heading format is "TIPS: TAGNAME")
+  grep -q "TIPS: $(echo $TAG | tr '[:lower:]' '[:upper:]')" /tmp/verify-rizafahmi-web/tips-library/tag-$TAG.html && echo "✓ Tag page heading correct" || echo "⚠ Heading not found"
   
   TIP_COUNT=$(grep -c 'class="tip-card"' /tmp/verify-rizafahmi-web/tips-library/tag-$TAG.html)
   echo "Found $TIP_COUNT tips with tag '$TAG'"
@@ -228,7 +229,7 @@ fi
 
 **Tip tags don't feed /tags**: The main `/tags/` page and `/tags/<tag>/` article listing pages do NOT include tips. Tips are intentionally siloed. This is documented in `AGENTS.md`.
 
-**Lazy YouTube embed**: Tip pages use a play button facade to avoid loading YouTube's iframe until the user clicks. This saves ~2MB of JS and improves LCP. The facade is implemented in tip page template markup and CSS.
+**Lazy YouTube embed**: Tip pages use a play button facade (`class="tip-facade"`) to avoid loading YouTube's iframe until the user clicks. The facade uses `data-tip-embed` with `youtube-nocookie.com/embed/` for privacy. This saves bandwidth and improves LCP. The facade is implemented in tip page template markup and CSS, with the iframe JS-injected on click.
 
 **No pagination**: The tips index shows all tips in one grid. If the channel grows to hundreds of tips, this could become a performance issue, but currently all tips fit on one page.
 

@@ -16,11 +16,11 @@ Browsing all published articles in a paginated list (`/articles/`). Shows articl
 
 **From homepage**: Click "Semua catatan →" link in either articles section
 
-**From any article page**: Click "< KEMBALI KE ARTIKEL" or navigate to `/articles/`
+**From any article page**: Click the "Catatan" breadcrumb link or navigate directly to `/articles/`
 
 **Direct URL**: `/articles/`
 
-**From navigation**: Main nav has no direct link; users discover via homepage CTAs
+**From main navigation**: Click "Catatan" in the site navigation (in `main.njk` layout)
 
 ## Driving it with curl + grep
 
@@ -172,7 +172,7 @@ grep -o '📅 [0-9-]*' /tmp/verify-rizafahmi-web/article-listing/index.html | he
 
 ## Gotchas
 
-**No pagination**: The current implementation shows all articles on one page. If the site grows to hundreds of articles, this could become a performance issue. The template (`src/articles.njk`) uses `{% for article in collections.catatan | reverse %}` which processes all articles at once.
+**No pagination**: The current implementation shows all articles on one page. If the site grows to hundreds of articles, this could become a performance issue. The template (`src/articles.njk`) uses `{% for article in collections.catatan | reverse %}` which processes all articles at once, with no pagination.
 
 **Tag limit**: Each article shows a maximum of 4 tags (via `| head(4)` filter). If an article has more tags, the rest are hidden from the listing. Full tags are visible on the article detail page.
 
@@ -180,7 +180,7 @@ grep -o '📅 [0-9-]*' /tmp/verify-rizafahmi-web/article-listing/index.html | he
 
 **Excerpt source**: The excerpt comes from either the article's `description` frontmatter field (preferred) or is auto-generated from the first 180 characters of the rendered content (via the `excerpt` filter). If an article has neither frontmatter description nor body content, the excerpt will be empty.
 
-**Article order**: Sorted by `date` field in frontmatter, descending. Articles without a `date` or with `date` in the future won't appear in the listing (Eleventy filters them out via `.filter((item) => item.data.date)`).
+**Article order**: Sorted by `date` field in frontmatter, descending. Articles without a `date` won't appear in the listing (Eleventy filters them out via `.filter((item) => item.data.date)`).
 
 **Hidden tags**: Tags like "all", "nav", "post", and "catatan" are filtered out and never shown in the UI. These are internal collection tags used by Eleventy.
 

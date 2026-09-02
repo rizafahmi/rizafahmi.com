@@ -84,15 +84,19 @@ grep -q '<h1>.*Produktif dengan Asisten Ngoding.*</h1>' /tmp/verify-rizafahmi-we
 ### Step 6: Verify article metadata (date, reading time)
 
 ```bash
-grep -q '📅' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Date icon present" || echo "✗ Date missing"
+grep -q '🌱' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Created date (🌱) present" || echo "⚠ No created date"
+grep -q '🪴' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Modified date (🪴) present" || echo "⚠ No modified date (article not updated)"
 grep -q 'menit baca' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Reading time present" || echo "✗ Reading time missing"
 ```
 
 **Expected result**:
 ```
-✓ Date icon present
+✓ Created date (🌱) present
+✓ Modified date (🪴) present
 ✓ Reading time present
 ```
+
+(Modified date only appears if the article has a `modified` field in frontmatter)
 
 ### Step 7: Verify reading progress indicator
 
@@ -148,7 +152,7 @@ grep -q 'class="shiki' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.h
 ### Step 13: Verify article tags are listed
 
 ```bash
-grep -q 'class="article-topics"' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Article tags section present" || echo "✗ Tags missing"
+grep -q 'class="note-tags"' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Article tags section present" || echo "✗ Tags missing"
 # Check specific tags for this article: ai, agentic-coding, workflow
 grep -q 'href="/tags/ai/"' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Tag: ai" || echo "✗ Tag ai missing"
 ```
@@ -169,7 +173,7 @@ grep -q 'href="/articles/"' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_S
 
 **Series navigation**: Only appears if the article frontmatter includes `series` and `series_index` fields. Most articles are not part of a series.
 
-**View count**: The "🔥 X DIBACA" count only shows if GoatCounter data is available for that article's URL. Without the API configured, view counts are hidden.
+**View count**: The "🔥 X dibaca" count (lowercase "dibaca") only shows if GoatCounter data is available for that article's URL. Without the API configured, view counts are hidden.
 
 **Related articles**: Uses a combination of shared tags, content similarity (TF-IDF), and recency. If the site has very few articles, the related list might be short or empty.
 
