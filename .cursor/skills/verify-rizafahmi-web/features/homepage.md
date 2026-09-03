@@ -4,12 +4,12 @@ The landing page (`/`) that serves as the entry point to the site. Shows recent 
 
 ## Sub-features
 
-- Hero section with avatar, name, tagline, and main navigation links
+- Hero section with avatar, name, tagline, and main navigation links (Catatan, Mulai, Topik, Tips, Karya, Kerjasama, Kontak, Cari)
 - Latest 3 articles section (`#catatan`)
 - Popular 3 articles section (based on GoatCounter views, or fallback static list)
 - Featured projects section (`#karya`) - HACKTIV8 and Ngobrolin Web podcast
-- Highlights section - external press/interview links
-- Consultation CTA section (`#konsultasi`)
+- Highlights section (`SOROTAN`) - external press/interview links
+- Consultation CTA section (`#konsultasi`) - one-time consultation offering for engineering leads and CTOs
 - Contact links section (`#kontak`) - social media, email, CV, etc.
 - Theme toggle button (dark/light mode)
 - Footer with AI assistance disclosure
@@ -68,10 +68,12 @@ grep -q 'href="/topik/"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "
 grep -q 'href="/tags"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Topik link"
 grep -q 'href="/tips/"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Tips link"
 grep -q 'href="#karya"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Karya link"
+grep -q 'href="/kerjasama/"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Kerjasama link"
+grep -q 'href="#kontak"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Kontak link"
 grep -q 'href="/search"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Cari link"
 ```
 
-**Expected result**: All 6 navigation links present
+**Expected result**: All 8 navigation links present
 
 ### Step 5: Verify latest articles section exists
 
@@ -114,7 +116,26 @@ grep -q 'Ngobrolin Web' /tmp/verify-rizafahmi-web/homepage/index.html && echo "�
 
 **Expected result**: All 4 checks pass
 
-### Step 9: Verify contact section
+### Step 9: Verify highlights section (Sorotan)
+
+```bash
+grep -q '<h2>SOROTAN</h2>' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Highlights section heading" || echo "✗ Highlights heading missing"
+grep -q 'class="highlight-list"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Highlights list present" || echo "✗ Highlights list missing"
+```
+
+**Expected result**: Both checks pass
+
+### Step 10: Verify consultation section (Konsultasi)
+
+```bash
+grep -q 'id="konsultasi"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Konsultasi section ID" || echo "✗ Konsultasi section missing"
+grep -q '<h2>KONSULTASI</h2>' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Konsultasi heading" || echo "✗ Konsultasi heading missing"
+grep -q 'href="/konsultasi/"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Konsultasi link/button" || echo "✗ Konsultasi link missing"
+```
+
+**Expected result**: All 3 checks pass
+
+### Step 11: Verify contact section
 
 ```bash
 grep -q 'id="kontak"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Contact section ID" || echo "✗ Contact section missing"
@@ -126,7 +147,7 @@ grep -q 'href="mailto:rizafahmi@gmail.com"' /tmp/verify-rizafahmi-web/homepage/i
 
 **Expected result**: All 5 checks pass
 
-### Step 10: Verify theme toggle button exists
+### Step 12: Verify theme toggle button exists
 
 ```bash
 grep -q 'id="theme-toggle"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Theme toggle button present" || echo "✗ Theme toggle missing"
@@ -134,7 +155,7 @@ grep -q 'id="theme-toggle"' /tmp/verify-rizafahmi-web/homepage/index.html && ech
 
 **Expected result**: `✓ Theme toggle button present`
 
-### Step 11: Verify footer with AI disclosure
+### Step 13: Verify footer with AI disclosure
 
 ```bash
 grep -q 'Konten ditulis oleh manusia' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Footer AI disclosure" || echo "✗ Footer missing"
