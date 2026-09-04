@@ -20,7 +20,7 @@ Searching articles via Pagefind-powered autocomplete interface. Users type a que
 
 **Direct URL**: `/search/`
 
-**Keyboard shortcut**: The site has keyboard shortcuts (`_includes/keyboard-shortcuts.njk`) - check if search has a shortcut bound
+**Keyboard shortcut**: Press `Cmd+K` (Mac) or `Ctrl+K` (Windows/Linux) from any page to navigate to search
 
 ## Driving it with curl + grep
 
@@ -70,7 +70,7 @@ grep -q '<h1>Cari Artikel</h1>' /tmp/verify-rizafahmi-web/search/index.html && e
 grep -q 'id="search-input"' /tmp/verify-rizafahmi-web/search/index.html && echo "✓ Search input ID present" || echo "✗ Input ID missing"
 grep -q 'data-search-input' /tmp/verify-rizafahmi-web/search/index.html && echo "✓ Search input data attribute" || echo "✗ Data attribute missing"
 grep -q 'type="search"' /tmp/verify-rizafahmi-web/search/index.html && echo "✓ Input type=search" || echo "✗ Type attribute missing"
-grep -q 'placeholder="Ketik untuk mencari' /tmp/verify-rizafahmi-web/search/index.html && echo "✓ Placeholder text present" || echo "✗ Placeholder missing"
+grep -q 'placeholder="Ketik untuk mencari…"' /tmp/verify-rizafahmi-web/search/index.html && echo "✓ Placeholder text present" || echo "✗ Placeholder missing"
 ```
 
 **Expected result**: All 4 checks pass
