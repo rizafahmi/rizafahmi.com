@@ -4,7 +4,7 @@ Browsing YouTube Shorts tips with tag filtering. The tips library (`/tips/`) sho
 
 ## Sub-features
 
-- Grid of tip cards showing thumbnail, title, duration, and publish date
+- Grid of tip cards showing thumbnail, title, and duration (publish dates shown only on individual tip pages, not cards)
 - Tag navigation bar to filter tips by topic
 - Each tip links to `/tips/<slug>/` dedicated page
 - Tip page embeds YouTube Short video with play button facade

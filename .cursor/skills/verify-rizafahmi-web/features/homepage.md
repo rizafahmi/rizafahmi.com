@@ -6,7 +6,7 @@ The landing page (`/`) that serves as the entry point to the site. Shows recent 
 
 - Hero section with avatar, name, tagline, and main navigation links (Catatan, Mulai, Topik, Tips, Karya, Kerjasama, Kontak, Cari)
 - Latest 3 articles section (`#catatan`)
-- Popular 3 articles section (based on GoatCounter views, or fallback static list)
+- Popular 3 articles section (based on GoatCounter views, or fallback to latest by date)
 - Featured projects section (`#karya`) - HACKTIV8 and Ngobrolin Web podcast
 - Highlights section (`SOROTAN`) - external press/interview links
 - Consultation CTA section (`#konsultasi`) - one-time consultation offering for engineering leads and CTOs
@@ -165,9 +165,9 @@ grep -q 'Konten ditulis oleh manusia' /tmp/verify-rizafahmi-web/homepage/index.h
 
 ## Gotchas
 
-**View counts**: The popular articles section shows view counts if `goatcounterViews` data is available. In dev mode without GoatCounter API configured, it falls back to a static list of 3 hardcoded popular articles. This is expected and not a failure.
+**View counts**: The popular articles section shows view counts if `goatcounterViews` data is available. Without GoatCounter data, the `popularByViews` filter treats all articles as having zero views and returns the top 3 by date (newest first). The hardcoded `<li>` fallback only renders if the collection itself is empty. This is expected and not a failure.
 
-**GoatCounter script**: The homepage loads `//gc.zgo.at/count.js` for analytics. This is async and doesn't block rendering, so you won't see it in the HTML until after page load. Not critical for verification.
+**GoatCounter script**: The homepage includes the GoatCounter analytics script (`//gc.zgo.at/count.js`) directly in its HTML. The script loads asynchronously and doesn't block rendering.
 
 **Theme toggle**: The button exists in HTML, but its behavior (toggling dark/light mode) requires JavaScript. To verify the JS works, you'd need browser automation (Puppeteer). For this curl-based verification, we only confirm the button HTML exists.
 

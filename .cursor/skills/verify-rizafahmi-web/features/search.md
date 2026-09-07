@@ -9,8 +9,8 @@ Searching articles via Pagefind-powered autocomplete interface. Users type a que
 - Keyboard navigation (↑/↓ arrows to select, Enter to navigate)
 - Search status messages ("X saran" or "Tidak ditemukan hasil untuk ...")
 - Each suggestion shows title and highlighted excerpt
-- Search index covers all articles with `data-pagefind-body` attribute
-- Pagefind loads lazily (only when search page is visited)
+- Search index covers all pages with `data-pagefind-body` attribute (articles, tips, showcase, konsultasi, CV, and more)
+- Pagefind loads lazily (only on first search when query length ≥ 2 characters)
 
 ## How to get to it (user POV)
 

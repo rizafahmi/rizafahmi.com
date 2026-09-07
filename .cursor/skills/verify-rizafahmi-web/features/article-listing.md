@@ -1,6 +1,6 @@
 # Article Listing
 
-Browsing all published articles in a paginated list (`/articles/`). Shows article title, excerpt, metadata (date, reading time, view count), and tags. Users can scan all content chronologically or filter by tag.
+Browsing all published articles in one complete list (`/articles/`). Shows article title, excerpt, metadata (date, reading time, view count), and tags. Users can scan all content chronologically (newest first) or filter by tag.
 
 ## Sub-features
 
