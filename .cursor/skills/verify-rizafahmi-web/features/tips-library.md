@@ -4,11 +4,11 @@ Browsing YouTube Shorts tips with tag filtering. The tips library (`/tips/`) sho
 
 ## Sub-features
 
-- Grid of tip cards showing thumbnail, title, duration, and publish date
+- Grid of tip cards showing thumbnail, title, duration, and tags
 - Tag navigation bar to filter tips by topic
 - Each tip links to `/tips/<slug>/` dedicated page
-- Tip page embeds YouTube Short video with play button facade
-- Tip page shows title, description, transcript (if available), and tags
+- Tip page embeds YouTube Short video with play button facade (lazy-loaded)
+- Tip page shows title, description, metadata (date, duration), transcript (if available), and tags
 - Back links to tips index and homepage
 - Tips are NOT mixed with regular articles (separate URL namespace and collections)
 - Tip poster frames hosted locally for LCP performance (not YouTube thumbnails)
@@ -80,7 +80,7 @@ grep -q 'https://www.youtube.com/@rizafahmi' /tmp/verify-rizafahmi-web/tips-libr
 ### Step 5: Verify tag navigation exists
 
 ```bash
-grep -q 'class="tips-tag-nav"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tag navigation present" || echo "✗ Tag nav missing"
+grep -q 'class="tips-tagnav"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tag navigation present" || echo "✗ Tag nav missing"
 # Check for some expected tags
 grep -q 'href="/tips/topik/agentic-coding/"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tag: agentic-coding" || echo "⚠ Tag agentic-coding missing"
 grep -q 'href="/tips/topik/ai/"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tag: ai" || echo "⚠ Tag ai missing"
@@ -98,14 +98,14 @@ echo "Found $TIP_COUNT tip cards"
 
 **Expected result**: `✓ At least 1 tip card present` (count should match `src/_data/tips.json` length)
 
-### Step 7: Verify tip card structure (thumbnail, title, date, duration)
+### Step 7: Verify tip card structure (thumbnail, title, duration)
 
 ```bash
 # Check first tip card has expected structure
-grep -q 'class="tip-card__thumbnail"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip thumbnails present" || echo "✗ Thumbnails missing"
-grep -q 'class="tip-card__title"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip titles present" || echo "✗ Titles missing"
-grep -q 'class="tip-card__date"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip dates present" || echo "✗ Dates missing"
-grep -q 'class="tip-card__duration"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip durations present" || echo "✗ Durations missing"
+grep -q 'class="tip-thumb"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip thumbnails present" || echo "✗ Thumbnails missing"
+grep -q 'class="tip-card-title"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip titles present" || echo "✗ Titles missing"
+grep -q 'class="tip-duration"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip durations present" || echo "✗ Durations missing"
+grep -q 'class="tip-card-tags"' /tmp/verify-rizafahmi-web/tips-library/index.html && echo "✓ Tip tags present" || echo "✗ Tags missing"
 ```
 
 **Expected result**: All 4 card elements present
@@ -154,11 +154,11 @@ fi
 if [ -n "$FIRST_TIP_SLUG" ]; then
   TIP_FILE="/tmp/verify-rizafahmi-web/tips-library/tip-$FIRST_TIP_SLUG.html"
   
-  # Check for YouTube embed
-  grep -q 'youtube.com/embed/' "$TIP_FILE" && echo "✓ YouTube embed present" || echo "✗ YouTube embed missing"
+  # Check for YouTube embed (lazy-loaded via data attribute)
+  grep -q 'data-tip-embed.*youtube' "$TIP_FILE" && echo "✓ YouTube embed configured" || echo "✗ YouTube embed missing"
   
-  # Check for tip content container
-  grep -q 'class="tip-content"' "$TIP_FILE" && echo "✓ Tip content container" || echo "✗ Content container missing"
+  # Check for tip player area
+  grep -q 'class="tip-player"' "$TIP_FILE" && echo "✓ Tip player container" || echo "✗ Player container missing"
   
   # Check for play button facade (lazy load optimization)
   grep -q 'class="tip-facade"' "$TIP_FILE" && echo "✓ Play button facade present" || echo "⚠ Facade missing (might auto-embed)"
@@ -172,7 +172,7 @@ if [ -n "$FIRST_TIP_SLUG" ]; then
 fi
 ```
 
-**Expected result**: All checks pass (or ⚠ for facade if implementation changed)
+**Expected result**: All checks pass
 
 ### Step 12: Verify tip tags link to tag filter pages
 
