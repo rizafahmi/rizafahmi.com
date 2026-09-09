@@ -199,8 +199,8 @@ if [ "$STATUS" = "200" ]; then
   
   curl -s "$TAG_URL" > /tmp/verify-rizafahmi-web/tips-library/tag-$TAG.html
   
-  # Verify it shows only tips with that tag
-  grep -q "TIPS #$TAG" /tmp/verify-rizafahmi-web/tips-library/tag-$TAG.html && echo "✓ Tag page heading correct" || echo "⚠ Heading not found"
+  # Verify it shows only tips with that tag (format is "TIPS: TAG" with colon and uppercase)
+  grep -qi "TIPS:.*$TAG" /tmp/verify-rizafahmi-web/tips-library/tag-$TAG.html && echo "✓ Tag page heading correct" || echo "⚠ Heading not found"
   
   TIP_COUNT=$(grep -c 'class="tip-card"' /tmp/verify-rizafahmi-web/tips-library/tag-$TAG.html)
   echo "Found $TIP_COUNT tips with tag '$TAG'"
