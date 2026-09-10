@@ -9,6 +9,8 @@ This directory maps the primary user-facing features of rizafahmi.com - a person
 3. **[Article Listing](./article-listing.md)** - Browsing all articles with pagination, tags, and view counts
 4. **[Search](./search.md)** - Searching articles via Pagefind-powered autocomplete interface
 5. **[Tips Library](./tips-library.md)** - Browsing YouTube Shorts tips with tag filtering
+6. **[Konsultasi](./konsultasi.md)** - Agentic engineering consultation landing page with session types and brief form
+7. **[Kerjasama](./kerjasama.md)** - Partnership & sponsorship media kit with YouTube statistics and contact info
 
 ## Baseline Preconditions
 
