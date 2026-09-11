@@ -1,0 +1,31 @@
+{# Swaps the click-to-play facade for the real YouTube player.
+
+   Only shipped on /tips/<slug>/ (see src/tip.njk), never site-wide. The click
+   handler builds the iframe with autoplay=1, so the single tap that dismisses
+   the facade is also the tap that starts playback — the visitor never has to
+   press play twice. `allow` must list `autoplay` or the player would load
+   paused and defeat the point. #}
+<script>
+  (function () {
+    var facade = document.querySelector(".tip-facade");
+    if (!facade) return;
+
+    facade.addEventListener("click", function () {
+      var box = facade.parentNode;
+      if (!box) return;
+
+      var iframe = document.createElement("iframe");
+      iframe.src = facade.dataset.tipEmbed + "?autoplay=1&playsinline=1";
+      iframe.title = facade.dataset.tipTitle;
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
+
+      box.replaceChild(iframe, facade);
+      // The button that had focus is gone; move focus into the player so a
+      // keyboard visitor is not dropped back at the top of the document.
+      iframe.focus();
+    });
+  })();
+</script>

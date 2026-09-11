@@ -1,0 +1,57 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- set staticPages = [
+    "/",
+    "/articles/",
+    "/search/",
+    "/tags/",
+    "/topik/",
+    "/topik/ai/",
+    "/topik/elixir/",
+    "/topik/web/",
+    "/topik/produktivitas/",
+    "/showcase/",
+    "/tips/",
+    "/konsultasi/",
+    "/cv/",
+    "/cv/en/",
+    "/now/",
+    "/uses/",
+    "/ai/"
+  ] %}
+  {%- for url in staticPages %}
+  <url>
+    <loc>https://rizafahmi.com{{ url }}</loc>
+  </url>
+  {%- endfor %}
+  {%- for tag in collections.tagList %}
+  <url>
+    <loc>https://rizafahmi.com/tags/{{ tag | url }}/</loc>
+  </url>
+  {%- endfor %}
+  {%- for entry in tipsLibrary.tags %}
+  <url>
+    <loc>https://rizafahmi.com/tips/topik/{{ entry.slug | url }}/</loc>
+  </url>
+  {%- endfor %}
+  {%- for tip in tipsLibrary.items %}
+  <url>
+    <loc>https://rizafahmi.com{{ tip.url }}</loc>
+    {%- if tip.publishedAt %}
+    <lastmod>{{ tip.publishedAt | dateToISO }}</lastmod>
+    {%- endif %}
+  </url>
+  {%- endfor %}
+  {%- for post in collections.catatan %}
+  <url>
+    <loc>https://rizafahmi.com{{ post.url }}</loc>
+    {%- if post.data.modified or post.date %}
+    <lastmod>{{ (post.data.modified or post.date) | dateToISO }}</lastmod>
+    {%- endif %}
+  </url>
+  {%- endfor %}
+</urlset>

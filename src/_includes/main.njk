@@ -1,0 +1,42 @@
+---
+title: Judul
+---
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <title>{{ title }}</title>
+    {% include 'fonts.njk' %}
+    <link rel="preload" as="style" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+    <link rel="preload" as="style" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/global.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/home.css?v={{ site.buildTime }}" type="text/css" media="screen" />
+    {% if pageCss %}
+    <link rel="preload" as="style" href="/assets/{{ pageCss }}?v={{ site.buildTime }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/{{ pageCss }}?v={{ site.buildTime }}" type="text/css" media="screen" />
+    {% endif %}
+    {% include 'head.njk' %}
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+    <header class="site-header" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+      <div style="display:flex; align-items:center; gap: 0.75rem;">
+        <h1 style="margin:0;"><a href="/">👋 Saya Riza!</a></h1>
+        <nav class="hero-nav" style="margin-left: .25rem;">
+          <a href="/articles">Catatan</a>
+          <a href="/tips/">Tips</a>
+          <a href="/tags">Topik</a>
+          <a href="/konsultasi/">Konsultasi</a>
+          <a href="/kerjasama/">Kerjasama</a>
+          <a href="/search">Cari</a>
+        </nav>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+    </header>
+    {{ content | safe }}
+    {% include 'analytics.njk' %}
+    {% include 'lazy-media.njk' %}
+    {% include 'webvitals.njk' %}
+    {% include 'keyboard-shortcuts.njk' %}
+    {% include 'theme-toggle.njk' %}
+  </body>
+</html>

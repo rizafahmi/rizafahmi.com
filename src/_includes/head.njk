@@ -1,0 +1,137 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  (function() {
+    var t = localStorage.getItem('theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<meta name="view-transition" content="same-origin">
+<meta name="generator" content="{{ eleventy.generator }}">
+
+{# --- Social + SEO helpers --- #}
+{%- set _desc = description or (content | excerpt(180)) or site.description or title -%}
+{%- set _ogTitle = ogTitle or title -%}
+{%- set _ogType = ogType or "website" -%}
+{%- set _ogPath = image or cover -%}
+{%- if not _ogPath and tags and 'catatan' in tags and page.fileSlug -%}
+  {%- set _ogPath = "/og/" + page.fileSlug + ".png" -%}
+{%- endif -%}
+{%- if not _ogPath -%}
+  {%- set _ogPath = "/assets/images/og-twitter.png" -%}
+{%- endif -%}
+{%- if _ogPath and _ogPath.startsWith('./') -%}
+  {%- set _ogPath = page.url + (_ogPath | replace('./', '')) -%}
+{%- endif -%}
+{%- set _ogImageAlt = ogImageAlt or (_ogTitle ~ " — rizafahmi.com") -%}
+{# /tips uses the YouTube thumbnail as its OG image, which is already absolute.
+   Generating ~165 more images at build time would cost every build for nothing. #}
+{%- if _ogPath.startsWith('http') -%}
+  {%- set _ogImageUrl = _ogPath -%}
+{%- else -%}
+  {%- set _ogImageUrl = "https://rizafahmi.com" ~ _ogPath -%}
+{%- endif -%}
+
+<link rel="canonical" href="https://rizafahmi.com{{ page.url | escape }}" />
+{%- for alternate in (alternates or []) %}
+<link rel="alternate" hreflang="{{ alternate.hreflang }}" href="https://rizafahmi.com{{ alternate.href }}" />
+{%- endfor %}
+<meta name="description" content="{{ _desc | escape }}">
+{%- set _isExcludedArticle = tags and 'catatan' in tags and eleventyExcludeFromCollections -%}
+{%- if noindex or _isExcludedArticle %}
+<meta name="robots" content="noindex,nofollow,noarchive">
+{%- else %}
+<meta name="robots" content="index,follow,max-image-preview:large">
+{%- endif %}
+<meta property="og:site_name" content="{{ site.name | escape }}" />
+<meta property="og:locale" content="{{ pageLocale or 'id_ID' }}" />
+<meta property="og:title" content="{{ _ogTitle | escape }}" />
+<meta property="og:type" content="{{ _ogType }}" />
+<meta property="og:description" content="{{ _desc | escape }}" />
+<meta property="og:url" content="https://rizafahmi.com{{ page.url | escape }}" />
+<meta property="og:image" content="{{ _ogImageUrl }}" />
+<meta property="og:image:width" content="{{ ogImageWidth or 1200 }}" />
+<meta property="og:image:height" content="{{ ogImageHeight or 630 }}" />
+<meta property="og:image:alt" content="{{ _ogImageAlt | escape }}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@rizafahmi22" />
+<meta name="twitter:creator" content="@rizafahmi22" />
+<meta name="twitter:title" content="{{ _ogTitle | escape }}" />
+<meta name="twitter:description" content="{{ _desc | escape }}" />
+<meta name="twitter:image" content="{{ _ogImageUrl }}">
+<meta name="twitter:image:alt" content="{{ _ogImageAlt | escape }}" />
+
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/images/favico/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/assets/images/favico/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/images/favico/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/images/favico/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/images/favico/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/images/favico/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/images/favico/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/images/favico/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favico/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favico/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favico/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favico/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favico/favicon-16x16.png">
+
+<meta name="msapplication-TileColor" content="#0a0b0d">
+<meta name="msapplication-TileImage" content="/assets/images/favico/ms-icon-144x144.png">
+<meta name="theme-color" content="#0a0b0d">
+
+<link rel="alternate" type="application/atom+xml" href="https://rizafahmi.com/feed.xml" title="Catatan (excerpt)" />
+<link rel="alternate" type="application/atom+xml" href="https://rizafahmi.com/feed/full.xml" title="Catatan (full content)" />
+<link rel="alternate" type="text/plain" href="https://rizafahmi.com/llms.txt" title="LLM-readable site map" />
+<link rel="alternate" type="text/plain" href="https://rizafahmi.com/llms-full.txt" title="Full LLM content index" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ site.url }}/#person",
+      "name": {{ site.author.name | jsonify | safe }},
+      "url": {{ site.author.url | jsonify | safe }},
+      "email": {{ site.author.email | jsonify | safe }},
+      "sameAs": [
+        {{ site.social.x | jsonify | safe }},
+        {{ site.social.github | jsonify | safe }},
+        {{ site.social.linkedin | jsonify | safe }},
+        {{ site.social.youtube | jsonify | safe }}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": {{ site.url | jsonify | safe }},
+      "name": {{ site.title | jsonify | safe }},
+      "description": {{ site.description | jsonify | safe }},
+      "inLanguage": "id-ID",
+      "publisher": {
+        "@id": "{{ site.url }}/#person"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ site.url }}/search/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{{ site.url }}{{ page.url }}#webpage",
+      "url": "{{ site.url }}{{ page.url }}",
+      "name": {{ title | jsonify | safe }},
+      "description": {{ _desc | jsonify | safe }},
+      "inLanguage": {{ (pageLangTag or "id-ID") | jsonify | safe }},
+      "isPartOf": {
+        "@id": "{{ site.url }}/#website"
+      },
+      "about": {
+        "@id": "{{ site.url }}/#person"
+      }
+    }
+  ]
+}
+</script>

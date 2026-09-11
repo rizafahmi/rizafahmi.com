@@ -1,0 +1,13 @@
+---
+layout: main
+title: Kerjasama & Sponsorship
+permalink: /kerjasama/
+pageCss: kerjasama.css
+description: Statistik YouTube terkini dan bentuk kerjasama untuk sponsorship bersama Riza Fahmi.
+---
+
+{% import "kerjasama_body.njk" as kerjasama %}
+
+<main id="main-content" class="container kerjasama-page prose" data-pagefind-body>
+  {{ kerjasama.kerjasamaBody(youtube, youtube | renderableFormats) }}
+</main>

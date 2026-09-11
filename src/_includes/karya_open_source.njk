@@ -1,0 +1,28 @@
+{# Kartu bagian "Open Source" di /showcase.
+   Isinya diatur dari src/_data/karya.js — jangan tulis proyek langsung di sini. #}
+{% macro openSourceCards(projects) %}
+  <div class="card-grid">
+    {%- for project in projects %}
+    <div class="card">
+      {%- if project.repo %}
+      <h3><a href="{{ project.repo }}" target="_blank" rel="noopener noreferrer">{{ project.name }}</a></h3>
+      {%- else %}
+      <h3>{{ project.name }}</h3>
+      {%- endif %}
+      {%- if project.description %}
+      <p>{{ project.description }}</p>
+      {%- endif %}
+      {%- if project.url %}
+      <p class="card-links"><a class="card-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">Coba langsung &rarr;</a></p>
+      {%- endif %}
+      {%- if project.tags.length %}
+      <div class="badges" aria-label="Tech stack">
+        {%- for tag in project.tags %}
+        <span class="badge">{{ tag }}</span>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+    </div>
+    {%- endfor %}
+  </div>
+{% endmacro %}

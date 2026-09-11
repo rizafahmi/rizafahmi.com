@@ -1,0 +1,27 @@
+---
+title: Topik
+description: Jelajahi artikel berdasarkan topik - AI, Elixir, JavaScript, Web Development, dan lainnya
+layout: main
+---
+
+<main class="container" id="main-content">
+  <div class="articles-header">
+    <h2>TOPIK</h2>
+  </div>
+
+  <div class="articles">
+    {%- for tag in collections.tagList %}
+      {%- set count = collections[tag] | length %}
+      <article class="article">
+        <div class="article-meta-row">
+          <span>🏷️ CATEGORY</span>
+        </div>
+        <h3>
+          <a href="/tags/{{ tag | url }}/">{{ tag }} <span style="opacity: .65">({{ count }})</span></a>
+        </h3>
+      </article>
+    {%- endfor %}
+  </div>
+
+  <a class="back" href="/">&lt; KEMBALI KE BERANDA</a>
+</main>

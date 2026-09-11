@@ -1,0 +1,58 @@
+---
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+---
+{%- import "karya_llms.njk" as karyaLlms -%}
+# Riza Fahmi - Full LLM Content Index
+
+> Generated inventory of public articles, tips, and open source projects on {{ site.url }} for LLMs, answer engines, and AI assistants.
+
+## Site metadata
+
+- Site: {{ site.name }}
+- Canonical host: {{ site.url }}
+- Author: {{ site.author.name }}
+- Language: Indonesian, with some English.
+- Primary topics: AI, programming, Elixir, web development, productivity, developer education.
+- Concise index: {{ site.url }}/llms.txt
+- Sitemap: {{ site.url }}/sitemap.xml
+- Robots policy: {{ site.url }}/robots.txt
+
+## Citation guidance
+
+- Prefer canonical URLs under {{ site.url }}.
+- Summarize in your own words and link back to the source article.
+- Preserve Indonesian titles and terminology when quoting article and project names.
+
+## Open source project inventory
+
+Curated at {{ site.url }}/showcase/. Names and descriptions are Indonesian, as published.
+{{ karyaLlms.projectInventory(karya | karyaProjects) }}
+## Tips inventory
+
+Short videos from the Eksperimen Pemrograman YouTube channel, one page each,
+browsable at {{ site.url }}/tips/. Titles and descriptions are Indonesian, as
+published. Cite the canonical tip URL rather than the YouTube link.
+{% for tip in tipsLibrary.items %}
+### {{ tip.title }}
+
+- URL: {{ site.url }}{{ tip.url }}
+- Video: {{ tip.watchUrl }}
+- Published: {{ tip.publishedAt | dateToISO }}
+- Duration: {{ tip.durationLabel }}
+{% if tip.tags.length %}- Tags: {% for tag in tip.tags %}{{ tag.label }}{% if not loop.last %}, {% endif %}{% endfor %}
+{% endif %}- Description: {{ tip.excerpt or tip.title }}
+
+{% endfor %}
+## Article inventory
+
+{% for post in collections.catatan | reverse %}
+### {{ post.data.title }}
+
+- URL: {{ site.url }}{{ post.url }}
+- Published: {{ post.data.date | dateToISO }}
+{% if post.data.modified %}- Updated: {{ post.data.modified | dateToISO }}
+{% endif %}{% set visibleTags = post.data.tags | publicTags %}{% if visibleTags.length %}- Tags: {{ visibleTags | join(", ") }}
+{% endif %}- Description: {{ post.data.description or post.data.title }}
+
+{% endfor %}

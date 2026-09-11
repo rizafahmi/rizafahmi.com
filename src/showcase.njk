@@ -1,0 +1,115 @@
+---
+title: Karya
+description: Pilihan karya, produk, dan open source project yang pernah saya buat.
+layout: main
+eleventyExcludeFromCollections: true
+---
+
+{% import "karya_open_source.njk" as karyaCards %}
+{% set openSourceProjects = karya | karyaProjects %}
+
+<main id="main-content" data-pagefind-body data-pagefind-meta="title:Karya">
+  <h2>Karya</h2>
+  <p style="font-size: 1rem; margin: 0.5rem;">
+    Kumpulan beberapa hal yang pernah saya buat: produk, konten, dan open source.
+  </p>
+
+  <h3 style="margin: 1.5rem 0.5rem 0;">Open Source</h3>
+  {{ karyaCards.openSourceCards(openSourceProjects) }}
+
+  <hr style="margin: 2rem 0.5rem;" />
+
+  <h3 style="margin: 0 0.5rem;">Lainnya</h3>
+  <ul class="showcase-list">
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Bootcamp</span>
+        <a href="https://hacktiv8.com" target="_blank" rel="noopener noreferrer">
+          HACKTIV8 Coding bootcamp, dirintis sejak&nbsp;<strong>2016</strong>.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Kursus</span>
+        <a href="https://buildwithangga.com/kelas/sveltejs-front-end-javascript-development-web-donasi-online" target="_blank" rel="noopener noreferrer">
+          Belajar SvelteJS, membuat aplikasi web donasi online dan integrasi dengan&nbsp;<em>payment gateway</em>.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Kursus</span>
+        <a href="https://buildwithangga.com/kelas/struktur-data-javascript-improve-website-e-commerce" target="_blank" rel="noopener noreferrer">
+          Struktur data dengan JS, belajar fundamental dengan bahasa pemrograman JavaScript.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Kursus</span>
+        <a href="https://buildwithangga.com/kelas/mastering-react-js-progressive-web-apps-e-commerce" target="_blank" rel="noopener noreferrer">
+          PWA dengan React, belajar implementasi PWA dengan React.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Proyek</span>
+        <a href="https://carikerja.deeptech.id/" target="_blank" rel="noopener noreferrer">
+          Carikerja, daftar developer keren yang terkena dampak COVID-19.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Live</span>
+        <a href="https://youtube.com/rizafahmi/live" target="_blank" rel="noopener noreferrer">
+          Sesi&nbsp;<em>livestreaming</em>, belajar dan bikin-bikin bareng.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Podcast</span>
+        <a href="https://youtube.com/playlist?list=PLTY2nW4jwtG8Sx2Bw6QShC271PzX31CtT&feature=shared" target="_blank" rel="noopener noreferrer">
+          Ngobrolin Web, podcast mingguan membahas segala hal tentang WEB.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Komunitas</span>
+        <a href="https://github.com/rizafahmi/awesome-speakers-id" target="_blank" rel="noopener noreferrer">
+          Awesome Speakers Indonesia, daftar developer yang berkenan diundang menjadi narasumber.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Podcast</span>
+        <a href="https://open.spotify.com/show/6grT1c7jDkhK4skm1YIsTs" target="_blank" rel="noopener noreferrer">
+          Ceritanya Developer Podcast.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Podcast</span>
+        <a href="https://www.youtube.com/playlist?list=PLTY2nW4jwtG9IEUCDspLH0tAuF450DZz-" target="_blank" rel="noopener noreferrer">
+          Hikayat Punggawa Teknologi.
+        </a>
+      </h6>
+    </li>
+    <li class="showcase-item">
+      <h6>
+        <span class="showcase-tag">Podcast</span>
+        <a href="https://open.spotify.com/show/6wjIRrIQ8yvAgCwXCUXKXI" target="_blank" rel="noopener noreferrer">
+          AppsCoast, Indonesia Tech Startup Podcast.
+        </a>
+      </h6>
+    </li>
+  </ul>
+
+  <a class="back" href="/">&lt; Kembali ke halaman utama</a>
+</main>
