@@ -15,7 +15,7 @@ Landing page for the agentic engineering consultation service (`/konsultasi/`). 
 
 ## How to get to it (user POV)
 
-**From homepage**: Click "Kerjasama" in hero navigation, or navigate via section links
+**From homepage**: Scroll to consultation section and click "Lihat detail konsultasi" button
 
 **Direct URL**: `/konsultasi/`
 
@@ -110,6 +110,6 @@ grep -q 'href="/"' /tmp/verify-rizafahmi-web/konsultasi/index.html && echo "✓ 
 
 **Indonesian content**: All content is in Indonesian, matching the site's primary language. No English version currently exists.
 
-**Navigation placement**: The page is linked from the homepage hero navigation as "Kerjasama" (which is the old name; this might be a nav label vs page title mismatch to investigate).
+**Navigation placement**: The page is NOT in the hero navigation. It's linked from the consultation section on the homepage via a "Lihat detail konsultasi" button. The hero nav has "Kerjasama" which goes to the partnership page instead.
 
 **Searchability**: Page has `data-pagefind-body` so it appears in site search results. Users can find it by searching for terms like "konsultasi", "engineering", "CTO", etc.
