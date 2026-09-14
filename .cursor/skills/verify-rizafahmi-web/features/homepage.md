@@ -134,7 +134,7 @@ grep -q '<h2>KONSULTASI</h2>' /tmp/verify-rizafahmi-web/homepage/index.html && e
 
 **Expected result**: Both checks pass
 
-### Step 12: Verify contact section
+### Step 11: Verify contact section
 
 ```bash
 grep -q 'id="kontak"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Contact section ID" || echo "✗ Contact section missing"
@@ -146,7 +146,7 @@ grep -q 'href="mailto:rizafahmi@gmail.com"' /tmp/verify-rizafahmi-web/homepage/i
 
 **Expected result**: All 5 checks pass
 
-### Step 13: Verify theme toggle button exists
+### Step 12: Verify theme toggle button exists
 
 ```bash
 grep -q 'id="theme-toggle"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Theme toggle button present" || echo "✗ Theme toggle missing"
@@ -154,7 +154,7 @@ grep -q 'id="theme-toggle"' /tmp/verify-rizafahmi-web/homepage/index.html && ech
 
 **Expected result**: `✓ Theme toggle button present`
 
-### Step 14: Verify footer with AI disclosure
+### Step 13: Verify footer with AI disclosure
 
 ```bash
 grep -q 'Konten ditulis oleh manusia' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Footer AI disclosure" || echo "✗ Footer missing"
