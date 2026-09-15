@@ -1,6 +1,6 @@
 # Kerjasama (Partnership & Sponsorship)
 
-Media kit and partnership page (`/kerjasama/`) showcasing YouTube channel statistics, audience metrics, and collaboration options for brands and sponsors.
+Media kit and partnership page (`/kerjasama/`) showcasing YouTube channel statistics, audience metrics, and collaboration options for brands and sponsors. Built from `src/ratecard.njk`.
 
 ## Sub-features
 
@@ -103,6 +103,6 @@ grep -q 'href="/"' /tmp/verify-rizafahmi-web/kerjasama/index.html && echo "✓ H
 
 **Indonesian content**: All text is in Indonesian. No English translation currently exists.
 
-**Alternative URL**: The page permalink is `/kerjasama/` but historically it may have been accessible via `/ratecard/`. Check for redirects if both URLs are expected to work.
+**Alternative URL**: The `/ratecard` URL redirects to an external Canva rate card design (`src/redirects.njk`), NOT to `/kerjasama/`. The two URLs serve different purposes.
 
 **Searchability**: Has `data-pagefind-body` so users can find it via site search by searching "sponsor", "kerjasama", "partnership", etc.

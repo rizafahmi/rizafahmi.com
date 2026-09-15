@@ -110,6 +110,6 @@ grep -q 'href="/"' /tmp/verify-rizafahmi-web/konsultasi/index.html && echo "✓ 
 
 **Indonesian content**: All content is in Indonesian, matching the site's primary language. No English version currently exists.
 
-**Navigation placement**: The page is NOT in the hero navigation. It's linked from the consultation section on the homepage via a "Lihat detail konsultasi" button. The hero nav has "Kerjasama" which goes to the partnership page instead.
+**Navigation placement**: The page appears in BOTH the main site nav (`src/_includes/main.njk`) AND the homepage consultation section via a "Lihat detail konsultasi" button (`src/index.njk`).
 
 **Searchability**: Page has `data-pagefind-body` so it appears in site search results. Users can find it by searching for terms like "konsultasi", "engineering", "CTO", etc.
