@@ -104,7 +104,7 @@ grep -q 'href="/"' /tmp/verify-rizafahmi-web/konsultasi/index.html && echo "✓ 
 
 **Layout**: Uses `layout: main` which provides standard page chrome (breadcrumb navigation, theme toggle, back button). This is consistent with article listing and search pages.
 
-**Form handling**: The brief submission form uses a form submission service (likely Formspree or similar). The form itself is embedded in the page, not a separate component. To verify form submission, you'd need browser automation - curl can only verify the form HTML exists.
+**Form handling**: The brief submission form uses Netlify Forms (`data-netlify="true"` attribute). The form itself is embedded in the page, not a separate component. To verify form submission, you'd need browser automation - curl can only verify the form HTML exists.
 
 **Page CSS**: Has custom stylesheet (`konsultasi.css`) for page-specific styles. This is loaded via `pageCss` frontmatter field.
 
