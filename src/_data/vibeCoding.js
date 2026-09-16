@@ -12,7 +12,7 @@ const stages = [
         title: "Temukan ide sederhana",
         tool: "ChatGPT · percakapan baru",
         input: "Satu masalah yang pernah kamu atau orang di sekitarmu alami.",
-        prompt: `Your job is to act as a professional app builder and creative strategist. Understand the problem, then generate three high-quality, unique app ideas from it. For each idea, include a name, a concept summary, core features, who it helps, and one hypothesis to check with real people before treating demand as proven. Keep the claims tentative. Keep the write-up practical for a solo founder.
+        prompt: `Understand the problem, then generate three app ideas from it. For each idea, include a name, a concept summary, core features, who it helps, and one hypothesis to check with real people before treating demand as proven. Mark each idea as untested. Write for a solo founder.
 
 Here's the idea: [IDE_APLIKASI]`,
         example: {
@@ -119,10 +119,10 @@ Return the complete updated PROJECT.md in one Markdown code block, not only the 
         title: "Bangun versi pertama",
         tool: "Codex · folder project milikmu",
         input: "PROJECT.md versi terakhir tersimpan di folder project yang dipilih di Codex.",
-        prompt: `Read PROJECT.md in this folder. I am a nontechnical beginner. Explain important actions in plain English.
+        prompt: `Read PROJECT.md in this folder. I am a nontechnical beginner. Explain each action in plain English.
 Build the first version of [PROJECT NAME] from the brief using HTML, CSS, and JavaScript. Implement only the essential features and one main user journey.
 If a decision blocks implementation, ask a short question. Do not add accounts, a database, payments, or other services.
-Save every file needed for static hosting. Do not recreate an algorithm already provided by a trustworthy library. Explain any dependency you choose.
+Save every file needed for static hosting. If a library already provides the algorithm, use it. Do not write that algorithm yourself. Explain any dependency you choose.
 Run the available checks. Tell me what was and was not tested, which files you created, and how to open a local preview in my browser, including the command and address if needed.
 Do not deploy yet.`,
         example: { "PROJECT NAME": "SlideQR" },
@@ -155,15 +155,14 @@ Then run relevant checks and give me steps to verify both the change and the mai
     id: "testing",
     number: "04",
     title: "Testing",
-    description:
-      "Tulisan “selesai” dari AI belum cukup. Coba sendiri dan catat hasil yang benar-benar kamu lihat.",
+    description: "Coba sendiri dan catat hasil yang benar-benar kamu lihat.",
     steps: [
       {
         id: "uji",
         title: "Periksa alur utama",
         tool: "Codex + browser",
         input: "Aplikasi lokal yang berjalan dan PROJECT.md.",
-        prompt: `Read PROJECT.md and the current app. Create a beginner-friendly test checklist with columns for action, expected result, and an empty actual result.
+        prompt: `Read PROJECT.md and the current app. Create a test checklist with columns for action, expected result, and an empty actual result.
 Cover the main user journey, empty input, invalid input, repeated use, phone layout, and navigation with the Tab key.
 Add this project-specific check: [PROJECT-SPECIFIC CHECK].
 Run the available automated tests and report their actual results. Separate passed automated checks from manual checks that have not been done.

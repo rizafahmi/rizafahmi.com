@@ -29,8 +29,12 @@ test("prompt 01 keeps brainstorming claims tentative", () => {
   const idea = kit.stages[0].steps[0].example.IDE_APLIKASI;
   assert.doesNotMatch(prompt, /succeed in today's market/i);
   assert.doesNotMatch(prompt, /Get real understanding/i);
+  assert.doesNotMatch(prompt, /professional app builder/i);
+  assert.doesNotMatch(prompt, /creative strategist/i);
+  assert.doesNotMatch(prompt, /high-quality/i);
   assert.match(prompt, /Understand the problem/);
   assert.match(prompt, /hypothes/i);
+  assert.match(prompt, /untested/i);
   assert.match(idea, /presenter who needs to share a URL/i);
   assert.doesNotMatch(idea, /\bfancy\b/i);
 });
@@ -60,7 +64,10 @@ test("the private offer uses a Netlify form and states reply window, agenda, and
   assert.doesNotMatch(source, /Co-Founder/);
   assert.match(source, /Kita sepakati targetnya/);
   assert.match(source, /Sesi ini pendampingan belajar/);
+  assert.doesNotMatch(source, /bukan jasa pembuatan aplikasi/);
   assert.match(source, /Saya memakai emailmu/);
+  assert.doesNotMatch(source, /Tanpa newsletter, tanpa diteruskan/);
+  assert.doesNotMatch(source, /segera mengirimkan/);
   assert.match(source, /Saya cek persiapan/);
   assert.match(source, /One-on-one/);
   assert.doesNotMatch(source, /1-on-1|1x24/);
@@ -202,12 +209,21 @@ test("kit copy has no semicolons and names MCP, Markdown, and the author in acti
   assert.match(guide, /01–12/);
   assert.match(guide, /Riza Fahmi · Panduan Vibe Coding/);
   assert.match(guide, /menulis panduan ini/);
+  assert.match(guide, /Mulai dari SlideQR/);
+  assert.match(guide, /Sesi privat/);
+  assert.doesNotMatch(guide, /Ingin dipandu/);
+  assert.doesNotMatch(guide, /Mulai dari hal sederhana/);
+  assert.doesNotMatch(guide, /tatap muka/);
   assert.doesNotMatch(guide, /Panduan ditulis oleh/);
   assert.doesNotMatch(guide, /Riza Fahmi \/ /);
   assert.doesNotMatch(guide, /panduan\.md|Unduh semua prompt \(Markdown\)/);
   const hosting = kit.prerequisites.find((item) => item.title.includes("Hosting"));
   assert.match(hosting.text, /Model Context Protocol \(MCP\)/);
   assert.equal(kit.glossary.at(-1).term, "Deploy and document root");
+  assert.doesNotMatch(kit.stages[2].steps[0].prompt, /trustworthy/i);
+  assert.doesNotMatch(kit.stages[3].steps[0].prompt, /beginner-friendly/i);
+  assert.ok(kitSections(kit).some((section) => section.text === "Sesi privat 90 menit"));
+  assert.doesNotMatch(JSON.stringify(kitSections(kit)), /Butuh pendampingan/);
 });
 
 test("clipboard fallback names the text instead of pointing above", () => {

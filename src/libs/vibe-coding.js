@@ -83,7 +83,7 @@ export const kitSections = (kit) => {
   }
 
   sections.push(
-    { type: "heading", level: 1, text: "Butuh pendampingan?" },
+    { type: "heading", level: 1, text: "Sesi privat 90 menit" },
     {
       type: "paragraph",
       text: `Sesi privat berbayar selama 90 menit bersama Riza untuk memperjelas ide dan mengerjakan satu target. Isi brief di halaman sesi privat. Saya balas dalam ${kit.responseTime} dengan usulan sesi dan biayanya. Mengirim brief belum berarti memesan sesi.`,
