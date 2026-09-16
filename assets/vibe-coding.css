@@ -1,0 +1,495 @@
+.kit-shell .site-header > div {
+  flex-wrap: wrap;
+}
+
+.kit-shell .hero-nav {
+  gap: 0.5rem;
+}
+
+.kit-shell .hero-nav a {
+  box-sizing: border-box;
+  flex: 0 1 auto;
+  min-height: 44px;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.6875rem;
+}
+
+.kit-shell .hero-nav a:hover,
+.kit-shell .hero-nav a:focus {
+  box-shadow: none;
+  transform: none;
+}
+
+.kit-page {
+  max-width: 704px;
+  overflow-wrap: anywhere;
+  --kit-rule: var(--heading-color);
+}
+
+.kit-page [id] {
+  scroll-margin-top: 1.5rem;
+}
+
+.kit-page p,
+.kit-page li,
+.kit-page dd {
+  max-width: 65ch;
+}
+
+.kit-page .kit-eyebrow,
+.kit-page .kit-meta,
+.kit-page .kit-tool,
+.kit-page .kit-edition,
+.kit-page .kit-session-facts {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.8;
+}
+
+.kit-page .kit-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 1.5rem;
+}
+
+.kit-page .kit-meta {
+  color: var(--meta-color);
+}
+
+.kit-page .kit-edition {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--kit-rule);
+  margin-bottom: 2rem;
+}
+
+.kit-page .kit-edition span {
+  white-space: nowrap;
+}
+
+.kit-page .kit-hero {
+  padding: 0.5rem 0 2rem;
+}
+
+.kit-page h1 {
+  font-size: clamp(2.25rem, 7vw, 4.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+  margin-bottom: 1.75rem;
+}
+
+.kit-shell .site-header h1 {
+  font-size: clamp(1.375rem, 2.5vw, 2rem);
+  white-space: nowrap;
+}
+
+.kit-page .kit-highlight {
+  background: var(--accent-acid);
+  color: #0a0b0d;
+  padding: 0 0.12em;
+  box-decoration-break: clone;
+}
+
+.kit-page .kit-lede {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 48ch;
+}
+
+.kit-page .kit-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 2rem 0 1rem;
+}
+
+.kit-page .button {
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.kit-page .kit-route ol {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  padding: 0;
+  margin: 0;
+  border-block: 4px solid var(--kit-rule);
+}
+
+.kit-page .kit-route a {
+  display: block;
+  padding: 1rem 0.4rem;
+  color: var(--heading-color);
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-bottom: none;
+}
+
+.kit-page .kit-route a span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  margin-bottom: 0.4rem;
+}
+
+.kit-page .kit-route a:hover,
+.kit-page summary:hover {
+  background: var(--accent-acid);
+  color: #0a0b0d;
+}
+
+.kit-page .kit-section {
+  margin: 3.5rem 0;
+}
+
+.kit-page h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.25;
+}
+
+.kit-page h3 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.kit-page summary {
+  cursor: pointer;
+  padding: 1rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  transition: background-color 0.15s ease;
+}
+
+.kit-page summary:focus-visible {
+  outline: 3px solid var(--link-color);
+  outline-offset: 3px;
+}
+
+.kit-page .kit-setup,
+.kit-page .kit-glossary {
+  border: 2px solid var(--kit-rule);
+  margin: 1.5rem 0;
+}
+
+.kit-page .kit-setup > :not(summary),
+.kit-page .kit-glossary dl {
+  margin-inline: 1.25rem;
+}
+
+.kit-page .kit-preparation,
+.kit-page .kit-instructions {
+  padding-left: 1.4rem;
+}
+
+.kit-page .kit-preparation li,
+.kit-page .kit-instructions li {
+  padding-left: 0.35rem;
+  margin-block: 1.25rem;
+}
+
+.kit-page .kit-preparation p {
+  margin-block: 0.35rem;
+}
+
+.kit-page .kit-note {
+  border-left: 4px solid var(--link-color);
+  padding: 0.5rem 0 0.5rem 1.25rem;
+}
+
+.kit-page dt {
+  font-weight: 700;
+  margin-top: 1rem;
+  color: var(--heading-color);
+}
+
+.kit-page dd {
+  margin: 0.35rem 0 1rem;
+}
+
+.kit-page .kit-stage {
+  border-top: 4px solid var(--kit-rule);
+  margin-top: 4rem;
+}
+
+.kit-page .kit-stage-heading {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 1.5rem;
+  padding: 2rem 0 1rem;
+}
+
+.kit-page .kit-stage-heading h2 {
+  margin-top: 0.25rem;
+}
+
+.kit-page .kit-stage-number {
+  font: 800 clamp(2rem, 7vw, 3.5rem) / 1 var(--font-display);
+  letter-spacing: -0.05em;
+  color: var(--heading-color);
+}
+
+.kit-page .kit-step {
+  border-bottom: 2px solid var(--kit-rule);
+}
+
+.kit-page .kit-step > summary {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  list-style: none;
+  padding-inline: 0.5rem;
+}
+
+.kit-page .kit-step > summary::-webkit-details-marker {
+  display: none;
+}
+
+.kit-page .kit-step-number {
+  font: 400 0.75rem / 1.6 var(--font-mono);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.kit-page .kit-step-indicator {
+  margin-left: auto;
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+.kit-page .kit-step[open] > summary .kit-step-indicator {
+  transform: rotate(45deg);
+}
+
+.kit-page .kit-step-body {
+  padding: 0.25rem 0.5rem 1.5rem;
+}
+
+.kit-page .kit-tool {
+  display: inline-block;
+  border-bottom: 2px solid var(--link-color);
+  padding-bottom: 0.25rem;
+}
+
+.kit-page .kit-variant {
+  margin-block: 1rem;
+  border: 2px solid var(--kit-rule);
+}
+
+.kit-page .kit-variant > .kit-meta {
+  margin: 0.5rem 1rem 1rem;
+}
+
+.kit-page .kit-prompt-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-block: 1px solid var(--kit-rule);
+  font: 400 0.6875rem / 1.6 var(--font-mono);
+}
+
+.kit-page .kit-copy {
+  font: 700 0.6875rem / 1.5 var(--font-mono);
+  padding: 0.65rem 0.75rem;
+  min-height: 44px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 2px solid var(--kit-rule);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.kit-page .kit-copy:hover {
+  background: var(--accent-acid);
+  color: #0a0b0d;
+}
+
+.kit-page .kit-copy:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.kit-page .kit-prompt pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: 400 0.8125rem / 1.8 var(--font-mono);
+  color: var(--code-text);
+  background: var(--code-bg);
+  margin: 0;
+  padding: 1.25rem;
+  border: 0;
+  border-radius: 0;
+  max-height: 32rem;
+  overflow: auto;
+  tab-size: 2;
+}
+
+.kit-page .kit-copy-status {
+  font-size: 0.8125rem;
+  margin: 0;
+}
+
+.kit-page .kit-copy-status:not(:empty) {
+  padding: 0.75rem 1rem;
+}
+
+.kit-page .kit-checks {
+  padding-left: 1rem;
+  border-left: 4px solid var(--kit-rule);
+  margin-top: 1.75rem;
+}
+
+.kit-page .kit-back {
+  font-size: 0.8125rem;
+  text-align: right;
+}
+
+.kit-page .kit-invitation {
+  margin-top: 4rem;
+  border: 4px solid var(--kit-rule);
+  border-top-width: 8px;
+  padding: clamp(1rem, 4vw, 2rem);
+}
+
+.kit-page .kit-invitation h2 {
+  margin-top: 0;
+}
+
+.kit-page .kit-footer {
+  padding: 2rem 0;
+  font-size: 0.875rem;
+}
+
+.kit-page .kit-breadcrumb {
+  margin-bottom: 2.5rem;
+  font-size: 0.875rem;
+}
+
+.kit-page .kit-session-facts {
+  border-block: 2px solid var(--kit-rule);
+  padding-block: 1rem;
+  margin-block: 2rem;
+}
+
+.kit-page .kit-session-facts span {
+  margin-inline: 0.4rem;
+}
+
+.kit-page .kit-outcomes {
+  padding-left: 1.5rem;
+}
+
+.kit-page .kit-outcomes li {
+  padding: 1.25rem 0 1.25rem 0.5rem;
+  border-bottom: 2px solid var(--kit-rule);
+}
+
+.kit-page .kit-outcomes span {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.kit-page .kit-faq details {
+  border-bottom: 2px solid var(--kit-rule);
+}
+
+.kit-page .kit-faq details p {
+  padding-inline: 1rem;
+}
+
+.kit-page .kit-form {
+  max-width: 34rem;
+  margin-top: 1.5rem;
+}
+
+.kit-page .kit-form label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 700;
+}
+
+.kit-page .kit-form input,
+.kit-page .kit-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--kit-rule);
+  border-radius: 0;
+  background: var(--bg-color);
+  color: inherit;
+  color-scheme: light dark;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.kit-page .kit-form textarea {
+  resize: vertical;
+}
+
+.kit-page .kit-form input:focus-visible,
+.kit-page .kit-form textarea:focus-visible {
+  outline: 3px solid var(--accent-cobalt);
+  outline-offset: 2px;
+}
+
+.kit-page .kit-wajib {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.kit-page .kit-bantuan {
+  display: block;
+  margin-top: 0.375rem;
+  max-width: 65ch;
+  font-size: 0.875rem;
+  color: var(--meta-color);
+}
+
+@media (max-width: 480px) {
+  .kit-page .kit-route ol {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kit-page .kit-stage-heading {
+    gap: 1rem;
+  }
+
+  .kit-page .kit-prompt-bar {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .kit-shell .site-header {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .kit-shell .site-header h1 {
+    margin-right: 3.5rem !important;
+  }
+
+  .kit-shell .theme-toggle {
+    position: absolute;
+    right: 0;
+    top: -0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kit-page summary,
+  .kit-page .kit-step-indicator {
+    transition: none;
+  }
+}

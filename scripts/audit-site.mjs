@@ -133,6 +133,7 @@ function assertHomepageReachesSections() {
     "/showcase",
     "/search",
     "/konsultasi",
+    "/vibe-coding",
   ]) {
     if (!hrefs.has(section)) {
       fail(`homepage has no anchor to ${section}/ — readers cannot navigate to it`);
