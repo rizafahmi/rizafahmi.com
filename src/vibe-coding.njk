@@ -25,7 +25,7 @@ pageBodyClass: kit-shell
     <p class="kit-lede">{{ vibeCoding.description }}</p>
     <div class="kit-actions">
       <a class="button" href="#mulai">Mulai dari sini <span aria-hidden="true">↘</span></a>
-      <a href="/vibe-coding/panduan.md" download="panduan-vibe-coding.md" data-goatcounter-click="kit-download" data-goatcounter-title="Unduh panduan Markdown">Unduh semua prompt (Markdown)</a>
+      <a href="/vibe-coding/panduan.pdf" download="panduan-vibe-coding.pdf" data-goatcounter-click="kit-download" data-goatcounter-title="Unduh panduan PDF">Unduh semua prompt (PDF)</a>
     </div>
     <p class="kit-meta">Gratis, tanpa daftar · Panduan berbahasa Indonesia, prompt dan jawaban AI berbahasa Inggris · {{ vibeCoding.updated }}</p>
   </header>
@@ -60,7 +60,7 @@ pageBodyClass: kit-shell
     <ol class="kit-instructions">
       {% for instruction in vibeCoding.howTo %}<li>{{ instruction }}</li>{% endfor %}
     </ol>
-    <p class="kit-note">File Markdown bisa dibuka di editor teks. Kamu juga bisa menyalin langsung dari halaman ini. Panduan ini membantu membuat prototype. Kebutuhan pengguna tetap perlu diuji dengan orang sungguhan.</p>
+    <p class="kit-note">Salin prompt langsung dari halaman ini ke ChatGPT atau Codex. File PDF berisi seluruh panduan untuk dibaca atau dicetak. Panduan ini membantu membuat prototype. Kebutuhan pengguna tetap perlu diuji dengan orang sungguhan.</p>
     <details class="kit-glossary">
       <summary>Baru pertama kali? Kenali empat istilah ini</summary>
       <dl>{% for item in vibeCoding.glossary %}<dt>{{ item.term }}</dt><dd>{{ item.meaning }}</dd>{% endfor %}</dl>

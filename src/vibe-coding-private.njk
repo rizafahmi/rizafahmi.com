@@ -1,7 +1,7 @@
 ---
 layout: main
 title: Sesi Privat Vibe Coding bersama Riza Fahmi
-description: Pendampingan online 90 menit untuk memperjelas ide dan mengerjakan satu target project dengan AI. Ceritakan kebutuhanmu lewat email untuk usulan sesi dan biaya.
+description: Pendampingan online 90 menit untuk memperjelas ide dan mengerjakan satu target project dengan AI. Isi brief untuk usulan sesi dan biaya.
 permalink: /vibe-coding/private/
 pageCss: vibe-coding.css
 pageBodyClass: kit-shell
@@ -13,8 +13,8 @@ pageBodyClass: kit-shell
     <h1>Ide kamu<br>Kita kerjakan<br><span class="kit-highlight">bersama</span></h1>
     <p class="kit-lede">Sudah punya ide, tapi belum tahu mulai dari mana? Atau sudah mencoba AI dan mentok? Bawa satu project. Kita tentukan langkah berikutnya dan kerjakan bersama.</p>
     <p class="kit-session-facts">One-on-one <span aria-hidden="true">·</span> 90 menit <span aria-hidden="true">·</span> online <span aria-hidden="true">·</span> Bahasa Indonesia</p>
-    <p><a class="button" href="{{ vibeCoding.emailHref | escape }}" data-goatcounter-click="private-email-hero" data-goatcounter-title="Email sesi privat">Ceritakan project kamu lewat email <span aria-hidden="true">↗</span></a></p>
-    <p class="kit-meta">Sesi ini berbayar. Saya balas dalam {{ vibeCoding.responseTime }} dengan usulan sesi dan biayanya.<br>Mengirim email belum berarti memesan sesi.</p>
+    <p><a class="button" href="#brief" data-goatcounter-click="private-brief-hero" data-goatcounter-title="Isi brief sesi privat">Ceritakan project kamu <span aria-hidden="true">↘</span></a></p>
+    <p class="kit-meta">Saya akan segera mengirimkan respon.</p>
   </header>
 
   <section class="kit-section" aria-labelledby="hasil-title">
@@ -30,7 +30,7 @@ pageBodyClass: kit-shell
   </section>
 
   <section class="kit-section" aria-labelledby="proses-title">
-    <h2 id="proses-title">Dari email ke sesi</h2>
+    <h2 id="proses-title">Dari brief ke sesi</h2>
     <ol class="kit-preparation">
       <li><strong>Ceritakan kebutuhanmu.</strong><p>Tulis apa yang ingin dibuat, apa yang sudah dicoba, dan bagian yang membuatmu mentok. Baru mulai dari nol juga boleh.</p></li>
       <li><strong>Kita cek kecocokan.</strong><p>Saya balas dalam {{ vibeCoding.responseTime }} dengan usulan target, biaya, dan pilihan jadwal. Kita sepakati detail pembayaran serta ketentuan perubahan jadwal atau pembatalan sebelum kamu membayar.</p></li>
@@ -51,25 +51,59 @@ pageBodyClass: kit-shell
   </section>
 
   <section class="kit-section kit-faq" aria-labelledby="faq-title">
-    <h2 id="faq-title">Sebelum mengirim email</h2>
-    <details><summary>Berapa biaya sesinya?</summary><p>Sesi ini berbayar. Ceritakan kebutuhanmu lewat email. Saya balas dengan usulan sesi dan biayanya. Kamu bisa mempertimbangkannya sebelum memesan.</p></details>
+    <h2 id="faq-title">Sebelum mengirim brief</h2>
+    <details><summary>Berapa biaya sesinya?</summary><p>Sesi ini berbayar. Isi brief di bawah. Saya balas dengan usulan sesi dan biayanya. Kamu bisa mempertimbangkannya sebelum memesan.</p></details>
     <details><summary>Apakah project akan dibuatkan untuk saya?</summary><p>Kita mengerjakannya bersama agar kamu bisa melanjutkan sendiri. Sesi ini pendampingan belajar, bukan jasa pembuatan aplikasi atau dukungan implementasi tanpa batas setelah sesi.</p></details>
     <details><summary>Bagaimana kalau belum punya ide?</summary><p>Ceritakan satu pekerjaan yang berulang atau masalah yang kamu alami. Kita bisa menyepakati target sesi untuk memperjelas masalah dan membuat brief sederhana terlebih dahulu.</p></details>
     <details><summary>Apakah harus punya hosting?</summary><p>Hanya jika target sesinya deploy. Perencanaan, pembuatan, dan pengujian awal bisa dilakukan di laptop. Kebutuhan tool disepakati sebelum sesi.</p></details>
     <details><summary>Bagaimana kalau tool belum terpasang?</summary><p>Saya cek persiapan sebelum sesi. Jika prasyarat masih kurang, kita sepakati apakah setup menjadi target sesi, atau jadwal diundur sesuai ketentuan yang sudah disepakati. Saya tidak mengganti sesi membangun menjadi sesi instalasi tanpa kesepakatan itu.</p></details>
   </section>
 
-  <section class="kit-invitation" id="email" aria-labelledby="email-title">
+  <section class="kit-invitation" id="brief" aria-labelledby="brief-title">
     <p class="kit-eyebrow">Mulai dari satu cerita</p>
-    <h2 id="email-title">Apa yang ingin<br>kamu bangun?</h2>
-    <p>Cukup nama, ide atau tujuan, dan apa yang sudah kamu coba. Tautan project boleh disertakan. Jangan kirim password atau data rahasia.</p>
-    <p><a class="button" href="{{ vibeCoding.emailHref | escape }}" data-goatcounter-click="private-email-footer" data-goatcounter-title="Email sesi privat">Ceritakan project kamu lewat email <span aria-hidden="true">↗</span></a></p>
-    <div class="kit-email-fallback">
-      <p>Jika aplikasi email tidak terbuka, tulis ke:<br><a id="private-email-address" href="mailto:{{ vibeCoding.email }}">{{ vibeCoding.email }}</a></p>
-      <button class="kit-copy" type="button" hidden data-copy-target="private-email-address" data-copy-event="private-copy-email">Salin alamat email</button>
-      <p class="kit-copy-status" role="status" aria-live="polite"></p>
-    </div>
-    <p class="kit-meta">Saya membalas dalam {{ vibeCoding.responseTime }}. Saya memakai emailmu untuk membalas kebutuhan dan mengatur sesi. Saya tidak mendaftarkan emailmu ke newsletter.</p>
+    <h2 id="brief-title">Apa yang ingin<br>kamu bangun?</h2>
+    <p>Cukup nama, email, dan cerita project atau masalahmu. Jangan kirim password atau data rahasia.</p>
+
+    <form
+      class="kit-form"
+      name="vibe-coding-private"
+      method="POST"
+      action="/vibe-coding/private/terima-kasih/"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="vibe-coding-private" />
+      <input type="hidden" name="subject" value="Brief sesi privat vibe coding - rizafahmi.com" />
+      <p hidden aria-hidden="true">
+        <label>Jangan diisi kalau kamu manusia: <input name="bot-field" /></label>
+      </p>
+
+      <p>
+        <label for="nama">Nama</label>
+        <input type="text" id="nama" name="nama" autocomplete="name" />
+      </p>
+
+      <p>
+        <label for="email">Email <span class="kit-wajib">wajib</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email" />
+      </p>
+
+      <p>
+        <label for="cerita">Project atau masalah <span class="kit-wajib">wajib</span></label>
+        <textarea id="cerita" name="cerita" rows="6" required aria-describedby="cerita-bantuan"></textarea>
+        <span id="cerita-bantuan" class="kit-bantuan">
+          Apa yang ingin dibuat, atau bagian yang mentok. Baru mulai dari nol juga boleh.
+        </span>
+      </p>
+
+      <p><button type="submit" class="button">Kirim brief</button></p>
+    </form>
+
+    <p class="kit-bantuan">
+      Data ini cuma dipakai untuk membalas brief kamu. Tanpa newsletter, tanpa diteruskan
+      ke siapa pun.
+    </p>
+    <p class="kit-meta">Saya memakai alamat email kamu untuk membalas kebutuhan dan mengatur sesi. Saya tidak mendaftarkan emailmu ke newsletter.</p>
   </section>
   <footer class="kit-footer"><a href="/vibe-coding/">← Kembali ke panduan gratis</a></footer>
 </main>

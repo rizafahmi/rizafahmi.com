@@ -285,27 +285,13 @@ for (const stage of stages) {
   }
 }
 
-const email = "rizafahmi@gmail.com";
-const emailBody = `Halo Riza,
-
-Saya ingin bertanya tentang sesi privat vibe coding.
-Nama:
-Project atau tujuan saya:
-Yang sudah saya coba, atau bagian yang membuat saya mentok:
-Pengalaman coding (opsional):
-Tautan project (opsional):
-
-Terima kasih.`;
-
 export default {
   title: "Panduan Vibe Coding",
   subtitle: "Dari ide sampai online.",
   updated: "16 September 2026",
   description:
     "Prompt siap salin untuk membangun alat web pertamamu dengan AI. Ikuti contoh SlideQR, lalu coba dengan idemu sendiri.",
-  email,
   responseTime: "24 jam kerja",
-  emailHref: `mailto:${email}?subject=${encodeURIComponent("Sesi Privat Vibe Coding")}&body=${encodeURIComponent(emailBody)}`,
   prerequisites: [
     {
       title: "Laptop, browser, dan akun AI",

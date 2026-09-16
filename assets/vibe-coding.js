@@ -4,9 +4,7 @@ for (const button of document.querySelectorAll("[data-copy-target]")) {
   button.hidden = false;
   button.addEventListener("click", async () => {
     const target = document.getElementById(button.dataset.copyTarget);
-    const status = button
-      .closest(".kit-prompt, .kit-email-fallback")
-      ?.querySelector("[role=status]");
+    const status = button.closest(".kit-prompt")?.querySelector("[role=status]");
     if (!target || !status) return;
     button.disabled = true;
     try {

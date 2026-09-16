@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
 import kit from "../src/_data/vibeCoding.js";
-import { renderKitMarkdown } from "../src/libs/vibe-coding.js";
+import { kitSections, renderKitPdf } from "../src/libs/vibe-coding.js";
 
 test("both kit pages opt into Pagefind and declare their routes", () => {
   for (const [file, permalink] of [
@@ -44,9 +44,12 @@ test("deployment prompts inspect before publishing and refuse secrets", () => {
   assert.match(steps.unggah.prompt, /tokens/i);
 });
 
-test("the private offer is email-only and states reply window, agenda, and setup rule", () => {
+test("the private offer uses a Netlify form and states reply window, agenda, and setup rule", () => {
   const source = readFileSync("src/vibe-coding-private.njk", "utf8");
-  assert.doesNotMatch(source, /<form\b/);
+  assert.match(source, /<form\b/);
+  assert.doesNotMatch(source, /mailto:/);
+  assert.doesNotMatch(source, /lewat email/i);
+  assert.doesNotMatch(source, /kirim email/i);
   assert.equal(kit.responseTime, "24 jam kerja");
   assert.match(source, /vibeCoding\.responseTime/);
   assert.match(source, /15 menit/);
@@ -61,34 +64,91 @@ test("the private offer is email-only and states reply window, agenda, and setup
   assert.match(source, /Saya cek persiapan/);
   assert.match(source, /One-on-one/);
   assert.doesNotMatch(source, /1-on-1|1x24/);
+  assert.equal(kit.emailHref, undefined);
+  assert.equal(kit.email, undefined);
 });
 
-test("download preserves all prompts, examples, and handoff checks verbatim", () => {
-  const markdown = renderKitMarkdown(kit);
+test("the hidden form-name input matches the form's name attribute", () => {
+  const source = readFileSync("src/vibe-coding-private.njk", "utf8");
+  const formName = source.match(/<form[^>]*\sname="([^"]+)"/)?.[1];
+  const hidden = source.match(/name="form-name"[^>]*value="([^"]+)"/)?.[1];
+  assert.ok(formName, "no <form name=...> found");
+  assert.ok(hidden, "no hidden form-name input found");
+  assert.equal(hidden, formName);
+  assert.equal(formName, "vibe-coding-private");
+});
+
+test("the form action points at a page that is actually built", () => {
+  const source = readFileSync("src/vibe-coding-private.njk", "utf8");
+  const action = source.match(/<form[^>]*\saction="([^"]+)"/)?.[1];
+  assert.ok(action, "no <form action=...> found");
+
+  const target = readFileSync("src/vibe-coding-private-terima-kasih.njk", "utf8");
+  const frontmatter = target.split("---")[1] ?? "";
+  assert.match(frontmatter, new RegExp(`^permalink: ${action}$`, "m"));
+  assert.match(frontmatter, /^noindex: true$/m);
+  assert.match(target, /lewat email/);
+});
+
+test('the form declares data-netlify="true"', () => {
+  const source = readFileSync("src/vibe-coding-private.njk", "utf8");
+  const form = source.match(/<form[\s\S]*?>/)?.[0];
+  assert.ok(form, "no <form ...> found");
+  assert.match(form, /data-netlify="true"/);
+});
+
+test("the honeypot is declared and paired with a matching input", () => {
+  const source = readFileSync("src/vibe-coding-private.njk", "utf8");
+  const form = source.match(/<form[\s\S]*?>/)?.[0];
+  assert.ok(form, "no <form ...> found");
+  assert.match(form, /netlify-honeypot="bot-field"/);
+  assert.match(source, /<input[^>]*\sname="bot-field"/);
+});
+
+test("a field named email exists", () => {
+  const source = readFileSync("src/vibe-coding-private.njk", "utf8");
+  assert.match(source, /<input[^>]*\sname="email"/);
+});
+
+test("the brief form only asks for nama, email, and cerita", () => {
+  const source = readFileSync("src/vibe-coding-private.njk", "utf8");
+  const form = source.match(/<form[\s\S]*?<\/form>/)?.[0];
+  assert.ok(form, "no form found");
+  const names = [...form.matchAll(/<(?:input|textarea)[^>]*\sname="([^"]+)"/g)].map(
+    (match) => match[1],
+  );
+  assert.deepEqual(
+    names.filter((name) => !["form-name", "subject", "bot-field"].includes(name)),
+    ["nama", "email", "cerita"],
+  );
+  assert.match(form, /<textarea[^>]*\sname="cerita"[^>]*required/);
+  assert.doesNotMatch(form, /name="tujuan"|name="mentok"|name="pengalaman"|name="tautan"/);
+});
+
+test("kitSections preserves all prompts, examples, and handoff checks verbatim", () => {
+  const sections = kitSections(kit);
+  const serialized = JSON.stringify(sections);
   const steps = kit.stages.flatMap((stage) => stage.steps);
   assert.equal(steps.length, 12);
   assert.equal(new Set(steps.map((step) => step.id)).size, 12);
   for (const step of steps) {
-    assert.ok(markdown.includes(`\n${step.prompt}\n`), step.id);
-    assert.ok(markdown.includes(`\n${step.examplePrompt}\n`), step.id);
+    assert.ok(serialized.includes(JSON.stringify(step.prompt)), step.id);
+    assert.ok(serialized.includes(JSON.stringify(step.examplePrompt)), step.id);
     assert.doesNotMatch(step.examplePrompt, /\[[^\]]+\]/, step.id);
-    assert.ok(markdown.includes(step.check), step.id);
-    assert.ok(markdown.includes(step.next), step.id);
+    assert.ok(serialized.includes(step.check), step.id);
+    assert.ok(serialized.includes(step.next), step.id);
   }
-  assert.doesNotMatch(markdown, /Rp\s*[\d.]|rupiah|IDR\s*\d/i);
-  assert.match(markdown, new RegExp(kit.responseTime));
+  assert.doesNotMatch(serialized, /Rp\s*[\d.]|rupiah|IDR\s*\d/i);
+  assert.match(serialized, new RegExp(kit.responseTime));
+  assert.doesNotMatch(serialized, /rizafahmi@gmail\.com/);
+  assert.doesNotMatch(serialized, /lewat email/i);
 });
 
-test("email CTA encodes an editable brief, without a fee or booking commitment", () => {
-  const url = new URL(kit.emailHref);
-  const body = url.searchParams.get("body");
-  assert.equal(url.protocol, "mailto:");
-  assert.equal(url.pathname, kit.email);
-  assert.equal(url.searchParams.get("subject"), "Sesi Privat Vibe Coding");
-  assert.match(body, /Project atau tujuan saya:\n/);
-  assert.match(body, /Yang sudah saya coba, atau bagian yang membuat saya mentok:/);
-  assert.doesNotMatch(body, / \/ /);
-  assert.doesNotMatch(body, /Rp\s*[\d.]|rupiah|IDR\s*\d/i);
+test("renderKitPdf returns a PDF without a public fee", async () => {
+  const pdf = await renderKitPdf(kit);
+  assert.ok(Buffer.isBuffer(pdf));
+  assert.equal(pdf.subarray(0, 5).toString("utf8"), "%PDF-");
+  assert.doesNotMatch(pdf.toString("latin1"), /Rp\s*[\d.]|rupiah|IDR\s*\d/i);
 });
 
 const kitCopyStrings = () => {
@@ -98,7 +158,6 @@ const kitCopyStrings = () => {
     kit.description,
     kit.updated,
     kit.responseTime,
-    decodeURIComponent(new URL(kit.emailHref).searchParams.get("body")),
     ...kit.prerequisites.flatMap((item) => [item.title, item.text]),
     ...kit.howTo,
     ...kit.glossary.flatMap((item) => [item.term, item.meaning]),
@@ -126,18 +185,26 @@ test("kit copy has no semicolons and names MCP, Markdown, and the author in acti
   for (const part of kitCopyStrings()) {
     assert.doesNotMatch(part, /;/, part.slice(0, 120));
   }
-  assert.doesNotMatch(renderKitMarkdown(kit), /;/);
+  for (const section of kitSections(kit)) {
+    for (const value of Object.values(section)) {
+      if (typeof value === "string") assert.doesNotMatch(value, /;/);
+      if (Array.isArray(value)) {
+        for (const item of value) assert.doesNotMatch(item, /;/);
+      }
+    }
+  }
   for (const file of ["src/vibe-coding.njk", "src/vibe-coding-private.njk"]) {
     assert.doesNotMatch(readFileSync(file, "utf8"), /;/, file);
   }
   const guide = readFileSync("src/vibe-coding.njk", "utf8");
-  assert.match(guide, /Unduh semua prompt \(Markdown\)/);
-  assert.match(guide, /File Markdown/);
+  assert.match(guide, /Unduh semua prompt \(PDF\)/);
+  assert.match(guide, /\/vibe-coding\/panduan\.pdf/);
   assert.match(guide, /01–12/);
   assert.match(guide, /Riza Fahmi · Panduan Vibe Coding/);
   assert.match(guide, /menulis panduan ini/);
   assert.doesNotMatch(guide, /Panduan ditulis oleh/);
   assert.doesNotMatch(guide, /Riza Fahmi \/ /);
+  assert.doesNotMatch(guide, /panduan\.md|Unduh semua prompt \(Markdown\)/);
   const hosting = kit.prerequisites.find((item) => item.title.includes("Hosting"));
   assert.match(hosting.text, /Model Context Protocol \(MCP\)/);
   assert.equal(kit.glossary.at(-1).term, "Deploy and document root");
@@ -147,6 +214,7 @@ test("clipboard fallback names the text instead of pointing above", () => {
   const source = readFileSync("assets/vibe-coding.js", "utf8");
   assert.match(source, /Pilih teksnya/);
   assert.doesNotMatch(source, /di atas/);
+  assert.doesNotMatch(source, /kit-email-fallback/);
 });
 
 const copyHarness = (writeText, count) => {
@@ -211,13 +279,14 @@ test("clipboard rejection preserves manual fallback and records no success event
   assert.equal(events, 0);
 });
 
-test("built pages expose the guide, working copy targets, and an email-only offer", {
+test("built pages expose the guide, working copy targets, PDF download, and Netlify form", {
   skip: !existsSync("dist/vibe-coding/index.html") && "Run pnpm run build first",
 }, () => {
   const html = readFileSync("dist/vibe-coding/index.html", "utf8");
   const privateHtml = readFileSync("dist/vibe-coding/private/index.html", "utf8");
-  const download = readFileSync("dist/vibe-coding/panduan.md", "utf8");
-  assert.equal(download, renderKitMarkdown(kit));
+  const thankYou = readFileSync("dist/vibe-coding/private/terima-kasih/index.html", "utf8");
+  const download = readFileSync("dist/vibe-coding/panduan.pdf");
+  assert.equal(download.subarray(0, 5).toString("utf8"), "%PDF-");
   for (const page of [html, privateHtml]) {
     assert.match(page, /data-pagefind-body/);
     assert.doesNotMatch(page, /Rp\s*[\d.]|rupiah|IDR\s*\d/i);
@@ -228,8 +297,12 @@ test("built pages expose the guide, working copy targets, and an email-only offe
   assert.equal([...html.matchAll(/data-copy-target=/g)].length, 24);
   assert.match(html, /<pre[^>]+lang="en"/);
   assert.match(html, /Panduan Vibe Coding/);
+  assert.match(html, /\/vibe-coding\/panduan\.pdf/);
   assert.doesNotMatch(html, /Starter Kit|starter panduan/i);
-  assert.match(privateHtml, /mailto:rizafahmi@gmail\.com\?subject=/);
-  assert.doesNotMatch(privateHtml, /<form\b/);
+  assert.doesNotMatch(html, /panduan\.md/);
+  assert.doesNotMatch(privateHtml, /mailto:/);
+  assert.match(privateHtml, /<form[^>]*name="vibe-coding-private"/);
+  assert.match(privateHtml, /data-netlify="true"/);
+  assert.match(thankYou, /lewat email/);
   assert.match(readFileSync("dist/index.html", "utf8"), /href="\/vibe-coding\/"/);
 });
