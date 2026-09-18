@@ -18,7 +18,7 @@ The landing page (`/`) that serves as the entry point to the site. Shows recent 
 
 **Direct access**: Navigate to `http://localhost:3000/` in browser or curl
 
-**From other pages**: Click "BERANDA" link in navigation, or click logo/home link
+**From other pages**: Click "👋 Saya Riza!" link in navigation header, or homepage link in footer
 
 **URL**: `/` (site root)
 
