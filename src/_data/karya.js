@@ -34,6 +34,13 @@
  */
 export default [
   {
+    name: "pi-jev-task-router",
+    description:
+      "Extension Pi: klasifikasi prompt dengan Jev (TypeSafe System One) lalu ganti model per turn.",
+    repo: "https://github.com/rizafahmi/pi-jev-task-router",
+    tags: ["TypeScript", "Pi", "Jev"],
+  },
+  {
     name: "slopcase",
     description: "Showcase untuk proyek AI-generated: submit & voting, “slop atau bukan?”",
     repo: "https://github.com/rizafahmi/slopcase",
