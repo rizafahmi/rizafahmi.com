@@ -35,7 +35,8 @@
 export default [
   {
     name: "pi-jev-task-router",
-    description: "Extension Pi: klasifikasi prompt dengan Jev (TypeSafe System One) lalu ganti model per turn.",
+    description:
+      "Extension Pi: klasifikasi prompt dengan Jev (TypeSafe System One) lalu ganti model per turn.",
     repo: "https://github.com/rizafahmi/pi-jev-task-router",
     tags: ["TypeScript", "Pi", "Jev"],
   },
