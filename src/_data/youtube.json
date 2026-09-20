@@ -7,47 +7,47 @@
     "thumbnail": "https://yt3.ggpht.com/vFHuT39fHI70_X3pUZSj3Cne2Q9hLqMnSB5cApxUDt0rIixwlh3UgBXuRJZybXelbNzeP6G-99E=s800-c-k-c0x00ffffff-no-rj"
   },
   "stats": {
-    "subscribers": 7210,
-    "totalViews": 371352,
-    "videoCount": 854
+    "subscribers": 7200,
+    "totalViews": 372760,
+    "videoCount": 856
   },
   "momentum": {
-    "videosLast12Months": 143,
-    "viewsLast12Months": 54235,
-    "uploadsPerMonth": 11.9,
+    "videosLast12Months": 144,
+    "viewsLast12Months": 52578,
+    "uploadsPerMonth": 12,
     "monthsCovered": 13
   },
   "formats": {
     "shorts": {
-      "n": 62,
-      "median": 218,
-      "p25": 147,
-      "p75": 571,
+      "n": 65,
+      "median": 222,
+      "p25": 156,
+      "p75": 542,
       "min": 84,
-      "max": 2414
+      "max": 2422
     },
     "episode": {
-      "n": 83,
-      "median": 262,
-      "p25": 200,
-      "p75": 391,
+      "n": 84,
+      "median": 267,
+      "p25": 202,
+      "p75": 399,
       "min": 109,
-      "max": 811
+      "max": 826
     },
     "recorded": {
       "n": 1,
-      "median": 166,
-      "p25": 166,
-      "p75": 166,
-      "min": 166,
-      "max": 166
+      "median": 167,
+      "p25": 167,
+      "p75": 167,
+      "min": 167,
+      "max": 167
     }
   },
   "ngobrolinWeb": {
     "episodes": 57,
     "median": 253,
     "min": 109,
-    "max": 606
+    "max": 623
   },
   "topVideos": [
     {
@@ -55,7 +55,7 @@
       "title": "Cuplikan obrolan dengan pemilik platform sumopod",
       "publishedAt": "2025-09-18T13:00:38Z",
       "url": "https://www.youtube.com/watch?v=Han7XwHe0-I",
-      "views": 2414,
+      "views": 2422,
       "durationSeconds": 56,
       "isLive": false
     },
@@ -64,7 +64,7 @@
       "title": "Ada yang bertanya: pakai multi agent ai apa? Jawabannya belum karena saya belum swasembada token",
       "publishedAt": "2026-05-24T13:00:07Z",
       "url": "https://www.youtube.com/watch?v=zPsDnTJMpw8",
-      "views": 1700,
+      "views": 1705,
       "durationSeconds": 13,
       "isLive": false
     },
@@ -73,7 +73,7 @@
       "title": "Ada yang merasa lebih cepat lelah ketika harus mengkaji kode dari AI?",
       "publishedAt": "2026-07-01T13:00:07Z",
       "url": "https://www.youtube.com/watch?v=N3roU-_zN6s",
-      "views": 1580,
+      "views": 1583,
       "durationSeconds": 25,
       "isLive": false
     },
@@ -82,7 +82,7 @@
       "title": "Salah satu alat untuk menghemat token: RTK",
       "publishedAt": "2026-06-10T13:00:14Z",
       "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
-      "views": 1324,
+      "views": 1326,
       "durationSeconds": 41,
       "isLive": false
     },
@@ -107,11 +107,38 @@
   ],
   "recentVideos": [
     {
+      "id": "T0L8-kq6IBo",
+      "title": "Dua konsep Looping di #codingagent. Sekarang sih ada beberapa tambahan agent skill /goal juga",
+      "publishedAt": "2026-09-18T13:00:12Z",
+      "url": "https://www.youtube.com/watch?v=T0L8-kq6IBo",
+      "views": 94,
+      "durationSeconds": 111,
+      "isLive": false
+    },
+    {
+      "id": "O4d_TtSE580",
+      "title": "Ada yang masih ingat dengan format TOON yang digadang-gadang lebih hemat token dibandingkan JSON?",
+      "publishedAt": "2026-09-17T13:00:39Z",
+      "url": "https://www.youtube.com/watch?v=O4d_TtSE580",
+      "views": 383,
+      "durationSeconds": 70,
+      "isLive": false
+    },
+    {
+      "id": "ZHe7WTiOIfw",
+      "title": "#LLM sudah cukup pintar untuk melakukan looping hanya berbekal prompting saja.",
+      "publishedAt": "2026-09-16T13:00:29Z",
+      "url": "https://www.youtube.com/watch?v=ZHe7WTiOIfw",
+      "views": 66,
+      "durationSeconds": 102,
+      "isLive": false
+    },
+    {
       "id": "qqs7co9El0w",
       "title": "Jika ingin implementasi AI namun menggunakan data sensitif, bagaimana strateginya?",
       "publishedAt": "2026-09-11T13:00:32Z",
       "url": "https://www.youtube.com/watch?v=qqs7co9El0w",
-      "views": 45,
+      "views": 60,
       "durationSeconds": 76,
       "isLive": false
     },
@@ -120,7 +147,7 @@
       "title": "Code indexing seperti graphify ternyata membuat #codingagent bekerja lebih cepat hingga 3 kali lipat",
       "publishedAt": "2026-09-10T13:00:02Z",
       "url": "https://www.youtube.com/watch?v=N2OnsczNCmQ",
-      "views": 137,
+      "views": 162,
       "durationSeconds": 79,
       "isLive": false
     },
@@ -129,45 +156,18 @@
       "title": "Yang lagi ngulik #codingagent tidak perlu #FOMO dengan banyaknya update, tools, dan metode baru.",
       "publishedAt": "2026-09-09T13:00:16Z",
       "url": "https://www.youtube.com/watch?v=sJBFKJ_GxGI",
-      "views": 167,
+      "views": 169,
       "durationSeconds": 44,
       "isLive": false
-    },
-    {
-      "id": "_VoS7mnsUdQ",
-      "title": "Bedah Buku Panduan Coding - Ngobrolin WEB",
-      "publishedAt": "2026-09-09T02:58:35Z",
-      "url": "https://www.youtube.com/watch?v=_VoS7mnsUdQ",
-      "views": 1237,
-      "durationSeconds": 5495,
-      "isLive": true
-    },
-    {
-      "id": "qT53ww9flaQ",
-      "title": "✨🔴 Loop Engineering - Coding dengan AI bagian 11",
-      "publishedAt": "2026-09-07T15:06:58Z",
-      "url": "https://www.youtube.com/watch?v=qT53ww9flaQ",
-      "views": 744,
-      "durationSeconds": 7254,
-      "isLive": true
-    },
-    {
-      "id": "ztSjC3HO5B8",
-      "title": "Bedah PerryTS - Ngobrolin WEB",
-      "publishedAt": "2026-09-02T02:48:20Z",
-      "url": "https://www.youtube.com/watch?v=ztSjC3HO5B8",
-      "views": 560,
-      "durationSeconds": 6007,
-      "isLive": true
     }
   ],
   "window": {
     "videosAnalyzed": 300,
-    "from": "2023-11-25",
-    "to": "2026-09-11",
-    "videosSummarized": 146,
-    "statsFrom": "2025-06-18",
-    "statsTo": "2026-08-19",
+    "from": "2023-12-02",
+    "to": "2026-09-18",
+    "videosSummarized": 150,
+    "statsFrom": "2025-06-25",
+    "statsTo": "2026-08-28",
     "matureMinDays": 21,
     "statsMaxAgeDays": 456
   },
@@ -177,7 +177,7 @@
       "title": "AWS Free Tier: Nikmati Servis Berkualitas Tanpa Biaya",
       "publishedAt": "2022-07-13T09:30:02Z",
       "url": "https://www.youtube.com/watch?v=5FMZMB9_Aqs",
-      "views": 1480,
+      "views": 1482,
       "durationSeconds": 1069,
       "isLive": false,
       "tag": "DevTools"
@@ -187,7 +187,7 @@
       "title": "Layar lega serbaguna dan memesona. Review BENQ GW3290QT",
       "publishedAt": "2023-07-31T13:00:20Z",
       "url": "https://www.youtube.com/watch?v=JsWtmdTPSzs",
-      "views": 480,
+      "views": 482,
       "durationSeconds": 276,
       "isLive": false,
       "tag": "Review"
@@ -207,7 +207,7 @@
       "title": "Ngobrolin Pengalaman Frontend @imrenagi -  Ngobrolin WEB",
       "publishedAt": "2024-12-11T02:37:51Z",
       "url": "https://www.youtube.com/watch?v=jxW4wishA8s",
-      "views": 3954,
+      "views": 3955,
       "durationSeconds": 5375,
       "isLive": true,
       "tag": "Web"
@@ -233,7 +233,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-09-13T23:01:56.905Z",
+  "updatedAt": "2026-09-20T23:05:16.697Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
