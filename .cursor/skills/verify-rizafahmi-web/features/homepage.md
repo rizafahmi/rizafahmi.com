@@ -67,13 +67,14 @@ grep -q 'href="#catatan"' /tmp/verify-rizafahmi-web/homepage/index.html && echo 
 grep -q 'href="/topik/"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Mulai link"
 grep -q 'href="/tags"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Topik link"
 grep -q 'href="/tips/"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Tips link"
+grep -q 'href="/vibe-coding/"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Vibe Coding link"
 grep -q 'href="#karya"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Karya link"
 grep -q 'href="/kerjasama/"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Kerjasama link"
 grep -q 'href="#kontak"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Kontak link"
 grep -q 'href="/search"' /tmp/verify-rizafahmi-web/homepage/index.html && echo "✓ Nav: Cari link"
 ```
 
-**Expected result**: All 8 navigation links present
+**Expected result**: All 9 navigation links present
 
 ### Step 5: Verify latest articles section exists
 

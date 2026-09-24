@@ -102,7 +102,7 @@ lsof -i:3000 | grep -q node && echo "✓ Port 3000 owned by Node" || echo "✗ P
 [ -f node_modules/.bin/eleventy ] && echo "✓ Dependencies installed" || echo "✗ Missing dependencies (run pnpm install)"
 
 # 5. Verify served content matches current branch (detect stale dist)
-EXPECTED_NAV_COUNT=8
+EXPECTED_NAV_COUNT=9
 ACTUAL_NAV_COUNT=$(curl -s http://localhost:3000/ | grep -A 20 'hero-nav' | grep -c 'href=')
 [ "$ACTUAL_NAV_COUNT" -eq "$EXPECTED_NAV_COUNT" ] && echo "✓ Serving current branch (nav link count: $ACTUAL_NAV_COUNT)" || echo "⚠ Possible stale dist (nav links: expected $EXPECTED_NAV_COUNT, got $ACTUAL_NAV_COUNT) - restart dev server"
 ```
@@ -113,7 +113,7 @@ Expected output:
 ✓ Correct site content
 ✓ Port 3000 owned by Node
 ✓ Dependencies installed
-✓ Serving current branch (nav link count: 8)
+✓ Serving current branch (nav link count: 9)
 ```
 
 If any check fails, troubleshoot before driving:
