@@ -103,7 +103,7 @@ lsof -i:3000 | grep -q node && echo "✓ Port 3000 owned by Node" || echo "✗ P
 
 # 5. Verify served content matches current branch (detect stale dist)
 EXPECTED_NAV_COUNT=8
-ACTUAL_NAV_COUNT=$(curl -s http://localhost:3000/ | grep -A 20 'hero-nav' | grep -c 'href=')
+ACTUAL_NAV_COUNT=$(curl -s http://localhost:3000/ | sed -n '/<nav class="hero-nav">/,/<\/nav>/p' | grep -c 'href=')
 [ "$ACTUAL_NAV_COUNT" -eq "$EXPECTED_NAV_COUNT" ] && echo "✓ Serving current branch (nav link count: $ACTUAL_NAV_COUNT)" || echo "⚠ Possible stale dist (nav links: expected $EXPECTED_NAV_COUNT, got $ACTUAL_NAV_COUNT) - restart dev server"
 ```
 
