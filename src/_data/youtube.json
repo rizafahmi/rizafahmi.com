@@ -8,31 +8,31 @@
   },
   "stats": {
     "subscribers": 7220,
-    "totalViews": 375667,
-    "videoCount": 864
+    "totalViews": 377150,
+    "videoCount": 871
   },
   "momentum": {
-    "videosLast12Months": 148,
-    "viewsLast12Months": 52998,
-    "uploadsPerMonth": 12.3,
+    "videosLast12Months": 151,
+    "viewsLast12Months": 55302,
+    "uploadsPerMonth": 12.6,
     "monthsCovered": 13
   },
   "formats": {
     "shorts": {
-      "n": 68,
-      "median": 213,
-      "p25": 156,
-      "p75": 544,
-      "min": 61,
-      "max": 2425
+      "n": 71,
+      "median": 215,
+      "p25": 143,
+      "p75": 528,
+      "min": 64,
+      "max": 2430
     },
     "episode": {
-      "n": 85,
-      "median": 282,
-      "p25": 204,
-      "p75": 420,
+      "n": 84,
+      "median": 283,
+      "p25": 205,
+      "p75": 426,
       "min": 109,
-      "max": 1490
+      "max": 1503
     },
     "recorded": {
       "n": 1,
@@ -44,10 +44,10 @@
     }
   },
   "ngobrolinWeb": {
-    "episodes": 57,
-    "median": 255,
+    "episodes": 56,
+    "median": 256,
     "min": 109,
-    "max": 1490
+    "max": 1503
   },
   "topVideos": [
     {
@@ -55,7 +55,7 @@
       "title": "Cuplikan obrolan dengan pemilik platform sumopod",
       "publishedAt": "2025-09-18T13:00:38Z",
       "url": "https://www.youtube.com/watch?v=Han7XwHe0-I",
-      "views": 2425,
+      "views": 2430,
       "durationSeconds": 56,
       "isLive": false
     },
@@ -64,7 +64,7 @@
       "title": "Ada yang bertanya: pakai multi agent ai apa? Jawabannya belum karena saya belum swasembada token",
       "publishedAt": "2026-05-24T13:00:07Z",
       "url": "https://www.youtube.com/watch?v=zPsDnTJMpw8",
-      "views": 1707,
+      "views": 1709,
       "durationSeconds": 13,
       "isLive": false
     },
@@ -73,7 +73,7 @@
       "title": "Ada yang merasa lebih cepat lelah ketika harus mengkaji kode dari AI?",
       "publishedAt": "2026-07-01T13:00:07Z",
       "url": "https://www.youtube.com/watch?v=N3roU-_zN6s",
-      "views": 1589,
+      "views": 1592,
       "durationSeconds": 25,
       "isLive": false
     },
@@ -82,7 +82,7 @@
       "title": "Bedah Buku Panduan Coding - Ngobrolin WEB",
       "publishedAt": "2026-09-09T02:58:35Z",
       "url": "https://www.youtube.com/watch?v=_VoS7mnsUdQ",
-      "views": 1490,
+      "views": 1503,
       "durationSeconds": 5495,
       "isLive": true
     },
@@ -91,7 +91,7 @@
       "title": "Salah satu alat untuk menghemat token: RTK",
       "publishedAt": "2026-06-10T13:00:14Z",
       "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
-      "views": 1334,
+      "views": 1337,
       "durationSeconds": 41,
       "isLive": false
     },
@@ -107,67 +107,67 @@
   ],
   "recentVideos": [
     {
+      "id": "Opibgg8iWQI",
+      "title": "Sering bingung mau kasih instruksi apa ke LLM? Gunakan teknik meta prompting!",
+      "publishedAt": "2026-10-11T13:00:23Z",
+      "url": "https://www.youtube.com/watch?v=Opibgg8iWQI",
+      "views": 1423,
+      "durationSeconds": 60,
+      "isLive": false
+    },
+    {
+      "id": "AGFDU7I2RCw",
+      "title": "Tips Ralph Loop dari Matt Pocock",
+      "publishedAt": "2026-10-10T13:00:22Z",
+      "url": "https://www.youtube.com/watch?v=AGFDU7I2RCw",
+      "views": 136,
+      "durationSeconds": 106,
+      "isLive": false
+    },
+    {
+      "id": "2brPTq2piFg",
+      "title": "Beberapa jenis loop yang bisa digunakan dalam proses pengembangan aplikasi.",
+      "publishedAt": "2026-10-09T13:00:12Z",
+      "url": "https://www.youtube.com/watch?v=2brPTq2piFg",
+      "views": 165,
+      "durationSeconds": 107,
+      "isLive": false
+    },
+    {
+      "id": "8H-vVSLllME",
+      "title": "Beberapa contoh penggunaan Loop Engineering #codingagent #llm #agenticcoding",
+      "publishedAt": "2026-10-08T13:00:33Z",
+      "url": "https://www.youtube.com/watch?v=8H-vVSLllME",
+      "views": 333,
+      "durationSeconds": 73,
+      "isLive": false
+    },
+    {
+      "id": "sr205BbmJnk",
+      "title": "EffectTS - Ngobrolin WEB",
+      "publishedAt": "2026-10-07T02:47:24Z",
+      "url": "https://www.youtube.com/watch?v=sr205BbmJnk",
+      "views": 394,
+      "durationSeconds": 5192,
+      "isLive": true
+    },
+    {
       "id": "dy9UJsas-OQ",
       "title": "PRD juga bisa di-loop?",
       "publishedAt": "2026-10-02T13:00:05Z",
       "url": "https://www.youtube.com/watch?v=dy9UJsas-OQ",
-      "views": 176,
+      "views": 191,
       "durationSeconds": 92,
-      "isLive": false
-    },
-    {
-      "id": "qlPJQCMy9vw",
-      "title": "Loop Engineering ini pada dasarnya adalah SDLC: Software Development Livecycle",
-      "publishedAt": "2026-10-01T13:00:14Z",
-      "url": "https://www.youtube.com/watch?v=qlPJQCMy9vw",
-      "views": 193,
-      "durationSeconds": 20,
-      "isLive": false
-    },
-    {
-      "id": "sOefIOUOv7g",
-      "title": "Syarat menjalankan loop agar tidak terjebak kedalam lingkaran \"setan\"",
-      "publishedAt": "2026-09-30T13:00:04Z",
-      "url": "https://www.youtube.com/watch?v=sOefIOUOv7g",
-      "views": 132,
-      "durationSeconds": 69,
-      "isLive": false
-    },
-    {
-      "id": "6PTamSfxRM4",
-      "title": "Ngobrolin Rails World Conference - Ngobrolin WEB",
-      "publishedAt": "2026-09-30T02:20:24Z",
-      "url": "https://www.youtube.com/watch?v=6PTamSfxRM4",
-      "views": 379,
-      "durationSeconds": 4381,
-      "isLive": true
-    },
-    {
-      "id": "Kml_HygFoIQ",
-      "title": "Anatomi Loop Engineering",
-      "publishedAt": "2026-09-25T13:00:27Z",
-      "url": "https://www.youtube.com/watch?v=Kml_HygFoIQ",
-      "views": 44,
-      "durationSeconds": 86,
-      "isLive": false
-    },
-    {
-      "id": "_pIBeFoK1Yo",
-      "title": "Asal mula istilah Loop Engineering",
-      "publishedAt": "2026-09-24T13:00:34Z",
-      "url": "https://www.youtube.com/watch?v=_pIBeFoK1Yo",
-      "views": 204,
-      "durationSeconds": 86,
       "isLive": false
     }
   ],
   "window": {
     "videosAnalyzed": 300,
-    "from": "2023-12-26",
-    "to": "2026-10-02",
-    "videosSummarized": 154,
-    "statsFrom": "2025-07-08",
-    "statsTo": "2026-09-11",
+    "from": "2024-01-15",
+    "to": "2026-10-11",
+    "videosSummarized": 156,
+    "statsFrom": "2025-07-16",
+    "statsTo": "2026-09-18",
     "matureMinDays": 21,
     "statsMaxAgeDays": 456
   },
@@ -177,7 +177,7 @@
       "title": "AWS Free Tier: Nikmati Servis Berkualitas Tanpa Biaya",
       "publishedAt": "2022-07-13T09:30:02Z",
       "url": "https://www.youtube.com/watch?v=5FMZMB9_Aqs",
-      "views": 1483,
+      "views": 1484,
       "durationSeconds": 1069,
       "isLive": false,
       "tag": "DevTools"
@@ -207,7 +207,7 @@
       "title": "Ngobrolin Pengalaman Frontend @imrenagi -  Ngobrolin WEB",
       "publishedAt": "2024-12-11T02:37:51Z",
       "url": "https://www.youtube.com/watch?v=jxW4wishA8s",
-      "views": 3956,
+      "views": 3957,
       "durationSeconds": 5375,
       "isLive": true,
       "tag": "Web"
@@ -233,7 +233,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-10-04T23:53:36.849Z",
+  "updatedAt": "2026-10-12T00:21:02.471Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
