@@ -1,0 +1,210 @@
+---
+layout: main
+title: Prompt library
+description: Koleksi prompt AI berdasarkan kebutuhan, dengan konteks dan catatan penggunaan.
+permalink: /prompts/
+eleventyExcludeFromCollections: true
+---
+
+<main id="main-content" class="container prompt-library" data-pagefind-body data-pagefind-meta="title:Prompt library">
+  <header>
+    <p class="eyebrow">KOLEKSI INSTRUKSI UNTUK LLM</p>
+    <h1>Prompt menarik yang layak dicoba dan dipakai berulang kali saat dibutuhkan</h1>
+    <p>Kumpulan instruksi dan pola kerja LLM berdasarkan kebutuhan.</p>
+    <p><strong>Status:</strong> “Pernah dipakai” berarti ada catatan hasil penggunaan, bukan jaminan prompt akan berhasil di semua model atau proyek.</p>
+  </header>
+
+  <nav aria-label="Kategori prompt" class="prompt-categories">
+    <a href="#perencanaan">Perencanaan</a>
+    <a href="#review">Review</a>
+  <!--  <a href="#ide-dan-desain">Ide dan desain</a> -->
+    <a href="#implementasi">Implementasi</a>
+    <a href="#performa">Performa</a>
+    <a href="#instruksi">Instruksi</a>
+    <a href="#pola-kerja">Pola kerja</a>
+  </nav>
+
+  <section id="perencanaan">
+    <h2>Perencanaan</h2>
+    <article class="prompt-entry">
+      <h3>Membuat rencana dari catatan diskusi</h3>
+      <p>Sesi livestreaming Nuno Maduro yang bikin sosial media <a href="https://www.youtube.com/live/6zCNQa3hNm0?si=kwXlAHaorD5QLIhZ&t=4282" target="_blank">mulai menyusun rencana kasar</a> lalu LLM melengkapi menjadi rencana yang lebih menyeluruh.</p>
+      <h4>Rencana kasar hasil diskusi, disimpan sebagai `TODO.md`</h4>
+      <pre>
+- Social Network / Social Media
+-- Actions first (for API)
+-- Social Media for Developers
+-- Login: Socialite GitHub
+--- GitHub (profile defaults, github stars)
+--- Auto following socials (followers stuff)
+-- posts (with uploads)
+      </pre>
+      <p>Lalu instruksikan LLM untuk melengkapi rencana tersebut dengan instruksi berikut.</p>
+      <pre>Dear llm, take a look at TODO.md and ask a couple of questions. What should be included in this plan so that we can work towards something that we can implement and start from.
+      </pre>
+      <p>Hasilnya menjadi `TODO.md` yang lebih lengkap. <a href="https://github.com/nunomaduro/dev-null.sh/blob/38778fdcd0404d3e3dbff18d5b5e95179ae09913/TODO.md" target="_blank">Bisa dilihat langsung di reponya</a>.</p>
+    </article>
+    <!--
+    <article class="prompt-entry">
+      <h3>Rencanakan implementasi dari spesifikasi</h3>
+      <p class="prompt-meta">Pernah dipakai · Ampcode, model otomatis · 13 Februari 2026</p>
+      <p><strong>Konteks:</strong> Memulai implementasi Phase 4 dari spesifikasi dan ADR di repositori <a href="https://github.com/rizafahmi/clawdex/">clawdex</a>.</p>
+      <p><strong>Hasil yang dicatat:</strong> Model menyusun rencana dan memecah pekerjaan menjadi beberapa task. Hasilnya dinilai lebih baik daripada meminta implementasi langsung.</p>
+      <pre><code>Carefully read @docs/phase-4.md and @docs/adr/002-phase-4-architecture.md. Let's start implement phase 4. What the plan looks like?</code></pre>
+      <p><strong>Catatan:</strong> Dibandingkan dengan prompt Phase 3 sebelumnya yang meminta review dokumen.</p>
+    </article>
+    -->
+  </section>
+
+  <section id="review">
+    <h2>Review dan pemeriksaan</h2>
+    <article class="prompt-entry">
+      <h3>Review dokumen secara menyeluruh</h3>
+      <p class="prompt-meta">Pernah dipakai · Gemini 3 Pro · 13 Februari 2026</p>
+      <p><strong>Konteks:</strong> Review dokumen <a href="https://github.com/rizafahmi/clawdex/blob/main/docs/phase-3-tools-and-web.md">phase-3-tools-and-web.md</a>.</p>
+      <p><strong>Hasil yang dicatat:</strong> Review menyeluruh dan sesuai harapan.</p>
+      <pre><code>Please do check and review @phase-3-tools-and-web.md check for flaws, correctness and everything else. be thorough.</code></pre>
+    </article>
+
+    <article class="prompt-entry">
+      <h3>Review kode untuk masalah konseptual dan kompleksitas</h3>
+      <p class="prompt-meta">Pernah dipakai · LLM umum · 28 Januari 2026</p>
+      <p><strong>Konteks:</strong> Review basis kode tertentu. Cukup sering digunakan dengan berbagai coding agent dan kombinasi model.</p>
+      <p><strong>Hasil yang dicatat:</strong> Menemukan kode yang sudah tidak terpakai, beberapa kode yang kurang konsistens, dan peluang perbaikan idiomatis atau efisiensi.</p>
+      <pre><code>Please review all codes. Check for dead code, subtle conceptual errors, inconsistencies, overcomplicate code, bloat abstractions, inefficient and idiomatic [language] code</code></pre>
+      <p><strong>Catatan:</strong> Ganti <code>[language]</code> dengan bahasa pemrograman yang digunakan. Prompt ini dampaknya besar; dapat mengubah banyak kode sekaligus. Disarankan untuk menentukan batas direktori atau file jika review seluruh basis kode terlalu besar.</p>
+    </article>
+  </section>
+
+  <!--
+  <section id="ide-dan-desain">
+    <h2>Ide dan desain</h2>
+    <article class="prompt-entry">
+      <h3>Brainstorm ide produk secara bertahap</h3>
+      <p class="prompt-meta">Pernah dipakai · LLM umum · 27 Januari 2026</p>
+      <p><strong>Konteks:</strong> Mencari ide produk untuk generator konten media sosial.</p>
+      <p><strong>Hasil yang dicatat:</strong> Percakapan menghasilkan alur bertahap, dari deskripsi produk ke MVP, user stories, skema basis data, routes, dan contoh data.</p>
+      <p><strong>Referensi percakapan:</strong> <a href="https://ampcode.com/threads/T-019bfc9f-5453-70bb-87f1-54e2d31b8b42">Ampcode thread</a>.</p>
+      <pre><code>Let brainstorm the idea. Ask me 3-5 questions for clarity. Your end goal was to generate product description.
+
+I want to create an idea generator for social media content. User need to find a main theme first from user's expertise or user's interests or combination of that thing. After that, the app will generate 3-5 ideas by sub theme or category.
+
+Example:
+Theme: programming
+- parody or meme
+  - topic 1
+  - topic 2
+  - topic 3
+- programming paradigm
+  - topic 1
+  - topic 2
+  - topic 3
+- tools
+  - topic 1
+  - topic 2
+  - topic 3
+- gen ai
+  - topic 1
+  - topic 2
+  - topic 3</code></pre>
+      <p><strong>Catatan:</strong> Prompt ini tersimpan sebagai catatan ide, belum ada penilaian terperinci terhadap hasilnya.</p>
+    </article>
+
+    <article class="prompt-entry">
+      <h3>Redesign aplikasi</h3>
+      <p class="prompt-meta">Pernah dipakai · LLM umum · 28 Januari 2026</p>
+      <p><strong>Konteks:</strong> Aplikasi web untuk memilih topik diskusi podcast.</p>
+      <p><strong>Hasil yang dicatat:</strong> Usulan redesign UI/UX dan copy yang dinilai lebih rapi dan konsisten.</p>
+      <pre><code>This is web application to pick the next topic of discussion of our podcast. Please redesign this web app. Make sure the app looks like it was designed by a billion-dollar design company.</code></pre>
+      <p><strong>Catatan:</strong> “Billion-dollar design company” tidak memberi kriteria visual yang bisa diuji. Tambahkan batasan desain, konten, dan contoh rujukan yang sesuai dengan proyek.</p>
+    </article>
+
+    <article class="prompt-entry">
+      <h3>Rencanakan aplikasi untuk mengumpulkan karya AI slop</h3>
+      <p class="prompt-meta">Pernah dipakai · LLM umum · 29 Januari 2026</p>
+      <p><strong>Konteks:</strong> Aplikasi dengan Elixir, Phoenix LiveView, SQLite, dan open-props.style. Prompt meminta feature test terlebih dahulu dan pengerjaan per test case.</p>
+      <p><strong>Hasil yang dicatat:</strong> Rencana dan pertanyaan klarifikasi untuk memulai implementasi.</p>
+      <pre><code>Create a web app to showcase vibe coded app that user build. The spirit is: Let's embrace the AI Slop! Audience able to submit whether it's slop or not. Audience able to submit the url to the app or url to github repo. Audience also able to give optional information such as what model they used, what tools, etc.
+
+Use my usual tech stack: Elixir, Phoenix &amp; LiveView, SQLite, and https://open-props.style.
+
+Do feature test first with PhoenixTest, then implement the code. Do one test case at a time. Then commit changes to git. So on and so forth.
+
+Make sure the app looks like it was designed by a billion-dollar design company.
+
+Read the project folder provided. Let's plan this and ask me questions for clarity.</code></pre>
+      <p><strong>Catatan:</strong> Instruksi “commit changes to git” memberi agen izin melakukan perubahan repository. Hapus atau ubah bagian itu jika ingin meninjau dan mengetik perubahan sendiri.</p>
+    </article>
+  </section>
+  -->
+
+  <section id="implementasi">
+    <h2>Implementasi</h2>
+    <article class="prompt-entry">
+      <h3>Buat generator teks ke gambar</h3>
+      <p class="prompt-meta">Contoh prompt · 27 Januari 2026</p>
+      <p><strong>Konteks:</strong> Contoh prompt untuk generator gambar dengan Google Nano Banana dan REST API. Lupa waktu itu pakai coding agent dan model apa.</p>
+      <pre><code>Create a text to image generator. The user will provide a text input. The Google Nano Banana Model will generate four different images. We will use the REST API. Do not use any SDK. Put everything in a single file. Also, have the ability for the user to provide the API key directly within the app. Make sure the app looks like it was designed by a billion-dollar design company.</code></pre>
+    </article>
+  </section>
+
+  <section id="performa">
+    <h2>Performa</h2>
+    <article class="prompt-entry">
+      <h3>Periksa performa halaman web</h3>
+      <p class="prompt-meta">Pernah dipakai · Gemini CLI dan ekstensi Chrome DevTools · 28 Januari 2026</p>
+      <p><strong>Konteks:</strong> URL halaman web tertentu.</p>
+      <p><strong>Hasil yang dicatat:</strong> Insight bottleneck dan rekomendasi perbaikan.</p>
+      <pre><code>Check the performance of [web url]</code></pre>
+      <p><strong>Catatan:</strong> Prompt ini bergantung pada akses alat ukur. Minta metrik, perangkat, kondisi jaringan, dan langkah reproduksi agar rekomendasinya bisa diverifikasi.</p>
+    </article>
+  </section>
+
+  <section id="instruksi">
+    <h2>Instruksi untuk asisten</h2>
+    <article class="prompt-entry">
+      <h3>Rapikan README tanpa mengarang</h3>
+      <p class="prompt-meta">Rob Conery · <a href="https://bigmachine.io/courses/ai-pro/simple-wins-pro-readme/" target="_blank">Sumber asli</a></p>
+      <p><strong>Tujuan:</strong> Memperbaiki README repositori dan melengkapi informasi yang kurang.</p>
+      <pre><code>You are a senior PM that is an expert with GitHub. You like good-looking repositories that have a lot of information on a project and how to get started. Spruce up this README and make it look nice with badges. Add missing content, don't embellish. Add emoji.</code></pre>
+      <p><strong>Catatan:</strong> Konfirmasi fakta tambahan dan badge terhadap isi repo. Attribution sudah dicatat. Cukup sering saya gunakan terutama ketika ingin mempublikasikan repo ke publik.</p>
+    </article>
+    <article class="prompt-entry">
+      <h3>Teknik Menghindari <em>brainrot</em></h3>
+      <p class="prompt-meta">Ankur Sethi · <a href="https://ankursethi.com/blog/prevent-cognitive-debt-by-manually-retyping-llm-generated-code/" target="_blank">Sumber asli</a>· Instruksi untuk AGENTS.md</p>
+      <pre><code>
+I want to understand every line of code that goes into this project. Never create, edit, move, rename, or delete project files unless I explicitly ask you to do so. Instead, show me every proposed edit in the chat so I can type it in manually.
+
+Do not run commands that modify project files, install dependencies, or change repository state unless I explicitly request that action. Instead, show me those commands in the chat so I can run them manually.
+
+I'm an experienced developer. Do not explain syntax, APIs, programming concepts, or implementation details unless explicitly asked.</code></pre>
+      <p><strong>Catatan:</strong> Instruksi ini cukup sering saya gunakan terutama untuk keperluan belajar. Memang jadi lebih pelan proses pengembangan aplikasinya karena semua ditulis manual. Tapi saya merasa lebih paham kodenya. Selain itu, penggunaan token juga jauh lebih hemat. Karena semuanya dijalankan manual, termasuk berbagai <em>tool calling</em> dan sebagainya. Jangan gunakan perintah ini kalau mau mengejar kecepatan pengembangan aplikasi.</p>
+    </article>
+  </section>
+
+  <section id="pola-kerja">
+    <h2>Pola kerja dan referensi</h2>
+    <article class="prompt-entry">
+      <h3>Kerangka prompt: P-T-R | Q</h3>
+      <p><strong>Inti:</strong> Persona, Task, Result | Question.</p>
+      <p><strong>Referensi:</strong> <a href="https://bigmachine.io/courses/ai-pro/simple-wins-pro-readme/">Simple Wins Pro README</a>.</p>
+      <p>Ini kerangka untuk menyusun prompt, bukan prompt siap salin.</p>
+    </article>
+  </section>
+
+<hr />
+  <p class="prompt-disclaimer">Prompt dapat menghasilkan keluaran berbeda antar model, versi, dan konteks. Periksa hasilnya sebelum menggunakan atau membagikannya.</p>
+</main>
+
+<style>
+.prompt-library { max-width: 800px; margin-inline: auto; }
+.prompt-library > header { max-width: 65ch; }
+.prompt-library .eyebrow, .prompt-meta { font-family: "Martian Mono", monospace; font-size: .8rem; }
+.prompt-categories { display: flex; flex-wrap: wrap; gap: .5rem; margin: 2rem 0; }
+.prompt-categories a { border: 2px solid currentColor; padding: .4rem .65rem; }
+.prompt-library section { border-top: 4px solid currentColor; margin-top: 3rem; padding-top: .75rem; }
+.prompt-entry { border-bottom: 2px solid currentColor; padding: 1rem 0 2rem; }
+.prompt-entry pre { overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; border: 2px solid currentColor; padding: 1rem; }
+.prompt-entry code { font-family: "Martian Mono", monospace; font-size: .85rem; }
+.prompt-meta, .prompt-disclaimer { color: var(--meta-color); }
+</style>
