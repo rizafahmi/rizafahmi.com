@@ -118,6 +118,10 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("src/_redirects");
+  eleventyConfig.addPassthroughCopy({
+    "assets/images/favico/favicon.ico": "favicon.ico",
+    "assets/images/favico/favicon.svg": "favicon.svg",
+  });
 
   // Self-hosted webfonts. The files live in the @fontsource packages rather than in
   // assets/, so the version in package.json stays the single source of truth and no
