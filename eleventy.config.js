@@ -121,6 +121,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "assets/images/favico/favicon.ico": "favicon.ico",
     "assets/images/favico/favicon.svg": "favicon.svg",
+    "assets/images/favico/site.webmanifest": "site.webmanifest",
   });
 
   // Self-hosted webfonts. The files live in the @fontsource packages rather than in
