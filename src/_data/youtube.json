@@ -8,31 +8,31 @@
   },
   "stats": {
     "subscribers": 7230,
-    "totalViews": 381839,
-    "videoCount": 877
+    "totalViews": 383689,
+    "videoCount": 879
   },
   "momentum": {
-    "videosLast12Months": 155,
-    "viewsLast12Months": 58187,
-    "uploadsPerMonth": 12.9,
+    "videosLast12Months": 156,
+    "viewsLast12Months": 59175,
+    "uploadsPerMonth": 13,
     "monthsCovered": 13
   },
   "formats": {
     "shorts": {
-      "n": 74,
-      "median": 212,
+      "n": 77,
+      "median": 209,
       "p25": 143,
-      "p75": 516,
+      "p75": 483,
       "min": 47,
       "max": 2430
     },
     "episode": {
       "n": 84,
-      "median": 285,
+      "median": 288,
       "p25": 205,
-      "p75": 433,
+      "p75": 460,
       "min": 109,
-      "max": 1510
+      "max": 1518
     },
     "recorded": {
       "n": 1,
@@ -47,7 +47,7 @@
     "episodes": 56,
     "median": 256,
     "min": 109,
-    "max": 1510
+    "max": 1518
   },
   "topVideos": [
     {
@@ -82,7 +82,7 @@
       "title": "Bedah Buku Panduan Coding - Ngobrolin WEB",
       "publishedAt": "2026-09-09T02:58:35Z",
       "url": "https://www.youtube.com/watch?v=_VoS7mnsUdQ",
-      "views": 1510,
+      "views": 1518,
       "durationSeconds": 5495,
       "isLive": true
     },
@@ -91,7 +91,7 @@
       "title": "Salah satu alat untuk menghemat token: RTK",
       "publishedAt": "2026-06-10T13:00:14Z",
       "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
-      "views": 1342,
+      "views": 1353,
       "durationSeconds": 41,
       "isLive": false
     },
@@ -107,11 +107,29 @@
   ],
   "recentVideos": [
     {
+      "id": "x8Ue3Ao-Cek",
+      "title": "Wah, Visa sepertinya sudah cukup lama memanfaatkan AI dan LLM!",
+      "publishedAt": "2026-10-21T13:00:11Z",
+      "url": "https://www.youtube.com/watch?v=x8Ue3Ao-Cek",
+      "views": 134,
+      "durationSeconds": 78,
+      "isLive": false
+    },
+    {
+      "id": "Nq3uKguMNCA",
+      "title": "State of Devs - Ngobrolin WEB",
+      "publishedAt": "2026-10-21T03:57:48Z",
+      "url": "https://www.youtube.com/watch?v=Nq3uKguMNCA",
+      "views": 689,
+      "durationSeconds": 6882,
+      "isLive": true
+    },
+    {
       "id": "5a3A4LwSB9E",
       "title": "Beberapa alasan kenapa #codingagent PI layak dicoba",
       "publishedAt": "2026-10-18T13:00:11Z",
       "url": "https://www.youtube.com/watch?v=5a3A4LwSB9E",
-      "views": 59,
+      "views": 142,
       "durationSeconds": 142,
       "isLive": false
     },
@@ -120,7 +138,7 @@
       "title": "Konsep dasar Ralph loop yang populer setahun lalu",
       "publishedAt": "2026-10-17T13:00:03Z",
       "url": "https://www.youtube.com/watch?v=_XBoFV65xxE",
-      "views": 224,
+      "views": 269,
       "durationSeconds": 160,
       "isLive": false
     },
@@ -129,7 +147,7 @@
       "title": "Drama #grok build (cli), codingagent besutan x.ai yang diduga mengunduh seluruh folder penggunanya!",
       "publishedAt": "2026-10-16T13:00:09Z",
       "url": "https://www.youtube.com/watch?v=kxoWR1PF4_g",
-      "views": 766,
+      "views": 833,
       "durationSeconds": 108,
       "isLive": false
     },
@@ -138,36 +156,18 @@
       "title": "Belajar teknik looping supaya bisa ditinggal tidur",
       "publishedAt": "2026-10-14T17:00:36Z",
       "url": "https://www.youtube.com/watch?v=c38y_pQRkdk",
-      "views": 1002,
+      "views": 1004,
       "durationSeconds": 56,
       "isLive": false
-    },
-    {
-      "id": "18eWdqgiZRM",
-      "title": "Salah satu pemanfaatan teknik looping untuk mengembangkan produk",
-      "publishedAt": "2026-10-14T13:00:11Z",
-      "url": "https://www.youtube.com/watch?v=18eWdqgiZRM",
-      "views": 303,
-      "durationSeconds": 55,
-      "isLive": false
-    },
-    {
-      "id": "HeA7bGiTMMA",
-      "title": "Laracon - Ngobrolin WEB",
-      "publishedAt": "2026-10-14T03:06:35Z",
-      "url": "https://www.youtube.com/watch?v=HeA7bGiTMMA",
-      "views": 460,
-      "durationSeconds": 5646,
-      "isLive": true
     }
   ],
   "window": {
     "videosAnalyzed": 300,
-    "from": "2024-02-05",
-    "to": "2026-10-18",
-    "videosSummarized": 159,
-    "statsFrom": "2025-07-23",
-    "statsTo": "2026-09-25",
+    "from": "2024-02-13",
+    "to": "2026-10-21",
+    "videosSummarized": 162,
+    "statsFrom": "2025-07-30",
+    "statsTo": "2026-10-02",
     "matureMinDays": 21,
     "statsMaxAgeDays": 456
   },
@@ -207,7 +207,7 @@
       "title": "Ngobrolin Pengalaman Frontend @imrenagi -  Ngobrolin WEB",
       "publishedAt": "2024-12-11T02:37:51Z",
       "url": "https://www.youtube.com/watch?v=jxW4wishA8s",
-      "views": 3957,
+      "views": 3958,
       "durationSeconds": 5375,
       "isLive": true,
       "tag": "Web"
@@ -233,7 +233,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-10-18T22:54:42.498Z",
+  "updatedAt": "2026-10-25T23:06:28.171Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
