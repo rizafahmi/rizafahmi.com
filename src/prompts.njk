@@ -21,6 +21,7 @@ eleventyExcludeFromCollections: true
     <a href="#implementasi">Implementasi</a>
     <a href="#performa">Performa</a>
     <a href="#instruksi">Instruksi</a>
+    <a href="#eksplorasi">Eksplorasi</a>
     <a href="#pola-kerja">Pola kerja</a>
   </nav>
 
@@ -43,6 +44,18 @@ eleventyExcludeFromCollections: true
       <pre>Dear llm, take a look at TODO.md and ask a couple of questions. What should be included in this plan so that we can work towards something that we can implement and start from.
       </pre>
       <p>Hasilnya menjadi `TODO.md` yang lebih lengkap. <a href="https://github.com/nunomaduro/dev-null.sh/blob/38778fdcd0404d3e3dbff18d5b5e95179ae09913/TODO.md" target="_blank">Bisa dilihat langsung di reponya</a>.</p>
+    </article>
+
+    <article class="prompt-entry">
+      <h3>Konfirmasi pemahaman dari ide kasar (<em>stream of consciousness</em>)</h3>
+      <p class="prompt-meta">Lauren Tan (Poteto, SpaceX/Cursor) · Video livestream Grok Bot Galaxy Day 1</p>
+      <p><strong>Tujuan:</strong> Memastikan LLM benar-benar menangkap maksud kita setelah menuangkan ide mentah secara panjang lebar (misalnya lewat <em>voice-to-text</em> atau <em>stream of consciousness</em>) sebelum lanjut ke tahap berikutnya.</p>
+      <pre><code>Can you tell Grokpot that well, here comes the stream of consciousness, so bear with me Steve. But, so we're gonna build this pop-up platform where you can sort of host or use our software to spin up a pop-up, I guess, in your city or wherever you are. And we also want to dog food our own software meaning that we'll maybe figure out how to actually run our own pop-up. So, wait, do we actually need two landing pages? One for our own thing, and then one for the platform, right? One for professional restaurateurs, one for... Restaurateurs, yeah. I mean, franchise. We're gonna connect people. I don't know, we haven't figured out what food we're selling or what the pop-up will look like yet, but, likey our goal is, like, okay, well, we need to find people that can both sell food or create food or, like, you know, professionals. At some point, we're gonna need to find people who wanna come to our thing, but the start right now is gonna be, like, finding location, finding all these things. So, we probably wanna make it, like, look kind of reputable. Like, okay, like, here's what we're doing, we connect these sorts of people, this is the event that's happening, and then there's also, like, a landing page probably for, like, this pop-up. So... I feel like we're gonna need a lot of landing pages, cause we're, we're gonna, don't we need, like, like you mentioned, we'll need to find, like, restaurateurs, we need to find, so businesses who are, businesses or individuals who are interested in hosting A pop pop-up, but also people who we can hire, I guess. Okay. I'm gonna, I'm gonna send out this prompt. Hopefully you got all of that through.
+
+---
+
+restate to me what i just said in your own words so i know you understood me.</code></pre>
+      <p><strong>Catatan:</strong> Bagian di atas garis pemisah (<code>---</code>) hanya contoh <em>stream of consciousness</em> dan bisa diganti dengan penjelasan atau ide mentah apa pun. Inti dari prompt ini ada pada kalimat terakhir: <code>restate to me what i just said in your own words so i know you understood me.</code> Cocok untuk <em>yapping</em> terutama jika pakai perintah suara sehingga perintah menjadi panjang.</p>
     </article>
     <!--
     <article class="prompt-entry">
@@ -179,6 +192,17 @@ Do not run commands that modify project files, install dependencies, or change r
 
 I'm an experienced developer. Do not explain syntax, APIs, programming concepts, or implementation details unless explicitly asked.</code></pre>
       <p><strong>Catatan:</strong> Instruksi ini cukup sering saya gunakan terutama untuk keperluan belajar. Memang jadi lebih pelan proses pengembangan aplikasinya karena semua ditulis manual. Tapi saya merasa lebih paham kodenya. Selain itu, penggunaan token juga jauh lebih hemat. Karena semuanya dijalankan manual, termasuk berbagai <em>tool calling</em> dan sebagainya. Jangan gunakan perintah ini kalau mau mengejar kecepatan pengembangan aplikasi.</p>
+    </article>
+  </section>
+
+  <section id="eksplorasi">
+    <h2>Eksplorasi</h2>
+    <article class="prompt-entry">
+      <h3>Mengubah isi buku menjadi <em>skills</em> yang bisa dipraktikkan</h3>
+      <p class="prompt-meta">Pernah dipakai · Rob Conery (Newsletter)</p>
+      <p><strong>Tujuan:</strong> Mengubah kerangka atau metode dari sebuah buku menjadi kumpulan <em>skills</em> dan alur kerja di dalam sebuah direktori agar bisa dipraktikkan secara konsisten bersama asisten AI.</p>
+      <pre><code>I really like Napolean Hill's Think and Grow Rich and I want to put his work into practice. Create a set of skills that will drive his practices forward, and use this directory to keep me on track and do all the necessaries required by his process.</code></pre>
+      <p><strong>Catatan:</strong> Ganti nama penulis dan judul buku (<code>Napolean Hill's Think and Grow Rich</code>) sesuai buku yang ingin dipraktikkan. Sudah saya coba untuk buku <em>The Mom Test</em> dan <em>A Technique for Producing Ideas</em>, dan berhasil membantu menyusun <em>skills</em> serta sistem pencatatan di direktori kerja untuk memandu praktiknya.</p>
     </article>
   </section>
 

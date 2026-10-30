@@ -12,6 +12,7 @@ test("the prompt library groups saved material by use, not date", () => {
     "implementasi",
     "performa",
     "instruksi",
+    "eksplorasi",
     "pola-kerja",
   ]) {
     assert.match(source, new RegExp(`id="${category}"`));
@@ -22,7 +23,7 @@ test("the prompt library groups saved material by use, not date", () => {
 test("the prompt library keeps attribution, source gaps, and usage notes visible", () => {
   assert.match(source, /Rob Conery/);
   assert.match(source, /Ankur Sethi/);
-  assert.match(source, /Sumber asli belum dicatat/);
+  assert.match(source, /Sumber asli/);
   assert.match(source, /Hasil yang dicatat/);
 });
 
@@ -31,8 +32,9 @@ test("the prompt library is searchable and the old journal URL redirects", {
 }, () => {
   const html = readFileSync("dist/prompts/index.html", "utf8");
   assert.match(html, /data-pagefind-body/);
-  assert.match(html, /Prevent cognitive debt/);
+  assert.match(html, /Teknik Menghindari <em>brainrot<\/em>/);
   assert.match(html, /You are a senior PM that is an expert with GitHub/);
+  assert.match(html, /Napolean Hill's Think and Grow Rich/);
 
   const redirects = readFileSync("dist/_redirects", "utf8");
   assert.match(redirects, /^\/prompt-journal \/prompts\/ 301$/m);
