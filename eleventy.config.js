@@ -11,7 +11,12 @@ import {
   renderRawPromptMarkdown,
   selectPrompts,
 } from "./src/libs/prompts.js";
-import { getRelatedPosts } from "./src/libs/related.js";
+import {
+  getRelatedPosts,
+  getRelatedProjects,
+  getRelatedPrompts,
+  getRelatedTips,
+} from "./src/libs/related.js";
 import shikiPlugin from "./src/libs/shiki.js";
 import { tipsWithTag } from "./src/libs/tips.js";
 import { fontFaceCss, passthroughCopyMap, preloadLinks } from "./src/libs/webfonts.js";
@@ -210,6 +215,20 @@ export default function (eleventyConfig) {
     return getRelatedPosts(collection, current, { limit, hiddenTags: HIDDEN_TAGS });
   });
 
+  // Cross-format build-time connectors: surface related Prompts, Shorts (/tips),
+  // and Open-Source Projects (karya.js) from any article, Short, prompt, or topic hub.
+  eleventyConfig.addFilter("relatedPrompts", (prompts, current, limit = 2) => {
+    return getRelatedPrompts(prompts, current, { limit, hiddenTags: HIDDEN_TAGS });
+  });
+
+  eleventyConfig.addFilter("relatedTips", (tips, current, limit = 3) => {
+    return getRelatedTips(tips, current, { limit, hiddenTags: HIDDEN_TAGS });
+  });
+
+  eleventyConfig.addFilter("relatedProjects", (projects, current, limit = 2) => {
+    return getRelatedProjects(projects, current, { limit, hiddenTags: HIDDEN_TAGS });
+  });
+
   // Backwards-compatible filter (previously tag-only).
   eleventyConfig.addFilter("relatedByTags", (collection, tags, currentUrl, limit = 3) => {
     return getRelatedPosts(
@@ -372,6 +391,7 @@ export default function (eleventyConfig) {
     const contentEnd = [
       content.indexOf('<nav class="article-next"'),
       content.indexOf('<section class="related-articles"'),
+      content.indexOf('<section class="cross-format-related"'),
       content.indexOf('<section class="follow-cta"'),
     ]
       .filter((position) => position !== -1)
