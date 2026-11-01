@@ -62,6 +62,45 @@ pageCss: prompts.css
   </aside>
   {%- endif %}
 
+  {%- set promptTags = [category] -%}
+  {%- if keywords -%}
+    {%- for kw in keywords -%}
+      {%- set promptTags = (promptTags.push(kw), promptTags) -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- set promptContext = { url: page.url, excludeUrl: relatedArticle, tags: promptTags, title: title, description: description, content: (prompt or "") + " " + (content or ""), onlyRelevant: true } -%}
+  {%- set relArticles = collections.catatan | relatedArticles(promptContext, 2) -%}
+  {%- set relTips = tipsLibrary.items | relatedTips(promptContext, 2) -%}
+  {%- set relProjects = karya | karyaProjects | relatedProjects(promptContext, 2) -%}
+  {%- if relArticles.length or relTips.length or relProjects.length %}
+  <section class="cross-format-related" aria-label="Eksplorasi lintas format">
+    <div class="cross-format-heading">🔗 EKSPLORASI LINTAS FORMAT</div>
+    <div class="cross-format-grid">
+      {%- for article in relArticles %}
+      <a href="{{ article.url }}" class="cross-format-card">
+        <span class="cross-format-badge">Catatan</span>
+        <span class="cross-format-title">{{ article.data.title }}</span>
+        <span class="cross-format-meta">{{ article.content | readingTime }} &rarr;</span>
+      </a>
+      {%- endfor %}
+      {%- for tip in relTips %}
+      <a href="{{ tip.url }}" class="cross-format-card">
+        <span class="cross-format-badge">Tips{% if tip.durationLabel %} · {{ tip.durationLabel }}{% endif %}</span>
+        <span class="cross-format-title">{{ tip.title }}</span>
+        <span class="cross-format-meta">Video pendek &rarr;</span>
+      </a>
+      {%- endfor %}
+      {%- for proj in relProjects %}
+      <a href="{{ proj.url or proj.repo }}" target="_blank" rel="noopener noreferrer" class="cross-format-card">
+        <span class="cross-format-badge">Karya · {{ proj.tags | head(2) | join(" / ") }}</span>
+        <span class="cross-format-title">{{ proj.name }}</span>
+        <span class="cross-format-meta">{{ proj.description }}</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+
   <p class="prompt-disclaimer">
     Prompt dapat menghasilkan keluaran berbeda antar model, versi, dan konteks proyek. Periksa hasilnya sebelum menggunakan atau membagikannya.
   </p>

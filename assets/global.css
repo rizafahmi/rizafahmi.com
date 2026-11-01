@@ -196,7 +196,8 @@ a:hover {
 .related-card a:hover,
 .tip-card-link:hover,
 .tip-card-tags a:hover,
-.prompt-card-link:hover {
+.prompt-card-link:hover,
+.cross-format-card a:hover {
   background-color: transparent !important;
   border-bottom: none !important;
 }
@@ -823,4 +824,120 @@ blockquote {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 1rem;
   }
+}
+
+/* ==========================================================================
+   Cross-Format Knowledge Graph (.cross-format-*)
+   Connects /catatan, /tips, /prompts, /showcase, and /topik at build time.
+   ========================================================================== */
+
+.cross-format-related {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  border: 3px solid var(--border-color);
+  background: transparent;
+}
+
+.cross-format-heading {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--heading-color);
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.cross-format-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.cross-format-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem;
+  border: 2px solid var(--border-color) !important;
+  background: transparent;
+  color: var(--heading-color);
+  text-decoration: none !important;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cross-format-badge {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.45rem;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border: 1px solid var(--border-color);
+}
+
+.cross-format-title {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--heading-color);
+}
+
+.cross-format-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--meta-color);
+  margin-top: auto;
+}
+
+.cross-format-card:hover,
+.cross-format-card:focus-visible {
+  background-color: var(--accent-acid) !important;
+  color: #0a0b0d !important;
+  border-color: var(--border-color) !important;
+}
+
+.cross-format-card:hover .cross-format-title,
+.cross-format-card:hover .cross-format-meta,
+.cross-format-card:focus-visible .cross-format-title,
+.cross-format-card:focus-visible .cross-format-meta {
+  color: #0a0b0d !important;
+}
+
+.cross-format-card:hover .cross-format-badge,
+.cross-format-card:focus-visible .cross-format-badge {
+  background-color: #0a0b0d;
+  color: var(--accent-acid);
+  border-color: #0a0b0d;
+}
+
+[data-theme="dark"] .cross-format-card:hover,
+[data-theme="dark"] .cross-format-card:focus-visible {
+  background-color: var(--accent-cobalt) !important;
+  color: #ffffff !important;
+  border-color: var(--accent-cobalt) !important;
+}
+
+[data-theme="dark"] .cross-format-card:hover .cross-format-title,
+[data-theme="dark"] .cross-format-card:hover .cross-format-meta,
+[data-theme="dark"] .cross-format-card:focus-visible .cross-format-title,
+[data-theme="dark"] .cross-format-card:focus-visible .cross-format-meta {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .cross-format-card:hover .cross-format-badge,
+[data-theme="dark"] .cross-format-card:focus-visible .cross-format-badge {
+  background-color: #ffffff;
+  color: #0a0b0d;
+  border-color: #ffffff;
 }
