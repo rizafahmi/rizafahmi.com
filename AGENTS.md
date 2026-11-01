@@ -272,6 +272,11 @@ readers do not read it as English.
 
 The site builds fine without these — view counts are simply hidden.
 
+## Skills
+
+- [`ambitious`](.agents/skills/ambitious/SKILL.md) (also mirrored at `.cursor/skills/ambitious/SKILL.md`) — Elevate tasks, specs, features, and content using Felix Rieseberg's 3-axis Model Ambition framework (**Altitude**, **Depth**, **Range**). Load when planning a new feature/page, writing specs, auditing site UX/performance, or pushing a task deeper with raw repo data and outside-judge verification.
+- [`verify-rizafahmi-web`](.cursor/skills/verify-rizafahmi-web/SKILL.md) — End-to-end verification runbook for driving the local dev/production server and capturing HTTP/DOM proof.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.
