@@ -1,33 +1,67 @@
 ---
 title: "AI & Agentic Coding"
+description: "Kurasi catatan mendalam, prompt AI siap pakai, video pendek, dan eksperimen open source untuk memahami AI praktis serta agentic coding."
 layout: main
 permalink: "/topik/ai/"
 ---
 
-<main>
-  <h2>AI & Agentic Coding</h2>
+<main id="main-content" class="container" data-pagefind-body data-pagefind-meta="title:{{ title }}">
+  <h2>AI &amp; Agentic Coding</h2>
   <p style="color: var(--meta-color); margin-top: -0.5rem; font-size: 0.95rem;">
-    Kurasi tulisan untuk memahami AI yang praktis (dan sedikit agentic).
+    Kurasi lintas format untuk memahami AI yang praktis, kolaborasi dengan coding agent, dan eksperimen nyata.
   </p>
 
-  <h3 style="margin-top: 1.5rem;">Mulai dari sini</h3>
+  <h3 style="margin-top: 1.5rem;">Mulai dari sini (Seri Asisten Ngoding &amp; Agentic)</h3>
   <div class="articles">
     <div class="article"><a href="/catatan/asisten-ngoding"><h6>&gt;&nbsp;&nbsp; Produktif dengan Asisten Ngoding</h6></a></div>
     <div class="article"><a href="/catatan/asisten-ngoding-2"><h6>&gt;&nbsp;&nbsp; Diskusi dan Menulis Spesifikasi dengan AI</h6></a></div>
     <div class="article"><a href="/catatan/asisten-ngoding-3"><h6>&gt;&nbsp;&nbsp; Menyusun Rencana dengan Asisten Ngoding</h6></a></div>
     <div class="article"><a href="/catatan/asisten-ngoding-4"><h6>&gt;&nbsp;&nbsp; Desain Antarmuka dengan Asisten Ngoding</h6></a></div>
     <div class="article"><a href="/catatan/asisten-ngoding-5"><h6>&gt;&nbsp;&nbsp; Menulis Kode dengan Asisten Ngoding</h6></a></div>
+    <div class="article"><a href="/catatan/agentic-coding"><h6>&gt;&nbsp;&nbsp; Fondasi Agentic Coding - Apa itu Agent?</h6></a></div>
   </div>
 
-  <h3 style="margin-top: 1.5rem;">Tools & catatan</h3>
+  <h3 style="margin-top: 1.5rem;">Tools &amp; catatan lapangan</h3>
   <div class="articles">
     <div class="article"><a href="/catatan/notebooklm"><h6>&gt;&nbsp;&nbsp; NotebookLM</h6></a></div>
     <div class="article"><a href="/catatan/whisper.cpp"><h6>&gt;&nbsp;&nbsp; whisper.cpp</h6></a></div>
     <div class="article"><a href="/gemini-web-dev/"><h6>&gt;&nbsp;&nbsp; Gemini untuk Web Developer</h6></a></div>
   </div>
 
+  {%- set hubContext = { url: page.url, tags: ["ai", "agentic-coding", "spesifikasi", "planning"], title: title, description: description } -%}
+  {%- set hubPrompts = collections.prompts | relatedPrompts(hubContext, 4) -%}
+  {%- set hubTips = tipsLibrary.items | relatedTips(hubContext, 4) -%}
+  {%- set hubProjects = karya | karyaProjects | relatedProjects(hubContext, 4) -%}
+
+  <section class="cross-format-related" aria-label="Prompt, Tips, dan Karya AI">
+    <div class="cross-format-heading">🔗 PROMPT, TIPS &amp; KARYA TERKAIT</div>
+    <div class="cross-format-grid">
+      {%- for p in hubPrompts %}
+      <a href="{{ p.url }}" class="cross-format-card">
+        <span class="cross-format-badge">Prompt · {{ p.categoryShortLabel }}</span>
+        <span class="cross-format-title">{{ p.title }}</span>
+        <span class="cross-format-meta">{{ p.description | excerpt(80) }}</span>
+      </a>
+      {%- endfor %}
+      {%- for tip in hubTips %}
+      <a href="{{ tip.url }}" class="cross-format-card">
+        <span class="cross-format-badge">Tips{% if tip.durationLabel %} · {{ tip.durationLabel }}{% endif %}</span>
+        <span class="cross-format-title">{{ tip.title }}</span>
+        <span class="cross-format-meta">Video pendek &rarr;</span>
+      </a>
+      {%- endfor %}
+      {%- for proj in hubProjects %}
+      <a href="{{ proj.url or proj.repo }}" target="_blank" rel="noopener noreferrer" class="cross-format-card">
+        <span class="cross-format-badge">Karya · {{ proj.tags | head(2) | join(" / ") }}</span>
+        <span class="cross-format-title">{{ proj.name }}</span>
+        <span class="cross-format-meta">{{ proj.description }}</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </section>
+
   <p style="font-size: 0.9rem; color: var(--meta-color);">
-    Lihat juga: <a href="/tags/ai/">Topik: ai</a> · <a href="/tags/agentic-coding/">Topik: agentic-coding</a>
+    Lihat juga: <a href="/tags/ai/">Topik: ai</a> · <a href="/tags/agentic-coding/">Topik: agentic-coding</a> · <a href="/tips/topik/ai/">Tips: ai</a> · <a href="/prompts/">Semua Prompt</a>
   </p>
 
   <a class="back" href="/topik/">&lt; Semua topik pilihan</a>
