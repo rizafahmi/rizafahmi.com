@@ -93,6 +93,7 @@ function assertSitemap() {
   for (const url of [
     `${SITE_URL}/`,
     `${SITE_URL}/articles/`,
+    `${SITE_URL}/prompts/`,
     `${SITE_URL}/search/`,
     `${SITE_URL}/tags/`,
     `${SITE_URL}/topik/`,
@@ -130,6 +131,7 @@ function assertHomepageReachesSections() {
     "/tags",
     "/topik",
     "/tips",
+    "/prompts",
     "/showcase",
     "/search",
     "/konsultasi",
@@ -365,6 +367,7 @@ function assertPublishedFrontmatter() {
 for (const file of [
   "index.html",
   "articles/index.html",
+  "prompts/index.html",
   "tags/index.html",
   "search/index.html",
   "catatan/asisten-ngoding-5/index.html",

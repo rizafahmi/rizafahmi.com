@@ -16,6 +16,7 @@ eleventyExcludeFromCollections: true
     "/topik/produktivitas/",
     "/showcase/",
     "/tips/",
+    "/prompts/",
     "/konsultasi/",
     "/vibe-coding/",
     "/vibe-coding/private/",
@@ -45,6 +46,14 @@ eleventyExcludeFromCollections: true
     <loc>https://rizafahmi.com{{ tip.url }}</loc>
     {%- if tip.publishedAt %}
     <lastmod>{{ tip.publishedAt | dateToISO }}</lastmod>
+    {%- endif %}
+  </url>
+  {%- endfor %}
+  {%- for promptItem in collections.prompts %}
+  <url>
+    <loc>https://rizafahmi.com{{ promptItem.url }}</loc>
+    {%- if promptItem.date %}
+    <lastmod>{{ promptItem.date | dateToISO }}</lastmod>
     {%- endif %}
   </url>
   {%- endfor %}

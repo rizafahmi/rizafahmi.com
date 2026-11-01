@@ -44,6 +44,20 @@ published. Cite the canonical tip URL rather than the YouTube link.
 {% endif %}- Description: {{ tip.excerpt or tip.title }}
 
 {% endfor %}
+## Prompt library inventory
+
+Reusable LLM prompts, coding agent workflows, and `AGENTS.md` instructions curated at {{ site.url }}/prompts/. Each prompt also provides a clean Markdown endpoint (`{{ site.url }}/prompts/<slug>.md`).
+{% for promptItem in collections.prompts %}
+### {{ promptItem.title }}
+
+- URL: {{ site.url }}{{ promptItem.url }}
+- Raw Markdown: {{ site.url }}{{ promptItem.rawUrl }}
+- Category: {{ promptItem.categoryLabel }}
+- Status: {{ promptItem.status }}
+{% if promptItem.attribution %}- Attribution: {{ promptItem.attribution }}
+{% endif %}- Description: {{ promptItem.description }}
+
+{% endfor %}
 ## Article inventory
 
 {% for post in collections.catatan | reverse %}
