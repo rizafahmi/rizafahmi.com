@@ -30,11 +30,11 @@ const BASE = {
   tags: ["elixir"],
 };
 
-function renderTip(raw, newerHref = null, olderHref = null) {
+function renderTip(raw, newerHref = null, olderHref = null, related = null) {
   const [tip] = selectTips([{ ...BASE, ...raw }]);
   return env.renderString(
-    '{% import "tip_body.njk" as t %}{{ t.tipBody(tip, newerHref, olderHref) }}',
-    { tip, newerHref, olderHref },
+    '{% import "tip_body.njk" as t %}{{ t.tipBody(tip, newerHref, olderHref, related) }}',
+    { tip, newerHref, olderHref, related },
   );
 }
 
@@ -299,4 +299,26 @@ test("the tips pages that have no <h1> give Pagefind an explicit title", () => {
 test("a tip page uses the YouTube thumbnail as its OG image, not a generated one", () => {
   assert.match(tipSource, /image:\s*"\{\{ tip\.thumbnail \}\}"/);
   assert.doesNotMatch(tipSource, /\/og\//);
+});
+
+test("a tip page renders cross-format related articles, prompts, and tips when available", () => {
+  const withoutRelated = renderTip({});
+  assert.doesNotMatch(withoutRelated, /cross-format-related/);
+
+  const withRelated = renderTip({}, null, null, {
+    articles: [{ url: "/catatan/bahasa-fungsional-elixir/", data: { title: "Belajar Elixir" } }],
+    prompts: [
+      {
+        url: "/prompts/wawancara-spesifikasi-bertahap/",
+        title: "Wawancara Spesifikasi",
+        categoryShortLabel: "Perencanaan",
+      },
+    ],
+    tips: [{ url: "/tips/otp-supervisor/", title: "OTP Supervisor", durationLabel: "0:55" }],
+  });
+
+  assert.match(withRelated, /class="cross-format-related"/);
+  assert.match(withRelated, /href="\/catatan\/bahasa-fungsional-elixir\/"/);
+  assert.match(withRelated, /href="\/prompts\/wawancara-spesifikasi-bertahap\/"/);
+  assert.match(withRelated, /href="\/tips\/otp-supervisor\/"/);
 });
