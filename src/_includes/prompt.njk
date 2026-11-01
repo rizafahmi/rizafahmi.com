@@ -1,0 +1,85 @@
+---
+layout: main
+pageCss: prompts.css
+---
+
+{% set neighbors = collections.prompts | promptNeighbors(page.url) %}
+{% set rawSlug = slug or page.fileSlug %}
+
+<main id="main-content" class="container prompt-page" data-pagefind-body data-pagefind-meta="title:{{ title }}">
+  <p class="prompt-breadcrumb">
+    <a href="/prompts/">Prompt</a> / <a href="/prompts/#{{ category }}">{{ categoryLabel }}</a>
+  </p>
+
+  <h2>{{ (displayTitle or title) | safe }}</h2>
+
+  <div class="prompt-detail-meta">
+    <span class="prompt-badge prompt-badge--category">{{ categoryShortLabel }}</span>
+    {%- if status %}
+    <span class="prompt-badge">{{ status }}</span>
+    {%- endif %}
+    {%- if attribution %}
+    <span class="prompt-meta-item">{{ attribution }}</span>
+    {%- endif %}
+    {%- if sourceUrl %}
+    <a class="prompt-source-link" href="{{ sourceUrl }}" target="_blank" rel="noopener noreferrer">{{ sourceLabel or "Sumber asli" }} &nearr;</a>
+    {%- endif %}
+  </div>
+
+  <p class="prompt-detail-summary">{{ description }}</p>
+
+  {%- if prompt %}
+  <section class="prompt-workbench" aria-labelledby="prompt-workbench-heading">
+    <div class="prompt-workbench-bar">
+      <span id="prompt-workbench-heading" class="prompt-workbench-label">TEKS PROMPT</span>
+      <div class="prompt-workbench-actions">
+        <a class="prompt-raw-link" href="/prompts/{{ rawSlug }}.md" title="Buka versi Markdown mentah untuk AI agent atau CLI">📄 .md</a>
+        <button
+          type="button"
+          class="prompt-copy-btn"
+          data-copy-target="prompt-primary-code"
+          data-copy-label="Salin Prompt">
+          Salin Prompt
+        </button>
+      </div>
+    </div>
+    <pre class="prompt-workbench-pre"><code id="prompt-primary-code">{{ prompt | trim }}</code></pre>
+    <p class="prompt-copy-status" role="status" aria-live="polite"></p>
+  </section>
+  {%- endif %}
+
+  <div class="prompt-detail-body">
+    {{ content | safe }}
+  </div>
+
+  {%- if relatedArticle %}
+  <aside class="prompt-related-article" aria-label="Artikel terkait">
+    <span class="prompt-related-label">PEMBAHASAN LENGKAP</span>
+    <p>
+      Prompt ini dibahas secara mendalam beserta contoh alur kerjanya di catatan:
+      <a href="{{ relatedArticle }}">{{ relatedArticleTitle or relatedArticle }} &rarr;</a>
+    </p>
+  </aside>
+  {%- endif %}
+
+  <p class="prompt-disclaimer">
+    Prompt dapat menghasilkan keluaran berbeda antar model, versi, dan konteks proyek. Periksa hasilnya sebelum menggunakan atau membagikannya.
+  </p>
+
+  {%- if neighbors.previous or neighbors.next %}
+  <nav class="prompt-nav" aria-label="Prompt lainnya">
+    {%- if neighbors.previous %}
+    <a href="{{ neighbors.previous.url }}">&larr; {{ neighbors.previous.title }}</a>
+    {%- else %}
+    <span></span>
+    {%- endif %}
+    {%- if neighbors.next %}
+    <a href="{{ neighbors.next.url }}">{{ neighbors.next.title }} &rarr;</a>
+    {%- endif %}
+  </nav>
+  {%- endif %}
+
+  <a class="back" href="/prompts/">&lt; SEMUA PROMPT</a>
+</main>
+
+<script type="module" src="/assets/prompts.js?v={{ site.buildTime }}"></script>

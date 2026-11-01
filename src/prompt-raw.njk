@@ -1,0 +1,9 @@
+---
+pagination:
+  data: collections.prompts
+  size: 1
+  alias: promptItem
+permalink: "/prompts/{{ promptItem.slug }}.md"
+eleventyExcludeFromCollections: true
+---
+{{ promptItem | rawPromptMarkdown(site.url) | safe }}
