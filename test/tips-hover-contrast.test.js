@@ -91,6 +91,7 @@ test("whole-card tip links cancel the global hover background", () => {
 
   assert.match(group, /\.tip-card-link:hover/);
   assert.match(group, /\.tip-card-tags a:hover/);
+  assert.match(group, /\.prompt-card-link:hover/);
   assert.match(group, /background-color:\s*transparent\s*!important/);
 });
 

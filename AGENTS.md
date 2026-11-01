@@ -67,13 +67,16 @@ ones with `pnpm approve-builds <pkg>`. pnpm 11 ignores the `pnpm` field in `pack
 ```
 src/
   catatan/          # Blog articles in Markdown
+  prompts/          # Prompt library entries in Markdown (/prompts/<slug>/ and /prompts/<slug>.md)
   _data/            # Global data files (goatcounter views, etc.)
   _includes/        # Shared Nunjucks partials and layouts
-  libs/             # Shared JS helpers (cv, karya, tips, shiki, related posts, OG, internal links)
+  libs/             # Shared JS helpers (cv, karya, prompts, tips, shiki, related posts, OG, internal links)
   tags/             # Tag listing pages
   topik/            # Topic hub pages
   index.njk          # Homepage
   articles.njk       # Articles listing with pagination
+  prompts.njk        # /prompts searchable card library index
+  prompt-raw.njk     # /prompts/<slug>.md raw Markdown endpoints for AI agents
   search.njk         # Search page
   showcase.njk       # Portfolio showcase
   tips.njk           # /tips Shorts library index
@@ -226,6 +229,13 @@ static server, and run the Lighthouse CLI against the pages you changed.
   `/cv/en/` from that single file, so the two languages cannot drift; the shared markup
   is `src/_includes/cv_body.njk` and the formatting helpers are `src/libs/cv.js`. Open
   source entries are pulled live from `karya.js`, not copied.
+- Prompts (`/prompts/`) live as individual Markdown files in `src/prompts/*.md` (normalized
+  by `src/libs/prompts.js` into `collections.prompts` and `collections.promptCategories`).
+  Each file generates a detail page at `/prompts/<slug>/` (`src/_includes/prompt.njk`), a
+  raw Markdown endpoint at `/prompts/<slug>.md` (`src/prompt-raw.njk`), a card on
+  `/prompts/` (`src/prompts.njk`), and entries in `/sitemap.xml` and `/llms-full.txt`.
+  Prompt categories and `keywords` deliberately do **not** use Eleventy's `tags` field so
+  they do not pollute `/tags/`.
 
 ## Page Language
 
