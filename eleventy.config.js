@@ -5,6 +5,12 @@ import pluginRss from "@11ty/eleventy-plugin-rss";
 import { formatMonth, formatPeriod, orderedChannels, translate } from "./src/libs/cv.js";
 import { selectProjects } from "./src/libs/karya.js";
 import { generateOgImage } from "./src/libs/og-image.js";
+import {
+  promptCategories,
+  promptNeighbors,
+  renderRawPromptMarkdown,
+  selectPrompts,
+} from "./src/libs/prompts.js";
 import { getRelatedPosts } from "./src/libs/related.js";
 import shikiPlugin from "./src/libs/shiki.js";
 import { tipsWithTag } from "./src/libs/tips.js";
@@ -295,8 +301,22 @@ export default function (eleventyConfig) {
       .slice(0, 4),
   );
 
-  // Prompting journal: currently single-page. If we later switch to per-entry files,
-  // we can reintroduce a collection here.
+  // /prompts — curated prompt library from src/prompts/*.md.
+  eleventyConfig.addCollection("prompts", (collectionApi) =>
+    selectPrompts(collectionApi.getFilteredByGlob("src/prompts/*.md")),
+  );
+
+  eleventyConfig.addCollection("promptCategories", (collectionApi) =>
+    promptCategories(selectPrompts(collectionApi.getFilteredByGlob("src/prompts/*.md"))),
+  );
+
+  eleventyConfig.addFilter("promptNeighbors", (prompts, currentUrl) =>
+    promptNeighbors(prompts, currentUrl),
+  );
+
+  eleventyConfig.addFilter("rawPromptMarkdown", (promptItem, siteUrl) =>
+    renderRawPromptMarkdown(promptItem, siteUrl),
+  );
 
   // Curated tag list for /tags and /tags/<tag>/ pages.
   // Eleventy automatically creates collections per tag; this collection
