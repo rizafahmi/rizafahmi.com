@@ -1,13 +1,14 @@
 ---
 title: "Web Practical"
+description: "Kurasi catatan pengembangan web, optimasi performa Core Web Vitals, video pendek, prompt audit performa, dan aplikasi web open source."
 layout: main
 permalink: "/topik/web/"
 ---
 
-<main>
+<main id="main-content" class="container" data-pagefind-body data-pagefind-meta="title:{{ title }}">
   <h2>Web Practical</h2>
   <p style="color: var(--meta-color); margin-top: -0.5rem; font-size: 0.95rem;">
-    Kurasi catatan web yang praktis: dari konsep sampai implementasi.
+    Kurasi catatan web yang praktis: dari konsep, performa, sampai implementasi aplikasi nyata.
   </p>
 
   <h3 style="margin-top: 1.5rem;">Mulai dari sini</h3>
@@ -17,13 +18,45 @@ permalink: "/topik/web/"
     <div class="article"><a href="/2018/08/20/machine-learning-for-web-developers/"><h6>&gt;&nbsp;&nbsp; Machine Learning for Web Developers</h6></a></div>
   </div>
 
-  <h3 style="margin-top: 1.5rem;">Cerita & event</h3>
+  <h3 style="margin-top: 1.5rem;">Cerita &amp; event</h3>
   <div class="articles">
     <div class="article"><a href="/2018/12/22/pengalaman-pertama-cds/"><h6>&gt;&nbsp;&nbsp; Menjadi GDE dan Pengalaman Pertama Menghadiri Chrome Dev Summit</h6></a></div>
   </div>
 
+  {%- set hubContext = { url: page.url, tags: ["web", "frontend", "javascript", "performa"], title: title, description: description } -%}
+  {%- set hubPrompts = collections.prompts | relatedPrompts(hubContext, 2) -%}
+  {%- set hubTips = tipsLibrary.items | relatedTips(hubContext, 3) -%}
+  {%- set hubProjects = karya | karyaProjects | relatedProjects(hubContext, 3) -%}
+
+  <section class="cross-format-related" aria-label="Prompt, Tips, dan Karya Web">
+    <div class="cross-format-heading">🔗 PROMPT, TIPS &amp; KARYA WEB TERKAIT</div>
+    <div class="cross-format-grid">
+      {%- for p in hubPrompts %}
+      <a href="{{ p.url }}" class="cross-format-card">
+        <span class="cross-format-badge">Prompt · {{ p.categoryShortLabel }}</span>
+        <span class="cross-format-title">{{ p.title }}</span>
+        <span class="cross-format-meta">{{ p.description | excerpt(80) }}</span>
+      </a>
+      {%- endfor %}
+      {%- for tip in hubTips %}
+      <a href="{{ tip.url }}" class="cross-format-card">
+        <span class="cross-format-badge">Tips{% if tip.durationLabel %} · {{ tip.durationLabel }}{% endif %}</span>
+        <span class="cross-format-title">{{ tip.title }}</span>
+        <span class="cross-format-meta">Video pendek &rarr;</span>
+      </a>
+      {%- endfor %}
+      {%- for proj in hubProjects %}
+      <a href="{{ proj.url or proj.repo }}" target="_blank" rel="noopener noreferrer" class="cross-format-card">
+        <span class="cross-format-badge">Karya · {{ proj.tags | head(2) | join(" / ") }}</span>
+        <span class="cross-format-title">{{ proj.name }}</span>
+        <span class="cross-format-meta">{{ proj.description }}</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </section>
+
   <p style="font-size: 0.9rem; color: var(--meta-color);">
-    Lihat juga: <a href="/tags/web/">Topik: web</a> · <a href="/tags/javascript/">Topik: javascript</a> · <a href="/tags/frontend/">Topik: frontend</a>
+    Lihat juga: <a href="/tags/web/">Topik: web</a> · <a href="/tags/javascript/">Topik: javascript</a> · <a href="/tags/frontend/">Topik: frontend</a> · <a href="/tips/topik/web/">Tips: web</a>
   </p>
 
   <a class="back" href="/topik/">&lt; Semua topik pilihan</a>

@@ -144,6 +144,53 @@ eleventyExcludeFromCollections: true
       </section>
     </div>
 
+    <!-- Tips & Prompts Cross-Format Grid -->
+    <div class="catatan-grid">
+      <section class="catatan-section" id="tips-terbaru">
+        <h2>TIPS VIDEO TERBARU</h2>
+        <ul class="catatan-list">
+          {%- for tip in tipsLibrary.items | head(3) %}
+          <li class="catatan-item">
+            <span class="catatan-item-title">
+              <a href="{{ tip.url }}">{{ tip.title }}</a>
+            </span>
+            <div class="catatan-meta">
+              {%- if tip.publishedAt %}
+              <span>📅 {{ tip.publishedAt | dateToISO }}</span>
+              {%- endif %}
+              {%- if tip.durationLabel %}
+              <span>⏱️ {{ tip.durationLabel }}</span>
+              {%- endif %}
+            </div>
+          </li>
+          {%- endfor %}
+        </ul>
+        <div class="catatan-more">
+          <a href="/tips/">Semua video tips →</a>
+        </div>
+      </section>
+
+      <section class="catatan-section" id="prompt-pilihan">
+        <h2>PROMPT AI PILIHAN</h2>
+        <ul class="catatan-list">
+          {%- for p in collections.prompts | head(3) %}
+          <li class="catatan-item">
+            <span class="catatan-item-title">
+              <a href="{{ p.url }}">{{ p.title }}</a>
+            </span>
+            <div class="catatan-meta">
+              <span>🏷️ {{ p.categoryShortLabel }}</span>
+              <span>📋 {{ p.status }}</span>
+            </div>
+          </li>
+          {%- endfor %}
+        </ul>
+        <div class="catatan-more">
+          <a href="/prompts/">Semua prompt AI →</a>
+        </div>
+      </section>
+    </div>
+
     <!-- Karya Section -->
     <section class="karya-section" id="karya">
       <h2>KARYA UTAMA</h2>

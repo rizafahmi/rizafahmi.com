@@ -1,13 +1,14 @@
 ---
 title: "Produktivitas untuk Developer"
+description: "Kurasi catatan kebiasaan ngoding, sistem pencatatan digital garden, prompt pola kerja, dan video pendek produktivitas untuk developer."
 layout: main
 permalink: "/topik/produktivitas/"
 ---
 
-<main>
+<main id="main-content" class="container" data-pagefind-body data-pagefind-meta="title:{{ title }}">
   <h2>Produktivitas untuk Developer</h2>
   <p style="color: var(--meta-color); margin-top: -0.5rem; font-size: 0.95rem;">
-    Kurasi tulisan yang biasanya aku share ke teman-teman: kebiasaan, mindset, dan sistem.
+    Kurasi tulisan, prompt, dan video pendek tentang kebiasaan, mindset, dan sistem kerja developer.
   </p>
 
   <h3 style="margin-top: 1.5rem;">Mulai dari sini</h3>
@@ -18,14 +19,38 @@ permalink: "/topik/produktivitas/"
     <div class="article"><a href="/panduan-menulis/"><h6>&gt;&nbsp;&nbsp; Panduan Menulis Artikel Pemrograman</h6></a></div>
   </div>
 
-  <h3 style="margin-top: 1.5rem;">Tools & catatan</h3>
+  <h3 style="margin-top: 1.5rem;">Tools &amp; catatan</h3>
   <div class="articles">
     <div class="article"><a href="/catatan/menemukan-kegunaan-obsidian/"><h6>&gt;&nbsp;&nbsp; Menemukan Kegunaan Obsidian</h6></a></div>
     <div class="article"><a href="/catatan/digital-garden/"><h6>&gt;&nbsp;&nbsp; Digital Garden</h6></a></div>
   </div>
 
+  {%- set hubContext = { url: page.url, tags: ["produktivitas", "belajar", "menulis", "pola-kerja"], title: title, description: description } -%}
+  {%- set hubPrompts = collections.prompts | relatedPrompts(hubContext, 3) -%}
+  {%- set hubTips = tipsLibrary.items | relatedTips(hubContext, 3) -%}
+
+  <section class="cross-format-related" aria-label="Prompt dan Tips Produktivitas">
+    <div class="cross-format-heading">🔗 PROMPT &amp; TIPS PRODUKTIVITAS TERKAIT</div>
+    <div class="cross-format-grid">
+      {%- for p in hubPrompts %}
+      <a href="{{ p.url }}" class="cross-format-card">
+        <span class="cross-format-badge">Prompt · {{ p.categoryShortLabel }}</span>
+        <span class="cross-format-title">{{ p.title }}</span>
+        <span class="cross-format-meta">{{ p.description | excerpt(80) }}</span>
+      </a>
+      {%- endfor %}
+      {%- for tip in hubTips %}
+      <a href="{{ tip.url }}" class="cross-format-card">
+        <span class="cross-format-badge">Tips{% if tip.durationLabel %} · {{ tip.durationLabel }}{% endif %}</span>
+        <span class="cross-format-title">{{ tip.title }}</span>
+        <span class="cross-format-meta">Video pendek &rarr;</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </section>
+
   <p style="font-size: 0.9rem; color: var(--meta-color);">
-    Lihat juga: <a href="/tags/produktivitas/">Topik: produktivitas</a> · <a href="/tags/belajar/">Topik: belajar</a> · <a href="/tags/menulis/">Topik: menulis</a>
+    Lihat juga: <a href="/tags/produktivitas/">Topik: produktivitas</a> · <a href="/tags/belajar/">Topik: belajar</a> · <a href="/tags/menulis/">Topik: menulis</a> · <a href="/tips/topik/produktivitas/">Tips: produktivitas</a>
   </p>
 
   <a class="back" href="/topik/">&lt; Semua topik pilihan</a>

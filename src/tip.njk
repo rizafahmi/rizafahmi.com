@@ -17,9 +17,19 @@ eleventyComputed:
 ---
 
 {% import "tip_body.njk" as tipPage %}
+{%- set tipTagSlugs = [] -%}
+{%- for t in tip.tags -%}
+  {%- set tipTagSlugs = (tipTagSlugs.push(t.slug), tipTagSlugs) -%}
+{%- endfor -%}
+{%- set tipContext = { url: tip.url, tags: tipTagSlugs, title: tip.title, description: tip.description, content: tip.transcript or "", onlyRelevant: true } -%}
+{%- set tipRelated = {
+  articles: collections.catatan | relatedArticles(tipContext, 2),
+  prompts: collections.prompts | relatedPrompts(tipContext, 2),
+  tips: tipsLibrary.items | relatedTips(tipContext, 2)
+} -%}
 
 <main id="main-content" class="container tip-page" data-pagefind-body data-pagefind-meta="title:{{ tip.title }}">
-  {{ tipPage.tipBody(tip, pagination.href.previous, pagination.href.next) }}
+  {{ tipPage.tipBody(tip, pagination.href.previous, pagination.href.next, tipRelated) }}
 
   <a class="back" href="/tips/">&lt; SEMUA TIPS</a>
 </main>

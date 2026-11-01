@@ -175,6 +175,89 @@ function assertPagefind() {
 
   const entryFile = path.join(pagefindDir, "pagefind-entry.json");
   if (!fileExists(entryFile)) fail("Pagefind entry file is missing");
+
+  // Pagefind runs in opt-in mode (data-pagefind-body). Every major content hub
+  // and detail page must opt in so search never silently skips a section.
+  for (const rel of [
+    "topik/index.html",
+    "topik/ai/index.html",
+    "topik/elixir/index.html",
+    "topik/web/index.html",
+    "topik/produktivitas/index.html",
+    "prompts/index.html",
+    "tips/index.html",
+    "showcase/index.html",
+    "cv/index.html",
+    "catatan/asisten-ngoding-2/index.html",
+  ]) {
+    const full = path.join(DIST_DIR, rel);
+    if (!fileExists(full)) {
+      fail(`Pagefind coverage check: missing ${full}`);
+      continue;
+    }
+    const html = readText(full);
+    if (!/\bdata-pagefind-body\b/.test(html)) {
+      fail(`${full} is missing data-pagefind-body and is invisible to Pagefind search`);
+    }
+  }
+}
+
+function assertCrossFormatConnectivity() {
+  // 1. Bidirectional article <-> prompt links must hold in built HTML.
+  const specArticle = path.join(DIST_DIR, "catatan/asisten-ngoding-2/index.html");
+  if (fileExists(specArticle)) {
+    const html = readText(specArticle);
+    if (!html.includes('href="/prompts/wawancara-spesifikasi-bertahap/"')) {
+      fail(`${specArticle} does not cross-link back to /prompts/wawancara-spesifikasi-bertahap/`);
+    }
+    if (!html.includes('href="/prompts/kompilasi-diskusi-jadi-spesifikasi/"')) {
+      fail(
+        `${specArticle} does not cross-link back to /prompts/kompilasi-diskusi-jadi-spesifikasi/`,
+      );
+    }
+  }
+
+  const planArticle = path.join(DIST_DIR, "catatan/asisten-ngoding-3/index.html");
+  if (fileExists(planArticle)) {
+    const html = readText(planArticle);
+    if (!html.includes('href="/prompts/blueprint-dan-prompt-bertahap/"')) {
+      fail(`${planArticle} does not cross-link back to /prompts/blueprint-dan-prompt-bertahap/`);
+    }
+  }
+
+  // 2. Topic hubs, Prompt detail pages, and Article pages must render cross-format blocks.
+  for (const rel of [
+    "topik/ai/index.html",
+    "topik/elixir/index.html",
+    "topik/web/index.html",
+    "topik/produktivitas/index.html",
+    "prompts/wawancara-spesifikasi-bertahap/index.html",
+    "prompts/periksa-performa-halaman-web/index.html",
+    "catatan/bahasa-fungsional-elixir/index.html",
+    "catatan/agentic-coding-bag-2/index.html",
+  ]) {
+    const full = path.join(DIST_DIR, rel);
+    if (!fileExists(full)) {
+      fail(`Cross-format check: missing ${full}`);
+      continue;
+    }
+    const html = readText(full);
+    if (!html.includes('class="cross-format-related"')) {
+      fail(`${full} is missing .cross-format-related section`);
+    }
+  }
+
+  // 3. Homepage must surface individual /tips/<slug>/ and /prompts/<slug>/ entries.
+  const homeFile = path.join(DIST_DIR, "index.html");
+  if (fileExists(homeFile)) {
+    const homeHtml = readText(homeFile);
+    if (!/href="\/tips\/[^"]+\/"/.test(homeHtml)) {
+      fail("dist/index.html does not surface any individual /tips/<slug>/ items");
+    }
+    if (!/href="\/prompts\/[^"]+\/"/.test(homeHtml)) {
+      fail("dist/index.html does not surface any individual /prompts/<slug>/ items");
+    }
+  }
 }
 
 function assertTextFileContains(file, expected) {
@@ -368,6 +451,13 @@ for (const file of [
   "index.html",
   "articles/index.html",
   "prompts/index.html",
+  "tips/index.html",
+  "showcase/index.html",
+  "topik/index.html",
+  "topik/ai/index.html",
+  "topik/elixir/index.html",
+  "topik/web/index.html",
+  "topik/produktivitas/index.html",
   "tags/index.html",
   "search/index.html",
   "catatan/asisten-ngoding-5/index.html",
@@ -386,6 +476,7 @@ assertHomepageReachesSections();
 assertInternalLinks();
 assertPartialLinks();
 assertPagefind();
+assertCrossFormatConnectivity();
 assertRobotsTxt();
 assertLlmsTxt();
 assertPublishedFrontmatter();

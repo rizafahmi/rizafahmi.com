@@ -1,13 +1,14 @@
 ---
 title: "Elixir, OTP, dan Functional Programming"
+description: "Kurasi tulisan, video pendek, dan repositori open source untuk memahami Elixir, sistem konkurensi BEAM/OTP, serta pola pikir pemrograman fungsional."
 layout: main
 permalink: "/topik/elixir/"
 ---
 
-<main>
+<main id="main-content" class="container" data-pagefind-body data-pagefind-meta="title:{{ title }}">
   <h2>Elixir, OTP, dan Functional Programming</h2>
   <p style="color: var(--meta-color); margin-top: -0.5rem; font-size: 0.95rem;">
-    Kurasi tulisan untuk kamu yang ingin memahami Elixir/OTP + mindset FP.
+    Kurasi tulisan, video pendek, dan proyek nyata untuk kamu yang ingin memahami Elixir/OTP + mindset FP.
   </p>
 
   <h3 style="margin-top: 1.5rem;">Mulai dari sini</h3>
@@ -23,8 +24,32 @@ permalink: "/topik/elixir/"
     <div class="article"><a href="/catatan/membangun-permainan-balap-kode-dgn-ai/"><h6>&gt;&nbsp;&nbsp; Membangun Permainan Balap Kode dengan AI</h6></a></div>
   </div>
 
+  {%- set hubContext = { url: page.url, tags: ["elixir", "otp", "concurrency"], title: title, description: description } -%}
+  {%- set hubTips = tipsLibrary.items | relatedTips(hubContext, 4) -%}
+  {%- set hubProjects = karya | karyaProjects | relatedProjects(hubContext, 4) -%}
+
+  <section class="cross-format-related" aria-label="Tips dan Karya Elixir">
+    <div class="cross-format-heading">🔗 TIPS &amp; PROYEK ELIXIR TERKAIT</div>
+    <div class="cross-format-grid">
+      {%- for tip in hubTips %}
+      <a href="{{ tip.url }}" class="cross-format-card">
+        <span class="cross-format-badge">Tips{% if tip.durationLabel %} · {{ tip.durationLabel }}{% endif %}</span>
+        <span class="cross-format-title">{{ tip.title }}</span>
+        <span class="cross-format-meta">Video pendek &rarr;</span>
+      </a>
+      {%- endfor %}
+      {%- for proj in hubProjects %}
+      <a href="{{ proj.url or proj.repo }}" target="_blank" rel="noopener noreferrer" class="cross-format-card">
+        <span class="cross-format-badge">Karya · {{ proj.tags | head(2) | join(" / ") }}</span>
+        <span class="cross-format-title">{{ proj.name }}</span>
+        <span class="cross-format-meta">{{ proj.description }}</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </section>
+
   <p style="font-size: 0.9rem; color: var(--meta-color);">
-    Lihat juga: <a href="/tags/elixir/">Topik: elixir</a> · <a href="/tags/otp/">Topik: otp</a>
+    Lihat juga: <a href="/tags/elixir/">Topik: elixir</a> · <a href="/tags/otp/">Topik: otp</a> · <a href="/tips/topik/elixir/">Tips: elixir</a>
   </p>
 
   <a class="back" href="/topik/">&lt; Semua topik pilihan</a>

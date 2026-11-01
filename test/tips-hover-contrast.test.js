@@ -92,7 +92,35 @@ test("whole-card tip links cancel the global hover background", () => {
   assert.match(group, /\.tip-card-link:hover/);
   assert.match(group, /\.tip-card-tags a:hover/);
   assert.match(group, /\.prompt-card-link:hover/);
+  assert.match(group, /\.cross-format-card a:hover/);
   assert.match(group, /background-color:\s*transparent\s*!important/);
+});
+
+test("cross-format cards maintain WCAG AA contrast (>= 4.5:1) in resting and hover states across both themes", () => {
+  const acid = token("--accent-acid", ROOT);
+  const cobalt = token("--accent-cobalt", ROOT);
+  const lightMeta = token("--meta-color", ROOT);
+  const darkMeta = token("--meta-color", DARK);
+
+  // Resting title and meta on page background
+  assert.ok(contrastRatio(THEMES.light.heading, THEMES.light.bg) >= AA_NORMAL_TEXT);
+  assert.ok(contrastRatio(THEMES.dark.heading, THEMES.dark.bg) >= AA_NORMAL_TEXT);
+  assert.ok(contrastRatio(lightMeta, THEMES.light.bg) >= AA_NORMAL_TEXT);
+  assert.ok(contrastRatio(darkMeta, THEMES.dark.bg) >= AA_NORMAL_TEXT);
+
+  // Hovered cross-format card: #0a0b0d on Acid Lime in light, #ffffff on Electric Cobalt in dark
+  assert.ok(
+    contrastRatio("#0a0b0d", acid) >= AA_NORMAL_TEXT,
+    `light hover cross-format card: #0a0b0d on ${acid} must be >= 4.5:1`,
+  );
+  assert.ok(
+    contrastRatio("#ffffff", cobalt) >= AA_NORMAL_TEXT,
+    `dark hover cross-format card: #ffffff on ${cobalt} must be >= 4.5:1`,
+  );
+
+  // Hovered badge inside cross-format card: Acid Lime on #0a0b0d in light, #0a0b0d on #ffffff in dark
+  assert.ok(contrastRatio(acid, "#0a0b0d") >= AA_NORMAL_TEXT);
+  assert.ok(contrastRatio("#0a0b0d", "#ffffff") >= AA_NORMAL_TEXT);
 });
 
 test("a hovered tip title is readable against the page, in both themes", () => {

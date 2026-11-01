@@ -181,6 +181,38 @@ title: Judul
           {%- endfor %}
         </div>
       </section>
+
+      {%- set relPrompts = collections.prompts | relatedPrompts({ url: page.url, tags: visibleTags, title: title, description: description, content: content }, 2) %}
+      {%- set relTips = tipsLibrary.items | relatedTips({ url: page.url, tags: visibleTags, title: title, description: description, content: content }, 2) %}
+      {%- set relProjects = karya | karyaProjects | relatedProjects({ url: page.url, tags: visibleTags, title: title, description: description, content: content }, 2) %}
+      {%- if relPrompts.length or relTips.length or relProjects.length %}
+      <section class="cross-format-related" aria-label="Eksplorasi lintas format">
+        <div class="cross-format-heading">🔗 EKSPLORASI LINTAS FORMAT</div>
+        <div class="cross-format-grid">
+          {%- for p in relPrompts %}
+          <a href="{{ p.url }}" class="cross-format-card">
+            <span class="cross-format-badge">Prompt · {{ p.categoryShortLabel }}</span>
+            <span class="cross-format-title">{{ p.title }}</span>
+            <span class="cross-format-meta">{{ p.description | excerpt(90) }}</span>
+          </a>
+          {%- endfor %}
+          {%- for tip in relTips %}
+          <a href="{{ tip.url }}" class="cross-format-card">
+            <span class="cross-format-badge">Tips{% if tip.durationLabel %} · {{ tip.durationLabel }}{% endif %}</span>
+            <span class="cross-format-title">{{ tip.title }}</span>
+            <span class="cross-format-meta">Video pendek &rarr;</span>
+          </a>
+          {%- endfor %}
+          {%- for proj in relProjects %}
+          <a href="{{ proj.url or proj.repo }}" target="_blank" rel="noopener noreferrer" class="cross-format-card">
+            <span class="cross-format-badge">Karya · {{ proj.tags | head(2) | join(" / ") }}</span>
+            <span class="cross-format-title">{{ proj.name }}</span>
+            <span class="cross-format-meta">{{ proj.description }}</span>
+          </a>
+          {%- endfor %}
+        </div>
+      </section>
+      {%- endif %}
       {%- endif %}
 
       <section class="follow-cta" aria-label="Ikuti saya">
