@@ -1,20 +1,57 @@
 ---
 title: Karya
-description: Pilihan karya, produk, dan open source project yang pernah saya buat.
+description: Galeri bukti karya (proof-of-work), produk, dan open source project lengkap dengan quickstart CLI, catatan arsitektur, serta agent skills terkait.
 layout: main
+pageCss: showcase.css
 eleventyExcludeFromCollections: true
 ---
 
 {% import "karya_open_source.njk" as karyaCards %}
 {% set openSourceProjects = karya | karyaProjects %}
 
-<main id="main-content" data-pagefind-body data-pagefind-meta="title:Karya">
-  <h2>Karya</h2>
-  <p style="font-size: 1rem; margin: 0.5rem;">
-    Kumpulan beberapa hal yang pernah saya buat: produk, konten, dan open source.
-  </p>
+<main id="main-content" class="showcase-page" data-pagefind-body data-pagefind-meta="title:Karya">
+  <div class="showcase-header">
+    <h2>Karya &amp; Eksperimen</h2>
+    <p class="showcase-intro">
+      Galeri terverifikasi proyek open source, eksperimen AI/BEAM, dan produk yang pernah saya bangun.
+      Setiap repositori dilengkapi <strong>bukti arsitektur</strong>, <strong>perintah CLI &lt; 30 detik</strong>, serta tautan langsung ke catatan pembahasannya dan <a href="/prompts/">Prompt Workbench</a>.
+    </p>
 
-  <h3 style="margin: 1.5rem 0.5rem 0;">Open Source</h3>
+    <div class="showcase-stats" aria-label="Ringkasan bukti karya">
+      <div class="showcase-stat">
+        <span class="showcase-stat-value">{{ openSourceProjects | length }}</span>
+        <span class="showcase-stat-label">REPOSITORI OPEN SOURCE</span>
+      </div>
+      <div class="showcase-stat">
+        <span class="showcase-stat-value">&lt; 30 dtk</span>
+        <span class="showcase-stat-label">CLI QUICKSTART SIAP SALIN</span>
+      </div>
+      <div class="showcase-stat">
+        <span class="showcase-stat-value">{{ collections.prompts | length }}</span>
+        <span class="showcase-stat-label">AGENT SKILLS TERHUBUNG</span>
+      </div>
+    </div>
+
+    <nav class="showcase-filters" aria-label="Filter teknologi karya" data-karya-filters>
+      <button type="button" class="showcase-filter-btn" data-karya-filter="all" aria-pressed="true">
+        Semua ({{ openSourceProjects | length }})
+      </button>
+      <button type="button" class="showcase-filter-btn" data-karya-filter="elixir" aria-pressed="false">
+        Elixir / BEAM / LiveView
+      </button>
+      <button type="button" class="showcase-filter-btn" data-karya-filter="ai" aria-pressed="false">
+        AI / LLM / Agents
+      </button>
+      <button type="button" class="showcase-filter-btn" data-karya-filter="astro" aria-pressed="false">
+        Astro / TypeScript
+      </button>
+      <button type="button" class="showcase-filter-btn" data-karya-filter="local-first" aria-pressed="false">
+        Local-First / SQLite
+      </button>
+    </nav>
+  </div>
+
+  <h3 style="margin: 1.5rem 0.5rem 0;">Open Source &amp; Eksperimen</h3>
   {{ karyaCards.openSourceCards(openSourceProjects) }}
 
   <hr style="margin: 2rem 0.5rem;" />
@@ -113,3 +150,39 @@ eleventyExcludeFromCollections: true
 
   <a class="back" href="/">&lt; Kembali ke halaman utama</a>
 </main>
+
+<script type="module" src="/assets/prompts.js?v={{ site.buildTime }}"></script>
+<script>
+  (function () {
+    const filterBtns = document.querySelectorAll("[data-karya-filter]");
+    const cards = document.querySelectorAll("[data-karya-card]");
+    if (!filterBtns.length || !cards.length) return;
+
+    const MATCH_GROUPS = {
+      elixir: ["elixir", "phoenix liveview", "otp"],
+      ai: ["pi", "jev", "anthropic", "gemini api", "llm", "llm eval", "ai"],
+      astro: ["astro", "typescript", "node.js"],
+      "local-first": ["local-first", "sqlite", "turso"],
+    };
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const group = btn.getAttribute("data-karya-filter") || "all";
+        filterBtns.forEach((b) =>
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false"),
+        );
+
+        cards.forEach((card) => {
+          if (group === "all") {
+            card.hidden = false;
+            return;
+          }
+          const rawTags = (card.getAttribute("data-tags") || "").split(",");
+          const targets = MATCH_GROUPS[group] || [group];
+          const matched = rawTags.some((t) => targets.includes(t.trim()));
+          card.hidden = !matched;
+        });
+      });
+    });
+  })();
+</script>

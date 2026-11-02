@@ -57,6 +57,7 @@ eleventyExcludeFromCollections: true
           <a href="/tags">Topik</a>
           <a href="/tips/">Tips</a>
           <a href="/prompts/">Prompt</a>
+          <a href="/skills/">Skills</a>
           <a href="#karya">Karya</a>
           <a href="/kerjasama/">Kerjasama</a>
           <a href="#kontak">Kontak</a>
@@ -193,7 +194,7 @@ eleventyExcludeFromCollections: true
 
     <!-- Karya Section -->
     <section class="karya-section" id="karya">
-      <h2>KARYA UTAMA</h2>
+      <h2>KARYA &amp; Eksperimen</h2>
 
       <div class="karya-featured">
         <div class="featured-project-card">
@@ -217,10 +218,29 @@ eleventyExcludeFromCollections: true
             <span class="badge">Web</span>
           </div>
         </div>
+
+        {%- for proj in (karya | karyaProjects | head(2)) %}
+        <div class="featured-project-card">
+          <div>
+            <h3><a href="{{ proj.repo }}" target="_blank" rel="noopener noreferrer">{{ proj.name }}</a></h3>
+            <p>{{ proj.description }}</p>
+            {%- if proj.proof %}
+            <p style="font-size: 0.85rem; margin-top: 0.4rem;"><strong>Bukti:</strong> {{ proj.proof }}</p>
+            {%- endif %}
+          </div>
+          <div class="badges" aria-label="Tech stack">
+            {%- for tag in proj.tags %}
+            <span class="badge">{{ tag }}</span>
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endfor %}
       </div>
 
-      <div class="catatan-more">
-        <a href="/showcase">Semua karya & open source →</a>
+      <div class="catatan-more" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        <a href="/showcase">Semua karya &amp; CLI quickstart →</a>
+        <a href="/prompts/">Prompt Workbench (&lt; 30 detik) →</a>
+        <a href="/skills/">Agent Skills (SKILL.md) →</a>
       </div>
     </section>
 

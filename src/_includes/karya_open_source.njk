@@ -3,7 +3,7 @@
 {% macro openSourceCards(projects) %}
   <div class="card-grid">
     {%- for project in projects %}
-    <div class="card">
+    <div class="card"{% if project.tags.length %} data-karya-card data-tags="{{ project.tags | join(',') | lower }}"{% endif %}>
       {%- if project.repo %}
       <h3><a href="{{ project.repo }}" target="_blank" rel="noopener noreferrer">{{ project.name }}</a></h3>
       {%- else %}
@@ -12,8 +12,30 @@
       {%- if project.description %}
       <p>{{ project.description }}</p>
       {%- endif %}
+      {%- if project.proof %}
+      <p class="karya-proof"><span class="karya-proof-label">BUKTI ARSITEKTUR</span> {{ project.proof }}</p>
+      {%- endif %}
+      {%- if project.quickstart %}
+      <div class="karya-quickstart">
+        <div class="karya-quickstart-bar">
+          <span class="karya-quickstart-label">⚡ COBA &lt; 30 DETIK</span>
+          <button type="button" class="karya-copy-btn" data-copy-text="{{ project.quickstart }}" aria-label="Salin perintah CLI {{ project.name }}">Salin CLI</button>
+        </div>
+        <pre class="karya-quickstart-pre"><code>{{ project.quickstart }}</code></pre>
+      </div>
+      {%- endif %}
       {%- if project.url %}
       <p class="card-links"><a class="card-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">Coba langsung &rarr;</a></p>
+      {%- endif %}
+      {%- if project.relatedArticle or project.relatedPrompt %}
+      <div class="karya-crosslinks">
+        {%- if project.relatedArticle %}
+        <a class="karya-crosslink" href="{{ project.relatedArticle }}">📚 {{ project.relatedArticleTitle or "Catatan arsitektur" }} &rarr;</a>
+        {%- endif %}
+        {%- if project.relatedPrompt %}
+        <a class="karya-crosslink" href="{{ project.relatedPrompt }}">🎛️ Prompt: {{ project.relatedPromptTitle or "Workbench" }} &rarr;</a>
+        {%- endif %}
+      </div>
       {%- endif %}
       {%- if project.tags.length %}
       <div class="badges" aria-label="Tech stack">

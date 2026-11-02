@@ -20,6 +20,8 @@
 {% if project.repo %}- Repository: {{ project.repo | safe }}
 {% endif %}{% if project.url %}- Access URL: {{ project.url | safe }}
 {% endif %}{% if project.tags.length %}- Tags: {{ project.tags | join(", ") | safe }}
+{% endif %}{% if project.proof %}- Architecture Proof: {{ project.proof | safe }}
+{% endif %}{% if project.quickstart %}- Quickstart: `{{ project.quickstart | safe }}`
 {% endif %}- Description: {{ (project.description or project.name) | safe }}
 
 {% endfor %}

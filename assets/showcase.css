@@ -1,0 +1,199 @@
+/* Styles for /showcase/ — Neo-Acid Gallery Verifiable Proof-of-Work Gallery.
+   Loaded via `pageCss: showcase.css` and namespaced under `.showcase-page`. */
+
+.showcase-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.showcase-page .showcase-header {
+  margin: 0 0.5rem 1.75rem;
+  border-bottom: 4px solid var(--border-color);
+  padding-bottom: 1.25rem;
+}
+
+.showcase-page .showcase-intro {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 65ch;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.showcase-page .showcase-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.25rem;
+}
+
+.showcase-page .showcase-stat {
+  border: 2px solid var(--border-color);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: var(--bg-color);
+}
+
+.showcase-page .showcase-stat-value {
+  font-family: var(--font-display, "Unbounded", system-ui, sans-serif);
+  font-weight: 800;
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.1;
+  color: var(--heading-color);
+}
+
+.showcase-page .showcase-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.showcase-page .showcase-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.showcase-page .showcase-filter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.4rem 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0;
+  background: var(--bg-color);
+  color: var(--heading-color);
+  cursor: pointer;
+}
+
+.showcase-page .showcase-filter-btn:hover,
+.showcase-page .showcase-filter-btn[aria-pressed="true"] {
+  background: var(--accent-acid);
+  color: #0a0b0d;
+  border-color: #0a0b0d;
+}
+
+[data-theme="dark"] .showcase-page .showcase-filter-btn:hover,
+[data-theme="dark"] .showcase-page .showcase-filter-btn[aria-pressed="true"] {
+  background: var(--accent-cobalt);
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.showcase-page .card[hidden] {
+  display: none !important;
+}
+
+.showcase-page .karya-proof {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  border-left: 4px solid var(--accent-cobalt);
+  padding: 0.35rem 0.65rem;
+  margin: 0.65rem 0;
+  background: var(--code-bg);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .showcase-page .karya-proof {
+  border-left-color: var(--accent-acid);
+}
+
+.showcase-page .karya-proof-label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.35rem;
+  margin-right: 0.35rem;
+  border: 1px solid var(--border-color);
+  color: var(--heading-color);
+}
+
+.showcase-page .karya-quickstart {
+  border: 2px solid var(--border-color);
+  background: var(--code-bg);
+  margin: 0.65rem 0;
+}
+
+.showcase-page .karya-quickstart-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.55rem;
+  border-bottom: 1px dashed var(--border-color);
+  background: var(--bg-color);
+}
+
+.showcase-page .karya-quickstart-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.showcase-page .karya-copy-btn {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0;
+  background: var(--bg-color);
+  color: var(--heading-color);
+  cursor: pointer;
+}
+
+.showcase-page .karya-copy-btn:hover,
+.showcase-page .karya-copy-btn[data-copied="true"] {
+  background: var(--accent-acid);
+  color: #0a0b0d;
+  border-color: #0a0b0d;
+}
+
+.showcase-page .karya-quickstart-pre {
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: none;
+  background: transparent;
+}
+
+.showcase-page .karya-quickstart-pre code {
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent;
+  padding: 0;
+}
+
+.showcase-page .karya-crosslinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0.6rem 0;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.showcase-page .karya-crosslink {
+  font-weight: 700;
+  text-decoration: none;
+}
