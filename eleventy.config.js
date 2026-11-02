@@ -6,9 +6,12 @@ import { formatMonth, formatPeriod, orderedChannels, translate } from "./src/lib
 import { selectProjects } from "./src/libs/karya.js";
 import { generateOgImage } from "./src/libs/og-image.js";
 import {
+  buildSkillsManifest,
+  extractPromptVariables,
   promptCategories,
   promptNeighbors,
   renderRawPromptMarkdown,
+  renderSkillMarkdown,
   selectPrompts,
 } from "./src/libs/prompts.js";
 import {
@@ -20,6 +23,7 @@ import {
 import shikiPlugin from "./src/libs/shiki.js";
 import { tipsWithTag } from "./src/libs/tips.js";
 import { fontFaceCss, passthroughCopyMap, preloadLinks } from "./src/libs/webfonts.js";
+import { renderRawArticleMarkdown, workbenchForArticle } from "./src/libs/workbench.js";
 import { renderableFormats } from "./src/libs/youtube-stats.js";
 
 const isDev = process.env.ELEVENTY_ENV === "dev";
@@ -337,6 +341,33 @@ export default function (eleventyConfig) {
     renderRawPromptMarkdown(promptItem, siteUrl),
   );
 
+  eleventyConfig.addFilter("skillMarkdown", (promptItem, siteUrl) =>
+    renderSkillMarkdown(promptItem, siteUrl),
+  );
+
+  eleventyConfig.addFilter("skillsManifestJson", (prompts, siteUrl) =>
+    JSON.stringify(buildSkillsManifest(prompts, siteUrl), null, 2),
+  );
+
+  eleventyConfig.addFilter("extractPromptVariables", (promptText, customVariables, slug) =>
+    extractPromptVariables(promptText, customVariables, slug),
+  );
+
+  eleventyConfig.addFilter("articleWorkbench", (article, prompts, rawKarya) =>
+    workbenchForArticle(article, {
+      prompts,
+      karyaProjects: selectProjects(rawKarya),
+    }),
+  );
+
+  eleventyConfig.addFilter("rawArticleMarkdown", (post, prompts, rawKarya, siteUrl) =>
+    renderRawArticleMarkdown(post, {
+      prompts,
+      karyaProjects: selectProjects(rawKarya),
+      siteUrl,
+    }),
+  );
+
   // Curated tag list for /tags and /tags/<tag>/ pages.
   // Eleventy automatically creates collections per tag; this collection
   // only defines which tags should be shown.
@@ -389,6 +420,7 @@ export default function (eleventyConfig) {
 
     const contentStart = content.indexOf('<div class="note-edit">');
     const contentEnd = [
+      content.indexOf('<section class="article-workbench"'),
       content.indexOf('<nav class="article-next"'),
       content.indexOf('<section class="related-articles"'),
       content.indexOf('<section class="cross-format-related"'),

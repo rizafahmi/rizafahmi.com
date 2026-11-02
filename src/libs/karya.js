@@ -18,14 +18,36 @@ function cleanUrl(value) {
   return /^https?:\/\//i.test(text) ? text : null;
 }
 
+function cleanInternalPath(value) {
+  const text = cleanText(value);
+  if (!text) return null;
+  return text.startsWith("/") && !text.startsWith("//") ? text : null;
+}
+
 export function normalizeProject(raw) {
-  return {
+  const project = {
     name: cleanText(raw?.name) ?? "",
     description: cleanText(raw?.description),
     repo: cleanUrl(raw?.repo),
     url: cleanUrl(raw?.url),
     tags: (Array.isArray(raw?.tags) ? raw.tags : []).map(cleanText).filter(Boolean),
   };
+
+  const quickstart = cleanText(raw?.quickstart);
+  const proof = cleanText(raw?.proof);
+  const relatedArticle = cleanInternalPath(raw?.relatedArticle);
+  const relatedArticleTitle = cleanText(raw?.relatedArticleTitle);
+  const relatedPrompt = cleanInternalPath(raw?.relatedPrompt);
+  const relatedPromptTitle = cleanText(raw?.relatedPromptTitle);
+
+  if (quickstart) project.quickstart = quickstart;
+  if (proof) project.proof = proof;
+  if (relatedArticle) project.relatedArticle = relatedArticle;
+  if (relatedArticleTitle) project.relatedArticleTitle = relatedArticleTitle;
+  if (relatedPrompt) project.relatedPrompt = relatedPrompt;
+  if (relatedPromptTitle) project.relatedPromptTitle = relatedPromptTitle;
+
+  return project;
 }
 
 export function selectProjects(rawProjects) {
