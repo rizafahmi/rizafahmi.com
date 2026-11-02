@@ -744,9 +744,219 @@ small {
   color: #ffffff !important;
 }
 
+/* --- Article Agent Bar & Executable Workbench --- */
+
+.article-agent-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.article-agent-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.3rem 0.65rem;
+  border: 2px solid var(--border-color) !important;
+  border-radius: 0;
+  background: var(--bg-color);
+  color: var(--heading-color);
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.article-agent-pill:hover {
+  background: var(--accent-acid) !important;
+  color: #0a0b0d !important;
+  border-color: #0a0b0d !important;
+}
+
+[data-theme="dark"] .article-agent-pill:hover {
+  background: var(--accent-cobalt) !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+.article-workbench {
+  margin: 3.5rem 0 2.5rem;
+  padding: 1.5rem;
+  border: 4px solid var(--border-color);
+  background: var(--bg-color);
+}
+
+.article-workbench-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-workbench-title {
+  font-family: var(--font-display, "Unbounded", system-ui, sans-serif);
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  color: var(--heading-color);
+}
+
+.article-workbench-hub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.article-workbench-intro {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+}
+
+.article-workbench-group + .article-workbench-group {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.article-workbench-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+  margin-bottom: 0.75rem;
+}
+
+.article-workbench-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.wb-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem;
+  border: 2px solid var(--border-color);
+  background: var(--bg-color);
+}
+
+.wb-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wb-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--border-color);
+  background: var(--code-bg);
+  color: var(--heading-color);
+}
+
+.wb-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.wb-mini-link {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid var(--border-color) !important;
+  text-decoration: none !important;
+  color: var(--heading-color);
+}
+
+.wb-copy-btn {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border: 2px solid #0a0b0d;
+  border-radius: 0;
+  background: var(--accent-acid);
+  color: #0a0b0d;
+  cursor: pointer;
+}
+
+.wb-copy-btn:hover {
+  background: var(--accent-cobalt);
+  color: #ffffff;
+  border-color: var(--border-color);
+}
+
+.wb-card-title {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.wb-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.wb-card-proof {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0.3rem 0.5rem;
+  border-left: 3px solid var(--accent-cobalt);
+  background: var(--code-bg);
+}
+
+[data-theme="dark"] .wb-card-proof {
+  border-left-color: var(--accent-acid);
+}
+
+.wb-card-cli {
+  margin: 0.25rem 0 0;
+  padding: 0.45rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  background: var(--code-bg);
+  border: 1px dashed var(--border-color);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.wb-card-cli code {
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent;
+  padding: 0;
+}
+
 @media print {
   /* Print override logic */
   .toc,
+  .article-agent-bar,
+  .article-workbench,
   .related-articles,
   .cross-format-related,
   .article-next,

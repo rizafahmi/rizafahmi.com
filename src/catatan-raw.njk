@@ -1,0 +1,9 @@
+---
+pagination:
+  data: collections.catatan
+  size: 1
+  alias: post
+permalink: "/catatan/{{ post.fileSlug }}.md"
+eleventyExcludeFromCollections: true
+---
+{{ post | rawArticleMarkdown(collections.prompts, karya, site.url) | safe }}

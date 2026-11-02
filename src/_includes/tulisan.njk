@@ -137,6 +137,28 @@ title: Judul
         {%- endif %}
       </div>
       <small class="note-edit"> <a href="https://github.com/rizafahmi/rizafahmi.com/blob/main/{{ page.inputPath }}"><span role="img" aria-label="edit">✏️</span> Edit {{ editLabel or "catatan" }} ini.</a></small>
+      {%- set isCatatanEntry = false -%}
+      {%- for cItem in collections.catatan -%}
+        {%- if cItem.url == page.url -%}
+          {%- set isCatatanEntry = true -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if isCatatanEntry %}
+      {%- set wb = { url: page.url, tags: visibleTags, content: content } | articleWorkbench(collections.prompts, karya) %}
+      <div class="article-agent-bar" aria-label="Akses cepat AI agent dan workbench">
+        <a class="article-agent-pill" href="/catatan/{{ page.fileSlug }}.md" title="Buka versi Markdown mentah untuk AI agent atau CLI">📄 Versi .md</a>
+        <button
+          type="button"
+          class="article-agent-pill article-agent-copy"
+          data-wb-copy="curl -fsSL https://rizafahmi.com/catatan/{{ page.fileSlug }}.md"
+          aria-label="Salin perintah curl artikel untuk AI agent">
+          🤖 Salin curl Agent
+        </button>
+        {%- if wb.prompts.length or wb.karya.length %}
+        <a class="article-agent-pill article-agent-jump" href="#article-workbench">⚡ Workbench &amp; Bukti Karya ({{ wb.prompts.length + wb.karya.length }}) &darr;</a>
+        {%- endif %}
+      </div>
+      {%- endif %}
       <div class="note-edit">
       </div>
 
@@ -144,6 +166,77 @@ title: Judul
 
       {%- if series and series_index %}
       {{ collections.catatan | seriesNav(series, series_index, page.url) | safe }}
+      {%- endif %}
+
+      {%- if isCatatanEntry and (wb.prompts.length or wb.karya.length) %}
+      <section class="article-workbench" id="article-workbench" aria-labelledby="article-workbench-heading">
+        <div class="article-workbench-header">
+          <span id="article-workbench-heading" class="article-workbench-title">⚡ WORKBENCH &amp; BUKTI KARYA (&lt; 30 DETIK)</span>
+          <a class="article-workbench-hub" href="/skills/">Semua Agent Skills &rarr;</a>
+        </div>
+        <p class="article-workbench-intro">
+          Praktikkan langsung mental model dari catatan ini: jalankan prompt terstruktur, tarik <code>SKILL.md</code> ke asisten AI, atau klon repositori pembuktiannya.
+        </p>
+
+        {%- if wb.prompts.length %}
+        <div class="article-workbench-group">
+          <span class="article-workbench-label">🎛️ PROMPT &amp; AGENT SKILLS TERKAIT</span>
+          <div class="article-workbench-grid">
+            {%- for p in wb.prompts %}
+            <div class="wb-card">
+              <div class="wb-card-top">
+                <span class="wb-badge">{{ p.categoryShortLabel }}</span>
+                <div class="wb-card-actions">
+                  <a class="wb-mini-link" href="{{ p.skillUrl }}" title="Unduh SKILL.md">SKILL.md</a>
+                  <button
+                    type="button"
+                    class="wb-copy-btn"
+                    data-wb-copy="{{ p.prompt | trim | escape }}"
+                    aria-label="Salin prompt {{ p.title }}">
+                    Salin Prompt
+                  </button>
+                </div>
+              </div>
+              <a class="wb-card-title" href="{{ p.url }}">{{ p.title }} &rarr;</a>
+              <p class="wb-card-desc">{{ p.description }}</p>
+            </div>
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endif %}
+
+        {%- if wb.karya.length %}
+        <div class="article-workbench-group">
+          <span class="article-workbench-label">🛠️ BUKTI KARYA (OPEN SOURCE REPOSITORY)</span>
+          <div class="article-workbench-grid">
+            {%- for k in wb.karya %}
+            <div class="wb-card">
+              <div class="wb-card-top">
+                <span class="wb-badge">{{ k.tags | head(2) | join(" · ") }}</span>
+                {%- if k.quickstart %}
+                <button
+                  type="button"
+                  class="wb-copy-btn"
+                  data-wb-copy="{{ k.quickstart | escape }}"
+                  aria-label="Salin perintah CLI {{ k.name }}">
+                  Salin CLI
+                </button>
+                {%- endif %}
+              </div>
+              <a class="wb-card-title" href="{{ k.repo }}" target="_blank" rel="noopener noreferrer">{{ k.name }} &nearr;</a>
+              <p class="wb-card-desc">{{ k.description }}</p>
+              {%- if k.proof %}
+              <p class="wb-card-proof"><strong>Bukti:</strong> {{ k.proof }}</p>
+              {%- endif %}
+              {%- if k.quickstart %}
+              <pre class="wb-card-cli"><code>{{ k.quickstart }}</code></pre>
+              {%- endif %}
+            </div>
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endif %}
+      </section>
       {%- endif %}
 
       {%- set neighbors = collections.catatan | articleNeighbors(page.url) %}
@@ -319,6 +412,18 @@ title: Judul
           navigator.clipboard.writeText(text).then(function () {
             btn.textContent = '✅ Tersalin';
             setTimeout(function () { btn.textContent = 'Salin'; }, 1200);
+          });
+        });
+      });
+
+      document.querySelectorAll('[data-wb-copy]').forEach(function (btn) {
+        var defaultText = btn.textContent;
+        btn.addEventListener('click', function () {
+          var text = btn.getAttribute('data-wb-copy') || '';
+          if (!text || !navigator.clipboard) return;
+          navigator.clipboard.writeText(text).then(function () {
+            btn.textContent = '✅ Tersalin';
+            setTimeout(function () { btn.textContent = defaultText; }, 1400);
           });
         });
       });
