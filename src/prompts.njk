@@ -17,10 +17,11 @@ eleventyExcludeFromCollections: true
 
   <p class="articles-intro">
     Kumpulan instruksi dan pola kerja LLM berdasarkan kebutuhan—mulai dari perencanaan spesifikasi, review kode, sampai aturan <code>AGENTS.md</code>.
-    Klik kartu untuk membaca konteks serta catatan penggunaannya, atau tekan tombol <strong>Salin</strong> untuk langsung menyalin prompt.
+    Klik kartu untuk membuka <strong>Parameter Workbench (&lt; 30 detik)</strong> serta catatan penggunaannya, atau tekan tombol <strong>Salin</strong> untuk langsung menyalin prompt.
   </p>
   <p class="prompts-status-note">
     <strong>Status:</strong> “Pernah dipakai” berarti ada catatan hasil penggunaan nyata, bukan jaminan prompt akan selalu menghasilkan keluaran identik di semua model atau proyek.
+    Untuk AI coding agent (Claude Code, Cursor, Antigravity, Amp), tarik langsung sebagai berkas <code>SKILL.md</code> lewat <a href="/skills/">Indeks Agent Skills (/skills/)</a> atau <a href="/skills/index.json">JSON Manifest</a>.
   </p>
 
   <section class="prompts-controls" aria-label="Pencarian dan filter kategori prompt">
@@ -73,6 +74,9 @@ eleventyExcludeFromCollections: true
           <div class="prompt-card-badges">
             <span class="prompt-badge prompt-badge--category">{{ item.categoryShortLabel }}</span>
             <span class="prompt-badge">{{ item.status }}</span>
+            {%- if item.variables and item.variables.length %}
+            <span class="prompt-badge prompt-badge--var">🎛️ {{ item.variables | length }} param</span>
+            {%- endif %}
           </div>
           {%- if item.prompt %}
           <button

@@ -1,0 +1,97 @@
+---
+layout: main
+title: Agent Skills & Executable Context
+description: Koleksi Agent Skills (SKILL.md) dan indeks konteks terstruktur yang siap ditarik langsung oleh Claude Code, Cursor, Antigravity, Amp, dan CLI AI agents.
+permalink: /skills/
+pageCss: prompts.css
+eleventyExcludeFromCollections: true
+---
+
+<main id="main-content" class="container prompts-index skills-index" data-pagefind-body data-pagefind-meta="title:Agent Skills & Executable Context">
+  <div class="articles-header">
+    <h2>AGENT SKILLS</h2>
+    <div class="rss-pill">
+      🤖 {{ collections.prompts | length }} SKILL.MD
+    </div>
+  </div>
+
+  <p class="articles-intro">
+    Setiap pola kerja dan mental model di situs ini juga tersedia sebagai berkas standar <code>SKILL.md</code> serta manifes JSON (<code>/skills/index.json</code>) yang bisa ditarik langsung ke dalam konteks AI coding agent (Claude Code, Cursor, Antigravity, Amp, Pi) lewat satu perintah terminal.
+  </p>
+
+  <section class="skills-quickstart-box" aria-labelledby="skills-quickstart-heading">
+    <div class="prompt-workbench-bar">
+      <span id="skills-quickstart-heading" class="prompt-workbench-label">⚡ TARIK MANIFES ATAU SKILL KE AGENT (&lt; 30 DETIK)</span>
+      <div class="prompt-workbench-actions">
+        <a class="prompt-raw-link" href="/skills/index.json">📦 index.json</a>
+        <a class="prompt-raw-link" href="/llms.txt">📄 llms.txt</a>
+        <button
+          type="button"
+          class="prompt-copy-btn"
+          data-copy-text="curl -fsSL https://rizafahmi.com/skills/index.json | jq '.skills[] | {name, category, skillUrl, installCommand}'">
+          Salin Perintah JSON
+        </button>
+      </div>
+    </div>
+    <pre class="prompt-workbench-pre"><code># 1. Lihat seluruh daftar skill &amp; endpoint secara terstruktur:
+curl -fsSL https://rizafahmi.com/skills/index.json
+
+# 2. Pasang salah satu skill langsung ke direktori .agents/skills/ proyekmu:
+mkdir -p .agents/skills/wawancara-spesifikasi-bertahap &amp;&amp; \
+  curl -fsSL https://rizafahmi.com/skills/wawancara-spesifikasi-bertahap/SKILL.md \
+  -o .agents/skills/wawancara-spesifikasi-bertahap/SKILL.md
+
+# 3. Atau tarik catatan teknis utuh dalam format Markdown mentah:
+curl -fsSL https://rizafahmi.com/catatan/agentic-coding-bag-3.md</code></pre>
+  </section>
+
+  <div class="skills-Format-pills">
+    <a class="prompt-raw-link" href="/prompts/">🎛️ Buka Parameter Workbench (/prompts/) &rarr;</a>
+    <a class="prompt-raw-link" href="/showcase/">🛠️ Lihat Bukti Karya Open Source (/showcase/) &rarr;</a>
+  </div>
+
+  {%- for cat in collections.promptCategories %}
+  <section id="{{ cat.id }}" class="prompt-category-section">
+    <div class="prompt-section-header">
+      <h3>{{ cat.label }}</h3>
+      <span class="prompt-section-count">{{ cat.count }} skill</span>
+    </div>
+
+    <ul class="prompts-grid">
+      {%- for item in cat.items %}
+      <li class="prompt-card skill-card">
+        <div class="prompt-card-topbar">
+          <div class="prompt-card-badges">
+            <span class="prompt-badge prompt-badge--category">{{ item.categoryShortLabel }}</span>
+            <span class="prompt-badge">SKILL.MD</span>
+          </div>
+          <div class="skill-card-actions">
+            <a class="prompt-raw-link" href="{{ item.skillUrl }}" title="Unduh SKILL.md mentah">SKILL.md</a>
+            <button
+              type="button"
+              class="prompt-card-copy"
+              data-copy-text="{{ item.installCommand | escape }}"
+              aria-label="Salin perintah install skill {{ item.slug }}">
+              Salin curl
+            </button>
+          </div>
+        </div>
+
+        <a class="prompt-card-link" href="{{ item.url }}">
+          <span class="prompt-card-title">{{ item.displayTitle | safe }}</span>
+          <span class="prompt-card-meta"><code>/skills/{{ item.slug }}/SKILL.md</code></span>
+          <span class="prompt-card-desc">{{ item.description }}</span>
+          <pre class="prompt-card-preview"><code>{{ item.installCommand }}</code></pre>
+          <span class="prompt-card-cta">Buka Workbench &amp; Parameter &rarr;</span>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endfor %}
+
+  <hr />
+  <a class="back" href="/">&lt; KEMBALI KE BERANDA</a>
+</main>
+
+<script type="module" src="/assets/prompts.js?v={{ site.buildTime }}"></script>

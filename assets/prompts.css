@@ -533,3 +533,161 @@
   font-family: var(--font-mono);
   font-size: 0.8125rem;
 }
+
+/* --- <30s Interactive Parameter Workbench & Agent Skill Pull --- */
+
+.prompt-badge--var {
+  border-style: dashed;
+  color: var(--heading-color);
+}
+
+.prompt-var-panel {
+  border-bottom: 2px solid var(--border-color);
+  background: var(--bg-color);
+  padding: 0.85rem 0.9rem 1rem;
+}
+
+.prompt-var-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prompt-var-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--heading-color);
+}
+
+.prompt-var-reset {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0;
+  background: var(--bg-color);
+  color: var(--heading-color);
+  cursor: pointer;
+}
+
+.prompt-var-reset:hover {
+  background: var(--accent-acid);
+  color: #0a0b0d;
+  border-color: #0a0b0d;
+}
+
+.prompt-var-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.prompt-var-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.prompt-var-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.prompt-var-label code {
+  font-weight: 400;
+  color: var(--meta-color);
+  background: transparent;
+  padding: 0;
+}
+
+.prompt-var-input {
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  color: var(--heading-color);
+  background: var(--bg-color);
+  border: 2px solid var(--border-color);
+  border-radius: 0;
+  padding: 0.45rem 0.65rem;
+}
+
+.prompt-var-input:focus {
+  outline: 3px solid var(--accent-cobalt);
+  outline-offset: 1px;
+}
+
+[data-theme="dark"] .prompt-var-input:focus {
+  outline-color: var(--accent-acid);
+}
+
+.prompt-agent-pull {
+  border-top: 2px solid var(--border-color);
+  background: var(--bg-color);
+  padding: 0.75rem 0.9rem;
+}
+
+.prompt-agent-pull-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+
+.prompt-agent-pull-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--meta-color);
+}
+
+.prompt-agent-pull-cmd {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--heading-color);
+  background: var(--code-bg);
+  border: 1px dashed var(--border-color);
+  padding: 0.45rem 0.6rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.prompt-related-block + .prompt-related-block {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+/* --- /skills/ Hub Page --- */
+
+.skills-quickstart-box {
+  border: 2px solid var(--border-color);
+  background: var(--code-bg);
+  margin: 0 0 1.5rem;
+}
+
+.skills-Format-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0 0 2.25rem;
+}
+
+.skill-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}

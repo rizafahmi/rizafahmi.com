@@ -1,0 +1,5 @@
+---
+permalink: "/skills/index.json"
+eleventyExcludeFromCollections: true
+---
+{{ collections.prompts | skillsManifestJson(site.url) | safe }}

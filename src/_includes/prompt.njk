@@ -5,6 +5,13 @@ pageCss: prompts.css
 
 {% set neighbors = collections.prompts | promptNeighbors(page.url) %}
 {% set rawSlug = slug or page.fileSlug %}
+{% set vars = promptVariables or (prompt | extractPromptVariables(variables, rawSlug)) %}
+{% set currentPromptItem = null %}
+{% for pItem in collections.prompts %}
+  {% if pItem.slug == rawSlug %}
+    {% set currentPromptItem = pItem %}
+  {% endif %}
+{% endfor %}
 
 <main id="main-content" class="container prompt-page" data-pagefind-body data-pagefind-meta="title:{{ title }}">
   <p class="prompt-breadcrumb">
@@ -29,10 +36,11 @@ pageCss: prompts.css
   <p class="prompt-detail-summary">{{ description }}</p>
 
   {%- if prompt %}
-  <section class="prompt-workbench" aria-labelledby="prompt-workbench-heading">
+  <section class="prompt-workbench" aria-labelledby="prompt-workbench-heading" data-prompt-workbench>
     <div class="prompt-workbench-bar">
-      <span id="prompt-workbench-heading" class="prompt-workbench-label">TEKS PROMPT</span>
+      <span id="prompt-workbench-heading" class="prompt-workbench-label">⚡ EXECUTABLE WORKBENCH</span>
       <div class="prompt-workbench-actions">
+        <a class="prompt-raw-link" href="/skills/{{ rawSlug }}/SKILL.md" title="Unduh sebagai Agent Skill (SKILL.md)">📦 SKILL.md</a>
         <a class="prompt-raw-link" href="/prompts/{{ rawSlug }}.md" title="Buka versi Markdown mentah untuk AI agent atau CLI">📄 .md</a>
         <button
           type="button"
@@ -43,8 +51,48 @@ pageCss: prompts.css
         </button>
       </div>
     </div>
-    <pre class="prompt-workbench-pre"><code id="prompt-primary-code">{{ prompt | trim }}</code></pre>
+
+    {%- if vars and vars.length %}
+    <div class="prompt-var-panel" data-prompt-var-panel>
+      <div class="prompt-var-header">
+        <span class="prompt-var-title">🎛️ ISI PARAMETER (&lt; 30 DETIK — LANGSUNG MEMPERBARUI PROMPT DI BAWAH)</span>
+        <button type="button" class="prompt-var-reset" data-prompt-var-reset hidden>Reset Variabel</button>
+      </div>
+      <div class="prompt-var-grid">
+        {%- for v in vars %}
+        <div class="prompt-var-field">
+          <label class="prompt-var-label" for="prompt-var-{{ loop.index }}">
+            {{ v.label }} <code>{{ v.token }}</code>
+          </label>
+          <input
+            id="prompt-var-{{ loop.index }}"
+            class="prompt-var-input"
+            type="text"
+            placeholder="{{ v.placeholder }}"
+            autocomplete="off"
+            data-prompt-var="{{ v.token | escape }}"
+          />
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+    {%- endif %}
+
+    <pre class="prompt-workbench-pre"><code id="prompt-primary-code" data-prompt-template="{{ prompt | trim | escape }}">{{ prompt | trim }}</code></pre>
     <p class="prompt-copy-status" role="status" aria-live="polite"></p>
+
+    <div class="prompt-agent-pull">
+      <div class="prompt-agent-pull-header">
+        <span class="prompt-agent-pull-label">🤖 TARIK LANGSUNG KE AI AGENT (.AGENTS/SKILLS)</span>
+        <button
+          type="button"
+          class="prompt-card-copy"
+          data-copy-text="mkdir -p .agents/skills/{{ rawSlug }} && curl -fsSL https://rizafahmi.com/skills/{{ rawSlug }}/SKILL.md -o .agents/skills/{{ rawSlug }}/SKILL.md">
+          Salin CLI Skill
+        </button>
+      </div>
+      <code class="prompt-agent-pull-cmd">mkdir -p .agents/skills/{{ rawSlug }} &amp;&amp; curl -fsSL https://rizafahmi.com/skills/{{ rawSlug }}/SKILL.md -o .agents/skills/{{ rawSlug }}/SKILL.md</code>
+    </div>
   </section>
   {%- endif %}
 
@@ -52,13 +100,27 @@ pageCss: prompts.css
     {{ content | safe }}
   </div>
 
-  {%- if relatedArticle %}
-  <aside class="prompt-related-article" aria-label="Artikel terkait">
-    <span class="prompt-related-label">PEMBAHASAN LENGKAP</span>
-    <p>
-      Prompt ini dibahas secara mendalam beserta contoh alur kerjanya di catatan:
-      <a href="{{ relatedArticle }}">{{ relatedArticleTitle or relatedArticle }} &rarr;</a>
-    </p>
+  {%- if relatedArticle or (currentPromptItem and currentPromptItem.relatedKarya) %}
+  <aside class="prompt-related-article" aria-label="Artikel dan bukti karya terkait">
+    {%- if relatedArticle %}
+    <div class="prompt-related-block">
+      <span class="prompt-related-label">📚 PEMBAHASAN LENGKAP</span>
+      <p>
+        Prompt ini dibahas secara mendalam beserta contoh alur kerjanya di catatan:
+        <a href="{{ relatedArticle }}">{{ relatedArticleTitle or relatedArticle }} &rarr;</a>
+      </p>
+    </div>
+    {%- endif %}
+    {%- if currentPromptItem and currentPromptItem.relatedKarya and currentPromptItem.relatedKaryaUrl %}
+    <div class="prompt-related-block">
+      <span class="prompt-related-label">🛠️ BUKTI KARYA (OPEN SOURCE PROOF-OF-WORK)</span>
+      <p>
+        Lihat implementasi nyata pola kerja ini di repositori:
+        <a href="{{ currentPromptItem.relatedKaryaUrl }}" target="_blank" rel="noopener noreferrer">{{ currentPromptItem.relatedKarya }} &nearr;</a>
+        &middot; <a href="/showcase/">Lihat di Galeri Karya &rarr;</a>
+      </p>
+    </div>
+    {%- endif %}
   </aside>
   {%- endif %}
 

@@ -1,0 +1,9 @@
+---
+pagination:
+  data: collections.prompts
+  size: 1
+  alias: promptItem
+permalink: "/skills/{{ promptItem.slug }}/SKILL.md"
+eleventyExcludeFromCollections: true
+---
+{{ promptItem | skillMarkdown(site.url) | safe }}
