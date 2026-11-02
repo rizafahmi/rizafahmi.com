@@ -94,6 +94,7 @@ function assertSitemap() {
     `${SITE_URL}/`,
     `${SITE_URL}/articles/`,
     `${SITE_URL}/prompts/`,
+    `${SITE_URL}/skills/`,
     `${SITE_URL}/search/`,
     `${SITE_URL}/tags/`,
     `${SITE_URL}/topik/`,
@@ -132,6 +133,7 @@ function assertHomepageReachesSections() {
     "/topik",
     "/tips",
     "/prompts",
+    "/skills",
     "/showcase",
     "/search",
     "/konsultasi",
@@ -444,6 +446,40 @@ function assertPublishedFrontmatter() {
     if (!data.tags.some((tag) => !INTERNAL_TAGS.has(tag))) {
       fail(`${fullPath} needs at least one public topic tag`);
     }
+
+    const slug = path.basename(file, ".md");
+    const rawMdFile = path.join(DIST_DIR, "catatan", `${slug}.md`);
+    if (!fileExists(rawMdFile)) {
+      fail(`missing raw article markdown endpoint: ${rawMdFile}`);
+    }
+  }
+}
+
+function assertExecutableWorkbenchEndpoints() {
+  const manifestPath = path.join(DIST_DIR, "skills", "index.json");
+  if (!fileExists(manifestPath)) {
+    fail("dist/skills/index.json is missing");
+    return;
+  }
+
+  try {
+    const manifest = JSON.parse(readText(manifestPath));
+    if (!Array.isArray(manifest.skills) || manifest.skills.length < 14) {
+      fail("dist/skills/index.json has fewer than 14 skills");
+      return;
+    }
+    for (const skill of manifest.skills) {
+      const skillFile = path.join(DIST_DIR, "skills", skill.name, "SKILL.md");
+      if (!fileExists(skillFile)) {
+        fail(`missing SKILL.md endpoint: ${skillFile}`);
+      }
+      const rawPromptFile = path.join(DIST_DIR, "prompts", `${skill.name}.md`);
+      if (!fileExists(rawPromptFile)) {
+        fail(`missing raw prompt endpoint: ${rawPromptFile}`);
+      }
+    }
+  } catch (error) {
+    fail(`dist/skills/index.json is invalid JSON: ${error.message}`);
   }
 }
 
@@ -451,6 +487,7 @@ for (const file of [
   "index.html",
   "articles/index.html",
   "prompts/index.html",
+  "skills/index.html",
   "tips/index.html",
   "showcase/index.html",
   "topik/index.html",
@@ -480,6 +517,7 @@ assertCrossFormatConnectivity();
 assertRobotsTxt();
 assertLlmsTxt();
 assertPublishedFrontmatter();
+assertExecutableWorkbenchEndpoints();
 assertCriticalPath();
 
 if (failures.length) {

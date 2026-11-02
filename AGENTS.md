@@ -77,6 +77,10 @@ src/
   articles.njk       # Articles listing with pagination
   prompts.njk        # /prompts searchable card library index
   prompt-raw.njk     # /prompts/<slug>.md raw Markdown endpoints for AI agents
+  skills.njk         # /skills Agent Skills hub page
+  skill-raw.njk      # /skills/<slug>/SKILL.md structured skill endpoints
+  skills-manifest.njk # /skills/index.json machine-readable skills manifest
+  catatan-raw.njk    # /catatan/<slug>.md raw Markdown endpoints for published articles
   search.njk         # Search page
   showcase.njk       # Portfolio showcase
   tips.njk           # /tips Shorts library index
@@ -229,11 +233,15 @@ static server, and run the Lighthouse CLI against the pages you changed.
   `/cv/en/` from that single file, so the two languages cannot drift; the shared markup
   is `src/_includes/cv_body.njk` and the formatting helpers are `src/libs/cv.js`. Open
   source entries are pulled live from `karya.js`, not copied.
-- Prompts (`/prompts/`) live as individual Markdown files in `src/prompts/*.md` (normalized
-  by `src/libs/prompts.js` into `collections.prompts` and `collections.promptCategories`).
-  Each file generates a detail page at `/prompts/<slug>/` (`src/_includes/prompt.njk`), a
-  raw Markdown endpoint at `/prompts/<slug>.md` (`src/prompt-raw.njk`), a card on
-  `/prompts/` (`src/prompts.njk`), and entries in `/sitemap.xml` and `/llms-full.txt`.
+- Prompts & Agent Skills (`/prompts/` and `/skills/`) live as individual Markdown files in
+  `src/prompts/*.md` (normalized by `src/libs/prompts.js` into `collections.prompts` and
+  `collections.promptCategories`). Each file generates an interactive `<30s` parameter
+  workbench at `/prompts/<slug>/` (`src/_includes/prompt.njk`), a raw Markdown endpoint at
+  `/prompts/<slug>.md` (`src/prompt-raw.njk`), a structured `SKILL.md` endpoint at
+  `/skills/<slug>/SKILL.md` (`src/skill-raw.njk`), an entry in `/skills/index.json`
+  (`src/skills-manifest.njk`), cards on `/prompts/` and `/skills/`, and entries in
+  `/sitemap.xml` and `/llms-full.txt`. Published articles also emit `/catatan/<slug>.md`
+  (`src/catatan-raw.njk`) and bidirectional workbench cards via `src/libs/workbench.js`.
   Prompt categories and `keywords` deliberately do **not** use Eleventy's `tags` field so
   they do not pollute `/tags/`.
 

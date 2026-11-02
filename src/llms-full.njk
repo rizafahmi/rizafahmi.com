@@ -44,14 +44,16 @@ published. Cite the canonical tip URL rather than the YouTube link.
 {% endif %}- Description: {{ tip.excerpt or tip.title }}
 
 {% endfor %}
-## Prompt library inventory
+## Prompt library & Agent Skills inventory
 
-Reusable LLM prompts, coding agent workflows, and `AGENTS.md` instructions curated at {{ site.url }}/prompts/. Each prompt also provides a clean Markdown endpoint (`{{ site.url }}/prompts/<slug>.md`).
+Reusable LLM prompts, coding agent workflows, and `AGENTS.md` instructions curated at {{ site.url }}/prompts/ and {{ site.url }}/skills/. Each entry provides a clean Markdown endpoint (`{{ site.url }}/prompts/<slug>.md`), a structured Agent Skill (`{{ site.url }}/skills/<slug>/SKILL.md`), and is indexed in `{{ site.url }}/skills/index.json`.
 {% for promptItem in collections.prompts %}
 ### {{ promptItem.title }}
 
 - URL: {{ site.url }}{{ promptItem.url }}
 - Raw Markdown: {{ site.url }}{{ promptItem.rawUrl }}
+- Agent Skill (SKILL.md): {{ site.url }}{{ promptItem.skillUrl }}
+- Install Command: `{{ promptItem.installCommand }}`
 - Category: {{ promptItem.categoryLabel }}
 - Status: {{ promptItem.status }}
 {% if promptItem.attribution %}- Attribution: {{ promptItem.attribution }}
@@ -64,6 +66,7 @@ Reusable LLM prompts, coding agent workflows, and `AGENTS.md` instructions curat
 ### {{ post.data.title }}
 
 - URL: {{ site.url }}{{ post.url }}
+- Raw Markdown: {{ site.url }}/catatan/{{ post.fileSlug }}.md
 - Published: {{ post.data.date | dateToISO }}
 {% if post.data.modified %}- Updated: {{ post.data.modified | dateToISO }}
 {% endif %}{% set visibleTags = post.data.tags | publicTags %}{% if visibleTags.length %}- Tags: {{ visibleTags | join(", ") }}
