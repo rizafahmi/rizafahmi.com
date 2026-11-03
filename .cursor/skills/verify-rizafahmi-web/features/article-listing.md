@@ -16,11 +16,11 @@ Browsing all published articles in a paginated list (`/articles/`). Shows articl
 
 **From homepage**: Click "Semua catatan →" link in either articles section
 
-**From any article page**: Click "< KEMBALI KE ARTIKEL" or navigate to `/articles/`
+**From any article page**: Click "< KEMBALI KE BERANDA" to go back to homepage, then navigate to `/articles/`
 
 **Direct URL**: `/articles/`
 
-**From navigation**: Main nav has no direct link; users discover via homepage CTAs
+**From navigation**: Click "Catatan" link in main site navigation header (present on all pages using `layout: main`)
 
 ## Driving it with curl + grep
 
