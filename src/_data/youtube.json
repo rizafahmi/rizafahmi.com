@@ -7,32 +7,32 @@
     "thumbnail": "https://yt3.ggpht.com/vFHuT39fHI70_X3pUZSj3Cne2Q9hLqMnSB5cApxUDt0rIixwlh3UgBXuRJZybXelbNzeP6G-99E=s800-c-k-c0x00ffffff-no-rj"
   },
   "stats": {
-    "subscribers": 7250,
-    "totalViews": 385200,
-    "videoCount": 881
+    "subscribers": 7260,
+    "totalViews": 388456,
+    "videoCount": 885
   },
   "momentum": {
-    "videosLast12Months": 155,
-    "viewsLast12Months": 59375,
-    "uploadsPerMonth": 12.9,
-    "monthsCovered": 12
+    "videosLast12Months": 158,
+    "viewsLast12Months": 62185,
+    "uploadsPerMonth": 13.2,
+    "monthsCovered": 13
   },
   "formats": {
     "shorts": {
-      "n": 81,
-      "median": 215,
-      "p25": 157,
-      "p75": 500,
+      "n": 86,
+      "median": 217,
+      "p25": 160,
+      "p75": 520,
       "min": 48,
-      "max": 2431
+      "max": 2434
     },
     "episode": {
       "n": 84,
-      "median": 289,
+      "median": 291,
       "p25": 205,
-      "p75": 461,
+      "p75": 465,
       "min": 109,
-      "max": 1522
+      "max": 1528
     },
     "recorded": {
       "n": 1,
@@ -44,10 +44,10 @@
     }
   },
   "ngobrolinWeb": {
-    "episodes": 56,
-    "median": 256,
+    "episodes": 57,
+    "median": 257,
     "min": 109,
-    "max": 1522
+    "max": 1528
   },
   "topVideos": [
     {
@@ -55,7 +55,7 @@
       "title": "Cuplikan obrolan dengan pemilik platform sumopod",
       "publishedAt": "2025-09-18T13:00:38Z",
       "url": "https://www.youtube.com/watch?v=Han7XwHe0-I",
-      "views": 2431,
+      "views": 2434,
       "durationSeconds": 56,
       "isLive": false
     },
@@ -82,7 +82,7 @@
       "title": "Bedah Buku Panduan Coding - Ngobrolin WEB",
       "publishedAt": "2026-09-09T02:58:35Z",
       "url": "https://www.youtube.com/watch?v=_VoS7mnsUdQ",
-      "views": 1522,
+      "views": 1528,
       "durationSeconds": 5495,
       "isLive": true
     },
@@ -100,18 +100,54 @@
       "title": "Salah satu alat untuk menghemat token: RTK",
       "publishedAt": "2026-06-10T13:00:14Z",
       "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
-      "views": 1355,
+      "views": 1359,
       "durationSeconds": 41,
       "isLive": false
     }
   ],
   "recentVideos": [
     {
+      "id": "f--PP0-uPxI",
+      "title": "Alternatif agent skill desain yang sederhana: Scandinavian Design",
+      "publishedAt": "2026-11-06T13:00:26Z",
+      "url": "https://www.youtube.com/watch?v=f--PP0-uPxI",
+      "views": 1218,
+      "durationSeconds": 31,
+      "isLive": false
+    },
+    {
+      "id": "WAKISsZS-no",
+      "title": "Use case menarik: Asana migrasi kode dengan bantuan LLM. Lebih hemat waktu dan biaya!",
+      "publishedAt": "2026-11-05T13:00:35Z",
+      "url": "https://www.youtube.com/watch?v=WAKISsZS-no",
+      "views": 262,
+      "durationSeconds": 106,
+      "isLive": false
+    },
+    {
+      "id": "kyzTP34JNao",
+      "title": "Coding Harness - Ngobrolin WEB",
+      "publishedAt": "2026-11-04T03:20:14Z",
+      "url": "https://www.youtube.com/watch?v=kyzTP34JNao",
+      "views": 841,
+      "durationSeconds": 6989,
+      "isLive": true
+    },
+    {
+      "id": "90n7pWZoiqU",
+      "title": "✨🔴 Melatih kemampuan mencari ide untuk dieksekusi - Vibe Streaming",
+      "publishedAt": "2026-11-02T17:44:54Z",
+      "url": "https://www.youtube.com/watch?v=90n7pWZoiqU",
+      "views": 522,
+      "durationSeconds": 7322,
+      "isLive": true
+    },
+    {
       "id": "POxXlgoLnQg",
       "title": "Menangani Kerentanan Aplikasi - Ngobrolin WEB",
       "publishedAt": "2026-10-28T02:52:49Z",
       "url": "https://www.youtube.com/watch?v=POxXlgoLnQg",
-      "views": 630,
+      "views": 651,
       "durationSeconds": 4904,
       "isLive": true
     },
@@ -120,54 +156,18 @@
       "title": "✨🔴 Belajar Coding Agent Tanpa FOMO - Vibe Streaming",
       "publishedAt": "2026-10-26T15:26:51Z",
       "url": "https://www.youtube.com/watch?v=GbjePjmwQZk",
-      "views": 348,
+      "views": 355,
       "durationSeconds": 7437,
       "isLive": true
-    },
-    {
-      "id": "x8Ue3Ao-Cek",
-      "title": "Wah, Visa sepertinya sudah cukup lama memanfaatkan AI dan LLM!",
-      "publishedAt": "2026-10-21T13:00:11Z",
-      "url": "https://www.youtube.com/watch?v=x8Ue3Ao-Cek",
-      "views": 143,
-      "durationSeconds": 78,
-      "isLive": false
-    },
-    {
-      "id": "Nq3uKguMNCA",
-      "title": "State of Devs - Ngobrolin WEB",
-      "publishedAt": "2026-10-21T03:57:48Z",
-      "url": "https://www.youtube.com/watch?v=Nq3uKguMNCA",
-      "views": 741,
-      "durationSeconds": 6882,
-      "isLive": true
-    },
-    {
-      "id": "5a3A4LwSB9E",
-      "title": "Beberapa alasan kenapa #codingagent PI layak dicoba",
-      "publishedAt": "2026-10-18T13:00:11Z",
-      "url": "https://www.youtube.com/watch?v=5a3A4LwSB9E",
-      "views": 155,
-      "durationSeconds": 142,
-      "isLive": false
-    },
-    {
-      "id": "_XBoFV65xxE",
-      "title": "Konsep dasar Ralph loop yang populer setahun lalu",
-      "publishedAt": "2026-10-17T13:00:03Z",
-      "url": "https://www.youtube.com/watch?v=_XBoFV65xxE",
-      "views": 274,
-      "durationSeconds": 160,
-      "isLive": false
     }
   ],
   "window": {
     "videosAnalyzed": 300,
-    "from": "2024-02-20",
-    "to": "2026-10-28",
-    "videosSummarized": 166,
-    "statsFrom": "2025-08-06",
-    "statsTo": "2026-10-11",
+    "from": "2024-03-06",
+    "to": "2026-11-06",
+    "videosSummarized": 171,
+    "statsFrom": "2025-08-12",
+    "statsTo": "2026-10-18",
     "matureMinDays": 21,
     "statsMaxAgeDays": 456
   },
@@ -177,7 +177,7 @@
       "title": "AWS Free Tier: Nikmati Servis Berkualitas Tanpa Biaya",
       "publishedAt": "2022-07-13T09:30:02Z",
       "url": "https://www.youtube.com/watch?v=5FMZMB9_Aqs",
-      "views": 1488,
+      "views": 1489,
       "durationSeconds": 1069,
       "isLive": false,
       "tag": "DevTools"
@@ -207,7 +207,7 @@
       "title": "Ngobrolin Pengalaman Frontend @imrenagi -  Ngobrolin WEB",
       "publishedAt": "2024-12-11T02:37:51Z",
       "url": "https://www.youtube.com/watch?v=jxW4wishA8s",
-      "views": 3963,
+      "views": 3968,
       "durationSeconds": 5375,
       "isLive": true,
       "tag": "Web"
@@ -233,7 +233,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-11-02T00:26:40.798Z",
+  "updatedAt": "2026-11-09T00:39:48.445Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
