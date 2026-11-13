@@ -84,13 +84,13 @@ grep -q '<h1>.*Produktif dengan Asisten Ngoding.*</h1>' /tmp/verify-rizafahmi-we
 ### Step 6: Verify article metadata (date, reading time)
 
 ```bash
-grep -q '📅' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Date icon present" || echo "✗ Date missing"
+grep -q '🌱 Dibuat' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Created date present" || echo "✗ Created date missing"
 grep -q 'menit baca' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Reading time present" || echo "✗ Reading time missing"
 ```
 
 **Expected result**:
 ```
-✓ Date icon present
+✓ Created date present
 ✓ Reading time present
 ```
 
@@ -148,7 +148,7 @@ grep -q 'class="shiki' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.h
 ### Step 13: Verify article tags are listed
 
 ```bash
-grep -q 'class="article-topics"' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Article tags section present" || echo "✗ Tags missing"
+grep -q 'class="note-tags"' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Article tags section present" || echo "✗ Tags missing"
 # Check specific tags for this article: ai, agentic-coding, workflow
 grep -q 'href="/tags/ai/"' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_SLUG.html && echo "✓ Tag: ai" || echo "✗ Tag ai missing"
 ```
@@ -164,6 +164,8 @@ grep -q 'href="/articles/"' /tmp/verify-rizafahmi-web/article-reading/$ARTICLE_S
 **Expected result**: `✓ Back link to /articles/ present`
 
 ## Gotchas
+
+**Date icons differ from listing page**: Article detail pages use 🌱 (seedling) for created date and 🪴 (potted plant) for updated date, while the article listing page uses 📅 (calendar). This is intentional design differentiation.
 
 **Table of Contents (TOC)**: Only generated if the article has 3 or more H2/H3 headings. Short articles or those with only one section won't show a TOC. This is by design, not a bug.
 

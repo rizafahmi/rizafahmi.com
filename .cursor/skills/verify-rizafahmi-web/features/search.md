@@ -7,7 +7,7 @@ Searching articles via Pagefind-powered autocomplete interface. Users type a que
 - Search input field with placeholder and aria labels
 - Autocomplete panel with live suggestions as user types
 - Keyboard navigation (↑/↓ arrows to select, Enter to navigate)
-- Search status messages ("X hasil" or "Tidak ada hasil")
+- Search status messages ("X saran" or "Tidak ditemukan hasil untuk \"{query}\"")
 - Each suggestion shows title and highlighted excerpt
 - Search index covers all articles with `data-pagefind-body` attribute
 - Pagefind loads lazily (only when search page is visited)
