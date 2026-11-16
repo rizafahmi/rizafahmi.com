@@ -7,47 +7,47 @@
     "thumbnail": "https://yt3.ggpht.com/vFHuT39fHI70_X3pUZSj3Cne2Q9hLqMnSB5cApxUDt0rIixwlh3UgBXuRJZybXelbNzeP6G-99E=s800-c-k-c0x00ffffff-no-rj"
   },
   "stats": {
-    "subscribers": 7260,
-    "totalViews": 388456,
-    "videoCount": 885
+    "subscribers": 7270,
+    "totalViews": 390623,
+    "videoCount": 888
   },
   "momentum": {
-    "videosLast12Months": 158,
-    "viewsLast12Months": 62185,
-    "uploadsPerMonth": 13.2,
+    "videosLast12Months": 160,
+    "viewsLast12Months": 63862,
+    "uploadsPerMonth": 13.3,
     "monthsCovered": 13
   },
   "formats": {
     "shorts": {
-      "n": 86,
-      "median": 217,
-      "p25": 160,
-      "p75": 520,
-      "min": 48,
+      "n": 87,
+      "median": 216,
+      "p25": 157,
+      "p75": 528,
+      "min": 53,
       "max": 2434
     },
     "episode": {
       "n": 84,
       "median": 291,
       "p25": 205,
-      "p75": 465,
+      "p75": 479,
       "min": 109,
-      "max": 1528
+      "max": 1529
     },
     "recorded": {
       "n": 1,
-      "median": 182,
-      "p25": 182,
-      "p75": 182,
-      "min": 182,
-      "max": 182
+      "median": 184,
+      "p25": 184,
+      "p75": 184,
+      "min": 184,
+      "max": 184
     }
   },
   "ngobrolinWeb": {
     "episodes": 57,
-    "median": 257,
+    "median": 258,
     "min": 109,
-    "max": 1528
+    "max": 1529
   },
   "topVideos": [
     {
@@ -64,7 +64,7 @@
       "title": "Ada yang bertanya: pakai multi agent ai apa? Jawabannya belum karena saya belum swasembada token",
       "publishedAt": "2026-05-24T13:00:07Z",
       "url": "https://www.youtube.com/watch?v=zPsDnTJMpw8",
-      "views": 1710,
+      "views": 1713,
       "durationSeconds": 13,
       "isLive": false
     },
@@ -82,7 +82,7 @@
       "title": "Bedah Buku Panduan Coding - Ngobrolin WEB",
       "publishedAt": "2026-09-09T02:58:35Z",
       "url": "https://www.youtube.com/watch?v=_VoS7mnsUdQ",
-      "views": 1528,
+      "views": 1529,
       "durationSeconds": 5495,
       "isLive": true
     },
@@ -91,7 +91,7 @@
       "title": "Sering bingung mau kasih instruksi apa ke LLM? Gunakan teknik meta prompting!",
       "publishedAt": "2026-10-11T13:00:23Z",
       "url": "https://www.youtube.com/watch?v=Opibgg8iWQI",
-      "views": 1489,
+      "views": 1490,
       "durationSeconds": 60,
       "isLive": false
     },
@@ -100,18 +100,45 @@
       "title": "Salah satu alat untuk menghemat token: RTK",
       "publishedAt": "2026-06-10T13:00:14Z",
       "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
-      "views": 1359,
+      "views": 1369,
       "durationSeconds": 41,
       "isLive": false
     }
   ],
   "recentVideos": [
     {
+      "id": "h2DfcioxTBc",
+      "title": "Secara tidak sadar, kita sudah dikenalkan konsep harness sejak balita 🤭",
+      "publishedAt": "2026-11-11T13:00:34Z",
+      "url": "https://www.youtube.com/watch?v=h2DfcioxTBc",
+      "views": 558,
+      "durationSeconds": 61,
+      "isLive": false
+    },
+    {
+      "id": "4PCOin52Y_w",
+      "title": "Selamat Tinggal Deno - Ngobrolin WEB",
+      "publishedAt": "2026-11-11T02:55:20Z",
+      "url": "https://www.youtube.com/watch?v=4PCOin52Y_w",
+      "views": 461,
+      "durationSeconds": 5374,
+      "isLive": true
+    },
+    {
+      "id": "pU6Oz1RvtFo",
+      "title": "✨🔴 Latihan Validasi Ide - Vibe Streaming",
+      "publishedAt": "2026-11-09T16:50:20Z",
+      "url": "https://www.youtube.com/watch?v=pU6Oz1RvtFo",
+      "views": 459,
+      "durationSeconds": 7433,
+      "isLive": true
+    },
+    {
       "id": "f--PP0-uPxI",
       "title": "Alternatif agent skill desain yang sederhana: Scandinavian Design",
       "publishedAt": "2026-11-06T13:00:26Z",
       "url": "https://www.youtube.com/watch?v=f--PP0-uPxI",
-      "views": 1218,
+      "views": 1236,
       "durationSeconds": 31,
       "isLive": false
     },
@@ -120,7 +147,7 @@
       "title": "Use case menarik: Asana migrasi kode dengan bantuan LLM. Lebih hemat waktu dan biaya!",
       "publishedAt": "2026-11-05T13:00:35Z",
       "url": "https://www.youtube.com/watch?v=WAKISsZS-no",
-      "views": 262,
+      "views": 286,
       "durationSeconds": 106,
       "isLive": false
     },
@@ -129,45 +156,18 @@
       "title": "Coding Harness - Ngobrolin WEB",
       "publishedAt": "2026-11-04T03:20:14Z",
       "url": "https://www.youtube.com/watch?v=kyzTP34JNao",
-      "views": 841,
+      "views": 874,
       "durationSeconds": 6989,
-      "isLive": true
-    },
-    {
-      "id": "90n7pWZoiqU",
-      "title": "✨🔴 Melatih kemampuan mencari ide untuk dieksekusi - Vibe Streaming",
-      "publishedAt": "2026-11-02T17:44:54Z",
-      "url": "https://www.youtube.com/watch?v=90n7pWZoiqU",
-      "views": 522,
-      "durationSeconds": 7322,
-      "isLive": true
-    },
-    {
-      "id": "POxXlgoLnQg",
-      "title": "Menangani Kerentanan Aplikasi - Ngobrolin WEB",
-      "publishedAt": "2026-10-28T02:52:49Z",
-      "url": "https://www.youtube.com/watch?v=POxXlgoLnQg",
-      "views": 651,
-      "durationSeconds": 4904,
-      "isLive": true
-    },
-    {
-      "id": "GbjePjmwQZk",
-      "title": "✨🔴 Belajar Coding Agent Tanpa FOMO - Vibe Streaming",
-      "publishedAt": "2026-10-26T15:26:51Z",
-      "url": "https://www.youtube.com/watch?v=GbjePjmwQZk",
-      "views": 355,
-      "durationSeconds": 7437,
       "isLive": true
     }
   ],
   "window": {
     "videosAnalyzed": 300,
-    "from": "2024-03-06",
-    "to": "2026-11-06",
-    "videosSummarized": 171,
-    "statsFrom": "2025-08-12",
-    "statsTo": "2026-10-18",
+    "from": "2024-03-20",
+    "to": "2026-11-11",
+    "videosSummarized": 172,
+    "statsFrom": "2025-08-20",
+    "statsTo": "2026-10-21",
     "matureMinDays": 21,
     "statsMaxAgeDays": 456
   },
@@ -177,7 +177,7 @@
       "title": "AWS Free Tier: Nikmati Servis Berkualitas Tanpa Biaya",
       "publishedAt": "2022-07-13T09:30:02Z",
       "url": "https://www.youtube.com/watch?v=5FMZMB9_Aqs",
-      "views": 1489,
+      "views": 1491,
       "durationSeconds": 1069,
       "isLive": false,
       "tag": "DevTools"
@@ -187,7 +187,7 @@
       "title": "Layar lega serbaguna dan memesona. Review BENQ GW3290QT",
       "publishedAt": "2023-07-31T13:00:20Z",
       "url": "https://www.youtube.com/watch?v=JsWtmdTPSzs",
-      "views": 486,
+      "views": 487,
       "durationSeconds": 276,
       "isLive": false,
       "tag": "Review"
@@ -207,7 +207,7 @@
       "title": "Ngobrolin Pengalaman Frontend @imrenagi -  Ngobrolin WEB",
       "publishedAt": "2024-12-11T02:37:51Z",
       "url": "https://www.youtube.com/watch?v=jxW4wishA8s",
-      "views": 3968,
+      "views": 3969,
       "durationSeconds": 5375,
       "isLive": true,
       "tag": "Web"
@@ -233,7 +233,7 @@
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-11-09T00:39:48.445Z",
+  "updatedAt": "2026-11-16T00:52:31.314Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
