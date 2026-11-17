@@ -57,7 +57,7 @@ export default [
   {
     name: "eval_leaderboard",
     description:
-      "Papan peringkat Capy Bench untuk menguji coding agent & LLM dalam membangun CLI Elixir/OTP end-to-end (S1–S7).",
+      "Papan peringkat pengujian coding agent & LLM dalam membangun aplikasi CLI sederhana",
     repo: "https://github.com/rizafahmi/eval_leaderboard",
     url: "https://eval.rizafahmi.com",
     tags: ["Astro", "TypeScript", "LLM Eval"],
