@@ -135,6 +135,7 @@ function assertHomepageReachesSections() {
     "/prompts",
     "/skills",
     "/showcase",
+    "/kontribusi",
     "/search",
     "/konsultasi",
     "/vibe-coding",

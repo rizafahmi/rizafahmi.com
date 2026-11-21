@@ -3,6 +3,7 @@ import path from "node:path";
 import Image from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import { formatMonth, formatPeriod, orderedChannels, translate } from "./src/libs/cv.js";
+import { buildDashboardView } from "./src/libs/github-contributions.js";
 import { selectProjects } from "./src/libs/karya.js";
 import { generateOgImage } from "./src/libs/og-image.js";
 import {
@@ -168,6 +169,12 @@ export default function (eleventyConfig) {
   // Curated projects from src/_data/karya.js (showcase, CV, and LLM indexes);
   // this only cleans the entries up, it never reorders them.
   eleventyConfig.addFilter("karyaProjects", (projects) => selectProjects(projects));
+
+  // /kontribusi/ — GitHub contributions dashboard view model from committed
+  // snapshot src/_data/githubContributions.json.
+  eleventyConfig.addFilter("githubDashboard", (snapshot, curatedKarya) =>
+    buildDashboardView(snapshot, curatedKarya),
+  );
 
   // CV pages (/cv/ and /cv/en/). Both languages render from src/_data/cv.js
   // through src/_includes/cv_body.njk, so these only format what is already there.

@@ -1,0 +1,16 @@
+---
+layout: main
+title: Kontribusi GitHub
+permalink: /kontribusi/
+pageCss: kontribusi.css
+description: Dashboard bukti kontribusi GitHub publik Riza Fahmi — memisahkan kontribusi ke proyek lain, proyek organisasi/terafiliasi, hubungan belum pasti, dan proyek pribadi secara transparan.
+---
+
+{% import "kontribusi_body.njk" as kontribusi %}
+{% set dashboard = githubContributions | githubDashboard(karya | karyaProjects) %}
+
+<main id="main-content" class="container kontribusi-page" data-pagefind-body data-pagefind-meta="title:Kontribusi GitHub">
+  {{ kontribusi.kontribusiBody(dashboard) }}
+</main>
+
+<script type="module" src="/assets/kontribusi.js?v={{ site.buildTime }}"></script>

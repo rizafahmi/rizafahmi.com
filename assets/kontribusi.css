@@ -1,0 +1,553 @@
+/*
+ * /kontribusi/ — Personal GitHub Contributions Dashboard.
+ *
+ * Loaded via the `pageCss` front-matter hook in _includes/main.njk.
+ * Strictly follows DESIGN.md ("The Neo-Acid Gallery"):
+ * - Flat canvas, sharp corners (0px), no shadows, no gradients.
+ * - Line Weight Rule: 4px major header split, 2px borders, 1px dashed rows.
+ * - Color Structure Rule: Acid Lime & Electric Cobalt reserved for hover,
+ *   active states, and structural markers.
+ */
+
+.kontribusi-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+.kontribusi-hero {
+  padding-bottom: 1.5rem;
+  border-bottom: 4px solid var(--border-color);
+}
+
+.kontribusi-eyebrow {
+  margin: 0 0 0.5rem;
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--meta-color);
+}
+
+.kontribusi-page h1 {
+  margin: 0 0 0.75rem;
+  font-family: Unbounded, system-ui, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.kontribusi-page h2 {
+  margin: 2.75rem 0 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--border-color);
+  font-family: Unbounded, system-ui, sans-serif;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.kontribusi-hero + section > h2 {
+  margin-top: 1.75rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.kontribusi-page h3 {
+  margin: 0 0 0.5rem;
+  font-family: Unbounded, system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.kontribusi-lede {
+  max-width: 65ch;
+  margin: 0 0 1.25rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.kontribusi-note {
+  max-width: 68ch;
+  margin: 0 0 1.25rem;
+  color: var(--meta-color);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.kontribusi-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-color);
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.kontribusi-warning {
+  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-color);
+  background-color: var(--accent-acid);
+  color: #0a0b0d;
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.8125rem;
+}
+
+/* Stat grid */
+.kontribusi-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(13.5rem, 100%), 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.kontribusi-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 1.25rem;
+  border: 2px solid var(--border-color);
+}
+
+.kontribusi-stat--primary {
+  border-width: 4px;
+}
+
+.kontribusi-stat:hover {
+  background-color: var(--accent-cobalt);
+  color: #ffffff;
+}
+
+.kontribusi-stat-figure {
+  font-family: Unbounded, system-ui, sans-serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.kontribusi-stat-label,
+.kontribusi-stat-note {
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.kontribusi-stat-label {
+  font-weight: 700;
+}
+
+.kontribusi-stat-note {
+  opacity: 0.8;
+}
+
+/* Kind composition strip */
+.kontribusi-kind-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-color);
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+}
+
+.kontribusi-kind-heading {
+  font-weight: 700;
+}
+
+.kontribusi-kind-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Featured evidence cards */
+.kontribusi-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  gap: 1rem;
+}
+
+.kontribusi-featured-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 1.25rem;
+  border: 2px solid var(--border-color);
+}
+
+.kontribusi-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+}
+
+.kontribusi-repo-link {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.kontribusi-date {
+  color: var(--meta-color);
+}
+
+.kontribusi-card-title {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.kontribusi-card-summary {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.kontribusi-evidence-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--border-color);
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--meta-color);
+  overflow-wrap: anywhere;
+}
+
+/* Badges — strictly square-edged per DESIGN.md */
+.kontribusi-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.kontribusi-badge {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border: 2px solid var(--border-color);
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.kontribusi-badge--rel-external_contributor {
+  background-color: var(--accent-acid);
+  color: #0a0b0d;
+}
+
+.kontribusi-badge--rel-affiliated_org {
+  background-color: var(--accent-cobalt);
+  color: #ffffff;
+}
+
+.kontribusi-badge--outcome-merged {
+  border-style: solid;
+}
+
+.kontribusi-badge--outcome-open,
+.kontribusi-badge--outcome-closed_unmerged {
+  border-style: dashed;
+}
+
+.kontribusi-badge--assoc {
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+/* Filter controls */
+.kontribusi-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  border: 2px solid var(--border-color);
+}
+
+.kontribusi-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.kontribusi-filter-btn {
+  padding: 0.55rem 0.85rem;
+  border: 2px solid var(--border-color);
+  background: transparent;
+  color: inherit;
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.kontribusi-filter-btn:hover {
+  background-color: var(--accent-acid);
+  color: #0a0b0d;
+}
+
+.kontribusi-filter-btn[aria-pressed="true"] {
+  background-color: var(--accent-cobalt);
+  color: #ffffff;
+}
+
+.kontribusi-subfilters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+  gap: 0.75rem;
+}
+
+.kontribusi-select-label,
+.kontribusi-search-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.kontribusi-subfilters select,
+.kontribusi-subfilters input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.65rem;
+  border: 2px solid var(--border-color);
+  background: var(--bg-color, transparent);
+  color: inherit;
+  font-family: "Schibsted Grotesk", system-ui, sans-serif;
+  font-size: 0.9rem;
+}
+
+.kontribusi-live-count {
+  margin: 0;
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+}
+
+/* PR Ledger List */
+.kontribusi-pr-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 2px solid var(--border-color);
+}
+
+.kontribusi-pr-item {
+  padding: 1rem 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.kontribusi-pr-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.kontribusi-pr-title {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.kontribusi-pr-repo {
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+}
+
+.kontribusi-pr-sep {
+  margin: 0 0.25rem;
+}
+
+.kontribusi-pr-summary {
+  margin: 0;
+  max-width: 68ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.kontribusi-pr-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  color: var(--meta-color);
+}
+
+.kontribusi-pr-source {
+  font-weight: 700;
+}
+
+.kontribusi-empty {
+  padding: 1.25rem;
+  border: 2px dashed var(--border-color);
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+}
+
+/* Split panels for affiliated / uncertain / own repos */
+.kontribusi-split-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  gap: 1rem;
+}
+
+.kontribusi-panel {
+  padding: 1.25rem;
+  border: 2px solid var(--border-color);
+  min-width: 0;
+}
+
+.kontribusi-panel-note {
+  margin: 0 0 0.85rem;
+  color: var(--meta-color);
+  font-size: 0.85rem;
+}
+
+.kontribusi-repo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kontribusi-repo-list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.kontribusi-repo-list li:last-child {
+  border-bottom: none;
+}
+
+.kontribusi-repo-counts {
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  color: var(--meta-color);
+}
+
+/* Yearly Activity Bars */
+.kontribusi-years {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 2px solid var(--border-color);
+}
+
+.kontribusi-year-row {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+}
+
+.kontribusi-year-bar {
+  display: flex;
+  height: 1rem;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.kontribusi-bar-outside {
+  background-color: var(--accent-acid);
+  height: 100%;
+}
+
+.kontribusi-bar-own {
+  background-color: var(--accent-cobalt);
+  height: 100%;
+}
+
+.kontribusi-year-values {
+  white-space: nowrap;
+}
+
+/* Methodology & Reconciliation Table */
+.kontribusi-methodology ul {
+  max-width: 68ch;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+}
+
+.kontribusi-methodology li {
+  margin-bottom: 0.5rem;
+}
+
+.kontribusi-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.kontribusi-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.kontribusi-table th,
+.kontribusi-table td {
+  padding: 0.65rem 0.85rem;
+  border: 2px solid var(--border-color);
+  text-align: left;
+}
+
+.kontribusi-table th {
+  font-family: "Martian Mono", "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+}
+
+.kontribusi-table-subtotal td {
+  border-top-width: 4px;
+}
+
+.kontribusi-back {
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .kontribusi-page {
+    padding: 1rem 0.75rem 3rem;
+  }
+
+  .kontribusi-year-row {
+    grid-template-columns: 3rem 1fr;
+    gap: 0.35rem 0.5rem;
+  }
+
+  .kontribusi-year-values {
+    grid-column: 1 / -1;
+    color: var(--meta-color);
+  }
+}

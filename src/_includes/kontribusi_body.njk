@@ -1,0 +1,472 @@
+{#
+  /kontribusi/ — Personal GitHub Contributions Dashboard for rizafahmi.
+
+  Design principles:
+  - Evidence-first: every claim links directly to its public GitHub PR record.
+  - Honest classification: never equates "outside personal namespace" with
+    "independent external contributor", and never infers maintainer status
+    from organization membership (`author_association: MEMBER`).
+  - Explicit uncertainty: `COLLABORATOR` and `NONE` stay in their own bucket.
+  - Exact reconciliation: every displayed total is computed from the underlying
+    records under identical filters and stamped with the observation time.
+#}
+
+{% macro statCard(figure, label, note, modifier="") %}
+  <div class="kontribusi-stat{% if modifier %} kontribusi-stat--{{ modifier }}{% endif %}">
+    <span class="kontribusi-stat-figure">{{ figure }}</span>
+    <span class="kontribusi-stat-label">{{ label }}</span>
+    {% if note %}<span class="kontribusi-stat-note">{{ note }}</span>{% endif %}
+  </div>
+{% endmacro %}
+
+{% macro prBadgeRow(pr, labels) %}
+  <div class="kontribusi-badges">
+    <span class="kontribusi-badge kontribusi-badge--rel-{{ pr.relationship }}">
+      {{ labels.relationship[pr.relationship] }}
+    </span>
+    <span class="kontribusi-badge kontribusi-badge--kind">
+      {{ labels.kind[pr.kind] }}
+    </span>
+    <span class="kontribusi-badge kontribusi-badge--outcome-{{ pr.outcome }}">
+      {{ labels.outcome[pr.outcome] }}
+    </span>
+    <span class="kontribusi-badge kontribusi-badge--assoc" title="Nilai author_association dari GitHub API">
+      {{ pr.authorAssociation }}
+    </span>
+  </div>
+{% endmacro %}
+
+{% macro kontribusiBody(d) %}
+  {% if not d %}
+    <h1>Kontribusi GitHub</h1>
+    <p class="kontribusi-lede">
+      Snapshot kontribusi GitHub publik belum tersedia. Jalankan <code>pnpm run fetch:github</code> untuk memperbarui data.
+    </p>
+  {% else %}
+    {% set ext = d.summary.byRelationship.external_contributor %}
+    {% set aff = d.summary.byRelationship.affiliated_org %}
+    {% set unc = d.summary.byRelationship.uncertain_or_collaborator %}
+
+    <header class="kontribusi-hero">
+      <p class="kontribusi-eyebrow">BUKTI KONTRIBUSI PUBLIK · GITHUB @{{ d.account }}</p>
+      <h1>Kontribusi GitHub</h1>
+      <p class="kontribusi-lede">
+        Rekam jejak Pull Request publik <a href="{{ d.profileUrl }}" target="_blank" rel="noopener noreferrer">@{{ d.account }}</a>:
+        fokus pada kontribusi ke proyek pihak lain, terpisah jelas dari proyek organisasi dan proyek pribadi.
+      </p>
+
+      <div class="kontribusi-meta-bar" aria-label="Metadata observasi dan cakupan data">
+        <span><strong>Observasi:</strong> {{ d.observedAt | localeDate }}</span>
+        <span><strong>Tanggal dibuat:</strong> {{ d.dateRange.createdFrom | dateToISO }} – {{ d.dateRange.createdTo | dateToISO }}</span>
+        <span><strong>Tanggal merge:</strong> {{ d.dateRange.mergedFrom | dateToISO }} – {{ d.dateRange.mergedTo | dateToISO }}</span>
+        <span>
+          <strong>Cakupan:</strong>
+          {% if d.coverage and d.coverage.complete %}
+            Lengkap · publik saja
+          {% else %}
+            Parsial · lihat catatan di bawah
+          {% endif %}
+        </span>
+      </div>
+
+      {% if d.coverage and not d.coverage.complete %}
+        <div class="kontribusi-warning" role="alert">
+          <strong>Peringatan cakupan parsial:</strong>
+          {% for w in d.coverage.outsideNamespace.warnings %}
+            <span>{{ w }}</span>
+          {% endfor %}
+          {% for w in d.coverage.ownNamespace.warnings %}
+            <span>{{ w }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </header>
+
+    {# ── 1. Primary Metrics (Reconciled) ── #}
+    <section aria-labelledby="ringkasan-judul">
+      <h2 id="ringkasan-judul">Ringkasan</h2>
+      <p class="kontribusi-note">
+        Dari <strong>{{ d.summary.total }} PR publik</strong> di luar akun pribadi (<strong>{{ d.summary.merged }} di-merge</strong>),
+        tidak semuanya kontribusi eksternal independen. Berikut pemecahannya:
+      </p>
+
+      <div class="kontribusi-stats">
+        {{ statCard(
+          ext.merged ~ " / " ~ ext.total,
+          "KONTRIBUTOR PROYEK LAIN",
+          "di-merge / total · " ~ ext.repoCount ~ " repo · CONTRIBUTOR",
+          "primary"
+        ) }}
+        {{ statCard(
+          aff.merged ~ " / " ~ aff.total,
+          "ORGANISASI / TERAFILIASI",
+          "di-merge / total · " ~ aff.repoCount ~ " repo · MEMBER",
+          "secondary"
+        ) }}
+        {{ statCard(
+          unc.merged ~ " / " ~ unc.total,
+          "KOLABORATOR & BELUM PASTI",
+          "di-merge / total · " ~ unc.repoCount ~ " repo · COLLABORATOR / NONE",
+          "neutral"
+        ) }}
+        {{ statCard(
+          d.ownNamespace.mergedPrs ~ " / " ~ d.ownNamespace.totalPrs,
+          "PROYEK PRIBADI (" ~ d.account ~ "/*)",
+          "di-merge / total PR publik · " ~ d.ownNamespace.publicReposCount ~ " repo publik",
+          "own"
+        ) }}
+      </div>
+
+      {# Breakdown of External Contributor PRs by Contribution Kind #}
+      <div class="kontribusi-kind-strip" aria-label="Rincian jenis kontribusi proyek lain">
+        <span class="kontribusi-kind-heading">Komposisi {{ ext.total }} PR Kontributor Proyek Lain:</span>
+        <ul class="kontribusi-kind-list">
+          <li><strong>{{ d.summary.byKindExternal.code.merged }}/{{ d.summary.byKindExternal.code.total }}</strong> Kode &amp; Fitur</li>
+          <li><strong>{{ d.summary.byKindExternal.translation.merged }}/{{ d.summary.byKindExternal.translation.total }}</strong> Terjemahan</li>
+          <li><strong>{{ d.summary.byKindExternal.docs.merged }}/{{ d.summary.byKindExternal.docs.total }}</strong> Dokumentasi</li>
+          <li><strong>{{ d.summary.byKindExternal.listing.merged }}/{{ d.summary.byKindExternal.listing.total }}</strong> Direktori / Daftar</li>
+        </ul>
+      </div>
+    </section>
+
+    {# ── 2. Grounded Representative Evidence ── #}
+    <section aria-labelledby="sorotan-judul">
+      <h2 id="sorotan-judul">Sorotan Bukti</h2>
+      <p class="kontribusi-note">
+        Contoh PR yang diperiksa langsung dari diff dan review — membedakan kode, terjemahan, dokumentasi, daftar situs, dan PR organisasi.
+      </p>
+
+      <div class="kontribusi-featured-grid">
+        {% for pr in d.featuredEvidence %}
+          <article class="kontribusi-featured-card" data-featured-pr="{{ pr.repo }}#{{ pr.number }}">
+            <div class="kontribusi-card-top">
+              <a class="kontribusi-repo-link" href="{{ pr.url }}" target="_blank" rel="noopener noreferrer">
+                {{ pr.repo }}#{{ pr.number }}
+              </a>
+              <span class="kontribusi-date">
+                {% if pr.mergedAt %}
+                  Di-merge {{ pr.mergedAt | dateToISO }}
+                {% else %}
+                  Dibuat {{ pr.createdAt | dateToISO }}
+                {% endif %}
+              </span>
+            </div>
+
+            <h3 class="kontribusi-card-title">
+              <a href="{{ pr.url }}" target="_blank" rel="noopener noreferrer">{{ pr.title }}</a>
+            </h3>
+
+            {{ prBadgeRow(pr, d.labels) }}
+
+            {% if pr.summary %}
+              <p class="kontribusi-card-summary">{{ pr.summary }}</p>
+            {% endif %}
+
+            <div class="kontribusi-evidence-meta">
+              {% if pr.changedFiles != null %}
+                <span>{{ pr.changedFiles }} berkas (+{{ pr.additions }} / -{{ pr.deletions }})</span>
+              {% endif %}
+              {% if pr.reviewCount != null and pr.reviewCount > 0 %}
+                <span>{{ pr.reviewCount }} aktivitas review{% if pr.reviewers.length %} ({{ pr.reviewers | join(", ") }}){% endif %}</span>
+              {% endif %}
+              {% if pr.files.length %}
+                <span class="kontribusi-files-sample">
+                  Berkas: <code>{{ pr.files[0].filename }}</code>{% if pr.files.length > 1 %} +{{ pr.files.length - 1 }} lainnya{% endif %}
+                </span>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    {# ── 3. Interactive Filterable Ledger of All 167 Outside-Namespace PRs ── #}
+    <section aria-labelledby="daftar-pr-judul">
+      <h2 id="daftar-pr-judul">Daftar PR di Luar Akun Pribadi</h2>
+      <p class="kontribusi-note">
+        Menampilkan <strong>Kontributor Proyek Lain ({{ ext.total }})</strong> secara default. Gunakan filter untuk melihat seluruh {{ d.summary.total }} PR.
+      </p>
+
+      <div class="kontribusi-controls" data-kontribusi-controls>
+        <div class="kontribusi-filter-group" role="group" aria-label="Filter hubungan proyek">
+          <button type="button" class="kontribusi-filter-btn" data-rel-filter="external_contributor" aria-pressed="true">
+            Kontributor Proyek Lain ({{ ext.total }})
+          </button>
+          <button type="button" class="kontribusi-filter-btn" data-rel-filter="affiliated_org" aria-pressed="false">
+            Organisasi / Terafiliasi ({{ aff.total }})
+          </button>
+          <button type="button" class="kontribusi-filter-btn" data-rel-filter="uncertain_or_collaborator" aria-pressed="false">
+            Kolaborator &amp; Belum Pasti ({{ unc.total }})
+          </button>
+          <button type="button" class="kontribusi-filter-btn" data-rel-filter="all" aria-pressed="false">
+            Semua ({{ d.summary.total }})
+          </button>
+        </div>
+
+        <div class="kontribusi-subfilters">
+          <label class="kontribusi-select-label">
+            <span>Status</span>
+            <select data-outcome-filter>
+              <option value="all">Semua status</option>
+              <option value="merged">Merged</option>
+              <option value="open">Open</option>
+              <option value="closed_unmerged">Closed (tidak di-merge)</option>
+            </select>
+          </label>
+
+          <label class="kontribusi-select-label">
+            <span>Jenis</span>
+            <select data-kind-filter>
+              <option value="all">Semua jenis</option>
+              <option value="code">Kode &amp; Fitur</option>
+              <option value="translation">Terjemahan</option>
+              <option value="docs">Dokumentasi</option>
+              <option value="listing">Direktori / Daftar</option>
+              <option value="maintenance">Pemeliharaan &amp; Data</option>
+            </select>
+          </label>
+
+          <label class="kontribusi-search-label">
+            <span>Cari repo / judul</span>
+            <input type="search" data-search-filter placeholder="contoh: phoenix, react, gatsby, ngobrolin…" />
+          </label>
+        </div>
+
+        <p class="kontribusi-live-count" data-live-count aria-live="polite">
+          Menampilkan <strong>{{ ext.total }}</strong> dari {{ d.summary.total }} PR (<strong>{{ ext.merged }}</strong> di-merge)
+        </p>
+      </div>
+
+      <ul class="kontribusi-pr-list" data-pr-list>
+        {% for pr in d.outsidePullRequests %}
+          {% set isDefaultVisible = (pr.relationship == "external_contributor") %}
+          <li
+            class="kontribusi-pr-item"
+            data-pr-item
+            data-pr-key="{{ pr.repo }}#{{ pr.number }}"
+            data-relationship="{{ pr.relationship }}"
+            data-outcome="{{ pr.outcome }}"
+            data-kind="{{ pr.kind }}"
+            data-association="{{ pr.authorAssociation }}"
+            data-search="{{ (pr.repo ~ ' #' ~ pr.number ~ ' ' ~ pr.title ~ ' ' ~ pr.summary) | lower | escape }}"
+            {% if not isDefaultVisible %}hidden{% endif %}
+          >
+            <div class="kontribusi-pr-main">
+              <div class="kontribusi-pr-header">
+                <a class="kontribusi-pr-title" href="{{ pr.url }}" target="_blank" rel="noopener noreferrer">
+                  <span class="kontribusi-pr-repo">{{ pr.repo }}#{{ pr.number }}</span>
+                  <span class="kontribusi-pr-sep">—</span>
+                  <span>{{ pr.title }}</span>
+                </a>
+              </div>
+
+              {{ prBadgeRow(pr, d.labels) }}
+
+              {% if pr.summary %}
+                <p class="kontribusi-pr-summary">{{ pr.summary }}</p>
+              {% endif %}
+
+              <div class="kontribusi-pr-meta">
+                <span>Dibuat: {{ pr.createdAt | dateToISO }}</span>
+                {% if pr.mergedAt %}
+                  <span>Di-merge: <strong>{{ pr.mergedAt | dateToISO }}</strong></span>
+                {% endif %}
+                {% if pr.changedFiles != null %}
+                  <span>{{ pr.changedFiles }} berkas (+{{ pr.additions }}/-{{ pr.deletions }})</span>
+                {% endif %}
+                {% if pr.reviewCount != null and pr.reviewCount > 0 %}
+                  <span>{{ pr.reviewCount }} review</span>
+                {% endif %}
+                {% if pr.repoLanguage %}
+                  <span>{{ pr.repoLanguage }}</span>
+                {% endif %}
+                {% if pr.repoArchived %}
+                  <span>Arsip</span>
+                {% endif %}
+                <a href="{{ pr.url }}" target="_blank" rel="noopener noreferrer" class="kontribusi-pr-source">
+                  Lihat di GitHub ↗
+                </a>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <p class="kontribusi-empty" data-empty-state hidden>
+        Tidak ada PR yang cocok dengan kombinasi filter saat ini.
+      </p>
+    </section>
+
+    {# ── 4. Affiliated & Uncertain Repositories Grouped ── #}
+    <section aria-labelledby="afiliasi-judul">
+      <h2 id="afiliasi-judul">Organisasi &amp; Hubungan Belum Pasti</h2>
+      <p class="kontribusi-note">
+        Dipisahkan dari kontributor eksternal independen: <code>MEMBER</code> adalah repo organisasi, sedangkan <code>COLLABORATOR</code> dan <code>NONE</code> dibiarkan eksplisit.
+      </p>
+
+      <div class="kontribusi-split-grid">
+        <div class="kontribusi-panel">
+          <h3>Organisasi / Terafiliasi ({{ aff.total }} PR · {{ aff.merged }} di-merge)</h3>
+          <p class="kontribusi-panel-note"><code>author_association: MEMBER</code> — tidak otomatis berarti maintainer penuh.</p>
+          <ul class="kontribusi-repo-list">
+            {% for r in d.affiliatedRepos %}
+              <li>
+                <a href="{{ r.repoUrl }}" target="_blank" rel="noopener noreferrer">{{ r.repo }}</a>
+                <span class="kontribusi-repo-counts">{{ r.merged }}/{{ r.total }} merged</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="kontribusi-panel">
+          <h3>Kolaborator &amp; Belum Pasti ({{ unc.total }} PR · {{ unc.merged }} di-merge)</h3>
+          <p class="kontribusi-panel-note"><code>COLLABORATOR</code> (diundang langsung) atau <code>NONE</code> (belum merge ke default branch / email tidak tertaut).</p>
+          <ul class="kontribusi-repo-list">
+            {% for r in d.uncertainRepos %}
+              <li>
+                <a href="{{ r.repoUrl }}" target="_blank" rel="noopener noreferrer">{{ r.repo }}</a>
+                <span class="kontribusi-repo-counts">{{ r.merged }}/{{ r.total }} merged · {{ r.authorAssociations | join("/") }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {# ── 5. Own Projects (Visible, Secondary to Contributor Focus) ── #}
+    <section aria-labelledby="pribadi-judul">
+      <h2 id="pribadi-judul">Proyek Pribadi ({{ d.account }}/*)</h2>
+      <p class="kontribusi-note">
+        <strong>{{ d.ownNamespace.mergedPrs }}/{{ d.ownNamespace.totalPrs }} PR publik</strong> di-merge di {{ d.ownNamespace.reposWithPrs }} repositori
+        (dari {{ d.ownNamespace.publicReposCount }} repo publik). Kurasi proyek lengkap ada di <a href="/showcase/">Karya</a>.
+      </p>
+
+      <div class="kontribusi-panel">
+        <h3>Repositori Pribadi Paling Aktif (berdasarkan PR publik)</h3>
+        <ul class="kontribusi-repo-list">
+          {% for r in d.ownNamespace.topRepos %}
+            <li>
+              <a href="{{ r.url }}" target="_blank" rel="noopener noreferrer">{{ r.repo }}</a>
+              <span class="kontribusi-repo-counts">{{ r.merged }}/{{ r.total }} merged</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    {# ── 6. Public Yearly PR Activity (GraphQL ContributionsCollection, Public Only) ── #}
+    {% if d.yearlyActivity.length %}
+      <section aria-labelledby="tahunan-judul">
+        <h2 id="tahunan-judul">Aktivitas PR Publik per Tahun</h2>
+        <p class="kontribusi-note">
+          Berdasarkan tanggal pembuatan PR di repositori publik (<code>isPrivate: false</code>).
+        </p>
+
+        <div class="kontribusi-years" role="list">
+          {% set maxYearPrs = 1 %}
+          {% for row in d.yearlyActivity %}
+            {% set rowTotal = row.outsidePrs + row.ownPrs %}
+            {% if rowTotal > maxYearPrs %}{% set maxYearPrs = rowTotal %}{% endif %}
+          {% endfor %}
+
+          {% for row in d.yearlyActivity %}
+            {% set rowTotal = row.outsidePrs + row.ownPrs %}
+            {% set outsidePct = (row.outsidePrs / maxYearPrs * 100) | round %}
+            {% set ownPct = (row.ownPrs / maxYearPrs * 100) | round %}
+            <div class="kontribusi-year-row" role="listitem">
+              <span class="kontribusi-year-label">{{ row.year }}</span>
+              <div class="kontribusi-year-bar" aria-hidden="true">
+                {% if row.outsidePrs > 0 %}
+                  <span class="kontribusi-bar-outside" style="width: {{ outsidePct }}%;"></span>
+                {% endif %}
+                {% if row.ownPrs > 0 %}
+                  <span class="kontribusi-bar-own" style="width: {{ ownPct }}%;"></span>
+                {% endif %}
+              </div>
+              <span class="kontribusi-year-values">
+                <strong>{{ row.outsidePrs }}</strong> luar · {{ row.ownPrs }} pribadi
+              </span>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {# ── 7. Methodology, Limitations & Reconciliation Table ── #}
+    <section aria-labelledby="metodologi-judul">
+      <h2 id="metodologi-judul">Metodologi &amp; Rekonsiliasi</h2>
+
+      <div class="kontribusi-methodology">
+        <ul>
+          <li><strong>Proyek Pribadi:</strong> repo milik <code>{{ d.account }}</code>.</li>
+          <li><strong>Organisasi / Terafiliasi:</strong> repo pihak lain dengan <code>MEMBER</code>/<code>OWNER</code> (bukan kontribusi eksternal, bukan bukti maintainer).</li>
+          <li><strong>Kontributor Proyek Lain:</strong> repo pihak lain dengan <code>CONTRIBUTOR</code>.</li>
+          <li><strong>Kolaborator / Belum Pasti:</strong> <code>COLLABORATOR</code> atau <code>NONE</code> (termasuk PR merge ke branch non-default seperti <code>feedloop/qore-sdk#26</code>).</li>
+          <li><strong>Batasan:</strong> <code>/users/{{ d.account }}/orgs</code> publik mengembalikan <code>{{ d.publicOrgsCount }}</code> org karena keanggotaan privat; tidak ada skor dampak buatan.</li>
+        </ul>
+
+        <h3>Rekonsiliasi (Observasi {{ d.observedAt }})</h3>
+        <div class="kontribusi-table-wrap">
+          <table class="kontribusi-table">
+            <thead>
+              <tr>
+                <th>Kategori</th>
+                <th>Filter Bukti</th>
+                <th>Total PR</th>
+                <th>Merged</th>
+                <th>Open</th>
+                <th>Closed (unmerged)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Kontributor Proyek Lain</td>
+                <td><code>-user:{{ d.account }}</code> · <code>CONTRIBUTOR</code></td>
+                <td><strong>{{ ext.total }}</strong></td>
+                <td><strong>{{ ext.merged }}</strong></td>
+                <td>{{ ext.open }}</td>
+                <td>{{ ext.closedUnmerged }}</td>
+              </tr>
+              <tr>
+                <td>Organisasi / Terafiliasi</td>
+                <td><code>-user:{{ d.account }}</code> · <code>MEMBER</code></td>
+                <td><strong>{{ aff.total }}</strong></td>
+                <td><strong>{{ aff.merged }}</strong></td>
+                <td>{{ aff.open }}</td>
+                <td>{{ aff.closedUnmerged }}</td>
+              </tr>
+              <tr>
+                <td>Kolaborator &amp; Belum Pasti</td>
+                <td><code>-user:{{ d.account }}</code> · <code>COLLABORATOR/NONE</code></td>
+                <td><strong>{{ unc.total }}</strong></td>
+                <td><strong>{{ unc.merged }}</strong></td>
+                <td>{{ unc.open }}</td>
+                <td>{{ unc.closedUnmerged }}</td>
+              </tr>
+              <tr class="kontribusi-table-subtotal">
+                <td>Subtotal di Luar Namespace</td>
+                <td><code>is:pr author:{{ d.account }} -user:{{ d.account }} is:public</code></td>
+                <td><strong>{{ d.summary.total }}</strong></td>
+                <td><strong>{{ d.summary.merged }}</strong></td>
+                <td>{{ d.summary.open }}</td>
+                <td>{{ d.summary.closedUnmerged }}</td>
+              </tr>
+              <tr>
+                <td>Proyek Pribadi</td>
+                <td><code>is:pr author:{{ d.account }} user:{{ d.account }} is:public</code></td>
+                <td><strong>{{ d.ownNamespace.totalPrs }}</strong></td>
+                <td><strong>{{ d.ownNamespace.mergedPrs }}</strong></td>
+                <td>{{ d.ownNamespace.openPrs }}</td>
+                <td>{{ d.ownNamespace.closedUnmergedPrs }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <p class="kontribusi-back">
+      <a class="back" href="/">&lt; Kembali ke halaman utama</a>
+    </p>
+  {% endif %}
+{% endmacro %}

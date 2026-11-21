@@ -22,6 +22,7 @@
     "og:force": "OG_IMAGE_FORCE=1 pnpm run build",
     "fetch:youtube": "node scripts/fetch-youtube-stats.mjs",
     "fetch:tip-thumbnails": "node scripts/fetch-tip-thumbnails.mjs",
+    "fetch:github": "node scripts/fetch-github-contributions.mjs",
     "test": "node --test test/*.test.js",
     "new:catatan": "node scripts/new-catatan.mjs",
     "lint": "biome lint .",

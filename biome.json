@@ -31,6 +31,7 @@
       "!assets/web-vitals.js",
       "!src/_data/tips.json",
       "!src/_data/tipPosters.json",
+      "!src/_data/githubContributions.json",
       "!.impeccable"
     ]
   }
