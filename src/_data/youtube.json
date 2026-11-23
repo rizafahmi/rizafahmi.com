@@ -8,12 +8,12 @@
   },
   "stats": {
     "subscribers": 7270,
-    "totalViews": 390623,
-    "videoCount": 888
+    "totalViews": 392490,
+    "videoCount": 890
   },
   "momentum": {
     "videosLast12Months": 160,
-    "viewsLast12Months": 63862,
+    "viewsLast12Months": 65082,
     "uploadsPerMonth": 13.3,
     "monthsCovered": 13
   },
@@ -24,30 +24,30 @@
       "p25": 157,
       "p75": 528,
       "min": 53,
-      "max": 2434
+      "max": 2436
     },
     "episode": {
-      "n": 84,
-      "median": 291,
-      "p25": 205,
-      "p75": 479,
+      "n": 85,
+      "median": 302,
+      "p25": 214,
+      "p75": 482,
       "min": 109,
-      "max": 1529
+      "max": 1537
     },
     "recorded": {
       "n": 1,
-      "median": 184,
-      "p25": 184,
-      "p75": 184,
-      "min": 184,
-      "max": 184
+      "median": 188,
+      "p25": 188,
+      "p75": 188,
+      "min": 188,
+      "max": 188
     }
   },
   "ngobrolinWeb": {
     "episodes": 57,
-    "median": 258,
+    "median": 259,
     "min": 109,
-    "max": 1529
+    "max": 1537
   },
   "topVideos": [
     {
@@ -55,7 +55,7 @@
       "title": "Cuplikan obrolan dengan pemilik platform sumopod",
       "publishedAt": "2025-09-18T13:00:38Z",
       "url": "https://www.youtube.com/watch?v=Han7XwHe0-I",
-      "views": 2434,
+      "views": 2436,
       "durationSeconds": 56,
       "isLive": false
     },
@@ -82,7 +82,7 @@
       "title": "Bedah Buku Panduan Coding - Ngobrolin WEB",
       "publishedAt": "2026-09-09T02:58:35Z",
       "url": "https://www.youtube.com/watch?v=_VoS7mnsUdQ",
-      "views": 1529,
+      "views": 1537,
       "durationSeconds": 5495,
       "isLive": true
     },
@@ -100,18 +100,36 @@
       "title": "Salah satu alat untuk menghemat token: RTK",
       "publishedAt": "2026-06-10T13:00:14Z",
       "url": "https://www.youtube.com/watch?v=upVDf49vT1c",
-      "views": 1369,
+      "views": 1371,
       "durationSeconds": 41,
       "isLive": false
     }
   ],
   "recentVideos": [
     {
+      "id": "wxe9_EGT5O0",
+      "title": "Deployment pun sekarang banyak dibantu LLM",
+      "publishedAt": "2026-11-20T13:00:30Z",
+      "url": "https://www.youtube.com/watch?v=wxe9_EGT5O0",
+      "views": 485,
+      "durationSeconds": 117,
+      "isLive": false
+    },
+    {
+      "id": "NoB7uOIE8N4",
+      "title": "Paham codebase kunci hemat token?!",
+      "publishedAt": "2026-11-19T13:00:28Z",
+      "url": "https://www.youtube.com/watch?v=NoB7uOIE8N4",
+      "views": 815,
+      "durationSeconds": 84,
+      "isLive": false
+    },
+    {
       "id": "h2DfcioxTBc",
       "title": "Secara tidak sadar, kita sudah dikenalkan konsep harness sejak balita 🤭",
       "publishedAt": "2026-11-11T13:00:34Z",
       "url": "https://www.youtube.com/watch?v=h2DfcioxTBc",
-      "views": 558,
+      "views": 569,
       "durationSeconds": 61,
       "isLive": false
     },
@@ -120,7 +138,7 @@
       "title": "Selamat Tinggal Deno - Ngobrolin WEB",
       "publishedAt": "2026-11-11T02:55:20Z",
       "url": "https://www.youtube.com/watch?v=4PCOin52Y_w",
-      "views": 461,
+      "views": 531,
       "durationSeconds": 5374,
       "isLive": true
     },
@@ -129,7 +147,7 @@
       "title": "✨🔴 Latihan Validasi Ide - Vibe Streaming",
       "publishedAt": "2026-11-09T16:50:20Z",
       "url": "https://www.youtube.com/watch?v=pU6Oz1RvtFo",
-      "views": 459,
+      "views": 475,
       "durationSeconds": 7433,
       "isLive": true
     },
@@ -138,36 +156,18 @@
       "title": "Alternatif agent skill desain yang sederhana: Scandinavian Design",
       "publishedAt": "2026-11-06T13:00:26Z",
       "url": "https://www.youtube.com/watch?v=f--PP0-uPxI",
-      "views": 1236,
+      "views": 1240,
       "durationSeconds": 31,
       "isLive": false
-    },
-    {
-      "id": "WAKISsZS-no",
-      "title": "Use case menarik: Asana migrasi kode dengan bantuan LLM. Lebih hemat waktu dan biaya!",
-      "publishedAt": "2026-11-05T13:00:35Z",
-      "url": "https://www.youtube.com/watch?v=WAKISsZS-no",
-      "views": 286,
-      "durationSeconds": 106,
-      "isLive": false
-    },
-    {
-      "id": "kyzTP34JNao",
-      "title": "Coding Harness - Ngobrolin WEB",
-      "publishedAt": "2026-11-04T03:20:14Z",
-      "url": "https://www.youtube.com/watch?v=kyzTP34JNao",
-      "views": 874,
-      "durationSeconds": 6989,
-      "isLive": true
     }
   ],
   "window": {
     "videosAnalyzed": 300,
-    "from": "2024-03-20",
-    "to": "2026-11-11",
-    "videosSummarized": 172,
-    "statsFrom": "2025-08-20",
-    "statsTo": "2026-10-21",
+    "from": "2024-03-27",
+    "to": "2026-11-20",
+    "videosSummarized": 173,
+    "statsFrom": "2025-08-27",
+    "statsTo": "2026-10-28",
     "matureMinDays": 21,
     "statsMaxAgeDays": 456
   },
@@ -187,7 +187,7 @@
       "title": "Layar lega serbaguna dan memesona. Review BENQ GW3290QT",
       "publishedAt": "2023-07-31T13:00:20Z",
       "url": "https://www.youtube.com/watch?v=JsWtmdTPSzs",
-      "views": 487,
+      "views": 488,
       "durationSeconds": 276,
       "isLive": false,
       "tag": "Review"
@@ -207,7 +207,7 @@
       "title": "Ngobrolin Pengalaman Frontend @imrenagi -  Ngobrolin WEB",
       "publishedAt": "2024-12-11T02:37:51Z",
       "url": "https://www.youtube.com/watch?v=jxW4wishA8s",
-      "views": 3969,
+      "views": 3975,
       "durationSeconds": 5375,
       "isLive": true,
       "tag": "Web"
@@ -227,13 +227,13 @@
       "title": "Menelurkan Talenta Digital bersama William Florance dari Program Bangkit - Episode Spesial",
       "publishedAt": "2021-07-22T08:00:14Z",
       "url": "https://www.youtube.com/watch?v=NCcxyUGmzT4",
-      "views": 712,
+      "views": 716,
       "durationSeconds": 1710,
       "isLive": false,
       "tag": "Edukasi"
     }
   ],
-  "updatedAt": "2026-11-16T00:52:31.314Z",
+  "updatedAt": "2026-11-23T01:28:32.112Z",
   "source": {
     "api": "YouTube Data API v3",
     "note": "Public stats only. For geo/demographics, use YouTube Analytics API + OAuth."
